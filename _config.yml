@@ -11,7 +11,7 @@ timezone: America/New_York
 exclude: [node_modules, Gemfile, Gemfile.lock, .gitignore, package.json, README.md, CNAME, vendor]
 gems:
   - jekyll-srcset
-  - jekyll-autoprefixer
+  - jekyll-assets
   - jekyll-sitemap
 defaults:
   -
