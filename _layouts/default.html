@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% include head.html %}
+</head>
+
+<body>
+	<header>
+		{% if page.header.size > 0 %}
+		{% include_relative page.header %}
+		{% else %}
+		{% include header.html %}
+		{% endif %}
+	</header>
+	<main>
+		{{ content }}
+	</main>
+	<footer>
+		{% if page.footer.size > 0 %}
+		{% include_relative page.footer %}
+		{% else %}
+		{% include footer.html %}
+		{% endif %}
+	</footer>
+	{% include script.html %}
+</body>
+
+</html>
