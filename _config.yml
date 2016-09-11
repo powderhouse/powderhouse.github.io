@@ -12,6 +12,7 @@ exclude: [Gemfile, Gemfile.lock, .gitignore, package.json, README.md, CNAME, ven
 gems:
   - jekyll-srcset
   - jekyll-assets
+  - jekyll-tidy
   - jekyll-sitemap
 defaults:
   -
