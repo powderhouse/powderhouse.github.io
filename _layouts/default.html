@@ -13,15 +13,17 @@
 		{% include header.html %}
 		{% endif %}
 	</header>
-	<main>
+	<main id='{{ page.name }}'>
 		{{ content }}
 	</main>
 	<footer>
+		{% comment %}
 		{% if page.footer.size > 0 %}
 		{% include_relative page.footer %}
 		{% else %}
 		{% include footer.html %}
 		{% endif %}
+		{% endcomment %}
 	</footer>
 
 	{% include script.html %}
