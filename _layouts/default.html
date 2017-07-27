@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-	{% include head.html %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="Powderhouse Studios">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/tachyons.min.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <style>
+
+    </style>
 </head>
 
-<body>
-	<header>
-		{% if page.header.size > 0 %}
-		{% include_relative page.header %}
-		{% else %}
-		{% include header.html %}
-		{% endif %}
-	</header>
-	<main id='{{ page.name }}'>
-		{{ content }}
-	</main>
-	<footer>
-		{% comment %}
-		{% if page.footer.size > 0 %}
-		{% include_relative page.footer %}
-		{% else %}
-		{% include footer.html %}
-		{% endif %}
-		{% endcomment %}
-	</footer>
-
-	{% include script.html %}
+<body class='bg-near-white near-black'>
+    <header>
+        {% include header.html %}
+    </header>
+    <main class='lh-copy w-two-thirds-ns center pl3 pr3 mt5 mt6-l'>
+        {{ content }}
+    </main>
+    <footer>
+        {% include footer.html %}
+    </footer>
 </body>
 
 </html>
