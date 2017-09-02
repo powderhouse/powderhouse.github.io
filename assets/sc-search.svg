@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>search</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-Search" fill="#000000">
+            <path d="M13,25.93 C5.871,25.93 0.07,20.129 0.07,13 C0.07,5.871 5.871,0.07 13,0.07 C20.129,0.07 25.93,5.871 25.93,13 C25.93,20.129 20.129,25.93 13,25.93 L13,25.93 Z M13,1.93 C6.896,1.93 1.93,6.896 1.93,13 C1.93,19.104 6.896,24.07 13,24.07 C19.104,24.07 24.07,19.104 24.07,13 C24.07,6.896 19.104,1.93 13,1.93 L13,1.93 Z" id="Fill-1"></path>
+            <polyline id="Fill-2" points="30.293 31.707 21.293 22.707 22.707 21.293 31.707 30.293 30.293 31.707"></polyline>
+        </g>
+    </g>
+</svg>
