@@ -4,25 +4,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title>{{ page.title }}</title>
     <meta name="description" content="Powderhouse Studios">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/tachyons.min.css">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="/assets/fonts.css">
-    <style>
-
-    </style>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
 </head>
 
 <body class='bg-near-white near-black'>
     <header>
         {% include header.html %}
     </header>
-    <main class='lh-copy w-two-thirds-ns center pl3 pr3 mt5 mt6-l'>
+    <main class='lh-copy w-two-thirds-l w-80-m center pl3 pr3 pt5-ns pt0'>
         {{ content }}
     </main>
-    <footer>
+    <footer class='bg-near-black'>
         {% include footer.html %}
     </footer>
 </body>
