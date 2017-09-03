@@ -1,11 +1,34 @@
-<div class="dt-ns w-100 pl3 pr3 pr0-ns pb0-ns pb3 bb b--light-silver">
-    <div id='leftaligned-logo' class="db dtc-ns v-mid tl w-100 w-30-ns">
-        <a href="/" class="db w-100 h-100" title="Home"></a>
+<div style='position: relative;' class='w-100'>
+    <div id='logo-container w-100'>
+        <div id='logo' class="db dim">
+            <a href="/" class="db w-100 h-100" title="Home"></a>
+        </div>
     </div>
-    <nav class="db dtc-ns v-mid w-100 w-70-ns tl tr-ns mt2 mt0-ns f4 fw4">
-        <a title="About" href="/about/" class="dib mr2 mr3-m mr4-l hover-blue link black-70">About</a>
-        <a title="Jobs" href="/jobs/" class="dib mr2 mr3-m mr4-l hover-blue link black-70">Jobs</a>
-        <a title="Enroll" href="/enroll/" class="dib mr2 mr3-m mr4-l hover-blue link black-70">Enroll</a>
-        <a title="Frequently Asked Questions (FAQ)" href="/faq/" class="dib mr2 mr3-m mr4-l hover-blue link black-70">FAQ</a>
+    <div id='version' class='near-white o-50 w-100 tr'>
+        <pre>v0.0.0</pre>
+    </div>
+    <nav class="db w-100 f1">
+        <a title="About" id='about' href="/about/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'about' %}active{% endif %}">About</a>
+        <a title="Jobs" id='jobs' href="/jobs/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'jobs' %}active{% endif %}">Jobs</a>
+        <a title="Enroll" id='enroll' href="/enroll/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'enroll' %}active{% endif %}">Enroll</a>
+        <a title="Frequently Asked Questions (FAQ)" id='faq' href="/faq/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'faq' %}active{% endif %}">FAQ</a>
+        <input id='site-search' class='w-100 f5' type='search' placeholder='🔍 Search powderhouse.org…'>
+        <div class="dn dt-ns w-100 mt3 pl3">
+            <a title="@powderhs twitter profile" href="https://twitter.com/powderhs" class="icon dtc w-20 dim link near-white">
+                <div id='twitter'></div>
+            </a>
+            <a title="Powderhouse Studios Facebook Page" href="https://www.facebook.com/powderhousestudios/" class="icon dtc w-20 dim link near-white">
+                <div id='facebook'></div>
+            </a>
+            <a title="Powderhouse Studios Instagram Account" href="https://instagram.com/powderhs" class="icon dtc w-20 dim link near-white">
+                <div id='instagram'></div>
+            </a>
+            <a title="Powderhouse Studios YouTube Channel" href="https://www.youtube.com/channel/UCtTU6mxTNn0GxbxnzT3zrEQ" class="icon dtc w-20 dim link near-white">
+                <div id='youtube'></div>
+            </a>
+            <a title="Email Powderhouse Studios" href="http://eepurl.com/cfFcy9" class="icon dtc w-20 dim link near-white">
+                <div id='email'></div>
+            </a>
+        </div>
     </nav>
 </div>
