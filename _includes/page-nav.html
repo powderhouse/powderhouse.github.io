@@ -1,0 +1,5 @@
+<nav class='w-100 page-nav bb b--moon-gray'>
+{% for option in page.nav %}
+  <a href='#{{ option | slugify }}' class='link dim blue dib mr4 v-top'>{{ option }}</a>
+{% endfor %}
+</nav>

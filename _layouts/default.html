@@ -14,16 +14,30 @@
     <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
 </head>
 
-<body class='bg-near-white near-black'>
-    <header>
+<body {% if page.slug %}id='{{ page.slug}}'{% endif %} class='bg-near-white near-black'>
+    <header class='pa4'>
         {% include header.html %}
     </header>
-    <main class='lh-copy w-two-thirds-l w-80-m center pl3 pr3 pt5-ns pt0'>
+    <main class='lh-copy pa4 pt0-ns pt1 f2-ns f3-m f6 lh-copy'>
         {{ content }}
     </main>
-    <footer class='bg-near-black'>
+    <footer>
         {% include footer.html %}
     </footer>
+    <script>
+    // To clear the placeholder value in the search of the input
+    let siteSearch = document.querySelector('#site-search');
+    let searchPlaceholder = siteSearch.getAttribute('placeholder');
+    siteSearch.addEventListener('focus', function(event) {
+        event.target.setAttribute('placeholder', '');
+    });
+
+    // Replace the placeholder if empty
+    siteSearch.addEventListener('focusout', function(event) {
+        console.log(event);
+        event.target.setAttribute('placeholder', searchPlaceholder);
+    })
+    </script>
 </body>
 
 </html>
