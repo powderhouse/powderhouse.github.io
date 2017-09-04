@@ -7,17 +7,17 @@ slug: faq
   <p class='bb b--moon-gray pb4'>
       Doing things differently means asking a lot of questions. We’ve changed everything about how school works. So it’s natural to have questions. If you don’t see your question here, <a href='TK' class='link blue dim'>ask us</a>, and we’ll get back to you ASAP.
   </p>
-  <ol class='list pl0'>
+  <ol class='list pl0 bb b--moon-gray pb5'>
   {% for q in site.data.faq %}
-  {% assign slug = q.question | slugify: "pretty" %}
-  <li><a href='#{{ slug }}' class='link dim blue'>{{ q.question }}</a></li>
+  {% assign slug = q.question | slugify: "default" %}
+    <li><a href='#{{ slug }}' class='link dim blue'>{{ q.question }}</a></li>
   {% endfor %}
   </ol>
 </section>
 <section>
   <dl>
       {% for q in site.data.faq %}
-      {% assign slug = q.question | slugify: "pretty" %}
+      {% assign slug = q.question | slugify: "default" %}
       <dt id='{{ slug }}'>{{ q.question }}</dt>
       <dd>{{ q.answer }}</dd>
       {% endfor %}
