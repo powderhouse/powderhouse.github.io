@@ -1,0 +1,12 @@
+plugins:
+  - algoliasearch-jekyll
+
+algolia:
+  application_id: 'NURLHE71FW'
+  index_name: 'prod_powderhouse.org'
+  record_css_selector: 'p,li,dt,dd'
+  excluded_files:
+    - 2015-01-01-post.md
+  settings:
+    allowTyposOnNumericTokens: false
+    typoTolerance: false
