@@ -1,5 +1,7 @@
-<nav class='w-100 page-nav bb b--moon-gray'>
+{% if page.nav.size > 0 %}
+<nav class='w-100 page-nav f4 f2-ns bb b--moon-gray'>
 {% for option in page.nav %}
-  <a href='#{{ option | slugify }}' class='link dim blue dib mr4 v-top'>{{ option }}</a>
+  <a href='#{{ option | slugify: "default" }}' class='link dim blue dib mr4-ns mr2 v-top'>{{ option }}</a>
 {% endfor %}
 </nav>
+{% endif %}

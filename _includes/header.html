@@ -1,33 +1,36 @@
-<div style='position: relative;' class='w-100'>
-    <div id='logo-container w-100'>
-        <div id='logo' class="db dim">
-            <a href="/" class="db w-100 h-100" title="Home"></a>
+<div id='version' class='near-white o-50 w-100-ns w-50 tr'>
+    <pre class='mt0'>v0.0.1</pre>
+</div>
+<div class='relative'>
+    <div id='logo-container' class='w-100-ns w-50'>
+        <a href="/" title="Home">
+            <div id='logo' class="dim"></div>
+        </a>
+    </div>
+    <nav class="db w-100 f1-ns f3-m f4 mt4">
+        <div id='nav-links' class='mb0 pa0-ns pl1'>
+            <a title="About" id='about' href="/about/" class="db-ns dib dim link black-70 mb3-ns mb1 mr0-ns mr2 {% if page.slug == 'about' %}active{% endif %}">About</a>
+            <a title="Jobs" id='jobs' href="/jobs/" class="db-ns dib dim link black-70 mb3-ns mb1 mr0-ns mr2 {% if page.slug == 'jobs' %}active{% endif %}">Jobs</a>
+            <a title="Enroll" id='enroll' href="/enroll/" class="db-ns dib dim link black-70 mb3-ns mb1 mr0-ns mr2 {% if page.slug == 'enroll' %}active{% endif %}">Enroll</a>
+            <a title="Frequently Asked Questions (FAQ)" id='faq' href="/faq/" class="db-ns dib dim link black-70 mb3-ns mb1 mr0-ns mr2 {% if page.slug == 'faq' %}active{% endif %}">FAQ</a>
+            <a title="Contact" id='contact' href="/contact/" class="db-ns dib dim link black-70 mb3-ns mb1 mr0-ns mr2 {% if page.slug == 'contact' %}active{% endif %}">Contact</a>
         </div>
-    </div>
-    <div id='version' class='near-white o-50 w-100 tr'>
-        <pre>v0.0.0</pre>
-    </div>
-    <nav class="db w-100 f1">
-        <a title="About" id='about' href="/about/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'about' %}active{% endif %}">About</a>
-        <a title="Jobs" id='jobs' href="/jobs/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'jobs' %}active{% endif %}">Jobs</a>
-        <a title="Enroll" id='enroll' href="/enroll/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'enroll' %}active{% endif %}">Enroll</a>
-        <a title="Frequently Asked Questions (FAQ)" id='faq' href="/faq/" class="db-ns dib dim link black-70 mb3 {% if page.slug == 'faq' %}active{% endif %}">FAQ</a>
         <input id='site-search' class='w-100 f5' type='search' placeholder='🔍 Search powderhouse.org…'>
-        <div class="dn dt-ns w-100 mt3 pl3">
-            <a title="@powderhs twitter profile" href="https://twitter.com/powderhs" class="icon dtc w-20 dim link near-white">
-                <div id='twitter'></div>
+        <div class="dt w-100 mt4 pl1">
+            <a title="@powderhs twitter profile" href="https://twitter.com/powderhs" class="icon dtc w-20 dim link near-white pl2-ns pl3">
+                <div class='twitter icon'></div>
             </a>
-            <a title="Powderhouse Studios Facebook Page" href="https://www.facebook.com/powderhousestudios/" class="icon dtc w-20 dim link near-white">
-                <div id='facebook'></div>
+            <a title="Powderhouse Studios Facebook Page" href="https://www.facebook.com/powderhousestudios/" class="icon dtc w-20 dim link near-white pl2-ns pl3">
+                <div class='facebook icon'></div>
             </a>
-            <a title="Powderhouse Studios Instagram Account" href="https://instagram.com/powderhs" class="icon dtc w-20 dim link near-white">
-                <div id='instagram'></div>
+            <a title="Powderhouse Studios Instagram Account" href="https://instagram.com/powderhs" class="icon dtc w-20 dim link near-white pl2-ns pl3">
+                <div class='instagram icon'></div>
             </a>
-            <a title="Powderhouse Studios YouTube Channel" href="https://www.youtube.com/channel/UCtTU6mxTNn0GxbxnzT3zrEQ" class="icon dtc w-20 dim link near-white">
-                <div id='youtube'></div>
+            <a title="Powderhouse Studios YouTube Channel" href="https://www.youtube.com/channel/UCtTU6mxTNn0GxbxnzT3zrEQ" class="icon dtc w-20 dim link near-white pl2-ns pl3">
+                <div class='youtube icon'></div>
             </a>
-            <a title="Email Powderhouse Studios" href="http://eepurl.com/cfFcy9" class="icon dtc w-20 dim link near-white">
-                <div id='email'></div>
+            <a title="Email Powderhouse Studios" href="/subscribe" class="icon dtc w-20 dim link near-white pl2-ns pl3">
+                <div class='email icon'></div>
             </a>
         </div>
     </nav>
