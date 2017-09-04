@@ -12,32 +12,116 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
 </head>
 
-<body {% if page.slug %}id='{{ page.slug}}'{% endif %} class='bg-near-white near-black'>
-    <header class='pa4'>
+<body {% if page.slug %}data-slug='{{ page.slug}}' {% endif %} class='bg-near-white near-black'>
+    <header class='pa4-ns pa2 pb4'>
         {% include header.html %}
     </header>
-    <main class='lh-copy pa4 pt0-ns pt1 f2-ns f3-m f6 lh-copy'>
-        {{ content }}
+    <main class='lh-copy pa4-ns pa2 pt0-ns pt1 f2-ns f3-m f6 lh-copy'>
+        <section id='main-content'>
+            {{ content }}
+        </section>
+        <section id="search-results">
+            {% raw %}
+            <script type="text/html" id="search-result-template">
+                <div class="search-result f3 pb4 pt4 bb b--moon-gray">
+                    <a href='{{{ _highlightResult.url }}}' class='url link dim blue'>🔗 powderhouse.org{{{ _highlightResult.url }}}</a> —  {{{_highlightResult.text.value}}}
+                </div>
+            </script>
+            {% endraw %}
+        </section>
     </main>
     <footer>
-        {% include footer.html %}
+        <!-- {% include footer.html %} -->
     </footer>
     <script>
     // To clear the placeholder value in the search of the input
     let siteSearch = document.querySelector('#site-search');
     let searchPlaceholder = siteSearch.getAttribute('placeholder');
+
     siteSearch.addEventListener('focus', function(event) {
         event.target.setAttribute('placeholder', '');
     });
 
     // Replace the placeholder if empty
     siteSearch.addEventListener('focusout', function(event) {
-        console.log(event);
         event.target.setAttribute('placeholder', searchPlaceholder);
-    })
+    });
     </script>
+    <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
+    <script>
+    var client = algoliasearch("NURLHE71FW", "9d236b5579a1d28471308567f57e76c3");
+    var index = client.initIndex('prod_powderhouse.org');
+
+    // index.setSettings({
+    //     searchableAttributes: [
+    //         'title',
+    //         'text'
+    //     ]
+    // });
+
+    var search = instantsearch({
+        // Replace with your own values
+        appId: 'NURLHE71FW',
+        apiKey: 'ad58cc2a3f1b18ae54da181fe189ad6c', // search only API key, no ADMIN key
+        indexName: 'prod_powderhouse.org',
+        urlSync: false
+    });
+
+    search.addWidget(
+        instantsearch.widgets.searchBox({
+            container: '#site-search'
+        })
+    );
+
+    search.addWidget(
+        instantsearch.widgets.hits({
+            container: '#search-results',
+            hitsPerPage: 100,
+            transformData: {
+                item: function(d) {
+                    if (d._highlightResult.text.value) {
+                        d._highlightResult.text.value = d._highlightResult.text.value.replace('�', '');
+                    }
+                    if (d.hasOwnProperty('url') && !d._highlightResult.hasOwnProperty('url')) {
+                        d._highlightResult.url = d.url;
+                    }
+                    return d;
+                }
+            },
+            templates: {
+                item: document.querySelector('#search-result-template').innerHTML,
+                empty: "We didn't find any results for the search <em>\"{{query}}\"</em>"
+            }
+        })
+    );
+    search.start();
+    </script>
+    <script>
+    function hide(element) {
+        element.classList.add('dn');
+    }
+
+    function show(element) {
+        element.classList.remove('dn');
+    }
+    let mainContent = document.querySelector('#main-content');
+    let searchResults = document.querySelector('#search-results');
+    let searchInput = document.querySelector('#site-search');
+    searchInput.addEventListener('input', function(event) {
+        if (searchInput.value.length > 0) {
+            hide(mainContent);
+            show(searchResults);
+        } else {
+            hide(searchResults);
+            show(mainContent);
+        }
+    });
+    </script>
+    {% include ga-snippet.html %}
 </body>
 
 </html>
