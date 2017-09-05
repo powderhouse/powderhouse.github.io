@@ -91,6 +91,13 @@
     color: var(--phs-red);
 }
 
+.rum-serif {
+    font-family: "Rum Serif Thin";
+}
+.rum-serif-i {
+    font-family: "Rum Serif Thin Italic";
+}
+
 .phs-blue {
     color: var(--phs-blue);
 }
@@ -129,6 +136,16 @@ header #logo {
     mask-size: 7rem;
 }
 
+/*nav.page-nav span:after {
+    content: "|";
+    margin-right: 0.75em;
+    opacity: 0.25;
+}*/
+
+nav.page-nav span:last-child:after {
+    content: "";
+}
+
 @media screen and (max-width: 30em) {
     /*Small tachyons breakpoint*/
     nav.page-nav {
@@ -163,7 +180,7 @@ header #logo {
     }
 
     #main-content, #search-results {
-        margin-top: 3.25rem;
+        margin-top: -0.875rem;
     }
 
     header #logo {
@@ -238,11 +255,15 @@ footer #phs-logomark {
 aside {
     padding-left: 2rem;
     padding-right: 2rem;
-    height: 2em;
-    line-height: 2.25em;
+    /*height: 2em;*/
+    /*line-height: 2.25em;*/
     margin-left: -2rem;
     min-width: 100%;
     font-family: "Rum Serif Thin Italic";
+}
+
+p.list-intro {
+    margin-bottom: -1em;
 }
 
 nav .active {
