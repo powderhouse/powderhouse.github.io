@@ -4,95 +4,23 @@ slug: about
 title: About Powderhouse
 nav: ['Overview', 'History', 'Design', 'Team', 'Press']
 ---
+
 <section id='overview' class='bb b--light-gray'>
-    <p>
-        We believe the future of learning should look more like the future of work than the future of school.
-    </p>
-    <p>
-        We believe we grow best when we're learning. We believe we learn best when we're creating. And we believe we create best when we're creating something which matters to us. We believe these things are true, regardless of how old you are. Whether you're seventeen or seventy, the ways we learn and grow are more similar than different.
-    </p>
-    <p>
-        Powderhouse Studios is our attempt to look at the most effective, creative workplaces, studios, and labs and build such a place with youth here in Somerville. Our work is grounded in two, basic activities: telling stories and building things with computers.
-    </p>
-    <p>
-        Our mission is to restore power, dignity, and play to youth. We believe that to do that, youth can't be students, they can't be largely passive recipients of information. They have to learn to identify problems and questions they care about and pursue them.
-    </p>
-    <p>
-        This is why at Powderhouse Studios, people mostly do projects. When people first enroll, these projects come from their involvement in staff's ongoing work and the seminars staff put together around this work. As youth get older, they spend more and more time articulating and developing projects of their own design. By the time a young person leaves Powderhouse Studios, they'll be comfortable tackling year-long, 1,000 hour projects. But to do that, at some point they must do a 500 hour project…and a 100 hour project…and so on, all the way down to whatever timescale they can manage when we first meet them.
-    </p>
-    <p>
-        Doing this well means we must support deep—and deeply individualized—work by young people. To do this, we've gotten rid of traditional, subject-based classes and teaching positions. Instead, the day is organized in three chunks—morning, lunch, and afternoon, 10AM to 5PM each day. Staff work in tightly knit, cross-functional teams which stick together, managing mixed age cohorts of about thirty young people for years at a time. And that's just the start of what we've changed.
-    </p>
-    <p>
-        Doing all this within a public school district has been pretty hard. All along the way, people have told us we're crazy. And what we're describing might sound crazy. But it's how creative work has been done for centuries—from apprenticeships to MFA programs to kindergarten classrooms.
-    </p>
-    <p>
-        Powderhouse Studios is our attempt to build on these traditions, making the road by walking it, bushwhacking trails as we work to invent a future of learning where doing new things isn't so hard.
-    </p>
-</section>
-<section id='history' class='bb b--light-gray'>
-    <h2 class='f-subheadline-ns f2 lh-title mb0'>📜 History</h2>
-    <p>
-        PHS is a product of <a href='https://thesprouts.org' class='link blue dim'>sprout &amp; co</a>’s work over the past five years, with the support of hundreds of families, Somerville Public School staff, and experts from around the nation, to develop a world-class design under <a href='http://www.doe.mass.edu/finance/schoolchoice/choicead.html' class='link blue dim'>Massachusetts’ Innovation Schools legislation</a>.
-    </p>
-    <p>
-        In 2009, we began designing and running in- and afterschool programs with youth and evening programs with adults, working with partners ranging from the Cloud Foundation to Google to the Harvard Extension School. Historically, our programs have focused on making scientific investigation more of a cultural activity, something meaningful to people’s everyday.
-    </p>
-    <p>
-        In 2012, Mayor Curtatone approached us about opening a new high school in Somerville under Massachusetts’s Innovation Schools Initiative, a piece of legislation which allows schools to have some of the same autonomies and flexibilities granted to Charter Schools while keeping money and oversight within the District.
-    </p>
-    <p>
-        In 2013, our initial prospectus was unanimously approved by the Superintendent, chair of the School Committee, and president of the teachers’ union. This allowed us to convene an Innovation Planning Committee including parents, teachers, administrators, and other Somerville community members. They spent nearly a year reviewing and ultimately approving our Innovation Plan.
-    </p>
-    <p>
-        In 2014, we were the first to seek (much less receive) relief from state statutes and regulations around school design under the Innovation Schools legislation. The Department of Elementary and Secondary Education granted us relief from those regulations governing procurement and educator licensure.
-    </p>
-    <p>
-        Beginning in late 2016, we joined the 7th and 8th grade team at the Healey School, developing <a href='https://thesprouts.github.io/healey' class='link dim blue'>interdisciplinary, project-based programs</a> we hope will serve as a springboard for continued work at the Healey and our own enrollment outreach.
-    </p>
-    <p>
-        We hope to bring our final plan before the Somerville School Committee in fall 2017—after we wrap up our negotiations with the Somerville Teachers Association—and open the following year as our campus is renovated. (We’ll be located at the older Powder House Community School building, which is being renovated over the next year into a fascinating, community campus with PHS at its center.)
-    </p>
+    {% include_relative _overview.html %}
 </section>
 <section id='design' class='bb b--light-gray'>
     <h2 class='f-subheadline-ns f2 lh-title mb0'>📏 Design</h2>
+    {% include_relative _design.html %}
 </section>
 <section id='team' class='bb b--light-gray'>
     <h2 class='f-subheadline-ns f2 lh-title mb0'>👥 Team</h2>
-    <p>
-        Our team grew out of sprout &amp; co’s design work beginning in 2009. Over the past four years, hundreds of families, world-class school designers and policy experts, and Somerville Public School staff have helped us to create PHS’s design.
-    </p>
-    <p>
-        Now, we’re looking to build a diverse, multi-disciplinary founding team devoted to deep relationships, deep ideas, and deep work. This is a once-in-a-lifetime opportunity. Come <a href='/jobs' class='link dim blue'>join us</a>!
-    </p>
-    <section>
-    <h3 class='f1 lh-title'>Current staff</h3>
-    <div id='team-container'>
-    {% assign sorted_people = site.data.team | sort: "date_joined" | reverse %}
-    {% for person in sorted_people %}
-    <div class='person-container mb4 w-100 v-center-children cf-ns pb0-ns pb3'>
-        <h4 class='portrait-title f2 lh-title mb0 dn-ns o-80'>{{ person.name}}</h4>
-        <img alt='Portrait of {{ person.name }}' class='portrait w-20-ns w-100 fl-ns o-90' src='/assets/portraits/{{ person.name | slugify: "default" }}.png'>
-        <div class='bio w-80-ns w-100 f3 pl4-ns fl-ns'>
-          <div>{{ person.bio }}</div>
-        </div>
-    </div>
-    {% endfor %}
-    </div>
-    </section>
+    {% include_relative _team.html %}
 </section>
-
+<section id='history' class='bb b--light-gray'>
+    <h2 class='f-subheadline-ns f2 lh-title mb0'>📜 History</h2>
+    {% include_relative _history.html %}
+</section>
 <section id='press' class='bb b--light-gray'>
   <h2 class='f-subheadline-ns f2 lh-title mb0'>📣 Press</h2>
-  <ol class='list pl0 f3'>
-    {% assign sorted_press = site.data.press | sort: 'date' | reverse %}
-    {% for piece in sorted_press %}
-    <li class='mb4 lh-copy bb b--moon-gray pb4'>
-      <div>
-        <a href='{{ piece.url }}' class='link blue dim'>"{{ piece.title }}"</a>, by {{ piece.author }}
-      </div>
-      <div class='date silver f4'>{{ piece.date | date: "%-d %B %Y" }}</div>
-    </li>
-    {% endfor %}
-  </ol>
+  {% include_relative _press.html %}
 </section>

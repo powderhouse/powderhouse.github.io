@@ -1,0 +1,21 @@
+<p>
+    Our team grew out of sprout &amp; co’s design work beginning in 2009. Over the past four years, hundreds of families, world-class school designers and policy experts, and Somerville Public School staff have helped us to create PHS’s design.
+</p>
+<p>
+    Now, we’re looking to build a diverse, multi-disciplinary founding team devoted to deep relationships, deep ideas, and deep work. This is a once-in-a-lifetime opportunity. Come <a href='/jobs' class='link dim blue'>join us</a>!
+</p>
+<section>
+<h3 class='f1 lh-title'>Current staff</h3>
+<div id='team-container'>
+{% assign sorted_people = site.data.team | sort: "date_joined" | reverse %}
+{% for person in sorted_people %}
+<div class='person-container mb4 w-100 v-center-children cf-ns pb0-ns pb3'>
+    <h4 class='portrait-title f2 lh-title mb0 dn-ns o-80'>{{ person.name}}</h4>
+    <img alt='Portrait of {{ person.name }}' class='portrait w-20-ns w-100 fl-ns o-90' src='/assets/portraits/{{ person.name | slugify: "default" }}.png'>
+    <div class='bio w-80-ns w-100 f3 pl4-ns fl-ns'>
+      <div>{{ person.bio }}</div>
+    </div>
+</div>
+{% endfor %}
+</div>
+</section>

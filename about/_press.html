@@ -1,0 +1,11 @@
+<ol class='list pl0 f3'>
+  {% assign sorted_press = site.data.press | sort: 'date' | reverse %}
+  {% for piece in sorted_press %}
+  <li class='mb4 lh-copy bb b--moon-gray pb4'>
+    <div>
+      <a href='{{ piece.url }}' class='link blue dim'>"{{ piece.title }}"</a>, by {{ piece.author }}
+    </div>
+    <div class='date silver f4'>{{ piece.date | date: "%-d %B %Y" }}</div>
+  </li>
+  {% endfor %}
+</ol>
