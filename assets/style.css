@@ -90,7 +90,16 @@
 .phs-red {
     color: var(--phs-red);
 }
+.phs-orange {
+    color: var(--phs-orange);
+}
+.phs-blue {
+    color: var(--phs-blue);
+}
 
+.rum-sans-medium {
+    font-family: "Rum Sans Medium";
+}
 .rum-serif {
     font-family: "Rum Serif Thin";
 }
@@ -146,71 +155,6 @@ nav.page-nav span:last-child:after {
     content: "";
 }
 
-@media screen and (max-width: 30em) {
-    /*Small tachyons breakpoint*/
-    nav.page-nav {
-        margin-top: -1.25rem;
-    }
-}
-
-@media screen and (min-width: 60em) {
-    /*Large tachyons breakpoint*/
-}
-
-@media screen and (min-width: 30em) and (max-width: 60em) {
-    /*medium tachyons breakpoint*/
-    header #logo {
-        height: 7rem;
-        min-height: 7rem;
-        -webkit-mask-size: 7rem;
-        mask-size: 7rem;
-    }
-}
-
-@media screen and (min-width: 30em) {
-    /*not-small tachyons breakpoint*/
-    .v-center-container {
-        display: flex;
-        align-items: center;
-    }
-
-    .v-center-children {
-        display: flex;
-        align-items: center;
-    }
-
-    #main-content, #search-results {
-        margin-top: -0.875rem;
-    }
-
-    header #logo {
-        height: 10rem;
-        -webkit-mask-size: 16rem;
-        mask-size: 16rem;
-        -webkit-mask-position: 0 0;
-        mask-position: 0 0;
-    }
-    main {
-        width: calc(100% - 20rem);
-        position: absolute;
-        right: 0;
-    }
-    header {
-        height: 100vh;
-        width: 20rem;
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-    nav.page-nav {
-        margin-top: -4rem;
-    }
-    header nav {
-        position: absolute;
-        bottom: calc(-100vh + 13.75rem);
-    }
-}
-
 nav .icon div {
     width: 1.5rem;
     height: 1.5rem;
@@ -253,11 +197,8 @@ footer #phs-logomark {
 }
 
 aside {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    /*height: 2em;*/
-    /*line-height: 2.25em;*/
-    margin-left: -2rem;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     min-width: 100%;
     font-family: "Rum Serif Thin Italic";
 }
@@ -266,14 +207,12 @@ p.list-intro {
     margin-bottom: -1em;
 }
 
+li.bb:last-child {
+    border-bottom: none;
+}
 nav .active {
     color: var(--near-white);
     opacity: 1;
-}
-
-[data-slug=faq] dt {
-    font-family: "Rum Sans Medium";
-    margin-top: 4rem;
 }
 
 li .icon {
@@ -295,6 +234,101 @@ li .icon.youtube {
 li .icon.email {
     background-color: var(--mailchimp-blue);
 }
+
+@media screen and (min-width: 30em) {
+    /*not-small tachyons breakpoint*/
+    aside {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-left: -2rem;
+    }
+    .v-center-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .v-center-children {
+        display: flex;
+        align-items: center;
+    }
+
+    #main-content, #search-results {
+        margin-top: -0.875rem;
+    }
+
+    header #logo {
+        height: 10rem;
+        -webkit-mask-size: 16rem;
+        mask-size: 16rem;
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+    header {
+        height: 100vh;
+        width: 20rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    nav.page-nav {
+        margin-top: -4rem;
+    }
+    header nav {
+        position: absolute;
+        bottom: calc(-100vh + 13.75rem);
+    }
+    main {
+        width: calc(100% - 20rem);
+        position: absolute;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 30em) {
+    /*Small tachyons breakpoint*/
+    nav.page-nav {
+        margin-top: -1.25rem;
+    }
+    aside {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-left: -0.5rem;
+    }
+}
+
+@media screen and (min-width: 30em) and (max-width: 60em) {
+    /*medium tachyons breakpoint*/
+    main {
+        width: calc(100% - 10rem);
+    }
+    header #logo {
+        height: 7rem;
+        min-height: 7rem;
+        -webkit-mask-size: 7rem;
+        mask-size: 7rem;
+    }
+    header {
+        height: 100vh;
+        width: 10rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    header nav {
+        position: absolute;
+        bottom: calc(-100vh + 9rem);
+    }
+    nav .icon div {
+        width: 1rem;
+        height: 1rem;
+        background-position: 50% 0;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    /*Large tachyons breakpoint*/
+}
+
 /* NOTHING BELOW */
 
 {% assign services="twitter,facebook,instagram,youtube,email" | split: "," %}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{ page.title }}</title>
+    <title>Powderhouse Studios{% if page.title %} — {{ page.title }}{% endif %}</title>
     <meta name="description" content="Powderhouse Studios">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/tachyons.min.css">
@@ -16,10 +16,10 @@
 </head>
 
 <body {% if page.slug %}data-slug='{{ page.slug}}' {% endif %} class='bg-near-white near-black'>
-    <header class='pa4-ns pa2 pb4'>
+    <header class='pa4-ns pa3-m pa2 pb4-ns pb3'>
         {% include header.html %}
     </header>
-    <main class='lh-copy pa4-ns pa2 pt0-ns pt1 f2-ns f3-m f6 lh-copy'>
+    <main class='lh-copy pa4-ns pa2 pt0-ns pt1 f2-ns f3-m f4'>
         <section id='main-content'>
             {{ content }}
         </section>
