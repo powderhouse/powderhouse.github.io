@@ -1,26 +1,6 @@
 ---
-layout: page
+layout: sectioned-page
 slug: about
 title: About Powderhouse
-nav: ['Overview', 'History', 'Design', 'Team', 'Press']
+sections: [{id: 'overview'}, {id: 'history', title: '📜 History'}, {id: 'design', title: '📏 Design'}, {id: 'team', title: '👥 Team'}, {id: 'press', title: '📣 Press'}]
 ---
-
-<section id='overview' class='bb b--light-gray'>
-    {% include_relative _overview.html %}
-</section>
-<section id='design' class='bb b--light-gray'>
-    <h2 class='f-subheadline-ns f2 lh-title mb0'>📏 Design</h2>
-    {% include_relative _design.html %}
-</section>
-<section id='team' class='bb b--light-gray'>
-    <h2 class='f-subheadline-ns f2 lh-title mb0'>👥 Team</h2>
-    {% include_relative _team.html %}
-</section>
-<section id='history' class='bb b--light-gray'>
-    <h2 class='f-subheadline-ns f2 lh-title mb0'>📜 History</h2>
-    {% include_relative _history.html %}
-</section>
-<section id='press' class='bb b--light-gray'>
-  <h2 class='f-subheadline-ns f2 lh-title mb0'>📣 Press</h2>
-  {% include_relative _press.html %}
-</section>

@@ -1,0 +1,12 @@
+---
+layout: page
+---
+
+{% for section in page.sections %}
+<section id='{{ section.id }}' class='bb b--light-gray'>
+  {% if section.title %}
+  <h2 class='f-subheadline-ns f2 lh-title mb0'>{{ section.title }}</h2>
+  {% endif %}
+  {% include_relative _{{ section.id}}.html %}
+</section>
+{% endfor %}
