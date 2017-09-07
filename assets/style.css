@@ -139,12 +139,6 @@ header #logo {
     mask-position: 0% 50%;
 }
 
-header #logo {
-    min-height: 5rem;
-    -webkit-mask-size: 7rem;
-    mask-size: 7rem;
-}
-
 /*nav.page-nav span:after {
     content: "|";
     margin-right: 0.75em;
@@ -182,18 +176,6 @@ header input:hover {
 
 span.date {
     font-family: "Rum Serif Thin";
-}
-
-header #mailing-list-subscription {
-    font-family: "Rum Sans Thin";
-}
-
-footer #phs-logomark {
-    -webkit-mask: url(/assets/phs-logomark.svg) no-repeat 100% 100%;
-    mask: url(/assets/phs-logomark.svg) no-repeat 100% 100%;
-    background-color: white;
-    -webkit-mask-position: 16% 50%;
-    mask-position: 16% 50%;
 }
 
 aside {
@@ -257,7 +239,7 @@ li .icon.email {
     }
 
     header #logo {
-        height: 10rem;
+        height: 10.03125rem;
         -webkit-mask-size: 16rem;
         mask-size: 16rem;
         -webkit-mask-position: 0 0;
