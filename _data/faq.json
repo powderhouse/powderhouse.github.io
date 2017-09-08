@@ -5,8 +5,12 @@
 },
 {
     "question": "Who’s it for?",
-    "answer": "People between the ages of 13–15 who don’t feel school quite works for them. People who see things differently. People who would like school to be more about doing projects around their own interests with just a few dozen, other young people. People who are bored in school. People who might like to build things or program computers or make art. People who aren’t sure if college is for them. People who want to go to college. People who want to go straight into work. If you’re not sure, text us or email us and we would love to sit down to talk about it!"
+    "answer": "People who don’t feel school quite works for them. People who see things differently. People who would like school to be more about doing projects around their own interests with just a few dozen, other young people. People who are bored in school. People who might like to build things or program computers or make art. People who aren’t sure if college is for them. People who want to go to college. People who want to go straight into work. If you’re not sure, text us or email us and we would love to sit down to talk about it!"
 },
+{
+    "question": "What grade levels do you work with?",
+    "answer": "We don't have grade levels, per se.  People are organized into mixed-age cohorts.  We're starting by enrolling people between 13–15.  Each year, we'll enroll a new group, growing to have the same age ranges as a traditional high school."
+}
 {
     "question": "Who isn’t it for?",
     "answer": "People who are having a great time in a traditional classroom. People who don’t think they’d enjoy spending a lot of time making things. People who would like being in a big school. People who want to take a lot of AP classes. If you’re not sure, text us or email us and we would love to sit down to talk about it!"
@@ -21,7 +25,7 @@
 },
 {
     "question": "Who’s behind it?",
-    "answer": "The Mayor of Somerville approached sprout &amp; co in 2012 about the idea of opening a school under Massachusetts’s Innovation School legislation. Since then, we’ve worked with all sorts of people to put together a solid plan. The Innovation Plan Committee which drafted and approved the design featured union representatives, principals, department chairs, school committee members, and families. We’ve met with hundreds of school designers, education experts, and school leaders from across the country as we’ve fleshed out our design. Mary Skipper and many others in the district have helped us to flesh out all the operational details of our plan. We owe a lot to the dozens of people who have lent their time, expertise, and support over the past four years."
+    "answer": "The Mayor of Somerville approached sprout &amp; co in 2012 about the idea of opening a school under Massachusetts’s Innovation School legislation. Since then, we’ve worked with all sorts of people to put together a solid plan. The Innovation Plan Committee which drafted and approved the design featured union representatives, principals, department chairs, school committee members, and families. We’ve met with hundreds of school designers, education experts, and school leaders from across the country as we’ve fleshed out our design. Mary Skipper (Somerville's Superintendent) and many others in the district have helped us to flesh out all the operational details of our plan. We owe a lot to the dozens of people who have lent their time, expertise, and support over the past four years."
 },
 {
     "question": "When can I enroll?",
@@ -81,7 +85,7 @@
 },
 {
     "question": "What if I don’t want to go to college?",
-    "answer": "Then we’ll work with you to make sure not only that you’re trained for a job you’re excited about, but that you find one. You are welcome to stay working and learning at PHS until you move on to a next chapter they’re excited about (or until you are twenty-two). We’re on your team, and we don’t want to just push you out into the world if you’re not stoked for the next step."
+    "answer": "Then we’ll work with you to make sure not only that you’re trained for a job you’re excited about, but that you find one. You are welcome to stay working and learning at PHS until you move on to a next chapter you're excited about (or until you are twenty-two). We’re on your team, and we don’t want to just push you out into the world if you’re not stoked for the next step."
 },
 {
     "question": "What’s a typical day look like?",
@@ -93,15 +97,15 @@
 },
 {
     "question": "Where will it be?",
-    "answer": "We aren’t approved yet, but we’re hoping to be a tenant in the Powder House Community School re-development just outside Davis Square. You can read more about that development here."
+    "answer": "We aren’t approved yet, but we’re hoping to be a tenant in the Powder House Community School re-development just outside Davis Square. You can read more about that development <a href='http://www.markacommunities.com/powderhouse/'>here</a>."
 },
 {
     "question": "If there aren’t traditional classes, how do you make sure people learn everything they need to go on to college or career?",
-    "answer": "PHS graduates will take(and pass) the same MCAS as everyone else .And everyone will cover the Common Core Math and English / Language Arts standards.The way that we accomplish that while also working on individualized projects is through a unique, retrospective mapping process.Young people work on projects.  As they work on those projects, staff work with them to document which standards those projects touch on after the fact.  Over time, the standards someone hasn’t yet covered inform conversations staff have with young people about their projects.Instead of a single teacher thinking about how to teach twenty kids the same standard on the same day, one young person is working with three staff to develop projects that touch on those standards on a much longer timescale."
+    "answer": "PHS graduates will take (and pass) the same MCAS as everyone else. .And everyone will cover the Common Core Math and English / Language Arts standards.  The way that we accomplish that while also working on individualized projects is through a unique, retrospective mapping process.  Young people work on projects.  As they work on those projects, staff work with them to document which standards those projects touch on after the fact.  Over time, the standards someone hasn’t yet covered inform conversations staff have with young people about their projects.  Instead of a single teacher thinking about how to teach twenty kids the same standard on the same day, one young person is working with three staff to develop projects that touch on those standards on a much longer timescale."
 },
 {
     "question": "How will sports and other extracurriculars work?",
-    "answer": "Young people will be able to cross-register into sports or extracurricular activities offered elsewhere throughout Somerville. We’ll also be providing students with a stipend which they’ll be able to use to sign up for individualized, activities (ranging from boxing lessons to a gym membership). PHS is too small to host many extracurricular activities. And beyond that, we’re interesting in bringing extracurricular activities—which are often organized around young people’s interests—into young people’s work. This means that in addition to supporting young people in connecting to opportunities for activity in the rest of the world, we will be working to develop projects which build on their extracurricular pursuits."
+    "answer": "Young people will be able to cross-register into sports or extracurricular activities offered elsewhere throughout Somerville. We’ll also be providing students with a stipend which they’ll be able to use to sign up for individualized, activities (ranging from boxing lessons to a gym membership). PHS is too small to host many extracurricular activities. And beyond that, we’re interested in bringing extracurricular activities—which are often organized around young people’s interests—into young people’s work. This means that in addition to supporting young people in connecting to opportunities for activity in the rest of the world, we will be working to develop projects which build on their extracurricular pursuits."
 },
 {
     "question": "Will you offer AP or dual enrollment classes?",
@@ -117,7 +121,7 @@
 },
 {
     "question": "Is this a magnet school?",
-    "answer": "Nope! Not only do magnet schools draw from more than one district, they’re organized around a particular theme (like music or sports or science). While computation and storytelling play unusually prominent roles in our school, we believe these are tools more like writing than subjects. You write in most all of your classes normally. At PHS, you’ll be building things and creating stories around all sorts of subjects."
+    "answer": "Nope! Not only do magnet schools draw from more than one district, they’re organized around a particular theme (like music or sports or science). While computation and storytelling play unusually prominent roles in our school, we believe these are tools more like writing than subjects. And just like you write in all of your classes normally, at PHS, you’ll be building things and creating stories around all sorts of subjects."
 },
 {
     "question": "How will people be graded?",
@@ -125,11 +129,11 @@
 },
 {
     "question": "What does the teaching team look like?",
-    "answer": "Every cohort of thirty kids or so has three, core staff managing them. Those three staff—in addition to whatever academic background they may bring—individually act as a project manager, curriculum developer, and social worker for their cohort. Every two cohorts is supported by an additional four, targeted academic support staff. These staff are supported by the same range of special education and english language learner support you see throughout the rest of Somerville Public Schools."
+    "answer": "Every cohort of thirty kids or so has three, core staff working with them. Those three staff—in addition to whatever academic background they may bring—individually act as a project manager, curriculum developer, and social worker for their cohort. Every two cohorts is supported by an additional four, targeted academic support staff. These staff are supported by the same range of special education and english language learner support you see throughout the rest of Somerville Public Schools."
 },
 {
     "question": "Why aren’t there grade levels?",
-    "answer": "For the same reason your workplace isn’t segregated by age. We think people learn best when they aren’t surrounded by people doing and learning the exact same thing as them. In some ways, we think the one-room schoolhouse had it right. Our programs are designed so that advanced and beginner student can work alongside one another. We’re more interested in making a cohesive, social experience—where older students work and teach with younger and vice versa."
+    "answer": "For the same reason your workplace isn’t segregated by age. We think people learn best when they aren’t surrounded by people doing and learning the exact same thing as them. In some ways, we think the one-room schoolhouse had it right. Our programs are designed so that advanced and beginner student can work alongside one another. We’re more interested in making a cohesive, social experience—where older students work and teach with younger students and vice versa."
 },
 {
     "question": "Has anyone done this before?",
