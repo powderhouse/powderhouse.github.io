@@ -279,6 +279,12 @@ li .icon.email {
         padding-right: 0.5rem;
         margin-left: -0.5rem;
     }
+    header #logo {
+        height: 7rem;
+        min-height: 7rem;
+        -webkit-mask-size: 7rem;
+        mask-size: 7rem;
+    }
 }
 
 @media screen and (min-width: 30em) and (max-width: 60em) {
