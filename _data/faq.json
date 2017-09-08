@@ -17,7 +17,7 @@
 },
 {
     "question": "How does enrollment work?",
-    "answer": "Anyone who’s interested can register to enroll. Later in the year, we’ll run a lottery that’s been designed to ensure the academic, socioeconomic, and demographic profile of PHS matches Somerville’s. Those who are selected by that lottery will be notified, and others will have the option of joining a waitlist."
+    "answer": "Anyone who’s interested can <a href='/enroll/' class='link dim blue'>register to enroll</a>. Later in the year, we’ll run a lottery that’s been designed to ensure the academic, socioeconomic, and demographic profile of PHS matches Somerville’s. Those who are selected by that lottery will be notified, and others will have the option of joining a waitlist."
 },
 {
     "question": "Why Somerville?",
@@ -29,11 +29,11 @@
 },
 {
     "question": "When can I enroll?",
-    "answer": "You can register to enroll now! But until the School Committee approves our final plans, we can’t run our official lottery."
+    "answer": "You can <a href='/enroll' class='link dim blue'>register to enroll now</a>! But until the School Committee approves our final plans, we can’t run our official lottery."
 },
 {
     "question": "How can I enroll?",
-    "answer": "Register to enroll now, and you’ll be entered into our lottery once the School Committee approves our final plan!"
+    "answer": "<a href='/enroll' class='link dim blue'>Register to enroll now</a>, and you’ll be entered into our lottery once the School Committee approves our final plan!"
 },
 {
     "question": "What do you mean by ‘projects’?",
@@ -81,15 +81,15 @@
 },
 {
     "question": "Can I still go to college?",
-    "answer": "Yes! We’ll work with you to make sure that you’re prepared for the college(s) which interest you. And in fact, you’re welcome to stay working and learning at PHS until you’re admitted to a college you’re excited about (or until you turn twenty-two). We’re on your team, and we don’t want to just push you out into the world if you’re not stoked for the next step. We’re even working on some ways that we can continue supporting you even as you are in college, but we can’t announce those details yet."
+    "answer": "Yes! We’ll work with you to make sure that you’re prepared for the college(s) which interest you. We’re on your team, and we don’t want to just push you out into the world if you’re not stoked for the next step."
 },
 {
     "question": "What if I don’t want to go to college?",
-    "answer": "Then we’ll work with you to make sure not only that you’re trained for a job you’re excited about, but that you find one. You are welcome to stay working and learning at PHS until you move on to a next chapter you're excited about (or until you are twenty-two). We’re on your team, and we don’t want to just push you out into the world if you’re not stoked for the next step."
+    "answer": "Then we’ll work with you to make sure not only that you’re trained for a job you’re excited about, but that you find one.  We’re on your team, and we don’t want to just push you out into the world if you’re not stoked for the next step."
 },
 {
     "question": "What’s a typical day look like?",
-    "answer": "For most everyone, there will be a morning session, then lunch, and then an afternoon session. What people will do in those sessions will change over time. We believe that a seventeen year old’s day should look different than an eleven year old’s. Broadly, people will start out spending most of their time in interdisciplinary seminars we design and run. Over the years, they’ll spend more and more time working on projects of their own design. Some people will eventually transition to working in internships and co-ops before graduating and moving on to college or career."
+    "answer": "For most everyone, there will be a morning session, then lunch, and then an afternoon session. What people will do in those sessions will change over time. We believe that a seventeen year old’s day should look different than an thirteen year old’s. Broadly, people will start out spending most of their time in interdisciplinary seminars we design and run. Over the years, they’ll spend more and more time working on projects of their own design. Some people will eventually transition to working in internships and co-ops before graduating and moving on to college or career."
 },
 {
     "question": "What is an Innovation School?",
@@ -97,7 +97,7 @@
 },
 {
     "question": "Where will it be?",
-    "answer": "We aren’t approved yet, but we’re hoping to be a tenant in the Powder House Community School re-development just outside Davis Square. You can read more about that development <a href='http://www.markacommunities.com/powderhouse/'>here</a>."
+    "answer": "We aren’t approved yet, but we’re hoping to be a tenant in the Powder House Community School re-development just outside Davis Square. You can read more about that development <a href='https://www.markacommunities.com/powderhouse/'>here</a>."
 },
 {
     "question": "If there aren’t traditional classes, how do you make sure people learn everything they need to go on to college or career?",
@@ -129,7 +129,7 @@
 },
 {
     "question": "What does the teaching team look like?",
-    "answer": "Every cohort of thirty kids or so has three, core staff working with them. Those three staff—in addition to whatever academic background they may bring—individually act as a project manager, curriculum developer, and social worker for their cohort. Every two cohorts is supported by an additional four, targeted academic support staff. These staff are supported by the same range of special education and english language learner support you see throughout the rest of Somerville Public Schools."
+    "answer": "Every cohort of three dozen people or so has three, core staff working with them. Those three staff—in addition to whatever academic background they may bring—individually act as a project manager, curriculum developer, and social worker for their cohort. Every two cohorts are supported by an additional four, targeted academic support staff. These staff are supported by the same range of special education and english language learner support you see throughout the rest of Somerville Public Schools."
 },
 {
     "question": "Why aren’t there grade levels?",
@@ -145,17 +145,21 @@
 },
 {
     "question": "How big will it be?",
-    "answer": "We’re aiming to enroll around thirty young people a year for at least the next five years. Once that group of five cohorts (roughly 150 young people) is stable and successful, we’re going to begin growing younger, adding a year at a time until we’re working with kindergarteners. We’ll also begin growing older, exploring postsecondary and early college high school options as well."
+    "answer": "We’re aiming to enroll about three dozen people a year for at least the next five years, meaning we'd be about 180 students at our largest."
 },
 {
     "question": "What about the MCAS?",
     "answer": "People at PHS will take the same MCAS as everyone else (and just like everyone else, will have to pass it to graduate). We’ll also put in place ongoing diagnostic tests which will help us identify areas where individual young people would benefit from receiving additional, targeted tutoring support from academic support staff."
 },
 {
+    "question": "What is this 'program of study' you keep talking about staff developing?",
+    "answer": "<p>In the absence of traditional classes and subjects, the center of gravity for work and ideas at Powderhouse Studios come from our staff…especially as we're getting started.</p><p>For us, that means staff develop their own line of inquiry— a practice or question or problem which they'll be pursuing over years at PHS.  This program of study is what will generate the projects and programs to which they invite young people.</p><p>It's not enough for it to be a subject (like 'computer programming').  It needs to be a perspective which they are authentically exploring…it's more like an artist statement or research agenda than a subject.</p>"
+},
+{
     "question": "How will this scale?",
-    "answer": "<p>We believe many of the characteristics of great learning environments which matter most to us—human relationships, respect, creativity, culture—aren't scalable in the way that, say, fast-food is.  Besides that, no one has ever figured out how to create large-scale change in work as messy and human as education.</p><p>We see things differently.  We believe there are other theories of change besides 'scale'.  <a href='TK' class='link dim blue'>Rachel Carson</a> didn't start the EPA, she wrote <span class='i'>Silent Spring</span>.  <a href='TK' class='link dim blue'>Alice Waters</a> didn't start Chipotle, she made a world-famous <a href='TK' class='link dim blue'>restaurant</a> and <a href='TK' class='link dim blue'>cookbook</a>.  <a href='TK' class='link dim blue'>Xerox PARC</a> didn't make the iPhone; they prototyped visions for personal computing.</p><p>Our approach rhymes with these.  You can think of Powderhouse Studios as a creative monastery or research institute or sandbox.  Except unlike all of those analogies, we're embedded in the world, in a real community in Somerville.  And most of the people enrolling in Powderhouse Studios will do so because something wasn't working for them about school.</p>"
+    "answer": "<p>We believe many of the characteristics of great learning environments which matter most to us—human relationships, respect, creativity, culture—aren't scalable in the way that, say, fast-food is.  Besides that, no one has ever figured out how to create large-scale change in work as messy and human as education.</p><p>We see things differently.  We believe there are other theories of change besides 'scale'.</p><p><a href='https://en.wikipedia.org/wiki/Rachel_Carson' class='link dim blue'>Rachel Carson</a> didn't start the EPA, she wrote <a href='https://en.wikipedia.org/wiki/Silent_Spring' class='link dim blue'><span class='i'>Silent Spring</span></a>.</p><p><a href='https://en.wikipedia.org/wiki/The_Notorious_B.I.G.' class='link dim blue'>Biggie Smalls</a> mentored <a href='https://en.wikipedia.org/wiki/Lil%27_Kim'>Lil' Kim</a> and formed <a href='https://en.wikipedia.org/wiki/Junior_M.A.F.I.A.' class='link dim blue'>Junior M.A.F.I.A</a>, he didn't try to make a <a href='https://en.wikipedia.org/wiki/Juilliard' class='link dim blue'>Juilliard</a> of East Coast hip hop.</p><p><a href='https://en.wikipedia.org/wiki/PARC_(company)#History' class='link dim blue'>Xerox PARC</a> didn't make the iPhone; they prototyped visions for personal computing.</p><p>Our approach rhymes with these.  You can think of Powderhouse Studios as a creative monastery or research institute or sandbox.  Except unlike all of those analogies, we're embedded in the world, in a real community in Somerville.  And most of the people enrolling in Powderhouse Studios will do so because something wasn't working for them about school.</p>"
 },
 {
     "question": "How can I get involved?",
-    "answer": "By getting in touch! We’re always hiring; enrollment is rolling; and we’re always on the lookout for great partners and volunteers. In the meantime, please be sure to sign up for our mailing list and follow us on twitter and facebook."
+    "answer": "By <a href='/contact' class='link dim blue'>getting in touch</a>! We’re always <a href='/jobs' class='link dim blue'>hiring</a>; <a href='/enroll' class='link dim blue'>enrollment</a> is rolling; and we’re always on the lookout for great partners and volunteers. In the meantime, please be sure to <a href='/subscribe' class='link dim blue'>sign up for our mailing list</a> and follow us on <a href='https://twitter.com/powderhs'>twitter</a> and <a href='https://www.facebook.com/powderhousestudios'>facebook</a>."
 }]
