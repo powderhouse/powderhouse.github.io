@@ -97,6 +97,9 @@
     color: var(--phs-blue);
 }
 
+.rum-sans-bold {
+    font-family: "Rum Sans Bold";
+}
 .rum-sans-medium {
     font-family: "Rum Sans Medium";
 }
