@@ -29,10 +29,12 @@
 {% for font in fonts %}
 {% for weight in weights %}
 {% for style in styles %}
-{%- assign fontName = font | append: " " | append:  weight | append: " " | append: style | strip -%}{%- assign fontFile = fontName | replace_first: " ", "" | replace_first: " ", "-" | replace: " ", "" | append: ".otf" -%}
+{%- assign fontName = font | append: " " | append:  weight | append: " " | append: style | strip -%}
+{%- assign otfFontFile = fontName | replace_first: " ", "" | replace_first: " ", "-" | replace: " ", "" | append: ".otf" -%}
+
 @font-face {
   font-family: "{{ fontName }}";
-  src: url("/assets/fonts/{{ fontFile }}");
+  src: url("/assets/fonts/{{ otfFontFile }}");
   font-weight: {{ weight | downcase }};
   font-style: {{ style | downcase }};
 }
