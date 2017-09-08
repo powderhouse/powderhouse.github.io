@@ -1,3 +1,7 @@
+---
+layout: compress
+---
+
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +16,6 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
 </head>
 
 <body {% if page.slug %}data-slug='{{ page.slug}}' {% endif %} class='bg-near-white near-black'>
@@ -34,8 +37,9 @@
         </section>
     </main>
     <footer>
-        <!-- {% include footer.html %} -->
+        {% include footer.html %}
     </footer>
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
     <script>
     // To clear the placeholder value in the search of the input
     let siteSearch = document.querySelector('#site-search');
@@ -50,18 +54,11 @@
         event.target.setAttribute('placeholder', searchPlaceholder);
     });
     </script>
-    <script src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearchLite.min.js"></script>
     <script>
     var client = algoliasearch("NURLHE71FW", "9d236b5579a1d28471308567f57e76c3");
     var index = client.initIndex('prod_powderhouse.org');
-
-    // index.setSettings({
-    //     searchableAttributes: [
-    //         'title',
-    //         'text'
-    //     ]
-    // });
 
     var search = instantsearch({
         // Replace with your own values
@@ -121,7 +118,7 @@
         }
     });
     </script>
-    {% include drift-snippet.html %}
+    <!-- {% include drift-snippet.html %} -->
     {% include ga-snippet.html %}
 </body>
 
