@@ -1,5 +1,9 @@
 plugins:
   - algoliasearch-jekyll
+  - jekyll-sitemap
+  - jekyll-autoprefixer
+
+exclude: ["Rakefile", "Gemfile", "Gemfile.lock"]
 
 algolia:
   application_id: 'NURLHE71FW'
