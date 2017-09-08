@@ -1,6 +1,14 @@
 ---
 layout: page
 ---
+{% if page.sections.size > 0 %}
+<nav class='page-nav w-100 f4 f2-ns bb b--moon-gray'>
+{% for option in page.sections %}
+  {% if option.name %}
+  <span><a href='#{{ option.id }}' class='link dim blue dib mr4-ns mr2 v-top'>{{ option.name }}</a></span>
+  {% endif %}
+{% endfor %}
+</nav>
 
 {% for section in page.sections %}
 <section id='{{ section.id }}' class='bb b--light-gray'>
@@ -10,3 +18,9 @@ layout: page
   {% include_relative _{{ section.id}}.html %}
 </section>
 {% endfor %}
+
+{% else %}
+
+{{ content }}
+
+{% endif %}
