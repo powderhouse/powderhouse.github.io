@@ -8,7 +8,7 @@ layout: compress
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Powderhouse Studios{% if page.title %} — {{ page.title }}{% endif %}</title>
+    <title>Powderhouse Studios{% if page.title %} — {{ page.title | strip_html }}{% endif %}</title>
     <meta name="description" content="Powderhouse Studios">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/tachyons.min.css">
