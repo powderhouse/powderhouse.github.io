@@ -17,7 +17,7 @@
 },
 {
     "question": "How does enrollment work?",
-    "answer": "Anyone who’s interested can <a href='/enroll/' class='link dim blue'>register their interst in enroll</a>. Because we aren't yet approved, we can't officially open enrollment yet.  Later in the year, we’re hoping to run a lottery that’s been designed to ensure the academic, socioeconomic, and demographic profile of PHS matches Somerville’s. Those who are selected by that lottery will be notified, and others will have the option of joining a waitlist."
+    "answer": "Anyone who’s interested can <a href='/enroll/' class='link dim blue'>sign up here</a> to get notified when our enrollment opens and be placed in our lottery when the time comes. Because we aren't yet approved, we can't officially open enrollment yet.  Later in the year, we’re hoping to run a lottery that’s been designed to ensure the academic, socioeconomic, and demographic profile of PHS matches Somerville’s. Those who are selected by that lottery will be notified, and others will have the option of joining a waitlist."
 },
 {
     "question": "Why Somerville?",
@@ -29,7 +29,7 @@
 },
 {
     "question": "When and how can I enroll?",
-    "answer": "You can <a href='/enroll' class='link dim blue'>register your <em>interest</em> to enroll now</a>! But until the School Committee approves our final plans, we can’t run our official lottery."
+    "answer": "You can't, quite yet (we are't done with our School Committee approval process yet.  But, you can <a href='/enroll' class='link dim blue'>sign up here</a> to be notified and placed in our lottery, when it opens."
 },
 {
     "question": "What do you mean by ‘projects’?",
