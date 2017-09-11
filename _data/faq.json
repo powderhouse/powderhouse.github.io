@@ -9,7 +9,7 @@
 },
 {
     "question": "What grade levels do you work with?",
-    "answer": "We don't have grade levels, per se.  People are organized into mixed-age cohorts.  We're starting by enrolling people between 13–15.  Each year, we'll enroll a new group, growing to have the same age ranges as a traditional high school."
+    "answer": "We don't have grade levels, per se.  People are organized into mixed-age cohorts.  We're starting by enrolling people who will be between 13–15 years old in September 2018.  Each year, we'll enroll a new group, growing to have the same age ranges as a traditional high school."
 },
 {
     "question": "Who isn’t it for?",
@@ -17,7 +17,7 @@
 },
 {
     "question": "How does enrollment work?",
-    "answer": "Anyone who’s interested can <a href='/enroll/' class='link dim blue'>register to enroll</a>. Later in the year, we’ll run a lottery that’s been designed to ensure the academic, socioeconomic, and demographic profile of PHS matches Somerville’s. Those who are selected by that lottery will be notified, and others will have the option of joining a waitlist."
+    "answer": "Anyone who’s interested can <a href='/enroll/' class='link dim blue'>register their interst in enroll</a>. Because we aren't yet approved, we can't officially open enrollment yet.  Later in the year, we’re hoping to run a lottery that’s been designed to ensure the academic, socioeconomic, and demographic profile of PHS matches Somerville’s. Those who are selected by that lottery will be notified, and others will have the option of joining a waitlist."
 },
 {
     "question": "Why Somerville?",
@@ -28,12 +28,8 @@
     "answer": "The Mayor of Somerville approached sprout &amp; co in 2012 about the idea of opening a school under Massachusetts’s Innovation School legislation. Since then, we’ve worked with all sorts of people to put together a solid plan. The Innovation Plan Committee which drafted and approved the design featured union representatives, principals, department chairs, school committee members, and families. We’ve met with hundreds of school designers, education experts, and school leaders from across the country as we’ve fleshed out our design. Mary Skipper (Somerville's Superintendent) and many others in the district have helped us to flesh out all the operational details of our plan. We owe a lot to the dozens of people who have lent their time, expertise, and support over the past four years."
 },
 {
-    "question": "When can I enroll?",
-    "answer": "You can <a href='/enroll' class='link dim blue'>register to enroll now</a>! But until the School Committee approves our final plans, we can’t run our official lottery."
-},
-{
-    "question": "How can I enroll?",
-    "answer": "<a href='/enroll' class='link dim blue'>Register to enroll now</a>, and you’ll be entered into our lottery once the School Committee approves our final plan!"
+    "question": "When and how can I enroll?",
+    "answer": "You can <a href='/enroll' class='link dim blue'>register your <em>interest</em> to enroll now</a>! But until the School Committee approves our final plans, we can’t run our official lottery."
 },
 {
     "question": "What do you mean by ‘projects’?",
@@ -161,5 +157,5 @@
 },
 {
     "question": "How can I get involved?",
-    "answer": "By <a href='/contact' class='link dim blue'>getting in touch</a>! We’re always <a href='/jobs' class='link dim blue'>hiring</a>; <a href='/enroll' class='link dim blue'>enrollment</a> is rolling; and we’re always on the lookout for great partners and volunteers. In the meantime, please be sure to <a href='/subscribe' class='link dim blue'>sign up for our mailing list</a> and follow us on <a href='https://twitter.com/powderhs'>twitter</a> and <a href='https://www.facebook.com/powderhousestudios'>facebook</a>."
+    "answer": "By <a href='/contact' class='link dim blue'>getting in touch</a>! We’re always <a href='/jobs' class='link dim blue'>hiring</a>; <a href='/enroll' class='link dim blue'>registration of enrollment interest</a> is open; and we’re always on the lookout for great partners and volunteers. In the meantime, please be sure to <a href='/subscribe' class='link dim blue'>sign up for our mailing list</a> and follow us on <a href='https://twitter.com/powderhs'>twitter</a> and <a href='https://www.facebook.com/powderhousestudios'>facebook</a>."
 }]
