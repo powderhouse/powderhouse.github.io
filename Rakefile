@@ -14,12 +14,13 @@ task :check => [:build] do
     :check_html => true,
     :assume_extension => true,
     :check_img_http => true,
-    :enforce_https => true,
-    :parallel => { :in_processes => 3},
+    :parallel => { :in_processes => 7},
     :typhoeus => {
       :followlocation => true,
       :connecttimeout => 10,
-      :timeout => 30
+      :timeout => 30,
+      :ssl_verifypeer => false,
+      :ssl_verifyhost => 0
     },
     :hydra => { :max_concurrency => 50 },
     :cache => { :timeframe => '7d' }
