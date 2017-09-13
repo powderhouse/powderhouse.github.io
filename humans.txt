@@ -1,0 +1,29 @@
+---
+---
+
+/* TEAM */                            
+Staff: Alec Resnick
+Site: alec@powderhouse.org
+Twitter: @aresnick
+Location: Somerville, MA, USA
+
+Staff: Shaunalynn Duffy
+Site: shaunalynn@powderhouse.org
+Twitter: @shduff
+Location: Somerville, MA, USA
+
+Staff: Molly Josephs
+Site: molly@powderhouse.org
+Twitter: @josephs_molly
+Location: Cambridge, MA, USA
+
+/* THANKS */
+Name: Ivan Illich
+Name: Seymour Papert
+Name: John Holt
+                            
+/* SITE */
+Last update: {{ site.time | date: "%Y/%m/%d" }}
+Standards: HTML5, CSS3
+Components: tachyons, algolia
+Software: Jekyll, Sublime Text, Netlify
