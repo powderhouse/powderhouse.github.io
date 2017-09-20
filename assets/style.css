@@ -255,9 +255,7 @@ li .icon.email {
         top: 0;
         left: 0;
     }
-    nav.page-nav {
-        margin-top: -4rem;
-    }
+
     header nav {
         position: absolute;
         bottom: calc(-100vh + 13.75rem);
@@ -318,6 +316,9 @@ li .icon.email {
 
 @media screen and (min-width: 60em) {
     /*Large tachyons breakpoint*/
+    nav.page-nav {
+        margin-top: -4rem;
+    }
 }
 
 /* NOTHING BELOW */
