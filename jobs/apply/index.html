@@ -3,15 +3,6 @@ title: Apply to join Powderhouse Studios
 layout: sectioned-page
 ---
 <style>
-/* Styling to remove unhelpful default form styling */
-
-input[type='checkbox'] {
-  appearance: none;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 0.125em;
-}
-
 button {
   font-family: "Rum Sans Thin";
   cursor: pointer;
@@ -24,6 +15,10 @@ textarea {
   font-family: "Rum Serif Thin";
   color: #777;
   padding: 1em;
+}
+
+textarea {
+  height: 8em;
 }
 
 input[type='text'],
@@ -41,12 +36,32 @@ input[type='file'] {
   display: none;
 }
 
-label.file-upload {
-  cursor: pointer;
+input[type='checkbox'] {
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.125em;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+fieldset .label-container {
+  line-height: 1em;
+}
+
+fieldset .label-container label span {
+  font-size: 0.75em;
 }
 
 label {
   display: block;
+}
+label.file-upload {
+  cursor: pointer;
 }
 
 .label-text,
@@ -64,27 +79,8 @@ label {
   width: 10em;
 }
 
-textarea {
-  font-size: 0.5em;
-  height: 8em;
-}
-
-fieldset {
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-fieldset .label-container {
-  line-height: 1em;
-}
-
-fieldset .label-container label span {
-  font-size: 0.75em;
-}
-</style>
-<style>
-#application-form .required-indicator, #application-form .error-indicator  {
+.required-indicator,
+.error-indicator {
   font-size: 0.5em;
   color: #f17761;
 }
@@ -105,7 +101,7 @@ fieldset .label-container label span {
     <!-- Container for the application form -->
   </div>
   <aside class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4'>
-      Having issues? Email <a href='mailto:jobs@powderhouse.org' class='link dim blue email'>jobs@powderhouse.org</a>
+    Having issues? Email <a href='mailto:jobs@powderhouse.org' class='link dim blue email'>jobs@powderhouse.org</a>
   </aside>
 </section>
 <script>
@@ -626,8 +622,9 @@ let getSubmissionButton = function(application) {
   submissionButton.setAttribute('type', 'button');
   submissionButton.setAttribute('id', 'submission-button');
   let buttonClasses = [
-  'f3', 'link', 'dim', 'ba', 'ph3', 'pt2', 'mb2', 'dib', 'black'];
-   submissionButton.classList.add(...buttonClasses);
+    'f3', 'link', 'dim', 'ba', 'ph3', 'pt2', 'mb2', 'dib', 'black'
+  ];
+  submissionButton.classList.add(...buttonClasses);
   submissionButton.innerText = '📩 Submit!';
 
   submissionButton.addEventListener('click', function(event) {
@@ -648,11 +645,9 @@ let getSubmissionButton = function(application) {
 let updateSubmissionButton = function(button, state) {
   if (state == 'submitted') {
     button.innerHTML = "🎉 Submitted!"
-  }
-  else if (state == 'submitting') {
+  } else if (state == 'submitting') {
     button.innerHTML = "⏱ Submitting…"
-  }
-  else if (state == 'errors') {
+  } else if (state == 'errors') {
     button.innerHTML = "😔 Uh oh; something went wrong—"
   }
 }
@@ -712,8 +707,7 @@ let renderResponse = function(response) {
       let errorIndicator = document.querySelector(errorSelector);
       errorIndicator.innerText = errorMessage;
     });
-  }
-  else {
+  } else {
     updateSubmissionButton(submissionButton, 'submitted');
   }
 };
