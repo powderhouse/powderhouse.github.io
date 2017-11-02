@@ -1,5 +1,531 @@
 ---
+title: Apply to join Powderhouse Studios
 layout: sectioned-page
 ---
 
-<script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script><iframe class="airtable-embed airtable-dynamic-height" src="https://airtable.com/embed/shrY29C9Ot0jadFpP?backgroundColor=gray" frameborder="0" onmousewheel="" width="100%" height="3386" style="background: transparent;"></iframe>
+<style>
+/* Styling to remove unhelpful default form styling */
+
+label,
+label span {
+  display: block;
+}
+
+[data-rbox-type="select_multiple"] label,
+[data-rbox-type="select_multiple"] span,
+[data-rbox-type="select_multiple"] input {
+  display: inline-block;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+</style>
+<section id='overview'>
+  <p>
+    We're building a team to invent something special. It's much more important to us to hire great people than fill a position. If you're not sure whether Powderhouse Studios is right for you, <a href='/contact' class='link dim blue'>get in touch</a>.
+  </p>
+  <p>
+    But, if you think it might be right for you (and you might be right for us), you're in the right place!
+  </p>
+  <p>
+    As you may have <a href='/jobs' class='link dim blue'>read</a>,
+  </p>
+  <div id='application-form-container'>
+    <!-- Container for the application form -->
+  </div>
+</section>
+<script>
+// A utility function for making a slug out of a random string of text
+let slugify = function(text) {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
+};
+
+// A utility function to convert a file into a promise resolving into a base64 representation
+let getBase64 = function(file) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    reader.addEventListener('load', function() { resolve(reader.result); });
+    reader.addEventListener('error', function(error) { reject(error); });
+    reader.readAsDataURL(file);
+  });
+};
+
+let getOpeningFor = function(positionName) {
+  let openingsURL = 'https://jsapi.recruiterbox.com/v1/openings?client_name=powderhouse';
+  // A function which takes the URL at which our openings live and gets the JSON representingthem
+  return new Promise(function(resolve, reject) {
+    fetch(openingsURL).then(function(response) { return response.json(); }).then(function(rawOpenings) {
+      // Grab the openings, get their JSON
+      let opening = rawOpenings.objects.filter(function(opening) {
+        // Filter them for only that position matching the given title
+        return opening.title === positionName;
+      })[0];
+      if (opening) {
+        // Assuming we get any openings, resolve our Promise with them
+        resolve(opening);
+      } else {
+        // Otherwise, throw an error
+        reject(new Error("Didn't receive any openings from " + openingsURL + " matching title " + positionName));
+      }
+    })
+  });
+};
+
+let getApplication = function(opening) {
+  // Return a JSON representation of that opening
+  return new Promise(function(resolve, reject) {
+    let applicationURL = `https://jsapi.recruiterbox.com/v1/openings/${opening.id}/application_form?client_name=powderhouse`; // Construct the application URL
+    fetch(applicationURL).then(function(response) { return response.json(); }).then(function(json) {
+      // Fetch its JSON
+      if (json) {
+        if (!json.hasOwnProperty('opening_id')) {
+          // Save the opening's ID into the JSON we pass along, after checking the JSON doesn't have that field already
+          json.opening_id = opening.id;
+          resolve(json);
+        }
+      } else {
+        reject(new Error("Error, didn't get any JSON for opening " + opening.id + " from " + applicationURL));
+      }
+    });
+  });
+};
+
+// A dictionary to store the mapping between RecruiterBox types, per http://apiv1.recruiterbox.com/frontend_api.html#get-application-form-fields-of-a-opening and HTML input types
+let inputTypesByType = {
+  'small_text': 'text',
+  'large_text': 'large_text',
+  'select_one': 'radio',
+  'select_multiple': 'fieldset',
+  'url': 'url',
+  'email': 'email',
+  'number': 'number',
+  'date': 'date',
+  'file': 'file'
+};
+
+let getFieldContainer = function(fieldId) {
+  // Construct a DOM element to contain our field, encoding the field ID from RecruiterBox as a data attribtue for easy styling
+  let container = document.createElement('div');
+  container.classList.add('field-container');
+  container.setAttribute('data-field-id', fieldId);
+  return container;
+};
+
+let attachRboxAttributes = function(element, fields) {
+  // Attach all the RecruiterBox attributes to our element for safekeeping
+  let attributes = {
+    'id': fields.key,
+    'name': fields.key,
+    'data-rbox-key': fields.key,
+    'data-rbox-type': fields.type,
+    'data-rbox-is_required': fields.is_required,
+    'data-rbox-label': fields.label
+  };
+
+  for (let key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+};
+
+let getLabelAndCaption = function(labelString) {
+  // Hacky solution using an em-dash to construct a caption beneath a main label; this function splits them to return them in an object
+  let texts = labelString.split(' — ');
+  return {
+    label: texts[0],
+    caption: texts[1] ? texts[1] : null
+  }
+};
+
+let getLabel = function(element, fields) {
+  // Construct an appropriate label (with caption) for a field
+  let label = document.createElement('label');
+
+  label.setAttribute('for', element.getAttribute('id'));
+
+  let labelAndCaption = getLabelAndCaption(fields.label);
+
+  let labelText = document.createElement('span');
+  labelText.innerHTML = labelAndCaption.label;
+  labelText.classList.add('label-text');
+  label.appendChild(labelText);
+
+  if (labelAndCaption.caption) {
+    let labelCaption = document.createElement('span');
+    labelCaption.classList.add('label-caption');
+    labelCaption.innerHTML = labelAndCaption.caption;
+    label.appendChild(labelCaption);
+  }
+
+  return label;
+};
+
+let labelElement = function(element, fields, labelFirst = true) {
+  // Apply the label we create to our element; `labelFirst` is a Boolean which captures whether the label should come before the element/input (e.g. for a checkbox, it should come after, generally it should come before)
+  //
+  let labelContainer = document.createElement('div');
+  labelContainer.classList.add('label-container');
+  let label = getLabel(element, fields);
+
+  if (labelFirst) {
+    labelContainer.appendChild(label);
+    labelContainer.appendChild(element);
+  } else {
+    labelContainer.appendChild(element);
+    labelContainer.appendChild(label);
+  }
+
+  return labelContainer;
+};
+
+// A bunch of of slightly repetitive functions to render the different types of fields from RecruiterBox
+let renderSmallText = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('input');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  element.setAttribute('maxlength', 200);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderLargeText = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('textarea');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderSelectOne = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('select');
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+  fields.choices.forEach(function(choice) {
+    let value = slugify(choice)
+    let option = document.createElement('option');
+    option.setAttribute('value', value);
+    option.innerHTML = choice;
+    element.appendChild(option);
+  });
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderSelectMultiple = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('fieldset');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  fields.choices.forEach(function(choice) {
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.setAttribute('name', fields.key);
+    checkbox.setAttribute('id', slugify(choice));
+    checkbox.setAttribute('data-choice', choice);
+
+    let container = labelElement(checkbox, { label: choice, caption: null }, false);
+    element.appendChild(container);
+  });
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderURL = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('input');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderEmail = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('input');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderNumber = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('input');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderDate = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('input');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+let renderFile = function(fields) {
+  let container = getFieldContainer(fields.key);
+
+  let element = document.createElement('input');
+  element.setAttribute('type', inputTypesByType[fields.type]);
+  if (fields.is_required) {
+    element.setAttribute('required', '');
+  }
+
+  attachRboxAttributes(element, fields);
+
+  element = labelElement(element, fields);
+  container.appendChild(element);
+
+  return container;
+};
+
+// A mapping from RecruiterBox types to specific render functions
+let renderFunctionsByType = {
+  'small_text': renderSmallText,
+  'large_text': renderLargeText,
+  'select_one': renderSelectOne,
+  'select_multiple': renderSelectMultiple,
+  'url': renderURL,
+  'email': renderEmail,
+  'number': renderNumber,
+  'date': renderDate,
+  'file': renderFile,
+};
+
+let renderField = function(fields) {
+  // A function to render a field object, combining its type with our mapping from type to function to actually insert the rendered field into the DOM
+  let field = renderFunctionsByType[fields.type](fields);
+  document.querySelector('#application-form').insertBefore(field, document.querySelector('#submission-button'));
+};
+
+// A collection of slightly repetitive functions to construct a RecruiterBox-compatible payload from an element
+let payloadSmallText = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadLargeText = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadSelectOne = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadSelectMultiple = function(element) {
+  return new Promise(resolve => {
+    let checkedCheckboxes = Array.from(element.querySelectorAll('checkbox:checked'));
+    let choices = checkedCheckboxes.map(c => c.getAttribute('data-choice'));
+    let payloadValue = choices;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadURL = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadEmail = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadNumber = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadDate = function(element) {
+  return new Promise(resolve => {
+    let payloadValue = element.value;
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+  });
+};
+let payloadFile = function(element) {
+  return new Promise(resolve => {
+    let file = element.files[0];
+    if (file) {
+      getBase64(file).then(function(result) {
+        resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': result });
+      });
+    }
+  });
+};
+
+// A mapping from RecruiterBox types to payload functions
+let payloadFunctionByType = {
+  'small_text': payloadSmallText,
+  'large_text': payloadLargeText,
+  'select_one': payloadSelectOne,
+  'select_multiple': payloadSelectMultiple,
+  'url': payloadURL,
+  'email': payloadEmail,
+  'number': payloadNumber,
+  'date': payloadDate,
+  'file': payloadFile
+};
+
+let getSubmissionButton = function() {
+  // A function to construct the submission button
+  let submissionButton = document.createElement('button');
+  submissionButton.setAttribute('type', 'button');
+  submissionButton.setAttribute('id', 'submission-button');
+  submissionButton.innerHTML = 'Submit';
+
+  submissionButton.addEventListener('click', function(event) {
+    submissionButton.setAttribute('disabled', ""); // Disable the submission button to prevent double submissions
+    let payload = { 'fields': [] };
+    let payloadPromises = application.objects.map(function(object) {
+      // Create an array of promises to resolve containing our payloasd
+      let formElement = form.querySelector(`#${object.key}`);
+      return new Promise(resolve => {
+        // Grab our payload function, run it on our form element, and resolve
+        payloadFunctionByType[object.type](formElement).then(resolve);
+      });
+    });
+
+    Promise.all(payloadPromises).then(function(values) {
+      // Wait for all our payload promises to resolve, then push them into our payload array
+      payload.fields.push(values);
+      submissionButton.removeAttribute('disabled'); // re-enable the submission button
+      console.log(payload);
+    })
+
+    let endpointURL = `https://jsapi.recruiterbox.com/v1/openings/${application.opening_id}/apply?client_name=powderhouse`;
+  });
+
+  return submissionButton;
+};
+
+let renderApplication = function(application) {
+  // Render an application
+  let applicationRootElement = document.querySelector('#application-form-container'); // the element to ender the application to
+
+  // Create a form, with our button
+  let form = document.createElement('form');
+  form.setAttribute('id', 'application-form');
+  form.appendChild(getSubmissionButton());
+
+  // Clear our loading timer and embed our form
+  clearLoadingApplicationTimer(applicationLoadingTimer);
+  applicationRootElement.appendChild(form);
+
+  // Render each field
+  application.objects.forEach(renderField);
+};
+
+let renderApplicationFormFor = function(positionName) {
+  // Wrap up our flow to grab an opening, get the application, then render it
+  getOpeningFor(positionName).then(getApplication).then(renderApplication);
+}
+
+// Logic to start a loading indicator
+var applicationLoadingTimer = null;
+let startLoadingApplication = function() {
+  let applicationRootElement = document.querySelector('#application-form-container');
+  applicationRootElement.innerHTML = "Loading application";
+  let timer = setInterval(function() {
+    // Growing ellipsis to indicate delay
+    applicationRootElement.innerHTML += '.';
+  }, 125);
+  return timer;
+};
+
+let clearLoadingApplicationTimer = function(timerId) {
+  console.log("FUCK", timerId);
+  // Clear our timer/indicator in preparation for embedding our form
+  clearInterval(timerId);
+  let applicationRootElement = document.querySelector('#application-form-container');
+  applicationRootElement.innerHTML = '';
+}
+
+applicationLoadingTimer = startLoadingApplication(); // start the timer
+renderApplicationFormFor("Staff Member — 2017");
+// TK Add validation edits with message—
+</script>
