@@ -720,7 +720,6 @@ let renderResponse = function(response) {
 
 let submitApplication = function(payload, opening_id) {
   let endpointURL = `https://jsapi.recruiterbox.com/v1/openings/${opening_id}/apply?client_name=powderhouse`;
-  console.log("Submitting", payload);
   fetch(endpointURL, {
       method: 'post',
       headers: {
@@ -732,11 +731,11 @@ let submitApplication = function(payload, opening_id) {
       return response.json();
     })
     .then(function(jsonResponse) {
-      console.log('Request succeeded with JSON response', jsonResponse);
       renderResponse(jsonResponse);
     })
     .catch(function(error) {
-      console.log('Request failed', error);
+      let errorMessage = 'Request failed with: ' + error;
+      throw new Error(errorMessage);
     });
 };
 </script>
