@@ -2,12 +2,55 @@
 title: Apply to join Powderhouse Studios
 layout: sectioned-page
 ---
-
 <style>
 /* Styling to remove unhelpful default form styling */
 
-label,
-label span {
+input[type='checkbox'] {
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.125em;
+}
+
+button {
+  font-family: "Rum Sans Thin";
+  cursor: pointer;
+}
+
+input,
+textarea {
+  background-color: #f6f6f6;
+  font-size: 0.875em;
+  font-family: "Rum Serif Thin";
+  color: #777;
+  padding: 1em;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='url'],
+textarea {
+  width: 100%;
+}
+
+input[type='number'] {
+  width: 3em;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+label.file-upload {
+  cursor: pointer;
+}
+
+label {
+  display: block;
+}
+
+.label-text,
+.label-caption {
   display: block;
 }
 
@@ -17,25 +60,53 @@ label span {
   display: inline-block;
 }
 
+[data-field-id="candidate_phone"] input {
+  width: 10em;
+}
+
+textarea {
+  font-size: 0.5em;
+  height: 8em;
+}
+
 fieldset {
   padding: 0;
   margin: 0;
   border: none;
 }
+
+fieldset .label-container {
+  line-height: 1em;
+}
+
+fieldset .label-container label span {
+  font-size: 0.75em;
+}
 </style>
-<section id='overview'>
+<style>
+#application-form .required-indicator, #application-form .error-indicator  {
+  font-size: 0.5em;
+  color: #f17761;
+}
+</style>
+<section id='overview' class='bb b--moon-gray mb4'>
   <p>
-    We're building a team to invent something special. It's much more important to us to hire great people than fill a position. If you're not sure whether Powderhouse Studios is right for you, <a href='/contact' class='link dim blue'>get in touch</a>.
+    We're building a team to invent something special. It's much more important to us to hire great people than fill a position.
   </p>
   <p>
-    But, if you think it might be right for you (and you might be right for us), you're in the right place!
+    If you're not sure whether Powderhouse Studios is right for you, <a href='/contact' class='link dim blue'>get in touch</a>. But, if you think it might be right for you (and you might be right for us), you're in the right place!
   </p>
-  <p>
-    As you may have <a href='/jobs' class='link dim blue'>read</a>,
+  <p class='f1 tc w-100'>
+    👇
   </p>
-  <div id='application-form-container'>
+</section>
+<section id='application'>
+  <div id='application-form-container' class='w-100 w-two-thirds-ns'>
     <!-- Container for the application form -->
   </div>
+  <aside class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4'>
+      Having issues? Email <a href='mailto:jobs@powderhouse.org' class='link dim blue email'>jobs@powderhouse.org</a>
+  </aside>
 </section>
 <script>
 // A utility function for making a slug out of a random string of text
@@ -52,7 +123,10 @@ let slugify = function(text) {
 let getBase64 = function(file) {
   return new Promise((resolve, reject) => {
     let reader = new FileReader();
-    reader.addEventListener('load', function() { resolve(reader.result); });
+    reader.addEventListener('load', function() {
+      let rawResult = reader.result.replace(/data:.+;base64,/, '');
+      resolve(rawResult);
+    });
     reader.addEventListener('error', function(error) { reject(error); });
     reader.readAsDataURL(file);
   });
@@ -114,7 +188,11 @@ let inputTypesByType = {
 let getFieldContainer = function(fieldId) {
   // Construct a DOM element to contain our field, encoding the field ID from RecruiterBox as a data attribtue for easy styling
   let container = document.createElement('div');
-  container.classList.add('field-container');
+  let containerClasses = [
+    'field-container',
+    'mb4'
+  ];
+  container.classList.add(...containerClasses);
   container.setAttribute('data-field-id', fieldId);
   return container;
 };
@@ -137,7 +215,7 @@ let attachRboxAttributes = function(element, fields) {
 
 let getLabelAndCaption = function(labelString) {
   // Hacky solution using an em-dash to construct a caption beneath a main label; this function splits them to return them in an object
-  let texts = labelString.split(' — ');
+  let texts = labelString.split('—').map(t => t.trim());
   return {
     label: texts[0],
     caption: texts[1] ? texts[1] : null
@@ -146,24 +224,48 @@ let getLabelAndCaption = function(labelString) {
 
 let getLabel = function(element, fields) {
   // Construct an appropriate label (with caption) for a field
-  let label = document.createElement('label');
 
+  let label = document.createElement('label');
   label.setAttribute('for', element.getAttribute('id'));
 
   let labelAndCaption = getLabelAndCaption(fields.label);
 
   let labelText = document.createElement('span');
   labelText.innerHTML = labelAndCaption.label;
-  labelText.classList.add('label-text');
+  let labelStyleClasses = [
+    'f2-ns',
+    'f3-m',
+    'f4'
+  ];
+  labelStyleClasses.forEach(style => labelText.classList.add(style));
+
+  if (fields.is_required) {
+    let requiredIndicator = document.createElement('span');
+    let requiredIndicatorClasses = ['required-indicator', 'ml1'];
+    requiredIndicator.classList.add(...requiredIndicatorClasses);
+    requiredIndicator.innerHTML = '*'
+    labelText.appendChild(requiredIndicator);
+  }
   label.appendChild(labelText);
+
+  let errorIndicator = document.createElement('span');
+  let errorIndicatorClasses = ['error-indicator', 'db'];
+  errorIndicator.classList.add(...errorIndicatorClasses);
+  label.appendChild(errorIndicator);
 
   if (labelAndCaption.caption) {
     let labelCaption = document.createElement('span');
     labelCaption.classList.add('label-caption');
+    let labelCaptionClasses = [
+      'o-50',
+      'f3-ns',
+      'f4-m',
+      'f5'
+    ];
+    labelCaptionClasses.forEach(style => labelCaption.classList.add(style));
     labelCaption.innerHTML = labelAndCaption.caption;
     label.appendChild(labelCaption);
   }
-
   return label;
 };
 
@@ -190,8 +292,10 @@ let renderSmallText = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('input');
+  let inputClasses = ['pa1'];
+  element.classList.add(...inputClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
-  element.setAttribute('maxlength', 200);
+  element.setAttribute('maxlength', 200); // RecruiterBox limits this field to 200 characters
   if (fields.is_required) {
     element.setAttribute('required', '');
   }
@@ -208,6 +312,8 @@ let renderLargeText = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('textarea');
+  let textareaClasses = ['pa2'];
+  element.classList.add(...textareaClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
   if (fields.is_required) {
     element.setAttribute('required', '');
@@ -276,6 +382,8 @@ let renderURL = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('input');
+  let inputClasses = ['pa1'];
+  element.classList.add(...inputClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
   if (fields.is_required) {
     element.setAttribute('required', '');
@@ -293,6 +401,8 @@ let renderEmail = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('input');
+  let inputClasses = ['pa1'];
+  element.classList.add(...inputClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
   if (fields.is_required) {
     element.setAttribute('required', '');
@@ -310,6 +420,9 @@ let renderNumber = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('input');
+  element.value = 0;
+  let inputClasses = ['pa1'];
+  element.classList.add(...inputClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
   if (fields.is_required) {
     element.setAttribute('required', '');
@@ -327,6 +440,8 @@ let renderDate = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('input');
+  let inputClasses = ['pa1'];
+  element.classList.add(...inputClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
   if (fields.is_required) {
     element.setAttribute('required', '');
@@ -344,7 +459,11 @@ let renderFile = function(fields) {
   let container = getFieldContainer(fields.key);
 
   let element = document.createElement('input');
+  let inputClasses = ['pa1'];
+  element.classList.add(...inputClasses);
   element.setAttribute('type', inputTypesByType[fields.type]);
+  let acceptedFileTypes = ["doc", "txt", "html", "htm", "rtf", "docx", "odt", "pdf"].map(type => "." + type).join(',');
+  element.setAttribute('accept', acceptedFileTypes);
   if (fields.is_required) {
     element.setAttribute('required', '');
   }
@@ -352,6 +471,29 @@ let renderFile = function(fields) {
   attachRboxAttributes(element, fields);
 
   element = labelElement(element, fields);
+  let forAttr = element.querySelector('label').getAttribute('for');
+  element.querySelector('label').removeAttribute('for');
+
+  let getCustomUploadLabel = function() {
+    let customUploadLabel = document.createElement('label');
+    let customUploadLabelClasses = [
+      'f4', 'link', 'dim', 'ba', 'ph3', 'pv2', 'mb2', 'dib', 'black', 'file-upload'
+    ];
+    customUploadLabel.classList.add(...customUploadLabelClasses);
+    customUploadLabel.setAttribute('for', forAttr);
+    customUploadLabel.innerText = "Upload";
+    return customUploadLabel;
+  };
+
+  let customUploadLabel = getCustomUploadLabel();
+
+  let fileInput = element.querySelector('input[type="file"]');
+  fileInput.addEventListener('change', function(event) {
+    customUploadLabel.innerText = fileInput.files[0] ? '✔ ' + fileInput.files[0].name : "❌";
+  });
+  element.appendChild(fileInput);
+
+  element.insertBefore(customUploadLabel, fileInput);
   container.appendChild(element);
 
   return container;
@@ -397,7 +539,7 @@ let payloadSelectOne = function(element) {
 };
 let payloadSelectMultiple = function(element) {
   return new Promise(resolve => {
-    let checkedCheckboxes = Array.from(element.querySelectorAll('checkbox:checked'));
+    let checkedCheckboxes = Array.from(element.querySelectorAll('input[type="checkbox"]:checked'));
     let choices = checkedCheckboxes.map(c => c.getAttribute('data-choice'));
     let payloadValue = choices;
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
@@ -423,8 +565,9 @@ let payloadNumber = function(element) {
 };
 let payloadDate = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
-    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
+    // RecruiterBox needs the timestamp in seconds
+    let payloadValue = Math.floor(Date.parse(element.value) / 1000);
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': String(payloadValue) });
   });
 };
 let payloadFile = function(element) {
@@ -432,7 +575,13 @@ let payloadFile = function(element) {
     let file = element.files[0];
     if (file) {
       getBase64(file).then(function(result) {
-        resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': result });
+        resolve({
+          'key': element.getAttribute('data-rbox-key'),
+          'value': {
+            'encoded_data': result,
+            'file_name': file.name
+          }
+        });
       });
     }
   });
@@ -451,17 +600,10 @@ let payloadFunctionByType = {
   'file': payloadFile
 };
 
-let getSubmissionButton = function() {
-  // A function to construct the submission button
-  let submissionButton = document.createElement('button');
-  submissionButton.setAttribute('type', 'button');
-  submissionButton.setAttribute('id', 'submission-button');
-  submissionButton.innerHTML = 'Submit';
-
-  submissionButton.addEventListener('click', function(event) {
-    submissionButton.setAttribute('disabled', ""); // Disable the submission button to prevent double submissions
+let constructPayloads = function(applicationObjects, form = document.querySelector('#application-form')) {
+  return new Promise(resolve => {
     let payload = { 'fields': [] };
-    let payloadPromises = application.objects.map(function(object) {
+    let payloadPromises = applicationObjects.map(function(object) {
       // Create an array of promises to resolve containing our payloasd
       let formElement = form.querySelector(`#${object.key}`);
       return new Promise(resolve => {
@@ -472,16 +614,48 @@ let getSubmissionButton = function() {
 
     Promise.all(payloadPromises).then(function(values) {
       // Wait for all our payload promises to resolve, then push them into our payload array
-      payload.fields.push(values);
-      submissionButton.removeAttribute('disabled'); // re-enable the submission button
-      console.log(payload);
-    })
+      payload.fields = values;
+      resolve(payload);
+    });
+  });
+};
 
-    let endpointURL = `https://jsapi.recruiterbox.com/v1/openings/${application.opening_id}/apply?client_name=powderhouse`;
+let getSubmissionButton = function(application) {
+  // A function to construct the submission button
+  let submissionButton = document.createElement('button');
+  submissionButton.setAttribute('type', 'button');
+  submissionButton.setAttribute('id', 'submission-button');
+  let buttonClasses = [
+  'f3', 'link', 'dim', 'ba', 'ph3', 'pt2', 'mb2', 'dib', 'black'];
+   submissionButton.classList.add(...buttonClasses);
+  submissionButton.innerText = '📩 Submit!';
+
+  submissionButton.addEventListener('click', function(event) {
+    let payload = constructPayloads(application.objects).then(function(payload) {
+      submissionButton.setAttribute('disabled', ""); // Disable the submission button to prevent double submissions
+      if (application.hasOwnProperty('opening_id')) {
+        submitApplication(payload, application.opening_id);
+        updateSubmissionButton(submissionButton, 'submitting');
+      } else {
+        throw new Error("Error trying to submit application payload, application object does not contain opening_id—");
+      }
+    });
   });
 
   return submissionButton;
 };
+
+let updateSubmissionButton = function(button, state) {
+  if (state == 'submitted') {
+    button.innerHTML = "🎉 Submitted!"
+  }
+  else if (state == 'submitting') {
+    button.innerHTML = "⏱ Submitting…"
+  }
+  else if (state == 'errors') {
+    button.innerHTML = "😔 Uh oh; something went wrong—"
+  }
+}
 
 let renderApplication = function(application) {
   // Render an application
@@ -490,7 +664,7 @@ let renderApplication = function(application) {
   // Create a form, with our button
   let form = document.createElement('form');
   form.setAttribute('id', 'application-form');
-  form.appendChild(getSubmissionButton());
+  form.appendChild(getSubmissionButton(application));
 
   // Clear our loading timer and embed our form
   clearLoadingApplicationTimer(applicationLoadingTimer);
@@ -506,7 +680,7 @@ let renderApplicationFormFor = function(positionName) {
 }
 
 // Logic to start a loading indicator
-var applicationLoadingTimer = null;
+let applicationLoadingTimer = null;
 let startLoadingApplication = function() {
   let applicationRootElement = document.querySelector('#application-form-container');
   applicationRootElement.innerHTML = "Loading application";
@@ -518,7 +692,6 @@ let startLoadingApplication = function() {
 };
 
 let clearLoadingApplicationTimer = function(timerId) {
-  console.log("FUCK", timerId);
   // Clear our timer/indicator in preparation for embedding our form
   clearInterval(timerId);
   let applicationRootElement = document.querySelector('#application-form-container');
@@ -527,5 +700,43 @@ let clearLoadingApplicationTimer = function(timerId) {
 
 applicationLoadingTimer = startLoadingApplication(); // start the timer
 renderApplicationFormFor("Staff Member — 2017");
-// TK Add validation edits with message—
+
+let renderResponse = function(response) {
+  let submissionButton = document.querySelector('#submission-button');
+  if (response.errors.length > 0) {
+    updateSubmissionButton(submissionButton, 'errors');
+    response.errors.forEach(function(error) {
+      let key = Object.keys(error)[0];
+      let errorMessage = error[key].join('\n');
+      let errorSelector = `.field-container label[for="${key}"] span.error-indicator`;
+      let errorIndicator = document.querySelector(errorSelector);
+      errorIndicator.innerText = errorMessage;
+    });
+  }
+  else {
+    updateSubmissionButton(submissionButton, 'submitted');
+  }
+};
+
+let submitApplication = function(payload, opening_id) {
+  let endpointURL = `https://jsapi.recruiterbox.com/v1/openings/${opening_id}/apply?client_name=powderhouse`;
+  console.log("Submitting", payload);
+  fetch(endpointURL, {
+      method: 'post',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(jsonResponse) {
+      console.log('Request succeeded with JSON response', jsonResponse);
+      renderResponse(jsonResponse);
+    })
+    .catch(function(error) {
+      console.log('Request failed', error);
+    });
+};
 </script>

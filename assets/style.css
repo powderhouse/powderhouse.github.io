@@ -90,9 +90,11 @@
 .phs-red {
     color: var(--phs-red);
 }
+
 .phs-orange {
     color: var(--phs-orange);
 }
+
 .phs-blue {
     color: var(--phs-blue);
 }
@@ -100,12 +102,15 @@
 .rum-sans-bold {
     font-family: "Rum Sans Bold";
 }
+
 .rum-sans-medium {
     font-family: "Rum Sans Medium";
 }
+
 .rum-serif {
     font-family: "Rum Serif Thin";
 }
+
 .rum-serif-i {
     font-family: "Rum Serif Thin Italic";
 }
@@ -114,7 +119,9 @@
     color: var(--phs-blue);
 }
 
-.phone-number, .email, .url {
+.phone-number,
+.email,
+.url {
     font-family: "Courier New", monospace;
 }
 
@@ -141,6 +148,7 @@ header #logo {
     -webkit-mask-position: 0% 50%;
     mask-position: 0% 50%;
 }
+
 
 /*nav.page-nav span:after {
     content: "|";
@@ -195,6 +203,7 @@ p.list-intro {
 li.bb:last-child {
     border-bottom: none;
 }
+
 nav .active {
     color: var(--near-white);
     opacity: 1;
@@ -204,18 +213,23 @@ li .icon {
     position: relative;
     top: 0.25rem;
 }
+
 li .icon.facebook {
     background-color: var(--facebook-blue);
 }
+
 li .icon.twitter {
     background-color: var(--twitter-blue);
 }
+
 li .icon.instagram {
-    background-image: linear-gradient(-135deg,#1400c8,#b900b4,#f50000);
+    background-image: linear-gradient(-135deg, #1400c8, #b900b4, #f50000);
 }
+
 li .icon.youtube {
     background-color: var(--youtube-red);
 }
+
 li .icon.email {
     background-color: var(--mailchimp-blue);
 }
@@ -237,7 +251,8 @@ li .icon.email {
         align-items: center;
     }
 
-    #main-content, #search-results {
+    #main-content,
+    #search-results {
         margin-top: -0.875rem;
     }
 
@@ -283,6 +298,19 @@ li .icon.email {
         -webkit-mask-size: 7rem;
         mask-size: 7rem;
     }
+    @supports (zoom:1.25) {
+        input[type="radio"],
+        input[type=checkbox] {
+            zoom: 1.25;
+        }
+    }
+
+    @supports not (zoom:1.25) {
+        input[type="radio"],
+        input[type=checkbox] {
+            transform: scale(1.25);
+        }
+    }
 }
 
 @media screen and (min-width: 30em) and (max-width: 60em) {
@@ -312,6 +340,20 @@ li .icon.email {
         height: 1rem;
         background-position: 50% 0;
     }
+
+    @supports (zoom:1.5) {
+        input[type="radio"],
+        input[type=checkbox] {
+            zoom: 1.5;
+        }
+    }
+
+    @supports not (zoom:1.5) {
+        input[type="radio"],
+        input[type=checkbox] {
+            transform: scale(1.5);
+        }
+    }
 }
 
 @media screen and (min-width: 60em) {
@@ -319,14 +361,29 @@ li .icon.email {
     nav.page-nav {
         margin-top: -4rem;
     }
+
+    @supports (zoom:1.75) {
+        input[type="radio"],
+        input[type=checkbox] {
+            zoom: 1.75;
+        }
+    }
+
+    @supports not (zoom:1.75) {
+        input[type="radio"],
+        input[type=checkbox] {
+            transform: scale(1.75);
+        }
+    }
 }
+
 
 /* NOTHING BELOW */
 
 {% assign services="twitter,facebook,instagram,youtube,email" | split: "," %}
+
 {% for service in services %}
-.icon.{{ service }}
-{
+.icon.{{ service }} {
     -webkit-mask: url(/assets/sc-{{ service }}.svg) no-repeat 100% 100%;
     mask: url(/assets/sc-{{ service }}.svg) no-repeat 100% 100%;
     -webkit-mask-position: center;
