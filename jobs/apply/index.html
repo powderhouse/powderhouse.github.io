@@ -100,7 +100,10 @@ label.file-upload {
   <div id='application-form-container' class='w-100 w-two-thirds-ns'>
     <!-- Container for the application form -->
   </div>
-  <aside class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4'>
+  <aside id='success-message' class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4 dn'>
+    🎈 Success!  We've received your application; <br> you should be hearing from us by email soon. 🙏
+  </aside>
+  <aside id='issues-message' class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4'>
     Having issues? Email <a href='mailto:jobs@powderhouse.org' class='link dim blue email'>jobs@powderhouse.org</a>
   </aside>
 </section>
@@ -709,6 +712,7 @@ let renderResponse = function(response) {
     });
   } else {
     updateSubmissionButton(submissionButton, 'submitted');
+    document.querySelector('#success-message').classList.remove('dn');
   }
 };
 
