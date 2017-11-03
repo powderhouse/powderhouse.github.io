@@ -1,7 +1,4 @@
----
-title: Apply to join Powderhouse Studios
-layout: sectioned-page
----
+--- title: Apply to join Powderhouse Studios layout: sectioned-page ---
 <style>
 button {
   font-family: "Rum Sans Thin";
@@ -60,6 +57,7 @@ fieldset .label-container label span {
 label {
   display: block;
 }
+
 label.file-upload {
   cursor: pointer;
 }
@@ -101,7 +99,8 @@ label.file-upload {
     <!-- Container for the application form -->
   </div>
   <aside id='success-message' class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4 dn'>
-    🎈 Success!  We've received your application; <br> you should be hearing from us by email soon. 🙏
+    🎈 Success! We've received your application;
+    <br> you should be hearing from us by email soon. 🙏
   </aside>
   <aside id='issues-message' class='bg-moon-gray o-70 tc f2-ns f4-m f5 mt5-ns mt4-m mt4'>
     Having issues? Email <a href='mailto:jobs@powderhouse.org' class='link dim blue email'>jobs@powderhouse.org</a>
@@ -730,13 +729,7 @@ let submitApplication = function(payload, opening_id) {
       return response.json();
     })
     .then(function(jsonResponse) {
-      if (jsonResponse) {
-        renderResponse(jsonResponse);
-      }
-      else {
-        let errorMessage = "Error, didn't receive a response from RecruiterBox.";
-        throw new Error(errorMessage);
-      }
+      renderResponse(jsonResponse);
     })
     .catch(function(error) {
       let errorMessage = 'Request failed with: ' + error;
