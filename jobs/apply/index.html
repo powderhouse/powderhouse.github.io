@@ -1,5 +1,5 @@
 ---
-title: Apply to join Powderhouse Studios
+title: Apply to join Powderhouse Studios\
 layout: sectioned-page
 ---
 
@@ -491,7 +491,7 @@ let renderFile = function(fields) {
 
   let fileInput = element.querySelector('input[type="file"]');
   fileInput.addEventListener('change', function(event) {
-    customUploadLabel.innerText = fileInput.files[0] ? '✔ ' + fileInput.files[0].name : "❌";
+    customUploadLabel.innerText = fileInput.files[0] ? '✔ ' + fileInput.files[0].name : customUploadLabel.innerText;
   });
   element.appendChild(fileInput);
 
@@ -584,6 +584,14 @@ let payloadFile = function(element) {
             'file_name': file.name
           }
         });
+      });
+    } else {
+      resolve({
+        'key': element.getAttribute('data-rbox-key'),
+        'value': {
+          'encoded_data': '',
+          'file_name': 'None'
+        }
       });
     }
   });
@@ -704,7 +712,7 @@ renderApplicationFormFor("Staff Member — 2017");
 
 let renderErrors = function(response) {
   let submissionButton = document.querySelector('#submission-button');
-    if (response.errors && response.errors.length > 0) {
+  if (response.errors && response.errors.length > 0) {
     updateSubmissionButton(submissionButton, 'errors');
     response.errors.forEach(function(error) {
       let key = Object.keys(error)[0];
@@ -736,14 +744,13 @@ let submitApplication = function(payload, opening_id) {
       if (response.ok) {
         renderSuccess(response);
         return null;
-      }
-      else {
+      } else {
         return response.json();
       }
     })
     .then(function(jsonResponse) {
       if (jsonResponse) {
-        renderResponse(jsonResponse);
+        renderErrors(jsonResponse);
       }
     })
     .catch(function(error) {
