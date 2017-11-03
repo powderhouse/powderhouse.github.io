@@ -730,7 +730,13 @@ let submitApplication = function(payload, opening_id) {
       return response.json();
     })
     .then(function(jsonResponse) {
-      renderResponse(jsonResponse);
+      if (jsonResponse) {
+        renderResponse(jsonResponse);
+      }
+      else {
+        let errorMessage = "Error, didn't receive a response from RecruiterBox.";
+        throw new Error(errorMessage);
+      }
     })
     .catch(function(error) {
       let errorMessage = 'Request failed with: ' + error;
