@@ -651,7 +651,7 @@ let updateSubmissionButton = function(button, state) {
   } else if (state == 'submitting') {
     button.innerHTML = "⏱ Submitting…"
   } else if (state == 'errors') {
-    button.innerHTML = "😔 Uh oh; something went wrong—"
+    button.innerHTML = "😔 Uh oh; something went wrong— Try again?"
   }
 }
 
@@ -710,6 +710,7 @@ let renderResponse = function(response) {
       let errorIndicator = document.querySelector(errorSelector);
       errorIndicator.innerText = errorMessage;
     });
+    submissionButton.setAttribute('enabled', "");
   } else {
     updateSubmissionButton(submissionButton, 'submitted');
     document.querySelector('#success-message').classList.remove('dn');
