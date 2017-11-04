@@ -1,5 +1,5 @@
 ---
-title: Apply to join Powderhouse Studios\
+title: Apply to join Powderhouse Studios
 layout: sectioned-page
 ---
 
@@ -31,6 +31,7 @@ textarea {
 
 input[type='number'] {
   width: 3em;
+  padding-top: 0.625rem;
 }
 
 input[type='file'] {
@@ -42,6 +43,7 @@ input[type='checkbox'] {
   display: inline-block;
   vertical-align: middle;
   margin-right: 0.125em;
+  margin-top: 0.03125em;
 }
 
 fieldset {
@@ -63,6 +65,12 @@ label {
 }
 
 label.file-upload {
+  cursor: pointer;
+}
+
+.remove-upload {
+  position: relative;
+  top: 0.5rem;
   cursor: pointer;
 }
 
@@ -124,8 +132,9 @@ let slugify = function(text) {
 // A utility function to convert a file into a promise resolving into a base64 representation
 let getBase64 = function(file) {
   return new Promise((resolve, reject) => {
-    let reader = new FileReader();
+    let reader = new FileReader(); // Use FileReader to converto to base64
     reader.addEventListener('load', function() {
+      // Remove the prefix identifying the encoded data as base64 for transmission
       let rawResult = reader.result.replace(/data:.+;base64,/, '');
       resolve(rawResult);
     });
@@ -174,19 +183,6 @@ let getApplication = function(opening) {
   });
 };
 
-// A dictionary to store the mapping between RecruiterBox types, per http://apiv1.recruiterbox.com/frontend_api.html#get-application-form-fields-of-a-opening and HTML input types
-let inputTypesByType = {
-  'small_text': 'text',
-  'large_text': 'large_text',
-  'select_one': 'radio',
-  'select_multiple': 'fieldset',
-  'url': 'url',
-  'email': 'email',
-  'number': 'number',
-  'date': 'date',
-  'file': 'file'
-};
-
 let getFieldContainer = function(fieldId) {
   // Construct a DOM element to contain our field, encoding the field ID from RecruiterBox as a data attribtue for easy styling
   let container = document.createElement('div');
@@ -197,22 +193,6 @@ let getFieldContainer = function(fieldId) {
   container.classList.add(...containerClasses);
   container.setAttribute('data-field-id', fieldId);
   return container;
-};
-
-let attachRboxAttributes = function(element, fields) {
-  // Attach all the RecruiterBox attributes to our element for safekeeping
-  let attributes = {
-    'id': fields.key,
-    'name': fields.key,
-    'data-rbox-key': fields.key,
-    'data-rbox-type': fields.type,
-    'data-rbox-is_required': fields.is_required,
-    'data-rbox-label': fields.label
-  };
-
-  for (let key in attributes) {
-    element.setAttribute(key, attributes[key]);
-  }
 };
 
 let getLabelAndCaption = function(labelString) {
@@ -289,23 +269,81 @@ let labelElement = function(element, fields, labelFirst = true) {
   return labelContainer;
 };
 
+let inputTypesByType = {
+  'small_text': 'text',
+  'large_text': 'large_text',
+  'select_one': 'select',
+  'select_multiple': 'fieldset',
+  'url': 'url',
+  'email': 'email',
+  'number': 'number',
+  'date': 'date',
+  'file': 'file'
+};
+
+
+let attachAttributes = function(element, fields, otherAttrs = null) {
+  // Attach all the necessary attributes to the construction of an element
+  let rboxAttributes = {
+    'data-rbox-key': fields.key,
+    'data-rbox-type': fields.type,
+    'data-rbox-is_required': fields.is_required,
+    'data-rbox-label': fields.label
+  };
+
+  let defaultAttrs = {
+    'id': fields.key,
+    'name': fields.key,
+    'type': inputTypesByType[fields.type],
+    'required': fields.is_required
+  };
+
+  let attributesToAssign = {};
+  Object.assign(attributesToAssign, rboxAttributes, defaultAttrs, otherAttrs ? otherAttrs : {});
+
+  for (let key in attributesToAssign) {
+    let value = attributesToAssign[key];
+    // Note that because the presence of a Boolean attribute renders it true, we need to be careful about setting Boolean attributes by setting them to simply '' or removing them, rather than setting them true/false, cf. https://stackoverflow.com/questions/4139786/what-does-it-mean-in-html-5-when-an-attribute-is-a-boolean-attribute
+    if (value === true) {
+      element.setAttribute(key, '');
+    } else if (value === false) {
+      element.removeAttribute(key);
+    } else {
+      element.setAttribute(key, value);
+    }
+  }
+};
+
+let getElement = function(fields, classes = [], otherAttrs = {}) {
+  // A dictionary to store the mapping between RecruiterBox types, per http://apiv1.recruiterbox.com/frontend_api.html#get-application-form-fields-of-a-opening and HTML input types
+
+  let elementTypesByType = {
+    'small_text': 'input',
+    'large_text': 'textarea',
+    'select_one': 'select',
+    'select_multiple': 'fieldset',
+    'url': 'input',
+    'email': 'input',
+    'number': 'input',
+    'date': 'input',
+    'file': 'input'
+  };
+
+  let element = document.createElement(elementTypesByType[fields.type]);
+  element.classList.add(...classes);
+  attachAttributes(element, fields, otherAttrs);
+  return element;
+};
+
 // A bunch of of slightly repetitive functions to render the different types of fields from RecruiterBox
 let renderSmallText = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('input');
-  let inputClasses = ['pa1'];
-  element.classList.add(...inputClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  element.setAttribute('maxlength', 200); // RecruiterBox limits this field to 200 characters
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields, ['pa1'], { 'maxlength': 200 });
+  // Note RecruiterBox imposes a 200 character limit on small_text fields, http://apiv1.recruiterbox.com/frontend_api.html#post-data
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
@@ -313,18 +351,10 @@ let renderSmallText = function(fields) {
 let renderLargeText = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('textarea');
-  let textareaClasses = ['pa2'];
-  element.classList.add(...textareaClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields, ['pa2']);
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
@@ -332,10 +362,8 @@ let renderLargeText = function(fields) {
 let renderSelectOne = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('select');
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields);
+
   fields.choices.forEach(function(choice) {
     let value = slugify(choice)
     let option = document.createElement('option');
@@ -344,10 +372,8 @@ let renderSelectOne = function(fields) {
     element.appendChild(option);
   });
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
@@ -355,11 +381,7 @@ let renderSelectOne = function(fields) {
 let renderSelectMultiple = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('fieldset');
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields);
 
   fields.choices.forEach(function(choice) {
     let checkbox = document.createElement('input');
@@ -368,14 +390,12 @@ let renderSelectMultiple = function(fields) {
     checkbox.setAttribute('id', slugify(choice));
     checkbox.setAttribute('data-choice', choice);
 
-    let container = labelElement(checkbox, { label: choice, caption: null }, false);
-    element.appendChild(container);
+    let choiceContainer = labelElement(checkbox, { label: choice, caption: null }, false);
+    element.appendChild(choiceContainer);
   });
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
@@ -383,18 +403,10 @@ let renderSelectMultiple = function(fields) {
 let renderURL = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('input');
-  let inputClasses = ['pa1'];
-  element.classList.add(...inputClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields, ['pa1']);
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
@@ -402,18 +414,10 @@ let renderURL = function(fields) {
 let renderEmail = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('input');
-  let inputClasses = ['pa1'];
-  element.classList.add(...inputClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields, ['pa1']);
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
@@ -421,82 +425,88 @@ let renderEmail = function(fields) {
 let renderNumber = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('input');
-  element.value = 0;
-  let inputClasses = ['pa1'];
-  element.classList.add(...inputClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
+  let element = getElement(fields, ['pa1'], { 'min': 0, 'placeholder': 0 });
 
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
 };
 
 let renderDate = function(fields) {
   let container = getFieldContainer(fields.key);
+  let element = getElement(fields, ['pa1']);
 
-  let element = document.createElement('input');
-  let inputClasses = ['pa1'];
-  element.classList.add(...inputClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
-
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  container.appendChild(element);
+  let labeledElement = labelElement(element, fields);
+  container.appendChild(labeledElement);
 
   return container;
+};
+
+let getCustomUploadLabel = function(forId, text) {
+  // A utility function to construct a reasonable custom upload button, modeled after tachyons, http://tachyons.io/components/buttons/basic/index.html
+  let customUploadLabel = document.createElement('label');
+  let customUploadLabelClasses = [
+    'f4', 'link', 'dim', 'ba', 'ph3', 'pv2', 'mb2', 'dib', 'black', 'file-upload'
+  ];
+  customUploadLabel.classList.add(...customUploadLabelClasses);
+  customUploadLabel.setAttribute('for', forId);
+  customUploadLabel.innerText = text;
+  return customUploadLabel;
+};
+
+let getRemoveUploadButton = function(fileInput, classes = ['f2', 'link', 'dim', 'dn', 'black', 'remove-upload', 'lh-solid', 'ml2']) {
+  let removeUploadButton = document.createElement('div');
+  removeUploadButton.classList.add(...classes);
+  removeUploadButton.innerText = '×';
+
+  removeUploadButton.addEventListener('click', function(event) {
+    let resetForm = document.createElement('form');
+    resetForm.appendChild(fileInput);
+    resetForm.reset();
+    labeledElement.appendChild(fileInput);
+    fileInput.dispatchEvent(new Event('change'));
+    removeUploadButton.classList.remove('dib');
+    removeUploadButton.classList.add('dn');
+  });
+
+  return removeUploadButton;
 };
 
 let renderFile = function(fields) {
   let container = getFieldContainer(fields.key);
 
-  let element = document.createElement('input');
-  let inputClasses = ['pa1'];
-  element.classList.add(...inputClasses);
-  element.setAttribute('type', inputTypesByType[fields.type]);
-  let acceptedFileTypes = ["doc", "txt", "html", "htm", "rtf", "docx", "odt", "pdf"].map(type => "." + type).join(',');
-  element.setAttribute('accept', acceptedFileTypes);
-  if (fields.is_required) {
-    element.setAttribute('required', '');
-  }
-
-  attachRboxAttributes(element, fields);
-
-  element = labelElement(element, fields);
-  let forAttr = element.querySelector('label').getAttribute('for');
-  element.querySelector('label').removeAttribute('for');
-
-  let getCustomUploadLabel = function() {
-    let customUploadLabel = document.createElement('label');
-    let customUploadLabelClasses = [
-      'f4', 'link', 'dim', 'ba', 'ph3', 'pv2', 'mb2', 'dib', 'black', 'file-upload'
-    ];
-    customUploadLabel.classList.add(...customUploadLabelClasses);
-    customUploadLabel.setAttribute('for', forAttr);
-    customUploadLabel.innerText = "Upload";
-    return customUploadLabel;
+  let otherAttrs = {
+    // Allowed types via RecruiterBox API: http://apiv1.recruiterbox.com/frontend_api.html#validation-errors-on-post
+    'accept': ["doc", "txt", "html", "htm", "rtf", "docx", "odt", "pdf"].map(type => "." + type).join(',')
   };
+  let fileInput = getElement(fields, ['pa1'], otherAttrs);
 
-  let customUploadLabel = getCustomUploadLabel();
+  let labeledElement = labelElement(fileInput, fields);
+  labeledElement.appendChild(fileInput);
 
-  let fileInput = element.querySelector('input[type="file"]');
+  let label = labeledElement.querySelector('label');
+  let forAttr = label.getAttribute('for');
+  label.removeAttribute('for');
+
+  let defaultUploadText = "Upload";
+  let customUploadLabel = getCustomUploadLabel(forAttr, defaultUploadText);
+  let removeUploadButton = getRemoveUploadButton(fileInput);
+
   fileInput.addEventListener('change', function(event) {
+    // An event listener to change the text of our button to reflect the filename, and unhide the remove upload control
     customUploadLabel.innerText = fileInput.files[0] ? '✔ ' + fileInput.files[0].name : customUploadLabel.innerText;
+    removeUploadButton.classList.remove('dn');
+    removeUploadButton.classList.add('dib');
+    if (!fileInput.files[0]) {
+      // If the files object is changing and we no longer have a file, then we've removed it, and should reset the innerText to the defaultUploadText
+      customUploadLabel.innerText = defaultUploadText;
+    }
   });
-  element.appendChild(fileInput);
 
-  element.insertBefore(customUploadLabel, fileInput);
-  container.appendChild(element);
+  labeledElement.insertBefore(customUploadLabel, fileInput);
+  labeledElement.appendChild(removeUploadButton);
+  container.appendChild(labeledElement);
 
   return container;
 };
