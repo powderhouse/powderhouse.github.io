@@ -535,19 +535,28 @@ let renderField = function(fields) {
 // A collection of slightly repetitive functions to construct a RecruiterBox-compatible payload from an element
 let payloadSmallText = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
+    let payloadValue = null;
+    if (element.value.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
 let payloadLargeText = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
+    let payloadValue = null;
+    if (element.value.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
 let payloadSelectOne = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
+    let payloadValue = null;
+    if (element.value.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
@@ -555,25 +564,37 @@ let payloadSelectMultiple = function(element) {
   return new Promise(resolve => {
     let checkedCheckboxes = Array.from(element.querySelectorAll('input[type="checkbox"]:checked'));
     let choices = checkedCheckboxes.map(c => c.getAttribute('data-choice'));
-    let payloadValue = choices;
+    let payloadValue = null;
+    if (choices.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
 let payloadURL = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
+    let payloadValue = null;
+    if (element.value.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
 let payloadEmail = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
+    let payloadValue = null;
+    if (element.value.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
 let payloadNumber = function(element) {
   return new Promise(resolve => {
-    let payloadValue = element.value;
+    let payloadValue = null;
+    if (element.value.length > 0) {
+      payloadValue = element.value;
+    }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
@@ -581,7 +602,13 @@ let payloadDate = function(element) {
   return new Promise(resolve => {
     // RecruiterBox needs the timestamp in seconds
     let payloadValue = Math.floor(Date.parse(element.value) / 1000);
-    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': String(payloadValue) });
+    if (Number.isNaN(payloadValue)) {
+      payloadValue = null;
+    }
+    else {
+      payloadValue = String(payloadValue);
+    }
+    resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
 };
 let payloadFile = function(element) {
@@ -600,10 +627,7 @@ let payloadFile = function(element) {
     } else {
       resolve({
         'key': element.getAttribute('data-rbox-key'),
-        'value': {
-          'encoded_data': '',
-          'file_name': 'None'
-        }
+        'value': null
       });
     }
   });
@@ -626,7 +650,7 @@ let constructPayloads = function(applicationObjects, form = document.querySelect
   return new Promise(resolve => {
     let payload = { 'fields': [] };
     let payloadPromises = applicationObjects.map(function(object) {
-      // Create an array of promises to resolve containing our payloasd
+      // Create an array of promises to resolve containing our payloads
       let formElement = form.querySelector(`#${object.key}`);
       return new Promise(resolve => {
         // Grab our payload function, run it on our form element, and resolve
@@ -635,8 +659,8 @@ let constructPayloads = function(applicationObjects, form = document.querySelect
     });
 
     Promise.all(payloadPromises).then(function(values) {
-      // Wait for all our payload promises to resolve, then push them into our payload array
-      payload.fields = values;
+      // Wait for all our payload promises to resolve, then push them into our payload array, filtering for payloads which have null values
+      payload.fields = values.filter(v => v.value !== null);
       resolve(payload);
     });
   });
@@ -729,7 +753,7 @@ let renderErrors = function(response) {
     response.errors.forEach(function(error) {
       let key = Object.keys(error)[0];
       let errorMessage = error[key].join('\n');
-      let errorSelector = `.field-container label[for="${key}"] span.error-indicator`;
+      let errorSelector = `.field-container[data-field-id="${key}"] span.error-indicator`;
       let errorIndicator = document.querySelector(errorSelector);
       errorIndicator.innerText = errorMessage;
     });
