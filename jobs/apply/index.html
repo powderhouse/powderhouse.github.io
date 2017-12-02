@@ -566,7 +566,7 @@ let payloadSelectMultiple = function(element) {
     let choices = checkedCheckboxes.map(c => c.getAttribute('data-choice'));
     let payloadValue = null;
     if (choices.length > 0) {
-      payloadValue = element.value;
+      payloadValue = choices;
     }
     resolve({ 'key': element.getAttribute('data-rbox-key'), 'value': payloadValue });
   });
@@ -679,6 +679,7 @@ let getSubmissionButton = function(application) {
 
   submissionButton.addEventListener('click', function(event) {
     let payload = constructPayloads(application.objects).then(function(payload) {
+      submissionButton.removeAttribute('enabled');
       submissionButton.setAttribute('disabled', ""); // Disable the submission button to prevent double submissions
       if (application.hasOwnProperty('opening_id')) {
         submitApplication(payload, application.opening_id);
@@ -757,6 +758,7 @@ let renderErrors = function(response) {
       let errorIndicator = document.querySelector(errorSelector);
       errorIndicator.innerText = errorMessage;
     });
+    submissionButton.removeAttribute('disabled');
     submissionButton.setAttribute('enabled', "");
   }
 };
@@ -765,6 +767,7 @@ let renderSuccess = function(response) {
   let submissionButton = document.querySelector('#submission-button');
   updateSubmissionButton(submissionButton, 'submitted');
   document.querySelector('#success-message').classList.remove('dn');
+  document.querySelector('#issues-message').classList.add('dn');
 };
 
 let submitApplication = function(payload, opening_id) {
