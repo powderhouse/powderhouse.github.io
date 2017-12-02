@@ -462,11 +462,13 @@ let getRemoveUploadButton = function(fileInput, classes = ['f2', 'link', 'dim', 
   removeUploadButton.classList.add(...classes);
   removeUploadButton.innerText = '×';
 
+  let originalFileUploadParent = fileInput.parentNode;
+
   removeUploadButton.addEventListener('click', function(event) {
     let resetForm = document.createElement('form');
     resetForm.appendChild(fileInput);
     resetForm.reset();
-    labeledElement.appendChild(fileInput);
+    originalFileUploadParent.appendChild(fileInput);
     fileInput.dispatchEvent(new Event('change'));
     removeUploadButton.classList.remove('dib');
     removeUploadButton.classList.add('dn');
