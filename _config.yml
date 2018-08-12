@@ -6,6 +6,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-autoprefixer
 
+include: _headers
 exclude: ["Rakefile", "Gemfile", "Gemfile.lock"]
 
 algolia:
