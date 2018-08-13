@@ -3,4 +3,4 @@ _site/
 node_modules/
 tmp/
 .bundle/
-.jekyll_metadata
+.jekyll-metadata
