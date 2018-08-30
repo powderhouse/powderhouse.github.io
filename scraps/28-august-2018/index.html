@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>27 August 2018</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+    <style>
+    .progress span {
+        background-color: rgb(240, 58, 43) !important;
+    }
+
+    :root {
+        --my-beige: #FAD089;
+        --my-orange: #FF9C5B;
+        --my-red: rgb(240, 78, 48);
+        --my-blue: #3B8183;
+    }
+
+    .my-beige {
+        color: var(--my-beige);
+    }
+
+    .my-orange {
+        color: var(--my-orange);
+    }
+
+    .my-red {
+        color: var(--my-red);
+    }
+
+    .my-blue {
+        color: var(--my-blue);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image='./media/brandmark.svg' data-background-size='60%'></section>
+
+            <section id='overview'>
+                <section>
+                    <h3><a href='https://docs.google.com/document/d/1XT5lNmiCyu5sdh0iK-El3dK1N2lqdpH0vRzI_71x4sw/edit'>What we're reading next week…</a></h3>
+                    <ul style='list-style-type: none;'>
+                        <li class='fragment' style='margin-bottom: 2rem;'><i>Monday</i> — Retrospective, norm-setting</li>
+                        <li class='fragment' style='margin-bottom: 2rem;'><i>Tuesday</i> — How does learning work?  Why "projects"?</li>
+                        <li class='fragment' style='margin-bottom: 2rem;'><i>Wednesday</i> — What's School?  What's sick about it?</li>
+                        <li class='fragment' style='margin-bottom: 2rem;'><i>Thursday</i> — How is Powderhouse Studios organized?</li>
+                        <li class='fragment' style='margin-bottom: 2rem;'><i>Friday</i> – Managing ourselves (and posting 🤳🏽)</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id='computer-setup'>
+                <section>
+                    <h1>💻, cont'd</h1>
+                </section>
+                <section>
+                    <h2>Calendar</h2>
+                </section>
+                <section>
+                    <h2>1:1 folders, agendas, events</h2>
+                </section>
+                <section>
+                    <h2>CloudApp</h2>
+                </section>
+                <section>
+                    <h2>Dropbox</h2>
+                </section>
+                <section>
+                    <h2>Slack</h2>
+                </section>
+                <section>
+                    <h2>Abacus</h2>
+                </section>
+                <section>
+                    <h2>Float</h2>
+                </section>
+            </section>
+
+            <section id='periodicaltk-intro'>
+                <section>
+                    <style>
+                    .highlight-current li.fragment {
+                        opacity: 0.6 !important;
+                    }
+                    .highlight-current li.fragment.current-fragment {
+                        opacity: 1 !important;
+                    }
+                    </style>
+                    <ul class='highlight-current' id='change-vectors' style='list-style-type: none; padding: 0; margin: 0;'>
+                        <li class='fragment'>Experiences</li>
+                        <li class='fragment'>People</li>
+                        <li class='fragment'>Tools &amp; materials</li>
+                        <li class='fragment'>Policy</li>
+                        <li class='fragment'>Stories</li>
+                    </ul>
+                </section>
+                
+                <section data-background-image='./media/sundance.png' data-background-size='contain'></section>
+
+                <section>
+                    <p>By analogy…</p>
+                    <ol class='highlight-current' style='width: 40%;'>
+                        <li class='fragment'><a href='https://increment.com'><i>Increment</i></a></li>
+                        <li class='fragment'><a href='https://www.atlasobscura.com'><i>Atlas Obscura</i></a></li>
+                        <li class='fragment'><a href='http://firstround.com/review/?'><i>First Round Review</i></a></li>
+                        <li class='fragment'><a href='https://www.popupmagazine.com'><i>Pop-Up Magazine</i></a></li>
+                        <li class='fragment'><a href='https://docs.google.com/document/d/1i3aqOGMu1F24NQxvh9Ld2-AG3fPD5U-EnTyq-2yDMak/edit?usp=sharing'>PeriodicalTK</a></li>
+                    </ol>
+                </section>
+            </section>
+
+            <section>
+                <h2>Resonances, ideas, and questions</h2>
+            </section>
+
+            <section><h1>🌯 + 📚</h1></section>
+        </div>
+    </div>
+    <script src="js/reveal.js"></script>
+    <script>
+    Reveal.initialize({
+
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Set default timing of 2 minutes per slide
+        defaultTiming: 120,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autolaying embedded media (video/audio/iframe)
+        // - null: Media will only autoplay if data-autoplay is present
+        // - true: All media will autoplay, regardless of individual setting
+        // - false: No media will autoplay, regardless of individual setting
+        autoPlayMedia: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: Reveal.navigateNext,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Hides the address bar on mobile devices
+        hideAddressBar: true,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Parallax background image
+        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+        // Parallax background size
+        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null,
+
+        // The display mode that will be used to show slides
+        display: 'block'
+    });
+    </script>
+</body>
+
+</html>
