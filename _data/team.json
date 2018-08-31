@@ -23,4 +23,10 @@
     "name": "Maybe you?",
     "bio": "We're always looking for great people.  If you like teens, can do something they might care about, and want to join a founding team inventing the future of learning, <a href='/jobs' class='link dim blue'>get in touch</a>. Or if you know someone who might be a good fit, please <a href='/jobs/refer' class='link dim blue'>refer them</a>!",
     "date_joined": "1970-01-01"
-}, ]
+}, 
+{
+    "name": "Miriam Zisook",
+    "bio": "<a href='http://www.miriamzisook.com' class='link dim blue'>Miriam Zisook</a> is a designer and social worker who focuses on creating <a href='http://www.miriamzisook.com/projects/' class='link dim blue' >technology</a>, <a href='http://www.perkins.org/stories/students-build-gadgets-and-confidence-in-perkins-maker-club' class='link dim blue'>programs</a> and <a href='https://chatter.cbslab.org/' class='link dim blue'>experiences</a> that support emotional wellbeing, social connection, and communication. Before coming to Powderhouse Studios Miriam worked in educational and clinical roles at <a href='http://perkins.org' class='link dim blue'>The Perkins School for the Blind</a> and <a href='https://jbcc.harvard.edu/manville-school' class='link dim blue'>The Manville School</a>.",
+    "date_joined": "2018-08-13"
+},
+]
