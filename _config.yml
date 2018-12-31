@@ -1,12 +1,12 @@
 meta:
-  version: 0.4.3
+  version: 0.5.0
 
 plugins:
   - algoliasearch-jekyll
   - jekyll-sitemap
   - jekyll-autoprefixer
 
-include: ["_headers"]
+include: ["_headers", "_redirects"]
 exclude: ["Rakefile", "Gemfile", "Gemfile.lock"]
 
 algolia:
