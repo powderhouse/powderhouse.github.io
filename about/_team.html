@@ -7,12 +7,12 @@
 <section>
 <h3 class='f1 lh-title'>Current staff</h3>
 <div id='team-container'>
-{% assign sorted_people = site.data.team | sort: "date_joined" | reverse %}
+{% assign sorted_people = site.data.team | sort: "name" %}
 {% for person in sorted_people %}
-<div id='{{ person.name | slugify }}' class='person-container mb4 w-100 v-center-children cf-ns pb0-ns pb3'>
-    <h4 class='portrait-title f2 lh-title mb0 dn-ns o-80'>{{ person.name}}</h4>
+<div id='{{ person.name | slugify }}' class='person-container mb4 w-100 cf-ns pb0-ns pb3'>
+    <h4 class='portrait-title f2 lh-title mb0 o-80'>{{ person.name}}</h4>
     <!-- <img alt='Portrait of {{ person.name }}' class='portrait w-20-ns w-100 fl-ns o-90' src='/assets/portraits/{{ person.name | slugify: "default" }}.png'> -->
-    <div class='bio w-80-ns w-100 f3 pl4-ns fl-ns'>
+    <div class='bio w-100 f3'>
       <div>{{ person.bio }}</div>
     </div>
 </div>
