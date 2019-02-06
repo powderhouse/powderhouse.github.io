@@ -22,6 +22,9 @@
         {% include header.html %}
     </header>
     <main class='lh-copy pa4-ns pa2 pt0-ns pt1 f2-ns f3-m f4'>
+        <aside class='w-25-ns tr f5 pr0-ns' style='position: relative; right: 0;'>
+            🗺 <a class='link dim red' href='https://translate.google.com/translate?sl=auto&tl=es&u={{ site.url | append: page.url | url_encode }}'>Español</a>, <a class='link dim red' href='https://translate.google.com/translate?sl=auto&tl=pt&u={{ site.url | append: page.url | url_encode }}'>Português</a>, &amp; <a class='link dim red' href='https://translate.google.com/translate?hl=&sl=en&tl=ht&u={{ site.url | append: page.url | url_encode }}'>Kreyòl Ayisyen</a>
+        </aside>
         <section id='main-content'>
             {{ content }}
         </section>
