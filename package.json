@@ -1,0 +1,25 @@
+{
+  "name": "powderhouse.org",
+  "version": "0.0.1",
+  "description": "powderhouse.org",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powderhouse/powderhouse.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/powderhouse/powderhouse.github.io/issues"
+  },
+  "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "autoprefixer": "^10.1.0",
+    "postcss": "^8.2.2",
+    "tailwindcss": "^2.0.2"
+  }
+}
