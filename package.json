@@ -4,7 +4,8 @@
   "description": "powderhouse.org",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "eleventy --serve & postcss style.css --o _site/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,12 @@
   },
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
   "dependencies": {
-    "@11ty/eleventy": "^0.11.1",
     "autoprefixer": "^10.1.0",
-    "postcss": "^8.2.2",
     "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "postcss": "^8.2.2",
+    "postcss-cli": "^8.3.1"
   }
 }
