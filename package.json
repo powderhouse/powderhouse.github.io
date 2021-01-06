@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "eleventy --serve & postcss style.css --o _site/style.css --watch"
+    "start": "eleventy --serve & postcss style.css --o _site/style.css --watch",
+    "build": "ELEVENTY_PRODUCTION=true eleventy & NODE_ENV=production postcss style.css --o _site/style.css"
   },
   "repository": {
     "type": "git",
