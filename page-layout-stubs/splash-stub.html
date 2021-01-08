@@ -1,0 +1,9 @@
+<div id="splash-container">
+    <div id="logo">
+        <img alt="${data.content.splash.logo.alt}" src="${data.content.splash.logo.url}" />
+    </div>
+    <div id="introduction">
+        ${data.content.splash.introduction.map((intro) => `<p>${intro.text}</p>`).join('\n')}
+    </div>
+    <div id="transition"></div>
+</div>
