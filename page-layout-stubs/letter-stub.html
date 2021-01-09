@@ -14,18 +14,11 @@
 		<div id="letter-signoff">
 			${data.content.letter.body.sign_off.salutation}
 		</div>
+		<!-- TKLoop -->
 		<div id="letter-signatures">
-			<div id="ar-sig">
+			<div class="signature">
 				<img alt="${data.content.letter.body.sign_off[0].signature_image.alt}" src="${data.content.letter.body.sign_off[0].signature_image.main}">
 				${data.content.letter.body.sign_off[0].printed_name}
-			</div>
-			<div id="rn-sig">
-				<img alt="${data.content.letter.body.sign_off[1].signature_image.alt}" src="${data.content.letter.body.sign_off[1].signature_image.main}">
-				${data.content.letter.body.sign_off[1].printed_name}
-			</div>
-			<div id="rn-sig">
-				<img alt="${data.content.letter.body.sign_off[2].signature_image.alt}" src="${data.content.letter.body.sign_off[2].signature_image.main}">
-				${data.content.letter.body.sign_off[2].printed_name}
 			</div>
 		</div>
 	</div>
