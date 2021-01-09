@@ -1,0 +1,38 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_S27xEAACAAR74v&q=%5B%5Bat(document.id%2C%22X-vzrBEAACIAIOGo%22)%5D%5D#format=html -->
+
+<div id="meditations-container">
+	<div id="meditations-delimiter">
+		<img alt="${data.content.mission.section_delimiter.alt}" src="${data.content.mission.section_delimiter.main}">
+	</div>
+	<h1 id="meditations-title">
+		${data.content.mission.section_title}
+	</h1>
+	<div id="meditations-introduction">
+		${data.content.mission.section_introduction}
+	</div>
+	<div id="meditations-quotations">
+		<!-- TKLoop -->
+		<div class="quotation">
+			<div class="quote">
+				${data.content.mission.body.quotes_gallery[0].quotation}
+			</div>
+			<div class="source">
+				${data.content.mission.body.quotes_gallery[0].quotation_source}
+			</div>
+			<div class="author">
+				${data.content.mission.body.quotes_gallery[0].quotation_credit}
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="splash-container">
+    <div id="logo">
+        <img alt="${data.content.splash.logo.alt}" src="${data.content.splash.logo.url}" />
+    </div>
+    <div id="introduction">
+        ${data.content.splash.introduction.map((intro) => `<p>${intro.text}</p>`).join('\n')}
+    </div>
+    <div id="transition"></div>
+</div>
