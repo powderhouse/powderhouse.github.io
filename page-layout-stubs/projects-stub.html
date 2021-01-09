@@ -1,0 +1,39 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-v9ThEAACMAIQw8%22)%5D%5D#format=json -->
+
+<div id="projects-container">
+    <div id="projects-delimiter">
+        <img alt="${data.content.project_board.section_delimiter.alt}" src="${data.content.project_board.section_delimiter.url}">
+    </div>
+    <h1 id="projects-title">
+        ${data.content.project_board.section_title.text}
+    </h1>
+    <div id="projects-introduction">
+        ${data.content.project_board.section_introduction.text}
+    </div>
+
+    <div id="projects-board">
+        <!-- TKLoop -->
+        <div class="project-phase-gallery">
+        	<h2 class="project-phase-title">
+        		${data.content.project_board.body.mixed_media_gallery[0].items.project_phase_subtitle.text}
+        	</h2>
+        	<div class="project-phase-description">
+        		${data.content.project_board.body.mixed_media_gallery[0].items.project_phase_description.text}
+        	</div>
+
+        	<!-- TKLoop -->
+        	<!-- TKIf -->
+        	<a href="${data.content.project_board.body.mixed_media_gallery[0].items.more_resources.url">
+		        <iframe class="project-phase-gallery-video" src="${data.content.project_board.body.mixed_media_gallery[0].items.mixed_media_gallery_link.embed_url}"></iframe>
+		        <img class="project-phase-gallery-image" alt="${data.content.project_board.body.mixed_media_gallery[0].items.mixed_media_gallery_image.alt}" src="${data.content.project_board.body.mixed_media_gallery[0].items.mixed_media_gallery_image.url}">
+
+		        <h2 class="project-phase-gallery-media-title">
+		            ${data.content.project_board.body.mixed_media_gallery[0].items.mixed_media_gallery_title.text}
+		        </h2>
+		        <div class="project-phase-gallery-media-description">
+		            ${data.content.project_board.body.mixed_media_gallery[0].items.media_description.text}
+		        </div>
+		    </a>
+	    </div>
+    </div>
+</div>

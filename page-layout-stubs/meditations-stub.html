@@ -1,38 +1,29 @@
-<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_S27xEAACAAR74v&q=%5B%5Bat(document.id%2C%22X-vzrBEAACIAIOGo%22)%5D%5D#format=html -->
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-vzrBEAACIAIOGo%22)%5D%5D#format=json -->
 
 <div id="meditations-container">
 	<div id="meditations-delimiter">
-		<img alt="${data.content.mission.section_delimiter.alt}" src="${data.content.mission.section_delimiter.main}">
+		<img alt="${data.content.mission.section_delimiter.alt}" src="${data.content.mission.section_delimiter.url}">
 	</div>
 	<h1 id="meditations-title">
-		${data.content.mission.section_title}
+		${data.content.mission.section_title.text}
 	</h1>
 	<div id="meditations-introduction">
-		${data.content.mission.section_introduction}
+		${data.content.mission.section_introduction.text}
 	</div>
 	<div id="meditations-quotations">
 		<!-- TKLoop -->
-		<div class="quotation">
-			<div class="quote">
-				${data.content.mission.body.quotes_gallery[0].quotation}
+		<div class="meditations-quotation">
+			<blockquote>
+				${data.content.mission.body.quotes_gallery[0].items.quotation.text}
+			</blockquote>
+			<div class="meditations-source">
+				${data.content.mission.body.quotes_gallery[0].items.quotation_source.text}
 			</div>
-			<div class="source">
-				${data.content.mission.body.quotes_gallery[0].quotation_source}
+			<div class="meditations-author">
+				${data.content.mission.body.quotes_gallery[0].items.quotation_credit.text}
 			</div>
-			<div class="author">
-				${data.content.mission.body.quotes_gallery[0].quotation_credit}
-			</div>
+			<img class="meditations-monogram" alt="${data.content.mission.body.quotes_gallery[0].items.author_monogram.alt}" src="${data.content.mission.body.quotes_gallery[0].items.author_monogram.url}">
 		</div>
 	</div>
 
-</div>
-
-<div id="splash-container">
-    <div id="logo">
-        <img alt="${data.content.splash.logo.alt}" src="${data.content.splash.logo.url}" />
-    </div>
-    <div id="introduction">
-        ${data.content.splash.introduction.map((intro) => `<p>${intro.text}</p>`).join('\n')}
-    </div>
-    <div id="transition"></div>
 </div>

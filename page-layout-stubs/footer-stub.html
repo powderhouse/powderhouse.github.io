@@ -1,0 +1,30 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X_OVwhEAACAAQrfn%22)%5D%5D#format=json -->
+
+<div id="footer-container">
+	<h1 id="footer-title">
+		${data.content.footer.footer_title.text}
+	</h1>
+	<div id="footer-introduction">
+		${data.content.footer.footer_introduction.text}
+	</div>
+	<div id="footer-team">
+		<img class="footer-team-pic" alt="${data.content.footer.team_block[0].team_member_pic.alt}" src="${data.content.footer.team_block[0].team_member_pic.url}">
+		<div class="footer-team-name">
+			${data.content.footer.team_block[0].team_member_name.text}
+		</div>
+		<div class="footer-team-email">
+			${data.content.footer.team_block[0].team_member_end_of_email.text}
+		</div>
+	</div>
+	<h1 id="footer-newsletter-title">
+		${data.content.footer.footer_newsletter_title.text}
+	</h1>
+	<div class="footer-space-map">
+		<img alt="${data.content.footer.footer_space_map.alt}" src="${data.content.footer.footer_space_map.url}">
+	</div>
+	<div id="footer-contact">
+		${data.content.footer.footer_address.text}
+		${data.content.footer.footer_phone.text}
+		${data.content.footer.footer_email.text}
+	</div>
+</div>

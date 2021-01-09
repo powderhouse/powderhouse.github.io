@@ -1,0 +1,29 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-wOIBEAACEAIVa1%22)%5D%5D#format=json -->
+<div id="inquiry-container">
+    <div id="inquiry-delimiter">
+        <img alt="${data.content.lines_of_inquiry.section_delimiter.alt}" src="${data.content.lines_of_inquiry.section_delimiter.main}">
+    </div>
+    <h1 id="inquiry-title">
+        ${data.content.lines_of_inquiry.section_title.text}
+    </h1>
+    <div id="inquiry-introduction">
+        ${data.content.lines_of_inquiry.section_introduction.text}
+    </div>
+    <div id="inquiry-trio">
+        <!-- TK Loop -->
+        <a href="${data.content.lines_of_inquiry.body.image_trio[0].items.more_resources.url">
+            <div class="loi-entry">
+                <img class="loi-image" alt="${data.content.lines_of_inquiry.body.image_trio[0].items.image_trio.alt}" src="${data.content.lines_of_inquiry.body.image_trio[0].items.image_trio.main}">
+                <h2 class="loi-title">
+                    ${data.content.lines_of_inquiry.body.image_trio[0].items.image_title.text
+                </h2>
+                <h3 class="loi-author">
+                    ${data.content.lines_of_inquiry.body.image_trio[0].items.author.text
+                </h3>
+                <div class="loi-description">
+                    ${data.content.lines_of_inquiry.body.image_trio[0].items.image_description.text
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

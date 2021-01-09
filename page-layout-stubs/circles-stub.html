@@ -1,0 +1,49 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-vZzxEAACAAIG-9%22)%5D%5D#format=json -->
+
+<div id="circles-container">
+	<div id="circles-delimiter">
+		<img alt="${data.content.sights_circles.section_delimiter.alt}" src="${data.content.sights_circles.section_delimiter.url}">
+	</div>
+	<h1 id="circles-title">
+		${data.content.sights_circles.section_title.text}
+	</h1>
+	<div id="circles-introduction">
+		${data.content.sights_circles.section_introduction.text}
+	</div>
+	<div id="circles-trio">
+		<!-- TK Loop -->
+		<div class="circles-trio-image">
+			<a href="${data.content.sights_circles.body.image_trio[0].items.more_resources.url}">
+				<img alt="${data.content.sights_circles.body.image_trio[0].items.image_trio.alt}" src="${data.content.sights_circles.body.image_trio[0].items.image_trio.url}">
+				<h2 class="trio-title">
+					${data.content.sights_circles.body.image_trio[0].items.image_title.text
+				</h2>
+				<div class="trio-description">
+					${data.content.sights_circles.body.image_trio[0].items.image_description.text
+				</div>
+			</a>
+		</div>
+	</div>
+	<div id="circles-transition">
+		${data.content.sights_circles.section_transition.text}
+	</div>
+	<div id="circles-gallery">
+		<!-- TKLoop -->
+
+		<!-- TKIf -->
+		<a href="${data.content.sights_circles.body.mixed_media_gallery[0].items.more_resources.url}">
+
+			<!-- TKIf -->
+			<iframe class="circles-gallery-video" src="${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_link.embed_url}"></iframe>
+			<img class="circles-gallery-image" alt="${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_image.alt}" src="${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_image.url}">
+
+			<h2 class="circles-gallery-media-title">
+				${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_title.text}
+			</h2>
+			<div class="circles-gallery-media-description">
+				${data.content.sights_circles.body.mixed_media_gallery[0].items.media_description.text}
+			</div>
+		</a>
+	</div>
+
+</div>

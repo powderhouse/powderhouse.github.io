@@ -1,0 +1,41 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-vUJxEAACAAIFaw%22)%5D%5D#format=json -->
+
+<div id="sights-container">
+	<div id="sights-delimiter">
+		<img alt="${data.content.sights_circles.section_delimiter.alt}" src="${data.content.sights_circles.section_delimiter.url}">
+	</div>
+	<h1 id="sights-title">
+		${data.content.sights_circles.section_title.text}
+	</h1>
+	<div id="sights-introduction">
+		${data.content.sights_circles.section_introduction.text}
+	</div>
+	<div id="sights-trio">
+		<!-- TK Loop -->
+		<div class="sights-trio-image">
+			<img alt="${data.content.sights_circles.body.image_trio[0].items.image_trio.alt}" src="${data.content.sights_circles.body.image_trio[0].items.image_trio.url}">
+		</div>
+	</div>
+	<div id="sights-transition">
+		${data.content.sights_circles.section_transition.text}
+	</div>
+	<div id="sights-gallery">
+		<!-- TKLoop -->
+
+		<!-- TKIf -->
+		<a href="${data.content.sights_circles.body.mixed_media_gallery[0].items.more_resources.url}">
+
+			<!-- TKIf -->
+			<iframe class="sights-gallery-video" src="${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_link.embed_url}"></iframe>
+			<img class="sights-gallery-image" alt="${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_image.alt}" src="${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_image.url}">
+
+			<h2 class="sights-gallery-media-title">
+				${data.content.sights_circles.body.mixed_media_gallery[0].items.mixed_media_gallery_title.text}
+			</h2>
+			<div class="sights-gallery-media-description">
+				${data.content.sights_circles.body.mixed_media_gallery[0].items.media_description.text}
+			</div>
+		</a>
+	</div>
+
+</div>

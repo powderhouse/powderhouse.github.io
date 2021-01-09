@@ -1,4 +1,4 @@
-<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_S27xEAACAAR74v&q=%5B%5Bat(document.id%2C%22X-v3UBEAACAAIPHA%22)%5D%5D#format=html -->
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-v3UBEAACAAIPHA%22)%5D%5D#format=json -->
 
 <div id="letter-container">
 	<div id="letter-image">
@@ -6,19 +6,19 @@
 	</div>
 	<div id="letter-content">
 		<div id="letter-date">
-			${data.content.letter.letter_date}
+			${data.content.letter.letter_date.text}
 		</div>
 		<div id="letter-text">
-			${data.content.letter.letter_content}
+			${data.content.letter.letter_content.text}
 		</div>
 		<div id="letter-signoff">
-			${data.content.letter.body.sign_off.salutation}
+			${data.content.letter.body.sign_off[0].primary.salutation.text}
 		</div>
 		<div id="letter-signatures">
 			<!-- TKLoop -->
-			<div class="signature">
-				<img alt="${data.content.letter.body.sign_off[0].signature_image.alt}" src="${data.content.letter.body.sign_off[0].signature_image.main}">
-				${data.content.letter.body.sign_off[0].printed_name}
+			<div class="letter-signature">
+				<img alt="${data.content.letter.body.sign_off[0].items.signature_image.alt}" src="${data.content.letter.body.sign_off[0].items.signature_image.url}">
+				${data.content.letter.body.sign_off[0].items.printed_name.text}
 			</div>
 		</div>
 	</div>

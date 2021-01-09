@@ -1,0 +1,29 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-v7WREAACEAIQOX%22)%5D%5D#format=json -->
+
+<div id="admin-container">
+	<div id="admin-delimiter">
+		<img alt="${data.content.administrivia.section_delimiter.alt}" src="${data.content.administrivia.section_delimiter.url}">
+	</div>
+	<h1 id="admin-title">
+		${data.content.administrivia.section_title.text}
+	</h1>
+	<div id="admin-introduction">
+		${data.content.administrivia.section_introduction.text}
+	</div>
+
+	<div id="admin-gallery">
+		<!-- TKLoop -->
+		<img class="admin-gallery-image" alt="${data.content.administrivia.body.image_gallery[0].items.gallery_image.alt}" src="${data.content.administrivia.body.image_gallery[0].items.gallery_image.url}">
+		<div class="admin-gallery-description">
+			${data.content.administrivia.body.image_gallery[0].items.image_captions.text}
+		</div>
+	</div>
+	
+	<div id="admin-transition">
+		${data.content.administrivia.section_transition.text}
+	</div>
+
+	<div id="admin-mosaic">
+		<img alt="${data.content.administrivia.image_mosaic.alt" src="${data.content.administrivia.image_mosaic.url">
+	</div>
+</div>

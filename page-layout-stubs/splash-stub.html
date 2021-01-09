@@ -1,11 +1,11 @@
-<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_S27xEAACAAR74v&q=%5B%5Bat(document.id%2C%22X-v1WBEAACMAIOkL%22)%5D%5D#format=html -->
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_nUIxEAACIAXlgI&q=%5B%5Bat(document.id%2C%22X-v1WBEAACMAIOkL%22)%5D%5D#format=json -->
 
 <div id="splash-container">
-    <div id="logo">
+    <div id="splash-logo">
         <img alt="${data.content.splash.logo.alt}" src="${data.content.splash.logo.url}" />
     </div>
-    <div id="introduction">
+    <div id="splash-introduction">
         ${data.content.splash.introduction.map((intro) => `<p>${intro.text}</p>`).join('\n')}
     </div>
-    <div id="transition"></div>
+    <div id="splash-transition"></div>
 </div>
