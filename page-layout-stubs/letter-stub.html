@@ -1,0 +1,32 @@
+<!-- https://powderhs.prismic.io/api/v2/documents/search?ref=X_S27xEAACAAR74v&q=%5B%5Bat(document.id%2C%22X-v3UBEAACAAIPHA%22)%5D%5D#format=html -->
+
+<div id="letter-container">
+	<div id="letter-image">
+		<img alt="${data.content.letter.review_header.alt}" src="${data.content.letter.review_header.url}">
+	</div>
+	<div id="letter-content">
+		<div id="letter-date">
+			${data.content.letter.letter_date}
+		</div>
+		<div id="letter-text">
+			${data.content.letter.letter_content}
+		</div>
+		<div id="letter-signoff">
+			${data.content.letter.body.sign_off.salutation}
+		</div>
+		<div id="letter-signatures">
+			<div id="ar-sig">
+				<img alt="${data.content.letter.body.sign_off[0].signature_image.alt}" src="${data.content.letter.body.sign_off[0].signature_image.main}">
+				${data.content.letter.body.sign_off[0].printed_name}
+			</div>
+			<div id="rn-sig">
+				<img alt="${data.content.letter.body.sign_off[1].signature_image.alt}" src="${data.content.letter.body.sign_off[1].signature_image.main}">
+				${data.content.letter.body.sign_off[1].printed_name}
+			</div>
+			<div id="rn-sig">
+				<img alt="${data.content.letter.body.sign_off[2].signature_image.alt}" src="${data.content.letter.body.sign_off[2].signature_image.main}">
+				${data.content.letter.body.sign_off[2].printed_name}
+			</div>
+		</div>
+	</div>
+</div>
