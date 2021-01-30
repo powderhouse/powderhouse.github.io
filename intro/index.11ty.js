@@ -10,22 +10,21 @@ exports.data = {
 
 exports.render = function(data) {
     const intro = data.content.intro;
-    console.log(intro.body[0].items[0]);
 
     let header = `
-    <div id='stop-work-header'>
-     <img id='stop-work' class='w-full' alt="${intro.review_header.alt}" src="${intro.review_header.url}"/>
+    <div id='intro-header' class='header'>
+     <img class='w-full' alt="${intro.review_header.alt}" src="${intro.review_header.url}"/>
     </div>   
     `;
 
     let letter = `
-    <div id='letter-content'>
+    <div id='intro-content'>
         ${html(intro.letter_content)}
      </div>
     `
 
     let closing = `
-    <div id='letter-closing'>
+    <div id='intro-closing'>
          <div id='signatures'>
             ${
                 intro.body[0].items.map(i => `
@@ -43,7 +42,7 @@ exports.render = function(data) {
 
     let toc = `
     <div id='table-of-contents'>
-        <div class='toc-item'></div>
+        <div class='toc-item'>TK</div>
     </div>
     `
 
