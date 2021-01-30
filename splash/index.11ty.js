@@ -1,5 +1,9 @@
 // /splash
 
+import PrismicDOM from 'prismic-dom';
+const html = PrismicDOM.RichText.asHtml
+import * as helpers from "../helpers.js"
+
 exports.data = {
     layout: "layouts/default.11ty.js"
 };
