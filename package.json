@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "quickstart": "node -r esm node_modules/.bin/eleventy --serve",
     "start": "node -r esm node_modules/.bin/eleventy --serve & postcss style.css --o _site/style.css --watch",
     "build": "ELEVENTY_PRODUCTION=true & node -r esm node_modules/.bin/eleventy & NODE_ENV=production postcss style.css --o _site/style.css"
   },
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
   "dependencies": {
+    "@11ty/eleventy-cache-assets": "^2.1.0",
     "autoprefixer": "^10.1.0",
     "esm": "^3.2.25",
     "prismic-dom": "^2.2.4",
