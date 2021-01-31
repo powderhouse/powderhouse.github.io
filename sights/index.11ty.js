@@ -8,7 +8,6 @@ exports.data = {
 
 exports.render = function(data) {
      let doc = data.content.sights;
-     console.log("doc for sights is", doc);
      let header = helpers.generateHeader('sights', doc);
      let preface = helpers.generatePreface('preface', doc);
      let content = doc.body.map((slice) => {
