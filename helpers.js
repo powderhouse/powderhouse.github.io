@@ -28,7 +28,19 @@ export function generatePreface(slug, content, content_slug = null) {
 }
 
 function generateGalleryItem(item) {
-    let title = `${html(item.mixed_media_gallery_title)}`;
+    let title = function (i){
+        if (i.more_resources.url !== undefined) {
+            return `
+                <a href="${item.more_resources.url}">
+                    ${html(item.mixed_media_gallery_title)}
+                </a>
+            `
+        }
+        else {
+            return `${html(item.mixed_media_gallery_title)}`;
+        }
+    }(item);
+
     let description = `${html(item.media_description)}`
     let figureCaption = `
         <figcaption class='mixed-media-gallery-item-caption'>
