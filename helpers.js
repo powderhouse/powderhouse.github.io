@@ -63,13 +63,13 @@ function generateGalleryItem(item) {
     }
 }
 
-
-// <div id="sights-trio">
-//         <!-- TK Loop -->
-//         <div class="sights-trio-image">
-//             <img alt="${data.content.sights_circles.body.image_trio[0].items.image_trio.alt}" src="${data.content.sights_circles.body.image_trio[0].items.image_trio.url}">
-//         </div>
-//     </div>
+export function generateMixedMediaGallery(slug, slice) {
+    return `
+        <div id='${slug}-gallery'>
+            ${slice.map(generateGalleryItem).join('\n')}
+        </div>
+    `
+}
 
 function generateImageForImageTrio(image) {
     console.log("Trying to generate image for", image)
@@ -81,14 +81,6 @@ function generateImageForImageTrio(image) {
                 ${html(image.image_description)}
             </figcaption>
         </figure>
-    `
-}
-
-export function generateMixedMediaGallery(slug, slice) {
-    return `
-        <div id='${slug}-gallery'>
-            ${slice.map(generateGalleryItem).join('\n')}
-        </div>
     `
 }
 
