@@ -10,8 +10,6 @@ exports.render = function(data) {
     let meditations = data.content.meditations;
     let quotes = meditations.body[0];
 
-    console.log("meditations", meditations, "quotes", quotes, "length", quotes.items.map(x => html(x.quotation)));
-
       let header = `
         <div class="header">
           <img 
