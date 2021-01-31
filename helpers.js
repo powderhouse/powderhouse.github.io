@@ -28,39 +28,51 @@ export function generatePreface(slug, content, content_slug = null) {
 }
 
 function generateGalleryItem(item) {
-    let header = `${html(item.mixed_media_gallery_title)}`;
+    let title = `${html(item.mixed_media_gallery_title)}`;
+    let description = `${html(item.media_description)}`
+    let figureCaption = `
+        <figcaption class='mixed-media-gallery-item-caption'>
+            ${title}
+            ${description}
+        </figcaption>
+    `
+    let figureBody = function(fig) {
+        if (Object.keys(fig.mixed_media_gallery_image).length > 0) {
+            return `
+            <img
+                class="w-full"
+                alt="${fig.mixed_media_gallery_image.alt}"
+                src="${fig.mixed_media_gallery_image.url}"
+            \>
+            `
+        } else if (fig.mixed_media_gallery_link.hasOwnProperty('embed_url')) {
+            // Is embed
+            let src = function(embed) {
+                if (embed.provider_name == "YouTube") {
+                    let matches = /^.+\:\/\/(youtu\.be|www.youtube.com)\/([A-Za-z0-9]+)/.exec(embed.embed_url);
+                    let embedID = matches.length > 0 ? matches[1] : null;
+                    return "https://www.youtube.com/embed/" + embedID + "?feature=oembed";
+                }
+            }(fig.mixed_media_gallery_link)
 
-    if (Object.keys(item.mixed_media_gallery_image).length > 0) {
-        // Is image
-        return `IMAGETK`
-    }
-    else if (item.mixed_media_gallery_link.hasOwnProperty('embed_url')) {
-        // Is embed
-        let src = function(embed) {
-            if (embed.provider_name == "YouTube") {
-                let matches = /^.+\:\/\/youtu.be\/([A-Za-z0-9]+)/.exec(embed.embed_url);
-                let embedID = matches.length > 0 ? matches[1] : null;
-                return "https://www.youtube.com/embed/" + embedID + "?feature=oembed";
-            }
-        }(item.mixed_media_gallery_link)
-        
-        return `
-        <figure class='mixed-media-gallery-item'>
+            return `
             <iframe
                 src='${src}'
                 loading='lazy'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen'
-                title='${item.mixed_media_gallery_link.title}'
+                title='${fig.mixed_media_gallery_link.title}'
             >
-                    
             </iframe>
-            <figcaption class='mixed-media-gallery-item-caption'>
-                ${html(item.mixed_media_gallery_title)}
-                ${html(item.media_description)}
-            </figcaption>
+            `
+        }
+    }(item);
+
+    return `
+        <figure>
+            ${figureBody}
+            ${figureCaption}
         </figure>
-        `
-    }
+    `
 }
 
 export function generateMixedMediaGallery(slug, slice) {
@@ -72,7 +84,6 @@ export function generateMixedMediaGallery(slug, slice) {
 }
 
 function generateImageForImageTrio(image) {
-    console.log("Trying to generate image for", image)
     return `
         <figure class="image-trio-image">
             <img alt="${image.image_trio.alt}" src="${image.image_trio.url}">
