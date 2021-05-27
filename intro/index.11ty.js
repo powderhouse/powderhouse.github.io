@@ -26,6 +26,7 @@ exports.render = function(data) {
 
     let closing = `
     <div id='intro-closing'>
+        ${html(intro.body[0].primary.salutation)}
          <div id='signatures'>
             ${
                 intro.body[0].items.map(i => `

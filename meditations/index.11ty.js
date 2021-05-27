@@ -10,7 +10,7 @@ exports.render = function(data) {
     let meditations = data.content.meditations;
     let quotes = meditations.body[0];
 
-      let header = `
+    let header = `
         <div class="header">
           <img 
               alt="${meditations.section_delimiter.alt}" 
@@ -19,14 +19,14 @@ exports.render = function(data) {
         </div>
         ${html(meditations.section_title)}
         `
-      let preface = `
+    let preface = `
           <div id="meditations-introduction">
               ${html(meditations.section_introduction)}
           </div>
       `
-  
-      let content = quotes.items.map(q => {
-          return `
+
+    let content = quotes.items.map(q => {
+        return `
           <div class="meditations-quotation">
               <blockquote>
                   ${html(q.quotation)}
@@ -44,9 +44,9 @@ exports.render = function(data) {
               \>
           </div>
       `
-      }).join('\n');
- 
-     return `
+    }).join('\n');
+
+    return `
        <section id='meditations'>
            ${header}
            ${preface}
