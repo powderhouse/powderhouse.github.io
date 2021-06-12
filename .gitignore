@@ -1,6 +1,0 @@
-.DS_Store
-node_modules/
-_site/
-_tmp/
-package-lock.json
-.cache/
