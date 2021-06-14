@@ -1,3 +1,9 @@
 .DS_Store
 _site/
 node_modules/
+
+
+# Temporary, 'til we figure out media inclusion
+annual-review-headers/
+remaking-annual-review-redux-media/
+sketchy-powderhouse-logo.svg
