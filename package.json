@@ -1,0 +1,30 @@
+{
+  "name": "powderhouse.github.io",
+  "version": "0.0.1",
+  "description": "",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node -r esm node_modules/.bin/eleventy --serve & postcss styles/ --dir _site/styles/ --watch",
+    "build": "ELEVENTY_PRODUCTION=true & node -r esm node_modules/.bin/eleventy & NODE_ENV=production postcss style.css --o _site/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powderhouse/powderhouse.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/powderhouse/powderhouse.github.io/issues"
+  },
+  "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "autoprefixer": "^10.2.6",
+    "esm": "^3.2.25",
+    "postcss": "^8.3.4",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.4"
+  }
+}
