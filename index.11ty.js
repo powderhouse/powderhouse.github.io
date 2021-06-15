@@ -30,7 +30,7 @@ exports.render = function (data) {
 	let reviewSectionsHTML = reviewSections.map(
 		(s) => `
 		<section id='${s.slug}'>
-			${s.header ? `<h1>${s.title}</h1>` : ""}
+			${s.header ? `<h2>${s.title}</h2>` : ""}
 			${fs.readFileSync("./review-sections/" + s.slug + ".html")}
 		</section>`
 	);
