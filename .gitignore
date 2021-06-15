@@ -4,6 +4,5 @@ node_modules/
 
 
 # Temporary, 'til we figure out media inclusion
-annual-review-headers/
-remaking-annual-review-redux-media/
+media/
 sketchy-powderhouse-logo.svg
