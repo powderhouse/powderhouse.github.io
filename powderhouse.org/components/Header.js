@@ -10,7 +10,7 @@ function Header() {
         </div>
         <nav>
           <ol>
-            {navMenuItems.map(n => <li><a href={n.href}>{n.text}</a></li>)}
+            {navMenuItems.map(n => <li key={n.href}><a href={n.href}>{n.text}</a></li>)}
           </ol>
         </nav>
       </Wrapper>

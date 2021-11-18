@@ -7,7 +7,7 @@ function Footer() {
       <div id='footer-navigation'>
         <ol>
           {navMenuItems.map(n => {
-            return <li><a href={n.href}>{n.text}</a></li>
+            return <li key={n.href}><a href={n.href}>{n.text}</a></li>
           })}
         </ol>
       </div>

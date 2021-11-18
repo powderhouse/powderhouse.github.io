@@ -4,9 +4,6 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 function HomePage() {
-
-  let Highlight = styled.span`color: ${props => props.color}`;
-
   return (
     <>
       <Header />
@@ -32,5 +29,7 @@ function HomePage() {
     </>
   );
 }
+
+let Highlight = styled.span`color: ${props => props.color}`;
 
 export default HomePage;
