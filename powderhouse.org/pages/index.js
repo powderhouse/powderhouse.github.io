@@ -1,47 +1,29 @@
-function HomePage() {
-  let navMenuItems = [
-    'About',
-    'Team',
-    'Work',
-    'News'
-  ]
+import { navMenuItems } from '../site-data.js';
 
+
+function Header() {
   return (
-    <>
-      <header>
+    <header>
         <div class='logo-and-logotype'>
           <div id='logo'></div>
           <div id='logotype'></div>
         </div>
         <nav>
           <ol>
-            {navMenuItems.map(n => <li>{n}</li>)}
+            {navMenuItems.map(n => <li><a href={n.href}>{n.text}</a></li>)}
           </ol>
         </nav>
       </header>
+      )
+}
 
-      <div id='splash-language'>
-        <p>
-        We are a research, design, and advocacy groupdevoted to realizing the future of learning in practice through direct action with youth.
-        </p>
-        <p>
-        Our work aims to demonstrate the very best our community—along with the public sector—could provide young people, right now, with enough imagination.
-        </p>
-      </div>
-
-      <div id='splash-newsletter-signup'>
-      <form action='' method='get'>
-          <input type='email' name='email' id='email' required />
-          <input type="submit" value="Sign Up" />
-      </form>
-      </div>
-
-
-      <footer>
+function Footer() {
+  return (
+    <footer>
       <div id='footer-navigation'>
         <ol>
           {navMenuItems.map(n => {
-            return <li><a href={n.toLowerCase()}>{n}</a></li>
+            return <li><a href={n.href}>{n.text}</a></li>
           })}
         </ol>
       </div>
@@ -61,6 +43,34 @@ function HomePage() {
         </ul>
       </div>
       </footer>
+  )
+}
+
+function HomePage() {
+
+  return (
+    <>
+      <Header />
+
+      <div id='splash-language'>
+        <p>
+        We are a <span>research, design, and advocacy group</span> devoted to realizing the <span>future of learning</span> in practice through <span>direct action with youth</span>.
+        </p>
+        <p>
+        Our work aims to demonstrate the very best our community—along with the public sector—could provide young people, right now, with enough imagination.
+        </p>
+      </div>
+
+      <div id='splash-newsletter-signup'>
+      <form action='' method='get'>
+          <input type='email' name='email' id='email' required />
+          <input type="submit" value="Sign Up" />
+      </form>
+      </div>
+
+
+      <Footer/>
+      
     </>
   );
 }
