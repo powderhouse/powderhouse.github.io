@@ -4,14 +4,14 @@ import styled from 'styled-components';
 function Footer() {
   return (
     <Wrapper>
-      <div id='footer-navigation'>
+      <FooterNavigation>
         <ol>
           {navMenuItems.map(n => {
             return <li key={n.href}><a href={n.href}>{n.text}</a></li>
           })}
         </ol>
-      </div>
-      <div id='footer-contact'>
+      </FooterNavigation>
+      <FooterContact>
         <div>
           339R Summer Street <br/>
           Somerville, MA 02144
@@ -25,13 +25,30 @@ function Footer() {
           <li>YouTube</li>
           <li>Facebook</li>
         </ul>
-      </div>
+      </FooterContact>
+      <FooterNewsletterSignup></FooterNewsletterSignup>
       </Wrapper>
   )
 }
 
 let Wrapper = styled.footer`
-background: blue;
+  background: blue;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  grid-column: 1 / -1;
 `
 
+let FooterNavigation = styled.div`
+  grid-column: 1 / 4;
+  border: 1px dotted black;
+`
+let FooterContact = styled.div`
+  grid-column: 4 / 7;
+  border: 1px dotted black;
+`
+let FooterNewsletterSignup = styled.div`
+  grid-column: 7 / -1;
+  border: 1px dotted black;
+`
 export default Footer;
