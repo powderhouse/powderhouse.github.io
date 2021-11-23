@@ -6,7 +6,7 @@ import GridWrapper from '../components/GridWrapper'
 
 function HomePage() {
   return (
-      <HomePageGridWrapper>
+      <GridWrapper>
         <Header />
 
           <SplashLanguage>
@@ -26,7 +26,7 @@ function HomePage() {
         </SplashNewsletterSignup>
 
         <Footer/>
-      </HomePageGridWrapper>
+      </GridWrapper>
   );
 }
 
@@ -35,10 +35,6 @@ let Highlight = styled.span`color: ${props => props.color}`;
 let SplashLanguage = styled.div`
   grid-column: 2 / -2;
   border: 1px dotted black;
-`
-
-let HomePageGridWrapper = styled(GridWrapper)`
-  grid-template-columns: repeat(12, 1fr);
 `
 
 let SplashNewsletterSignup = styled.div`
