@@ -34,7 +34,7 @@ function AboutPage() {
 
 		<PageSection css={baseGrid}>
 			<LeftHeader>Our Mission</LeftHeader>
-			<PageSectionContent numCols={6}>
+			<PageSectionContent>
 			<p>
 				At Powderhouse, our mission is to give youth a say, enabling
 				critical participation in the most important conversations of
@@ -65,7 +65,7 @@ function AboutPage() {
 
 		<PageSection css={baseGrid}>
 			<LeftHeader>Our Approach</LeftHeader>
-			<PageSectionContent numCols={6}>
+			<PageSectionContent>
 				<p>
 					Our work comes alive through the community publications we
 					create with youth, where we invite others to bring fresh
@@ -93,7 +93,7 @@ function AboutPage() {
 			</PageSectionContent>
 		</PageSection>
 		<DarkPageSection css={baseGrid}>
-			<PageSectionContent numCols={6}>
+			<PageSectionContent>
 			<CenterHeader>A New Kind of Institution</CenterHeader>
 			<p>
 				This work offers a foundation for a novel institution, one
@@ -160,7 +160,7 @@ function AboutPage() {
 			</PageSectionContent>
 		</DarkPageSection>
 		<DarkPageSection css={baseGrid}>
-			<PageSectionContent numCols={6}>
+			<PageSectionContent>
 			<CenterHeader>A New Approach to Change</CenterHeader>
 			<p>
 				But, our experience—and the sector's largely failed attempts at

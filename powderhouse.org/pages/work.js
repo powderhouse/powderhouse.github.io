@@ -43,27 +43,27 @@ function WorkPage() {
 			<LeftHeader>Projects</LeftHeader>
 			<WidePageSectionContent>
 				<ProjectCard>
-					<ProjectImage></ProjectImage>
+					<ProjectFeatureImage></ProjectFeatureImage>
 					<ProjectTitle>[Almost] A New District School</ProjectTitle>
 					<ProjectSubtitle>In district high school featuring projects emphasizing computation, narrative, and design proposed in Somerville, MA</ProjectSubtitle>
 				</ProjectCard>
 				<ProjectCard>
-					<ProjectImage></ProjectImage>
+					<ProjectFeatureImage></ProjectFeatureImage>
 					<ProjectTitle>Digital Storytelling</ProjectTitle>
 					<ProjectSubtitle>A family of programs storytelling with the aid of software</ProjectSubtitle>
 				</ProjectCard>
 				<ProjectCard>
-					<ProjectImage></ProjectImage>
+					<ProjectFeatureImage></ProjectFeatureImage>
 					<ProjectTitle>Healey STEAM</ProjectTitle>
 					<ProjectSubtitle>A pilot of our innovation school model with the Healey's 7th and 8th grades</ProjectSubtitle>
 				</ProjectCard>
 				<ProjectCard>
-					<ProjectImage></ProjectImage>
+					<ProjectFeatureImage></ProjectFeatureImage>
 					<ProjectTitle>Bring Your Grandma to Math Day</ProjectTitle>
 					<ProjectSubtitle>People of all ages playing with math together, for fun</ProjectSubtitle>
 				</ProjectCard>
 				<ProjectCard>
-					<ProjectImage></ProjectImage>
+					<ProjectFeatureImage></ProjectFeatureImage>
 					<ProjectTitle>Atlas</ProjectTitle>
 					<ProjectSubtitle>Software to make messy projects legible to traditional common core standards</ProjectSubtitle>
 				</ProjectCard>
@@ -178,7 +178,7 @@ let ProjectCard = styled.div`
 	}
 `
 
-let ProjectImage = styled.div`
+let ProjectFeatureImage = styled.div`
 	height:150px;
 	background-image:url(https://www.pbs.org/wgbh/americanexperience/media/__sized__/canonical_images/feature/Goldman_timeline_canonical-resize-1200x0-50.jpg);
 	background-size:cover;

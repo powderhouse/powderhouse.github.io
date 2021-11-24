@@ -234,5 +234,4 @@ let PersonLinks = styled.ul ``
 let PersonBio = styled.p ``
 
 
-
 export default TeamPage;
