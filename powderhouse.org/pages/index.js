@@ -1,5 +1,5 @@
+import styled, { createGlobalStyle } from 'styled-components';
 import { navMenuItems } from '../site-data.js';
-
 
 function Header() {
   return (
