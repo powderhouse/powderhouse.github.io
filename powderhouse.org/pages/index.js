@@ -30,7 +30,9 @@ function HomePage() {
   );
 }
 
-let Highlight = styled.span`color: ${props => props.color}`;
+let Highlight = styled.span`
+  color: ${props => props.color}
+`;
 
 let SplashLanguage = styled.div`
   grid-column: 2 / -2;

@@ -58,7 +58,6 @@ function JobsPage() {
     );
 }
 
-
 // This section is copied from /about. Do not change, should be pulled into components.
 
 let PageContainer = styled.div ``;
