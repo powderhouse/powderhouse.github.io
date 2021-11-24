@@ -124,20 +124,25 @@ function TeamPage() {
 			<LeftHeader>Jobs</LeftHeader>
 			<PageSectionContent>
 				<p>
-					Powderhouse is building something which has never existed before: a vertically integrated* research, design, and advocacy organization devoted to youth.
+					Powderhouse is building something which has never existed before: a vertically integrated<sup>*</sup> research, design, and advocacy organization devoted to youth.
 				</p>
 				<p>
-					Most work in this space is about School,** not about learning.  The little which is about learning ignores the wickedly hard problem of grappling with School.  So much talk about innovation and revolution, so little courage to tackle radical problems with the patience and rigor they require.
+					Most work in this space is about School,<sup>**</sup> not about learning.  The little which is about learning ignores the wickedly hard problem of grappling with School.  So much talk about innovation and revolution, so little courage to tackle radical problems with the patience and rigor they require.
 				</p>
 				<p>
 					If that inspires (rather than deflates or offends), we'd like your help.
 				</p>
+				
 				<aside>
-					* That means we <i>actually</i> work with youth, prototype tools and materials, and design systems and policies that govern learning environments all under one roof.
+					<sup>*</sup>
+					That means we <i>actually</i> work with youth, prototype tools and materials, and design systems and policies that govern learning environments all under one roof.
 				</aside>
+				
 				<aside>
-					** Original Holt quote re: S-chool, <i>via Instead of Education</i>, “The schools for do-ers, which help people explore the world as they choose, I now call “small s schools” (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse.”
+					<sup>**</sup> 
+					Original Holt quote re: S-chool, <i>via Instead of Education</i>, “The schools for do-ers, which help people explore the world as they choose, I now call “small s schools” (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse.”
 				</aside>
+
 				<a href="/jobs"><div>Jobs</div></a>
 			</PageSectionContent>
 		</PageSection>
@@ -186,6 +191,7 @@ let DarkPageSection = styled(PageSection)
 let PageSectionContent = styled.div `
 	grid-column: 4 / 10;
 `
+/////////////////////////////
 
 // This is new component design/structure.
 

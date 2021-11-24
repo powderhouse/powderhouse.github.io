@@ -127,7 +127,7 @@ function AboutPage() {
 				novel design and grapple firsthand with the legal, political,
 				and cultural obstacles to in-district change.
 			</p>
-			<img src="" />
+			<FullBleedImage src="https://www.pbs.org/wgbh/americanexperience/media/__sized__/canonical_images/feature/Goldman_timeline_canonical-resize-1200x0-50.jpg" />
 			<p>
 				Troubled by the structural issues showcased in Somerville and
 				informed by our work building learning environments and
@@ -156,7 +156,7 @@ function AboutPage() {
 			<p>
 				This is the foundation for the invention half of the equation.
 			</p>
-			<img src="" />
+			<img src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
 			</PageSectionContent>
 		</DarkPageSection>
 		<DarkPageSection css={baseGrid}>
@@ -254,4 +254,8 @@ let DarkPageSection = styled(PageSection)`
 let PageSectionContent = styled.div`
 	grid-column: 4 / 10;
 `
+
+let FullBleedImage = styled.img`` // TK
+
+
 export default AboutPage;
