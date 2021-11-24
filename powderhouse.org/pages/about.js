@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import GridWrapper from '../components/GridWrapper'
 import GridOverlay from '../components/GridOverlay'
 
 import { baseGrid } from '../components/global.js'
@@ -35,7 +34,7 @@ function AboutPage() {
 
 		<PageSection css={baseGrid}>
 			<LeftHeader>Our Mission</LeftHeader>
-			<PageSectionContent>
+			<PageSectionContent numCols={6}>
 			<p>
 				At Powderhouse, our mission is to give youth a say, enabling
 				critical participation in the most important conversations of
@@ -66,7 +65,7 @@ function AboutPage() {
 
 		<PageSection css={baseGrid}>
 			<LeftHeader>Our Approach</LeftHeader>
-			<PageSectionContent>
+			<PageSectionContent numCols={6}>
 				<p>
 					Our work comes alive through the community publications we
 					create with youth, where we invite others to bring fresh
@@ -94,7 +93,7 @@ function AboutPage() {
 			</PageSectionContent>
 		</PageSection>
 		<DarkPageSection css={baseGrid}>
-			<PageSectionContent>
+			<PageSectionContent numCols={6}>
 			<CenterHeader>A New Kind of Institution</CenterHeader>
 			<p>
 				This work offers a foundation for a novel institution, one
@@ -161,7 +160,7 @@ function AboutPage() {
 			</PageSectionContent>
 		</DarkPageSection>
 		<DarkPageSection css={baseGrid}>
-			<PageSectionContent>
+			<PageSectionContent numCols={6}>
 			<CenterHeader>A New Approach to Change</CenterHeader>
 			<p>
 				But, our experience—and the sector's largely failed attempts at

@@ -1,9 +1,10 @@
 import { navMenuItems } from '../site-data.js';
+import { baseGrid } from './global.js';
 import styled from 'styled-components';
 
 function Header() {
   return (
-    <Wrapper>
+    <Wrapper numCols={12} css={baseGrid}>
         <LogoLockup>
           <div id='logo'></div>
           <div id='logotype'></div>
@@ -19,10 +20,6 @@ function Header() {
 
 let Wrapper = styled.header`
   grid-column: 1 / -1;
-  
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
 
   background: red;
 `
