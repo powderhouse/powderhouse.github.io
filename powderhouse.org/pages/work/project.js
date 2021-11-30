@@ -53,17 +53,34 @@ let ProjectSplash = styled.div`
   grid-template-areas: 
     'title title'
     'info image';
+  gap:var(--gap);
+
+  min-height:640px;
+  padding:var(--gap);
+  /*background-color:var(--red);*/ /*TK Try with color?*/
 `;
 
 let ProjectTitle = styled.h2`
   grid-area:title;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+
+  font-size:87px; /*TK Explicit?*/
 `;
 
 let ProjectInfo = styled.div`
   grid-area: info;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
 `;
 
-let ProjectSubtitle = styled.h3``;
+let ProjectSubtitle = styled.p`
+  font-size:38px; /*TK Explicit?*/
+`;
 
 let ProjectDescription = styled.p``;
 
@@ -74,6 +91,7 @@ let ProjectFeatureImage = styled.div`
 
   background-image:url(https://assets.teenvogue.com/photos/5d13bc09bdcb55000998698d/4:3/w_2000,h_1500,c_limit/00-promo-emma-goldman.jpg);
   background-size:cover;
+  min-height:450px;
 `;
 
 let PageGallery = styled.div`
@@ -82,6 +100,7 @@ let PageGallery = styled.div`
   display:grid;
   grid-template-columns:1fr 1fr;
   gap: var(--gap);
+  padding:var(--gap);
 `;
 
 let ProjectImage = styled.div`

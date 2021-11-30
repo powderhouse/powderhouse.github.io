@@ -10,6 +10,7 @@ import {
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -27,9 +28,9 @@ function WorkPage() {
 		<PageSplash bgColor='green' color='off-white'>
 			<PageHeader>Work</PageHeader>
 			<PageTableOfContents>
-				<li>Selected Partners</li>
-				<li>Selected Projects</li>
-				<li>Past Lives</li>
+				<PageTOCListItem>Selected Partners</PageTOCListItem>
+				<PageTOCListItem>Selected Projects</PageTOCListItem>
+				<PageTOCListItem>Past Lives</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

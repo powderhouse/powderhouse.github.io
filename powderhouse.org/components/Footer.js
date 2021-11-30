@@ -47,6 +47,7 @@ let Wrapper = styled.footer`
 
   background-color: var(--off-white);
   color: var(--off-black);
+  padding: var(--gap);
   padding-top:90px; /*TK Explicit?*/
 `;
 

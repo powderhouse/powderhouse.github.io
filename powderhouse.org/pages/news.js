@@ -10,6 +10,7 @@ import {
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -27,9 +28,9 @@ function AboutPage() {
 		<PageSplash bgColor='yellow' color='off-black'>
 			<PageHeader>News</PageHeader>
 			<PageTableOfContents>
-				<li>2020?</li>
-				<li>2015?</li>
-				<li>2010?</li>
+				<PageTOCListItem>2020?</PageTOCListItem>
+				<PageTOCListItem>2015?</PageTOCListItem>
+				<PageTOCListItem>2010?</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

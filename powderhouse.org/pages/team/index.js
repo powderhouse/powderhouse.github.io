@@ -10,6 +10,7 @@ import {
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -28,10 +29,10 @@ function TeamPage() {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>Team</PageHeader>
 			<PageTableOfContents>
-				<li>Staff</li>
-				<li>Advisors</li>
-				<li>Alumni</li>
-				<li>Jobs</li>
+				<PageTOCListItem>Staff</PageTOCListItem>
+				<PageTOCListItem>Advisors</PageTOCListItem>
+				<PageTOCListItem>Alumni</PageTOCListItem>
+				<PageTOCListItem>Jobs</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

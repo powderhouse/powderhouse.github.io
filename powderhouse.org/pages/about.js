@@ -10,6 +10,7 @@ import {
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -27,16 +28,16 @@ function AboutPage() {
 		<PageSplash bgColor='yellow' color='off-black'>
 			<PageHeader>About Us</PageHeader>
 			<PageTableOfContents>
-				<li>Our Mission</li>
-				<li>Our Approach</li>
-				<li>A New Kind of Institution</li>
-				<li>A New Approach to Change</li>
+				<PageTOCListItem>Our Mission</PageTOCListItem>
+				<PageTOCListItem>Our Approach</PageTOCListItem>
+				<PageTOCListItem>A New Kind of Institution</PageTOCListItem>
+				<PageTOCListItem>A New Approach to Change</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
 			<p>
 				We believe we grow best when learning, learn best when creating, and
-				create best when we're creating something which matters to us. We
+				create best when creating something which matters to us. We
 				believe this is true regardless of age.
 			</p>
 			<p>
