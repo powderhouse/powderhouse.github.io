@@ -1,15 +1,17 @@
 import { navMenuItems } from '../site-data.js';
 import styled from 'styled-components';
 
+import { gap, baseGrid } from '../components/global.js';
+
 function Footer() {
   return (
-    <Wrapper>
+    <Wrapper css={baseGrid}>
       <FooterNavigation>
-        <ol>
+        <NavList>
           {navMenuItems.map(n => {
-            return <li key={n.href}><a href={n.href}>{n.text}</a></li>
+            return <li key={n.href}><NavLink href={n.href}>{n.text}</NavLink></li>
           })}
-        </ol>
+        </NavList>
       </FooterNavigation>
       <FooterContact>
         <div>
@@ -19,12 +21,12 @@ function Footer() {
         <div>
           us@powderhouse.org
         </div>
-        <ul>
+        <NavList>
           <li>Twitter</li>
           <li>Instagram</li>
           <li>YouTube</li>
           <li>Facebook</li>
-        </ul>
+        </NavList>
       </FooterContact>
       <FooterNewsletterSignup></FooterNewsletterSignup>
       </Wrapper>
@@ -32,23 +34,36 @@ function Footer() {
 }
 
 let Wrapper = styled.footer`
-  background: blue;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
   grid-column: 1 / -1;
-`
+
+  background-color: var(--off-white);
+  color: var(--off-black);
+`;
 
 let FooterNavigation = styled.div`
   grid-column: 1 / 4;
   border: 1px dotted black;
-`
+`;
+
+let NavList = styled.ol`
+  list-style-type:none;
+  padding:0;
+  margin:0;
+`;
+
+let NavLink = styled.a`
+  color: var(--off-black);
+  text-decoration: none;
+`;
+
 let FooterContact = styled.div`
   grid-column: 4 / 7;
   border: 1px dotted black;
-`
+`;
+
 let FooterNewsletterSignup = styled.div`
   grid-column: 7 / -1;
   border: 1px dotted black;
-`
+`;
+
 export default Footer;

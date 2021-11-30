@@ -5,10 +5,11 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import { 
-	colors,
+	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
+	PageHeader,
 	PageTableOfContents,
 	PageIntro,
 	LeftHeader,
@@ -24,8 +25,8 @@ function AboutPage() {
 	return (
 	<PageContainer css={baseGrid}>
 		<Header />
-		<PageSplash>
-			<h1>News</h1>
+		<PageSplash bgColor='yellow' color='off-black'>
+			<PageHeader>News</PageHeader>
 			<PageTableOfContents>
 				<li>2020?</li>
 				<li>2015?</li>

@@ -5,10 +5,11 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import { 
-	colors,
+	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
+	PageHeader,
 	PageTableOfContents,
 	PageIntro,
 	LeftHeader,
@@ -24,8 +25,8 @@ function JobsPage() {
     return (
         <PageContainer css={baseGrid}>
 		<Header />
-		<PageSplash>
-			<h1>Jobs</h1>
+		<PageSplash bgColor='purple' color='off-black'>
+			<PageHeader>Jobs</PageHeader>
 			<PageTableOfContents>
 				<li>Open Positions</li>
 				<li>Legal Researcher</li>

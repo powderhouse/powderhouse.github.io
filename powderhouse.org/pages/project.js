@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import { 
-  colors,
+  gap,
   baseGrid,
   PageContainer 
 } from '../components/global.js';
@@ -82,7 +82,7 @@ let PageGallery = styled.div`
 
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:24px;
+  gap:${gap}px;
 `;
 
 let ProjectImage = styled.div`

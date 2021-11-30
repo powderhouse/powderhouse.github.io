@@ -5,10 +5,11 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import {
-	colors,
+	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
+	PageHeader,
 	PageTableOfContents,
 	PageIntro,
 	LeftHeader,
@@ -24,8 +25,8 @@ function WorkPage() {
     return (
         <PageContainer css={baseGrid}>
 		<Header />
-		<PageSplash>
-			<h1>Work</h1>
+		<PageSplash bgColor='green' color='off-white'>
+			<PageHeader>Work</PageHeader>
 			<PageTableOfContents>
 				<li>Selected Partners</li>
 				<li>Selected Projects</li>
@@ -34,7 +35,7 @@ function WorkPage() {
 		</PageSplash>
 		<PageIntro>
 			<p>
-				First as sprout & co [link], then as Powderhouse Studios [link], and now as Powderhouse, since 2009, we have been fortunate to work on the same problems in many different forms with a wide variety of partners.			</p>
+				First as <a href="">sprout & co</a>, then as <a href=''>Powderhouse Studios</a>, and now as Powderhouse, since 2009, we have been fortunate to work on the same problems in many different forms with a wide variety of partners.			</p>
 		</PageIntro>
 
 		<PageSection css={baseGrid}>

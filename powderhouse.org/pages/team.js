@@ -5,10 +5,11 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import { 
-	colors,
+	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
+	PageHeader,
 	PageTableOfContents,
 	PageIntro,
 	LeftHeader,
@@ -17,15 +18,16 @@ import {
 	DarkPageSection,
 	PageSectionContent,
 	WidePageSectionContent,
-	FullBleedImage, 
+	FullBleedImage,
+	Highlight,
 } from '../components/global.js';
 
 function TeamPage() {
     return (
         <PageContainer css={baseGrid}>
 		<Header />
-		<PageSplash>
-			<h1>Team</h1>
+		<PageSplash bgColor='purple' color='off-black'>
+			<PageHeader>Team</PageHeader>
 			<PageTableOfContents>
 				<li>Staff</li>
 				<li>Advisors</li>
@@ -35,7 +37,7 @@ function TeamPage() {
 		</PageSplash>
 		<PageIntro>
 			<p>
-				Invention without advocacy is irrelevant. Advocacy without invention is incrementalist. We're building a team which believes it's only by bringing these worlds together that we can realize radically different futures of learning.  Join us. [link to jobs]
+				Invention without advocacy is irrelevant. Advocacy without invention is incrementalist. We're building a team which believes it's only by bringing these worlds together that we can realize radically different futures of learning.  <a href='/jobs'>Join us.</a>
 			</p>
 		</PageIntro>
 
@@ -138,24 +140,25 @@ function TeamPage() {
 			<LeftHeader>Jobs</LeftHeader>
 			<PageSectionContent>
 				<p>
-					Powderhouse is building something which has never existed before: a vertically integrated<sup>*</sup> research, design, and advocacy organization devoted to youth.
+					Powderhouse is building something which has never existed before: a vertically integrated<Highlight highlight='purple'><sup>*</sup></Highlight> research, design, and advocacy organization devoted to youth.
 				</p>
 				<p>
-					Most work in this space is about School,<sup>**</sup> not about learning.  The little which is about learning ignores the wickedly hard problem of grappling with School.  So much talk about innovation and revolution, so little courage to tackle radical problems with the patience and rigor they require.
+					Most work in this space is about School,<Highlight highlight='purple'><sup>**</sup></Highlight> not about learning.  The little which is about learning ignores the wickedly hard problem of grappling with School.  So much talk about innovation and revolution, so little courage to tackle radical problems with the patience and rigor they require.
 				</p>
 				<p>
 					If that inspires (rather than deflates or offends), we'd like your help.
 				</p>
-				
-				<aside>
-					<sup>*</sup>
-					That means we <i>actually</i> work with youth, prototype tools and materials, and design systems and policies that govern learning environments all under one roof.
-				</aside>
-				
-				<aside>
-					<sup>**</sup> 
-					Original Holt quote re: S-chool, <i>via Instead of Education</i>, “The schools for do-ers, which help people explore the world as they choose, I now call “small s schools” (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse.”
-				</aside>
+				<FootNotes>
+					<aside>
+						<sup>*</sup>
+						That means we <i>actually</i> work with youth, prototype tools and materials, and design systems and policies that govern learning environments all under one roof.
+					</aside>
+					
+					<aside>
+						<sup>**</sup> 
+						Original Holt quote re: S-chool, <i>via Instead of Education</i>, “The schools for do-ers, which help people explore the world as they choose, I now call “small s schools” (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse.”
+					</aside>
+				</FootNotes>
 
 				<a href="/jobs"><div>Jobs</div></a>
 			</PageSectionContent>
@@ -193,5 +196,12 @@ let PersonLinks = styled.ul`
 let PersonBio = styled.p`
 	
 `;
+
+let FootNotes = styled.div`
+	display:grid;
+	grid-template-columns:2fr 5fr;
+	gap:${gap}px;
+	color:var(--purple);
+`
 
 export default TeamPage;

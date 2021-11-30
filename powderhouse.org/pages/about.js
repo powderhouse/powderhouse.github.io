@@ -5,9 +5,11 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import {
+	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
+	PageHeader,
 	PageTableOfContents,
 	PageIntro,
 	LeftHeader,
@@ -23,8 +25,8 @@ function AboutPage() {
 	return (
 	<PageContainer css={baseGrid}>
 		<Header />
-		<PageSplash>
-			<h1>About Us</h1>
+		<PageSplash bgColor='yellow' color='off-black'>
+			<PageHeader>About Us</PageHeader>
 			<PageTableOfContents>
 				<li>Our Mission</li>
 				<li>Our Approach</li>
@@ -140,7 +142,9 @@ function AboutPage() {
 				novel design and grapple firsthand with the legal, political,
 				and cultural obstacles to in-district change.
 			</p>
-			<FullBleedImage src="https://www.pbs.org/wgbh/americanexperience/media/__sized__/canonical_images/feature/Goldman_timeline_canonical-resize-1200x0-50.jpg" />
+			<FullBleedImage>
+				<img src="https://www.pbs.org/wgbh/americanexperience/media/__sized__/canonical_images/feature/Goldman_timeline_canonical-resize-1200x0-50.jpg" />
+			</FullBleedImage>
 			<p>
 				Troubled by the structural issues showcased in Somerville and
 				informed by our work building learning environments and
@@ -169,7 +173,9 @@ function AboutPage() {
 			<p>
 				This is the foundation for the invention half of the equation.
 			</p>
-			<FullBodyImage src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+			<FullBodyImage>
+				<img src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+			</FullBodyImage>
 			</PageSectionContent>
 		</DarkPageSection>
 		<DarkPageSection css={baseGrid}>
