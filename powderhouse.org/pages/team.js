@@ -1,10 +1,24 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import GridOverlay from '../components/GridOverlay'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import GridOverlay from '../components/GridOverlay';
 
-import { baseGrid } from '../components/global.js'
+import { 
+	colors,
+	baseGrid,
+	PageContainer,
+	PageSplash,
+	PageTableOfContents,
+	PageIntro,
+	LeftHeader,
+	CenterHeader,
+	PageSection,
+	DarkPageSection,
+	PageSectionContent,
+	WidePageSectionContent,
+	FullBleedImage, 
+} from '../components/global.js';
 
 function TeamPage() {
     return (
@@ -152,86 +166,32 @@ function TeamPage() {
     );
 }
 
-
-// This section is copied from /about. Do not change, should be pulled into components.
-
-let PageContainer = styled.div ``;
-
-let PageSplash = styled.div `
-	grid-column: 1 / -1;
-	min-height: 20rem;
-	border: 1px dotted black;
-`
-
-let PageTableOfContents = styled.ol ``
-
-let PageIntro = styled.div `
-	grid-column: 1 / span 9;
-	border: 1px dotted black;
-	font-size: 2rem;
-`
-
-let LeftHeader = styled.div `
-	grid-column: 1 / span 3;
-	border: 1px dotted black;
-`
-
-let CenterHeader = styled.h2 ``
-
-let PageSection = styled.section `
-	grid-column: 1 / -1;
-`
-
-let DarkPageSection = styled(PageSection)
-`
-	color: white;
-	background: black;
-`
-
-let PageSectionContent = styled.div `
-	grid-column: 4 / 10;
-`
-/////////////////////////////
-
-// This is new component design/structure.
-
-let WidePageSectionContent = styled(PageSectionContent)
-`
-	grid-column: 4 / -1;
-
-	display:grid;
-	grid-template-columns:9;
-	gap: 24px;
-`
-
-let PersonCard = styled.div `
+let PersonCard = styled.div`
 	border:black dotted 1px;
+	grid-column:span 3;
+`;
 
-	&:nth-child(3n+1) {
-		grid-column: 1 / 4;
-	}
-	&:nth-child(3n+2) {
-		grid-column: 4 / 7;
-	}
-	&:nth-child(3n+3) {
-		grid-column: 7 / 10;
-	}
-`
-
-let PersonHeadshot = styled.div `
+let PersonHeadshot = styled.div`
 	height:150px;
 	width:150px;
 	background-image:url(https://www.biography.com/.image/t_share/MTIwNjA4NjMzODI4MjQ3MDUy/emma-goldman-9314556-1-402.jpg);
 	background-size:cover;
-`
+`;
 
-let PersonName = styled.h3 ``
+let PersonName = styled.h3`
+	
+`;
 
-let PersonTitle = styled.p ``
+let PersonTitle = styled.p`
+	
+`;
 
-let PersonLinks = styled.ul ``
+let PersonLinks = styled.ul`
+	
+`;
 
-let PersonBio = styled.p ``
-
+let PersonBio = styled.p`
+	
+`;
 
 export default TeamPage;

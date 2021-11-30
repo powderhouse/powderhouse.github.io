@@ -1,10 +1,23 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import GridOverlay from '../components/GridOverlay'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import GridOverlay from '../components/GridOverlay';
 
-import { baseGrid } from '../components/global.js'
+import {
+	baseGrid,
+	PageContainer,
+	PageSplash,
+	PageTableOfContents,
+	PageIntro,
+	LeftHeader,
+	CenterHeader,
+	PageSection,
+	DarkPageSection,
+	PageSectionContent,
+	FullBleedImage,
+	FullBodyImage,
+} from '../components/global';
 
 function AboutPage() {
 	return (
@@ -156,7 +169,7 @@ function AboutPage() {
 			<p>
 				This is the foundation for the invention half of the equation.
 			</p>
-			<img src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+			<FullBodyImage src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
 			</PageSectionContent>
 		</DarkPageSection>
 		<DarkPageSection css={baseGrid}>
@@ -216,46 +229,5 @@ function AboutPage() {
 	</PageContainer>
   );
 }
-
-let PageContainer = styled.div``;
-
-let PageSplash = styled.div`
-	grid-column: 1 / -1;
-	min-height: 20rem;
-	border: 1px dotted black;
-`
-
-let PageTableOfContents = styled.ol``
-
-let PageIntro = styled.div`
-	grid-column: 1 / span 9;
-	border: 1px dotted black;
-	font-size: 2rem;
-`
-
-let LeftHeader = styled.div`
-	grid-column: 1 / span 3;
-	border: 1px dotted black;
-`;
-
-let CenterHeader = styled.h2`
-
-`;
-
-let PageSection = styled.section`
-	grid-column: 1 / -1;
-`
-
-let DarkPageSection = styled(PageSection)`
-	color: white;
-	background: black;
-`
-
-let PageSectionContent = styled.div`
-	grid-column: 4 / 10;
-`
-
-let FullBleedImage = styled.img`` // TK
-
 
 export default AboutPage;

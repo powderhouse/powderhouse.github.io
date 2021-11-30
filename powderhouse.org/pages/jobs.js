@@ -1,10 +1,24 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import GridOverlay from '../components/GridOverlay'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import GridOverlay from '../components/GridOverlay';
 
-import { baseGrid } from '../components/global.js'
+import { 
+	colors,
+	baseGrid,
+	PageContainer,
+	PageSplash,
+	PageTableOfContents,
+	PageIntro,
+	LeftHeader,
+	CenterHeader,
+	PageSection,
+	DarkPageSection,
+	PageSectionContent,
+	WidePageSectionContent,
+	FullBleedImage, 
+} from '../components/global.js';
 
 function JobsPage() {
     return (
@@ -34,23 +48,25 @@ function JobsPage() {
 		</PageSection>
 
 		<PageSection css={baseGrid}>
-			<LeftHeader>Financial Researcher</LeftHeader>
-			<PageSectionContent>
-				<p>
-					Seeking a creative financial expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for financing secondary and postsecondary education, from first principles.
-				</p>
-				<a href=""><div>Apply</div></a>
-			</PageSectionContent>
-		</PageSection>
+			<JobCard css={baseGrid}>
+				<LeftHeader>Financial Researcher</LeftHeader>
+				<PageSectionContent>
+					<p>
+						Seeking a creative financial expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for financing secondary and postsecondary education, from first principles.
+					</p>
+					<a href=""><div>Apply</div></a>
+				</PageSectionContent>
+			</JobCard>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Legal Researcher</LeftHeader>
-			<PageSectionContent>
-				<p>
-					Seeking a creative legal expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for legal activism as a tool to dramatically expand the range, diversity, and equitable access of new secondary and postsecondary educational options for Americans.
-				</p>
-				<a href=""><div>Apply</div></a>
-			</PageSectionContent>
+			<JobCard css={baseGrid}>
+				<LeftHeader>Legal Researcher</LeftHeader>
+				<PageSectionContent>
+					<p>
+						Seeking a creative legal expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for legal activism as a tool to dramatically expand the range, diversity, and equitable access of new secondary and postsecondary educational options for Americans.
+					</p>
+					<a href=""><div>Apply</div></a>
+				</PageSectionContent>
+			</JobCard>
 		</PageSection>
 
 		<Footer />
@@ -58,45 +74,8 @@ function JobsPage() {
     );
 }
 
-// This section is copied from /about. Do not change, should be pulled into components.
-
-let PageContainer = styled.div ``;
-
-let PageSplash = styled.div `
+let JobCard = styled.div`
 	grid-column: 1 / -1;
-	min-height: 20rem;
-	border: 1px dotted black;
-`
-
-let PageTableOfContents = styled.ol ``
-
-let PageIntro = styled.div `
-	grid-column: 1 / span 9;
-	border: 1px dotted black;
-	font-size: 2rem;
-`
-
-let LeftHeader = styled.div `
-	grid-column: 1 / span 3;
-	border: 1px dotted black;
-`
-
-let CenterHeader = styled.h2 ``
-
-let PageSection = styled.section `
-	grid-column: 1 / -1;
-`
-
-let DarkPageSection = styled(PageSection)
-`
-	color: white;
-	background: black;
-`
-
-let PageSectionContent = styled.div `
-	grid-column: 4 / 10;
-`
-
-/////////////////////////////
+`;
 
 export default JobsPage;

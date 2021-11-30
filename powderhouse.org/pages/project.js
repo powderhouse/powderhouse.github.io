@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-import { baseGrid } from '../components/global.js'
+import { 
+  colors,
+  baseGrid,
+  PageContainer 
+} from '../components/global.js';
 
 function ProjectDetailPage() {
   return (
@@ -42,8 +46,6 @@ function ProjectDetailPage() {
   );
 }
 
-let PageContainer = styled.div``
-
 let ProjectSplash = styled.div`
   grid-column: 1 / -1;
 
@@ -52,28 +54,28 @@ let ProjectSplash = styled.div`
   grid-template-areas: 
     'title title'
     'info image';
-`
+`;
 
 let ProjectTitle = styled.h2`
   grid-area:title;
-`
+`;
 
 let ProjectInfo = styled.div`
   grid-area: info;
-`
+`;
 
-let ProjectSubtitle = styled.h3``
+let ProjectSubtitle = styled.h3``;
 
-let ProjectDescription = styled.p``
+let ProjectDescription = styled.p``;
 
-let ProjectInfoList = styled.ul``
+let ProjectInfoList = styled.ul``;
 
 let ProjectFeatureImage = styled.div`
   grid-area: image;
 
   background-image:url(https://assets.teenvogue.com/photos/5d13bc09bdcb55000998698d/4:3/w_2000,h_1500,c_limit/00-promo-emma-goldman.jpg);
   background-size:cover;
-`
+`;
 
 let PageGallery = styled.div`
   grid-column: 1 / -1;
@@ -81,7 +83,7 @@ let PageGallery = styled.div`
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:24px;
-`
+`;
 
 let ProjectImage = styled.div`
   background-image:url(http://thewisdomdaily.com/wp-content/uploads/2018/03/Emma_Goldman_1901_mugshot_single_portrait-1381x900.png);
@@ -99,6 +101,6 @@ let ProjectImage = styled.div`
     grid-column: 2 / 3;
     height:400px;
   }
-`
+`;
 
 export default ProjectDetailPage;
