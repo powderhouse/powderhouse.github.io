@@ -93,6 +93,14 @@ function TeamPage() {
 						<li><a href="">LinkedIn</a></li>
 					</PersonLinks>
 				</PersonCard>
+
+				<PersonCard>
+					<PersonName>Beth O'Sullivan</PersonName>
+					<PersonBio>co-founded the Science Club for Girls: a program that brings hands-on science clubs to 600 girls in the Boston area, working to close the socioeconomic and gender gaps in science.</PersonBio>
+					<PersonLinks>
+						<li><a href="">LinkedIn</a></li>
+					</PersonLinks>
+				</PersonCard>
 			</WidePageSectionContent>
 		</PageSection>
 

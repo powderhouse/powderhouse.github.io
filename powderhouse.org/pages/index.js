@@ -6,14 +6,14 @@ import Footer from '../components/Footer'
 import {
   baseGrid,
   PageContainer,
-  DarkPageSection,,
+  DarkPageSection,
   Highlight,
 } from '../components/global'
 
 function HomePage() {
   return (
       <PageContainer css={baseGrid}>
-        <Header bgColor='off-black' />
+        <Header bgColor='off-black' color='off-white' />
 
         <DarkPageSection css={baseGrid}>
           <SplashLanguage>

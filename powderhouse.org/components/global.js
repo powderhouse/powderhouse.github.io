@@ -98,9 +98,9 @@ let WidePageSectionContent = styled(PageSectionContent)`
 	grid-column: 4 / -1;
 
 	display:grid;
-	grid-template-columns:repeat(9,auto);
+	grid-template-columns:repeat(9,1fr);
 	gap: ${gap}px;
-`
+`;
 
 let Highlight = styled.span`
   color: var(--${props => props.highlight});
