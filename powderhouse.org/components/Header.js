@@ -22,7 +22,8 @@ let Wrapper = styled.header`
   grid-column: 1 / -1;
 
   background-color:var(--${props => props.bgColor});
-  
+  height:102px; /*TK Explicit?*/
+  align-items:center;
 `;
 
 let LogoLockup = styled.div`

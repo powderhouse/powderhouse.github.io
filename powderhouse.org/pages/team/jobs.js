@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import GridOverlay from '../components/GridOverlay';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import GridOverlay from '../../components/GridOverlay';
 
 import { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
@@ -19,7 +18,7 @@ import {
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage, 
-} from '../components/global.js';
+} from '../../components/global.js';
 
 function JobsPage() {
     return (

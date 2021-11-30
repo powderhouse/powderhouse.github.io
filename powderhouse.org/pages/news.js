@@ -5,7 +5,6 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,

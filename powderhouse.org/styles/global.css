@@ -7,6 +7,10 @@ html {
 	letter-spacing: 0;
 }
 
+p:not(:last-child) {
+	padding-bottom: calc(var(--gap)/2); 
+}
+
 a {
 	color:inherit;
 }
@@ -16,7 +20,7 @@ img {
 }
 
 dl {
-	padding:12px;
+	padding: calc(var(--gap)/2);
 }
 
 dt {

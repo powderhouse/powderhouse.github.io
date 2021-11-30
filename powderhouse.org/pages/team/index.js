@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import GridOverlay from '../components/GridOverlay';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import GridOverlay from '../../components/GridOverlay';
 
 import { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
@@ -20,7 +19,7 @@ import {
 	WidePageSectionContent,
 	FullBleedImage,
 	Highlight,
-} from '../components/global.js';
+} from '../../components/global.js';
 
 function TeamPage() {
     return (
@@ -81,14 +80,6 @@ function TeamPage() {
 				<PersonCard>
 					<PersonName>John Bell</PersonName>
 					<PersonBio>is currently a fellow at MIT’s Program in Art, Culture, and Technology and director of the Ballard Institute and Museum of Puppetry at the University of Connecticut.</PersonBio>
-					<PersonLinks>
-						<li><a href="">LinkedIn</a></li>
-					</PersonLinks>
-				</PersonCard>
-
-				<PersonCard>
-					<PersonName>Beth O'Sullivan</PersonName>
-					<PersonBio>co-founded the Science Club for Girls: a program that brings hands-on science clubs to 600 girls in the Boston area, working to close the socioeconomic and gender gaps in science.</PersonBio>
 					<PersonLinks>
 						<li><a href="">LinkedIn</a></li>
 					</PersonLinks>
@@ -208,8 +199,8 @@ let PersonBio = styled.p`
 let FootNotes = styled.div`
 	display:grid;
 	grid-template-columns:2fr 5fr;
-	gap:${gap}px;
+	gap: var(--gap);	
 	color:var(--purple);
-`
+`;
 
 export default TeamPage;

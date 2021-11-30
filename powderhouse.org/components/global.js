@@ -3,14 +3,6 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
-let gap = 24;
-
-const baseGrid = css`
-  	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	gap: ${gap}px;
-`;
-
 let PageContainer = styled.div`
 	--off-black:rgb(42, 46, 47); /* #2A2E2F */
 	--off-white:rgb(245, 243, 239); /* #F5F3EF */
@@ -19,9 +11,16 @@ let PageContainer = styled.div`
 	--green:rgb(50, 131, 90); /* #32835A */
 	--blue:rgb(128, 210, 236); /* #80D2EC */
 	--red:rgb(226, 87, 87); /* #E25757 */
+	--gap:24px;
 
 	background-color:var(--off-white);
 	color:var(--off-black);
+`;
+
+const baseGrid = css`
+  display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: var(--gap);
 `;
 
 let PageSplash = styled.div`
@@ -87,11 +86,11 @@ let FullBleedImage = styled.div`
 	margin-left: -50vw;
 	margin-right: -50vw;
 
-	padding: ${gap}px 0px;
+	padding: var(--gap) 0px;
 `;
 
 let FullBodyImage = styled.div`
-	padding: ${gap}px 0px;
+	padding: var(--gap) 0px;
 `;
 
 let WidePageSectionContent = styled(PageSectionContent)`
@@ -99,7 +98,7 @@ let WidePageSectionContent = styled(PageSectionContent)`
 
 	display:grid;
 	grid-template-columns:repeat(9,1fr);
-	gap: ${gap}px;
+	gap: var(--gap);
 `;
 
 let Highlight = styled.span`
@@ -107,7 +106,6 @@ let Highlight = styled.span`
 `;
 
 export { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,

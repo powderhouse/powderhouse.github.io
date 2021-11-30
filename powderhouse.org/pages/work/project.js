@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 import { 
-  gap,
   baseGrid,
   PageContainer 
-} from '../components/global.js';
+} from '../../components/global.js';
 
 function ProjectDetailPage() {
   return (
@@ -82,7 +81,7 @@ let PageGallery = styled.div`
 
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:${gap}px;
+  gap: var(--gap);
 `;
 
 let ProjectImage = styled.div`
