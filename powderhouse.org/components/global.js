@@ -59,6 +59,10 @@ let PageTOCListItem = styled.li`
 	}
 `;
 
+let PageTOCLink = styled.a`
+	text-decoration:none;
+`;
+
 let PageIntro = styled.div`
 	grid-column: 1 / span 9;
 
@@ -130,6 +134,7 @@ export {
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,

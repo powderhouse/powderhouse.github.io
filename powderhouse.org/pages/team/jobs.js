@@ -11,6 +11,7 @@ import {
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -28,9 +29,15 @@ function JobsPage() {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>Jobs</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>Open Positions</PageTOCListItem>
-				<PageTOCListItem>Legal Researcher</PageTOCListItem>
-				<PageTOCListItem>Financial Researcher</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Open Positions</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Legal Researcher</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Financial Researcher</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

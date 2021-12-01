@@ -11,6 +11,7 @@ import {
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -29,10 +30,18 @@ function TeamPage() {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>Team</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>Staff</PageTOCListItem>
-				<PageTOCListItem>Advisors</PageTOCListItem>
-				<PageTOCListItem>Alumni</PageTOCListItem>
-				<PageTOCListItem>Jobs</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Staff</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Advisors</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Alumni</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Jobs</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

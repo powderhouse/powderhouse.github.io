@@ -11,6 +11,7 @@ import {
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -28,10 +29,18 @@ function AboutPage() {
 		<PageSplash bgColor='yellow' color='off-black'>
 			<PageHeader>About Us</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>Our Mission</PageTOCListItem>
-				<PageTOCListItem>Our Approach</PageTOCListItem>
-				<PageTOCListItem>A New Kind of Institution</PageTOCListItem>
-				<PageTOCListItem>A New Approach to Change</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Our Mission</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Our Approach</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>A New Kind of Institution</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>A New Approach to Change</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

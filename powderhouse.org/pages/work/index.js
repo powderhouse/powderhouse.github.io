@@ -11,6 +11,7 @@ import {
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -28,9 +29,15 @@ function WorkPage() {
 		<PageSplash bgColor='green' color='off-white'>
 			<PageHeader>Work</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>Selected Partners</PageTOCListItem>
-				<PageTOCListItem>Selected Projects</PageTOCListItem>
-				<PageTOCListItem>Past Lives</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Selected Partners</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Selected Projects</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Past Lives</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -41,16 +48,36 @@ function WorkPage() {
 		<PageSection css={baseGrid}>
 			<LeftHeader>Partners</LeftHeader>
 			<PartnerSectionContent>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
-				<PartnerCard></PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
+				<PartnerCard>
+					<PartnerLink href=''></PartnerLink>
+				</PartnerCard>
 			</PartnerSectionContent>
 		</PageSection>
 
@@ -58,29 +85,43 @@ function WorkPage() {
 			<LeftHeader>Projects</LeftHeader>
 			<WidePageSectionContent>
 				<ProjectCard>
-					<ProjectFeatureImage></ProjectFeatureImage>
-					<ProjectTitle>[Almost] A New District School</ProjectTitle>
-					<ProjectSubtitle>In district high school featuring projects emphasizing computation, narrative, and design proposed in Somerville, MA</ProjectSubtitle>
+					<ProjectLink href=''>
+						<ProjectFeatureImage></ProjectFeatureImage>
+						<ProjectTitle>[Almost] A New District School</ProjectTitle>
+						<ProjectSubtitle>In district high school featuring projects emphasizing computation, narrative, and design proposed in Somerville, MA</ProjectSubtitle>
+					</ProjectLink>
 				</ProjectCard>
+				
 				<ProjectCard>
-					<ProjectFeatureImage></ProjectFeatureImage>
-					<ProjectTitle>Digital Storytelling</ProjectTitle>
-					<ProjectSubtitle>A family of programs storytelling with the aid of software</ProjectSubtitle>
+					<ProjectLink href=''>
+						<ProjectFeatureImage></ProjectFeatureImage>
+						<ProjectTitle>Digital Storytelling</ProjectTitle>
+						<ProjectSubtitle>A family of programs storytelling with the aid of software</ProjectSubtitle>
+					</ProjectLink>
 				</ProjectCard>
+				
 				<ProjectCard>
-					<ProjectFeatureImage></ProjectFeatureImage>
-					<ProjectTitle>Healey STEAM</ProjectTitle>
-					<ProjectSubtitle>A pilot of our innovation school model with the Healey's 7th and 8th grades</ProjectSubtitle>
+					<ProjectLink href=''>
+						<ProjectFeatureImage></ProjectFeatureImage>
+						<ProjectTitle>Healey STEAM</ProjectTitle>
+						<ProjectSubtitle>A pilot of our innovation school model with the Healey's 7th and 8th grades</ProjectSubtitle>
+					</ProjectLink>
 				</ProjectCard>
+				
 				<ProjectCard>
-					<ProjectFeatureImage></ProjectFeatureImage>
-					<ProjectTitle>Bring Your Grandma to Math Day</ProjectTitle>
-					<ProjectSubtitle>People of all ages playing with math together, for fun</ProjectSubtitle>
+					<ProjectLink href=''>
+						<ProjectFeatureImage></ProjectFeatureImage>
+						<ProjectTitle>Bring Your Grandma to Math Day</ProjectTitle>
+						<ProjectSubtitle>People of all ages playing with math together, for fun</ProjectSubtitle>
+					</ProjectLink>
 				</ProjectCard>
+				
 				<ProjectCard>
-					<ProjectFeatureImage></ProjectFeatureImage>
-					<ProjectTitle>Atlas</ProjectTitle>
-					<ProjectSubtitle>Software to make messy projects legible to traditional common core standards</ProjectSubtitle>
+					<ProjectLink href=''>
+						<ProjectFeatureImage></ProjectFeatureImage>
+						<ProjectTitle>Atlas</ProjectTitle>
+						<ProjectSubtitle>Software to make messy projects legible to traditional common core standards</ProjectSubtitle>
+					</ProjectLink>
 				</ProjectCard>
 			</WidePageSectionContent>
 		</PageSection>
@@ -92,8 +133,13 @@ function WorkPage() {
 				
 			</PageSectionContent>
 			<PastLifeSectionContent>
-				<PastLifeCard></PastLifeCard>
-				<PastLifeCard></PastLifeCard>
+					<PastLifeCard>
+						<PastLifeLink href=''></PastLifeLink>
+					</PastLifeCard>
+				
+					<PastLifeCard>
+						<PastLifeLink href=''></PastLifeLink>
+					</PastLifeCard>
 			</PastLifeSectionContent>
 		</PageSection>
 
@@ -113,19 +159,15 @@ let PartnerCard = styled.div`
 	background-size:cover;
 `
 
+let PartnerLink = styled.a``;
+
 let ProjectCard = styled.div`
 	grid-column:span 3;
+`;
 
-	/*&:nth-child(3n+1) {
-		grid-column: 1 / span 3;
-	}
-	&:nth-child(3n+2) {
-		grid-column: 4 / span 3;
-	}
-	&:nth-child(3n+3) {
-		grid-column: 7 / span 3;
-	}*/
-`
+let ProjectLink = styled.a`
+	text-decoration:none;
+`;
 
 let ProjectFeatureImage = styled.div`
 	height:150px;
@@ -133,9 +175,11 @@ let ProjectFeatureImage = styled.div`
 	background-size:cover;
 `;
 
-let ProjectTitle = styled.h3``;
+let ProjectTitle = styled.h3`
+	font-size:31px; /*TK Explicit?*/
+`;
 
-let ProjectSubtitle = styled.h4``;
+let ProjectSubtitle = styled.p``;
 
 let PastLifeSectionContent = styled(WidePageSectionContent)`
 	grid-template-columns:repeat(2,auto);
@@ -147,5 +191,7 @@ let PastLifeCard = styled.div`
 	background-image:url(https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg);
 	background-size:cover;
 `;
+
+let PastLifeLink = styled.a``;
 
 export default WorkPage;
