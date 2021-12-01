@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import GridOverlay from '../components/GridOverlay';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import GridOverlay from '../../components/GridOverlay';
 
 import { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -20,7 +21,7 @@ import {
 	WidePageSectionContent,
 	FullBleedImage,
 	Highlight,
-} from '../components/global.js';
+} from '../../components/global.js';
 
 function TeamPage() {
     return (
@@ -29,10 +30,18 @@ function TeamPage() {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>Team</PageHeader>
 			<PageTableOfContents>
-				<li>Staff</li>
-				<li>Advisors</li>
-				<li>Alumni</li>
-				<li>Jobs</li>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Staff</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Advisors</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Alumni</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Jobs</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -200,8 +209,8 @@ let PersonBio = styled.p`
 let FootNotes = styled.div`
 	display:grid;
 	grid-template-columns:2fr 5fr;
-	gap:${gap}px;
+	gap: var(--gap);	
 	color:var(--purple);
-`
+`;
 
 export default TeamPage;

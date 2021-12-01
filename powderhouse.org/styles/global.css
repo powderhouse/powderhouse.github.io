@@ -7,6 +7,10 @@ html {
 	letter-spacing: 0;
 }
 
+p:not(:last-child) {
+	padding-bottom: var(--gap); 
+}
+
 a {
 	color:inherit;
 }
@@ -16,11 +20,13 @@ img {
 }
 
 dl {
-	padding:12px;
+	padding-left: var(--gap);
 }
 
 dt {
 	font-weight:bold;
 }
 
-dd {}
+dd {
+	padding-bottom:var(--gap);
+}

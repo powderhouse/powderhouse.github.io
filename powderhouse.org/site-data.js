@@ -3,6 +3,13 @@ let navMenuItems = [
     {text: 'Team', href:'/team'},
     {text: 'Work', href:'/work'},
     {text: 'News', href:'/news'}
-  ]
+  ];
 
-export { navMenuItems }
+let socialMediaLinks = [
+    {text: 'Twitter', href:'https://twitter.com/powderhs'},
+    {text: 'Facebook', href:'https://www.facebook.com/powderhousestudios'},
+    {text: 'Instagram', href:'https://www.instagram.com/powderhs/'},
+    {text: 'YouTube', href:'https://www.youtube.com/channel/UCtTU6mxTNn0GxbxnzT3zrEQ'},
+];
+
+export { navMenuItems, socialMediaLinks }

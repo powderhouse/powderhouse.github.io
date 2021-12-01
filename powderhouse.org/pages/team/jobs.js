@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import GridOverlay from '../components/GridOverlay';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import GridOverlay from '../../components/GridOverlay';
 
 import { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -19,7 +20,7 @@ import {
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage, 
-} from '../components/global.js';
+} from '../../components/global.js';
 
 function JobsPage() {
     return (
@@ -28,9 +29,15 @@ function JobsPage() {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>Jobs</PageHeader>
 			<PageTableOfContents>
-				<li>Open Positions</li>
-				<li>Legal Researcher</li>
-				<li>Financial Researcher</li>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Open Positions</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Legal Researcher</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>Financial Researcher</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -43,7 +50,7 @@ function JobsPage() {
 			<LeftHeader>Open Positions</LeftHeader>
 			<PageSectionContent>
 				<p>
-					We're always looking for great people.  If you care about our mission and want to learn more about how you could get involved, but none of our open roles speak to you, please get in touch [link TK].
+					We're always looking for great people.  If you care about our mission and want to learn more about how you could get involved, but none of our open roles speak to you, please <a href="">get in touch</a>.
 				</p>
 			</PageSectionContent>
 		</PageSection>

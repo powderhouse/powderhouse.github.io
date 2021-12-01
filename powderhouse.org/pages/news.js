@@ -5,12 +5,13 @@ import Footer from '../components/Footer';
 import GridOverlay from '../components/GridOverlay';
 
 import { 
-	gap,
 	baseGrid,
 	PageContainer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
+	PageTOCListItem,
+	PageTOCLink,
 	PageIntro,
 	LeftHeader,
 	CenterHeader,
@@ -28,9 +29,15 @@ function AboutPage() {
 		<PageSplash bgColor='yellow' color='off-black'>
 			<PageHeader>News</PageHeader>
 			<PageTableOfContents>
-				<li>2020?</li>
-				<li>2015?</li>
-				<li>2010?</li>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>2020</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>2015</PageTOCLink>
+				</PageTOCListItem>
+				<PageTOCListItem>
+					<PageTOCLink href='#'>2010</PageTOCLink>
+				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -92,11 +99,13 @@ let NewsHeader = styled(LeftHeader)``;
 
 let NewsContent = styled(PageSectionContent)``;
 
-let NewsDate = styled.h2``;
+let NewsDate = styled.h3``;
 
-let NewsType = styled.h3``;
+let NewsType = styled.p``;
 
-let NewsTitle = styled.h2``;
+let NewsTitle = styled.h2`
+	font-size:31px; /*TK Explicit?*/
+`;
 
 let NewsExcerpt = styled.p``;
 
