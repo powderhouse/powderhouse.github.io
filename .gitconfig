@@ -2,3 +2,6 @@
    textconv = sqlite3 $1 .dump
    # drops a db file into sqlite3 and runs .dump before any diff comparisons
    # via https://stackoverflow.com/questions/33809881/whats-a-good-way-or-tool-to-version-control-a-sqlite-database-schema-only/38271631
+
+[core]
+   hooksPath = "./.hooks/"

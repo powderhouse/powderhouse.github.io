@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cd powderhouse.org && yarn install && cd ../api.powderhouse.org/ && yarn install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend-dev": "cd powderhouse.org && npm run dev",
+    "frontend-dev": "eval $(git secret cat .secrets) && cd powderhouse.org && npm run dev",
     "backend-dev": "cd api.powderhouse.org && npm run develop",
     "dev": "concurrently \"npm run frontend-dev\" \"npm run backend-dev\""
   },
