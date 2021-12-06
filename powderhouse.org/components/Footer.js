@@ -10,7 +10,7 @@ function Footer() {
         <h4>Navigation</h4>
         <NavList>
           {navMenuItems.map(n => {
-            return <li key={n.href}><NavLink href={n.href}>{n.text}</NavLink></li>
+            return <li key={n.href.slice(1)}><NavLink href={n.href}>{n.text}</NavLink></li>
           })}
         </NavList>
       </FooterNavigation>
@@ -30,7 +30,7 @@ function Footer() {
         <SignUpShoutOut>Follow us on social media or join our mailing list to keep up with our work.</SignUpShoutOut>
         <SocialList>
           {socialMediaLinks.map(n => {
-            return <SocialLink key={n.id} href={n.href}><SocialListItem key={n.id}>{n.text}</SocialListItem></SocialLink>
+            return <SocialLink href={n.href} key={n.id}><SocialListItem>{n.text}</SocialListItem></SocialLink>
           })}
         </SocialList>
         <SignUpForm action='' method='get'>

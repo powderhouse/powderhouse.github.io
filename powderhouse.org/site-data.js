@@ -11,5 +11,6 @@ let socialMediaLinks = [
     {text: 'Instagram', href:'https://www.instagram.com/powderhs/'},
     {text: 'YouTube', href:'https://www.youtube.com/channel/UCtTU6mxTNn0GxbxnzT3zrEQ'},
 ];
+socialMediaLinks.forEach(l => l.id = l.text.toLowerCase() + '-' + 'social')
 
 export { navMenuItems, socialMediaLinks }
