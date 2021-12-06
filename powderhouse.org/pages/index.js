@@ -11,7 +11,10 @@ import {
   Highlight,
 } from '../components/global'
 
-function HomePage() {
+import { getStrapiMedia } from "../lib/media";
+import { fetchAPI } from "../lib/api";
+
+function HomePage({data}) {
   return (
       <PageContainer css={baseGrid}>
         <DarkPageSection css={baseGrid}>
@@ -80,5 +83,11 @@ let EmailInput = styled.input`
 let SubmitButton = styled.input`
   grid-column: 2 / 3;
 `;
+
+export async function getStaticProps(context) {
+  return {
+    props: await fetchAPI('/home') // will be passed to the page component as props
+  }
+}
 
 export default HomePage;
