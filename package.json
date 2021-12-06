@@ -4,11 +4,12 @@
   "description": "powderhouse.org front and backend",
   "main": "index.js",
   "scripts": {
-    "build": "cd powderhouse.org && yarn install && cd ../api.powderhouse.org/ && yarn install && cd .. && yarn install",
+    "build": "cd powderhouse.org && yarn install && cd ../api.powderhouse.org/ && yarn install && cd .. && yarn install && npm run backend-build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend-dev": "git secret cat .secrets >> powderhouse.org/.env.local && cd powderhouse.org && npm run dev",
+    "backend-build": "cd api.powderhouse.org && npm run build",
     "backend-dev": "cd api.powderhouse.org && npm run develop",
-    "dev": "concurrently \"npm run frontend-dev\" \"npm run backend-dev\""
+    "dev": "concurrently --kill-others -t --names=\"BACKEND,FRONTEND\" --prefix-colors=\"bgGrey,bgWhite\" \"npm run backend-dev\" \"npm run frontend-dev\" "
   },
   "repository": {
     "type": "git",
