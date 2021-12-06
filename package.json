@@ -4,9 +4,9 @@
   "description": "powderhouse.org front and backend",
   "main": "index.js",
   "scripts": {
-    "build": "cd powderhouse.org && nvm use 16.13.1 && yarn install && cd ../api.powderhouse.org/ && yarn install",
+    "build": "cd powderhouse.org && yarn install && cd ../api.powderhouse.org/ && yarn install && cd .. && yarn install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend-dev": "eval $(git secret cat .secrets) && cd powderhouse.org && npm run dev",
+    "frontend-dev": "git secret cat .secrets >> powderhouse.org/.env.local && cd powderhouse.org && npm run dev",
     "backend-dev": "cd api.powderhouse.org && npm run develop",
     "dev": "concurrently \"npm run frontend-dev\" \"npm run backend-dev\""
   },
