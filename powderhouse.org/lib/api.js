@@ -11,7 +11,7 @@ export async function fetchAPI(path) {
   let myHeaders = new Headers();
   myHeaders.append(
     "Authorization",
-    ["bearer", process.env.STRAPI_API_TOKEN].join(' ')
+    ["Bearer", process.env.STRAPI_API_TOKEN].join(" ")
   );
 
   let raw = "";

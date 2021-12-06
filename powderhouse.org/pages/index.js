@@ -22,6 +22,8 @@ function HomePage({data}) {
           <Header bgColor='off-black' color='off-white' />
 
           <SplashLanguage>
+            {data.attributes.title}
+            
             <p>
             We are a <Highlight highlight='blue'>research, design, and advocacy group</Highlight> devoted to realizing the <Highlight highlight='purple'>future of learning</Highlight> in practice through <Highlight highlight='yellow'>direct action with youth</Highlight>.
             </p>
