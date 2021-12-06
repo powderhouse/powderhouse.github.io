@@ -30,7 +30,7 @@ function Footer() {
         <SignUpShoutOut>Follow us on social media or join our mailing list to keep up with our work.</SignUpShoutOut>
         <SocialList>
           {socialMediaLinks.map(n => {
-            return <SocialLink href={n.href}><SocialListItem key={n.href}>{n.text}</SocialListItem></SocialLink>
+            return <SocialLink key={n.id} href={n.href}><SocialListItem key={n.id}>{n.text}</SocialListItem></SocialLink>
           })}
         </SocialList>
         <SignUpForm action='' method='get'>
