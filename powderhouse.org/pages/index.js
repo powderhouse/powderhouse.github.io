@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,7 +9,7 @@ import NewsLetterSignUp from '../components/NewsLetter';
 import {
   baseGrid,
   PageContainer,
-  DarkPageSection,
+  PageSection,
   Highlight,
 } from '../components/global'
 
@@ -17,29 +19,26 @@ import { fetchAPI } from "../lib/api";
 function HomePage({data}) {
   return (
       <PageContainer css={baseGrid}>
-        <DarkPageSection css={baseGrid}>
+        <PageSection css={baseGrid} isLightSection={false}>
 
           <Header bgColor='off-black' color='off-white' />
 
           <SplashLanguage>
-            {data.attributes.title}
-            
-            <p>
-            We are a <Highlight highlight='blue'>research, design, and advocacy group</Highlight> devoted to realizing the <Highlight highlight='purple'>future of learning</Highlight> in practice through <Highlight highlight='yellow'>direct action with youth</Highlight>.
-            </p>
-            <p>
-            Our work aims to demonstrate the very best our community—along with the public sector—could provide young people, right now, with enough imagination.
-            </p>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+              {data.attributes.SplashLanguage}
+            </ReactMarkdown>
           </SplashLanguage>
 
           <SplashNewsletterSignup>
-            <SignUpShoutOut>Stay up to date as we realize the future of learning.</SignUpShoutOut>
+            <SignUpShoutOut>
+              {data.attributes.SignUpShoutOut}
+            </SignUpShoutOut>
             <SignUpForm action='' method='get'>
               <EmailInput type='email' name='email' id='email' required />
               <SubmitButton type="submit" value="Sign Up" />
             </SignUpForm>
           </SplashNewsletterSignup>
-        </DarkPageSection>
+        </PageSection>
 
         <Footer/>
       </PageContainer>

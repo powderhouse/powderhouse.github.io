@@ -76,23 +76,17 @@ let PageIntro = styled.div`
 	padding-right:none;
 `;
 
-let LeftHeader = styled.div`
-	grid-column: 1 / span 3;
+let SectionHeader = styled.h2`
+	grid-column: ${props => props.isLeftHeader ? "1 / span 3" : "4 / 10"};
 	border: 1px dotted black;
-`;
-
-let CenterHeader = styled.h2`
 `;
 
 let PageSection = styled.section`
 	grid-column: 1 / -1;
 	padding:var(--gap);
-`;
+	background-color:${props => props.isLightSection ? "inherit" : "var(--off-black)"};
+	color:${props => props.isLightSection ? "inherit" : "var(--off-white)"};
 
-let DarkPageSection = styled(PageSection)`
-	background-color:var(--off-black);
-	color:var(--off-white);
-  padding: var(--gap);
 `;
 
 let PageSectionContent = styled.div`
@@ -136,10 +130,8 @@ export {
 	PageTOCListItem,
 	PageTOCLink,
 	PageIntro,
-	LeftHeader,
-	CenterHeader,
+	SectionHeader,
 	PageSection,
-	DarkPageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
