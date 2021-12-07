@@ -4,7 +4,7 @@
   "description": "powderhouse.org front and backend",
   "main": "index.js",
   "scripts": {
-    "build": "cd powderhouse.org && yarn install --check-files && cd ../api.powderhouse.org/ && yarn install --check-files && cd .. && yarn install --check-files && npm run backend-build",
+    "build": "cd powderhouse.org && yarn install --check-files && cd ../api.powderhouse.org/ && yarn install --check-files && cd .. && yarn install --check-files && npm run backend-build && npx check-peer-dependencies --yarn --install && npx check-peer-dependencies --yarn",
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend-dev": "cd powderhouse.org && npm run dev",
     "backend-build": "cd api.powderhouse.org && npm run build",
@@ -22,8 +22,7 @@
   },
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
   "devDependencies": {
-    "concurrently": "^6.4.0",
-    "install-peers": "^1.0.3"
+    "concurrently": "^6.4.0"
   },
   "dependencies": {
     "check-peer-dependencies": "^4.1.0"

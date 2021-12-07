@@ -26,7 +26,5 @@
     "npm": ">=6.0.0"
   },
   "license": "MIT",
-  "devDependencies": {
-    "install-peers": "^1.0.3"
-  }
+  "devDependencies": {}
 }
