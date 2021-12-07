@@ -20,7 +20,10 @@ import {
 	FullBleedImage, 
 } from '../components/global.js';
 
-function NewsPage() {
+import { getStrapiMedia } from "../lib/media";
+import { fetchAPI } from "../lib/api";
+
+function NewsPage({data}) {
 	return (
 	<PageContainer css={baseGrid}>
 		<Header />
@@ -39,8 +42,24 @@ function NewsPage() {
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
-			Here are some select news stories, announcement, and other updates about our work!
+			
 		</PageIntro>
+
+		{/* { */}
+		{/* 	data.attributes.PageSection.map( */}
+		{/* 		n => (	<PageSection key={n.id} css={baseGrid} isLightSection={n.isLightSection}> */}
+		{/* 					<SectionHeader isLeftHeader={n.isLeftHeader}> */}
+		{/* 						{n.SectionHeader} */}
+		{/* 					</SectionHeader> */}
+		{/* 					<PageSectionContent> */}
+	 {/*        					<ReactMarkdown rehypePlugins={[rehypeRaw]}> */}
+		{/* 							{n.PageSectionContent} */}
+		{/* 						</ReactMarkdown> */}
+		{/* 					</PageSectionContent> */}
+		{/* 				</PageSection> */}
+		{/* 			) */}
+		{/* 		) */}
+		{/* } */}
 
 		<PageSection isLightSection={true} css={baseGrid}>
 			<NewsCard css={baseGrid}>
@@ -108,5 +127,11 @@ let NewsTitle = styled.h2`
 let NewsExcerpt = styled.p``;
 
 let NewsRelatedLinks = styled.ul``;
+
+export async function getStaticProps(context) {
+  return {
+    props: await fetchAPI('/news?populate=*') // will be passed to the page component as props
+  }
+}
 
 export default NewsPage;
