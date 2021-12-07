@@ -13,10 +13,8 @@ import {
 	PageTOCListItem,
 	PageTOCLink,
 	PageIntro,
-	LeftHeader,
-	CenterHeader,
+	SectionHeader,
 	PageSection,
-	DarkPageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage, 
@@ -46,8 +44,8 @@ function JobsPage() {
 			</p>
 		</PageIntro>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Open Positions</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Open Positions</SectionHeader>
 			<PageSectionContent>
 				<p>
 					We're always looking for great people.  If you care about our mission and want to learn more about how you could get involved, but none of our open roles speak to you, please <a href="">get in touch</a>.
@@ -55,9 +53,9 @@ function JobsPage() {
 			</PageSectionContent>
 		</PageSection>
 
-		<PageSection css={baseGrid}>
+		<PageSection isLightSection={true} css={baseGrid}>
 			<JobCard css={baseGrid}>
-				<LeftHeader>Financial Researcher</LeftHeader>
+				<SectionHeader isLeftHeader={true}>Financial Researcher</SectionHeader>
 				<PageSectionContent>
 					<p>
 						Seeking a creative financial expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for financing secondary and postsecondary education, from first principles.
@@ -67,7 +65,7 @@ function JobsPage() {
 			</JobCard>
 
 			<JobCard css={baseGrid}>
-				<LeftHeader>Legal Researcher</LeftHeader>
+				<SectionHeader isLeftHeader={true}>Legal Researcher</SectionHeader>
 				<PageSectionContent>
 					<p>
 						Seeking a creative legal expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for legal activism as a tool to dramatically expand the range, diversity, and equitable access of new secondary and postsecondary educational options for Americans.

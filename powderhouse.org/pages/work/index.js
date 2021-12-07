@@ -13,10 +13,8 @@ import {
 	PageTOCListItem,
 	PageTOCLink,
 	PageIntro,
-	LeftHeader,
-	CenterHeader,
+	SectionHeader,
 	PageSection,
-	DarkPageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
@@ -45,8 +43,8 @@ function WorkPage() {
 				First as <a href="">sprout & co</a>, then as <a href=''>Powderhouse Studios</a>, and now as Powderhouse, since 2009, we have been fortunate to work on the same problems in many different forms with a wide variety of partners.			</p>
 		</PageIntro>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Partners</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Partners</SectionHeader>
 			<PartnerSectionContent>
 				<PartnerCard>
 					<PartnerLink href=''></PartnerLink>
@@ -81,8 +79,8 @@ function WorkPage() {
 			</PartnerSectionContent>
 		</PageSection>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Projects</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Projects</SectionHeader>
 			<WidePageSectionContent>
 				<ProjectCard>
 					<ProjectLink href=''>
@@ -126,8 +124,8 @@ function WorkPage() {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Past Lives</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Past Lives</SectionHeader>
 			<PageSectionContent>
 				<p>Prior to Powderhouse, we called ourselves Powderhouse Studios and sprout & co. You can learn a bit more about our work under those names here.</p>
 				

@@ -104,7 +104,7 @@ let PageGallery = styled.div`
 `;
 
 let ProjectImage = styled.div`
-  background-image:url(http://thewisdomdaily.com/wp-content/uploads/2018/03/Emma_Goldman_1901_mugshot_single_portrait-1381x900.png);
+  background-image:url(https://assets.teenvogue.com/photos/5d13bc09bdcb55000998698d/4:3/w_2000,h_1500,c_limit/00-promo-emma-goldman.jpg);
   background-size:cover;
 
   &:nth-child(3n+1) {

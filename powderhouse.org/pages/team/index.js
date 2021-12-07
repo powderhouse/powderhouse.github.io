@@ -13,10 +13,8 @@ import {
 	PageTOCListItem,
 	PageTOCLink,
 	PageIntro,
-	LeftHeader,
-	CenterHeader,
+	SectionHeader,
 	PageSection,
-	DarkPageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
@@ -50,8 +48,8 @@ function TeamPage() {
 			</p>
 		</PageIntro>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Staff</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Staff</SectionHeader>
 			<WidePageSectionContent>
 				<PersonCard>
 					<PersonHeadshot></PersonHeadshot>
@@ -84,8 +82,8 @@ function TeamPage() {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Advisors</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Advisors</SectionHeader>
 			<WidePageSectionContent>
 				<PersonCard>
 					<PersonName>John Bell</PersonName>
@@ -105,8 +103,8 @@ function TeamPage() {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Alumni</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Alumni</SectionHeader>
 			<WidePageSectionContent>
 				<PersonCard>
 					<PersonName>John Bell</PersonName>
@@ -145,8 +143,8 @@ function TeamPage() {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection css={baseGrid}>
-			<LeftHeader>Jobs</LeftHeader>
+		<PageSection isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>Jobs</SectionHeader>
 			<PageSectionContent>
 				<p>
 					Powderhouse is building something which has never existed before: a vertically integrated<Highlight highlight='purple'><sup>*</sup></Highlight> research, design, and advocacy organization devoted to youth.
