@@ -4,7 +4,7 @@
   "info": {
     "singularName": "home",
     "pluralName": "homes",
-    "displayName": "home",
+    "displayName": "Home",
     "description": ""
   },
   "options": {
@@ -12,17 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "SplashLanguage": {
       "type": "richtext"
     },
-    "Image": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": false
+    "SignUpShoutOut": {
+      "type": "richtext"
     }
   }
 }

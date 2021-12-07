@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_page_page_sections",
+  "info": {
+    "displayName": "PageSection",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "SectionHeader": {
+      "type": "string"
+    },
+    "PageSectionContent": {
+      "type": "richtext"
+    },
+    "isLightSection": {
+      "type": "boolean"
+    },
+    "isLeftHeader": {
+      "type": "boolean"
+    }
+  }
+}
