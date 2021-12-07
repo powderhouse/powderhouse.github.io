@@ -3,7 +3,7 @@
 - [ ] [Install `nvm`](https://github.com/nvm-sh/nvm#installing-and-updating)
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
-- [ ] Switch `node` to `v16.3.1` _via_ `nvm use 16.3.1`
+- [ ] Switch `node` to `v16.13.1` _via_ `nvm install 16.13.1 && nvm use 16.13.1`
 - [ ] `npm run build`
 - [ ] `npm run dev`
 
