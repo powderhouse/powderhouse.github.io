@@ -23,12 +23,12 @@ import {
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
-function NewsPage({data}) {
+function NewsPage({newsPage,newsCards}) {
 	return (
 	<PageContainer css={baseGrid}>
 		<Header />
 		<PageSplash bgColor='yellow' color='off-black'>
-			<PageHeader>News</PageHeader>
+			<PageHeader>{newsPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
 				<PageTOCListItem>
 					<PageTOCLink href='#'>2020</PageTOCLink>
@@ -42,65 +42,32 @@ function NewsPage({data}) {
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
-			
+			{newsPage.data.attributes.PageSplash.PageIntro}
 		</PageIntro>
 
-		{/* { */}
-		{/* 	data.attributes.PageSection.map( */}
-		{/* 		n => (	<PageSection key={n.id} css={baseGrid} isLightSection={n.isLightSection}> */}
-		{/* 					<SectionHeader isLeftHeader={n.isLeftHeader}> */}
-		{/* 						{n.SectionHeader} */}
-		{/* 					</SectionHeader> */}
-		{/* 					<PageSectionContent> */}
-	 {/*        					<ReactMarkdown rehypePlugins={[rehypeRaw]}> */}
-		{/* 							{n.PageSectionContent} */}
-		{/* 						</ReactMarkdown> */}
-		{/* 					</PageSectionContent> */}
-		{/* 				</PageSection> */}
-		{/* 			) */}
-		{/* 		) */}
-		{/* } */}
-
 		<PageSection isLightSection={true} css={baseGrid}>
-			<NewsCard css={baseGrid}>
-				<NewsHeader isLeftHeader={true}>
-					<NewsDate>October 25, 2021</NewsDate>
-					<NewsType>Announcement</NewsType>
-				</NewsHeader>
-				<NewsContent>
-					<NewsTitle>Launching the Kindling Fellowship</NewsTitle>
-					<NewsExcerpt></NewsExcerpt>
-					<NewsRelatedLinks>
-						<li>Read More</li>
-					</NewsRelatedLinks>
-				</NewsContent>
-			</NewsCard>
-			<NewsCard css={baseGrid}>
-				<NewsHeader isLeftHeader={true}>
-					<NewsDate>October 25, 2021</NewsDate>
-					<NewsType>Announcement</NewsType>
-				</NewsHeader>
-				<NewsContent>
-					<NewsTitle>Launching the Kindling Fellowship</NewsTitle>
-					<NewsExcerpt></NewsExcerpt>
-					<NewsRelatedLinks>
-						<li>Read More</li>
-					</NewsRelatedLinks>
-				</NewsContent>
-			</NewsCard>
-			<NewsCard css={baseGrid}>
-				<NewsHeader isLeftHeader={true}>
-					<NewsDate>October 25, 2021</NewsDate>
-					<NewsType>Announcement</NewsType>
-				</NewsHeader>
-				<NewsContent>
-					<NewsTitle>Launching the Kindling Fellowship</NewsTitle>
-					<NewsExcerpt></NewsExcerpt>
-					<NewsRelatedLinks>
-						<li>Read More</li>
-					</NewsRelatedLinks>
-				</NewsContent>
-			</NewsCard>
+			{newsCards.data.map(
+				n => ( 	<NewsCard key={n.id} css={baseGrid}>
+							<NewsHeader isLeftHeader={true}>
+								<NewsDate>{n.attributes.NewsDate}</NewsDate>
+								<NewsType>{n.attributes.NewsType}</NewsType>
+							</NewsHeader>
+							<NewsContent>
+								<NewsTitle>{n.attributes.NewsTitle}</NewsTitle>
+								<NewsExcerpt>{n.attributes.NewsExcerpt}</NewsExcerpt>
+								<NewsRelatedLinks>
+									{n.attributes.NewsRelatedLinks.map( l => (
+										<a href={l.Link}>
+											<li>{l.LinkText}</li>
+										</a>)
+										)
+									}
+								</NewsRelatedLinks>
+							</NewsContent>
+						</NewsCard> 
+					)
+				)
+			}
 		</PageSection>
 
 		<Footer />
@@ -128,9 +95,32 @@ let NewsExcerpt = styled.p``;
 
 let NewsRelatedLinks = styled.ul``;
 
+// export async function getStaticProps(context) {
+//   return {
+//     props: await fetchAPI('/news-page?populate=*') // will be passed to the page component as props
+//   }
+// }
+
+// export async function getStaticProps(context) {
+//   return {
+//     props: await fetchAPI('/news-cards?populate=*') // will be passed to the page component as props
+//   }
+// }
+
 export async function getStaticProps(context) {
+  let newsPage = await fetchAPI('/news-page?populate=*');
+  let newsCards = await fetchAPI('/news-cards?populate=*');
+  console.log({
+    props: {
+      newsPage:newsPage,
+      newsCards:newsCards
+    }  // will be passed to the page component as props
+  });
   return {
-    props: await fetchAPI('/news?populate=*') // will be passed to the page component as props
+    props: {
+      newsPage:newsPage,
+      newsCards:newsCards
+    }  // will be passed to the page component as props
   }
 }
 
