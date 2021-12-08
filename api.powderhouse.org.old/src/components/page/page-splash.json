@@ -2,17 +2,15 @@
   "collectionName": "components_page_page_splashes",
   "info": {
     "displayName": "PageSplash",
-    "icon": "ad"
+    "icon": "water"
   },
   "options": {},
   "attributes": {
     "PageHeader": {
-      "type": "string",
-      "default": "Header"
+      "type": "string"
     },
     "PageIntro": {
-      "type": "richtext",
-      "default": "Intro"
+      "type": "richtext"
     }
   }
 }
