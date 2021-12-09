@@ -1,13 +1,14 @@
 {
-  "name": "powderhouse",
+  "name": "powderhouse.org",
   "version": "0.0.1",
-  "description": "powderhouse.org front and backend",
+  "description": "powderhouse.org",
   "main": "index.js",
   "scripts": {
-    "build": "cd powderhouse.org && yarn install --check-files cd .. && yarn install --check-files && npm run backend-build && npx check-peer-dependencies --yarn --install && npx check-peer-dependencies --yarn",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend-dev": "cd powderhouse.org && npm run dev",
-    "dev": "npm run frontend-dev"
+    "dev": "next dev",
+    "build": "yarn install --check-files && npx check-peer-dependencies --yarn --install && next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,16 @@
     "url": "https://github.com/powderhouse/powderhouse.github.io/issues"
   },
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
-  "devDependencies": {},
   "dependencies": {
+    "next": "^12.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-markdown": "^7.1.1",
+    "rehype-raw": "^6.1.0",
+    "styled-components": "^5.3.3",
     "check-peer-dependencies": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.13.3"
   }
 }
