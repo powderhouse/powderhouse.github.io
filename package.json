@@ -4,12 +4,10 @@
   "description": "powderhouse.org front and backend",
   "main": "index.js",
   "scripts": {
-    "build": "cd powderhouse.org && yarn install --check-files && cd ../api.powderhouse.org/ && yarn install --check-files && cd .. && yarn install --check-files && npm run backend-build && npx check-peer-dependencies --yarn --install && npx check-peer-dependencies --yarn",
+    "build": "cd powderhouse.org && yarn install --check-files cd .. && yarn install --check-files && npm run backend-build && npx check-peer-dependencies --yarn --install && npx check-peer-dependencies --yarn",
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend-dev": "cd powderhouse.org && npm run dev",
-    "backend-build": "cd api.powderhouse.org && npm run build",
-    "backend-dev": "cd api.powderhouse.org && npm run develop",
-    "dev": "concurrently --kill-others -t --names=\"BACKEND,FRONTEND\" --prefix-colors=\"bgGrey,bgWhite\" \"npm run backend-dev\" \"npm run frontend-dev\" "
+    "dev": "npm run frontend-dev"
   },
   "repository": {
     "type": "git",
@@ -21,9 +19,7 @@
     "url": "https://github.com/powderhouse/powderhouse.github.io/issues"
   },
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
-  "devDependencies": {
-    "concurrently": "^6.4.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "check-peer-dependencies": "^4.1.0"
   }
