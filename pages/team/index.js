@@ -163,7 +163,7 @@ function TeamPage() {
 					
 					<aside>
 						<sup>**</sup> 
-						Original Holt quote re: S-chool, <i>via Instead of Education</i>, "The schools for do-ers, which help people explore the world as they choose, I now call "small s schools" (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse."
+						Original Holt quote re: S-chool, <i>via Instead of Education</i>, &quot;The schools for do-ers, which help people explore the world as they choose, I now call &quot;small s schools&quot; (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call &quot;capital S-chools,&quot; (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse.&quot;
 					</aside>
 				</FootNotes>
 
