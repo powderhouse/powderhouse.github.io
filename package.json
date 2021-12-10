@@ -21,13 +21,14 @@
   },
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
   "dependencies": {
+    "@types/react": "17.0.37",
+    "check-peer-dependencies": "^4.1.0",
     "next": "^12.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^7.1.1",
     "rehype-raw": "^6.1.0",
-    "styled-components": "^5.3.3",
-    "check-peer-dependencies": "^4.1.0"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.13.3"
