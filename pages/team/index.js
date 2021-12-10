@@ -44,7 +44,7 @@ function TeamPage() {
 		</PageSplash>
 		<PageIntro>
 			<p>
-				Invention without advocacy is irrelevant. Advocacy without invention is incrementalist. We're building a team which believes it's only by bringing these worlds together that we can realize radically different futures of learning.  <a href='/jobs'>Join us.</a>
+				Invention without advocacy is irrelevant. Advocacy without invention is incrementalist. We&apos;re building a team which believes it&apos;s only by bringing these worlds together that we can realize radically different futures of learning.  <a href='/jobs'>Join us.</a>
 			</p>
 		</PageIntro>
 
@@ -94,7 +94,7 @@ function TeamPage() {
 				</PersonCard>
 
 				<PersonCard>
-					<PersonName>Beth O'Sullivan</PersonName>
+					<PersonName>Beth O&apos;Sullivan</PersonName>
 					<PersonBio>co-founded the Science Club for Girls: a program that brings hands-on science clubs to 600 girls in the Boston area, working to close the socioeconomic and gender gaps in science.</PersonBio>
 					<PersonLinks>
 						<li><a href="">LinkedIn</a></li>
@@ -114,7 +114,7 @@ function TeamPage() {
 				</PersonCard>
 
 				<PersonCard>
-					<PersonName>Beth O'Sullivan</PersonName>
+					<PersonName>Beth O&apos;Sullivan</PersonName>
 					<PersonLinks>
 						<li><a href="">LinkedIn</a></li>
 					</PersonLinks>
@@ -128,7 +128,7 @@ function TeamPage() {
 				</PersonCard>
 
 				<PersonCard>
-					<PersonName>Beth O'Sullivan</PersonName>
+					<PersonName>Beth O&apos;Sullivan</PersonName>
 					<PersonLinks>
 						<li><a href="">LinkedIn</a></li>
 					</PersonLinks>
@@ -153,7 +153,7 @@ function TeamPage() {
 					Most work in this space is about School,<Highlight highlight='purple'><sup>**</sup></Highlight> not about learning.  The little which is about learning ignores the wickedly hard problem of grappling with School.  So much talk about innovation and revolution, so little courage to tackle radical problems with the patience and rigor they require.
 				</p>
 				<p>
-					If that inspires (rather than deflates or offends), we'd like your help.
+					If that inspires (rather than deflates or offends), we&apos;d like your help.
 				</p>
 				<FootNotes>
 					<aside>
@@ -163,7 +163,7 @@ function TeamPage() {
 					
 					<aside>
 						<sup>**</sup> 
-						Original Holt quote re: S-chool, <i>via Instead of Education</i>, “The schools for do-ers, which help people explore the world as they choose, I now call “small s schools” (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse.”
+						Original Holt quote re: S-chool, <i>via Instead of Education</i>, "The schools for do-ers, which help people explore the world as they choose, I now call "small s schools" (written s-chools). The schools for educators, which get and hold their students by the threat of jail or uselessness or poverty, I now call "capital S-chools," (written S-chools). There is very little we can do to make these S-chools better, and they are almost certain to get worse."
 					</aside>
 				</FootNotes>
 

@@ -102,7 +102,7 @@ function WorkPage() {
 					<ProjectLink href=''>
 						<ProjectFeatureImage></ProjectFeatureImage>
 						<ProjectTitle>Healey STEAM</ProjectTitle>
-						<ProjectSubtitle>A pilot of our innovation school model with the Healey's 7th and 8th grades</ProjectSubtitle>
+						<ProjectSubtitle>A pilot of our innovation school model with the Healey&apos;s 7th and 8th grades</ProjectSubtitle>
 					</ProjectLink>
 				</ProjectCard>
 				

@@ -48,7 +48,7 @@ function JobsPage() {
 			<SectionHeader isLeftHeader={true}>Open Positions</SectionHeader>
 			<PageSectionContent>
 				<p>
-					We're always looking for great people.  If you care about our mission and want to learn more about how you could get involved, but none of our open roles speak to you, please <a href="">get in touch</a>.
+					We&apos;re always looking for great people.  If you care about our mission and want to learn more about how you could get involved, but none of our open roles speak to you, please <a href="">get in touch</a>.
 				</p>
 			</PageSectionContent>
 		</PageSection>

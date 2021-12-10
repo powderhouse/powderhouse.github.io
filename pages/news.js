@@ -57,7 +57,7 @@ function NewsPage({newsPage,newsCards}) {
 								<NewsExcerpt>{n.attributes.NewsExcerpt}</NewsExcerpt>
 								<NewsRelatedLinks>
 									{n.attributes.NewsRelatedLinks.map( l => (
-										<a href={l.Link}>
+										<a href={l.Link} id={l.id}>
 											<li>{l.LinkText}</li>
 										</a>)
 										)
