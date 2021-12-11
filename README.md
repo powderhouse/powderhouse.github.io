@@ -3,11 +3,11 @@
 - [ ] [Install `nvm`](https://github.com/nvm-sh/nvm#installing-and-updating)
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
-- [ ] Switch `node` to `v16.13.1` _via_ `nvm install 16.13.1 && nvm use 16.13.1`
-- [ ] `npm run build`
-- [ ] `npm run dev`
+- [ ] Install and switch to the appropriate node version using `./configure`
+- [ ] `yarn build`
+- [ ] `yarn dev`
 
-Now, the Strapi Admin should be available at [`https://localhost:1337`](https://localhost:1337) and the site at [`https://localhost:3000`](https://localhost:3000).
+Now, the frontend should be available at [`https://localhost:3000`](https://localhost:3000).
 
 
 ## Pulling content from the API

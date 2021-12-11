@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+NVM_DIR="$HOME/.nvm"
+                [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+
+# This insure the required version of node is installed and switched to
+nvm install $(node -p -e "require('./package.json').engines.node.slice(1)") && nvm use $(node -p -e "require('./package.json').engines.node.slice(1)")
