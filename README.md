@@ -7,7 +7,7 @@
 - [ ] `yarn build`
 - [ ] `yarn dev`
 
-Now, the frontend should be available at [`https://localhost:3000`](https://localhost:3000).
+Now, the frontend should be available at [`https://localhost:3000`](https://localhost:3000).  When you push this to GitHub, it is automatically deployed via Vercel, whose status you can inspect [here](https://vercel.com/powderhouse/powderhouseorg).
 
 
 ## Pulling content from the API
