@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -20,12 +22,15 @@ import {
 	FullBleedImage,
 } from '../../components/global';
 
-function WorkPage() {
+import { getStrapiMedia } from "../../lib/media";
+import { fetchAPI } from "../../lib/api";
+
+function WorkPage({workPage,projectCards}) {
     return (
         <PageContainer css={baseGrid}>
 		<Header />
 		<PageSplash bgColor='green' color='off-white'>
-			<PageHeader>Work</PageHeader>
+			<PageHeader>{workPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
 				<PageTOCListItem>
 					<PageTOCLink href='#'>Selected Partners</PageTOCLink>
@@ -39,105 +44,64 @@ function WorkPage() {
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
-			<p>
-				First as <a href="">sprout & co</a>, then as <a href=''>Powderhouse Studios</a>, and now as Powderhouse, since 2009, we have been fortunate to work on the same problems in many different forms with a wide variety of partners.			</p>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+				{workPage.data.attributes.PageSplash.PageIntro}
+			</ReactMarkdown>
 		</PageIntro>
 
 		<PageSection isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>Partners</SectionHeader>
+			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.PartnerHeader}</SectionHeader>
 			<PartnerSectionContent>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
-				<PartnerCard>
-					<PartnerLink href=''></PartnerLink>
-				</PartnerCard>
+				{workPage.data.attributes.PartnerCards.map(
+					n => ( 	<PartnerLink key={n.id} href={n.Link}>
+								<PartnerCard>
+									<PartnerLogo src="https://amorphia-apparel.com/storage/images/emma-goldman/emma-goldman.1300x700.png" />
+								</PartnerCard>
+							</PartnerLink>
+							 
+						)
+					)
+				}
 			</PartnerSectionContent>
 		</PageSection>
 
 		<PageSection isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>Projects</SectionHeader>
+			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.ProjectHeader}</SectionHeader>
 			<WidePageSectionContent>
-				<ProjectCard>
-					<ProjectLink href=''>
-						<ProjectFeatureImage></ProjectFeatureImage>
-						<ProjectTitle>[Almost] A New District School</ProjectTitle>
-						<ProjectSubtitle>In district high school featuring projects emphasizing computation, narrative, and design proposed in Somerville, MA</ProjectSubtitle>
-					</ProjectLink>
-				</ProjectCard>
-				
-				<ProjectCard>
-					<ProjectLink href=''>
-						<ProjectFeatureImage></ProjectFeatureImage>
-						<ProjectTitle>Digital Storytelling</ProjectTitle>
-						<ProjectSubtitle>A family of programs storytelling with the aid of software</ProjectSubtitle>
-					</ProjectLink>
-				</ProjectCard>
-				
-				<ProjectCard>
-					<ProjectLink href=''>
-						<ProjectFeatureImage></ProjectFeatureImage>
-						<ProjectTitle>Healey STEAM</ProjectTitle>
-						<ProjectSubtitle>A pilot of our innovation school model with the Healey&apos;s 7th and 8th grades</ProjectSubtitle>
-					</ProjectLink>
-				</ProjectCard>
-				
-				<ProjectCard>
-					<ProjectLink href=''>
-						<ProjectFeatureImage></ProjectFeatureImage>
-						<ProjectTitle>Bring Your Grandma to Math Day</ProjectTitle>
-						<ProjectSubtitle>People of all ages playing with math together, for fun</ProjectSubtitle>
-					</ProjectLink>
-				</ProjectCard>
-				
-				<ProjectCard>
-					<ProjectLink href=''>
-						<ProjectFeatureImage></ProjectFeatureImage>
-						<ProjectTitle>Atlas</ProjectTitle>
-						<ProjectSubtitle>Software to make messy projects legible to traditional common core standards</ProjectSubtitle>
-					</ProjectLink>
-				</ProjectCard>
+				{projectCards.data.map(
+					n => ( 	<ProjectCard key={n.attributes.id}>
+								<ProjectLink href={n.attributes.ProjectLink}>
+									<ProjectImageDiv>
+										{/* Don't know why this doesn't work */}
+										<ProjectFeatureImage src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+									</ProjectImageDiv>
+									<ProjectTitle>{n.attributes.ProjectTitle}</ProjectTitle>
+									<ProjectSubtitle>{n.attributes.ProjectSubtitle}</ProjectSubtitle>
+								</ProjectLink>
+							</ProjectCard>
+							 
+						)
+					)
+				}
 			</WidePageSectionContent>
 		</PageSection>
 
 		<PageSection isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>Past Lives</SectionHeader>
+			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.PastLifeHeader}</SectionHeader>
 			<PageSectionContent>
-				<p>Prior to Powderhouse, we called ourselves Powderhouse Studios and sprout & co. You can learn a bit more about our work under those names here.</p>
-				
+				{workPage.data.attributes.PastLifeIntro}
 			</PageSectionContent>
 			<PastLifeSectionContent>
-					<PastLifeCard>
-						<PastLifeLink href=''></PastLifeLink>
-					</PastLifeCard>
-				
-					<PastLifeCard>
-						<PastLifeLink href=''></PastLifeLink>
-					</PastLifeCard>
+				{workPage.data.attributes.PastLifeCards.map(
+					n => ( 	<PastLifeLink  key={n.id} href={n.Link}>
+								<PastLifeCard>
+									<PastLifeImage src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+								</PastLifeCard>
+							</PastLifeLink>
+							 
+						)
+					)
+				}
 			</PastLifeSectionContent>
 		</PageSection>
 
@@ -147,15 +111,19 @@ function WorkPage() {
 }
 
 let PartnerSectionContent = styled(WidePageSectionContent)`
-	grid-template-columns:repeat(5,auto);
-`
+	grid-template-columns:repeat(5,1fr);
+`;
 
 let PartnerCard = styled.div`
 	height:100px;
 	border:black dotted 1px;
-	background-image:url(https://amorphia-apparel.com/storage/images/emma-goldman/emma-goldman.1300x700.png?63d82fc46612ddd8001eae2947e6f9f0);
-	background-size:cover;
-`
+`;
+
+let PartnerLogo = styled.img`
+	pointer-events: none;
+	object-fit:cover;
+	overflow:hidden;
+`;
 
 let PartnerLink = styled.a``;
 
@@ -167,10 +135,14 @@ let ProjectLink = styled.a`
 	text-decoration:none;
 `;
 
-let ProjectFeatureImage = styled.div`
-	height:150px;
-	background-image:url(https://www.pbs.org/wgbh/americanexperience/media/__sized__/canonical_images/feature/Goldman_timeline_canonical-resize-1200x0-50.jpg);
-	background-size:cover;
+let ProjectImageDiv = styled.div`
+	background-color:var(--yellow);
+	height:150px; /*TK Explicit?*/
+	overflow:hidden;
+`;
+
+let ProjectFeatureImage = styled.img`
+	object-fit:cover;
 `;
 
 let ProjectTitle = styled.h3`
@@ -184,12 +156,32 @@ let PastLifeSectionContent = styled(WidePageSectionContent)`
 `;
 
 let PastLifeCard = styled.div`
-	height:250px;
+	height:250px; /*TK Explicit?*/
 	border:black dotted 1px;
-	background-image:url(https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg);
+	/*background-image:url();*/
 	background-size:cover;
+`;
+
+let PastLifeImage = styled.img`
+	object-fit:cover;
 `;
 
 let PastLifeLink = styled.a``;
 
+export async function getStaticProps(context) {
+  let workPage = await fetchAPI('/work?populate=*');
+  let projectCards = await fetchAPI('/project-cards?populate=*');
+  console.log({
+    props: {
+      workPage:workPage,
+      projectCards:projectCards
+    }  // will be passed to the page component as props
+  });
+  return {
+    props: {
+      workPage:workPage,
+      projectCards:projectCards
+    }  // will be passed to the page component as props
+  }
+}
 export default WorkPage;
