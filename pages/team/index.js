@@ -33,18 +33,12 @@ function TeamPage({teamPage,teamCards}) {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>{teamPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Staff</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Advisors</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Alumni</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Jobs</PageTOCLink>
-				</PageTOCListItem>
+				{teamPage.data.attributes.PageSection.map(n=>
+					<PageTOCListItem>
+						<PageTOCLink href={"#"+n.id}>{n.SectionHeader}</PageTOCLink>
+					</PageTOCListItem>
+					)
+				}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -53,7 +47,7 @@ function TeamPage({teamPage,teamCards}) {
 			</ReactMarkdown>
 		</PageIntro>
 
-		<PageSection isLightSection={true} css={baseGrid}>
+		<PageSection id={teamPage.data.attributes.PageSection[0].id} isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[0].SectionHeader}</SectionHeader>
 			<WidePageSectionContent>
 				{teamCards.data.map(n => 
@@ -65,7 +59,7 @@ function TeamPage({teamPage,teamCards}) {
 							<PersonName>{n.attributes.Name}</PersonName>
 							<PersonTitle>{n.attributes.Title}</PersonTitle>
 							<PersonLinks>
-								{n.attributes.LinkList.map(l => <a href={l.link}><li>{l.LinkText}</li></a>)}
+								{n.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
 							</PersonLinks>
 						</PersonCard>) : ""
 					)
@@ -73,40 +67,40 @@ function TeamPage({teamPage,teamCards}) {
 			</WidePageSectionContent>
 		</PageSection>
 
-		{/* <PageSection isLightSection={true} css={baseGrid}> */}
-		{/* 	<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[1].SectionHeader}</SectionHeader> */}
-		{/* 	<WidePageSectionContent> */}
-		{/* 		{teamCards.data.map(n =>  */}
-		{/* 			n.attributes.Role == "Advisor" ? */}
-		{/* 				(<PersonCard> */}
-		{/* 					<PersonName>{n.attributes.Name}</PersonName> */}
-		{/* 					<PersonBio>{n.attributes.Bio}</PersonBio> */}
-		{/* 					<PersonLinks> */}
-		{/* 						{n.attributes.LinkList.map(l => <a href={l.link}><li>{l.LinkText}</li></a>)} */}
-		{/* 					</PersonLinks> */}
-		{/* 				</PersonCard>) : "" */}
-		{/* 			) */}
-		{/* 		} */}
-		{/* 	</WidePageSectionContent> */}
-		{/* </PageSection> */}
+		<PageSection id={teamPage.data.attributes.PageSection[1].id} isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[1].SectionHeader}</SectionHeader>
+			<WidePageSectionContent>
+				{teamCards.data.map(n => 
+					n.attributes.Role == "Advisor" ?
+						(<PersonCard>
+							<PersonName>{n.attributes.Name}</PersonName>
+							<PersonBio>{n.attributes.Bio}</PersonBio>
+							<PersonLinks>
+								{n.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
+							</PersonLinks>
+						</PersonCard>) : ""
+					)
+				}
+			</WidePageSectionContent>
+		</PageSection>
 
-		{/* <PageSection isLightSection={true} css={baseGrid}> */}
-		{/* 	<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[2].SectionHeader}</SectionHeader> */}
-		{/* 	<WidePageSectionContent> */}
-		{/* 		{teamCards.data.map(n =>  */}
-		{/* 			n.attributes.Role == "Alumni" ? */}
-		{/* 				(<PersonCard> */}
-		{/* 					<PersonName>{n.attributes.Name}</PersonName> */}
-		{/* 					<PersonLinks> */}
-		{/* 						{n.attributes.LinkList.map(l => <a href={l.link}><li>{l.LinkText}</li></a>)} */}
-		{/* 					</PersonLinks> */}
-		{/* 				</PersonCard>) : "" */}
-		{/* 			) */}
-		{/* 		} */}
-		{/* 	</WidePageSectionContent> */}
-		{/* </PageSection> */}
+		<PageSection id={teamPage.data.attributes.PageSection[2].id} isLightSection={true} css={baseGrid}>
+			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[2].SectionHeader}</SectionHeader>
+			<WidePageSectionContent>
+				{teamCards.data.map(n => 
+					n.attributes.Role == "Alumni" ?
+						(<PersonCard>
+							<PersonName>{n.attributes.Name}</PersonName>
+							<PersonLinks>
+								{n.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
+							</PersonLinks>
+						</PersonCard>) : ""
+					)
+				}
+			</WidePageSectionContent>
+		</PageSection>
 
-		<PageSection isLightSection={true} css={baseGrid}>
+		<PageSection id={teamPage.data.attributes.PageSection[3].id} isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[3].SectionHeader}</SectionHeader>
 			<PageSectionContent>
             	<ReactMarkdown rehypePlugins={[rehypeRaw]}>
