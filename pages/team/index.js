@@ -21,6 +21,9 @@ import {
 	Highlight,
 } from '../../components/global.js';
 
+import { getStrapiMedia } from "../../lib/media";
+import { fetchAPI } from "../../lib/api";
+
 function TeamPage() {
     return (
         <PageContainer css={baseGrid}>

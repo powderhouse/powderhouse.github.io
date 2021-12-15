@@ -25,7 +25,7 @@ import {
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 
-function WorkPage({workPage,projectCards}) {
+function WorkPage({workPage,partnerCards,projectCards,pastLifeCards}) {
     return (
         <PageContainer css={baseGrid}>
 		<Header />
@@ -52,10 +52,10 @@ function WorkPage({workPage,projectCards}) {
 		<PageSection isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.PartnerHeader}</SectionHeader>
 			<PartnerSectionContent>
-				{workPage.data.attributes.PartnerCards.map(
+				{partnerCards.data.attributes.PartnerCards.map(
 					n => ( 	<PartnerLink key={n.id} href={n.Link}>
 								<PartnerCard>
-									<PartnerLogo src="https://amorphia-apparel.com/storage/images/emma-goldman/emma-goldman.1300x700.png" />
+									<PartnerLogo src={n.Image.data.attributes.formats == null ? n.Image.data.attributes.url : n.Image.data.attributes.formats.thumbnail.url} alt={n.Image.data.attributes.alternativeText} />
 								</PartnerCard>
 							</PartnerLink>
 							 
@@ -67,13 +67,13 @@ function WorkPage({workPage,projectCards}) {
 
 		<PageSection isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.ProjectHeader}</SectionHeader>
+			
 			<WidePageSectionContent>
 				{projectCards.data.map(
-					n => ( 	<ProjectCard key={n.attributes.id}>
+					n => (	<ProjectCard key={n.attributes.id}>
 								<ProjectLink href={n.attributes.ProjectLink}>
 									<ProjectImageDiv>
-										{/* Don't know why this doesn't work */}
-										<ProjectFeatureImage src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+										<ProjectFeatureImage src={ n.attributes.ProjectFeatureImage.data.attributes.formats == null ? n.attributes.ProjectFeatureImage.data.attributes.url : n.attributes.ProjectFeatureImage.data.attributes.formats.small.url } alt={n.attributes.ProjectFeatureImage.data.attributes.alternativeText} />
 									</ProjectImageDiv>
 									<ProjectTitle>{n.attributes.ProjectTitle}</ProjectTitle>
 									<ProjectSubtitle>{n.attributes.ProjectSubtitle}</ProjectSubtitle>
@@ -92,10 +92,10 @@ function WorkPage({workPage,projectCards}) {
 				{workPage.data.attributes.PastLifeIntro}
 			</PageSectionContent>
 			<PastLifeSectionContent>
-				{workPage.data.attributes.PastLifeCards.map(
+				{pastLifeCards.data.attributes.PastLifeCards.map(
 					n => ( 	<PastLifeLink  key={n.id} href={n.Link}>
 								<PastLifeCard>
-									<PastLifeImage src="https://www.foundsf.org/images/thumb/e/ef/Emma_goldman_6213.jpg/792px-Emma_goldman_6213.jpg" />
+									<PastLifeImage src={n.Image.data.attributes.formats == null ? n.Image.data.attributes.url : n.Image.data.attributes.formats.medium.url} alt={n.Image.data.attributes.alternativeText} />
 								</PastLifeCard>
 							</PastLifeLink>
 							 
@@ -117,18 +117,19 @@ let PartnerSectionContent = styled(WidePageSectionContent)`
 let PartnerCard = styled.div`
 	height:100px;
 	border:black dotted 1px;
+	overflow:hidden;
 `;
 
 let PartnerLogo = styled.img`
 	pointer-events: none;
 	object-fit:cover;
-	overflow:hidden;
 `;
 
 let PartnerLink = styled.a``;
 
 let ProjectCard = styled.div`
 	grid-column:span 3;
+	word-wrap: break-word; /*Just for debugging*/
 `;
 
 let ProjectLink = styled.a`
@@ -158,8 +159,7 @@ let PastLifeSectionContent = styled(WidePageSectionContent)`
 let PastLifeCard = styled.div`
 	height:250px; /*TK Explicit?*/
 	border:black dotted 1px;
-	/*background-image:url();*/
-	background-size:cover;
+	overflow:hidden;
 `;
 
 let PastLifeImage = styled.img`
@@ -170,17 +170,23 @@ let PastLifeLink = styled.a``;
 
 export async function getStaticProps(context) {
   let workPage = await fetchAPI('/work?populate=*');
+  let partnerCards = await fetchAPI('/work?populate[PartnerCards][populate]=*');
   let projectCards = await fetchAPI('/project-cards?populate=*');
+  let pastLifeCards = await fetchAPI('/work?populate[PastLifeCards][populate]=*');
   console.log({
     props: {
       workPage:workPage,
-      projectCards:projectCards
+      partnerCards:partnerCards,
+      projectCards:projectCards,
+      pastLifeCards:pastLifeCards
     }  // will be passed to the page component as props
   });
   return {
     props: {
       workPage:workPage,
-      projectCards:projectCards
+      partnerCards:partnerCards,
+      projectCards:projectCards,
+      pastLifeCards:pastLifeCards
     }  // will be passed to the page component as props
   }
 }

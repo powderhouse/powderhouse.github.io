@@ -20,6 +20,9 @@ import {
 	FullBleedImage, 
 } from '../../components/global.js';
 
+import { getStrapiMedia } from "../../lib/media";
+import { fetchAPI } from "../../lib/api";
+
 function JobsPage() {
     return (
         <PageContainer css={baseGrid}>
