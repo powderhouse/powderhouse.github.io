@@ -34,18 +34,12 @@ function AboutPage({data}) {
 				{data.attributes.PageSplash.PageHeader}
 			</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Our Mission</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Our Approach</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>A New Kind of Institution</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>A New Approach to Change</PageTOCLink>
-				</PageTOCListItem>
+				{/* {teamPage.data.attributes.PageSection.map(n=> */}
+				{/* 	<PageTOCListItem> */}
+				{/* 		<PageTOCLink href={"#"+n.id}>{n.SectionHeader}</PageTOCLink> */}
+				{/* 	</PageTOCListItem> */}
+				{/* 	) */}
+				{/* } */}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

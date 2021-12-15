@@ -30,15 +30,6 @@ function NewsPage({newsPage,newsCards}) {
 		<PageSplash bgColor='yellow' color='off-black'>
 			<PageHeader>{newsPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>2020</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>2015</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>2010</PageTOCLink>
-				</PageTOCListItem>
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

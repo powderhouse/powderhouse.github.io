@@ -29,13 +29,14 @@ import { fetchAPI } from "../../lib/api";
 function TeamPage({teamPage,teamCards}) {
     return (
         <PageContainer css={baseGrid}>
+        {JSON.stringify(teamCards)}
 		<Header />
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>{teamPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
 				{teamPage.data.attributes.PageSection.map(n=>
 					<PageTOCListItem>
-						<PageTOCLink href={"#"+n.id}>{n.SectionHeader}</PageTOCLink>
+						<PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink>
 					</PageTOCListItem>
 					)
 				}
@@ -47,7 +48,7 @@ function TeamPage({teamPage,teamCards}) {
 			</ReactMarkdown>
 		</PageIntro>
 
-		<PageSection id={teamPage.data.attributes.PageSection[0].id} isLightSection={true} css={baseGrid}>
+		<PageSection id={teamPage.data.attributes.PageSection[0].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[0].SectionHeader}</SectionHeader>
 			<WidePageSectionContent>
 				{teamCards.data.map(n => 
@@ -67,7 +68,7 @@ function TeamPage({teamPage,teamCards}) {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection id={teamPage.data.attributes.PageSection[1].id} isLightSection={true} css={baseGrid}>
+		<PageSection id={teamPage.data.attributes.PageSection[1].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[1].SectionHeader}</SectionHeader>
 			<WidePageSectionContent>
 				{teamCards.data.map(n => 
@@ -84,7 +85,7 @@ function TeamPage({teamPage,teamCards}) {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection id={teamPage.data.attributes.PageSection[2].id} isLightSection={true} css={baseGrid}>
+		<PageSection id={teamPage.data.attributes.PageSection[2].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[2].SectionHeader}</SectionHeader>
 			<WidePageSectionContent>
 				{teamCards.data.map(n => 
@@ -100,7 +101,7 @@ function TeamPage({teamPage,teamCards}) {
 			</WidePageSectionContent>
 		</PageSection>
 
-		<PageSection id={teamPage.data.attributes.PageSection[3].id} isLightSection={true} css={baseGrid}>
+		<PageSection id={teamPage.data.attributes.PageSection[3].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
 			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[3].SectionHeader}</SectionHeader>
 			<PageSectionContent>
             	<ReactMarkdown rehypePlugins={[rehypeRaw]}>
