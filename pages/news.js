@@ -95,27 +95,9 @@ let NewsExcerpt = styled.p``;
 
 let NewsRelatedLinks = styled.ul``;
 
-// export async function getStaticProps(context) {
-//   return {
-//     props: await fetchAPI('/news-page?populate=*') // will be passed to the page component as props
-//   }
-// }
-
-// export async function getStaticProps(context) {
-//   return {
-//     props: await fetchAPI('/news-cards?populate=*') // will be passed to the page component as props
-//   }
-// }
-
 export async function getStaticProps(context) {
   let newsPage = await fetchAPI('/news-page?populate=*');
   let newsCards = await fetchAPI('/news-cards?populate=*');
-  console.log({
-    props: {
-      newsPage:newsPage,
-      newsCards:newsCards
-    }  // will be passed to the page component as props
-  });
   return {
     props: {
       newsPage:newsPage,
