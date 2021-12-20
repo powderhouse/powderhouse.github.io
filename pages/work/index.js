@@ -27,87 +27,71 @@ import { fetchAPI } from "../../lib/api";
 
 function WorkPage({workPage,partnerCards,projectCards,pastLifeCards}) {
     return (
-        <PageContainer css={baseGrid}>
+    <PageContainer css={baseGrid}>
 		<Header />
 		<PageSplash bgColor='green' color='off-white'>
 			<PageHeader>{workPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Selected Partners</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Selected Projects</PageTOCLink>
-				</PageTOCListItem>
-				<PageTOCListItem>
-					<PageTOCLink href='#'>Past Lives</PageTOCLink>
-				</PageTOCListItem>
+				{workPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
 				{workPage.data.attributes.PageSplash.PageIntro}
 			</ReactMarkdown>
 		</PageIntro>
 
-		<PageSection isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.PartnerHeader}</SectionHeader>
-			<PartnerSectionContent>
-				{partnerCards.data.attributes.PartnerCards.map(
-					n => ( 	<PartnerLink key={n.id} href={n.Link}>
+		{workPage.data.attributes.PageSections.map(n => 
+			<PageSection isLightSection={true} css={baseGrid}>
+				<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
+				{n.PageSectionContent==null ? "" : <PageSectionContent>{n.PageSectionContent}</PageSectionContent>}
+
+				{n.SectionHeader=="Partners" ?
+					(<PartnerSectionContent>
+						{partnerCards.data.attributes.PartnerCards.map(n =>
+							<PartnerLink key={n.id} href={n.Link}>
 								<PartnerCard>
 									<PartnerLogo src={n.Image.data.attributes.formats == null ? n.Image.data.attributes.url : n.Image.data.attributes.formats.thumbnail.url} alt={n.Image.data.attributes.alternativeText} />
 								</PartnerCard>
-							</PartnerLink>
-							 
-						)
-					)
+							</PartnerLink>		 
+						)}
+					</PartnerSectionContent>) : ""
 				}
-			</PartnerSectionContent>
-		</PageSection>
 
-		<PageSection isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.ProjectHeader}</SectionHeader>
-			
-			<WidePageSectionContent>
-				{projectCards.data.map(
-					n => (	<ProjectCard key={n.attributes.id}>
-								<ProjectLink href={n.attributes.ProjectLink}>
+				{n.SectionHeader=="Projects" ?
+					(<WidePageSectionContent>
+						{projectCards.data.map(i => 
+							<ProjectCard key={i.attributes.id}>
+								<ProjectLink href={i.attributes.ProjectLink}>
 									<ProjectImageDiv>
-										<ProjectFeatureImage src={ n.attributes.ProjectFeatureImage.data.attributes.formats == null ? n.attributes.ProjectFeatureImage.data.attributes.url : n.attributes.ProjectFeatureImage.data.attributes.formats.small.url } alt={n.attributes.ProjectFeatureImage.data.attributes.alternativeText} />
+										<ProjectFeatureImage src={ i.attributes.ProjectFeatureImage.data.attributes.formats == null ? i.attributes.ProjectFeatureImage.data.attributes.url : i.attributes.ProjectFeatureImage.data.attributes.formats.small.url } alt={i.attributes.ProjectFeatureImage.data.attributes.alternativeText} />
 									</ProjectImageDiv>
-									<ProjectTitle>{n.attributes.ProjectTitle}</ProjectTitle>
-									<ProjectSubtitle>{n.attributes.ProjectSubtitle}</ProjectSubtitle>
+									<ProjectTitle>{i.attributes.ProjectTitle}</ProjectTitle>
+									<ProjectSubtitle>{i.attributes.ProjectSubtitle}</ProjectSubtitle>
 								</ProjectLink>
 							</ProjectCard>
-							 
-						)
-					)
-				}
-			</WidePageSectionContent>
-		</PageSection>
+						)}
+						</WidePageSectionContent>) : ""
+					}
 
-		<PageSection isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{workPage.data.attributes.PastLifeHeader}</SectionHeader>
-			<PageSectionContent>
-				{workPage.data.attributes.PastLifeIntro}
-			</PageSectionContent>
-			<PastLifeSectionContent>
-				{pastLifeCards.data.attributes.PastLifeCards.map(
-					n => ( 	<PastLifeLink  key={n.id} href={n.Link}>
-								<PastLifeCard>
-									<PastLifeImage src={n.Image.data.attributes.formats == null ? n.Image.data.attributes.url : n.Image.data.attributes.formats.medium.url} alt={n.Image.data.attributes.alternativeText} />
-								</PastLifeCard>
-							</PastLifeLink>
-							 
-						)
-					)
-				}
-			</PastLifeSectionContent>
-		</PageSection>
+					{n.SectionHeader=="Past Lives" ?
+						(<PastLifeSectionContent>
+							{pastLifeCards.data.attributes.PastLifeCards.map(n => 
+								(<PastLifeLink  key={n.id} href={n.Link}>
+										<PastLifeCard>
+											<PastLifeImage src={n.Image.data.attributes.formats == null ? n.Image.data.attributes.url : n.Image.data.attributes.formats.medium.url} alt={n.Image.data.attributes.alternativeText} />
+										</PastLifeCard>
+									</PastLifeLink>
+								)
+							)}
+						</PastLifeSectionContent>) : ""
+					}
+				</PageSection>
+			)}
 
 		<Footer />
 	</PageContainer>
-    );
+  );
 }
 
 let PartnerSectionContent = styled(WidePageSectionContent)`

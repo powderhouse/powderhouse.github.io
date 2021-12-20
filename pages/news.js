@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -45,7 +47,11 @@ function NewsPage({newsPage,newsCards}) {
 							</NewsHeader>
 							<NewsContent>
 								<NewsTitle>{n.attributes.NewsTitle}</NewsTitle>
-								<NewsExcerpt>{n.attributes.NewsExcerpt}</NewsExcerpt>
+								<NewsExcerpt>
+            			<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+										{n.attributes.NewsExcerpt}
+									</ReactMarkdown>
+								</NewsExcerpt>
 								<NewsRelatedLinks>
 									{n.attributes.NewsRelatedLinks.map( l => (
 										<a href={l.Link} key={l.id}>

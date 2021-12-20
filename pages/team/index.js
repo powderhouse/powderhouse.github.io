@@ -28,88 +28,53 @@ import { fetchAPI } from "../../lib/api";
 
 function TeamPage({teamPage,teamCards}) {
     return (
-        <PageContainer css={baseGrid}>
-        {JSON.stringify(teamCards)}
+    <PageContainer css={baseGrid}>
 		<Header />
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>{teamPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
-				{teamPage.data.attributes.PageSection.map(n=>
-					<PageTOCListItem>
-						<PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink>
-					</PageTOCListItem>
-					)
-				}
+				{Object.keys(teamCards).map(i => <PageTOCListItem><PageTOCLink href={"#"+i.replace(/\s+/g, '-').toLowerCase()}>{i}</PageTOCLink></PageTOCListItem>)}
+				{teamPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
 				{teamPage.data.attributes.PageSplash.PageIntro}
 			</ReactMarkdown>
 		</PageIntro>
 
-		<PageSection id={teamPage.data.attributes.PageSection[0].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[0].SectionHeader}</SectionHeader>
-			<WidePageSectionContent>
-				{teamCards.data.map(n => 
-					n.attributes.Role == "Staff" ?
-						(<PersonCard>
-							<PersonHeadshotDiv>	
-								<PersonHeadshot src={n.attributes.Headshot.data.attributes.formats == null ? n.attributes.Headshot.data.attributes.url : n.attributes.Headshot.data.attributes.formats.small.url} alt={n.attributes.Headshot.data.attributes.alternativeText} />
-							</PersonHeadshotDiv>
-							<PersonName>{n.attributes.Name}</PersonName>
-							<PersonTitle>{n.attributes.Title}</PersonTitle>
-							<PersonLinks>
-								{n.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
-							</PersonLinks>
-						</PersonCard>) : ""
-					)
-				}
-			</WidePageSectionContent>
-		</PageSection>
+		{Object.keys(teamCards).map(i => (
+			<PageSection isLightSection={true} css={baseGrid}>
+				<SectionHeader id={i.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{i}</SectionHeader>
+				<WidePageSectionContent>
+						{teamCards[i].map(j => (
+							<PersonCard key={j.id}>
+								{i=="Staff" ? <PersonHeadshotDiv>
+									<PersonHeadshot src={j.attributes.Headshot.data.attributes.formats == null ? j.attributes.Headshot.data.attributes.url : j.attributes.Headshot.data.attributes.formats.small.url} alt={j.attributes.Headshot.data.attributes.alternativeText} />
+								</PersonHeadshotDiv> : ""}
+								<PersonName>{j.attributes.Name}</PersonName>
+								{i=="Staff" ? <PersonTitle>{j.attributes.Title}</PersonTitle> : ""}
+								{i=="Advisor" ? <PersonBio><ReactMarkdown rehypePlugins={[rehypeRaw]}>{j.attributes.Bio}</ReactMarkdown></PersonBio> : ""}
+								<PersonLinks>
+									{j.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
+								</PersonLinks>
+							</PersonCard>
+						))}
+				</WidePageSectionContent>
+			</PageSection>
+		))}
 
-		<PageSection id={teamPage.data.attributes.PageSection[1].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[1].SectionHeader}</SectionHeader>
-			<WidePageSectionContent>
-				{teamCards.data.map(n => 
-					n.attributes.Role == "Advisor" ?
-						(<PersonCard>
-							<PersonName>{n.attributes.Name}</PersonName>
-							<PersonBio>{n.attributes.Bio}</PersonBio>
-							<PersonLinks>
-								{n.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
-							</PersonLinks>
-						</PersonCard>) : ""
-					)
-				}
-			</WidePageSectionContent>
-		</PageSection>
-
-		<PageSection id={teamPage.data.attributes.PageSection[2].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[2].SectionHeader}</SectionHeader>
-			<WidePageSectionContent>
-				{teamCards.data.map(n => 
-					n.attributes.Role == "Alumni" ?
-						(<PersonCard>
-							<PersonName>{n.attributes.Name}</PersonName>
-							<PersonLinks>
-								{n.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
-							</PersonLinks>
-						</PersonCard>) : ""
-					)
-				}
-			</WidePageSectionContent>
-		</PageSection>
-
-		<PageSection id={teamPage.data.attributes.PageSection[3].SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLightSection={true} css={baseGrid}>
-			<SectionHeader isLeftHeader={true}>{teamPage.data.attributes.PageSection[3].SectionHeader}</SectionHeader>
-			<PageSectionContent>
-            	<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-					{teamPage.data.attributes.PageSection[3].PageSectionContent}
-				</ReactMarkdown>
-				<a href="/jobs"><div>Jobs</div></a>
-			</PageSectionContent>
-		</PageSection>
+		{teamPage.data.attributes.PageSections.map(n =>
+			<PageSection isLightSection={true} css={baseGrid}>
+					<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
+				<PageSectionContent>
+	        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+						{n.PageSectionContent}
+					</ReactMarkdown>
+					{n.SectionHeader=="Jobs" ? <a href="#tk"><div>Jobs</div></a> : ""}
+				</PageSectionContent>
+			</PageSection>
+		)}
 
 		<Footer />
 	</PageContainer>
@@ -147,13 +112,23 @@ let PersonBio = styled.p`
 	
 `;
 
+function sortTeamCards(teamCards) {
+	let roleDict = {};
+	let uniqueRoles = [...new Set(teamCards.data.map(n => n.attributes.Role))];
+	for (let i in uniqueRoles) { roleDict[uniqueRoles[i]] = [] };
+	for (let j of teamCards.data) {
+		roleDict[j.attributes.Role].push(j);
+	}
+	return roleDict
+}
+
 export async function getStaticProps(context) {
   let teamPage = await fetchAPI('/team?populate=*');
   let teamCards = await fetchAPI('/team-cards?populate=*');
   return {
     props: {
       teamPage:teamPage,
-      teamCards:teamCards
+      teamCards:sortTeamCards(teamCards)
     }  // will be passed to the page component as props
   }
 }
