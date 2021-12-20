@@ -34,7 +34,7 @@ function AboutPage({data}) {
 				{data.attributes.PageSplash.PageHeader}
 			</PageHeader>
 			<PageTableOfContents>
-				{data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
+				{data.attributes.PageSections.map(n => <PageTOCListItem key={n.id}><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -43,7 +43,7 @@ function AboutPage({data}) {
 
 		{
 			data.attributes.PageSections.map(
-				n => (	<PageSection id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} css={baseGrid} isLightSection={n.isLightSection}>
+				n => (	<PageSection key={n.id} id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} css={baseGrid} isLightSection={n.isLightSection}>
 							<SectionHeader isLeftHeader={n.isLeftHeader}>
 								{n.SectionHeader}
 							</SectionHeader>

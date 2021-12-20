@@ -32,7 +32,7 @@ function WorkPage({workPage,partnerCards,projectCards,pastLifeCards}) {
 		<PageSplash bgColor='green' color='off-white'>
 			<PageHeader>{workPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
-				{workPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
+				{workPage.data.attributes.PageSections.map(n => <PageTOCListItem key={n.id}><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -42,7 +42,7 @@ function WorkPage({workPage,partnerCards,projectCards,pastLifeCards}) {
 		</PageIntro>
 
 		{workPage.data.attributes.PageSections.map(n => 
-			<PageSection isLightSection={true} css={baseGrid}>
+			<PageSection key={n.id} isLightSection={true} css={baseGrid}>
 				<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
 				{n.PageSectionContent==null ? "" : <PageSectionContent>{n.PageSectionContent}</PageSectionContent>}
 
@@ -157,14 +157,14 @@ export async function getStaticProps(context) {
   let partnerCards = await fetchAPI('/work?populate[PartnerCards][populate]=*');
   let projectCards = await fetchAPI('/project-cards?populate=*');
   let pastLifeCards = await fetchAPI('/work?populate[PastLifeCards][populate]=*');
-  console.log({
-    props: {
-      workPage:workPage,
-      partnerCards:partnerCards,
-      projectCards:projectCards,
-      pastLifeCards:pastLifeCards
-    }  // will be passed to the page component as props
-  });
+  // console.log({
+  //   props: {
+  //     workPage:workPage,
+  //     partnerCards:partnerCards,
+  //     projectCards:projectCards,
+  //     pastLifeCards:pastLifeCards
+  //   }  // will be passed to the page component as props
+  // });
   return {
     props: {
       workPage:workPage,
