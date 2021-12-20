@@ -48,7 +48,7 @@ function AboutPage({data}) {
 								{n.SectionHeader}
 							</SectionHeader>
 							<PageSectionContent>
-	        					<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+	        			<ReactMarkdown rehypePlugins={[rehypeRaw]}>
 									{n.PageSectionContent}
 								</ReactMarkdown>
 							</PageSectionContent>

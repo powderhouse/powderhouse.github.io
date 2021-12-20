@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -26,50 +28,40 @@ import { fetchAPI } from "../../lib/api";
 function JobsPage({jobPage,jobCards}) {
     return (
         <PageContainer css={baseGrid}>
-        {JSON.stringify(jobPage)}
 		<Header />
-{/* 		<PageSplash bgColor='purple' color='off-black'> */}
-{/* 			<PageHeader>Jobs</PageHeader> */}
-{/* 			<PageTableOfContents> */}
-{/* 				{jobPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)} */}
-{/* 			</PageTableOfContents> */}
-{/* 		</PageSplash> */}
-{/* 		<PageIntro> */}
-{/* 			<p> */}
-{/* 				Come invent the future of learning and give youth a say. */}
-{/* 			</p> */}
-{/* 		</PageIntro> */}
-{/*  */}
-{/* 		<PageSection isLightSection={true} css={baseGrid}> */}
-{/* 			<SectionHeader isLeftHeader={true}>Open Positions</SectionHeader> */}
-{/* 			<PageSectionContent> */}
-{/* 				<p> */}
-{/* 					We&apos;re always looking for great people.  If you care about our mission and want to learn more about how you could get involved, but none of our open roles speak to you, please <a href="">get in touch</a>. */}
-{/* 				</p> */}
-{/* 			</PageSectionContent> */}
-{/* 		</PageSection> */}
-{/*  */}
-{/* 		<PageSection isLightSection={true} css={baseGrid}> */}
-{/* 			<JobCard css={baseGrid}> */}
-{/* 				<SectionHeader isLeftHeader={true}>Financial Researcher</SectionHeader> */}
-{/* 				<PageSectionContent> */}
-{/* 					<p> */}
-{/* 						Seeking a creative financial expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for financing secondary and postsecondary education, from first principles. */}
-{/* 					</p> */}
-{/* 					<a href=""><div>Apply</div></a> */}
-{/* 				</PageSectionContent> */}
-{/* 			</JobCard> */}
-{/*  */}
-{/* 			<JobCard css={baseGrid}> */}
-{/* 				<SectionHeader isLeftHeader={true}>Legal Researcher</SectionHeader> */}
-{/* 				<PageSectionContent> */}
-{/* 					<p> */}
-{/* 						Seeking a creative legal expert to chart a path to reinvention in public education, authoring a non-partisan catalog documenting, understanding, and developing novel options for legal activism as a tool to dramatically expand the range, diversity, and equitable access of new secondary and postsecondary educational options for Americans. */}
-{/* 					</p> */}
-{/* 					<a href=""><div>Apply</div></a> */}
-{/* 				</PageSectionContent> */}
-{/* 			</JobCard> */}
-{/* 		</PageSection> */}
+
+		<PageSplash bgColor='purple' color='off-black'>
+			<PageHeader>Jobs</PageHeader>
+			<PageTableOfContents>
+				{jobPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
+			</PageTableOfContents>
+		</PageSplash>
+		<PageIntro>
+			{jobPage.data.attributes.PageSplash.PageIntro}
+		</PageIntro>
+
+		{jobPage.data.attributes.PageSections.map(n =>
+
+			jobList.includes(n.SectionHeader) && jobCards.hasOwnProperty(n.SectionHeader) ?
+
+				(<PageSection isLightSection={true} css={baseGrid}>
+					<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
+					<PageSectionContent>
+						{n.PageSectionContent}
+						<a href={jobCards[n.SectionHeader][0].attributes["Link"]}>Apply</a>
+					</PageSectionContent>
+				</PageSection>) : 
+
+				(<PageSection isLightSection={true} css={baseGrid}>
+					<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
+					<PageSectionContent>
+		        		<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+							{n.PageSectionContent}
+						</ReactMarkdown>
+					</PageSectionContent>
+				</PageSection>)
+
+		)}
 
 		<Footer />
 	</PageContainer>
@@ -80,13 +72,25 @@ let JobCard = styled.div`
 	grid-column: 1 / -1;
 `;
 
+let jobList = ["Legal Researcher","Financial Researcher"]
+
+function sortJobCards(jobCards) {
+	let jobDict = {};
+	let uniqueJobs = [...new Set(jobCards.data.map(n => n.attributes.JobTitle))];
+	for (let i in uniqueJobs) { jobDict[uniqueJobs[i]] = [] };
+	for (let j of jobCards.data) {
+		jobDict[j.attributes.JobTitle].push(j);
+	}
+	return jobDict
+}
+
 export async function getStaticProps(context) {
-  let jobPage = await fetchAPI('/job?populate=*');
+  let jobPage = await fetchAPI('/jobs?populate=*');
   let jobCards = await fetchAPI('/job-cards?populate=*');
   return {
     props: {
       jobPage:jobPage,
-      jobCards:jobCards
+      jobCards:sortJobCards(jobCards)
     }  // will be passed to the page component as props
   }
 }

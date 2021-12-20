@@ -29,12 +29,13 @@ import { fetchAPI } from "../../lib/api";
 function TeamPage({teamPage,teamCards}) {
     return (
     <PageContainer css={baseGrid}>
+		{/* {JSON.stringify(teamCards)} */}
+
 		<Header />
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>{teamPage.data.attributes.PageSplash.PageHeader}</PageHeader>
 			<PageTableOfContents>
-				{Object.keys(teamCards).map(i => <PageTOCListItem><PageTOCLink href={"#"+i.replace(/\s+/g, '-').toLowerCase()}>{i}</PageTOCLink></PageTOCListItem>)}
-				{teamPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
+				{teamPage.data.attributes.PageSections.map(n => (cardSections.includes(n.SectionHeader) && teamCards.hasOwnProperty(n.SectionHeader)) || !cardSections.includes(n.SectionHeader) ? <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem> : "")}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>
@@ -43,37 +44,36 @@ function TeamPage({teamPage,teamCards}) {
 			</ReactMarkdown>
 		</PageIntro>
 
-		{Object.keys(teamCards).map(i => (
-			<PageSection isLightSection={true} css={baseGrid}>
-				<SectionHeader id={i.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{i}</SectionHeader>
-				<WidePageSectionContent>
-						{teamCards[i].map(j => (
-							<PersonCard key={j.id}>
-								{i=="Staff" ? <PersonHeadshotDiv>
-									<PersonHeadshot src={j.attributes.Headshot.data.attributes.formats == null ? j.attributes.Headshot.data.attributes.url : j.attributes.Headshot.data.attributes.formats.small.url} alt={j.attributes.Headshot.data.attributes.alternativeText} />
-								</PersonHeadshotDiv> : ""}
-								<PersonName>{j.attributes.Name}</PersonName>
-								{i=="Staff" ? <PersonTitle>{j.attributes.Title}</PersonTitle> : ""}
-								{i=="Advisor" ? <PersonBio><ReactMarkdown rehypePlugins={[rehypeRaw]}>{j.attributes.Bio}</ReactMarkdown></PersonBio> : ""}
-								<PersonLinks>
-									{j.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
-								</PersonLinks>
-							</PersonCard>
-						))}
-				</WidePageSectionContent>
-			</PageSection>
-		))}
+		 {teamPage.data.attributes.PageSections.map(n =>
 
-		{teamPage.data.attributes.PageSections.map(n =>
-			<PageSection isLightSection={true} css={baseGrid}>
-					<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
-				<PageSectionContent>
-	        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-						{n.PageSectionContent}
-					</ReactMarkdown>
-					{n.SectionHeader=="Jobs" ? <a href="#tk"><div>Jobs</div></a> : ""}
-				</PageSectionContent>
-			</PageSection>
+				cardSections.includes(n.SectionHeader) && teamCards.hasOwnProperty(n.SectionHeader) ?
+
+						(<PageSection isLightSection={true} css={baseGrid}>
+							{teamCards.hasOwnProperty(n.SectionHeader) ? <SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader> : ""}
+							<WidePageSectionContent>
+								{teamCards[n.SectionHeader].map(j => (
+									<PersonCard key={j.id}>
+										{n.SectionHeader=="Staff" ? <PersonHeadshotDiv><PersonHeadshot src={j.attributes.Headshot.data.attributes.formats == null ? j.attributes.Headshot.data.attributes.url : j.attributes.Headshot.data.attributes.formats.small.url} alt={j.attributes.Headshot.data.attributes.alternativeText} /></PersonHeadshotDiv> : ""}
+										<PersonName>{j.attributes.Name}</PersonName>
+										{n.SectionHeader=="Staff" ? <PersonTitle>{j.attributes.Title}</PersonTitle> : ""}
+										{n.SectionHeader=="Advisors" ? <PersonBio><ReactMarkdown rehypePlugins={[rehypeRaw]}>{j.attributes.Bio}</ReactMarkdown></PersonBio> : ""}
+										<PersonLinks>
+											{j.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
+										</PersonLinks>
+									</PersonCard>
+								))}
+							</WidePageSectionContent>
+						</PageSection>) :
+
+					(cardSections.includes(n.SectionHeader) ? "" : <PageSection isLightSection={true} css={baseGrid}>
+							<SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
+						<PageSectionContent>
+			        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+								{n.PageSectionContent}
+							</ReactMarkdown>
+							{n.SectionHeader=="Jobs" ? <a href="#tk"><div>Jobs</div></a> : ""}
+						</PageSectionContent>
+					</PageSection>)
 		)}
 
 		<Footer />
@@ -111,6 +111,8 @@ let PersonLinks = styled.ul`
 let PersonBio = styled.p`
 	
 `;
+
+let cardSections = ["Staff","Advisors","Alumni"];
 
 function sortTeamCards(teamCards) {
 	let roleDict = {};
