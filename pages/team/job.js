@@ -33,7 +33,7 @@ function JobDetailPage({jobCards}) {
         <PageSplash bgColor='red' color='off-white'>
           <PageHeader>{jobCards.data[0].attributes.JobTitle}</PageHeader>
           <PageTableOfContents>
-            {jobCards.data[0].attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
+            {jobCards.data[0].attributes.PageSections.map(n => <PageTOCListItem key={n.id}><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
           </PageTableOfContents>
         </PageSplash>
         <PageIntro>
@@ -41,7 +41,7 @@ function JobDetailPage({jobCards}) {
         </PageIntro>
 
         {jobCards.data[0].attributes.PageSections.map(n => 
-          <PageSection isLightSection={true} css={baseGrid}>
+          <PageSection key={n.id} isLightSection={true} css={baseGrid}>
             <SectionHeader id={n.SectionHeader.replace(/\s+/g, '-').toLowerCase()} isLeftHeader={true}>{n.SectionHeader}</SectionHeader>
             <PageSectionContent>
               <ReactMarkdown rehypePlugins={[rehypeRaw]}>

@@ -33,7 +33,7 @@ function JobsPage({jobPage,jobCards}) {
 		<PageSplash bgColor='purple' color='off-black'>
 			<PageHeader>Jobs</PageHeader>
 			<PageTableOfContents>
-				{jobPage.data.attributes.PageSections.map(n => <PageTOCListItem><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
+				{jobPage.data.attributes.PageSections.map(n => <PageTOCListItem key={n.id}><PageTOCLink href={"#"+n.SectionHeader.replace(/\s+/g, '-').toLowerCase()}>{n.SectionHeader}</PageTOCLink></PageTOCListItem>)}
 			</PageTableOfContents>
 		</PageSplash>
 		<PageIntro>

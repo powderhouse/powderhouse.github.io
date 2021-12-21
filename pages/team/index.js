@@ -58,7 +58,7 @@ function TeamPage({teamPage,teamCards}) {
 										{n.SectionHeader=="Staff" ? <PersonTitle>{j.attributes.Title}</PersonTitle> : ""}
 										{n.SectionHeader=="Advisors" ? <PersonBio><ReactMarkdown rehypePlugins={[rehypeRaw]}>{j.attributes.Bio}</ReactMarkdown></PersonBio> : ""}
 										<PersonLinks>
-											{j.attributes.LinkList.map(l => <a href={l.Link}><li>{l.LinkText}</li></a>)}
+											{j.attributes.LinkList.map(l => <a key={l.id} href={l.Link}><li>{l.LinkText}</li></a>)}
 										</PersonLinks>
 									</PersonCard>
 								))}
