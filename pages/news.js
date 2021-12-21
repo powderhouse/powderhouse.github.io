@@ -41,7 +41,7 @@ function NewsPage({ newsPage, newsCards }) {
 				{newsCards.data.map((n) => (
 					<NewsCard key={n.id} css={baseGrid}>
 						<NewsHeader isLeftHeader={true}>
-							<NewsDate>{n.attributes.NewsDate}</NewsDate>
+							<NewsDate>{parseDate(n.attributes.NewsDate)}</NewsDate>
 							<NewsType>{n.attributes.NewsType}</NewsType>
 						</NewsHeader>
 						<NewsContent>
@@ -87,6 +87,12 @@ let NewsTitle = styled.h2`
 let NewsExcerpt = styled.p``;
 
 let NewsRelatedLinks = styled.ul``;
+
+function parseDate(dateString) {
+    let parts =dateString.split('-');
+    let dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+    return dateObj.toDateString().split(" ").slice(1).join(" ")
+}
 
 export async function getStaticProps(context) {
 	let newsPage = await fetchAPI("/news-page?populate=*");

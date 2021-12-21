@@ -130,6 +130,7 @@ let ProjectFeatureImage = styled.div`
 `;
 
 let ProjectImage = styled.img`
+  height:100%;
   object-fit: cover;
 
   /*Masonry*/

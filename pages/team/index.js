@@ -86,7 +86,7 @@ function TeamPage({ teamPage, teamCards }) {
 													j.attributes.Headshot.data.attributes.formats == null
 														? j.attributes.Headshot.data.attributes.url
 														: j.attributes.Headshot.data.attributes.formats
-																.small.url
+																.thumbnail.url
 												}
 												alt={
 													j.attributes.Headshot.data.attributes.alternativeText
@@ -165,7 +165,9 @@ let PersonHeadshotDiv = styled.div`
 `;
 
 let PersonHeadshot = styled.img`
-	object-fit: cover;
+	height:100%;
+	width:100%;
+	object-fit: contain;
 `;
 
 let PersonName = styled.h3``;

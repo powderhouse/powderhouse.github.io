@@ -159,6 +159,8 @@ let PartnerCard = styled.div`
 
 let PartnerLogo = styled.img`
 	pointer-events: none;
+	height:100%;
+  	width:100%;
 	object-fit: cover;
 `;
 
@@ -175,11 +177,13 @@ let ProjectLink = styled.a`
 
 let ProjectImageDiv = styled.div`
 	background-color: var(--yellow);
-	height: 150px; /*TK Explicit?*/
+	height: 200px; /*TK Explicit?*/
 	overflow: hidden;
 `;
 
 let ProjectFeatureImage = styled.img`
+	height:100%;
+  	width:100%;
 	object-fit: cover;
 `;
 
@@ -194,12 +198,14 @@ let PastLifeSectionContent = styled(WidePageSectionContent)`
 `;
 
 let PastLifeCard = styled.div`
-	height: 250px; /*TK Explicit?*/
+	height: 330px; /*TK Explicit?*/
 	border: black dotted 1px;
 	overflow: hidden;
 `;
 
 let PastLifeImage = styled.img`
+	height:100%;
+  	width:100%;
 	object-fit: cover;
 `;
 
