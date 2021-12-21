@@ -61,10 +61,11 @@ function WorkPage({workPage,partnerCards,projectCards,pastLifeCards}) {
 				{n.SectionHeader=="Projects" ?
 					(<WidePageSectionContent>
 						{projectCards.data.map(i => 
+
 							<ProjectCard key={i.attributes.id}>
 								<ProjectLink href={i.attributes.ProjectLink}>
 									<ProjectImageDiv>
-										<ProjectFeatureImage src={ i.attributes.ProjectFeatureImage.data.attributes.formats == null ? i.attributes.ProjectFeatureImage.data.attributes.url : i.attributes.ProjectFeatureImage.data.attributes.formats.small.url } alt={i.attributes.ProjectFeatureImage.data.attributes.alternativeText} />
+										<ProjectFeatureImage src={ i.attributes.ProjectFeatureImage.data.attributes.formats == null ? i.attributes.ProjectFeatureImage.data.attributes.url : i.attributes.ProjectFeatureImage.data.attributes.formats.thumbnail.url } alt={i.attributes.ProjectFeatureImage.data.attributes.alternativeText} />
 									</ProjectImageDiv>
 									<ProjectTitle>{i.attributes.ProjectTitle}</ProjectTitle>
 									<ProjectSubtitle>{i.attributes.ProjectSubtitle}</ProjectSubtitle>
