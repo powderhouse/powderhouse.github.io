@@ -158,14 +158,6 @@ export async function getStaticProps(context) {
   let partnerCards = await fetchAPI('/work?populate[PartnerCards][populate]=*');
   let projectCards = await fetchAPI('/project-cards?populate=*');
   let pastLifeCards = await fetchAPI('/work?populate[PastLifeCards][populate]=*');
-  // console.log({
-  //   props: {
-  //     workPage:workPage,
-  //     partnerCards:partnerCards,
-  //     projectCards:projectCards,
-  //     pastLifeCards:pastLifeCards
-  //   }  // will be passed to the page component as props
-  // });
   return {
     props: {
       workPage:workPage,
