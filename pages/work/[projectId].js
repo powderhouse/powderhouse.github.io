@@ -66,8 +66,8 @@ function ProjectDetailPage({ projectCards }) {
       </ProjectSplash>
 
       <PageGallery>
-        {projectCard.attributes.ProjectGallery.data.map(
-          (i) => (
+        {projectCard.attributes.ProjectGallery.data == null ? "" :
+          projectCard.attributes.ProjectGallery.data.map(i => (
             <ProjectImageDiv key={i.id}>
               {JSON.stringify()}
               <ProjectImage
