@@ -9,47 +9,52 @@ import { baseGrid, PageContainer } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
+import { useRouter } from 'next/router';
 
-function ProjectDetailPage({ projectCards, projectNum }) {
+function ProjectDetailPage({ projectCards }) {
+  const router = useRouter();
+  const { projectId } = router.query;
+  let projectCard = getProjectCardById(projectId,projectCards);
+  
   return (
     <PageContainer css={baseGrid}>
       <Header />
       <ProjectSplash>
         <ProjectTitle>
-          {projectCards.data[projectNum].attributes.ProjectTitle}
+          {projectCard.attributes.ProjectTitle}
         </ProjectTitle>
         <ProjectFeatureImage>
           <ProjectImage
             src={
-              projectCards.data[projectNum].attributes.ProjectFeatureImage.data
+              projectCard.attributes.ProjectFeatureImage.data
                 .attributes.formats == null
-                ? projectCards.data[projectNum].attributes.ProjectFeatureImage
+                ? projectCard.attributes.ProjectFeatureImage
                     .data.attributes.url
-                : projectCards.data[projectNum].attributes.ProjectFeatureImage
+                : projectCard.attributes.ProjectFeatureImage
                     .data.attributes.formats.medium.url
             }
             alt={
-              projectCards.data[projectNum].attributes.ProjectFeatureImage.data
+              projectCard.attributes.ProjectFeatureImage.data
                 .attributes.alternativeText
             }
           />
         </ProjectFeatureImage>
         <ProjectInfo>
           <ProjectSubtitle>
-            {projectCards.data[projectNum].attributes.ProjectSubtitle}
+            {projectCard.attributes.ProjectSubtitle}
           </ProjectSubtitle>
           <ProjectDescription>
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-              {projectCards.data[projectNum].attributes.ProjectDescription}
+              {projectCard.attributes.ProjectDescription}
             </ReactMarkdown>
           </ProjectDescription>
           <ProjectInfoList>
             <li>
-              {projectCards.data[projectNum].attributes.YearStart}-
-              {projectCards.data[projectNum].attributes.YearEnd}
+              {projectCard.attributes.YearStart}-
+              {projectCard.attributes.YearEnd}
             </li>
 
-            {projectCards.data[projectNum].attributes.ProjectInfoList.map(
+            {projectCard.attributes.ProjectInfoList.map(
               (n) => (
                 <a href={n.Link}>
                   <li>{n.LinkText}</li>
@@ -61,7 +66,7 @@ function ProjectDetailPage({ projectCards, projectNum }) {
       </ProjectSplash>
 
       <PageGallery>
-        {projectCards.data[projectNum].attributes.ProjectGallery.data.map(
+        {projectCard.attributes.ProjectGallery.data.map(
           (i) => (
             <ProjectImageDiv>
               {JSON.stringify()}
@@ -69,7 +74,7 @@ function ProjectDetailPage({ projectCards, projectNum }) {
                 src={
                   i.attributes.formats == null
                     ? i.attributes.url
-                    : i.attributes.formats.small.url
+                    : i.attributes.formats.thumbnail.url
                 }
               />
             </ProjectImageDiv>
@@ -156,14 +161,36 @@ let ProjectImageDiv = styled.li`
   break-inside: avoid;
 `;
 
-let projectNum = 2;
+function getProjectCardById(projectId,projectCards) {
+  for (let card in projectCards.data) {
+    if (projectCards.data[card].attributes.ProjectId == projectId) {
+      return projectCards.data[card]
+    }
+  }
+}
+
+function assemblePaths(paths) {
+  let pathsList = [];
+  for (let p in paths) {
+    pathsList.push({params:{projectId:paths[p]}})
+  }
+  return pathsList
+}
+
+export async function getStaticPaths() {
+  let projectCards = await fetchAPI("/project-cards?populate=*");
+  let projectIds = projectCards.data.map(i => i.attributes.ProjectId);
+  return {
+    paths: assemblePaths(projectIds),
+    fallback: false
+  }
+}
 
 export async function getStaticProps(context) {
   let projectCards = await fetchAPI("/project-cards?populate=*");
   return {
     props: {
-      projectCards: projectCards,
-      projectNum: projectNum,
+      projectCards: projectCards
     }, // will be passed to the page component as props
   };
 }
