@@ -28,6 +28,7 @@ import { fetchAPI } from "../../lib/api";
 function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 	return (
 		<PageContainer css={baseGrid}>
+			{JSON.stringify()}
 			<Header />
 			<PageSplash bgColor="green" color="off-white">
 				<PageHeader>
@@ -37,13 +38,7 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 					{workPage.data.attributes.PageSections.map((n) => (
 						<PageTOCListItem key={n.id}>
 							<PageTOCLink
-								href={
-									"#" +
-									n.SectionHeader.replace(
-										/\s+/g,
-										"-"
-									).toLowerCase()
-								}
+								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
 							>
 								{n.SectionHeader}
 							</PageTOCLink>
@@ -68,37 +63,25 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 					{n.PageSectionContent == null ? (
 						""
 					) : (
-						<PageSectionContent>
-							{n.PageSectionContent}
-						</PageSectionContent>
+						<PageSectionContent>{n.PageSectionContent}</PageSectionContent>
 					)}
 
 					{n.SectionHeader == "Partners" ? (
 						<PartnerSectionContent>
-							{partnerCards.data.attributes.PartnerCards.map(
-								(n) => (
-									<PartnerLink key={n.id} href={n.Link}>
-										<PartnerCard>
-											<PartnerLogo
-												src={
-													n.Image.data.attributes
-														.formats == null
-														? n.Image.data
-																.attributes.url
-														: n.Image.data
-																.attributes
-																.formats
-																.thumbnail.url
-												}
-												alt={
-													n.Image.data.attributes
-														.alternativeText
-												}
-											/>
-										</PartnerCard>
-									</PartnerLink>
-								)
-							)}
+							{partnerCards.data.attributes.PartnerCards.map((n) => (
+								<PartnerLink key={n.id} href={n.Link}>
+									<PartnerCard>
+										<PartnerLogo
+											src={
+												n.Image.data.attributes.formats == null
+													? n.Image.data.attributes.url
+													: n.Image.data.attributes.formats[findLargestFormat(n.Image.data.attributes.formats,"small")].url
+											}
+											alt={n.Image.data.attributes.alternativeText}
+										/>
+									</PartnerCard>
+								</PartnerLink>
+							))}
 						</PartnerSectionContent>
 					) : (
 						""
@@ -108,38 +91,31 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 						<WidePageSectionContent>
 							{projectCards.data.map((i) => (
 								<ProjectCard key={i.attributes.id}>
-									<ProjectLink
-										href={"/work/" + i.attributes.ProjectId}
-									>
+									<ProjectLink href={"/work/" + i.attributes.ProjectId}>
 										{/* TK There's probably a better way to do this with relative URLS? */}
 										<ProjectImageDiv>
 											<ProjectFeatureImage
 												src={
-													i.attributes
-														.ProjectFeatureImage
-														.data.attributes
+													i.attributes.ProjectFeatureImage.data.attributes
 														.formats == null
-														? i.attributes
-																.ProjectFeatureImage
-																.data.attributes
+														? i.attributes.ProjectFeatureImage.data.attributes
 																.url
-														: i.attributes
-																.ProjectFeatureImage
-																.data.attributes
-																.formats
-																.thumbnail.url
+														: i.attributes.ProjectFeatureImage.data.attributes
+																.formats[
+																findLargestFormat(
+																	i.attributes.ProjectFeatureImage.data
+																		.attributes.formats,
+																	"small"
+																)
+														  ].url
 												}
 												alt={
-													i.attributes
-														.ProjectFeatureImage
-														.data.attributes
+													i.attributes.ProjectFeatureImage.data.attributes
 														.alternativeText
 												}
 											/>
 										</ProjectImageDiv>
-										<ProjectTitle>
-											{i.attributes.ProjectTitle}
-										</ProjectTitle>
+										<ProjectTitle>{i.attributes.ProjectTitle}</ProjectTitle>
 										<ProjectSubtitle>
 											{i.attributes.ProjectSubtitle}
 										</ProjectSubtitle>
@@ -153,30 +129,20 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 
 					{n.SectionHeader == "Past Lives" ? (
 						<PastLifeSectionContent>
-							{pastLifeCards.data.attributes.PastLifeCards.map(
-								(n) => (
-									<PastLifeLink key={n.id} href={n.Link}>
-										<PastLifeCard>
-											<PastLifeImage
-												src={
-													n.Image.data.attributes
-														.formats == null
-														? n.Image.data
-																.attributes.url
-														: n.Image.data
-																.attributes
-																.formats.medium
-																.url
-												}
-												alt={
-													n.Image.data.attributes
-														.alternativeText
-												}
-											/>
-										</PastLifeCard>
-									</PastLifeLink>
-								)
-							)}
+							{pastLifeCards.data.attributes.PastLifeCards.map((n) => (
+								<PastLifeLink key={n.id} href={n.Link}>
+									<PastLifeCard>
+										<PastLifeImage
+											src={
+												n.Image.data.attributes.formats == null
+													? n.Image.data.attributes.url
+													: n.Image.data.attributes.formats[findLargestFormat(n.Image.data.attributes.formats,"medium")].url
+											}
+											alt={n.Image.data.attributes.alternativeText}
+										/>
+									</PastLifeCard>
+								</PastLifeLink>
+							))}
 						</PastLifeSectionContent>
 					) : (
 						""
@@ -253,11 +219,19 @@ let PastLifeImage = styled.img`
 
 let PastLifeLink = styled.a``;
 
+function findLargestFormat(formatDict, maxSize = "large") {
+	let formats = ["large", "medium", "small", "thumbnail"];
+	formats = formats.slice(formats.indexOf(maxSize), formats.length);
+	for (let size in formats) {
+		if (formatDict.hasOwnProperty(formats[size])) {
+			return formats[size];
+		}
+	}
+}
+
 export async function getStaticProps(context) {
 	let workPage = await fetchAPI("/work?populate=*");
-	let partnerCards = await fetchAPI(
-		"/work?populate[PartnerCards][populate]=*"
-	);
+	let partnerCards = await fetchAPI("/work?populate[PartnerCards][populate]=*");
 	let projectCards = await fetchAPI("/project-cards?populate=*");
 	let pastLifeCards = await fetchAPI(
 		"/work?populate[PastLifeCards][populate]=*"

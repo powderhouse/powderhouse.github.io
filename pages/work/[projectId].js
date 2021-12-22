@@ -31,7 +31,8 @@ function ProjectDetailPage({ projectCards }) {
                 ? projectCard.attributes.ProjectFeatureImage
                     .data.attributes.url
                 : projectCard.attributes.ProjectFeatureImage
-                    .data.attributes.formats.thumbnail.url
+                    .data.attributes.formats[findLargestFormat(projectCard.attributes.ProjectFeatureImage
+                    .data.attributes.formats,"large")].url
             }
             alt={
               projectCard.attributes.ProjectFeatureImage.data
@@ -74,7 +75,7 @@ function ProjectDetailPage({ projectCards }) {
                 src={
                   i.attributes.formats == null
                     ? i.attributes.url
-                    : i.attributes.formats.thumbnail.url
+                    : i.attributes.formats[findLargestFormat(i.attributes.formats,"medium")].url
                 }
               />
             </ProjectImageDiv>
@@ -160,6 +161,16 @@ let ProjectImageDiv = styled.li`
   /*Masonry*/
   break-inside: avoid;
 `;
+
+function findLargestFormat(formatDict,maxSize="large") {
+    let formats=["large","medium","small","thumbnail"];
+    formats = formats.slice(formats.indexOf(maxSize),formats.length);
+    for (let size in formats) {
+        if (formatDict.hasOwnProperty(formats[size])) {
+            return formats[size]
+        }
+    }
+}
 
 function getProjectCardById(projectId,projectCards) {
   for (let card in projectCards.data) {
