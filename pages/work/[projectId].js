@@ -119,11 +119,11 @@ let ProjectInfo = styled.div`
   justify-content: space-around;
 `;
 
-let ProjectSubtitle = styled.p`
+let ProjectSubtitle = styled.div`
   font-size: 38px; /*TK Explicit?*/
 `;
 
-let ProjectDescription = styled.p``;
+let ProjectDescription = styled.div``;
 
 let ProjectInfoList = styled.ul``;
 

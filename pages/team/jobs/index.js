@@ -26,13 +26,12 @@ import { getStrapiMedia } from "../../../lib/media";
 import { fetchAPI } from "../../../lib/api";
 
 function JobsPage({ jobPage, jobCards }) {
-	function getJobIdByTitle(title,jobCards) {
-		return jobCards[title][0].attributes.JobId
+	function getJobIdByTitle(title, jobCards) {
+		return jobCards[title][0].attributes.JobId;
 	}
 
 	return (
 		<PageContainer css={baseGrid}>
-			{/* {JSON.stringify(jobCards)} */}
 			<Header />
 			<PageSplash bgColor="purple" color="off-black">
 				<PageHeader>Jobs</PageHeader>
@@ -40,7 +39,13 @@ function JobsPage({ jobPage, jobCards }) {
 					{jobPage.data.attributes.PageSections.map((n) => (
 						<PageTOCListItem key={n.id}>
 							<PageTOCLink
-								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+								href={
+									"#" +
+									n.SectionHeader.replace(
+										/\s+/g,
+										"-"
+									).toLowerCase()
+								}
 							>
 								{n.SectionHeader}
 							</PageTOCLink>
@@ -48,13 +53,22 @@ function JobsPage({ jobPage, jobCards }) {
 					))}
 				</PageTableOfContents>
 			</PageSplash>
-			<PageIntro>{jobPage.data.attributes.PageSplash.PageIntro}</PageIntro>
+			<PageIntro>
+				{jobPage.data.attributes.PageSplash.PageIntro}
+			</PageIntro>
 
 			{jobPage.data.attributes.PageSections.map((n) =>
 				jobCards.hasOwnProperty(n.SectionHeader) ? (
-					<PageSection isLightSection={true} css={baseGrid}>
+					<PageSection
+						key={n.id}
+						isLightSection={true}
+						css={baseGrid}
+					>
 						<SectionHeader
-							id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+							id={n.SectionHeader.replace(
+								/\s+/g,
+								"-"
+							).toLowerCase()}
 							isLeftHeader={true}
 						>
 							{n.SectionHeader}
@@ -62,7 +76,15 @@ function JobsPage({ jobPage, jobCards }) {
 						<PageSectionContent>
 							{n.PageSectionContent}
 							<div>
-								<a href={"/team/jobs/" + getJobIdByTitle(n.SectionHeader,jobCards)}>
+								<a
+									href={
+										"/team/jobs/" +
+										getJobIdByTitle(
+											n.SectionHeader,
+											jobCards
+										)
+									}
+								>
 									Apply
 								</a>
 							</div>
@@ -71,7 +93,11 @@ function JobsPage({ jobPage, jobCards }) {
 				) : (
 					<PageSection isLightSection={true} css={baseGrid}>
 						<SectionHeader
-							id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+							key={n.id}
+							id={n.SectionHeader.replace(
+								/\s+/g,
+								"-"
+							).toLowerCase()}
 							isLeftHeader={true}
 						>
 							{n.SectionHeader}

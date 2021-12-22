@@ -37,7 +37,13 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 					{workPage.data.attributes.PageSections.map((n) => (
 						<PageTOCListItem key={n.id}>
 							<PageTOCLink
-								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+								href={
+									"#" +
+									n.SectionHeader.replace(
+										/\s+/g,
+										"-"
+									).toLowerCase()
+								}
 							>
 								{n.SectionHeader}
 							</PageTOCLink>
@@ -62,25 +68,37 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 					{n.PageSectionContent == null ? (
 						""
 					) : (
-						<PageSectionContent>{n.PageSectionContent}</PageSectionContent>
+						<PageSectionContent>
+							{n.PageSectionContent}
+						</PageSectionContent>
 					)}
 
 					{n.SectionHeader == "Partners" ? (
 						<PartnerSectionContent>
-							{partnerCards.data.attributes.PartnerCards.map((n) => (
-								<PartnerLink key={n.id} href={n.Link}>
-									<PartnerCard>
-										<PartnerLogo
-											src={
-												n.Image.data.attributes.formats == null
-													? n.Image.data.attributes.url
-													: n.Image.data.attributes.formats.thumbnail.url
-											}
-											alt={n.Image.data.attributes.alternativeText}
-										/>
-									</PartnerCard>
-								</PartnerLink>
-							))}
+							{partnerCards.data.attributes.PartnerCards.map(
+								(n) => (
+									<PartnerLink key={n.id} href={n.Link}>
+										<PartnerCard>
+											<PartnerLogo
+												src={
+													n.Image.data.attributes
+														.formats == null
+														? n.Image.data
+																.attributes.url
+														: n.Image.data
+																.attributes
+																.formats
+																.thumbnail.url
+												}
+												alt={
+													n.Image.data.attributes
+														.alternativeText
+												}
+											/>
+										</PartnerCard>
+									</PartnerLink>
+								)
+							)}
 						</PartnerSectionContent>
 					) : (
 						""
@@ -90,25 +108,38 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 						<WidePageSectionContent>
 							{projectCards.data.map((i) => (
 								<ProjectCard key={i.attributes.id}>
-									<ProjectLink href={"/work/" + i.attributes.ProjectId}>
-									{/* TK There's probably a better way to do this with relative URLS? */}
+									<ProjectLink
+										href={"/work/" + i.attributes.ProjectId}
+									>
+										{/* TK There's probably a better way to do this with relative URLS? */}
 										<ProjectImageDiv>
 											<ProjectFeatureImage
 												src={
-													i.attributes.ProjectFeatureImage.data.attributes
+													i.attributes
+														.ProjectFeatureImage
+														.data.attributes
 														.formats == null
-														? i.attributes.ProjectFeatureImage.data.attributes
+														? i.attributes
+																.ProjectFeatureImage
+																.data.attributes
 																.url
-														: i.attributes.ProjectFeatureImage.data.attributes
-																.formats.thumbnail.url
+														: i.attributes
+																.ProjectFeatureImage
+																.data.attributes
+																.formats
+																.thumbnail.url
 												}
 												alt={
-													i.attributes.ProjectFeatureImage.data.attributes
+													i.attributes
+														.ProjectFeatureImage
+														.data.attributes
 														.alternativeText
 												}
 											/>
 										</ProjectImageDiv>
-										<ProjectTitle>{i.attributes.ProjectTitle}</ProjectTitle>
+										<ProjectTitle>
+											{i.attributes.ProjectTitle}
+										</ProjectTitle>
 										<ProjectSubtitle>
 											{i.attributes.ProjectSubtitle}
 										</ProjectSubtitle>
@@ -122,20 +153,30 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 
 					{n.SectionHeader == "Past Lives" ? (
 						<PastLifeSectionContent>
-							{pastLifeCards.data.attributes.PastLifeCards.map((n) => (
-								<PastLifeLink key={n.id} href={n.Link}>
-									<PastLifeCard>
-										<PastLifeImage
-											src={
-												n.Image.data.attributes.formats == null
-													? n.Image.data.attributes.url
-													: n.Image.data.attributes.formats.medium.url
-											}
-											alt={n.Image.data.attributes.alternativeText}
-										/>
-									</PastLifeCard>
-								</PastLifeLink>
-							))}
+							{pastLifeCards.data.attributes.PastLifeCards.map(
+								(n) => (
+									<PastLifeLink key={n.id} href={n.Link}>
+										<PastLifeCard>
+											<PastLifeImage
+												src={
+													n.Image.data.attributes
+														.formats == null
+														? n.Image.data
+																.attributes.url
+														: n.Image.data
+																.attributes
+																.formats.medium
+																.url
+												}
+												alt={
+													n.Image.data.attributes
+														.alternativeText
+												}
+											/>
+										</PastLifeCard>
+									</PastLifeLink>
+								)
+							)}
 						</PastLifeSectionContent>
 					) : (
 						""
@@ -160,8 +201,8 @@ let PartnerCard = styled.div`
 
 let PartnerLogo = styled.img`
 	pointer-events: none;
-	height:100%;
-  	width:100%;
+	height: 100%;
+	width: 100%;
 	object-fit: cover;
 `;
 
@@ -183,8 +224,8 @@ let ProjectImageDiv = styled.div`
 `;
 
 let ProjectFeatureImage = styled.img`
-	height:100%;
-  	width:100%;
+	height: 100%;
+	width: 100%;
 	object-fit: cover;
 `;
 
@@ -205,8 +246,8 @@ let PastLifeCard = styled.div`
 `;
 
 let PastLifeImage = styled.img`
-	height:100%;
-  	width:100%;
+	height: 100%;
+	width: 100%;
 	object-fit: cover;
 `;
 
@@ -214,7 +255,9 @@ let PastLifeLink = styled.a``;
 
 export async function getStaticProps(context) {
 	let workPage = await fetchAPI("/work?populate=*");
-	let partnerCards = await fetchAPI("/work?populate[PartnerCards][populate]=*");
+	let partnerCards = await fetchAPI(
+		"/work?populate[PartnerCards][populate]=*"
+	);
 	let projectCards = await fetchAPI("/project-cards?populate=*");
 	let pastLifeCards = await fetchAPI(
 		"/work?populate[PastLifeCards][populate]=*"
