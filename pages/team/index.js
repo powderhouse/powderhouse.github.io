@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import Link from 'next/link'
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -137,10 +138,10 @@ function TeamPage({ teamPage, teamCards }) {
 								{n.PageSectionContent}
 							</ReactMarkdown>
 							{n.SectionHeader == "Jobs" ? (
-								<a href="/team/jobs">
+								<Link href="/team/jobs" passHref>
 								{/* TK Better way with relative URLS? */}
 									<div>Jobs</div>
-								</a>
+								</Link>
 							) : (
 								""
 							)}

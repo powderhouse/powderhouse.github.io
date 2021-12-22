@@ -31,7 +31,7 @@ function ProjectDetailPage({ projectCards }) {
                 ? projectCard.attributes.ProjectFeatureImage
                     .data.attributes.url
                 : projectCard.attributes.ProjectFeatureImage
-                    .data.attributes.formats.medium.url
+                    .data.attributes.formats.thumbnail.url
             }
             alt={
               projectCard.attributes.ProjectFeatureImage.data
