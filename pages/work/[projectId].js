@@ -56,7 +56,7 @@ function ProjectDetailPage({ projectCards }) {
 
             {projectCard.attributes.ProjectInfoList.map(
               (n) => (
-                <a href={n.Link}>
+                <a key={n.id} href={n.Link}>
                   <li>{n.LinkText}</li>
                 </a>
               )
