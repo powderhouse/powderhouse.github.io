@@ -2,9 +2,9 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import GridOverlay from "../../components/GridOverlay";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import GridOverlay from "../../../components/GridOverlay";
 
 import {
 	baseGrid,
@@ -20,16 +20,20 @@ import {
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
-} from "../../components/global.js";
+} from "../../../components/global.js";
 
-import { getStrapiMedia } from "../../lib/media";
-import { fetchAPI } from "../../lib/api";
+import { getStrapiMedia } from "../../../lib/media";
+import { fetchAPI } from "../../../lib/api";
 
 function JobsPage({ jobPage, jobCards }) {
+	function getJobIdByTitle(title,jobCards) {
+		return jobCards[title][0].attributes.JobId
+	}
+
 	return (
 		<PageContainer css={baseGrid}>
+			{/* {JSON.stringify(jobCards)} */}
 			<Header />
-
 			<PageSplash bgColor="purple" color="off-black">
 				<PageHeader>Jobs</PageHeader>
 				<PageTableOfContents>
@@ -47,7 +51,6 @@ function JobsPage({ jobPage, jobCards }) {
 			<PageIntro>{jobPage.data.attributes.PageSplash.PageIntro}</PageIntro>
 
 			{jobPage.data.attributes.PageSections.map((n) =>
-				jobList.includes(n.SectionHeader) &&
 				jobCards.hasOwnProperty(n.SectionHeader) ? (
 					<PageSection isLightSection={true} css={baseGrid}>
 						<SectionHeader
@@ -58,9 +61,11 @@ function JobsPage({ jobPage, jobCards }) {
 						</SectionHeader>
 						<PageSectionContent>
 							{n.PageSectionContent}
-							<a href={jobCards[n.SectionHeader][0].attributes["Link"]}>
-								Apply
-							</a>
+							<div>
+								<a href={"/team/jobs/" + getJobIdByTitle(n.SectionHeader,jobCards)}>
+									Apply
+								</a>
+							</div>
 						</PageSectionContent>
 					</PageSection>
 				) : (
@@ -88,8 +93,6 @@ function JobsPage({ jobPage, jobCards }) {
 let JobCard = styled.div`
 	grid-column: 1 / -1;
 `;
-
-let jobList = ["Legal Researcher", "Financial Researcher"];
 
 function sortJobCards(jobCards) {
 	let jobDict = {};

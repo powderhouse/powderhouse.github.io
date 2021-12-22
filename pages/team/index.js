@@ -137,7 +137,8 @@ function TeamPage({ teamPage, teamCards }) {
 								{n.PageSectionContent}
 							</ReactMarkdown>
 							{n.SectionHeader == "Jobs" ? (
-								<a href="#tk">
+								<a href="/team/jobs">
+								{/* TK Better way with relative URLS? */}
 									<div>Jobs</div>
 								</a>
 							) : (

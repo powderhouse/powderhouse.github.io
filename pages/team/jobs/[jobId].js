@@ -2,8 +2,8 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
 
 import {
   baseGrid,
@@ -20,10 +20,10 @@ import {
   WidePageSectionContent,
   FullBleedImage,
   Highlight,
-} from "../../components/global.js";
+} from "../../../components/global.js";
 
-import { getStrapiMedia } from "../../lib/media";
-import { fetchAPI } from "../../lib/api";
+import { getStrapiMedia } from "../../../lib/media";
+import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";
 
 function JobDetailPage({ jobCards }) {

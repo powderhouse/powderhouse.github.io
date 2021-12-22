@@ -90,7 +90,8 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 						<WidePageSectionContent>
 							{projectCards.data.map((i) => (
 								<ProjectCard key={i.attributes.id}>
-									<ProjectLink href={i.attributes.ProjectLink}>
+									<ProjectLink href={"/work/" + i.attributes.ProjectId}>
+									{/* TK There's probably a better way to do this with relative URLS? */}
 										<ProjectImageDiv>
 											<ProjectFeatureImage
 												src={
