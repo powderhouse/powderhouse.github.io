@@ -68,7 +68,7 @@ function ProjectDetailPage({ projectCards }) {
       <PageGallery>
         {projectCard.attributes.ProjectGallery.data.map(
           (i) => (
-            <ProjectImageDiv>
+            <ProjectImageDiv key={i.id}>
               {JSON.stringify()}
               <ProjectImage
                 src={
