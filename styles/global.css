@@ -64,3 +64,13 @@ img {width: 100%;}
 .fn {
 	grid-column:span 1;
 }
+
+iframe {
+	border:none;
+	width:100%;
+	/*height:400px;*/
+}
+
+video {
+	width:100%;
+}
