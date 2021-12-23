@@ -97,7 +97,7 @@ function ProjectDetailPage({ projectCards, projectGalleries }) {
             </ProjectMediaDiv>
           ) : (
             <ProjectIframeDiv key={i.id} style={{paddingTop:getAspectRatio(i.MediaEmbed.Link)}}>
-              <GalleryIframe src={"https://player.vimeo.com/video/9419036?h=79c4affaa6"} alt={i.MediaEmbed.LinkText} ></GalleryIframe>
+              <GalleryIframe src={i.MediaEmbed.Link} alt={i.MediaEmbed.LinkText} ></GalleryIframe>
             </ProjectIframeDiv>
           )
         )}
@@ -229,6 +229,7 @@ function htmlToElement(htmlString) {
 
 function getAspectRatio(htmlString) {
   let element = htmlToElement(htmlString);
+  console.log("#############################"+element);
   let width = parseInt(element.getAttribute("width"));
   let height = parseInt(element.getAttribute("height"));
   return (height/width*100).toString()
@@ -238,7 +239,6 @@ function getSrc(htmlString) {
   let element = htmlToElement(htmlString);
   // console.log("############################"+element);
   return element.getAttribute("src")
-  // return "returningggg!"
 }
 
 function isVideo(fileExt) {
