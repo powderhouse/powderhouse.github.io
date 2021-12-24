@@ -4,8 +4,8 @@
   "description": "powderhouse.org",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev",
+    "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
+    "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
     "build": "yarn install --check-files && npx check-peer-dependencies --yarn --install && next build",
     "start": "next start",
     "lint": "next lint"
