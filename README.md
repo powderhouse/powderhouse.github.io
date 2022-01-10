@@ -4,7 +4,7 @@
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
 - [ ] Install and switch to the appropriate node version using `nvm use`
-
+- [ ] Install required packages with `npm install`
 
 ## Development workflow
 
