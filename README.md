@@ -8,7 +8,7 @@
 
 ## Development workflow
 
-- If you are modifying content on `api.powderhouse.org` which may [modify Strap's DB schema](https://github.com/powderhouse/api.powderhouse.org#modifying-the-db-schema), then:
+- If you are modifying content on `api.powderhouse.org` which may [modify Strapi's DB schema](https://github.com/powderhouse/api.powderhouse.org#modifying-the-db-schema), then:
   - [ ] Follow the directions for [local development](https://github.com/powderhouse/api.powderhouse.org#local-development) of `api.powderhouse.org` and get a local instance of Strapi running at `localhost:1337`
   - [ ] Then, run `yarn dev` to prototype the frontend locally, fed by the _local_ instance of Strapi.
   - [ ] Once you're satisfied with your backend changes, deploy the Strapi changes as described [here](https://github.com/powderhouse/api.powderhouse.org#production-deployment).
