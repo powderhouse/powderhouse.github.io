@@ -3,11 +3,23 @@
 - [ ] [Install `nvm`](https://github.com/nvm-sh/nvm#installing-and-updating)
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
-- [ ] Install and switch to the appropriate node version using `./configure`
-- [ ] `yarn build`
-- [ ] `yarn dev`
+- [ ] Install and switch to the appropriate node version using `nvm use`
 
-Now, the frontend should be available at [`https://localhost:3000`](https://localhost:3000).  When you push this to GitHub, it is automatically deployed via Vercel, whose status you can inspect [here](https://vercel.com/powderhouse/powderhouseorg).
+
+## Development workflow
+
+- If you are modifying content on `api.powderhouse.org` which may [modify Strap's DB schema](https://github.com/powderhouse/api.powderhouse.org#modifying-the-db-schema), then:
+  - [ ] Follow the directions for [local development](https://github.com/powderhouse/api.powderhouse.org#local-development) of `api.powderhouse.org` and get a local instance of Strapi running at `localhost:1337`
+  - [ ] Then, run `yarn dev` to prototype the frontend locally, fed by the _local_ instance of Strapi.
+  - [ ] Once you're satisfied with your backend changes, deploy the Strapi changes as described [here](https://github.com/powderhouse/api.powderhouse.org#production-deployment).
+  - [ ] Once you're satisfied with your front-end changes, test them with `yarn test`, which will run a local version of the front-end, fed by the _production_ instance of Strapi at `api.powderhouse.org`
+  - [ ] Once you've verified the front-end behaves as anticipated, deploy your changes by pushing them.
+- Otherwise:
+  - [ ] Make any additions or modifications to content on Strapi that you wish, keeping in mind these will be live on `api.powderhouse.org`, meaning any new builds of the front-end will reflect these changes.
+  - [ ] `yarn stage` will run a local version of the front-end, fed by the _production_ instance of Strapi at `api.powderhouse.org`
+  - [ ] Once you've verified the front-end behaves as anticipated, deploy your changes by pushing them.
+
+Note that whenever you push this repository to GitHub, it is automatically deployed via Vercel, whose status you can inspect [here](https://vercel.com/powderhouse/powderhouseorg).
 
 
 ## Pulling content from the API
