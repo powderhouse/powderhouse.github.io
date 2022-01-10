@@ -4,7 +4,7 @@
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
 - [ ] Install and switch to the appropriate node version using `nvm use`
-
+- [ ] Install required packages with `yarn install`
 
 ## Development workflow
 
@@ -12,7 +12,7 @@
   - [ ] Follow the directions for [local development](https://github.com/powderhouse/api.powderhouse.org#local-development) of `api.powderhouse.org` and get a local instance of Strapi running at `localhost:1337`
   - [ ] Then, run `yarn dev` to prototype the frontend locally, fed by the _local_ instance of Strapi.
   - [ ] Once you're satisfied with your backend changes, deploy the Strapi changes as described [here](https://github.com/powderhouse/api.powderhouse.org#production-deployment).
-  - [ ] Once you're satisfied with your front-end changes, test them with `yarn test`, which will run a local version of the front-end, fed by the _production_ instance of Strapi at `api.powderhouse.org`
+  - [ ] Once you're satisfied with your front-end changes, test them with `yarn stage`, which will run a local version of the front-end, fed by the _production_ instance of Strapi at `api.powderhouse.org`
   - [ ] Once you've verified the front-end behaves as anticipated, deploy your changes by pushing them.
 - Otherwise:
   - [ ] Make any additions or modifications to content on Strapi that you wish, keeping in mind these will be live on `api.powderhouse.org`, meaning any new builds of the front-end will reflect these changes.
