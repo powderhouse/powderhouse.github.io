@@ -97,12 +97,17 @@ function TeamPage({ teamPage, teamCards }) {
 									) : (
 										""
 									)}
+
 									<PersonName>{j.attributes.Name}</PersonName>
+									<PersonYears>{j.attributes.YearStart} — {j.attributes.YearEnd}</PersonYears>
+								
 									{n.SectionHeader == "Staff" ? (
 										<PersonTitle>{j.attributes.Title}</PersonTitle>
 									) : (
 										""
 									)}
+
+									
 									{n.SectionHeader == "Advisors" ? (
 										<PersonBio>
 											<ReactMarkdown rehypePlugins={[rehypeRaw]}>
@@ -173,6 +178,8 @@ let PersonHeadshot = styled.img`
 `;
 
 let PersonName = styled.h3``;
+
+let PersonYears = styled.div``;
 
 let PersonTitle = styled.p``;
 
