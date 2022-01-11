@@ -1,8 +1,65 @@
 /*Global CSS*/
 
+/* Generated via https://transfonter.org/ */
+@font-face {
+    font-family: 'GT Planar';
+    src: local('GT Planar Bold'), local('GTPlanar-Bold'),
+        url('/fonts/GT-Planar-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Planar';
+    src: local('GT Planar Italic 15 Bold'), local('GTPlanar-Italic15Bold'),
+        url('/fonts/GT-Planar-Italic15Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Planar';
+    src: local('GT Planar Regular'), local('GTPlanar-Regular'),
+        url('/fonts/GT-Planar-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Planar';
+    src: local('GT Planar Italic 15 Light'), local('GTPlanar-Italic15Light'),
+        url('/fonts/GT-Planar-Italic15Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Planar';
+    src: local('GT Planar Light'), local('GTPlanar-Light'),
+        url('/fonts/GT-Planar-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Planar';
+    src: local('GT Planar Italic 15 Regular'), local('GTPlanar-Italic15Regular'),
+        url('/fonts/GT-Planar-Italic15Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+
 html {
-	font-family: 'GT Planar Regular',sans-serif;
+	font-family: 'GT Planar',sans-serif;
 	font-size: 17px; 
+	font-weight: 300;
 	line-height: 1.3em;
 	letter-spacing: 0;
 }

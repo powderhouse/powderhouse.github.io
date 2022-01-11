@@ -1,9 +1,11 @@
 # README
 
 - [ ] [Install `nvm`](https://github.com/nvm-sh/nvm#installing-and-updating)
+- [ ] [Install `vercel` CLI](https://vercel.com/cli)
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
 - [ ] Install and switch to the appropriate node version using `nvm use`
+- [ ] Link to the Vercel project by running `vercel link`
 - [ ] Install required packages with `yarn install`
 
 ## Development workflow
