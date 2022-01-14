@@ -4,15 +4,18 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import { asteriskImgURL } from '../../site-data.js';
 
 import {
   baseGrid,
   PageContainer,
+  Spacer,
   PageSplash,
   PageHeader,
   PageTableOfContents,
   PageTOCListItem,
   PageTOCLink,
+  Asterisk,
   PageIntro,
   SectionHeader,
   PageSection,
@@ -20,6 +23,7 @@ import {
   WidePageSectionContent,
   FullBleedImage,
   Highlight,
+  randomRotate,
 } from "../../../components/global.js";
 
 import { getStrapiMedia } from "../../../lib/media";
@@ -42,8 +46,10 @@ function JobDetailPage({ jobCards }) {
               <PageTOCLink
                 href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
               >
-                {n.SectionHeader}
+                <Asterisk style={{transform:randomRotate()}}><img className="asterisk" src={asteriskImgURL} /></Asterisk>
+                <div>{n.SectionHeader}</div>
               </PageTOCLink>
+              <Spacer />
             </PageTOCListItem>
           ))}
         </PageTableOfContents>

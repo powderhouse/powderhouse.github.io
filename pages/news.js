@@ -4,7 +4,7 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import GridOverlay from "../components/GridOverlay";
+import ArrowButton from "../components/ArrowButton";
 
 import {
 	baseGrid,
@@ -45,7 +45,9 @@ function NewsPage({ newsPage, newsCards }) {
 							<NewsType>{n.attributes.NewsType}</NewsType>
 						</NewsHeader>
 						<NewsContent>
-							<NewsTitle>{n.attributes.NewsTitle}</NewsTitle>
+							<NewsTitle>
+							{n.attributes.NewsTitle}
+							</NewsTitle>
 							<NewsExcerpt>
 								<ReactMarkdown rehypePlugins={[rehypeRaw]}>
 									{n.attributes.NewsExcerpt}

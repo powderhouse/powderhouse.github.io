@@ -4,22 +4,25 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import GridOverlay from "../components/GridOverlay";
+import { asteriskImgURL } from '../site-data.js';
 
 import {
 	baseGrid,
 	PageContainer,
+	Spacer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
 	PageTOCLink,
+	Asterisk,
 	PageIntro,
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
 	FullBleedImage,
 	FullBodyImage,
+	randomRotate,
 } from "../components/global";
 
 import { getStrapiMedia } from "../lib/media";
@@ -37,8 +40,10 @@ function AboutPage({ data }) {
 							<PageTOCLink
 								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
 							>
-								{n.SectionHeader}
+								<Asterisk style={{transform:randomRotate()}}><img className="asterisk" src={asteriskImgURL} /></Asterisk>
+								<div>{n.SectionHeader}</div>
 							</PageTOCLink>
+							<Spacer />
 						</PageTOCListItem>
 					))}
 				</PageTableOfContents>

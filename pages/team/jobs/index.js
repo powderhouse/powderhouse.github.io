@@ -4,22 +4,26 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import GridOverlay from "../../../components/GridOverlay";
+import ArrowButton from "../../../components/ArrowButton";
+import { asteriskImgURL } from '../../../site-data.js';
 
 import {
 	baseGrid,
 	PageContainer,
+	Spacer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
 	PageTOCLink,
+  	Asterisk,
 	PageIntro,
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
+	randomRotate,
 } from "../../../components/global.js";
 
 import { getStrapiMedia } from "../../../lib/media";
@@ -39,16 +43,12 @@ function JobsPage({ jobPage, jobCards }) {
 					{jobPage.data.attributes.PageSections.map((n) => (
 						<PageTOCListItem key={n.id}>
 							<PageTOCLink
-								href={
-									"#" +
-									n.SectionHeader.replace(
-										/\s+/g,
-										"-"
-									).toLowerCase()
-								}
+								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
 							>
-								{n.SectionHeader}
+								<Asterisk style={{transform:randomRotate()}}><img className="asterisk" src={asteriskImgURL} /></Asterisk>
+								<div>{n.SectionHeader}</div>
 							</PageTOCLink>
+							<Spacer />
 						</PageTOCListItem>
 					))}
 				</PageTableOfContents>
@@ -75,19 +75,8 @@ function JobsPage({ jobPage, jobCards }) {
 						</SectionHeader>
 						<PageSectionContent>
 							{n.PageSectionContent}
-							<div>
-								<a
-									href={
-										"/team/jobs/" +
-										getJobIdByTitle(
-											n.SectionHeader,
-											jobCards
-										)
-									}
-								>
-									Apply
-								</a>
-							</div>
+							{/* TK buttonTextLength should alternate/choose randomly from shortText, medText, and longText */}
+							<ArrowButton text="Apply" link={"/team/jobs/" + getJobIdByTitle(n.SectionHeader,jobCards)} buttonWidth="long" buttonThickness="thick" buttonTextLength="medText"></ArrowButton>
 						</PageSectionContent>
 					</PageSection>
 				) : (

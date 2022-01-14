@@ -4,7 +4,8 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import NewsLetterSignUp from "../components/NewsLetter";
+import ArrowButton from "../components/ArrowButton";
+import NewsLetterSignUp from "../components/NewsLetterSignUp";
 
 import {
   baseGrid,
@@ -15,6 +16,7 @@ import {
 
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
+
 
 function HomePage({ data }) {
   return (
@@ -30,17 +32,16 @@ function HomePage({ data }) {
 
         <SplashNewsletterSignup>
           <SignUpShoutOut>{data.attributes.SignUpShoutOut}</SignUpShoutOut>
-          <SignUpForm action="" method="get">
-            <EmailInput type="email" name="email" id="email" required />
-            <SubmitButton type="submit" value="Sign Up" />
-          </SignUpForm>
+          <NewsLetterSignUp text="Sign Up!" color="off-white" buttonWidth="long" buttonThickness="thick" buttonTextLength="shortText"></NewsLetterSignUp>
         </SplashNewsletterSignup>
       </PageSection>
-
+      
       <Footer />
     </PageContainer>
   );
 }
+
+
 
 let SplashLanguage = styled.div`
   grid-column: 2 / -2;
@@ -70,6 +71,7 @@ let SignUpForm = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gap);
+  height:80px; /*TK Explicit?*/
 
   padding-top: 62px; /*TK Explicit?*/
 `;
@@ -78,7 +80,7 @@ let EmailInput = styled.input`
   grid-column: 1 / 2;
 `;
 
-let SubmitButton = styled.input`
+let SubmitButton = styled.button`
   grid-column: 2 / 3;
 `;
 

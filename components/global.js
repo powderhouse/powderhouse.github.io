@@ -4,19 +4,12 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 
 let PageContainer = styled.div`
-	--off-black:rgb(42, 46, 47); /* #2A2E2F */
-	--off-white:rgb(245, 243, 239); /* #F5F3EF */
-	--purple:rgb(178, 131, 200); /* #B283C8 */
-	--yellow:rgb(255, 200, 93); /* #FFC85D */
-	--green:rgb(50, 131, 90); /* #32835A */
-	--blue:rgb(128, 210, 236); /* #80D2EC */
-	--red:rgb(226, 87, 87); /* #E25757 */
-	--gap:24px;
-
 	background-color:var(--off-white);
 	color:var(--off-black);
 	gap:0px !important;
 `;
+
+let Spacer = styled.div``;
 
 const baseGrid = css`
   display: grid;
@@ -51,17 +44,31 @@ let PageTableOfContents = styled.ol`
 	padding:0;
 	padding-bottom:var(--gap);
 	margin:0;
+	width:33%;
 `;
 
 let PageTOCListItem = styled.li`
+	display:flex;
+
 	&:not(:last-child) {
 		padding-bottom:10px;
 	}
 `;
 
 let PageTOCLink = styled.a`
+	display:flex;
+	align-items:center;
+
 	text-decoration:none;
 `;
+
+let Asterisk = styled.div`
+	height:1.5rem;
+	width:1.5rem;
+	margin-right:10px;
+`;
+
+let randomNum = Math.random();
 
 let PageIntro = styled.div`
 	grid-column: 1 / span 9;
@@ -121,14 +128,21 @@ let Highlight = styled.span`
   color: var(--${props => props.highlight});
 `;
 
+let randomRotate = function randomRotate() {
+		return "rotate("+(Math.random()*360)+"deg)"
+	};
+
 export { 
 	baseGrid,
 	PageContainer,
+	Spacer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
 	PageTOCLink,
+	Asterisk,
+	randomNum,
 	PageIntro,
 	SectionHeader,
 	PageSection,
@@ -137,4 +151,5 @@ export {
 	FullBleedImage,
 	FullBodyImage,
 	Highlight,
+	randomRotate,
 };

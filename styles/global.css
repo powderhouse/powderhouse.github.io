@@ -55,13 +55,21 @@
     font-display: swap;
 }
 
-
 html {
 	font-family: 'GT Planar',sans-serif;
 	font-size: 17px; 
 	font-weight: 300;
 	line-height: 1.3em;
 	letter-spacing: 0;
+
+ 	--off-black:rgb(42, 46, 47); /* #2A2E2F */
+	--off-white:rgb(245, 243, 239); /* #F5F3EF */
+	--purple:rgb(178, 131, 200); /* #B283C8 */
+	--yellow:rgb(255, 200, 93); /* #FFC85D */
+	--green:rgb(50, 131, 90); /* #32835A */
+	--blue:rgb(128, 210, 236); /* #80D2EC */
+	--red:rgb(226, 87, 87); /* #E25757 */
+	--gap:24px; 
 }
 
 p:not(:last-child) {
@@ -88,13 +96,13 @@ dd {
 	padding-bottom:var(--gap);
 }
 
-.blue {color: var(--blue)}
-.purple {color: var(--purple)}
-.yellow {color: var(--yellow)}
-.red {color: var(--red)}
-.green {color: var(--green)}
-.off-white {color: var(--off-white)}
-.off-black {color: var(--off-black)}
+.blue {color: var(--blue); stroke: var(--blue)}
+.purple {color: var(--purple); stroke: var(--purple)}
+.yellow {color: var(--yellow); stroke: var(--yellow)}
+.red {color: var(--red); stroke: var(--red)}
+.green {color: var(--green); stroke: var(--green)}
+.off-white {color: var(--off-white); stroke: var(--off-white)}
+.off-black {color: var(--off-black); stroke: var(--off-black)}
 
 img {width: 100%;}
 
@@ -131,3 +139,8 @@ iframe {
 video {
 	width:100%;
 }
+
+.arrowSVG {
+	position: relative;
+}
+

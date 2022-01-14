@@ -5,23 +5,27 @@ import Link from 'next/link'
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import GridOverlay from "../../components/GridOverlay";
+import ArrowButton from "../../components/ArrowButton"
+import {asteriskImgURL} from "../../site-data.js"
 
 import {
 	baseGrid,
 	PageContainer,
+	Spacer,
 	PageSplash,
 	PageHeader,
 	PageTableOfContents,
 	PageTOCListItem,
 	PageTOCLink,
 	PageIntro,
+	Asterisk,
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
 	Highlight,
+	randomRotate,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -42,15 +46,15 @@ function TeamPage({ teamPage, teamCards }) {
 						(cardSections.includes(n.SectionHeader) &&
 							teamCards.hasOwnProperty(n.SectionHeader)) ||
 						!cardSections.includes(n.SectionHeader) ? (
-							<PageTOCListItem>
-								<PageTOCLink
-									href={
-										"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()
-									}
-								>
-									{n.SectionHeader}
-								</PageTOCLink>
-							</PageTOCListItem>
+							<PageTOCListItem key={n.id}>
+							<PageTOCLink
+								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+							>
+								<Asterisk style={{transform:randomRotate()}}><img className="asterisk" src={asteriskImgURL} /></Asterisk>
+								<div>{n.SectionHeader}</div>
+							</PageTOCLink>
+							<Spacer />
+						</PageTOCListItem>
 						) : (
 							""
 						)
@@ -143,10 +147,8 @@ function TeamPage({ teamPage, teamCards }) {
 								{n.PageSectionContent}
 							</ReactMarkdown>
 							{n.SectionHeader == "Jobs" ? (
-								<Link href="/team/jobs" passHref>
-								{/* TK Better way with relative URLS? */}
-									<div>Jobs</div>
-								</Link>
+								/* TK Better way with relative URLS? */
+								<ArrowButton text="Jobs" link="/team/jobs" buttonWidth="long" buttonThickness="thick" buttonTextLength="medText"></ArrowButton>
 							) : (
 								""
 							)}
