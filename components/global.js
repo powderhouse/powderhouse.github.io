@@ -58,8 +58,12 @@ let PageTOCListItem = styled.li`
 let PageTOCLink = styled.a`
 	display:flex;
 	align-items:center;
-
+	transition:.8s ease;
 	text-decoration:none;
+
+	&:hover {
+		transform:translateX(var(--gap));
+	}
 `;
 
 let Asterisk = styled.div`
