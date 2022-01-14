@@ -69,8 +69,6 @@ let Asterisk = styled.div`
 	margin-right:-1px;
 `;
 
-let randomNum = Math.random();
-
 let PageIntro = styled.div`
 	grid-column: 1 / span 9;
 
@@ -130,7 +128,7 @@ let Highlight = styled.span`
 `;
 
 let randomRotate = function randomRotate() {
-		return "rotate("+(Math.random()*360)+"deg)"
+		return "rotate("+(Math.round(Math.random()*360))+"deg)"
 	};
 
 export { 
@@ -143,7 +141,6 @@ export {
 	PageTOCListItem,
 	PageTOCLink,
 	Asterisk,
-	randomNum,
 	PageIntro,
 	SectionHeader,
 	PageSection,
