@@ -1,20 +1,13 @@
+import styled from "styled-components";
+import { useRouter } from 'next/router';
+
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
-import styled from "styled-components";
 import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
 
 function Header(props) {
-  function highlightCurrentPage() {
-    // let currURL = window.location.href;
-    // console.log(currURL);
-    // document.querySelectorAll(".nav-link").forEach(el => {
-    //   if (currURL == el.href) {
-    //     console.log("current url is "+el);
-        // el.style.backgroundColor = "red";
-    //   }
-    // })
-  }
-  highlightCurrentPage()
+  const router = useRouter();
+  console.log(router.pathname);
 
   return (
     <Wrapper bgColor={props.bgColor} css={baseGrid}>
@@ -27,7 +20,7 @@ function Header(props) {
         <NavList>
           {navMenuItems.map((n) => (
             <NavListItem key={n.href}>
-              <NavLink className="nav-link" color={props.color} href={n.href}>
+              <NavLink className={(router.pathname == n.href ? "active" : "") + " nav-link"} color={props.color} href={n.href}>
                 <div>{n.text}</div>
                 <Scribble className="nav-scribble">{scribbleSVGs[1]("yellow")}</Scribble>
               </NavLink>
@@ -79,6 +72,7 @@ let NavLink = styled.a`
 
 let Scribble = styled.div`
   margin-top:-1rem;
+  visibility:hidden;
 `;
 
 export default Header;

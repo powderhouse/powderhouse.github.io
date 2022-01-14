@@ -144,3 +144,7 @@ video {
 	position: relative;
 }
 
+.active .nav-scribble, .nav-link:hover .nav-scribble {
+	visibility:visible;
+}
+
