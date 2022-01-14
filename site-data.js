@@ -47,6 +47,6 @@ let buttonSVGs = {
     }
   };
 
-let asteriskSVG = (color="off-black") => (<svg className={color} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 0 43.712 L 88.25 26.838 M 57.055 78.651 L 27.423 0 M 23.298 65.652 L 57.156 8.351 M 67.46 48.363 L 7.632 19.816" transform="translate(16.593 22.028) rotate(-51 44.125 39.325)" fill="transparent" strokeWidth="2.95" strokeLinecap="square" strokeLinejoin="round"></path></svg>);
+let asteriskSVG = (color="off-black") => (<svg className={color} xmlns="http://www.w3.org/2000/svg" viewBox="-34 -39 150 111"><path d="M 0 43.712 L 88.25 26.838 M 57.055 78.651 L 27.423 0 M 23.298 65.652 L 57.156 8.351 M 67.46 48.363 L 7.632 19.816" fill="transparent" strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="round"></path></svg>);
 
 export { navMenuItems, socialMediaLinks, buttonSVGs, asteriskSVG }

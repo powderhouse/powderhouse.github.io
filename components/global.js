@@ -49,10 +49,6 @@ let PageTableOfContents = styled.ol`
 
 let PageTOCListItem = styled.li`
 	display:flex;
-
-	&:not(:last-child) {
-		padding-bottom:10px;
-	}
 `;
 
 let PageTOCLink = styled.a`
@@ -67,9 +63,10 @@ let PageTOCLink = styled.a`
 `;
 
 let Asterisk = styled.div`
-	height:1.5rem;
-	width:1.5rem;
-	margin-right:10px;
+	height:2.5rem;
+	width:2.5rem;
+	transform-origin:50% 50%;
+	margin-right:-1px;
 `;
 
 let randomNum = Math.random();
