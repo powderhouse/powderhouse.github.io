@@ -7,7 +7,16 @@ import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
 
 function Header(props) {
   const router = useRouter();
-  console.log(router.pathname);
+  function assignPageColor(navText) {
+    let color;
+    navMenuItems.forEach(el => el["text"]==navText ? color = el["color"] : "");
+    return color
+  }
+  function assignScribbleNum(navText) {
+    let scribbleNum;
+    navMenuItems.forEach(el => el["text"]==navText ? scribbleNum = el["scribbleNum"] : "");
+    return scribbleNum
+  }
 
   return (
     <Wrapper bgColor={props.bgColor} css={baseGrid}>
@@ -22,7 +31,7 @@ function Header(props) {
             <NavListItem key={n.href}>
               <NavLink className={(router.pathname == n.href ? "active" : "") + " nav-link"} color={props.color} href={n.href}>
                 <div>{n.text}</div>
-                <Scribble className="nav-scribble">{scribbleSVGs[1]("yellow")}</Scribble>
+                <Scribble className="nav-scribble">{scribbleSVGs[assignScribbleNum(n.text)](assignPageColor(n.text))}</Scribble>
               </NavLink>
             </NavListItem>
           ))}
