@@ -52,6 +52,7 @@ let Region = styled.div`
   max-width: 1440px;
   padding-left: var(--gap);
   padding-right: var(--gap);
+  padding-bottom: ${(props) => props.padded ? "144px" : "initial"};
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "initial"};
 `;

@@ -21,18 +21,16 @@ import { fetchAPI } from "../lib/api";
 
 import { highlight } from "../components/global.js";
 
-function HomePage({ data }) {
+function HomePage({ data: { attributes: { SplashLanguage, SignUpShoutOut } } }) {
   return (
     <RegionContainer backgroundColor="--off-black">
-      <Region css={baseGrid} isLightSection={false}>
+      <Region padded>
         <Header />
 
-        <SplashLanguage markdown>
-            {data.attributes.SplashLanguage}
-        </SplashLanguage>
+        <Splash markdown>{SplashLanguage}</Splash>
 
-        <SplashNewsletterSignup>
-          <SignUpShoutOut>{data.attributes.SignUpShoutOut}</SignUpShoutOut>
+        <SplashNewsletterSignup backgroundColor="--off-black">
+          <ShoutOut> {SignUpShoutOut} </ShoutOut>
           <NewsLetterSignUp
             text="Sign Up!"
             color="off-white"
@@ -47,43 +45,24 @@ function HomePage({ data }) {
   );
 }
 
-let SplashLanguage = highlight(styled(Div)`
+let Splash = highlight(styled(Div)`
   grid-column: 2 / -2;
   background-color: var(--off-black);
   color: var(--off-white);
   width: 100%;
-  font-size: 45px; /*TK Explicit?*/
+  font-size: 2.64rem;
 `);
+
+let ShoutOut = styled.p`
+  font-size: 24px;
+  text-align: center;
+`;
 
 let SplashNewsletterSignup = styled.div`
   grid-column: 4 / 10;
 
   border: 1px dotted black;
-  background-color: var(--off-black);
-  color: var(--off-white);
-  padding: 144px 0px; /*TK Explicit?*/
-`;
-
-let SignUpShoutOut = styled.p`
-  font-size: 24px;
-  text-align: center;
-`;
-
-let SignUpForm = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gap);
-  height: 80px; /*TK Explicit?*/
-
-  padding-top: 62px; /*TK Explicit?*/
-`;
-
-let EmailInput = styled.input`
-  grid-column: 1 / 2;
-`;
-
-let SubmitButton = styled.button`
-  grid-column: 2 / 3;
+  padding-top: 8.47rem;
 `;
 
 export async function getStaticProps(context) {
