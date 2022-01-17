@@ -12,7 +12,8 @@ import {
   RegionContainer,
   PageSection,
   Highlight,
-  Markdown
+  Markdown,
+  Div
 } from "../components/global";
 
 import { getStrapiMedia } from "../lib/media";
@@ -26,10 +27,8 @@ function HomePage({ data }) {
       <Region css={baseGrid} isLightSection={false}>
         <Header />
 
-        <SplashLanguage>
-          <Markdown>
+        <SplashLanguage markdown>
             {data.attributes.SplashLanguage}
-          </Markdown>
         </SplashLanguage>
 
         <SplashNewsletterSignup>
@@ -48,7 +47,7 @@ function HomePage({ data }) {
   );
 }
 
-let SplashLanguage = highlight(styled.div`
+let SplashLanguage = highlight(styled(Div)`
   grid-column: 2 / -2;
   background-color: var(--off-black);
   color: var(--off-white);

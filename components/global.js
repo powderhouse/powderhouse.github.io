@@ -56,7 +56,9 @@ let Region = styled.div`
     props.backgroundColor ? props.backgroundColor : "initial"};
 `;
 
-let Markdown = (props) => <ReactMarkdown rehypePlugins={[rehypeRaw]} {...props} />
+let Markdown = (props) => <ReactMarkdown rehypePlugins={[rehypeRaw]} {...props} />;
+
+let Div = (props) =>  (("markdown" in props) ? <Markdown {...props} /> : <div {...props} />);
 
 let Spacer = styled.div``;
 
@@ -196,6 +198,7 @@ export {
 	Region,
 	RegionContainer,
 	Markdown,
+	Div,
 	Spacer,
 	PageSplash,
 	PageHeader,
