@@ -59,12 +59,12 @@ let Region = styled.div`
 
 let Markdown = (props) => <ReactMarkdown rehypePlugins={[rehypeRaw]} {...props} />;
 
-let Div = (props) =>  (("markdown" in props) ? <Markdown {...props} /> : <div {...props} />);
+let Div = (props) =>  (props.markdown ? <Markdown {...props} /> : <div {...props} />);
 
 let Spacer = styled.div``;
 
 const baseGrid = css`
-  display: grid;
+  display: grid;git
 	grid-template-columns: repeat(12, 1fr);
 	gap: 12px;
   grid-auto-rows: minmax(100px, auto);
