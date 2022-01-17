@@ -10,6 +10,8 @@ import NewsLetterSignUp from "../components/NewsLetterSignUp";
 import {
   baseGrid,
   PageContainer,
+  Region,
+  RegionContainer,
   PageSection,
   Highlight,
 } from "../components/global";
@@ -17,11 +19,12 @@ import {
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
+import { highlight } from "../components/global.js";
 
 function HomePage({ data }) {
   return (
-    <PageContainer css={baseGrid}>
-      <PageSection css={baseGrid} isLightSection={false}>
+    <RegionContainer>
+      <Region css={baseGrid} backgroundColor="blue" isLightSection={false}>
         <Header bgColor="off-black" color="off-white" />
 
         <SplashLanguage>
@@ -32,26 +35,27 @@ function HomePage({ data }) {
 
         <SplashNewsletterSignup>
           <SignUpShoutOut>{data.attributes.SignUpShoutOut}</SignUpShoutOut>
-          <NewsLetterSignUp text="Sign Up!" color="off-white" buttonWidth="long" buttonThickness="thick" buttonTextLength="shortText"></NewsLetterSignUp>
+          <NewsLetterSignUp
+            text="Sign Up!"
+            color="off-white"
+            buttonWidth="long"
+            buttonThickness="thick"
+            buttonTextLength="shortText"
+          ></NewsLetterSignUp>
         </SplashNewsletterSignup>
-      </PageSection>
-      
-      <Footer />
-    </PageContainer>
+      </Region>
+      <Footer />;
+    </RegionContainer>
   );
 }
 
-
-
-let SplashLanguage = styled.div`
+let SplashLanguage = highlight(styled.div`
   grid-column: 2 / -2;
-
   background-color: var(--off-black);
   color: var(--off-white);
   width: 100%;
-  padding-top: 144px; /*TK Explicit?*/
   font-size: 45px; /*TK Explicit?*/
-`;
+`);
 
 let SplashNewsletterSignup = styled.div`
   grid-column: 4 / 10;
@@ -71,7 +75,7 @@ let SignUpForm = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--gap);
-  height:80px; /*TK Explicit?*/
+  height: 80px; /*TK Explicit?*/
 
   padding-top: 62px; /*TK Explicit?*/
 `;

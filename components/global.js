@@ -6,7 +6,26 @@ import { css } from 'styled-components';
 let PageContainer = styled.div`
 	background-color:var(--off-white);
 	color:var(--off-black);
-	gap:0px !important;
+`;
+
+let RegionContainer = styled.div`
+  width: 100vw;
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "initial"};
+  display: grid;
+`;
+
+let Region = styled.div`
+  display: grid;
+  place-self: center;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  grid-auto-rows: minmax(100px, auto);
+  max-width: 1440px;
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : "initial"};
 `;
 
 let Spacer = styled.div``;
@@ -14,7 +33,8 @@ let Spacer = styled.div``;
 const baseGrid = css`
   display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	gap: var(--gap);
+	gap: 12px;
+  grid-auto-rows: minmax(100px, auto);
 `;
 
 let PageSplash = styled.div`
@@ -93,7 +113,8 @@ let PageSection = styled.section`
 	padding:var(--gap);
 	background-color:${props => props.isLightSection ? "inherit" : "var(--off-black)"};
 	color:${props => props.isLightSection ? "inherit" : "var(--off-white)"};
-
+	padding-left: calc((100vw - 1440px)/2);
+	padding-right: calc((100vw - 1440px)/2);
 `;
 
 let PageSectionContent = styled.div`
@@ -132,9 +153,18 @@ let randomRotate = function randomRotate() {
 		return "rotate("+(Math.random()*360)+"deg)"
 	};
 
+let highlight = function(component, color = 'red') {
+	return styled(component)`
+		border: 1px dotted ${color};
+	  box-sizing: border-box;
+	`;
+}
+
 export { 
 	baseGrid,
 	PageContainer,
+	Region,
+	RegionContainer,
 	Spacer,
 	PageSplash,
 	PageHeader,
@@ -152,4 +182,5 @@ export {
 	FullBodyImage,
 	Highlight,
 	randomRotate,
+	highlight,
 };
