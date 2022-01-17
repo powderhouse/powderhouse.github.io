@@ -27,7 +27,7 @@ function HomePage({ data: { attributes: { SplashLanguage, SignUpShoutOut } } }) 
       <Region padded>
         <Header />
 
-        <Splash markdown>{SplashLanguage}</Splash>
+        <Splash markdown> {SplashLanguage} </Splash>
 
         <SplashNewsletterSignup backgroundColor="--off-black">
           <ShoutOut> {SignUpShoutOut} </ShoutOut>
