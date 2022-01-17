@@ -19,10 +19,11 @@ let complementaryColor = function(colorString) {
 		throw "`complements` has a color which would be overwritten when expanded."
 	}
 	else {
-		Object.keys(complements).forEach((c) => complements[complements[c]] = complements[c])
+		Object.keys(complements).forEach((k) => complements[complements[k]] = k);
 	}
 
-	return complements.hasOwnProperty(colorString) ? complements[colorString] : "unset";
+	console.log("Checking if", colorString, "in",complements)
+	return ((colorString in complements) ? expandColor(complements[colorString]) : "unset");
 }
 
 let PageContainer = styled.div`
@@ -33,11 +34,11 @@ let PageContainer = styled.div`
 let RegionContainer = styled.div`
   width: 100vw;
   ${(props) => {
-  	let backgroundColorString = props.backgroundColor ? expandColor(props.backgroundColor) : "initial";
-  	let colorString = props.color ? expandColor(props.color) : complementaryColor(backgroundColorString);
+  	let backgroundColorString = props.backgroundColor ? props.backgroundColor : "initial";
+  	let colorString = props.color ? props.color : complementaryColor(backgroundColorString);
   	return `
-  		background-color: ${backgroundColorString};
-  		color: ${colorString};
+  		background-color: ${expandColor(backgroundColorString)};
+  		color: ${expandColor(colorString)};
   	`
   }}
   display: grid;
