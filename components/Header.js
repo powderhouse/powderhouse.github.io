@@ -1,5 +1,5 @@
 import { navMenuItems } from '../site-data.js';
-import { gap, baseGrid } from './global.js';
+import { gap, baseGrid, highlight } from './global.js';
 import styled from 'styled-components';
 
 function Header(props) {
@@ -30,14 +30,13 @@ let LogoLockup = styled.div`
   grid-column: 1 / 3;
 `;
 
-let NavMenu = styled.nav`
+let NavMenu = highlight(styled.nav`
   grid-column: 9 / -1;
-`;
+`);
 
 let NavList = styled.ol`
   display: flex;
   justify-content: space-evenly;
-
   padding: 0;
 `;
 
