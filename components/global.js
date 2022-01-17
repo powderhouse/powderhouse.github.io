@@ -3,6 +3,9 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+
 let PageContainer = styled.div`
 	background-color:var(--off-white);
 	color:var(--off-black);
@@ -27,6 +30,8 @@ let Region = styled.div`
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "initial"};
 `;
+
+let Markdown = (props) => <ReactMarkdown rehypePlugins={[rehypeRaw]} {...props} />
 
 let Spacer = styled.div``;
 
@@ -165,6 +170,7 @@ export {
 	PageContainer,
 	Region,
 	RegionContainer,
+	Markdown,
 	Spacer,
 	PageSplash,
 	PageHeader,

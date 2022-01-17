@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -14,6 +12,7 @@ import {
   RegionContainer,
   PageSection,
   Highlight,
+  Markdown
 } from "../components/global";
 
 import { getStrapiMedia } from "../lib/media";
@@ -28,9 +27,9 @@ function HomePage({ data }) {
         <Header bgColor="off-black" color="off-white" />
 
         <SplashLanguage>
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+          <Markdown>
             {data.attributes.SplashLanguage}
-          </ReactMarkdown>
+          </Markdown>
         </SplashLanguage>
 
         <SplashNewsletterSignup>
