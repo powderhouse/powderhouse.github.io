@@ -22,7 +22,6 @@ let complementaryColor = function(colorString) {
 		Object.keys(complements).forEach((k) => complements[complements[k]] = k);
 	}
 
-	console.log("Checking if", colorString, "in",complements)
 	return ((colorString in complements) ? expandColor(complements[colorString]) : "unset");
 }
 
