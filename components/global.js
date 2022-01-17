@@ -6,6 +6,25 @@ import { css } from 'styled-components';
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
+let expandColor = function(colorString) {
+	let isCSSVariable = colorString.match(/^--/);
+	return (isCSSVariable ? `var(${colorString})` : colorString);
+}
+
+let complementaryColor = function(colorString) {
+	let complements = {
+		'--off-white': '--off-black',
+	}
+	if (Object.keys(complements).filter(k => Object.values(complements).includes(k)).length > 0) {
+		throw "`complements` has a color which would be overwritten when expanded."
+	}
+	else {
+		Object.keys(complements).forEach((c) => complements[complements[c]] = complements[c])
+	}
+
+	return complements.hasOwnProperty(colorString) ? complements[colorString] : "unset";
+}
+
 let PageContainer = styled.div`
 	background-color:var(--off-white);
 	color:var(--off-black);
@@ -13,8 +32,14 @@ let PageContainer = styled.div`
 
 let RegionContainer = styled.div`
   width: 100vw;
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : "initial"};
+  ${(props) => {
+  	let backgroundColorString = props.backgroundColor ? expandColor(props.backgroundColor) : "initial";
+  	let colorString = props.color ? expandColor(props.color) : complementaryColor(backgroundColorString);
+  	return `
+  		background-color: ${backgroundColorString};
+  		color: ${colorString};
+  	`
+  }}
   display: grid;
 `;
 

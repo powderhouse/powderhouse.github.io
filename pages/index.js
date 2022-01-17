@@ -22,8 +22,8 @@ import { highlight } from "../components/global.js";
 
 function HomePage({ data }) {
   return (
-    <RegionContainer>
-      <Region css={baseGrid} backgroundColor="blue" isLightSection={false}>
+    <RegionContainer backgroundColor="blue">
+      <Region css={baseGrid} isLightSection={false}>
         <Header bgColor="off-black" color="off-white" />
 
         <SplashLanguage>
