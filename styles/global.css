@@ -96,13 +96,13 @@ dd {
 	padding-bottom:var(--gap);
 }
 
-.blue {color: var(--blue); stroke: var(--blue)}
-.purple {color: var(--purple); stroke: var(--purple)}
-.yellow {color: var(--yellow); stroke: var(--yellow)}
-.red {color: var(--red); stroke: var(--red)}
-.green {color: var(--green); stroke: var(--green)}
-.off-white {color: var(--off-white); stroke: var(--off-white)}
-.off-black {color: var(--off-black); stroke: var(--off-black)}
+.blue {color: var(--blue); stroke: var(--blue); fill: var(--blue);}
+.purple {color: var(--purple); stroke: var(--purple); fill: var(--purple);}
+.yellow {color: var(--yellow); stroke: var(--yellow); fill: var(--yellow);}
+.red {color: var(--red); stroke: var(--red); fill: var(--red);}
+.green {color: var(--green); stroke: var(--green); fill: var(--green);}
+.off-white {color: var(--off-white); stroke: var(--off-white); fill: var(--off-white);}
+.off-black {color: var(--off-black); stroke: var(--off-black); fill: var(--off-black);}
 
 img {width: 100%;}
 
@@ -142,5 +142,9 @@ video {
 
 .arrowSVG {
 	position: relative;
+}
+
+.active .nav-scribble, .nav-link:hover .nav-scribble {
+	visibility:visible;
 }
 

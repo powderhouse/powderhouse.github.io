@@ -102,26 +102,25 @@ let PageTableOfContents = styled.ol`
 
 let PageTOCListItem = styled.li`
 	display:flex;
-
-	&:not(:last-child) {
-		padding-bottom:10px;
-	}
 `;
 
 let PageTOCLink = styled.a`
 	display:flex;
 	align-items:center;
-
+	transition:.8s ease;
 	text-decoration:none;
+
+	&:hover {
+		transform:translateX(var(--gap));
+	}
 `;
 
 let Asterisk = styled.div`
-	height:1.5rem;
-	width:1.5rem;
-	margin-right:10px;
+	height:2.5rem;
+	width:2.5rem;
+	transform-origin:50% 50%;
+	margin-right:-1px;
 `;
-
-let randomNum = Math.random();
 
 let PageIntro = styled.div`
 	grid-column: 1 / span 9;
@@ -183,7 +182,7 @@ let Highlight = styled.span`
 `;
 
 let randomRotate = function randomRotate() {
-		return "rotate("+(Math.random()*360)+"deg)"
+		return "rotate("+(Math.round(Math.random()*360))+"deg)"
 	};
 
 let highlight = function(component, color = 'red') {
@@ -207,7 +206,6 @@ export {
 	PageTOCListItem,
 	PageTOCLink,
 	Asterisk,
-	randomNum,
 	PageIntro,
 	SectionHeader,
 	PageSection,

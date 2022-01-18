@@ -4,7 +4,7 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { asteriskImgURL } from "../../site-data.js";
+import { asteriskSVG } from "../../site-data.js";
 
 import {
 	baseGrid,
@@ -42,7 +42,9 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 							<PageTOCLink
 								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
 							>
-								<Asterisk className="off-white" style={{transform:randomRotate()}}><img className="asterisk" src={asteriskImgURL} /></Asterisk>
+								<Asterisk style={{transform:randomRotate()}}>
+									{asteriskSVG("off-white")}
+								</Asterisk>
 								<div>{n.SectionHeader}</div>
 							</PageTOCLink>
 							<Spacer />
