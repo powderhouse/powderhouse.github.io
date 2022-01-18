@@ -20,6 +20,7 @@ import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
 import { highlight } from "../components/global.js";
+import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
 
 function HomePage({ data: { attributes: { SplashLanguage, SignUpShoutOut } } }) {
   return (
