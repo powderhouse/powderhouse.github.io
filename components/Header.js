@@ -49,6 +49,7 @@ let Wrapper = styled.header`
 
   background-color: var(--${(props) => props.bgColor});
   height: 102px; /*TK Explicit?*/
+  display:grid;
   align-items: center;
 `;
 

@@ -1,7 +1,8 @@
-import { navMenuItems, socialMediaLinks } from '../site-data.js';
 import styled from 'styled-components';
 
+import { navMenuItems, socialMediaLinks } from '../site-data.js';
 import { gap, baseGrid } from '../components/global.js';
+import NewsLetterSignUp from "./NewsLetterSignUp";
 
 function Footer() {
   return (
@@ -33,10 +34,13 @@ function Footer() {
             return <SocialLink href={n.href} key={n.id}><SocialListItem>{n.text}</SocialListItem></SocialLink>
           })}
         </SocialList>
-        <SignUpForm action='' method='get'>
-          <EmailInput type='email' name='email' id='email' required />
-          <SubmitButton type="submit" value="Sign Up" />
-        </SignUpForm>
+        <NewsLetterSignUp
+            text="Sign Up!"
+            color="off-black"
+            buttonWidth="long"
+            buttonThickness="thick"
+            buttonTextLength="medText"
+          ></NewsLetterSignUp>
       </FooterNewsletterSignup>
       </Wrapper>
   )

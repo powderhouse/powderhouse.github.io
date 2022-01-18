@@ -34,9 +34,9 @@ function NewsLetterSignUp({ text, color, link, buttonWidth, buttonThickness, but
 
     return (
         <NewsLetterForm method="post" onSubmit={handleSubmit}>
-        <div>
-            <input name="email" type="email" />
-        </div>
+        <NewsLetterInputDiv>
+            <NewsLetterInput name="email" type="email" />
+        </NewsLetterInputDiv>
         <NewsLetterFormButton className="arrowButton">
             {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](color)}
             <ButtonText color={color}>{text}</ButtonText>
@@ -47,17 +47,35 @@ function NewsLetterSignUp({ text, color, link, buttonWidth, buttonThickness, but
 
 let NewsLetterForm = styled.form `
     display: flex;
-  align-items: center;
+    flex-wrap: wrap;
+    align-items: stretch;
 `;
 
-let NewsLetterFormButton = styled.button `
+let NewsLetterInputDiv = styled.div`
+    flex:1 1 50%;
+    padding-right:calc(var(--gap)/2);
+`;
+
+let NewsLetterInput = styled.input`
+    height:100%;
+    width:100%;
+    font-size:1.5rem;
+    padding-left:10px;
+    border:2px solid var(--off-white); /*Complement*/
+    background-color:var(--off-black); /*Primary*/
+    caret-color:var(--off-white); /*Complement*/
+    color:var(--off-white); /*Complement*/
+`;
+
+let NewsLetterFormButton = styled.button`
     position: relative;
-      display: flex;
-      margin: 0;
-      padding: 0;
-      background: none;
-      border: none;
-      cursor: pointer;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex:1 1 50%;
 `;
 
 let ButtonText = styled.div `
