@@ -15,6 +15,8 @@ let complementaryColor = function(colorString) {
 	let complements = {
 		'--off-white': '--off-black',
 	}
+
+	// TODO: Probably want this to be subtler; some colors are not simply inverted
 	if (Object.keys(complements).filter(k => Object.values(complements).includes(k)).length > 0) {
 		throw "`complements` has a color which would be overwritten when expanded."
 	}
@@ -53,8 +55,6 @@ let Region = styled.div`
   padding-left: var(--gap);
   padding-right: var(--gap);
   padding-bottom: ${(props) => props.padded ? "144px" : "initial"};
-  background-color: ${(props) =>
-    props.backgroundColor ? props.backgroundColor : "initial"};
 `;
 
 let Markdown = (props) => <ReactMarkdown rehypePlugins={[rehypeRaw]} {...props} />;
@@ -64,7 +64,7 @@ let Div = (props) =>  (props.markdown ? <Markdown {...props} /> : <div {...props
 let Spacer = styled.div``;
 
 const baseGrid = css`
-  display: grid;git
+  display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: 12px;
   grid-auto-rows: minmax(100px, auto);

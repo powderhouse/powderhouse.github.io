@@ -27,10 +27,10 @@ function HomePage({ data: { attributes: { SplashLanguage, SignUpShoutOut } } }) 
       <Region padded>
         <Header />
 
-        <Splash markdown> {SplashLanguage} </Splash>
+        <Splash markdown>{SplashLanguage}</Splash>
 
         <SplashNewsletterSignup backgroundColor="--off-black">
-          <ShoutOut> {SignUpShoutOut} </ShoutOut>
+          <ShoutOut>{SignUpShoutOut}</ShoutOut>
           <NewsLetterSignUp
             text="Sign Up!"
             color="off-white"
@@ -50,7 +50,7 @@ let Splash = highlight(styled(Div)`
   background-color: var(--off-black);
   color: var(--off-white);
   width: 100%;
-  font-size: 2.64rem;
+  font-size: 2.64rem; // TODO: consider bread trail of pixels in calc, note the need to drop px in computing ratio
 `);
 
 let ShoutOut = styled.p`
