@@ -13,7 +13,7 @@ import {
   PageSection,
   Highlight,
   Markdown,
-  Div
+  Div,
 } from "../components/global";
 
 import { getStrapiMedia } from "../lib/media";

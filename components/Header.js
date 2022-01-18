@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
 import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
+import { highlight } from "../components/global.js";
 
 function Header(props) {
   const router = useRouter();
@@ -27,14 +28,16 @@ function Header(props) {
       </LogoLockup>
       <NavMenu>
         <NavList>
-          {navMenuItems.map((n) => (
+          {navMenuItems.map(function(n) {
+            return (
             <NavListItem key={n.href}>
               <NavLink className={(router.pathname == n.href ? "active" : "") + " nav-link"} color={props.color} href={n.href}>
                 <div>{n.text}</div>
                 <Scribble className="nav-scribble">{scribbleSVGs[assignScribbleNum(n.text)](assignPageColor(n.text))}</Scribble>
               </NavLink>
             </NavListItem>
-          ))}
+          )
+          })}
         </NavList>
       </NavMenu>
     </Wrapper>
