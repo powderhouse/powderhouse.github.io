@@ -24,7 +24,7 @@ let complementaryColor = function(colorString) {
 		Object.keys(complements).forEach((k) => complements[complements[k]] = k);
 	}
 
-	return ((colorString in complements) ? expandColor(complements[colorString]) : "unset");
+	return ((colorString in complements) ? expandColor(complements[colorString]) : "initial");
 }
 
 let PageContainer = styled.div`
@@ -40,6 +40,8 @@ let RegionContainer = styled.div`
   	return `
   		background-color: ${expandColor(backgroundColorString)};
   		color: ${expandColor(colorString)};
+  		/*stroke: var(--off-white);*/
+  		fill: var(--off-white);
   	`
   }}
   display: grid;

@@ -23,7 +23,7 @@ function Header(props) {
     <Wrapper bgColor={props.bgColor} css={baseGrid}>
       <LogoLockup>
         <a href="/">
-          {logotypeHorizSVG(props.color)}  
+          {logotypeHorizSVG("off-white")}  
         </a>
       </LogoLockup>
       <NavMenu>
