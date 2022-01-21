@@ -13,7 +13,7 @@
 @font-face {
     font-family: 'GT Planar';
     src: local('GT Planar Italic 15 Bold'), local('GTPlanar-Italic15Bold'),
-        url('/fonts/GT-Planar-Italic15Bold.woff2') format('woff2');
+        url('/fonts/GT-Planar-Italic-15-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: italic;
     font-display: swap;
@@ -31,7 +31,7 @@
 @font-face {
     font-family: 'GT Planar';
     src: local('GT Planar Italic 15 Light'), local('GTPlanar-Italic15Light'),
-        url('/fonts/GT-Planar-Italic15Light.woff2') format('woff2');
+        url('/fonts/GT-Planar-Italic-15-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: italic;
     font-display: swap;
@@ -49,7 +49,7 @@
 @font-face {
     font-family: 'GT Planar';
     src: local('GT Planar Italic 15 Regular'), local('GTPlanar-Italic15Regular'),
-        url('/fonts/GT-Planar-Italic15Regular.woff2') format('woff2');
+        url('/fonts/GT-Planar-Italic-15-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
