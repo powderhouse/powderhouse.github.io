@@ -66,7 +66,7 @@ let Region = styled.div`
 	margin: 0 auto; // TODO: Any better way to center?
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: var(--gap);
+  column-gap: var(--gap);
   grid-auto-rows: min-content;
   max-width: 1440px;
   padding-left: var(--gap);

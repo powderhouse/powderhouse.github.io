@@ -32,10 +32,10 @@ function HomePage({
         <Region>
           <Header />
         </Region>
-        <Region>
+        <Region style={{paddingBottom: "8rem"}}>
           <Splash markdown>{SplashLanguage}</Splash>
 
-          <SplashNewsletterSignup backgroundColor="--off-black">
+          <SplashNewsletterSignup>
             <ShoutOut>{SignUpShoutOut}</ShoutOut>
             <NewsLetterSignUp
               text="Sign Up!"
@@ -59,19 +59,31 @@ let Splash = styled(Div)`
   line-height: 1.422em;
   font-weight: 300;
   font-family: "GT Planar";
-  padding: 4rem 0;
+  padding: 6rem 0;
+  p:not(:last-child) {
+    padding-bottom: 3rem;
+  } 
 `;
 
 let ShoutOut = styled.p`
-  font-size: 24px;
-  text-align: center;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  padding: 1em 0;
+  height: 5rem;
+  line-height: 1;
 `;
 
 let SplashNewsletterSignup = styled.div`
   grid-column: 4 / 10;
 
-  border: 1px dotted black;
-  padding-top: 8.47rem;
+  display: grid;
+  // TODO: Better way to inherit this?
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: min-content;
+  column-gap: var(--gap);
+  padding: 4rem 0;
+  place-items: center;
 `;
 
 export async function getStaticProps(context) {
