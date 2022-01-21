@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
 import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
-import { highlight } from "../components/global.js";
+import { highlight, colorByProp, ShiftBy } from "../components/global.js";
 
 function Header(props) {
   const router = useRouter();
@@ -19,26 +19,32 @@ function Header(props) {
     return scribbleNum
   }
 
-  return (
-    <Wrapper bgColor={props.bgColor} css={baseGrid}>
+  return(
+    <Wrapper>
+      <ShiftBy x={0} y={5}>
       <LogoLockup>
+        <div style={{width: "321.54px"}}>
         <a href="/">
-          {logotypeHorizSVG("off-white")}  
+          {logotypeHorizSVG()}  
         </a>
+        </div>
       </LogoLockup>
+      </ShiftBy>
       <NavMenu>
-        <NavList>
-          {navMenuItems.map(function(n) {
-            return (
-            <NavListItem key={n.href}>
-              <NavLink className={(router.pathname == n.href ? "active" : "") + " nav-link"} color={props.color} href={n.href}>
-                <div>{n.text}</div>
-                <Scribble className="nav-scribble">{scribbleSVGs[assignScribbleNum(n.text)](assignPageColor(n.text))}</Scribble>
-              </NavLink>
-            </NavListItem>
-          )
-          })}
-        </NavList>
+        <ShiftBy x={0} y={4}>
+          <NavList>
+            {navMenuItems.map(function(n) {
+              return (
+              <NavListItem key={n.href}>
+                <NavLink className={(router.pathname == n.href ? "active" : "") + " nav-link"} color={props.color} href={n.href}>
+                  <div>{n.text}</div>
+                  <Scribble className="nav-scribble">{scribbleSVGs[assignScribbleNum(n.text)](assignPageColor(n.text))}</Scribble>
+                </NavLink>
+              </NavListItem>
+            )
+            })}
+          </NavList>
+        </ShiftBy>
       </NavMenu>
     </Wrapper>
   );
@@ -46,25 +52,34 @@ function Header(props) {
 
 let Wrapper = styled.header`
   grid-column: 1 / -1;
-
-  background-color: var(--${(props) => props.bgColor});
-  height: 102px; /*TK Explicit?*/
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+  ${(props) => colorByProp(props)}
+  height: 6rem;
   align-items: center;
+  ${props => `
+    color: inherit;
+    stroke: inherit;
+    fill: inherit;
+    `};
+  ${props => baseGrid};
+  overlow: hidden;
 `;
 
 let LogoLockup = styled.div`
   grid-column: 1 / span 3;
-  margin-left:var(--gap);
 `;
 
-let NavMenu = highlight(styled.nav`
+let NavMenu = styled.nav`
   grid-column: 9 / -1;
-`);
+`;
 
 let NavList = styled.ol`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 0;
+  margin: 0;
 `;
 
 let NavListItem = styled.li`

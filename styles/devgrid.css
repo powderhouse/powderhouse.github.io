@@ -1,13 +1,13 @@
 /* Settings */
 :root {
   --offset: 24px; /* 1.5rem; */
-  --max_width: 1440px;
+  --max_width: calc(1440px - 2*24px);
   --columns: 6;
   --gutter: 24px; /* .5rem; */
-  --baseline: 2rem;
+  --baseline: 1rem;
   /*--baseline-shift: 2rem;*/
-  --color: hsla(204, 80%, 72%, 0.25);
-  --color-text: hsla(204, 80%, 72%, 1);
+  --color: hsla(100, 80%, 72%, 0.25);
+  --color-text: hsla(100, 80%, 72%, 1);
   --media-query: 'base';
 }
 
@@ -15,8 +15,8 @@
   :root {
     --offset: 24px; /* 2rem; */
     --gutter: 24px; /* .75rem; */
-    --color: hsla(286, 51%, 44%, 0.25);
-    --color-text: hsla(286, 51%, 44%, 1);
+    --color: hsla(50, 51%, 44%, 0.25);
+    --color-text: hsla(50, 51%, 44%, 1);
     --media-query: 'small';
   }
 }
@@ -26,8 +26,8 @@
     --offset: 24px; /*3rem;*/
     --columns: 12;
     --gutter: 24px; /*1rem;*/
-    --color: hsla(204, 80%, 72%, 0.25);
-    --color-text: hsla(204, 80%, 72%, 1);
+    --color: hsla(100, 80%, 72%, 0.25);
+    --color-text: hsla(100, 80%, 72%, 1);
     --media-query: 'medium';
   }
 }
@@ -35,8 +35,8 @@
 @media (min-width: 70em) {
   :root {
     --offset: 24px; /* 4rem */;
-    --color: hsla(286, 51%, 44%, 0.25);
-    --color-text: hsla(286, 51%, 44%, 1);
+    --color: hsla(50, 51%, 44%, 0.25);
+    --color-text: hsla(50, 51%, 44%, 1);
     --media-query: 'large';
   }
 }

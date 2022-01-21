@@ -6,6 +6,20 @@ import { css } from 'styled-components';
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
+let ShiftBy = function({ x = 0, y = 0, children, ...delegated }) {
+	// via https://www.joshwcomeau.com/css/pixel-perfection/
+  return (
+    <div
+      {...delegated}
+      style={{
+        transform: `translate(${x}px, ${y}px)`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 let expandColor = function(colorString) {
 	let isCSSVariable = colorString.match(/^--/);
 	return (isCSSVariable ? `var(${colorString})` : colorString);
@@ -27,32 +41,33 @@ let complementaryColor = function(colorString) {
 	return ((colorString in complements) ? expandColor(complements[colorString]) : "initial");
 }
 
+
+let colorByProp = (props) => {
+	  	let backgroundColorString = props.backgroundColor ? props.backgroundColor : "initial";
+	  	let colorString = props.color ? props.color : complementaryColor(backgroundColorString);
+	  	return `
+	  		background-color: ${expandColor(backgroundColorString)};
+	  		color: ${expandColor(colorString)};
+	  		stroke: ${expandColor(colorString)};
+	  		fill: ${expandColor(colorString)};
+	  	`
+	  };
+
 let PageContainer = styled.div`
 	background-color:var(--off-white);
 	color:var(--off-black);
 `;
 
 let RegionContainer = styled.div`
-  width: 100vw;
-  ${(props) => {
-  	let backgroundColorString = props.backgroundColor ? props.backgroundColor : "initial";
-  	let colorString = props.color ? props.color : complementaryColor(backgroundColorString);
-  	return `
-  		background-color: ${expandColor(backgroundColorString)};
-  		color: ${expandColor(colorString)};
-  		/*stroke: var(--off-white);*/
-  		fill: var(--off-white);
-  	`
-  }}
-  display: grid;
+  ${(props) => colorByProp(props)}
 `;
 
 let Region = styled.div`
+	margin: 0 auto; // TODO: Any better way to center?
   display: grid;
-  place-self: center;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: min-content;
   max-width: 1440px;
   padding-left: var(--gap);
   padding-right: var(--gap);
@@ -69,7 +84,7 @@ const baseGrid = css`
   display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: 12px;
-  grid-auto-rows: minmax(100px, auto);
+  // grid-auto-rows: minmax(1rem, 1rem);
 `;
 
 let PageSplash = styled.div`
@@ -218,4 +233,6 @@ export {
 	Highlight,
 	randomRotate,
 	highlight,
+	colorByProp,
+	ShiftBy
 };

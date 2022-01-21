@@ -22,37 +22,45 @@ import { fetchAPI } from "../lib/api";
 import { highlight } from "../components/global.js";
 import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
 
-function HomePage({ data: { attributes: { SplashLanguage, SignUpShoutOut } } }) {
+function HomePage({
+  data: {
+    attributes: { SplashLanguage, SignUpShoutOut },
+  },
+}) {
   return (
-    <RegionContainer backgroundColor="--off-black">
-      <Region padded>
-        <Header />
+      <RegionContainer backgroundColor="--off-black">
+        <Region>
+          <Header />
+        </Region>
+        <Region>
+          <Splash markdown>{SplashLanguage}</Splash>
 
-        <Splash markdown>{SplashLanguage}</Splash>
-
-        <SplashNewsletterSignup backgroundColor="--off-black">
-          <ShoutOut>{SignUpShoutOut}</ShoutOut>
-          <NewsLetterSignUp
-            text="Sign Up!"
-            color="off-white"
-            buttonWidth="long"
-            buttonThickness="thick"
-            buttonTextLength="shortText"
-          ></NewsLetterSignUp>
-        </SplashNewsletterSignup>
-      </Region>
-      <Footer />;
-    </RegionContainer>
+          <SplashNewsletterSignup backgroundColor="--off-black">
+            <ShoutOut>{SignUpShoutOut}</ShoutOut>
+            <NewsLetterSignUp
+              text="Sign Up!"
+              color="off-white"
+              buttonWidth="long"
+              buttonThickness="thick"
+              buttonTextLength="shortText"
+            ></NewsLetterSignUp>
+          </SplashNewsletterSignup>
+        </Region>
+        <Footer />
+      </RegionContainer>
   );
 }
 
-let Splash = highlight(styled(Div)`
+let Splash = styled(Div)`
   grid-column: 2 / -2;
-  background-color: var(--off-black);
-  color: var(--off-white);
   width: 100%;
-  font-size: 2.64rem; // TODO: consider bread trail of pixels in calc, note the need to drop px in computing ratio
-`);
+  font-size: 45px; // TODO: consider bread trail of pixels in calc, note the need to drop px in computing ratio
+  letter-spacing: -0.6px;
+  line-height: 1.422em;
+  font-weight: 300;
+  font-family: "GT Planar";
+  padding: 4rem 0;
+`;
 
 let ShoutOut = styled.p`
   font-size: 24px;

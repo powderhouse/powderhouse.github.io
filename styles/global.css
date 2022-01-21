@@ -55,10 +55,11 @@
     font-display: swap;
 }
 
-html {
-	font-family: 'GT Planar',sans-serif;
+body {
+	font-family: 'GT Planar', sans-serif;
 	font-size: 17px; 
-	font-weight: 300;
+	font-weight: normal;
+	font-style: normal;
 	line-height: 1.3em;
 	letter-spacing: 0;
 
@@ -73,7 +74,7 @@ html {
 }
 
 p:not(:last-child) {
-	padding-bottom: var(--gap); 
+	padding-bottom: 3rem; 
 }
 
 a {
