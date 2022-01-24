@@ -43,7 +43,7 @@ function HomePage({
               color="off-white"
               buttonWidth="long"
               buttonThickness="thick"
-              buttonTextLength="shortText"
+              buttonTextLength="medText"
             ></NewsLetterSignUp>
           </SplashNewsletterSignup>
         </Region>
@@ -87,7 +87,7 @@ let SplashNewsletterSignup = styled.div`
   // TODO: Better way to inherit this?
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: min-content;
-  column-gap: var(--gap);
+  gap: var(--gap);
   padding: 0 0 calc(6 * 1.3rem);
   place-items: center;
 `;

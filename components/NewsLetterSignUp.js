@@ -53,24 +53,6 @@ function NewsLetterSignUp({
     );
 }
 
-let EmailInput = styled.input.attrs((props) => ({
-    type: "email",
-    name: "email",
-    placeholder: "Email Address",
-}))`
-    color: var(--off-white);
-    background: transparent;
-    border: 2px solid var(--off-white);
-    height: 3rem;
-    padding: 0.5em;
-    grid-column: 1 / 4;
-
-    &::placeholder {
-        color: var(--off-white);
-        opacity: 0.625;
-    }
-`;
-
 let NewsLetterForm = styled.form`
     grid-column: 1 / -1;
 
@@ -78,10 +60,30 @@ let NewsLetterForm = styled.form`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: min-content;
-    column-gap: var(--gap);
+    gap: var(--gap);
+`;
+
+let EmailInput = styled.input.attrs((props) => ({
+    type: "email",
+    name: "email",
+    placeholder: "Email Address",
+}))`
+    grid-column: 1 / 4;
+
+    color: var(--off-white);
+    background: transparent;
+    border: 2px solid var(--off-white);
+    padding: 0.5em;
+
+    &::placeholder {
+        color: var(--off-white);
+        opacity: 0.625;
+    }
 `;
 
 let NewsLetterFormButton = highlight(styled.button`
+    grid-column: 4 / 7;
+
     position: relative;
     display: flex;
     margin: 0;
@@ -89,7 +91,6 @@ let NewsLetterFormButton = highlight(styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    grid-column: 4 / 7;
     height: calc(3 * 1.3rem);
 `);
 
