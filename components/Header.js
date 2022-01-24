@@ -96,8 +96,9 @@ let NavLink = styled.a`
 `;
 
 let Scribble = styled.div`
-  margin-top:-1rem;
   visibility:hidden;
+  position: absolute;
+  top: 9px;
 `;
 
 export default Header;
