@@ -7,6 +7,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Component {...pageProps} />
+      {/* TODO: Add script the proper way; this throws a warning */}
+      <script src="https://kit.fontawesome.com/9945e8c92f.js" crossOrigin="anonymous"></script>
     </>
   );
 }
