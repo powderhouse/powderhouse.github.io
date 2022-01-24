@@ -4,74 +4,107 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { asteriskSVG } from '../site-data.js';
+import { asteriskSVG } from "../site-data.js";
 
 import {
 	baseGrid,
-	PageContainer,
+	Region,
+	RegionContainer,
 	Spacer,
 	PageSplash,
-	PageHeader,
+	PageHeading,
 	PageTableOfContents,
 	PageTOCListItem,
 	PageTOCLink,
-	Asterisk,
-	PageIntro,
+	PageIntroduction,
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
 	FullBleedImage,
 	FullBodyImage,
 	randomRotate,
+	slugify,
+	Div,
+	ShiftBy
 } from "../components/global";
+
+import dynamic from 'next/dynamic'
+
+const Asterisk = dynamic(() => import('../components/global').then((mod) => mod.Asterisk), { ssr: false });
 
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
-function AboutPage({ data }) {
-	return (
-		<PageContainer css={baseGrid}>
-			<Header />
-			<PageSplash bgColor="yellow" color="off-black">
-				<PageHeader>{data.attributes.PageSplash.PageHeader}</PageHeader>
-				<PageTableOfContents>
-					{data.attributes.PageSections.map((n) => (
-						<PageTOCListItem key={n.id}>
-							<PageTOCLink
-								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-							>
-								<Asterisk style={{transform:randomRotate()}}>
-									{asteriskSVG()}
-								</Asterisk>
-								<div>{n.SectionHeader}</div>
-							</PageTOCLink>
-							<Spacer />
-						</PageTOCListItem>
-					))}
-				</PageTableOfContents>
-			</PageSplash>
-			<PageIntro>{data.attributes.PageSplash.PageIntro}</PageIntro>
+let generateTOC = function (sections) {
+	return sections.map((n, i) => (
+		<PageTOCListItem key={i}>
+			<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
+				<Asterisk key={i}>{asteriskSVG()}</Asterisk>
+				<div>{n.SectionHeader}</div>
+			</PageTOCLink>
+			<Spacer />
+		</PageTOCListItem>
+	));
+};
 
-			{data.attributes.PageSections.map((n) => (
-				<PageSection
+function AboutPage({
+	data: {
+		attributes: {
+			PageSplash: { PageHeader, PageIntro },
+			PageSections,
+		},
+	},
+}) {
+	return (
+		<>
+			<RegionContainer backgroundColor="--off-white">
+				<Region>
+					<Header />
+				</Region>
+			</RegionContainer>
+			<RegionContainer backgroundColor="--yellow">
+				<Region>
+					<PageSplash>
+						<PageHeading>{PageHeader}</PageHeading>
+						<ShiftBy x={-13} y={0}>
+							<PageTableOfContents>
+								{generateTOC(PageSections)}
+							</PageTableOfContents>
+						</ShiftBy>
+					</PageSplash>
+				</Region>
+			</RegionContainer>
+			<RegionContainer backgroundColor="--off-white">
+				<Region>
+					<PageIntroduction>{PageIntro}</PageIntroduction>
+				</Region>
+			</RegionContainer>
+
+			{PageSections.map((n) => (
+				<RegionContainer
 					key={n.id}
-					id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-					css={baseGrid}
-					isLightSection={n.isLightSection}
+					id={slugify(n.SectionHeader)}
+					backgroundColor={n.isLightSection ? "--off-white" : "--off-black"}
 				>
+				<Region>
 					<SectionHeader isLeftHeader={n.isLeftHeader}>
 						{n.SectionHeader}
 					</SectionHeader>
 					<PageSectionContent>
-						<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+						<Div markdown>
 							{n.PageSectionContent}
-						</ReactMarkdown>
+						</Div>
 					</PageSectionContent>
-				</PageSection>
+				</Region>
+				</RegionContainer>
 			))}
 
-			<Footer />
-		</PageContainer>
+			<RegionContainer backgroundColor="--off-white">
+				<Region>
+					<Footer />
+				</Region>
+			</RegionContainer>
+		</>
 	);
 }
 
