@@ -19,9 +19,9 @@ function Footer() {
     <Wrapper>
       <FooterNavigation>
         <NavList>
-          {navItems.map((n) => {
+          {navItems.map((n, i) => {
             return (
-              <NavItem>
+              <NavItem key={i}>
                 <NavLink href={n.href}>{n.text}</NavLink>
               </NavItem>
             );
