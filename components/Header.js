@@ -21,7 +21,7 @@ function Header(props) {
 
   return(
     <Wrapper>
-      <ShiftBy x={0} y={5}>
+      <ShiftBy x={0} y={-5}>
       <LogoLockup>
         <div style={{width: "321.54px"}}>
         <a href="/">
@@ -31,7 +31,7 @@ function Header(props) {
       </LogoLockup>
       </ShiftBy>
       <NavMenu>
-        <ShiftBy x={0} y={4}>
+        <ShiftBy x={0} y={-3}>
           <NavList>
             {navMenuItems.map(function(n) {
               return (
@@ -54,17 +54,16 @@ let Wrapper = styled.header`
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 12px;
-  ${(props) => colorByProp(props)}
-  height: 6rem;
+  gap: var(--gap);
+  height: calc(6 * 1.3rem);
   align-items: center;
+  ${(props) => colorByProp(props)}
   ${props => `
     color: inherit;
     stroke: inherit;
     fill: inherit;
     `};
   ${props => baseGrid};
-  overlow: hidden;
 `;
 
 let LogoLockup = styled.div`

@@ -90,7 +90,7 @@ let NewsLetterFormButton = highlight(styled.button`
     border: none;
     cursor: pointer;
     grid-column: 4 / 7;
-    height: 3rem;
+    height: calc(3 * 1.3rem);
 `);
 
 let ButtonText = styled.div`

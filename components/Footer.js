@@ -1,112 +1,154 @@
-import { navMenuItems, socialMediaLinks } from '../site-data.js';
-import styled from 'styled-components';
+import { navMenuItems, socials } from "../site-data.js";
+import styled from "styled-components";
+import { useRouter } from "next/router";
 
-import { gap, baseGrid } from '../components/global.js';
+import Icon from "../components/Icon.js";
+import {
+  gap,
+  baseGrid,
+  colorByProp,
+  ShiftBy,
+  highlight,
+} from "../components/global.js";
 
 function Footer() {
+  let navItems = navMenuItems.slice();
+  navItems.unshift({ text: "Home", href: "/" });
+  const router = useRouter();
   return (
-    <Wrapper css={baseGrid}>
+    <Wrapper>
       <FooterNavigation>
-        <h4>Navigation</h4>
         <NavList>
-          {navMenuItems.map(n => {
-            return <li key={n.href.slice(1)}><NavLink href={n.href}>{n.text}</NavLink></li>
+          {navItems.map((n) => {
+            return (
+              <NavItem>
+                <NavLink href={n.href}>{n.text}</NavLink>
+              </NavItem>
+            );
           })}
         </NavList>
       </FooterNavigation>
       <FooterContact>
-        <h4>Contact</h4>
-        <div>
-          <a href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
-            339R Summer Street <br/>
-            Somerville, MA 02144
-          </a>
-        </div>
-        <div>
-          <a href="mailto:us@powderhouse.org">us@powderhouse.org</a>
-        </div>
+        <NavList>
+          <NavItem>
+            <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
+              339R Summer Street <br />
+              Somerville, MA 02144
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="mailto:us@powderhouse.org">
+              us@powderhouse.org
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <SocialList>
+              {socials.map((n) => {
+                return (
+                  <IconListItem
+                    href={n.href}
+                    key={n.id}
+                    icon={n.service.toLowerCase()}
+                  ></IconListItem>
+                );
+              })}
+            </SocialList>
+          </NavItem>
+        </NavList>
       </FooterContact>
-      <FooterNewsletterSignup>
-        <SignUpShoutOut>Follow us on social media or join our mailing list to keep up with our work.</SignUpShoutOut>
-        <SocialList>
-          {socialMediaLinks.map(n => {
-            return <SocialLink href={n.href} key={n.id}><SocialListItem>{n.text}</SocialListItem></SocialLink>
-          })}
-        </SocialList>
-        <SignUpForm action='' method='get'>
-          <EmailInput type='email' name='email' id='email' required />
-          <SubmitButton type="submit" value="Sign Up" />
-        </SignUpForm>
-      </FooterNewsletterSignup>
-      </Wrapper>
-  )
+      {router.pathname != "/" ? (
+        <FooterNewsletterSignup>
+          <SignUpForm action="" method="get">
+            <EmailInput type="email" name="email" id="email" required />
+            <SubmitButton type="submit" value="Sign Up" />
+          </SignUpForm>
+        </FooterNewsletterSignup>
+      ) : (
+        ""
+      )}
+    </Wrapper>
+  );
 }
+
+let IconListItem = ({ className, href, icon }) => {
+  return (
+    <li className={className}>
+      <ShiftBy x={0} y={0}>
+        <NavLink href={href}>
+          <Icon icon={icon} />
+        </NavLink>
+      </ShiftBy>
+    </li>
+  );
+};
 
 let Wrapper = styled.footer`
   grid-column: 1 / -1;
-
-  background-color: var(--off-white);
-  color: var(--off-black);
-  padding: var(--gap);
-  padding-top:90px; /*TK Explicit?*/
+  color: inherit;
+  stroke: inherit;
+  fill: inherit;
+  ${baseGrid};
+  ${(props) => colorByProp(props)}};
+  padding: calc(5 * 1.3rem) 0;
 `;
 
 let FooterNavigation = styled.div`
   grid-column: 1 / 4;
-  border: 1px dotted black;
 `;
 
 let NavList = styled.ol`
-  list-style-type:none;
-  padding:0;
-  margin:0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  grid-column: 4 / 6;
+`;
+
+let NavItem = styled.li`
+  display: flex;
+  align-items: center;
+  padding: calc(1.3rem / 4) 0;
 `;
 
 let NavLink = styled.a`
   color: var(--off-black);
   text-decoration: none;
+  line-height: 1.3rem;
 `;
 
+let Address = styled.div`
+  padding: calc(1.3rem / 4) 0;
+`;
 let SocialList = styled(NavList)`
-  display:flex;
-`;
-
-let SocialListItem = styled.li`
-  padding:calc(var(--gap)/2);
-`;
-
-let SocialLink = styled(NavLink)`
-  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%; // TODO: Not on horizontal grid, but better looking?
 `;
 
 let FooterContact = styled.div`
-  grid-column: 4 / 7;
-  border: 1px dotted black;
+  grid-column: 4 / 6;
 `;
 
 let FooterNewsletterSignup = styled.div`
-  grid-column: 7 / -1;
-  
-  border: 1px dotted black;
+  grid-column: 7 / 10;
 `;
 
 let SignUpShoutOut = styled.h4``;
 
 let SignUpForm = styled.form`
-  display:flex;
-  flex-direction:column;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: min-content;
+  column-gap: var(--gap);
 `;
 
 let EmailInput = styled.input`
-  grid-column: 1 / -1;
-  height:var(--gap);
-  margin-bottom:calc(var(--gap)/2);
+  grid-column: 1 / 3;
 `;
 
 let SubmitButton = styled.input`
-  grid-column: 1 / -1;
-  height:var(--gap);
-  margin-bottom:calc(var(--gap)/2);
+  grid-column: 3 / 4;
 `;
 
 export default Footer;
