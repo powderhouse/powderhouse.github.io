@@ -28,12 +28,14 @@ socials.forEach((s) => (s.id = s.service.toLowerCase() + "-" + "social"));
 let buttonSVGs = {
   long: {
     thick: {
-      shortText: (color = "off-black") => (
+      shortText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="336"
-          height="69"
+          viewBox="0 0 336 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 309.472 2 L 334.354 34.286 L 309.472 67 Z"
@@ -53,12 +55,16 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (color = "off-black") => (
+      medText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
           width="336"
           height="69"
+          viewBox="0 0 336 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 309.472 2 L 334.354 34.286 L 309.472 67 Z"
@@ -78,12 +84,16 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (color = "off-black") => (
+      longText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
           width="336"
           height="69"
+          viewBox="0 0 336 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 309.472 2 L 334.354 34.286 L 309.472 67 Z"
@@ -105,12 +115,14 @@ let buttonSVGs = {
       ),
     },
     thin: {
-      shortText: (color = "off-black") => (
+      shortText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="339"
-          height="49"
+          viewBox="0 0 339 49"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 47.5 L 2 1.5 L 312.472 1.63 L 337.354 24.349 L 312.472 47.37 Z"
@@ -137,12 +149,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (color = "off-black") => (
+      medText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="338"
-          height="49"
+          viewBox="0 0 339 49"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 47.5 L 2 1.5 L 311.472 1.63 L 336.354 24.349 L 311.472 47.37 Z"
@@ -169,12 +183,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (color = "off-black") => (
+      longText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="339"
-          height="49"
+          viewBox="0 0 339 49"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 47.5 L 2 1.5 L 312.472 1.63 L 337.354 24.349 L 312.472 47.37 Z"
@@ -203,12 +219,14 @@ let buttonSVGs = {
   },
   medium: {
     thick: {
-      shortText: (color = "off-black") => (
+      shortText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="266"
-          height="69"
+          viewBox="0 0 266 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 239.472 2 L 264.354 34.286 L 239.472 67 Z"
@@ -228,12 +246,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (color = "off-black") => (
+      medText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="266"
-          height="69"
+          viewBox="0 0 266 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 239.472 2 L 264.354 34.286 L 239.472 67 Z"
@@ -253,12 +273,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (color = "off-black") => (
+      longText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="266"
-          height="69"
+          viewBox="0 0 266 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 239.472 2 L 264.354 34.286 L 239.472 67 Z"
@@ -282,12 +304,14 @@ let buttonSVGs = {
   },
   short: {
     thick: {
-      shortText: (color = "off-black") => (
+      shortText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="206"
-          height="69"
+          viewBox="0 0 206 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 179.472 2 L 204.354 34.286 L 179.472 67 Z"
@@ -307,12 +331,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (color = "off-black") => (
+      medText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="206"
-          height="69"
+          viewBox="0 0 206 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 179.472 2 L 204.354 34.286 L 179.472 67 Z"
@@ -332,12 +358,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (color = "off-black") => (
+      longText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="206"
-          height="69"
+          viewBox="0 0 206 69"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 67 L 2 2 L 179.472 2 L 204.354 34.286 L 179.472 67 Z"
@@ -359,12 +387,14 @@ let buttonSVGs = {
       ),
     },
     thin: {
-      shortText: (color = "off-black") => (
+      shortText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="206"
-          height="49"
+          viewBox="0 0 206 49"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 47.37 L 2 1.63 L 179.472 1.63 L 204.354 24.349 L 179.472 47.37 Z"
@@ -383,12 +413,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (color = "off-black") => (
+      medText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="206"
-          height="49"
+          viewBox="0 0 206 49"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 47.37 L 2 1.63 L 179.472 1.63 L 204.354 24.349 L 179.472 47.37 Z"
@@ -407,12 +439,14 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (color = "off-black") => (
+      longText: (color="off-black",height="100%",width="100%") => (
         <svg
           className={"arrowSVG " + color}
           xmlns="http://www.w3.org/2000/svg"
-          width="206"
-          height="49"
+          viewBox="0 0 206 49"
+          width={width}
+          height={height}
+          preserveAspectRatio="none"
         >
           <path
             d="M 2 47.37 L 2 1.63 L 179.472 1.63 L 204.354 24.349 L 179.472 47.37 Z"
@@ -434,7 +468,7 @@ let buttonSVGs = {
   },
 };
 
-let asteriskSVG = (color = "off-black") => (
+let asteriskSVG = (color="off-black") => (
   <svg
     className={color}
     xmlns="http://www.w3.org/2000/svg"

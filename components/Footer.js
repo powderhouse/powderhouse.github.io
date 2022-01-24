@@ -21,7 +21,7 @@ function Footer() {
         <NavList>
           {navItems.map((n) => {
             return (
-              <NavItem>
+              <NavItem key={n.href}>
                 <NavLink href={n.href}>{n.text}</NavLink>
               </NavItem>
             );
