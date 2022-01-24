@@ -4,7 +4,7 @@
   --max_width: calc(1440px - 2*24px);
   --columns: 6;
   --gutter: 24px; /* .5rem; */
-  --baseline: 1rem;
+  --baseline: calc(1.3rem / 2);
   /*--baseline-shift: 2rem;*/
   --color: hsla(100, 80%, 72%, 0.25);
   --color-text: hsla(100, 80%, 72%, 1);
