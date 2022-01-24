@@ -83,8 +83,7 @@ let Spacer = styled.div``;
 const baseGrid = css`
   display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	gap: 12px;
-  // grid-auto-rows: minmax(1rem, 1rem);
+	gap: var(--gap);
 `;
 
 let PageSplash = styled.div`
