@@ -199,10 +199,10 @@ let SectionHeaderContainer = styled.div`
 let SectionHeader = (props) => {
 	let leftHeader = (
 		<>
-			<ShiftBy x={0} y={-8}>
+			<ShiftBy x={-5} y={-6.5}>
 				<Asterisk />
 			</ShiftBy>
-			<ShiftBy x={0} y={3}>
+			<ShiftBy x={-5} y={5}>
 				<Header2>{props.children}</Header2>
 			</ShiftBy>
 		</>
