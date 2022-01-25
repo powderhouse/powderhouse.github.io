@@ -1,5 +1,7 @@
 // global.js
 
+import { useEffect, useState } from "react";
+
 import styled from "styled-components";
 import { css } from "styled-components";
 
@@ -39,7 +41,9 @@ let complementaryColor = function (colorString) {
 	) {
 		throw "`complements` has a color which would be overwritten when expanded.";
 	} else {
-		Object.keys(complements).forEach((k) => (complements[complements[k]] = k));
+		Object.keys(complements).forEach(
+			(k) => (complements[complements[k]] = k)
+		);
 	}
 
 	return colorString in complements
@@ -107,7 +111,7 @@ let PageSplash = styled.div`
 
 	min-height: calc(29 * 1.3rem);
 
-	padding: calc(1 * 1.3rem) 0
+	padding: calc(1 * 1.3rem) 0;
 `;
 
 let PageHeading = styled.h1`
@@ -121,7 +125,7 @@ let PageHeading = styled.h1`
 
 let PageTableOfContents = styled.ol`
 	list-style-type: none;
-	padding: 0;	
+	padding: 0;
 	margin: 0;
 	transform: translateY(1px);
 `;
@@ -142,13 +146,26 @@ let PageTOCLink = styled.a`
 	}
 `;
 
-let Asterisk = styled.div`
+let AsteriskContainer = styled.div`
 	height: 2.5rem;
 	width: 2.5rem;
 	transform-origin: 50% 50%;
 	margin-right: -1px;
-	transform: ${(props) => randomRotate()};
+	transform: ${(props) => `rotate(${props.rotation}deg)`};
 `;
+
+let Asterisk = (props) => {
+	const [randomRotation, setRandomRotation] = useState(null);
+	useEffect(() => {
+		setRandomRotation(Math.round(Math.random() * 360));
+	}, []);
+
+	return (
+		<AsteriskContainer rotation={randomRotation}>
+			{asteriskSVG()}
+		</AsteriskContainer>
+	);
+};
 
 let PageIntroduction = styled.div`
 	grid-column: 1 / span 9;
@@ -162,9 +179,48 @@ let PageIntroduction = styled.div`
 	transform: translateY(-4px);
 `;
 
-let SectionHeader = styled.h2`
+let SectionHeader = (props) => {
+	const [randomAsterisk, setRandomAsterisk] = useState(undefined);
+
+	useEffect(() => {
+		setRandomAsterisk(asteriskSVG());
+	}, []);
+
+	let leftHeader = (
+		<>
+			<ShiftBy x={0} y={-8}>
+				<Asterisk>{randomAsterisk}</Asterisk>
+			</ShiftBy>
+			<ShiftBy x={0} y={-2}>
+				<h2 style={{ height: "1em", "line-height": "1em" }}>
+					{props.children}
+				</h2>
+			</ShiftBy>
+		</>
+	);
+	let centerHeader = (
+		<h2 style={{ height: "1em", "line-height": "1em" }}>
+			{props.children}
+		</h2>
+	);
+	return (
+		<div
+			style={{
+				display: "flex",
+				"align-items": "flex-start",
+				height: "100%",
+			}}
+		>
+			{props.isLeftHeader ? leftHeader : centerHeader}
+		</div>
+	);
+};
+
+SectionHeader = styled(SectionHeader)`
+	font-family: "GT Planar", sans-serif;
+	font-weight: normal;
 	grid-column: ${(props) => (props.isLeftHeader ? "1 / span 3" : "4 / 10")};
-	border: 1px dotted black;
+	display: inline-block;
 `;
 
 let PageSection = styled.section`
@@ -172,12 +228,13 @@ let PageSection = styled.section`
 	padding: var(--gap);
 	background-color: ${(props) =>
 		props.isLightSection ? "inherit" : "var(--off-black)"};
-	color: ${(props) => (props.isLightSection ? "inherit" : "var(--off-white)")};
+	color: ${(props) =>
+		props.isLightSection ? "inherit" : "var(--off-white)"};
 	padding-left: calc((100vw - 1440px) / 2);
 	padding-right: calc((100vw - 1440px) / 2);
 `;
 
-let PageSectionContent = styled.div`
+let PageSectionContent = styled(Div)`
 	grid-column: 4 / 10;
 `;
 
@@ -208,10 +265,6 @@ let WidePageSectionContent = styled(PageSectionContent)`
 let Highlight = styled.span`
 	color: var(--${(props) => props.highlight});
 `;
-
-let randomRotate = function randomRotate() {
-	return "rotate(" + Math.round(Math.random() * 360) + "deg)";
-};
 
 let highlight = function (component, color = "red") {
 	return styled(component)`
@@ -252,7 +305,6 @@ export {
 	FullBleedImage,
 	FullBodyImage,
 	Highlight,
-	randomRotate,
 	highlight,
 	colorByProp,
 	ShiftBy,

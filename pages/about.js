@@ -25,12 +25,15 @@ import {
 	randomRotate,
 	slugify,
 	Div,
-	ShiftBy
+	ShiftBy,
 } from "../components/global";
 
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-const Asterisk = dynamic(() => import('../components/global').then((mod) => mod.Asterisk), { ssr: false });
+const Asterisk = dynamic(
+	() => import("../components/global").then((mod) => mod.Asterisk),
+	{ ssr: false }
+);
 
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
@@ -84,18 +87,18 @@ function AboutPage({
 				<RegionContainer
 					key={n.id}
 					id={slugify(n.SectionHeader)}
-					backgroundColor={n.isLightSection ? "--off-white" : "--off-black"}
+					backgroundColor={
+						n.isLightSection ? "--off-white" : "--off-black"
+					}
 				>
-				<Region>
-					<SectionHeader isLeftHeader={n.isLeftHeader}>
-						{n.SectionHeader}
-					</SectionHeader>
-					<PageSectionContent>
-						<Div markdown>
+					<Region>
+						<SectionHeader isLeftHeader={n.isLeftHeader}>
+							{n.SectionHeader}
+						</SectionHeader>
+						<PageSectionContent markdown>
 							{n.PageSectionContent}
-						</Div>
-					</PageSectionContent>
-				</Region>
+						</PageSectionContent>
+					</Region>
 				</RegionContainer>
 			))}
 
