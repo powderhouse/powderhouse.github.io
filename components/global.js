@@ -179,40 +179,41 @@ let PageIntroduction = styled.div`
 	transform: translateY(-4px);
 `;
 
+let Header2 = styled.h2`
+	font-weight: normal;
+	font-family: "GT Planar", sans-serif;
+	font-size: 24px;
+	line-height: 73%;
+	letter-spacing: -0.5;
+`
+let SectionHeaderContainer = styled.div`
+	grid-column: 1 / span 3;
+	display: flex;
+	align-items: flex-start;
+	height: 100%;
+	// padding: calc(2 * 1.3rem) 0;
+	// padding-right: none;
+	// transform: translateY(-4px);
+`
+
 let SectionHeader = (props) => {
-	const [randomAsterisk, setRandomAsterisk] = useState(undefined);
-
-	useEffect(() => {
-		setRandomAsterisk(asteriskSVG());
-	}, []);
-
 	let leftHeader = (
 		<>
 			<ShiftBy x={0} y={-8}>
-				<Asterisk>{randomAsterisk}</Asterisk>
+				<Asterisk />
 			</ShiftBy>
-			<ShiftBy x={0} y={-2}>
-				<h2 style={{ height: "1em", "line-height": "1em" }}>
-					{props.children}
-				</h2>
+			<ShiftBy x={0} y={3}>
+				<Header2>{props.children}</Header2>
 			</ShiftBy>
 		</>
 	);
 	let centerHeader = (
-		<h2 style={{ height: "1em", "line-height": "1em" }}>
-			{props.children}
-		</h2>
+		<Header2>{props.children}</Header2>
 	);
 	return (
-		<div
-			style={{
-				display: "flex",
-				"align-items": "flex-start",
-				height: "100%",
-			}}
-		>
+		<SectionHeaderContainer>
 			{props.isLeftHeader ? leftHeader : centerHeader}
-		</div>
+		</SectionHeaderContainer>
 	);
 };
 
