@@ -63,6 +63,20 @@
   );
 }
 
+/*via https://github.com/andrasna/postcss-baseline-grid-overlay*/
+body::after {
+    background: linear-gradient(to bottom, hsla(300, 70%, 70%, .5), hsla(300, 70%, 70%, .5) 1px, transparent 1px, transparent);
+    background-size: 100% 1.3rem;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+}
+
 html {
   position: relative;
 }
@@ -76,9 +90,9 @@ html::before {
   max-width: var(--max_width);
   min-height: 100vh;
   content: '';
-  background-image: var(--background-columns), var(--background-baseline);  
+  background-image: var(--background-columns); /*, var(--background-baseline);   */
   background-size: var(--background-width) 100%;
-  background-position: 0 var(--baseline-shift);
+  /*background-position: 0 var(--baseline-shift);*/
   z-index: 1000;
   pointer-events: none;
 }
