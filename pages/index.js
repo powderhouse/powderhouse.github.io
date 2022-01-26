@@ -27,13 +27,12 @@ function HomePage({
     attributes: { SplashLanguage, SignUpShoutOut },
   },
 }) {
-  return (
-    <>
-      <RegionContainer backgroundColor="--off-black">
-        <Region>
-          <Header />
-        </Region>
-        <Region>
+  let regionRuns = [
+    {
+      backgroundColor: "--off-black",
+      regions: [
+        <Header />,
+        <>
           <Splash markdown>{SplashLanguage}</Splash>
 
           <SplashNewsletterSignup>
@@ -46,13 +45,25 @@ function HomePage({
               buttonTextLength="medText"
             ></NewsLetterSignUp>
           </SplashNewsletterSignup>
-        </Region>
-      </RegionContainer>
-      <RegionContainer backgroundColor="--off-white">
-        <Region>
-          <Footer />
-        </Region>
-      </RegionContainer>
+        </>,
+      ],
+    },
+    {
+      backgroundColor: "--off-white",
+      regions: [<Footer />],
+    },
+  ];
+  return (
+    <>
+    {
+      regionRuns.map(({backgroundColor, regions}) => {
+        return (
+          <RegionContainer backgroundColor={backgroundColor}>
+            {regions.map(r => <Region>{r}</Region>)}
+          </RegionContainer>
+          )
+      })
+    }
     </>
   );
 }
@@ -62,12 +73,12 @@ let Splash = styled(Div)`
   width: 100%;
   font-size: 45px; // TODO: consider bread trail of pixels in calc, note the need to drop px in computing ratio
   letter-spacing: -0.6px;
-  line-height: 1.422em;
+  line-height: calc(3 * 1.3rem);
   font-weight: 300;
   font-family: "GT Planar";
-  padding: 6rem 0;
+  padding: calc(5 * 1.3rem) 0;
   p:not(:last-child) {
-    padding-bottom: 3rem;
+    padding-bottom: calc(2 * 1.3rem);
   }
 `;
 
@@ -75,7 +86,7 @@ let ShoutOut = styled.p`
   grid-column: 1 / -1;
   display: flex;
   align-items: center;
-  padding: 1em 0;
+  padding: 1.3rem 0;
   height: calc(4 * 1.3rem);
   line-height: 1;
 `;
@@ -87,7 +98,8 @@ let SplashNewsletterSignup = styled.div`
   // TODO: Better way to inherit this?
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: min-content;
-  gap: var(--gap);
+  column-gap: var(--gap);
+  row-gap: 1.3rem;
   padding: 0 0 calc(6 * 1.3rem);
   place-items: center;
 `;

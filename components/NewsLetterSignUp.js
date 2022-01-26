@@ -81,7 +81,7 @@ let EmailInput = styled.input.attrs((props) => ({
     }
 `;
 
-let NewsLetterFormButton = highlight(styled.button`
+let NewsLetterFormButton = styled.button`
     grid-column: 4 / 7;
 
     position: relative;
@@ -92,7 +92,7 @@ let NewsLetterFormButton = highlight(styled.button`
     border: none;
     cursor: pointer;
     height: calc(3 * 1.3rem);
-`);
+`;
 
 let ButtonText = styled.div`
     top: 50%;
