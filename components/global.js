@@ -71,8 +71,13 @@ let PageContainer = styled.div`
 	color: var(--off-black);
 `;
 
-let RegionContainer = styled.div`
+let RegionContainer = styled("div").withConfig({
+	// TODO: Unclear why I need the array includes; shouldn't https://styled-components.com/docs/api#transient-props remove those?
+	shouldForwardProp: (prop, defaultValidatorFn) => { return defaultValidatorFn(prop) && !["content", "backgroundColor"].includes(prop) },
+})`
 	${(props) => colorByProp(props)}
+	${(props) =>
+		props.content ? "padding-bottom: 10rem" : "padding-bottom: initial"}
 `;
 
 let Region = styled.div`
@@ -84,7 +89,6 @@ let Region = styled.div`
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);
-	padding-bottom: ${(props) => (props.padded ? "144px" : "initial")};
 `;
 
 let Markdown = (props) => (
@@ -162,7 +166,7 @@ let Asterisk = (props) => {
 
 	return (
 		<AsteriskContainer rotation={randomRotation}>
-			{asteriskSVG()}
+			{asteriskSVG(props.color ? props.color : "off-black")}
 		</AsteriskContainer>
 	);
 };
@@ -174,57 +178,50 @@ let PageIntroduction = styled.div`
 	font-size: 38px;
 	line-height: 1.1em;
 	letter-spacing: -0.5;
-	padding: calc(2 * 1.3rem) 0;
+	padding: calc(2 * 1.3rem - 0.5px) 0; // TODO: Why -0.5px?
 	padding-right: none;
-	transform: translateY(-4px);
 `;
 
 let Header2 = styled.h2`
 	font-weight: normal;
 	font-family: "GT Planar", sans-serif;
-	font-size: 24px;
-	line-height: 73%;
-	letter-spacing: -0.5;
-`
+	font-size: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+`;
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	display: flex;
 	align-items: flex-start;
 	height: 100%;
-	// padding: calc(2 * 1.3rem) 0;
-	// padding-right: none;
-	// transform: translateY(-4px);
-`
+	grid-column: ${props => props.left ? "1 / span 3" : "4 / 10"};
+	font-size: ${props => props.left ? "24px" : "31px"};
+	line-height: ${props => props.left ? "73%" : "73%"};
+	letter-spacing: ${props => props.left ? "-0.5" : "-1.2"};
+	padding-bottom: ${props => props.left ? "-0.5" : "-1.2"};
+`;
 
 let SectionHeader = (props) => {
-	let leftHeader = (
+	let header = (
 		<>
-			<ShiftBy x={-5} y={-6.5}>
+			<ShiftBy x={-11} y={props.left ? -7 : -7 + 6}>
 				<Asterisk />
 			</ShiftBy>
-			<ShiftBy x={-5} y={5}>
+			<ShiftBy x={-11} y={props.left ? 3 : 3 + 4}>
 				<Header2>{props.children}</Header2>
 			</ShiftBy>
 		</>
 	);
-	let centerHeader = (
-		<Header2>{props.children}</Header2>
-	);
 	return (
-		<SectionHeaderContainer>
-			{props.isLeftHeader ? leftHeader : centerHeader}
+		<SectionHeaderContainer left={props.left}>
+			{header}
 		</SectionHeaderContainer>
 	);
 };
 
-SectionHeader = styled(SectionHeader)`
-	font-family: "GT Planar", sans-serif;
-	font-weight: normal;
-	grid-column: ${(props) => (props.isLeftHeader ? "1 / span 3" : "4 / 10")};
-	display: inline-block;
-`;
 
 let PageSection = styled.section`
+	// TODO: Can remove, replace with Region
 	grid-column: 1 / -1;
 	padding: var(--gap);
 	background-color: ${(props) =>
@@ -237,6 +234,16 @@ let PageSection = styled.section`
 
 let PageSectionContent = styled(Div)`
 	grid-column: 4 / 10;
+	font-family: "GT Planar", sans-serif;
+	font-weight: normal;
+	font-size: 17px;
+	letter-spacing: 0;
+	line-height: 1.15rem;
+
+	& p {
+		padding-top: 2.5px; // TODO: Why is this necessary?
+		padding-bottom: calc(1.3rem - 4.25px);
+	}
 `;
 
 let FullBleedImage = styled.div`

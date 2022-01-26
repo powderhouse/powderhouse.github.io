@@ -2,79 +2,75 @@
 
 /* Generated via https://transfonter.org/ */
 @font-face {
-    font-family: 'GT Planar';
-    src: local('GT Planar Bold'), local('GTPlanar-Bold'),
-        url('/fonts/GT-Planar-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+	font-family: "GT Planar";
+	src: local("GT Planar Bold"), local("GTPlanar-Bold"),
+		url("/fonts/GT-Planar-Bold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'GT Planar';
-    src: local('GT Planar Italic 15 Bold'), local('GTPlanar-Italic15Bold'),
-        url('/fonts/GT-Planar-Italic-15-Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
+	font-family: "GT Planar";
+	src: local("GT Planar Italic 15 Bold"), local("GTPlanar-Italic15Bold"),
+		url("/fonts/GT-Planar-Italic-15-Bold.woff2") format("woff2");
+	font-weight: bold;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'GT Planar';
-    src: local('GT Planar Regular'), local('GTPlanar-Regular'),
-        url('/fonts/GT-Planar-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+	font-family: "GT Planar";
+	src: local("GT Planar Regular"), local("GTPlanar-Regular"),
+		url("/fonts/GT-Planar-Regular.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'GT Planar';
-    src: local('GT Planar Italic 15 Light'), local('GTPlanar-Italic15Light'),
-        url('/fonts/GT-Planar-Italic-15-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
+	font-family: "GT Planar";
+	src: local("GT Planar Italic 15 Light"), local("GTPlanar-Italic15Light"),
+		url("/fonts/GT-Planar-Italic-15-Light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'GT Planar';
-    src: local('GT Planar Light'), local('GTPlanar-Light'),
-        url('/fonts/GT-Planar-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
+	font-family: "GT Planar";
+	src: local("GT Planar Light"), local("GTPlanar-Light"),
+		url("/fonts/GT-Planar-Light.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-    font-family: 'GT Planar';
-    src: local('GT Planar Italic 15 Regular'), local('GTPlanar-Italic15Regular'),
-        url('/fonts/GT-Planar-Italic-15-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
+	font-family: "GT Planar";
+	src: local("GT Planar Italic 15 Regular"), local("GTPlanar-Italic15Regular"),
+		url("/fonts/GT-Planar-Italic-15-Regular.woff2") format("woff2");
+	font-weight: normal;
+	font-style: italic;
+	font-display: swap;
 }
 
 body {
-	font-family: 'GT Planar', sans-serif;
-	font-size: 17px; 
+	font-family: "GT Planar", sans-serif;
+	font-size: 17px;
 	font-weight: normal;
 	font-style: normal;
 	line-height: calc(1.3rem / 2);
 	letter-spacing: 0;
 
- 	--off-black:rgb(42, 46, 47); /* #2A2E2F */
-	--off-white:rgb(245, 243, 239); /* #F5F3EF */
-	--purple:rgb(178, 131, 200); /* #B283C8 */
-	--yellow:rgb(255, 200, 93); /* #FFC85D */
-	--green:rgb(50, 131, 90); /* #32835A */
-	--blue:rgb(128, 210, 236); /* #80D2EC */
-	--red:rgb(226, 87, 87); /* #E25757 */
-	--gap:24px; 
-}
-
-p:not(:last-child) {
-	padding-bottom: 3rem; 
+	--off-black: rgb(42, 46, 47); /* #2A2E2F */
+	--off-white: rgb(245, 243, 239); /* #F5F3EF */
+	--purple: rgb(178, 131, 200); /* #B283C8 */
+	--yellow: rgb(255, 200, 93); /* #FFC85D */
+	--green: rgb(50, 131, 90); /* #32835A */
+	--blue: rgb(128, 210, 236); /* #80D2EC */
+	--red: rgb(226, 87, 87); /* #E25757 */
+	--gap: 24px;
 }
 
 a {
@@ -84,30 +80,95 @@ a {
 }
 
 img {
-	width:100%;
+	width: 100%;
 }
 
+/* TODO: What is going on with the padding here to get the baseline grid? It's a mess */
 dl {
-	padding-left: var(--gap);
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	column-gap: var(--gap);
+	grid-column: 1 / 8;
+	line-height: 1.3rem;
+	/*Found the necessity for this by experimenting with applying this reset to dl, dt, dd https://css-tricks.com/reboot-resets-reasoning/*/
+	font: inherit;
+	align-items: start;
 }
-
 dt {
-	font-weight:bold;
+	grid-column: 1 / 3;
+	background: var(--off-black);
+	text-align: right;
+	color: var(--off-white);
+	line-height: 1.3rem;
+	padding-left: calc(1.3rem / 2);
+	padding-right: calc(1.3rem / 2);
+	padding-top: 4.5px;
+	height:  100%;
 }
-
 dd {
-	padding-bottom:var(--gap);
+	grid-column: 3 / 7;
+	line-height: 1.3rem;
+	/*Found the necessity for this by experimenting with applying this reset to dl, dt, dd https://css-tricks.com/reboot-resets-reasoning/*/
+	font: inherit;
+	padding-top: 4.5px;
+	padding-bottom: calc(1.3rem - 4.5px);
+}
+dt:first-of-type {
+
+}
+dt:not(:first-of-type) {
+
+}
+dd:first-of-type {
+
+}
+dd:not(:first-of-type) {
+
+}
+dl:last-of-type dd:last-of-type {
+	/*TODO: Crazy padding to get the terms on the About page to line up;*/
+	/*padding-bottom: 6px*/
 }
 
-.blue {color: var(--blue); stroke: var(--blue); fill: var(--blue);}
-.purple {color: var(--purple); stroke: var(--purple); fill: var(--purple);}
-.yellow {color: var(--yellow); stroke: var(--yellow); fill: var(--yellow);}
-.red {color: var(--red); stroke: var(--red); fill: var(--red);}
-.green {color: var(--green); stroke: var(--green); fill: var(--green);}
-.off-white {color: var(--off-white); stroke: var(--off-white); fill: var(--off-white);}
-.off-black {color: var(--off-black); stroke: var(--off-black); fill: var(--off-black);}
+.blue {
+	color: var(--blue);
+	stroke: var(--blue);
+	fill: var(--blue);
+}
+.purple {
+	color: var(--purple);
+	stroke: var(--purple);
+	fill: var(--purple);
+}
+.yellow {
+	color: var(--yellow);
+	stroke: var(--yellow);
+	fill: var(--yellow);
+}
+.red {
+	color: var(--red);
+	stroke: var(--red);
+	fill: var(--red);
+}
+.green {
+	color: var(--green);
+	stroke: var(--green);
+	fill: var(--green);
+}
+.off-white {
+	color: var(--off-white);
+	stroke: var(--off-white);
+	fill: var(--off-white);
+}
+.off-black {
+	color: var(--off-black);
+	stroke: var(--off-black);
+	fill: var(--off-black);
+}
 
-img {width: 100%;}
+img {
+	width: 100%;
+}
 
 .full-bleed {
 	/*Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts*/
@@ -122,32 +183,32 @@ img {width: 100%;}
 }
 
 .footnotes {
-	display:grid;
-	grid-template-columns:repeat(2, 1fr);
-	gap: var(--gap);	
-	color:var(--purple);
-	font-size:14px; /* Explicit? */
-	text-decoration:italic;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--gap);
+	color: var(--purple);
+	font-size: 14px; /* Explicit? */
+	text-decoration: italic;
 }
 .fn {
-	grid-column:span 1;
+	grid-column: span 1;
 }
 
 iframe {
-	border:none;
-	width:100%;
+	border: none;
+	width: 100%;
 	/*height:400px;*/
 }
 
 video {
-	width:100%;
+	width: 100%;
 }
 
 .arrowSVG {
 	position: relative;
 }
 
-.active .nav-scribble, .nav-link:hover .nav-scribble {
-	visibility:visible;
+.active .nav-scribble,
+.nav-link:hover .nav-scribble {
+	visibility: visible;
 }
-

@@ -18,7 +18,6 @@ import {
 	PageTOCLink,
 	PageIntroduction,
 	SectionHeader,
-	PageSection,
 	PageSectionContent,
 	FullBleedImage,
 	FullBodyImage,
@@ -50,6 +49,23 @@ let generateTOC = function (sections) {
 	));
 };
 
+// TODO: Named this way since PageSection is deprecated for Region
+let CorePageSection = (props) => {
+	let slug = slugify(props.header);
+	return (
+		<Region
+			id={slug}
+			style={{
+				paddingTop: "calc(2 * 1.3rem)",
+				paddingBottom: "calc(2 * 1.3rem)",
+			}}
+		>
+			<SectionHeader left={props.left}>{props.header}</SectionHeader>
+			<PageSectionContent markdown>{props.children}</PageSectionContent>
+		</Region>
+	);
+};
+
 function AboutPage({
 	data: {
 		attributes: {
@@ -58,55 +74,110 @@ function AboutPage({
 		},
 	},
 }) {
+	let getBgFromLight = (isLight) => (isLight ? "--off-white" : "--off-black");
+	let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
+
+	let createSection = (s, i = null) => (
+		<CorePageSection header={s.SectionHeader} left={s.isLeftHeader ? s.isLeftHeader : false} key={i}>
+			{s.PageSectionContent}
+		</CorePageSection>
+	);
+	let groupRuns = function (sections) {
+		let runs = [
+			{
+				backgroundColor: sections[0].isLightSection
+					? "--off-white"
+					: "--off-black",
+				regions: [createSection(sections[0], 1)],
+				content: true,
+			},
+		];
+		sections.slice(1).forEach((s, i) => {
+			let lastRun = runs.slice(-1)[0];
+			let matchingBG = getBgFromLight(s.isLightSection) ==
+				lastRun.backgroundColor;
+			if (matchingBG) {
+				lastRun.regions.push(createSection(s, lastRun.regions.length + 1));
+			} else {
+				runs.push({
+					backgroundColor: getBgFromLight(s.isLightSection),
+					regions: [createSection(s, i + 1), runs.length],
+					content: true,
+				});
+			}
+		});
+		return runs;
+	};
+
+	let regionRuns = [
+		{
+			backgroundColor: "--off-white",
+			regions: [<Header />],
+			content: false,
+		},
+		{
+			backgroundColor: "--yellow",
+			regions: [
+				<PageSplash>
+					<PageHeading>{PageHeader}</PageHeading>
+					<ShiftBy x={-13} y={10}>
+						<PageTableOfContents>
+							{generateTOC(PageSections)}
+						</PageTableOfContents>
+					</ShiftBy>
+				</PageSplash>,
+			],
+			content: false,
+		},
+		{
+			backgroundColor: "--off-white",
+			regions: [
+				<PageIntroduction>
+					<ShiftBy x={0} y={6.125}>
+						{PageIntro}
+					</ShiftBy>
+				</PageIntroduction>,
+			],
+			content: false,
+		},
+		{
+			backgroundColor: "--off-white",
+			regions: [<Footer />],
+			content: false,
+		},
+	];
+
+	let groupedRuns = groupRuns(PageSections);
+
+	// This merges the page sections with the introduction, looking to see whether they share a background color with the introduction.
+	// TODO: This whole section is way too complex; regions should just have background colors (rather than isLightSection or similar)
+	if (regionRuns[2].backgroundColor == groupedRuns[0].backgroundColor) {
+		regionRuns[2].regions = regionRuns[2].regions.concat(
+			groupedRuns[0].regions
+		);
+		regionRuns.splice(3, 0, ...groupedRuns.slice(1));
+	} else {
+		regionRuns.splice(3, 0, ...groupedRuns.slice(0));
+	}
+
+	let pageSectionType = (<CorePageSection />).type;
+
 	return (
 		<>
-			<RegionContainer backgroundColor="--off-white">
-				<Region>
-					<Header />
-				</Region>
-			</RegionContainer>
-			<RegionContainer backgroundColor="--yellow">
-				<Region>
-					<PageSplash>
-						<PageHeading>{PageHeader}</PageHeading>
-						<ShiftBy x={-13} y={0}>
-							<PageTableOfContents>
-								{generateTOC(PageSections)}
-							</PageTableOfContents>
-						</ShiftBy>
-					</PageSplash>
-				</Region>
-			</RegionContainer>
-			<RegionContainer backgroundColor="--off-white">
-				<Region>
-					<PageIntroduction>{PageIntro}</PageIntroduction>
-				</Region>
-			</RegionContainer>
-
-			{PageSections.map((n) => (
-				<RegionContainer
-					key={n.id}
-					id={slugify(n.SectionHeader)}
-					backgroundColor={
-						n.isLightSection ? "--off-white" : "--off-black"
-					}
-				>
-					<Region>
-						<SectionHeader isLeftHeader={n.isLeftHeader}>
-							{n.SectionHeader}
-						</SectionHeader>
-						<PageSectionContent markdown>
-							{n.PageSectionContent}
-						</PageSectionContent>
-					</Region>
-				</RegionContainer>
-			))}
-
-			<RegionContainer backgroundColor="--off-white">
-				<Region>
-					<Footer />
-				</Region>
-			</RegionContainer>
+			{regionRuns.map(({ backgroundColor, regions, content }, i) => {
+				let keyedRegions = regions;
+				return (
+					<RegionContainer backgroundColor={backgroundColor} content={content ?  true : false} key={i}>
+						{keyedRegions.map((r, j) =>
+							r.type == pageSectionType ? (
+								r
+							) : (
+								<Region key={j}>{r}</Region>
+							)
+						)}
+					</RegionContainer>
+				);
+			})}
 		</>
 	);
 }
