@@ -470,7 +470,6 @@ let buttonSVGs = {
 
 let asteriskSVG = (color="off-black") => (
   <svg
-    className={color}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="-34 -39 150 111"
   >
