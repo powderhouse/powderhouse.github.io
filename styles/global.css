@@ -83,15 +83,21 @@ img {
 	width: 100%;
 }
 
-/* TODO: What is going on with the padding here to get the baseline grid? It's a mess */
+dl, dt, dd {
+	margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font: inherit;
+}
+
+/* TODO: What is going on with the padding here to get the baseline grid? It's a mess; why all the magic numbers? */
 dl {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	column-gap: var(--gap);
 	grid-column: 1 / 8;
-	line-height: 1.3rem;
 	/*Found the necessity for this by experimenting with applying this reset to dl, dt, dd https://css-tricks.com/reboot-resets-reasoning/*/
-	font: inherit;
 	align-items: start;
 }
 dt {
@@ -99,19 +105,17 @@ dt {
 	background: var(--off-black);
 	text-align: right;
 	color: var(--off-white);
-	line-height: 1.3rem;
-	padding-left: calc(1.3rem / 2);
+	padding-left: calc(2 * 1.3rem);
 	padding-right: calc(1.3rem / 2);
-	padding-top: 4.5px;
+	padding-top: 0.25rem;
 	height:  100%;
 }
 dd {
 	grid-column: 3 / 7;
-	line-height: 1.3rem;
 	/*Found the necessity for this by experimenting with applying this reset to dl, dt, dd https://css-tricks.com/reboot-resets-reasoning/*/
 	font: inherit;
-	padding-top: 4.5px;
-	padding-bottom: calc(1.3rem - 4.5px);
+	padding-top: 0.125rem;
+	padding-bottom: calc(1.3rem - 0.1875rem);
 }
 dt:first-of-type {
 
@@ -125,9 +129,14 @@ dd:first-of-type {
 dd:not(:first-of-type) {
 
 }
+/*TODO:  Why is this needed??*/
+dl:last-of-type dd:first-of-type {
+	margin-top: 1px;
+	overflow: hidden;
+}
 dl:last-of-type dd:last-of-type {
-	/*TODO: Crazy padding to get the terms on the About page to line up;*/
-	/*padding-bottom: 6px*/
+	margin-bottom: -3px;
+	overflow: hidden;
 }
 
 .blue {

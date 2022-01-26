@@ -121,7 +121,8 @@ function AboutPage({
 				<PageSplash>
 					<PageHeading>{PageHeader}</PageHeading>
 					<ShiftBy x={-13} y={10}>
-						<PageTableOfContents>
+						<PageTableOfContents className="off-black">
+							{/*TODO: Check for consistency of usage of off-black in className, etc.*/}
 							{generateTOC(PageSections)}
 						</PageTableOfContents>
 					</ShiftBy>

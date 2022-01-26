@@ -242,7 +242,7 @@ let PageSectionContent = styled(Div)`
 
 	& p {
 		padding-top: 2.5px; // TODO: Why is this necessary?
-		padding-bottom: calc(1.3rem - 4.25px);
+		padding-bottom: calc(1.3rem - 3.75px);
 	}
 `;
 
