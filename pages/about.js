@@ -32,15 +32,20 @@ import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
 let generateTOC = function (sections) {
-	return sections.map((n, i) => (
+	let items = sections.map((n, i) => (
 		<PageTOCListItem key={i}>
 			<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
 				<Asterisk key={i}>{asteriskSVG()}</Asterisk>
-				<div>{n.SectionHeader}</div>
+				{n.SectionHeader}
 			</PageTOCLink>
-			<Spacer />
 		</PageTOCListItem>
 	));
+	return (
+		<PageTableOfContents className="off-black">
+							{/*TODO: Check for consistency of usage of off-black in className, etc.*/}
+			{items}
+		</PageTableOfContents>
+		)
 };
 
 // TODO: Named this way since PageSection is deprecated for Region
@@ -114,12 +119,7 @@ function AboutPage({
 			regions: [
 				<PageSplash>
 					<PageHeading>{PageHeader}</PageHeading>
-					<ShiftBy x={-13} y={10}>
-						<PageTableOfContents className="off-black">
-							{/*TODO: Check for consistency of usage of off-black in className, etc.*/}
 							{generateTOC(PageSections)}
-						</PageTableOfContents>
-					</ShiftBy>
 				</PageSplash>,
 			],
 			content: false,

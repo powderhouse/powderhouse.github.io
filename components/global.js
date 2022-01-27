@@ -143,17 +143,21 @@ let PageHeading = styled.h1`
 	letter-spacing: -4.8px;
 	font-weight: 300;
 	line-height: 1em;
-	transform: translate(-3px, 2px);
+	transform: translate(-3px, calc(1.3rem / 2 - 1px));
 `;
 
 let PageTableOfContents = styled.ol`
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
+	padding-bottom: calc(3 * 1.3rem);
+	position: relative;
+	left: calc(var(--gap) - 7px);
 `;
 
 let PageTOCListItem = styled.li`
-	height: calc(2 * 1.3rem);
+	padding-bottom: calc(1.3rem / 2);
+
 `;
 
 let PageTOCLink = styled.a`
@@ -161,19 +165,21 @@ let PageTOCLink = styled.a`
 	align-items: center;
 	transition: 0.8s ease;
 	text-decoration: none;
-	transform: translateY(-1rem) translateX(0);
+	position: relative;
 
 	&:hover {
-		transform: translateY(-1rem) translateX(var(--gap));
+		transform: translateX(var(--gap));
 	}
 `;
 
 let AsteriskContainer = styled.div`
-	height: 2.5rem;
-	width: 2.5rem;
+	height: calc(1.375 * 1.3rem);
+	width: calc(1.375 * 1.3rem);
 	transform-origin: 50% 50%;
-	margin-right: -1px;
+	// margin-right: -1px;
 	transform: ${(props) => `rotate(${props.rotation}deg)`};
+	position: absolute;
+	left: calc(-1.375 * 1.3rem + 4px);
 `;
 
 let Asterisk = (props) => {
