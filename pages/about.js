@@ -139,7 +139,7 @@ function AboutPage({
 					</ShiftBy>
 				</PageIntroduction>,
 			],
-			content: false,
+			content: "first",
 		},
 		{
 			backgroundColor: "--off-white",
@@ -168,7 +168,7 @@ function AboutPage({
 			{regionRuns.map(({ backgroundColor, regions, content }, i) => {
 				let keyedRegions = regions;
 				return (
-					<RegionContainer backgroundColor={backgroundColor} content={content ?  true : false} key={i}>
+					<RegionContainer backgroundColor={backgroundColor} content={[true, "first"].includes(content) ?  content : false} key={i}>
 						{keyedRegions.map((r, j) =>
 							r.type == pageSectionType ? (
 								r

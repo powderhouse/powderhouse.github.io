@@ -76,8 +76,8 @@ let RegionContainer = styled("div").withConfig({
 	shouldForwardProp: (prop, defaultValidatorFn) => { return defaultValidatorFn(prop) && !["content", "backgroundColor"].includes(prop) },
 })`
 	${(props) => colorByProp(props)}
-	${(props) =>
-		props.content ? "padding-bottom: 10rem" : "padding-bottom: initial"}
+	padding-top: ${props => [false, true].includes(props.content) ? "calc(4 * 1.3rem)" : "initial"};
+	padding-bottom: ${props => [true, "first"].includes(props.content) ? "calc(4 * 1.3rem)" : "initial"}
 `;
 
 let Region = styled.div`
@@ -198,16 +198,16 @@ let SectionHeaderContainer = styled.div`
 	font-size: ${props => props.left ? "24px" : "31px"};
 	line-height: ${props => props.left ? "73%" : "73%"};
 	letter-spacing: ${props => props.left ? "-0.5" : "-1.2"};
-	padding-bottom: ${props => props.left ? "-0.5" : "-1.2"};
+	padding-bottom: 2px
 `;
 
 let SectionHeader = (props) => {
 	let header = (
 		<>
-			<ShiftBy x={-11} y={props.left ? -7 : -7 + 6}>
+			<ShiftBy x={-11} y={props.left ? -7 : -17*1.3/2+3}>
 				<Asterisk />
 			</ShiftBy>
-			<ShiftBy x={-11} y={props.left ? 3 : 3 + 4}>
+			<ShiftBy x={-11} y={props.left ? 3 : -1}>
 				<Header2>{props.children}</Header2>
 			</ShiftBy>
 		</>
@@ -238,11 +238,12 @@ let PageSectionContent = styled(Div)`
 	font-weight: normal;
 	font-size: 17px;
 	letter-spacing: 0;
-	line-height: 1.15rem;
+	line-height: 1.125rem; // TODO: Why is this necessary?
 
 	& p {
-		padding-top: 2.5px; // TODO: Why is this necessary?
-		padding-bottom: calc(1.3rem - 3.75px);
+		padding-top: 2px; // TODO: Why is this necessary?
+		padding-bottom: calc(1.3rem - 3px);
+		align-items: baseline;
 	}
 `;
 
