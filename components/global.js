@@ -76,7 +76,7 @@ let RegionContainer = styled("div").withConfig({
 	shouldForwardProp: (prop, defaultValidatorFn) => { return defaultValidatorFn(prop) && !["content", "backgroundColor"].includes(prop) },
 })`
 	${(props) => colorByProp(props)}
-	padding-top: ${props => [false, true].includes(props.content) ? "calc(4 * 1.3rem)" : "initial"};
+	padding-top: ${props => [false, "first"].includes(props.content) ? "initial" : "calc(4 * 1.3rem)"};
 	padding-bottom: ${props => [true, "first"].includes(props.content) ? "calc(4 * 1.3rem)" : "initial"}
 `;
 
@@ -89,10 +89,14 @@ let Region = styled.div`
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);
+
+	&:not(:last-child) {
+		margin-bottom: calc(2*1.3rem);
+	}
 `;
 
 let Markdown = (props) => (
-	<ReactMarkdown rehypePlugins={[rehypeRaw]} {...props} />
+	<ReactMarkdown components={{ strong: "b"}} rehypePlugins={[rehypeRaw]} {...props} />
 );
 
 let Div = (props) =>
@@ -131,7 +135,6 @@ let PageTableOfContents = styled.ol`
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	transform: translateY(1px);
 `;
 
 let PageTOCListItem = styled.li`
@@ -175,11 +178,11 @@ let PageIntroduction = styled.div`
 	grid-column: 1 / span 9;
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
-	font-size: 38px;
-	line-height: 1.1em;
+	font-size: 34px;
+	line-height: calc(2 * 1.3rem);
 	letter-spacing: -0.5;
-	padding: calc(2 * 1.3rem - 0.5px) 0; // TODO: Why -0.5px?
 	padding-right: none;
+	padding-top: calc(1 * 1.3rem);
 `;
 
 let Header2 = styled.h2`
@@ -192,22 +195,21 @@ let Header2 = styled.h2`
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	display: flex;
-	align-items: flex-start;
-	height: 100%;
+	align-items: baseline;
+	line-height: 1.3rem;
+	height: calc(2 * 1.3rem - 0.75px);
 	grid-column: ${props => props.left ? "1 / span 3" : "4 / 10"};
 	font-size: ${props => props.left ? "24px" : "31px"};
-	line-height: ${props => props.left ? "73%" : "73%"};
 	letter-spacing: ${props => props.left ? "-0.5" : "-1.2"};
-	padding-bottom: 2px
 `;
 
 let SectionHeader = (props) => {
 	let header = (
 		<>
-			<ShiftBy x={-11} y={props.left ? -7 : -17*1.3/2+3}>
+			<ShiftBy x={-11} y={props.left ? -17*1.3/2 + 3 : -17*1.3/2 + 2.5}>
 				<Asterisk />
 			</ShiftBy>
-			<ShiftBy x={-11} y={props.left ? 3 : -1}>
+			<ShiftBy x={-11} y={props.left ? -17*1.3/2 : -17*1.3/2 + 2.5}>
 				<Header2>{props.children}</Header2>
 			</ShiftBy>
 		</>
@@ -234,16 +236,12 @@ let PageSection = styled.section`
 
 let PageSectionContent = styled(Div)`
 	grid-column: 4 / 10;
-	font-family: "GT Planar", sans-serif;
-	font-weight: normal;
-	font-size: 17px;
 	letter-spacing: 0;
-	line-height: 1.125rem; // TODO: Why is this necessary?
 
 	& p {
-		padding-top: 2px; // TODO: Why is this necessary?
-		padding-bottom: calc(1.3rem - 3px);
-		align-items: baseline;
+		line-height: 1.3rem;
+		margin-bottom: 1.3rem;
+		display: inline-block;
 	}
 `;
 

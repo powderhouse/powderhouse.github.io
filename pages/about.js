@@ -53,12 +53,7 @@ let generateTOC = function (sections) {
 let CorePageSection = (props) => {
 	let slug = slugify(props.header);
 	return (
-		<Region
-			id={slug}
-			style={{
-				paddingTop: "calc(2 * 1.3rem)",
-				paddingBottom: "calc(2 * 1.3rem)",
-			}}
+		<Region id={slug}
 		>
 			<SectionHeader left={props.left}>{props.header}</SectionHeader>
 			<PageSectionContent markdown>{props.children}</PageSectionContent>
@@ -134,7 +129,7 @@ function AboutPage({
 			backgroundColor: "--off-white",
 			regions: [
 				<PageIntroduction>
-					<ShiftBy x={0} y={6.125}>
+					<ShiftBy x={0} y={17*1.3/2 - 1}>
 						{PageIntro}
 					</ShiftBy>
 				</PageIntroduction>,

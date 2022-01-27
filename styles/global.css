@@ -60,8 +60,9 @@ body {
 	font-size: 17px;
 	font-weight: normal;
 	font-style: normal;
-	line-height: calc(1.3rem / 2);
+	line-height: 1.3rem;
 	letter-spacing: 0;
+	text-rendering: geometricPrecision;
 
 	--off-black: rgb(42, 46, 47); /* #2A2E2F */
 	--off-white: rgb(245, 243, 239); /* #F5F3EF */
@@ -88,7 +89,7 @@ dl, dt, dd {
     padding:0;
     border:0;
     outline:0;
-    font: inherit;
+    line-height: 1.3rem;
 }
 
 /* TODO: What is going on with the padding here to get the baseline grid? It's a mess; why all the magic numbers? */
@@ -97,46 +98,26 @@ dl {
 	grid-template-columns: repeat(6, 1fr);
 	column-gap: var(--gap);
 	grid-column: 1 / 8;
-	/*Found the necessity for this by experimenting with applying this reset to dl, dt, dd https://css-tricks.com/reboot-resets-reasoning/*/
 	align-items: start;
-	padding-bottom: 1px; /*TODO:  What?? */
+	/*TODO:  For some reason setting dl to 17px results in a computed font size of 20.7083px?*/
 }
 dt {
 	grid-column: 1 / 3;
 	background: var(--off-black);
-	text-align: right;
 	color: var(--off-white);
 	padding-left: calc(2 * 1.3rem);
 	padding-right: calc(1.3rem / 2);
-	padding-top: 0.375rem;
 	height:  100%;
+	text-align: right;
 }
 dd {
 	grid-column: 3 / 7;
-	/*Found the necessity for this by experimenting with applying this reset to dl, dt, dd https://css-tricks.com/reboot-resets-reasoning/*/
-	font: inherit;
-	padding-top: 0.15rem;
-	padding-bottom: calc(1.3rem - 0.2rem);
+	margin-bottom: 1.3rem;
+	display:  flex;
 }
-dt:first-of-type {
 
-}
-dt:not(:first-of-type) {
-
-}
-dd:first-of-type {
-
-}
-dd:not(:first-of-type) {
-
-}
-/*TODO:  Why is this needed??*/
-dl:last-of-type dd{
-	padding-top: 0.1375rem;
-	padding-bottom: calc(1.3rem - 0.2rem);
-}
-dl:last-of-type dd:last-of-type {
-	padding-bottom: calc(1.3rem - 0.2rem);;
+dd:last-child {
+	margin-bottom: -1px;
 	overflow: hidden;
 }
 
@@ -183,13 +164,20 @@ img {
 .full-bleed {
 	/*Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts*/
 	width: 100vw;
+	display: flex;
+	justify-content: center;
 	position: relative;
 	left: 50%;
 	right: 50%;
 	margin-left: -50vw;
 	margin-right: -50vw;
 
-	padding: var(--gap) 0px;
+	padding: 1.3rem 0px;
+	overflow: hidden;
+}
+
+.full-bleed img {
+	max-width: calc(1440px - 2*var(--gap));
 }
 
 .footnotes {
