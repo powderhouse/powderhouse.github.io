@@ -25,7 +25,7 @@ import {
 	slugify,
 	Div,
 	ShiftBy,
-	Asterisk
+	Asterisk,
 } from "../components/global";
 
 import { getStrapiMedia } from "../lib/media";
@@ -47,8 +47,7 @@ let generateTOC = function (sections) {
 let CorePageSection = (props) => {
 	let slug = slugify(props.header);
 	return (
-		<Region id={slug}
-		>
+		<Region id={slug}>
 			<SectionHeader left={props.left}>{props.header}</SectionHeader>
 			<PageSectionContent markdown>{props.children}</PageSectionContent>
 		</Region>
@@ -67,7 +66,11 @@ function AboutPage({
 	let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
 
 	let createSection = (s, i = null) => (
-		<CorePageSection header={s.SectionHeader} left={s.isLeftHeader ? s.isLeftHeader : false} key={i}>
+		<CorePageSection
+			header={s.SectionHeader}
+			left={s.isLeftHeader ? s.isLeftHeader : false}
+			key={i}
+		>
 			{s.PageSectionContent}
 		</CorePageSection>
 	);
@@ -83,10 +86,12 @@ function AboutPage({
 		];
 		sections.slice(1).forEach((s, i) => {
 			let lastRun = runs.slice(-1)[0];
-			let matchingBG = getBgFromLight(s.isLightSection) ==
-				lastRun.backgroundColor;
+			let matchingBG =
+				getBgFromLight(s.isLightSection) == lastRun.backgroundColor;
 			if (matchingBG) {
-				lastRun.regions.push(createSection(s, lastRun.regions.length + 1));
+				lastRun.regions.push(
+					createSection(s, lastRun.regions.length + 1)
+				);
 			} else {
 				runs.push({
 					backgroundColor: getBgFromLight(s.isLightSection),
@@ -123,7 +128,7 @@ function AboutPage({
 			backgroundColor: "--off-white",
 			regions: [
 				<PageIntroduction>
-					<ShiftBy x={0} y={17*1.3/2 - 1}>
+					<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
 						{PageIntro}
 					</ShiftBy>
 				</PageIntroduction>,
@@ -157,7 +162,13 @@ function AboutPage({
 			{regionRuns.map(({ backgroundColor, regions, content }, i) => {
 				let keyedRegions = regions;
 				return (
-					<RegionContainer backgroundColor={backgroundColor} content={[true, "first"].includes(content) ?  content : false} key={i}>
+					<RegionContainer
+						backgroundColor={backgroundColor}
+						content={
+							[true, "first"].includes(content) ? content : false
+						}
+						key={i}
+					>
 						{keyedRegions.map((r, j) =>
 							r.type == pageSectionType ? (
 								r
