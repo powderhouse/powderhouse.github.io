@@ -25,14 +25,8 @@ import {
 	slugify,
 	Div,
 	ShiftBy,
+	Asterisk
 } from "../components/global";
-
-import dynamic from "next/dynamic";
-
-const Asterisk = dynamic(
-	() => import("../components/global").then((mod) => mod.Asterisk),
-	{ ssr: false }
-);
 
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
