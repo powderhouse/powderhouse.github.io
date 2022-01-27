@@ -177,6 +177,7 @@ img {
 }
 
 .full-bleed img {
+	object-fit: cover;
 	max-width: calc(1440px - 2*var(--gap));
 }
 
