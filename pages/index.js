@@ -47,19 +47,27 @@ function HomePage({
           </SplashNewsletterSignup>
         </>,
       ],
+      content: false,
     },
     {
       backgroundColor: "--off-white",
       regions: [<Footer />],
+      content: false,
     },
   ];
   return (
     <>
     {
-      regionRuns.map(({backgroundColor, regions}) => {
+      regionRuns.map(({backgroundColor, regions, content}, i) => {
         return (
-          <RegionContainer backgroundColor={backgroundColor}>
-            {regions.map(r => <Region>{r}</Region>)}
+          <RegionContainer
+            backgroundColor={backgroundColor}
+            content={
+              [true, "first"].includes(content) ? content : false
+            }
+            key={i}
+          >
+            {regions.map((r, j) => <Region key={j}>{r}</Region>)}
           </RegionContainer>
           )
       })
