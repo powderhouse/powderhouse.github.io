@@ -73,11 +73,22 @@ let PageContainer = styled.div`
 
 let RegionContainer = styled("div").withConfig({
 	// TODO: Unclear why I need the array includes; shouldn't https://styled-components.com/docs/api#transient-props remove those?
-	shouldForwardProp: (prop, defaultValidatorFn) => { return defaultValidatorFn(prop) && !["content", "backgroundColor"].includes(prop) },
+	shouldForwardProp: (prop, defaultValidatorFn) => {
+		return (
+			defaultValidatorFn(prop) &&
+			!["content", "backgroundColor"].includes(prop)
+		);
+	},
 })`
 	${(props) => colorByProp(props)}
-	padding-top: ${props => [false, "first"].includes(props.content) ? "initial" : "calc(4 * 1.3rem)"};
-	padding-bottom: ${props => [true, "first"].includes(props.content) ? "calc(4 * 1.3rem)" : "initial"}
+	padding-top: ${(props) =>
+		[false, "first"].includes(props.content)
+			? "initial"
+			: "calc(4 * 1.3rem)"};
+	padding-bottom: ${(props) =>
+		[true, "first"].includes(props.content)
+			? "calc(4 * 1.3rem)"
+			: "initial"};
 `;
 
 let Region = styled.div`
@@ -91,12 +102,16 @@ let Region = styled.div`
 	padding-right: var(--gap);
 
 	&:not(:last-child) {
-		margin-bottom: calc(2*1.3rem);
+		margin-bottom: calc(2 * 1.3rem);
 	}
 `;
 
 let Markdown = (props) => (
-	<ReactMarkdown components={{ strong: "b"}} rehypePlugins={[rehypeRaw]} {...props} />
+	<ReactMarkdown
+		components={{ strong: "b" }}
+		rehypePlugins={[rehypeRaw]}
+		{...props}
+	/>
 );
 
 let Div = (props) =>
@@ -198,18 +213,24 @@ let SectionHeaderContainer = styled.div`
 	align-items: baseline;
 	line-height: 1.3rem;
 	height: calc(2 * 1.3rem - 0.75px);
-	grid-column: ${props => props.left ? "1 / span 3" : "4 / 10"};
-	font-size: ${props => props.left ? "24px" : "31px"};
-	letter-spacing: ${props => props.left ? "-0.5" : "-1.2"};
+	grid-column: ${(props) => (props.left ? "1 / span 3" : "4 / 10")};
+	font-size: ${(props) => (props.left ? "24px" : "31px")};
+	letter-spacing: ${(props) => (props.left ? "-0.5" : "-1.2")};
 `;
 
 let SectionHeader = (props) => {
 	let header = (
 		<>
-			<ShiftBy x={-11} y={props.left ? -17*1.3/2 + 3 : -17*1.3/2 + 2.5}>
+			<ShiftBy
+				x={-11}
+				y={props.left ? (-17 * 1.3) / 2 + 3 : (-17 * 1.3) / 2 + 2.5}
+			>
 				<Asterisk />
 			</ShiftBy>
-			<ShiftBy x={-11} y={props.left ? -17*1.3/2 : -17*1.3/2 + 2.5}>
+			<ShiftBy
+				x={-11}
+				y={props.left ? (-17 * 1.3) / 2 : (-17 * 1.3) / 2 + 2.5}
+			>
 				<Header2>{props.children}</Header2>
 			</ShiftBy>
 		</>
@@ -220,7 +241,6 @@ let SectionHeader = (props) => {
 		</SectionHeaderContainer>
 	);
 };
-
 
 let PageSection = styled.section`
 	// TODO: Can remove, replace with Region
