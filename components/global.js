@@ -157,7 +157,6 @@ let PageTableOfContents = styled.ol`
 
 let PageTOCListItem = styled.li`
 	padding-bottom: calc(1.3rem / 2);
-
 `;
 
 let PageTOCLink = styled.a`
@@ -172,24 +171,41 @@ let PageTOCLink = styled.a`
 	}
 `;
 
+let asteriskContainerStyles = {
+	TOC: css`
+		position: absolute;
+		left: calc(-1.375 * 1.3em + 4px);
+	`,
+	LeftHeader: css`
+		position: absolute;
+		left: calc(-1.3rem / 2);
+		top: calc(-1.3rem / 2);
+	`,
+	CenterHeader: css`
+		position: absolute;
+		left: calc(-0.625 * 1.3rem);
+		top: calc(-1.3rem / 2 - 3.5px);
+	`,
+};
+
 let AsteriskContainer = styled.div`
-	height: calc(1.375 * 1.3rem);
-	width: calc(1.375 * 1.3rem);
+	height: calc(1.375 * 1.3em);
+	width: calc(1.375 * 1.3em);
 	transform-origin: 50% 50%;
 	// margin-right: -1px;
 	transform: ${(props) => `rotate(${props.rotation}deg)`};
-	position: absolute;
-	left: calc(-1.375 * 1.3rem + 4px);
+
+	${(props) => asteriskContainerStyles[props.type]}
 `;
 
 let Asterisk = (props) => {
 	const [randomRotation, setRandomRotation] = useState(null);
 	useEffect(() => {
-		setRandomRotation(Math.round(Math.random() * 360));
+		setRandomRotation(randomRotation);
 	}, []);
 
 	return (
-		<AsteriskContainer rotation={randomRotation}>
+		<AsteriskContainer rotation={randomRotation} type={props.type}>
 			{asteriskSVG(props.color ? props.color : "off-black")}
 		</AsteriskContainer>
 	);
@@ -213,38 +229,38 @@ let Header2 = styled.h2`
 	line-height: inherit;
 	letter-spacing: inherit;
 `;
+
+let sectionHeaderContainerStyles = {
+	left: css`
+		grid-column: 1 / span 3;
+		font-size: 24px;
+		letter-spacing: -0.5;
+		padding-left: calc(1.375 * 1.3rem)
+	`,
+	center: css`
+		grid-column: 4 / 10;
+		font-size: 31px;
+		letter-spacing: -1.2;
+		padding-left: calc(1.3em)
+	`,
+}
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
-	display: flex;
-	align-items: baseline;
 	line-height: 1.3rem;
 	height: calc(2 * 1.3rem - 0.75px);
-	grid-column: ${(props) => (props.left ? "1 / span 3" : "4 / 10")};
-	font-size: ${(props) => (props.left ? "24px" : "31px")};
-	letter-spacing: ${(props) => (props.left ? "-0.5" : "-1.2")};
+	position: relative;
+	${props => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 `;
 
-let SectionHeader = (props) => {
+let SectionHeader = ({ left, children }) => {
 	let header = (
 		<>
-			<ShiftBy
-				x={-11}
-				y={props.left ? (-17 * 1.3) / 2 + 3 : (-17 * 1.3) / 2 + 2.5}
-			>
-				<Asterisk />
-			</ShiftBy>
-			<ShiftBy
-				x={-11}
-				y={props.left ? (-17 * 1.3) / 2 : (-17 * 1.3) / 2 + 2.5}
-			>
-				<Header2>{props.children}</Header2>
-			</ShiftBy>
+			<Asterisk type={ left ? "LeftHeader" : "CenterHeader" }/>
+			<Header2>{children}</Header2>
 		</>
 	);
 	return (
-		<SectionHeaderContainer left={props.left}>
-			{header}
-		</SectionHeaderContainer>
+		<SectionHeaderContainer left={left}>{header}</SectionHeaderContainer>
 	);
 };
 

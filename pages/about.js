@@ -35,17 +35,19 @@ let generateTOC = function (sections) {
 	let items = sections.map((n, i) => (
 		<PageTOCListItem key={i}>
 			<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
-				<Asterisk key={i}>{asteriskSVG()}</Asterisk>
+				<Asterisk key={i} type="TOC">
+					{asteriskSVG()}
+				</Asterisk>
 				{n.SectionHeader}
 			</PageTOCLink>
 		</PageTOCListItem>
 	));
 	return (
 		<PageTableOfContents className="off-black">
-							{/*TODO: Check for consistency of usage of off-black in className, etc.*/}
+			{/*TODO: Check for consistency of usage of off-black in className, etc.*/}
 			{items}
 		</PageTableOfContents>
-		)
+	);
 };
 
 // TODO: Named this way since PageSection is deprecated for Region
@@ -70,15 +72,17 @@ function AboutPage({
 	let getBgFromLight = (isLight) => (isLight ? "--off-white" : "--off-black");
 	let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
 
-	let createSection = (s, i = null) => (
-		<CorePageSection
-			header={s.SectionHeader}
-			left={s.isLeftHeader ? s.isLeftHeader : false}
-			key={i}
-		>
-			{s.PageSectionContent}
-		</CorePageSection>
-	);
+	let createSection = (s, i = null) => {
+		return (
+			<CorePageSection
+				header={s.SectionHeader}
+				left={s.isLeftHeader ? s.isLeftHeader : false}
+				key={i}
+			>
+				{s.PageSectionContent}
+			</CorePageSection>
+		);
+	};
 	let groupRuns = function (sections) {
 		let runs = [
 			{
@@ -95,12 +99,12 @@ function AboutPage({
 				getBgFromLight(s.isLightSection) == lastRun.backgroundColor;
 			if (matchingBG) {
 				lastRun.regions.push(
-					createSection(s, lastRun.regions.length + 1)
+					createSection(s, lastRun.regions.length + 2)
 				);
 			} else {
 				runs.push({
 					backgroundColor: getBgFromLight(s.isLightSection),
-					regions: [createSection(s, i + 1), runs.length],
+					regions: [createSection(s, i + 1)],
 					content: true,
 				});
 			}
@@ -119,7 +123,7 @@ function AboutPage({
 			regions: [
 				<PageSplash>
 					<PageHeading>{PageHeader}</PageHeading>
-							{generateTOC(PageSections)}
+					{generateTOC(PageSections)}
 				</PageSplash>,
 			],
 			content: false,

@@ -114,6 +114,8 @@ dd {
 	grid-column: 3 / 7;
 	margin-bottom: 1.3rem;
 	display:  flex;
+	/*TODO:  Unclear why this is needed to get vertical rhythm on / */
+	padding-bottom: 0.5px
 }
 
 dd:last-child {
