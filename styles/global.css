@@ -84,12 +84,14 @@ img {
 	width: 100%;
 }
 
-dl, dt, dd {
-	margin:0;
-    padding:0;
-    border:0;
-    outline:0;
-    line-height: 1.3rem;
+dl,
+dt,
+dd {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3rem;
 }
 
 /* TODO: What is going on with the padding here to get the baseline grid? It's a mess; why all the magic numbers? */
@@ -107,15 +109,15 @@ dt {
 	color: var(--off-white);
 	padding-left: calc(2 * 1.3rem);
 	padding-right: calc(1.3rem / 2);
-	height:  100%;
+	height: 100%;
 	text-align: right;
 }
 dd {
 	grid-column: 3 / 7;
 	margin-bottom: 1.3rem;
-	display:  flex;
+	display: flex;
 	/*TODO:  Unclear why this is needed to get vertical rhythm on / */
-	padding-bottom: 0.5px
+	padding-bottom: 0.5px;
 }
 
 dd:last-child {
@@ -180,7 +182,7 @@ img {
 
 .full-bleed img {
 	object-fit: cover;
-	max-width: calc(1440px - 2*var(--gap));
+	max-width: calc(1440px - 2 * var(--gap));
 }
 
 .footnotes {
