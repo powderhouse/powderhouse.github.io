@@ -12,6 +12,7 @@ import {
 	Region,
 	RegionContainer,
 	Spacer,
+	PageContainer,
 	PageSplash,
 	PageHeading,
 	PageIntroduction,
@@ -125,6 +126,10 @@ function AboutPage({
 		},
 	];
 
+	let getSplashRegion = function (runSet) {
+		return runSet[1].backgroundColor;
+	};
+
 	let groupedRuns = groupRuns(PageSections);
 
 	// This merges the page sections with the introduction, looking to see whether they share a background color with the introduction.
@@ -141,7 +146,7 @@ function AboutPage({
 	let pageSectionType = (<CorePageSection />).type;
 
 	return (
-		<>
+		<PageContainer splashColor={getSplashRegion(regionRuns)}>
 			{regionRuns.map(({ backgroundColor, regions, content }, i) => {
 				let keyedRegions = regions;
 				return (
@@ -162,7 +167,7 @@ function AboutPage({
 					</RegionContainer>
 				);
 			})}
-		</>
+		</PageContainer>
 	);
 }
 
