@@ -4,6 +4,7 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import PageTableOfContents from "../../components/PageTableOfContents";
 import { asteriskSVG } from "../../site-data.js";
 
 import {
@@ -11,18 +12,14 @@ import {
 	PageContainer,
 	Spacer,
 	PageSplash,
-	PageHeader,
-	PageTableOfContents,
-	PageTOCListItem,
-	PageTOCLink,
-  	Asterisk,
-	PageIntro,
+	PageHeading,
+	Asterisk,
+	PageIntroduction,
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
-	randomRotate,
 } from "../../components/global";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -33,31 +30,18 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 		<PageContainer css={baseGrid}>
 			<Header />
 			<PageSplash bgColor="green" color="off-white">
-				<PageHeader>
+				<PageHeading>
 					{workPage.data.attributes.PageSplash.PageHeader}
-				</PageHeader>
-				<PageTableOfContents>
-					{workPage.data.attributes.PageSections.map((n) => (
-						<PageTOCListItem key={n.id}>
-							<PageTOCLink
-								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-							>
-								<Asterisk style={{transform:randomRotate()}}>
-									{asteriskSVG("off-white")}
-								</Asterisk>
-								<div>{n.SectionHeader}</div>
-							</PageTOCLink>
-							<Spacer />
-						</PageTOCListItem>
-					))}
-				</PageTableOfContents>
+				</PageHeading>
+				<PageTableOfContents
+					sections={workPage.data.attributes.PageSections}
+				/>
 			</PageSplash>
-			<PageIntro>
+			<PageIntroduction>
 				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
 					{workPage.data.attributes.PageSplash.PageIntro}
 				</ReactMarkdown>
-			</PageIntro>
-
+			</PageIntroduction>
 			{workPage.data.attributes.PageSections.map((n) => (
 				<PageSection key={n.id} isLightSection={true} css={baseGrid}>
 					<SectionHeader
@@ -69,25 +53,43 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 					{n.PageSectionContent == null ? (
 						""
 					) : (
-						<PageSectionContent>{n.PageSectionContent}</PageSectionContent>
+						<PageSectionContent>
+							{n.PageSectionContent}
+						</PageSectionContent>
 					)}
 
 					{n.SectionHeader == "Partners" ? (
 						<PartnerSectionContent>
-							{partnerCards.data.attributes.PartnerCards.map((n) => (
-								<PartnerLink key={n.id} href={n.Link}>
-									<PartnerCard>
-										<PartnerLogo
-											src={
-												n.Image.data.attributes.formats == null
-													? n.Image.data.attributes.url
-													: n.Image.data.attributes.formats[findLargestFormat(n.Image.data.attributes.formats,"small")].url
-											}
-											alt={n.Image.data.attributes.alternativeText}
-										/>
-									</PartnerCard>
-								</PartnerLink>
-							))}
+							{partnerCards.data.attributes.PartnerCards.map(
+								(n) => (
+									<PartnerLink key={n.id} href={n.Link}>
+										<PartnerCard>
+											<PartnerLogo
+												src={
+													n.Image.data.attributes
+														.formats == null
+														? n.Image.data
+																.attributes.url
+														: n.Image.data
+																.attributes
+																.formats[
+																findLargestFormat(
+																	n.Image.data
+																		.attributes
+																		.formats,
+																	"small"
+																)
+														  ].url
+												}
+												alt={
+													n.Image.data.attributes
+														.alternativeText
+												}
+											/>
+										</PartnerCard>
+									</PartnerLink>
+								)
+							)}
 						</PartnerSectionContent>
 					) : (
 						""
@@ -97,31 +99,46 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 						<WidePageSectionContent>
 							{projectCards.data.map((i) => (
 								<ProjectCard key={i.attributes.id}>
-									<ProjectLink href={"/work/" + i.attributes.ProjectId}>
+									<ProjectLink
+										href={"/work/" + i.attributes.ProjectId}
+									>
 										{/* TK There's probably a better way to do this with relative URLS? */}
 										<ProjectImageDiv>
 											<ProjectFeatureImage
 												src={
-													i.attributes.ProjectFeatureImage.data.attributes
+													i.attributes
+														.ProjectFeatureImage
+														.data.attributes
 														.formats == null
-														? i.attributes.ProjectFeatureImage.data.attributes
+														? i.attributes
+																.ProjectFeatureImage
+																.data.attributes
 																.url
-														: i.attributes.ProjectFeatureImage.data.attributes
+														: i.attributes
+																.ProjectFeatureImage
+																.data.attributes
 																.formats[
 																findLargestFormat(
-																	i.attributes.ProjectFeatureImage.data
-																		.attributes.formats,
+																	i.attributes
+																		.ProjectFeatureImage
+																		.data
+																		.attributes
+																		.formats,
 																	"small"
 																)
 														  ].url
 												}
 												alt={
-													i.attributes.ProjectFeatureImage.data.attributes
+													i.attributes
+														.ProjectFeatureImage
+														.data.attributes
 														.alternativeText
 												}
 											/>
 										</ProjectImageDiv>
-										<ProjectTitle>{i.attributes.ProjectTitle}</ProjectTitle>
+										<ProjectTitle>
+											{i.attributes.ProjectTitle}
+										</ProjectTitle>
 										<ProjectSubtitle>
 											{i.attributes.ProjectSubtitle}
 										</ProjectSubtitle>
@@ -135,27 +152,42 @@ function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
 
 					{n.SectionHeader == "Past Lives" ? (
 						<PastLifeSectionContent>
-							{pastLifeCards.data.attributes.PastLifeCards.map((n) => (
-								<PastLifeLink key={n.id} href={n.Link}>
-									<PastLifeCard>
-										<PastLifeImage
-											src={
-												n.Image.data.attributes.formats == null
-													? n.Image.data.attributes.url
-													: n.Image.data.attributes.formats[findLargestFormat(n.Image.data.attributes.formats,"medium")].url
-											}
-											alt={n.Image.data.attributes.alternativeText}
-										/>
-									</PastLifeCard>
-								</PastLifeLink>
-							))}
+							{pastLifeCards.data.attributes.PastLifeCards.map(
+								(n) => (
+									<PastLifeLink key={n.id} href={n.Link}>
+										<PastLifeCard>
+											<PastLifeImage
+												src={
+													n.Image.data.attributes
+														.formats == null
+														? n.Image.data
+																.attributes.url
+														: n.Image.data
+																.attributes
+																.formats[
+																findLargestFormat(
+																	n.Image.data
+																		.attributes
+																		.formats,
+																	"medium"
+																)
+														  ].url
+												}
+												alt={
+													n.Image.data.attributes
+														.alternativeText
+												}
+											/>
+										</PastLifeCard>
+									</PastLifeLink>
+								)
+							)}
 						</PastLifeSectionContent>
 					) : (
 						""
 					)}
 				</PageSection>
 			))}
-
 			<Footer />
 		</PageContainer>
 	);
@@ -237,7 +269,9 @@ function findLargestFormat(formatDict, maxSize = "large") {
 
 export async function getStaticProps(context) {
 	let workPage = await fetchAPI("/work?populate=*");
-	let partnerCards = await fetchAPI("/work?populate[PartnerCards][populate]=*");
+	let partnerCards = await fetchAPI(
+		"/work?populate[PartnerCards][populate]=*"
+	);
 	let projectCards = await fetchAPI("/project-cards?populate=*");
 	let pastLifeCards = await fetchAPI(
 		"/work?populate[PastLifeCards][populate]=*"

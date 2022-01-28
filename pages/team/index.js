@@ -1,23 +1,21 @@
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import Link from 'next/link'
+import Link from "next/link";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import ArrowButton from "../../components/ArrowButton"
-import { asteriskSVG } from "../../site-data.js"
+import PageTableOfContents from "../../components/PageTableOfContents";
+import ArrowButton from "../../components/ArrowButton";
+import { asteriskSVG } from "../../site-data.js";
 
 import {
 	baseGrid,
 	PageContainer,
 	Spacer,
 	PageSplash,
-	PageHeader,
-	PageTableOfContents,
-	PageTOCListItem,
-	PageTOCLink,
-	PageIntro,
+	PageHeading,
+	PageIntroduction,
 	Asterisk,
 	SectionHeader,
 	PageSection,
@@ -38,36 +36,18 @@ function TeamPage({ teamPage, teamCards }) {
 
 			<Header />
 			<PageSplash bgColor="purple" color="off-black">
-				<PageHeader>
+				<PageHeading>
 					{teamPage.data.attributes.PageSplash.PageHeader}
-				</PageHeader>
-				<PageTableOfContents>
-					{teamPage.data.attributes.PageSections.map((n) =>
-						(cardSections.includes(n.SectionHeader) &&
-							teamCards.hasOwnProperty(n.SectionHeader)) ||
-						!cardSections.includes(n.SectionHeader) ? (
-							<PageTOCListItem key={n.id}>
-							<PageTOCLink
-								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-							>
-								<Asterisk style={{transform:randomRotate()}}>
-									{asteriskSVG()}
-								</Asterisk>
-								<div>{n.SectionHeader}</div>
-							</PageTOCLink>
-							<Spacer />
-						</PageTOCListItem>
-						) : (
-							""
-						)
-					)}
-				</PageTableOfContents>
+				</PageHeading>
+				<PageTableOfContents
+					sections={teamPage.data.attributes.PageSections}
+				/>
 			</PageSplash>
-			<PageIntro>
+			<PageIntroduction>
 				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
 					{teamPage.data.attributes.PageSplash.PageIntro}
 				</ReactMarkdown>
-			</PageIntro>
+			</PageIntroduction>
 
 			{teamPage.data.attributes.PageSections.map((n) =>
 				cardSections.includes(n.SectionHeader) &&
@@ -75,7 +55,10 @@ function TeamPage({ teamPage, teamCards }) {
 					<PageSection isLightSection={true} css={baseGrid}>
 						{teamCards.hasOwnProperty(n.SectionHeader) ? (
 							<SectionHeader
-								id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+								id={n.SectionHeader.replace(
+									/\s+/g,
+									"-"
+								).toLowerCase()}
 								isLeftHeader={true}
 							>
 								{n.SectionHeader}
@@ -90,13 +73,21 @@ function TeamPage({ teamPage, teamCards }) {
 										<PersonHeadshotDiv>
 											<PersonHeadshot
 												src={
-													j.attributes.Headshot.data.attributes.formats == null
-														? j.attributes.Headshot.data.attributes.url
-														: j.attributes.Headshot.data.attributes.formats
+													j.attributes.Headshot.data
+														.attributes.formats ==
+													null
+														? j.attributes.Headshot
+																.data.attributes
+																.url
+														: j.attributes.Headshot
+																.data.attributes
+																.formats
 																.thumbnail.url
 												}
 												alt={
-													j.attributes.Headshot.data.attributes.alternativeText
+													j.attributes.Headshot.data
+														.attributes
+														.alternativeText
 												}
 											/>
 										</PersonHeadshotDiv>
@@ -105,18 +96,24 @@ function TeamPage({ teamPage, teamCards }) {
 									)}
 
 									<PersonName>{j.attributes.Name}</PersonName>
-									<PersonYears>{j.attributes.YearStart} — {j.attributes.YearEnd}</PersonYears>
-								
+									<PersonYears>
+										{j.attributes.YearStart} —{" "}
+										{j.attributes.YearEnd}
+									</PersonYears>
+
 									{n.SectionHeader == "Staff" ? (
-										<PersonTitle>{j.attributes.Title}</PersonTitle>
+										<PersonTitle>
+											{j.attributes.Title}
+										</PersonTitle>
 									) : (
 										""
 									)}
 
-									
 									{n.SectionHeader == "Advisors" ? (
 										<PersonBio>
-											<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+											<ReactMarkdown
+												rehypePlugins={[rehypeRaw]}
+											>
 												{j.attributes.Bio}
 											</ReactMarkdown>
 										</PersonBio>
@@ -139,7 +136,10 @@ function TeamPage({ teamPage, teamCards }) {
 				) : (
 					<PageSection isLightSection={true} css={baseGrid}>
 						<SectionHeader
-							id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+							id={n.SectionHeader.replace(
+								/\s+/g,
+								"-"
+							).toLowerCase()}
 							isLeftHeader={true}
 						>
 							{n.SectionHeader}
@@ -150,7 +150,13 @@ function TeamPage({ teamPage, teamCards }) {
 							</ReactMarkdown>
 							{n.SectionHeader == "Jobs" ? (
 								/* TK Better way with relative URLS? */
-								<ArrowButton text="Jobs" link="/team/jobs" buttonWidth="long" buttonThickness="thick" buttonTextLength="medText"></ArrowButton>
+								<ArrowButton
+									text="Jobs"
+									link="/team/jobs"
+									buttonWidth="long"
+									buttonThickness="thick"
+									buttonTextLength="medText"
+								></ArrowButton>
 							) : (
 								""
 							)}
@@ -176,8 +182,8 @@ let PersonHeadshotDiv = styled.div`
 `;
 
 let PersonHeadshot = styled.img`
-	height:100%;
-	width:100%;
+	height: 100%;
+	width: 100%;
 	object-fit: contain;
 `;
 
@@ -195,7 +201,9 @@ let cardSections = ["Staff", "Advisors", "Alumni"];
 
 function sortTeamCards(teamCards) {
 	let roleDict = {};
-	let uniqueRoles = [...new Set(teamCards.data.map((n) => n.attributes.Role))];
+	let uniqueRoles = [
+		...new Set(teamCards.data.map((n) => n.attributes.Role)),
+	];
 	for (let i in uniqueRoles) {
 		roleDict[uniqueRoles[i]] = [];
 	}

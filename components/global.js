@@ -146,31 +146,6 @@ let PageHeading = styled.h1`
 	transform: translate(-3px, calc(1.3rem / 2 - 1px));
 `;
 
-let PageTableOfContents = styled.ol`
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	padding-bottom: calc(3 * 1.3rem);
-	position: relative;
-	left: calc(var(--gap) - 7px);
-`;
-
-let PageTOCListItem = styled.li`
-	padding-bottom: calc(1.3rem / 2);
-`;
-
-let PageTOCLink = styled.a`
-	display: flex;
-	align-items: center;
-	transition: 0.8s ease;
-	text-decoration: none;
-	position: relative;
-
-	&:hover {
-		transform: translateX(var(--gap));
-	}
-`;
-
 let asteriskContainerStyles = {
 	TOC: css`
 		position: absolute;
@@ -354,9 +329,6 @@ export {
 	Spacer,
 	PageSplash,
 	PageHeading,
-	PageTableOfContents,
-	PageTOCListItem,
-	PageTOCLink,
 	Asterisk,
 	PageIntroduction,
 	SectionHeader,

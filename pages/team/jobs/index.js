@@ -4,8 +4,8 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import PageTableOfContents from "../../../components/PageTableOfContents";
 import ArrowButton from "../../../components/ArrowButton";
-import { asteriskSVG } from '../../../site-data.js';
 
 import {
 	baseGrid,
@@ -13,10 +13,7 @@ import {
 	Spacer,
 	PageSplash,
 	PageHeader,
-	PageTableOfContents,
-	PageTOCListItem,
-	PageTOCLink,
-  	Asterisk,
+	Asterisk,
 	PageIntro,
 	SectionHeader,
 	PageSection,
@@ -39,21 +36,9 @@ function JobsPage({ jobPage, jobCards }) {
 			<Header />
 			<PageSplash bgColor="purple" color="off-black">
 				<PageHeader>Jobs</PageHeader>
-				<PageTableOfContents>
-					{jobPage.data.attributes.PageSections.map((n) => (
-						<PageTOCListItem key={n.id}>
-							<PageTOCLink
-								href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-							>
-								<Asterisk style={{transform:randomRotate()}}>
-									{asteriskSVG()}
-								</Asterisk>
-								<div>{n.SectionHeader}</div>
-							</PageTOCLink>
-							<Spacer />
-						</PageTOCListItem>
-					))}
-				</PageTableOfContents>
+				<PageTableOfContents
+					sections={jobPage.data.attributes.PageSections}
+				/>
 			</PageSplash>
 			<PageIntro>
 				{jobPage.data.attributes.PageSplash.PageIntro}
@@ -78,7 +63,16 @@ function JobsPage({ jobPage, jobCards }) {
 						<PageSectionContent>
 							{n.PageSectionContent}
 							{/* TK buttonTextLength should alternate/choose randomly from shortText, medText, and longText */}
-							<ArrowButton text="Apply" link={"/team/jobs/" + getJobIdByTitle(n.SectionHeader,jobCards)} buttonWidth="long" buttonThickness="thick" buttonTextLength="medText"></ArrowButton>
+							<ArrowButton
+								text="Apply"
+								link={
+									"/team/jobs/" +
+									getJobIdByTitle(n.SectionHeader, jobCards)
+								}
+								buttonWidth="long"
+								buttonThickness="thick"
+								buttonTextLength="medText"
+							></ArrowButton>
 						</PageSectionContent>
 					</PageSection>
 				) : (

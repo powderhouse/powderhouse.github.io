@@ -4,6 +4,7 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageTableOfContents from "../components/PageTableOfContents";
 import { asteriskSVG } from "../site-data.js";
 
 import {
@@ -13,9 +14,6 @@ import {
 	Spacer,
 	PageSplash,
 	PageHeading,
-	PageTableOfContents,
-	PageTOCListItem,
-	PageTOCLink,
 	PageIntroduction,
 	SectionHeader,
 	PageSectionContent,
@@ -30,20 +28,6 @@ import {
 
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
-
-let generateTOC = function (sections) {
-	let items = sections.map((n, i) => (
-		<PageTOCListItem key={i}>
-			<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
-				<Asterisk key={i} type="TOC">
-					{asteriskSVG()}
-				</Asterisk>
-				{n.SectionHeader}
-			</PageTOCLink>
-		</PageTOCListItem>
-	));
-	return <PageTableOfContents>{items}</PageTableOfContents>;
-};
 
 // TODO: Named this way since PageSection is deprecated for Region
 let CorePageSection = (props) => {
@@ -118,7 +102,7 @@ function AboutPage({
 			regions: [
 				<PageSplash>
 					<PageHeading>{PageHeader}</PageHeading>
-					{generateTOC(PageSections)}
+					<PageTableOfContents sections={PageSections} />
 				</PageSplash>,
 			],
 			content: false,
