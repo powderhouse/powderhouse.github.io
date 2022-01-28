@@ -196,6 +196,14 @@ let AsteriskContainer = styled.div`
 	transform: ${(props) => `rotate(${props.rotation}deg)`};
 
 	${(props) => asteriskContainerStyles[props.type]}
+	${(props) =>
+		props.color
+			? css`
+					color: ${expandColor(props.color)};
+					stroke: ${expandColor(props.color)};
+					fill: ${expandColor(props.color)};
+			  `
+			: ``}
 `;
 
 let Asterisk = (props) => {
@@ -205,8 +213,12 @@ let Asterisk = (props) => {
 	}, []);
 
 	return (
-		<AsteriskContainer rotation={randomRotation} type={props.type}>
-			{asteriskSVG(props.color ? props.color : "off-black")}
+		<AsteriskContainer
+			rotation={randomRotation}
+			type={props.type}
+			color={props.color ? props.color : "--off-black"}
+		>
+			{asteriskSVG()}
 		</AsteriskContainer>
 	);
 };
@@ -235,27 +247,27 @@ let sectionHeaderContainerStyles = {
 		grid-column: 1 / span 3;
 		font-size: 24px;
 		letter-spacing: -0.5;
-		padding-left: calc(1.375 * 1.3rem)
+		padding-left: calc(1.375 * 1.3rem);
 	`,
 	center: css`
 		grid-column: 4 / 10;
 		font-size: 31px;
 		letter-spacing: -1.2;
-		padding-left: calc(1.3em)
+		padding-left: calc(1.3em);
 	`,
-}
+};
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	line-height: 1.3rem;
 	height: calc(2 * 1.3rem - 0.75px);
 	position: relative;
-	${props => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
+	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 `;
 
 let SectionHeader = ({ left, children }) => {
 	let header = (
 		<>
-			<Asterisk type={ left ? "LeftHeader" : "CenterHeader" }/>
+			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
 			<Header2>{children}</Header2>
 		</>
 	);

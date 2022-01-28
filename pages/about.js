@@ -42,12 +42,7 @@ let generateTOC = function (sections) {
 			</PageTOCLink>
 		</PageTOCListItem>
 	));
-	return (
-		<PageTableOfContents className="off-black">
-			{/*TODO: Check for consistency of usage of off-black in className, etc.*/}
-			{items}
-		</PageTableOfContents>
-	);
+	return <PageTableOfContents>{items}</PageTableOfContents>;
 };
 
 // TODO: Named this way since PageSection is deprecated for Region
