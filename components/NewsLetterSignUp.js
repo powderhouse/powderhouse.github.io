@@ -70,13 +70,16 @@ let EmailInput = styled.input.attrs((props) => ({
 }))`
     grid-column: 1 / 4;
 
-    color: var(--off-white);
+    color: ${(props) =>
+        props.color ? "var(--" + props.color + ")" : "off-black"};
     background: transparent;
-    border: 2px solid var(--off-white);
+    border: 3px solid ${(props) =>
+        props.color ? "var(--" + props.color + ")" : "off-black"};
     padding: 0.5em;
 
     &::placeholder {
-        color: var(--off-white);
+        color: ${(props) =>
+        props.color ? "var(--" + props.color + ")" : "off-black"};
         opacity: 0.625;
     }
 `;
