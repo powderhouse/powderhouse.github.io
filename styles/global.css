@@ -108,8 +108,7 @@ dt {
 	background: var(--off-black);
 	color: var(--off-white);
 	padding-left: calc(2 * 1.3rem);
-	padding-right: calc(1.3rem / 2);
-	height: 100%;
+	padding-right: calc(1.3rem / 4);
 	text-align: right;
 }
 dd {
