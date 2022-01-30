@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import PersonCard from "../../components/PersonCard";
 import PageTableOfContents from "../../components/PageTableOfContents";
 import ArrowButton from "../../components/ArrowButton";
 import { asteriskSVG } from "../../site-data.js";
@@ -31,31 +30,25 @@ import {
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 
-function TeamPage({
-	teamPage: {
-		data: {
-			attributes: {
-				PageSplash: { PageHeader, PageIntro },
-				PageSections,
-			},
-		},
-	},
-	teamCards,
-}) {
+function TeamPage({ teamPage, teamCards }) {
 	return (
 		<PageContainer splashColor="--purple">
 			<Header />
 			<PageSplash bgColor="purple" color="off-black">
-				<PageHeading>{PageHeader}</PageHeading>
-				<PageTableOfContents sections={PageSections} />
+				<PageHeading>
+					{teamPage.data.attributes.PageSplash.PageHeader}
+				</PageHeading>
+				<PageTableOfContents
+					sections={teamPage.data.attributes.PageSections}
+				/>
 			</PageSplash>
 			<PageIntroduction>
 				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-					{PageIntro}
+					{teamPage.data.attributes.PageSplash.PageIntro}
 				</ReactMarkdown>
 			</PageIntroduction>
 
-			{PageSections.map((n) =>
+			{teamPage.data.attributes.PageSections.map((n) =>
 				cardSections.includes(n.SectionHeader) &&
 				teamCards.hasOwnProperty(n.SectionHeader) ? (
 					<PageSection isLightSection={true} css={baseGrid}>
@@ -175,6 +168,11 @@ function TeamPage({
 		</PageContainer>
 	);
 }
+
+let PersonCard = styled.div`
+	border: black dotted 1px;
+	grid-column: span 3;
+`;
 
 let PersonHeadshotDiv = styled.div`
 	height: 150px;
