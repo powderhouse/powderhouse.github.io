@@ -63,8 +63,6 @@ function PageContainer2(props) {
 	} else {
 		console.log("Error, expected all children to be regions");
 	}
-
-	return <div>!</div>;
 }
 
 export default PageContainer2;
