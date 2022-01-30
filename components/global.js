@@ -71,26 +71,6 @@ let PageContainer = styled.div`
 	color: var(--off-black);
 `;
 
-let RegionContainer = styled("div").withConfig({
-	// TODO: Unclear why I need the array includes; shouldn't https://styled-components.com/docs/api#transient-props remove those?
-	shouldForwardProp: (prop, defaultValidatorFn) => {
-		return (
-			defaultValidatorFn(prop) &&
-			!["content", "backgroundColor"].includes(prop)
-		);
-	},
-})`
-	${(props) => colorByProp(props)}
-	padding-top: ${(props) =>
-		[false, "first"].includes(props.content)
-			? "initial"
-			: "calc(4 * 1.3rem)"};
-	padding-bottom: ${(props) =>
-		[true, "first"].includes(props.content)
-			? "calc(4 * 1.3rem)"
-			: "initial"};
-`;
-
 let Region = styled.div`
 	margin: 0 auto; // TODO: Any better way to center?
 	display: grid;
@@ -251,6 +231,17 @@ let SectionHeader = ({ left, children }) => {
 	);
 };
 
+// TODO: Named this way since PageSection is deprecated for Region
+let CorePageSection = ({ left, header, backgroundColor, children }) => {
+	let slug = slugify(header);
+	return (
+		<Region id={slug} backgroundColor={backgroundColor}>
+			<SectionHeader left={left}>{header}</SectionHeader>
+			<PageSectionContent markdown>{children}</PageSectionContent>
+		</Region>
+	);
+};
+
 let PageSection = styled.section`
 	// TODO: Can remove, replace with Region
 	grid-column: 1 / -1;
@@ -319,11 +310,13 @@ let slugify = function (toSlug) {
 		.replace(/[-\s]+/g, "-");
 };
 
+let getBgFromLight = (isLight) => (isLight ? "--off-white" : "--off-black");
+let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
+
 export {
 	baseGrid,
 	PageContainer,
 	Region,
-	RegionContainer,
 	Markdown,
 	Div,
 	Spacer,
@@ -342,4 +335,7 @@ export {
 	colorByProp,
 	ShiftBy,
 	slugify,
+	CorePageSection,
+	getBgFromLight,
+	getLightFromBg,
 };
