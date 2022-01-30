@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import PersonCard from "../../components/PersonCard";
 import PageTableOfContents from "../../components/PageTableOfContents";
 import ArrowButton from "../../components/ArrowButton";
 import { asteriskSVG } from "../../site-data.js";
@@ -12,6 +13,7 @@ import { asteriskSVG } from "../../site-data.js";
 import {
 	baseGrid,
 	PageContainer,
+	RegionContainer,
 	Spacer,
 	PageSplash,
 	PageHeading,
@@ -29,27 +31,31 @@ import {
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 
-function TeamPage({ teamPage, teamCards }) {
+function TeamPage({
+	teamPage: {
+		data: {
+			attributes: {
+				PageSplash: { PageHeader, PageIntro },
+				PageSections,
+			},
+		},
+	},
+	teamCards,
+}) {
 	return (
-		<PageContainer css={baseGrid}>
-			{/* {JSON.stringify(teamCards)} */}
-
+		<PageContainer splashColor="--purple">
 			<Header />
 			<PageSplash bgColor="purple" color="off-black">
-				<PageHeading>
-					{teamPage.data.attributes.PageSplash.PageHeader}
-				</PageHeading>
-				<PageTableOfContents
-					sections={teamPage.data.attributes.PageSections}
-				/>
+				<PageHeading>{PageHeader}</PageHeading>
+				<PageTableOfContents sections={PageSections} />
 			</PageSplash>
 			<PageIntroduction>
 				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-					{teamPage.data.attributes.PageSplash.PageIntro}
+					{PageIntro}
 				</ReactMarkdown>
 			</PageIntroduction>
 
-			{teamPage.data.attributes.PageSections.map((n) =>
+			{PageSections.map((n) =>
 				cardSections.includes(n.SectionHeader) &&
 				teamCards.hasOwnProperty(n.SectionHeader) ? (
 					<PageSection isLightSection={true} css={baseGrid}>
@@ -169,11 +175,6 @@ function TeamPage({ teamPage, teamCards }) {
 		</PageContainer>
 	);
 }
-
-let PersonCard = styled.div`
-	border: black dotted 1px;
-	grid-column: span 3;
-`;
 
 let PersonHeadshotDiv = styled.div`
 	height: 150px;
