@@ -5,12 +5,12 @@ import rehypeRaw from "rehype-raw";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageTableOfContents from "../components/PageTableOfContents";
+import RegionContainer from "../components/RegionContainer";
 import { asteriskSVG } from "../site-data.js";
 
 import {
 	baseGrid,
 	Region,
-	RegionContainer,
 	Spacer,
 	PageContainer,
 	PageSplash,
@@ -25,21 +25,13 @@ import {
 	Div,
 	ShiftBy,
 	Asterisk,
+	CorePageSection,
+	getBgFromLight,
+	getLightFromBg,
 } from "../components/global";
 
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
-
-// TODO: Named this way since PageSection is deprecated for Region
-let CorePageSection = (props) => {
-	let slug = slugify(props.header);
-	return (
-		<Region id={slug}>
-			<SectionHeader left={props.left}>{props.header}</SectionHeader>
-			<PageSectionContent markdown>{props.children}</PageSectionContent>
-		</Region>
-	);
-};
 
 function AboutPage({
 	data: {
@@ -49,15 +41,13 @@ function AboutPage({
 		},
 	},
 }) {
-	let getBgFromLight = (isLight) => (isLight ? "--off-white" : "--off-black");
-	let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
-
 	let createSection = (s, i = null) => {
 		return (
 			<CorePageSection
 				header={s.SectionHeader}
 				left={s.isLeftHeader ? s.isLeftHeader : false}
 				key={i}
+				backgroundColor={getBgFromLight(s.isLightSection)}
 			>
 				{s.PageSectionContent}
 			</CorePageSection>
@@ -143,30 +133,18 @@ function AboutPage({
 		regionRuns.splice(3, 0, ...groupedRuns.slice(0));
 	}
 
-	let pageSectionType = (<CorePageSection />).type;
-
 	return (
-		<PageContainer splashColor={getSplashRegion(regionRuns)}>
-			{regionRuns.map(({ backgroundColor, regions, content }, i) => {
-				let keyedRegions = regions;
-				return (
-					<RegionContainer
-						backgroundColor={backgroundColor}
-						content={
-							[true, "first"].includes(content) ? content : false
-						}
-						key={i}
-					>
-						{keyedRegions.map((r, j) =>
-							r.type == pageSectionType ? (
-								r
-							) : (
-								<Region key={j}>{r}</Region>
-							)
-						)}
-					</RegionContainer>
-				);
-			})}
+		<PageContainer>
+			{regionRuns.map(({ backgroundColor, regions, content }, i) => (
+				<RegionContainer
+					backgroundColor={backgroundColor}
+					content={
+						[true, "first"].includes(content) ? content : false
+					}
+					key={i}
+					regions={regions}
+				/>
+			))}
 		</PageContainer>
 	);
 }
