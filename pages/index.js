@@ -2,79 +2,15 @@ import styled from "styled-components";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ArrowButton from "../components/ArrowButton";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
 
-import {
-  baseGrid,
-  PageContainer,
-  Region,
-  RegionContainer,
-  PageSection,
-  Highlight,
-  Markdown,
-  Div,
-} from "../components/global";
+import { Div } from "../components/global";
 
-import { getStrapiMedia } from "../lib/media";
+import PageContainer2 from "../components/PageContainer2";
+import Region2 from "../components/Region2";
+
 import { fetchAPI } from "../lib/api";
-
-import { highlight, ShiftBy } from "../components/global.js";
-import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
-
-function HomePage({
-  data: {
-    attributes: { SplashLanguage, SignUpShoutOut },
-  },
-}) {
-  let regionRuns = [
-    {
-      backgroundColor: "--off-black",
-      regions: [
-        <Header />,
-        <>
-          <Splash markdown>{SplashLanguage}</Splash>
-
-          <SplashNewsletterSignup>
-            <ShoutOut>{SignUpShoutOut}</ShoutOut>
-            <NewsLetterSignUp
-              text="Sign Up!"
-              color="off-white"
-              buttonWidth="long"
-              buttonThickness="thick"
-              buttonTextLength="medText"
-            ></NewsLetterSignUp>
-          </SplashNewsletterSignup>
-        </>,
-      ],
-      content: false,
-    },
-    {
-      backgroundColor: "--off-white",
-      regions: [<Footer />],
-      content: false,
-    },
-  ];
-  return (
-    <>
-    {
-      regionRuns.map(({backgroundColor, regions, content}, i) => {
-        return (
-          <RegionContainer
-            backgroundColor={backgroundColor}
-            content={
-              [true, "first"].includes(content) ? content : false
-            }
-            key={i}
-          >
-            {regions.map((r, j) => <Region key={j}>{r}</Region>)}
-          </RegionContainer>
-          )
-      })
-    }
-    </>
-  );
-}
+import { ShiftBy } from "../components/global.js";
 
 let Splash = styled(Div)`
   grid-column: 2 / -2;
@@ -111,6 +47,36 @@ let SplashNewsletterSignup = styled.div`
   padding: 0 0 calc(6 * 1.3rem);
   place-items: center;
 `;
+
+function HomePage({
+  data: {
+    attributes: { SplashLanguage, SignUpShoutOut },
+  },
+}) {
+  let regions = [
+    <Region2 backgroundColor="--off-black">
+      <Header />
+    </Region2>,
+    <Region2 backgroundColor="--off-black">
+      <Splash markdown>{SplashLanguage}</Splash>
+      <SplashNewsletterSignup>
+        <ShoutOut>{SignUpShoutOut}</ShoutOut>
+        <NewsLetterSignUp
+          text="Sign Up!"
+          color="off-white"
+          buttonWidth="long"
+          buttonThickness="thick"
+          buttonTextLength="medText"
+        ></NewsLetterSignUp>
+      </SplashNewsletterSignup>
+    </Region2>,
+    <Region2 backgroundColor="--off-white">
+      <Footer />
+    </Region2>,
+  ];
+
+  return <PageContainer2>{regions}</PageContainer2>;
+}
 
 export async function getStaticProps(context) {
   return {
