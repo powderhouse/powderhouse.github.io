@@ -1,8 +1,10 @@
-import { navMenuItems, socials } from "../site-data.js";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import Icon from "../components/Icon.js";
+import NewsLetterSignUp from "../components/NewsLetterSignUp"
+import { navMenuItems, socials, logoSVG } from "../site-data.js";
+
 import {
   gap,
   baseGrid,
@@ -16,56 +18,68 @@ function Footer() {
   navItems.unshift({ text: "Home", href: "/" });
   const router = useRouter();
   return (
-    <Wrapper>
-      <FooterNavigation>
-        <NavList>
-          {navItems.map((n, i) => {
-            return (
-              <NavItem key={i}>
-                <NavLink href={n.href}>{n.text}</NavLink>
-              </NavItem>
-            );
-          })}
-        </NavList>
-      </FooterNavigation>
-      <FooterContact>
-        <NavList>
-          <NavItem>
-            <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
-              339R Summer Street <br />
-              Somerville, MA 02144
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="mailto:us@powderhouse.org">
-              us@powderhouse.org
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <SocialList>
-              {socials.map((n) => {
-                return (
-                  <IconListItem
-                    href={n.href}
-                    key={n.id}
-                    icon={n.service.toLowerCase()}
-                  ></IconListItem>
-                );
-              })}
-            </SocialList>
-          </NavItem>
-        </NavList>
-      </FooterContact>
-      {router.pathname != "/" ? (
-        <FooterNewsletterSignup>
-          <SignUpForm action="" method="get">
-            <EmailInput type="email" name="email" id="email" required />
-            <SubmitButton type="submit" value="Sign Up" />
-          </SignUpForm>
-        </FooterNewsletterSignup>
-      ) : (
-        ""
-      )}
+    <Wrapper> 
+
+      <LogoContainer>
+        {logoSVG("var(--yellow)")}
+      </LogoContainer> 
+
+      <ContentContainer>
+        <FooterNavigation>
+          <NavList>
+            {navItems.map((n, i) => {
+              return (
+                <NavItem key={i}>
+                  <NavLink href={n.href}>{n.text}</NavLink>
+                </NavItem>
+              );
+            })}
+          </NavList>
+        </FooterNavigation>
+        <FooterContact>
+          <NavList>
+            <ContactNavItem>
+              <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
+                339R Summer Street <br />
+                Somerville, MA 02144
+              </NavLink>
+            </ContactNavItem>
+            <ContactNavItem>
+              <NavLink href="mailto:us@powderhouse.org">
+                us@powderhouse.org
+              </NavLink>
+            </ContactNavItem>
+            <ContactNavItem>
+              <SocialList>
+                {socials.map((n) => {
+                  return (
+                    <IconListItem
+                      href={n.href}
+                      key={n.id}
+                      icon={n.service.toLowerCase()}
+                    ></IconListItem>
+                  );
+                })}
+              </SocialList>
+            </ContactNavItem>
+          </NavList>
+        </FooterContact>
+        {router.pathname != "/" ? (
+          <FooterNewsletterSignup>
+            <NewsLetterShoutOut>If you'd like to keep up with our work, sign up for our mailing list.</NewsLetterShoutOut>
+            <NewsLetterSignUp 
+              color="off-black"
+              text="Follow us!"
+              buttonWidth="long"
+              buttonThickness="thick"
+              buttonTextLength="medText"
+            />
+          </FooterNewsletterSignup>
+        ) : (
+          ""
+        )}
+      </ContentContainer>
+
     </Wrapper>
   );
 }
@@ -88,12 +102,34 @@ let Wrapper = styled.footer`
   stroke: inherit;
   fill: inherit;
   ${baseGrid};
-  ${(props) => colorByProp(props)}};
-  padding: calc(5 * 1.3rem) 0;
+  ${(props) => colorByProp(props)};
+  position:relative;
+  padding-bottom: 1.3rem;
+`;
+
+let LogoContainer = styled.div`
+  grid-column: 1 / -1;
+  grid-column-start: 1;
+  grid-row-start:2;
+  transform:rotate(180deg) scaleX(-1);
+  /*filter:blur(1.3rem);*/
+  /*opacity:0.3;*/
+  pointer-events:none;
+`;
+
+let ContentContainer = styled.div`
+  grid-column: 1 / -1;
+  grid-column-start: 1;
+  grid-row-start:1;
+  ${baseGrid};
+  /*position:absolute;*/
+  z-index:1;
+  padding-top: calc(2 * 1.3rem);
+  /*bottom: 0;*/
 `;
 
 let FooterNavigation = styled.div`
-  grid-column: 1 / 4;
+  grid-column: 2 / 4;
 `;
 
 let NavList = styled.ol`
@@ -106,7 +142,10 @@ let NavList = styled.ol`
 let NavItem = styled.li`
   display: flex;
   align-items: center;
-  padding: calc(1.3rem / 4) 0;
+`;
+
+let ContactNavItem = styled(NavItem)`
+  padding-bottom: calc(1.3rem / 4);
 `;
 
 let NavLink = styled.a`
@@ -115,9 +154,6 @@ let NavLink = styled.a`
   line-height: 1.3rem;
 `;
 
-let Address = styled.div`
-  padding: calc(1.3rem / 4) 0;
-`;
 let SocialList = styled(NavList)`
   display: flex;
   align-items: center;
@@ -126,29 +162,15 @@ let SocialList = styled(NavList)`
 `;
 
 let FooterContact = styled.div`
-  grid-column: 4 / 6;
+  grid-column: 4 / 7;
 `;
 
 let FooterNewsletterSignup = styled.div`
-  grid-column: 7 / 10;
+  grid-column: 7 / 12;
 `;
 
-let SignUpShoutOut = styled.h4``;
-
-let SignUpForm = styled.form`
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: min-content;
-  column-gap: var(--gap);
-`;
-
-let EmailInput = styled.input`
-  grid-column: 1 / 3;
-`;
-
-let SubmitButton = styled.input`
-  grid-column: 3 / 4;
+let NewsLetterShoutOut = styled.p`
+  padding-bottom: calc(1.3rem / 4);
 `;
 
 export default Footer;
