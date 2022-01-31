@@ -22,7 +22,8 @@ let containsMainContent = function (region) {
 };
 
 function PageContainer2(props) {
-	if (props.children.map((c) => c.type.name).every((t) => t == "Region2")) {
+	let childrenTypes = props.children.map((c) => c.type.name);
+	if (childrenTypes.every((t) => t == "Region2")) {
 		let regionRuns = [[props.children[0]]];
 		props.children.slice(1).forEach((region) => {
 			let lastRegionRun = regionRuns.slice(-1)[0];
@@ -38,8 +39,6 @@ function PageContainer2(props) {
 		let firstContentRegion = regionRuns.find((rr) =>
 			rr.some((r) => containsMainContent(r))
 		);
-
-		console.log(firstContentRegion);
 
 		let regionContainers = regionRuns.map((rr, i) => {
 			let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
@@ -61,7 +60,10 @@ function PageContainer2(props) {
 
 		return <StyledDiv>{regionContainers}</StyledDiv>;
 	} else {
-		console.log("Error, expected all children to be regions");
+		console.log(
+			"Error, expected all children to be regions; instead, received",
+			childrenTypes
+		);
 	}
 }
 
