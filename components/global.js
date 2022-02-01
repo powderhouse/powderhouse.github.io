@@ -141,13 +141,17 @@ let asteriskContainerStyles = {
 		left: calc(-0.625 * 1.3rem);
 		top: calc(-1.3rem / 2 - 3.5px);
 	`,
+	Default: css`
+		position: absolute;
+		left: calc(-0.375 * 1.3rem);
+		top: calc(-1.3rem / 7);
+	`,
 };
 
 let AsteriskContainer = styled.div`
-	height: calc(1.375 * 1.3em);
-	width: calc(1.375 * 1.3em);
+	height: calc(1.375 * 1.3rem);
+	width: calc(1.375 * 1.3rem);
 	transform-origin: 50% 50%;
-	// margin-right: -1px;
 	transform: ${(props) => `rotate(${props.rotation}deg)`};
 
 	${(props) => asteriskContainerStyles[props.type]}
@@ -213,6 +217,7 @@ let sectionHeaderContainerStyles = {
 };
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
+	grid-row: 1 / -1;
 	line-height: 1.3rem;
 	height: calc(2 * 1.3rem - 0.75px);
 	position: relative;
@@ -313,6 +318,15 @@ let slugify = function (toSlug) {
 let getBgFromLight = (isLight) => (isLight ? "--off-white" : "--off-black");
 let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
 
+let sizeToVerticalGridInRem = function (heightInPx) {
+	let rootFontSizeInPx = 17;
+	let rootLineHeightInRem = 1.3;
+	return (
+		Math.ceil(heightInPx / (rootFontSizeInPx * rootLineHeightInRem)) *
+		rootLineHeightInRem
+	);
+};
+
 export {
 	baseGrid,
 	PageContainer,
@@ -338,4 +352,5 @@ export {
 	CorePageSection,
 	getBgFromLight,
 	getLightFromBg,
+	sizeToVerticalGridInRem,
 };
