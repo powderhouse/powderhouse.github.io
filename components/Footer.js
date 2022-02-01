@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import Icon from "../components/Icon.js";
-import NewsLetterSignUp from "../components/NewsLetterSignUp"
+import Region2 from "../components/Region2.js";
+import NewsLetterSignUp from "../components/NewsLetterSignUp";
 import { navMenuItems, socials, logoSVG } from "../site-data.js";
 
 import {
@@ -13,74 +14,75 @@ import {
   highlight,
 } from "../components/global.js";
 
-function Footer() {
+function Footer({ backgroundColor, ...rest }) {
   let navItems = navMenuItems.slice();
   navItems.unshift({ text: "Home", href: "/" });
   const router = useRouter();
   return (
-    <Wrapper> 
+    <Region2 backgroundColor={backgroundColor}>
+      <Wrapper {...rest}>
+        <LogoContainer>{logoSVG("var(--yellow)")}</LogoContainer>
 
-      <LogoContainer>
-        {logoSVG("var(--yellow)")}
-      </LogoContainer> 
-
-      <ContentContainer>
-        <FooterNavigation>
-          <NavList>
-            {navItems.map((n, i) => {
-              return (
-                <NavItem key={i}>
-                  <NavLink href={n.href}>{n.text}</NavLink>
-                </NavItem>
-              );
-            })}
-          </NavList>
-        </FooterNavigation>
-        <FooterContact>
-          <NavList>
-            <ContactNavItem>
-              <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
-                339R Summer Street <br />
-                Somerville, MA 02144
-              </NavLink>
-            </ContactNavItem>
-            <ContactNavItem>
-              <NavLink href="mailto:us@powderhouse.org">
-                us@powderhouse.org
-              </NavLink>
-            </ContactNavItem>
-            <ContactNavItem>
-              <SocialList>
-                {socials.map((n) => {
-                  return (
-                    <IconListItem
-                      href={n.href}
-                      key={n.id}
-                      icon={n.service.toLowerCase()}
-                    ></IconListItem>
-                  );
-                })}
-              </SocialList>
-            </ContactNavItem>
-          </NavList>
-        </FooterContact>
-        {router.pathname != "/" ? (
-          <FooterNewsletterSignup>
-            <NewsLetterShoutOut>If you'd like to keep up with our work, sign up for our mailing list.</NewsLetterShoutOut>
-            <NewsLetterSignUp 
-              color="off-black"
-              text="Follow us!"
-              buttonWidth="long"
-              buttonThickness="thick"
-              buttonTextLength="medText"
-            />
-          </FooterNewsletterSignup>
-        ) : (
-          ""
-        )}
-      </ContentContainer>
-
-    </Wrapper>
+        <ContentContainer>
+          <FooterNavigation>
+            <NavList>
+              {navItems.map((n, i) => {
+                return (
+                  <NavItem key={i}>
+                    <NavLink href={n.href}>{n.text}</NavLink>
+                  </NavItem>
+                );
+              })}
+            </NavList>
+          </FooterNavigation>
+          <FooterContact>
+            <NavList>
+              <ContactNavItem>
+                <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
+                  339R Summer Street <br />
+                  Somerville, MA 02144
+                </NavLink>
+              </ContactNavItem>
+              <ContactNavItem>
+                <NavLink href="mailto:us@powderhouse.org">
+                  us@powderhouse.org
+                </NavLink>
+              </ContactNavItem>
+              <ContactNavItem>
+                <SocialList>
+                  {socials.map((n) => {
+                    return (
+                      <IconListItem
+                        href={n.href}
+                        key={n.id}
+                        icon={n.service.toLowerCase()}
+                      ></IconListItem>
+                    );
+                  })}
+                </SocialList>
+              </ContactNavItem>
+            </NavList>
+          </FooterContact>
+          {router.pathname != "/" ? (
+            <FooterNewsletterSignup>
+              <NewsLetterShoutOut>
+                If you'd like to keep up with our work, sign up for our mailing
+                list.
+              </NewsLetterShoutOut>
+              <NewsLetterSignUp
+                color="off-black"
+                text="Follow us!"
+                buttonWidth="long"
+                buttonThickness="thick"
+                buttonTextLength="medText"
+              />
+            </FooterNewsletterSignup>
+          ) : (
+            ""
+          )}
+        </ContentContainer>
+      </Wrapper>
+    </Region2>
   );
 }
 
@@ -103,27 +105,27 @@ let Wrapper = styled.footer`
   fill: inherit;
   ${baseGrid};
   ${(props) => colorByProp(props)};
-  position:relative;
+  position: relative;
   padding-bottom: 1.3rem;
 `;
 
 let LogoContainer = styled.div`
   grid-column: 1 / -1;
   grid-column-start: 1;
-  grid-row-start:2;
-  transform:rotate(180deg) scaleX(-1);
+  grid-row-start: 2;
+  transform: rotate(180deg) scaleX(-1);
   /*filter:blur(1.3rem);*/
   /*opacity:0.3;*/
-  pointer-events:none;
+  pointer-events: none;
 `;
 
 let ContentContainer = styled.div`
   grid-column: 1 / -1;
   grid-column-start: 1;
-  grid-row-start:1;
+  grid-row-start: 1;
   ${baseGrid};
   /*position:absolute;*/
-  z-index:1;
+  z-index: 1;
   padding-top: calc(2 * 1.3rem);
   /*bottom: 0;*/
 `;

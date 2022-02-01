@@ -34,36 +34,34 @@ function About2Page({
 	},
 }) {
 	let regions = [
-		<Region2 backgroundColor="--off-white">
-			<Header />
-		</Region2>,
-		<Region2 backgroundColor="--yellow">
-			<PageSplash>
-				<PageHeading>{PageHeader}</PageHeading>
-				<PageTableOfContents sections={PageSections} />
-			</PageSplash>
-		</Region2>,
-		<Region2 backgroundColor="--off-white">
-			<PageIntroduction>
-				<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
-					{PageIntro}
-				</ShiftBy>
-			</PageIntroduction>
-		</Region2>,
+		<Header backgroundColor="--off-white" />,
+		<PageSplash backgroundColor="--yellow">
+			<PageHeading>{PageHeader}</PageHeading>
+			<PageTableOfContents sections={PageSections} />
+		</PageSplash>,
+		<PageIntroduction backgroundColor="--off-white">
+			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
+				{PageIntro}
+			</ShiftBy>
+		</PageIntroduction>,
 		...PageSections.map(
-			({
-				SectionHeader: header,
-				isLeftHeader,
-				isLightSection,
-				PageSectionContent: content,
-			}) => {
+			(
+				{
+					SectionHeader: header,
+					isLeftHeader,
+					isLightSection,
+					PageSectionContent: content,
+				},
+				i
+			) => {
 				let slug = slugify(header);
 				let backgroundColor = getBgFromLight(isLightSection);
 				let left = isLeftHeader ? isLeftHeader : false;
-				let PageSectionContent2 = PageSectionContent;
 				return (
-					<Region2 id={slug} backgroundColor={backgroundColor}>
-						<SectionHeader left={left}>{header}</SectionHeader>
+					<Region2 backgroundColor={backgroundColor}>
+						<SectionHeader id={slug} left={left}>
+							{header}
+						</SectionHeader>
 						<PageSectionContent markdown>
 							{content}
 						</PageSectionContent>
@@ -71,9 +69,7 @@ function About2Page({
 				);
 			}
 		),
-		<Region2 backgroundColor="--off-white">
-			<Footer />
-		</Region2>,
+		<Footer backgroundColor="--off-white" />,
 	];
 
 	return (

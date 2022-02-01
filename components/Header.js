@@ -1,52 +1,68 @@
 import styled from "styled-components";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
 import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
 import { highlight, colorByProp, ShiftBy } from "../components/global.js";
+import Region2 from "../components/Region2.js";
 
 function Header(props) {
   const router = useRouter();
   function assignPageColor(navText) {
     let color;
-    navMenuItems.forEach(el => el["text"]==navText ? color = el["color"] : "");
-    return color
+    navMenuItems.forEach((el) =>
+      el["text"] == navText ? (color = el["color"]) : ""
+    );
+    return color;
   }
   function assignScribbleNum(navText) {
     let scribbleNum;
-    navMenuItems.forEach(el => el["text"]==navText ? scribbleNum = el["scribbleNum"] : "");
-    return scribbleNum
+    navMenuItems.forEach((el) =>
+      el["text"] == navText ? (scribbleNum = el["scribbleNum"]) : ""
+    );
+    return scribbleNum;
   }
 
-  return(
-    <Wrapper>
-      <ShiftBy x={0} y={-5}>
-      <LogoLockup>
-        <div style={{width: "321.54px"}}>
-        <a href="/">
-          {logotypeHorizSVG()}  
-        </a>
-        </div>
-      </LogoLockup>
-      </ShiftBy>
-      <NavMenu>
-        <ShiftBy x={0} y={-3}>
-          <NavList>
-            {navMenuItems.map(function(n) {
-              return (
-              <NavListItem key={n.href}>
-                <NavLink className={(router.pathname == n.href ? "active" : "") + " nav-link"} color={props.color} href={n.href}>
-                  <div>{n.text}</div>
-                  <Scribble className="nav-scribble">{scribbleSVGs[assignScribbleNum(n.text)](assignPageColor(n.text))}</Scribble>
-                </NavLink>
-              </NavListItem>
-            )
-            })}
-          </NavList>
+  return (
+    <Region2 {...props}>
+      <Wrapper>
+        <ShiftBy x={0} y={-5}>
+          <LogoLockup>
+            <div style={{ width: "321.54px" }}>
+              <a href="/">{logotypeHorizSVG()}</a>
+            </div>
+          </LogoLockup>
         </ShiftBy>
-      </NavMenu>
-    </Wrapper>
+        <NavMenu>
+          <ShiftBy x={0} y={-3}>
+            <NavList>
+              {navMenuItems.map(function (n) {
+                return (
+                  <NavListItem key={n.href}>
+                    <NavLink
+                      className={
+                        (router.pathname == n.href ? "active" : "") +
+                        " nav-link"
+                      }
+                      color={props.color}
+                      href={n.href}
+                    >
+                      <div>{n.text}</div>
+                      <Scribble className="nav-scribble">
+                        {scribbleSVGs[assignScribbleNum(n.text)](
+                          assignPageColor(n.text)
+                        )}
+                      </Scribble>
+                    </NavLink>
+                  </NavListItem>
+                );
+              })}
+            </NavList>
+          </ShiftBy>
+        </NavMenu>
+      </Wrapper>
+    </Region2>
   );
 }
 
@@ -58,12 +74,12 @@ let Wrapper = styled.header`
   height: calc(6 * 1.3rem);
   align-items: center;
   ${(props) => colorByProp(props)}
-  ${props => `
+  ${(props) => `
     color: inherit;
     stroke: inherit;
     fill: inherit;
     `};
-  ${props => baseGrid};
+  ${(props) => baseGrid};
 `;
 
 let LogoLockup = styled.div`
@@ -90,13 +106,13 @@ let NavLink = styled.a`
   color: var(--off-white);
   color: var(--${(props) => props.color});
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 let Scribble = styled.div`
-  visibility:hidden;
+  visibility: hidden;
   position: absolute;
   top: 9px;
 `;

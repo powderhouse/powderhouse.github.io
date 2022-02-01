@@ -9,6 +9,8 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { asteriskSVG } from "../site-data.js";
 
+import Region2 from "../components/Region2.js";
+
 let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
 	return (
@@ -105,7 +107,7 @@ const baseGrid = css`
 	gap: var(--gap);
 `;
 
-let PageSplash = styled.div`
+let PageSplashDiv = styled.div`
 	grid-column: 1 / -1;
 
 	display: flex;
@@ -116,6 +118,14 @@ let PageSplash = styled.div`
 
 	padding: calc(1 * 1.3rem) 0;
 `;
+
+function PageSplash({ children, ...rest }) {
+	return (
+		<Region2 {...rest}>
+			<PageSplashDiv>{children}</PageSplashDiv>
+		</Region2>
+	);
+}
 
 let PageHeading = styled.h1`
 	font-family: "GT Planar", sans-serif;
@@ -182,7 +192,7 @@ let Asterisk = (props) => {
 	);
 };
 
-let PageIntroduction = styled.div`
+let PageIntroductionDiv = styled.div`
 	grid-column: 1 / span 9;
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
@@ -192,6 +202,14 @@ let PageIntroduction = styled.div`
 	padding-right: none;
 	padding-top: calc(1 * 1.3rem);
 `;
+
+function PageIntroduction({ children, ...rest }) {
+	return (
+		<Region2 {...rest}>
+			<PageIntroductionDiv>{children}</PageIntroductionDiv>
+		</Region2>
+	);
+}
 
 let Header2 = styled.h2`
 	font-weight: normal;
@@ -225,6 +243,7 @@ let SectionHeaderContainer = styled.div`
 `;
 
 let SectionHeader = ({ left, children }) => {
+	let slug = slugify(children);
 	let header = (
 		<>
 			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
@@ -232,7 +251,9 @@ let SectionHeader = ({ left, children }) => {
 		</>
 	);
 	return (
-		<SectionHeaderContainer left={left}>{header}</SectionHeaderContainer>
+		<SectionHeaderContainer left={left} id={slug}>
+			{header}
+		</SectionHeaderContainer>
 	);
 };
 

@@ -8,22 +8,21 @@ let StyledDiv = styled.div`
 	color: var(--off-black);
 `;
 
-let getChildrenTypes = function (component) {
-	return React.Children.map(component.props.children, (c) => c.type.name);
-};
 let containsMainContent = function (region) {
-	let childrenTypes = React.Children.map(
-		region.props.children,
+	let regionTypes = React.Children.toArray(region.props.children).map(
 		(c) => c.type.name
 	);
-	return childrenTypes.some(
+	regionTypes.push(region.type.name);
+	return regionTypes.every(
 		(c) => !["Header", "PageSplash", "Footer"].includes(c)
 	);
 };
 
 function PageContainer2(props) {
-	let childrenTypes = props.children.map((c) => c.type.name);
-	if (childrenTypes.every((t) => t == "Region2")) {
+	let childrenHaveBackgroundColor = React.Children.toArray(
+		props.children
+	).map((c) => c.props.hasOwnProperty("backgroundColor"));
+	if (childrenHaveBackgroundColor.every((t) => t)) {
 		let regionRuns = [[props.children[0]]];
 		props.children.slice(1).forEach((region) => {
 			let lastRegionRun = regionRuns.slice(-1)[0];
@@ -61,8 +60,8 @@ function PageContainer2(props) {
 		return <StyledDiv>{regionContainers}</StyledDiv>;
 	} else {
 		console.log(
-			"Error, expected all children to be regions; instead, received",
-			childrenTypes
+			"Error, expected all children to have backgroundColor; instead, received",
+			props.children
 		);
 	}
 }
