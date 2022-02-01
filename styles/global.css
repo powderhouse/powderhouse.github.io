@@ -184,17 +184,17 @@ img {
 	max-width: calc(1440px - 2 * var(--gap));
 }
 
-.footnotes {
+/*.footnotes {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: var(--gap);
 	color: var(--purple);
-	font-size: 14px; /* Explicit? */
+	font-size: 14px;
 	text-decoration: italic;
 }
 .fn {
 	grid-column: span 1;
-}
+}*/
 
 iframe {
 	border: none;

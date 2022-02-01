@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import Link from "next/link";
@@ -29,10 +30,14 @@ import {
 	Highlight,
 	randomRotate,
 	ShiftBy,
+	getBgFromLight,
+	Div,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
+
+let cardSections = ["Staff", "Advisors", "Alumni"];
 
 function TeamPage({
 	teamPage: {
@@ -45,6 +50,108 @@ function TeamPage({
 	},
 	teamCards,
 }) {
+	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
+
+	alumni = alumni
+		.sort((a, b) => {
+			// Sort first by starting year, then ending year, then alphabetical by first name
+			if (a.attributes.YearStart < b.attributes.YearStart) {
+				return -1;
+			} else if (a.attributes.YearStart > b.attributes.YearStart) {
+				return 1;
+			} else {
+				if (a.attributes.YearEnd < b.attributes.YearEnd) {
+					return -1;
+				} else if (a.attributes.YearEnd > b.attributes.YearEnd) {
+					return 1;
+				} else {
+					// via https://stackoverflow.com/a/60922998
+					return a.attributes.Name.localeCompare(
+						b.attributes.Name,
+						"en",
+						{
+							sensitivity: "base",
+						}
+					);
+				}
+			}
+		})
+		.reverse();
+
+	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
+	let staffCards = (
+		<Region2
+			backgroundColor={getBgFromLight(staffSection.isLightSection)}
+			left={staffSection.isLeftHeader}
+			wide={true}
+			header={staffSection.SectionHeader}
+		>
+			{staff.map((s, i) => (
+				<PersonCard
+					type={s.attributes.Role}
+					key={i}
+					headshot={s.attributes.Headshot}
+					name={s.attributes.Name}
+					title={s.attributes.Title}
+					tenure={{
+						start: s.attributes.YearStart,
+						end: s.attributes.YearEnd,
+					}}
+					links={s.attributes.LinkList}
+				/>
+			))}
+		</Region2>
+	);
+
+	let alumniSection = PageSections.filter(
+		(s) => s.SectionHeader == "Alumni"
+	)[0];
+	let alumniCards = (
+		<Region2
+			backgroundColor={getBgFromLight(alumniSection.isLightSection)}
+			left={alumniSection.isLeftHeader}
+			wide={true}
+			header={alumniSection.SectionHeader}
+		>
+			{alumni.map((a, i) => (
+				<PersonCard
+					type={a.attributes.Role}
+					key={i}
+					name={a.attributes.Name}
+					tenure={{
+						start: a.attributes.YearStart,
+						end: a.attributes.YearEnd,
+					}}
+					links={a.attributes.LinkList}
+				/>
+			))}
+		</Region2>
+	);
+
+	let advisorSection = PageSections.filter(
+		(s) => s.SectionHeader == "Advisors"
+	)[0];
+	let advisorCards = (
+		<Region2
+			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
+			left={advisorSection.isLeftHeader}
+			wide={true}
+			header={advisorSection.SectionHeader}
+		>
+			{advisors.map((a, i) => (
+				<PersonCard
+					key={i}
+					type={a.attributes.Role}
+					name={a.attributes.Name}
+					bio={a.attributes.Bio}
+					links={a.attributes.LinkList}
+				/>
+			))}
+		</Region2>
+	);
+
+	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
+
 	let regions = [
 		<Region2 backgroundColor="--off-white">
 			<Header />
@@ -62,13 +169,35 @@ function TeamPage({
 				</ShiftBy>
 			</PageIntroduction>
 		</Region2>,
-		...getCoreFromPageSections(PageSections, teamCards),
+		staffCards,
+		advisorCards,
+		alumniCards,
+		<Region2
+			backgroundColor={getBgFromLight(jobs.isLightSection)}
+			wide={true}
+			left={jobs.isLeftHeader}
+			header={jobs.SectionHeader}
+			notGrid={true}
+		>
+			<Div markdown>{jobs.PageSectionContent}</Div>
+			<ArrowButton
+				text="Jobs"
+				link="/team/jobs"
+				buttonWidth="long"
+				buttonThickness="thick"
+				buttonTextLength="medText"
+			></ArrowButton>
+		</Region2>,
 		<Region2 backgroundColor="--off-white">
 			<Footer />
 		</Region2>,
 	];
 
-	return <PageContainer2>{regions}</PageContainer2>;
+	return (
+		<PageContainer2>
+			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
+		</PageContainer2>
+	);
 }
 
 let PersonHeadshotDiv = styled.div`
@@ -92,8 +221,6 @@ let PersonTitle = styled.p``;
 let PersonLinks = styled.ul``;
 
 let PersonBio = styled.p``;
-
-let cardSections = ["Staff", "Advisors", "Alumni"];
 
 function sortTeamCards(teamCards) {
 	let roleDict = {};
@@ -199,9 +326,9 @@ let getJobsArrow = function () {
 	);
 };
 
-let getTeamCardsFromN = function (n, teamCards) {
+let getTeamCardsFromN = function (n, i, teamCards) {
 	return (
-		<Region2 backgroundColor="--off-white">
+		<Region2 key={i} backgroundColor="--off-white">
 			{getTeamCardsHeader(n, teamCards)}
 			<WidePageSectionContent>
 				{teamCards[n.SectionHeader].map((j) => getPersonCard(n, j))}
@@ -210,9 +337,9 @@ let getTeamCardsFromN = function (n, teamCards) {
 	);
 };
 
-let getJobsSection = function (n) {
+let getJobsSection = function (n, i) {
 	return (
-		<Region2 backgroundColor="--off-white">
+		<Region2 key={i} backgroundColor="--off-white">
 			<SectionHeader
 				id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
 				isLeftHeader={true}
@@ -234,7 +361,7 @@ let getTeamCardsHeader = function (n, teamCards) {
 	return teamCards.hasOwnProperty(n.SectionHeader) ? (
 		<SectionHeader
 			id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-			isLeftHeader={true}
+			left={true}
 		>
 			{n.SectionHeader}
 		</SectionHeader>
@@ -244,13 +371,13 @@ let getTeamCardsHeader = function (n, teamCards) {
 };
 
 let getCoreFromPageSections = function (ps, teamCards) {
-	return ps.map((n) =>
+	return ps.map((n, i) =>
 		cardSections.includes(n.SectionHeader) &&
 		teamCards.hasOwnProperty(n.SectionHeader)
-			? getTeamCardsFromN(n, teamCards)
+			? getTeamCardsFromN(n, i, teamCards)
 			: cardSections.includes(n.SectionHeader)
 			? ""
-			: getJobsSection(n)
+			: getJobsSection(n, i)
 	);
 };
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { css } from "styled-components";
 
 import {
 	slugify,
@@ -22,29 +23,32 @@ const StyledDiv = styled.div`
 	}
 `;
 
-let WideDiv = styled.div`
-	grid-column: 4 / -1;
-	grid-template-columns: repeat(9, 1fr);
-`;
+function SectionGrid(props) {
+	let wideCSS = props.wide
+		? css`
+				grid-column: 4 / -1;
+				grid-template-columns: repeat(9, 1fr);
+		  `
+		: css`
+				grid-column: 4 / 10;
+				grid-template-columns: repeat(6, 1fr);
+		  `;
 
-let SectionGrid = styled.div`
-	display: grid;
-	${(props) => {
-		if (props.wide) {
-			return `
-			grid-column: 4 / -1;
-			grid-template-columns: repeat(9, 1fr);
-			`;
-		} else {
-			return `
-			grid-column: 4 / 10;
-			grid-template-columns: repeat(6, 1fr)
-			`;
-		}
-	}}
-	grid-column-gap: inherit;
-	grid-row-gap: inherit;
-`;
+	let notGridCSS = props.notGrid
+		? css``
+		: css`
+				display: grid;
+				grid-column-gap: inherit;
+				grid-row-gap: inherit;
+		  `;
+
+	let SectionDiv = styled.div`
+		${wideCSS}
+		${notGridCSS}
+	`;
+
+	return <SectionDiv {...props} />;
+}
 
 function Region2({ header, left, backgroundColor, children, wide, ...rest }) {
 	let region;
@@ -53,7 +57,9 @@ function Region2({ header, left, backgroundColor, children, wide, ...rest }) {
 		region = (
 			<StyledDiv id={slug} backgroundColor={backgroundColor} {...rest}>
 				<SectionHeader left={left}>{header}</SectionHeader>
-				<SectionGrid wide={wide}>{children}</SectionGrid>
+				<SectionGrid wide={wide} {...rest}>
+					{children}
+				</SectionGrid>
 			</StyledDiv>
 		);
 	} else {
@@ -64,37 +70,3 @@ function Region2({ header, left, backgroundColor, children, wide, ...rest }) {
 }
 
 export default Region2;
-
-// if (wide) {
-// 		region = (
-// 			<StyledDiv
-// 				id={header ? slugify(header) : undefined}
-// 				backgroundColor={backgroundColor}
-// 				{...rest}
-// 			>
-// 				<WideDiv>
-// 					{header ? (
-// 						<SectionHeader left={left}>{header}</SectionHeader>
-// 					) : (
-// 						"!"
-// 					)}
-// 					<PageSectionContent markdown>{children}</PageSectionContent>
-// 				</WideDiv>
-// 			</StyledDiv>
-// 		);
-// 	} else {
-// 		region = (
-// 			<StyledDiv
-// 				id={header ? slugify(header) : undefined}
-// 				backgroundColor={backgroundColor}
-// 				{...rest}
-// 			>
-// 				{header ? (
-// 					<SectionHeader left={left}>{header}</SectionHeader>
-// 				) : (
-// 					"@"
-// 				)}
-// 				<PageSectionContent markdown>{children}</PageSectionContent>
-// 			</StyledDiv>
-// 		);
-// 	}
