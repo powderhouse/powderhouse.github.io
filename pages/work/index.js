@@ -4,12 +4,14 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Region2 from "../../components/Region2";
+import PageContainer2 from "../../components/PageContainer2";
+
 import PageTableOfContents from "../../components/PageTableOfContents";
 import { asteriskSVG } from "../../site-data.js";
 
 import {
 	baseGrid,
-	PageContainer,
 	Spacer,
 	PageSplash,
 	PageHeading,
@@ -18,188 +20,202 @@ import {
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
-	WidePageSectionContent,
 	FullBleedImage,
+	getBgFromLight,
+	Div,
 } from "../../components/global";
 
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 
-function WorkPage({ workPage, partnerCards, projectCards, pastLifeCards }) {
+function WorkPage({
+	workPage: {
+		data: {
+			attributes: {
+				PageSplash: { PageHeader, PageIntro },
+				PageSections,
+			},
+		},
+	},
+	partnerCards: {
+		data: {
+			attributes: { PartnerCards: PartnerCards },
+		},
+	},
+	projectCards: { data: projectCards },
+	pastLifeCards: {
+		data: {
+			attributes: { PastLifeCards: PastLifeCards },
+		},
+	},
+}) {
+	let partnersDesc = PageSections.find((s) => s.SectionHeader == "Partners");
+	let partners = PartnerCards.map(
+		(
+			{
+				Image: {
+					data: {
+						attributes: { formats, url, alternativeText },
+					},
+				},
+				Link,
+				LinkText,
+			},
+			i
+		) => {
+			return (
+				<PartnerLink key={i} href={Link}>
+					<PartnerCard>
+						<PartnerLogo
+							src={
+								formats == null
+									? url
+									: formats[
+											findLargestFormat(formats, "small")
+									  ].url
+							}
+							alt={alternativeText}
+						/>
+					</PartnerCard>
+				</PartnerLink>
+			);
+		}
+	);
+	let projectsDesc = PageSections.find((s) => s.SectionHeader == "Projects");
+	let projects = projectCards.map(
+		(
+			{
+				attributes: {
+					ProjectFeatureImage: {
+						data: {
+							attributes: { url, formats, alternativeText },
+						},
+					},
+					ProjectTitle: title,
+					ProjectSubtitle: subtitle,
+					ProjectId: id,
+				},
+			},
+			index
+		) => (
+			<ProjectCard key={index}>
+				<ProjectLink href={"/work/" + id}>
+					{/* TK There's probably a better way to do this with relative URLS? */}
+					<ProjectImageDiv>
+						<ProjectFeatureImage
+							src={
+								formats == null
+									? url
+									: formats[
+											findLargestFormat(formats, "small")
+									  ].url
+							}
+							alt={alternativeText}
+						/>
+					</ProjectImageDiv>
+					<ProjectTitle>{title}</ProjectTitle>
+					<ProjectSubtitle>{subtitle}</ProjectSubtitle>
+				</ProjectLink>
+			</ProjectCard>
+		)
+	);
+	let pastLivesDesc = PageSections.find(
+		(s) => s.SectionHeader == "Past Lives"
+	);
+	let pastLives = PastLifeCards.map(
+		(
+			{
+				Image: {
+					data: {
+						attributes: { formats, url, alternativeText },
+					},
+				},
+				Link,
+				LinkText,
+			},
+			i
+		) => (
+			<PastLifeLink key={i} href={Link}>
+				<PastLifeCard>
+					<PastLifeImage
+						src={
+							formats == null
+								? url
+								: formats[findLargestFormat(formats, "medium")]
+										.url
+						}
+						alt={alternativeText}
+					/>
+				</PastLifeCard>
+			</PastLifeLink>
+		)
+	);
+
 	return (
-		<PageContainer css={baseGrid}>
-			<Header />
-			<PageSplash bgColor="green" color="off-white">
-				<PageHeading>
-					{workPage.data.attributes.PageSplash.PageHeader}
-				</PageHeading>
-				<PageTableOfContents
-					sections={workPage.data.attributes.PageSections}
-				/>
+		<PageContainer2>
+			<Header backgroundColor="--off-white" />
+			<PageSplash backgroundColor="--green">
+				<PageHeading>{PageHeader}</PageHeading>
+				<PageTableOfContents sections={PageSections} />
 			</PageSplash>
-			<PageIntroduction>
-				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-					{workPage.data.attributes.PageSplash.PageIntro}
-				</ReactMarkdown>
+			<PageIntroduction backgroundColor="--off-white" markdown>
+				{PageIntro}
 			</PageIntroduction>
-			{workPage.data.attributes.PageSections.map((n) => (
-				<PageSection key={n.id} isLightSection={true} css={baseGrid}>
-					<SectionHeader
-						id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-						isLeftHeader={true}
-					>
-						{n.SectionHeader}
-					</SectionHeader>
-					{n.PageSectionContent == null ? (
-						""
-					) : (
-						<PageSectionContent>
-							{n.PageSectionContent}
-						</PageSectionContent>
-					)}
-
-					{n.SectionHeader == "Partners" ? (
-						<PartnerSectionContent>
-							{partnerCards.data.attributes.PartnerCards.map(
-								(n) => (
-									<PartnerLink key={n.id} href={n.Link}>
-										<PartnerCard>
-											<PartnerLogo
-												src={
-													n.Image.data.attributes
-														.formats == null
-														? n.Image.data
-																.attributes.url
-														: n.Image.data
-																.attributes
-																.formats[
-																findLargestFormat(
-																	n.Image.data
-																		.attributes
-																		.formats,
-																	"small"
-																)
-														  ].url
-												}
-												alt={
-													n.Image.data.attributes
-														.alternativeText
-												}
-											/>
-										</PartnerCard>
-									</PartnerLink>
-								)
-							)}
-						</PartnerSectionContent>
+			<Region2
+				backgroundColor={getBgFromLight(partnersDesc.isLightSection)}
+			>
+				<SectionHeader left={partnersDesc.isLeftHeader}>
+					{partnersDesc.SectionHeader}
+				</SectionHeader>
+				<PageSectionContent wide={true}>
+					<Div>{partnersDesc.PageSectionContent}</Div>
+					<PartnerSectionContent>{partners}</PartnerSectionContent>
+				</PageSectionContent>
+			</Region2>
+			<Region2
+				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
+			>
+				<SectionHeader left={projectsDesc.isLeftHeader}>
+					{projectsDesc.SectionHeader}
+				</SectionHeader>
+				<PageSectionContent wide={true} grid={true}>
+					{projectsDesc.PageSectionContent ? (
+						<Div>{projectsDesc.PageSectionContent}</Div>
 					) : (
 						""
 					)}
-
-					{n.SectionHeader == "Projects" ? (
-						<WidePageSectionContent>
-							{projectCards.data.map((i) => (
-								<ProjectCard key={i.attributes.id}>
-									<ProjectLink
-										href={"/work/" + i.attributes.ProjectId}
-									>
-										{/* TK There's probably a better way to do this with relative URLS? */}
-										<ProjectImageDiv>
-											<ProjectFeatureImage
-												src={
-													i.attributes
-														.ProjectFeatureImage
-														.data.attributes
-														.formats == null
-														? i.attributes
-																.ProjectFeatureImage
-																.data.attributes
-																.url
-														: i.attributes
-																.ProjectFeatureImage
-																.data.attributes
-																.formats[
-																findLargestFormat(
-																	i.attributes
-																		.ProjectFeatureImage
-																		.data
-																		.attributes
-																		.formats,
-																	"small"
-																)
-														  ].url
-												}
-												alt={
-													i.attributes
-														.ProjectFeatureImage
-														.data.attributes
-														.alternativeText
-												}
-											/>
-										</ProjectImageDiv>
-										<ProjectTitle>
-											{i.attributes.ProjectTitle}
-										</ProjectTitle>
-										<ProjectSubtitle>
-											{i.attributes.ProjectSubtitle}
-										</ProjectSubtitle>
-									</ProjectLink>
-								</ProjectCard>
-							))}
-						</WidePageSectionContent>
+					{projects}
+				</PageSectionContent>
+			</Region2>
+			<Region2
+				backgroundColor={getBgFromLight(pastLivesDesc.isLightSection)}
+			>
+				<SectionHeader left={pastLivesDesc.isLeftHeader}>
+					{pastLivesDesc.SectionHeader}
+				</SectionHeader>
+				<PageSectionContent wide={true} grid={false}>
+					{pastLivesDesc.PageSectionContent ? (
+						<Div>{pastLivesDesc.PageSectionContent}</Div>
 					) : (
 						""
 					)}
-
-					{n.SectionHeader == "Past Lives" ? (
-						<PastLifeSectionContent>
-							{pastLifeCards.data.attributes.PastLifeCards.map(
-								(n) => (
-									<PastLifeLink key={n.id} href={n.Link}>
-										<PastLifeCard>
-											<PastLifeImage
-												src={
-													n.Image.data.attributes
-														.formats == null
-														? n.Image.data
-																.attributes.url
-														: n.Image.data
-																.attributes
-																.formats[
-																findLargestFormat(
-																	n.Image.data
-																		.attributes
-																		.formats,
-																	"medium"
-																)
-														  ].url
-												}
-												alt={
-													n.Image.data.attributes
-														.alternativeText
-												}
-											/>
-										</PastLifeCard>
-									</PastLifeLink>
-								)
-							)}
-						</PastLifeSectionContent>
-					) : (
-						""
-					)}
-				</PageSection>
-			))}
-			<Footer />
-		</PageContainer>
+					<PastLifeSectionContent>{pastLives}</PastLifeSectionContent>
+				</PageSectionContent>
+			</Region2>
+			<Footer backgroundColor="--off-white" />
+		</PageContainer2>
 	);
 }
 
-let PartnerSectionContent = styled(WidePageSectionContent)`
+let PartnerSectionContent = styled.div`
+	display: grid;
+	column-gap: var(--gap);
+	row-gap: 1.3rem;
 	grid-template-columns: repeat(5, 1fr);
 `;
 
 let PartnerCard = styled.div`
 	height: 100px;
-	border: black dotted 1px;
 	overflow: hidden;
 `;
 
@@ -239,13 +255,15 @@ let ProjectTitle = styled.h3`
 
 let ProjectSubtitle = styled.p``;
 
-let PastLifeSectionContent = styled(WidePageSectionContent)`
-	grid-template-columns: repeat(2, auto);
+let PastLifeSectionContent = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: var(--gap);
+	row-gap: 1.3rem;
 `;
 
 let PastLifeCard = styled.div`
 	height: 330px; /*TK Explicit?*/
-	border: black dotted 1px;
 	overflow: hidden;
 `;
 

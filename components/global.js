@@ -192,7 +192,7 @@ let Asterisk = (props) => {
 	);
 };
 
-let PageIntroductionDiv = styled.div`
+let PageIntroductionDiv = styled(Div)`
 	grid-column: 1 / span 9;
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
@@ -203,10 +203,12 @@ let PageIntroductionDiv = styled.div`
 	padding-top: calc(1 * 1.3rem);
 `;
 
-function PageIntroduction({ children, ...rest }) {
+function PageIntroduction({ children, markdown, ...rest }) {
 	return (
 		<Region2 {...rest}>
-			<PageIntroductionDiv>{children}</PageIntroductionDiv>
+			<PageIntroductionDiv markdown={markdown}>
+				{children}
+			</PageIntroductionDiv>
 		</Region2>
 	);
 }
