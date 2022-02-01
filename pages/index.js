@@ -12,7 +12,7 @@ import Region2 from "../components/Region2";
 import { fetchAPI } from "../lib/api";
 import { ShiftBy } from "../components/global.js";
 
-let Splash = styled(Div)`
+let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
   width: 100%;
   font-size: 45px; // TODO: consider bread trail of pixels in calc, note the need to drop px in computing ratio
@@ -26,6 +26,14 @@ let Splash = styled(Div)`
   }
 `;
 
+function Splash({ children, ...rest }) {
+  return (
+    <Region2 {...rest}>
+      <SplashDiv markdown>{children}</SplashDiv>
+    </Region2>
+  );
+}
+
 let ShoutOut = styled.p`
   grid-column: 1 / -1;
   display: flex;
@@ -35,7 +43,7 @@ let ShoutOut = styled.p`
   line-height: 1;
 `;
 
-let SplashNewsletterSignup = styled.div`
+let SplashNewsletterSignupDiv = styled.div`
   grid-column: 4 / 10;
 
   display: grid;
@@ -48,31 +56,34 @@ let SplashNewsletterSignup = styled.div`
   place-items: center;
 `;
 
+function SplashNewsletterSignup({ children, ...rest }) {
+  return (
+    <Region2 {...rest}>
+      <SplashNewsletterSignupDiv>{children}</SplashNewsletterSignupDiv>
+    </Region2>
+  );
+}
 function HomePage({
   data: {
     attributes: { SplashLanguage, SignUpShoutOut },
   },
 }) {
   let regions = [
-    <Region2 backgroundColor="--off-black">
-      <Header />
-    </Region2>,
-    <Region2 backgroundColor="--off-black">
-      <Splash markdown>{SplashLanguage}</Splash>
-      <SplashNewsletterSignup>
-        <ShoutOut>{SignUpShoutOut}</ShoutOut>
-        <NewsLetterSignUp
-          text="Sign Up!"
-          color="off-white"
-          buttonWidth="long"
-          buttonThickness="thick"
-          buttonTextLength="medText"
-        ></NewsLetterSignUp>
-      </SplashNewsletterSignup>
-    </Region2>,
-    <Region2 backgroundColor="--off-white">
-      <Footer />
-    </Region2>,
+    <Header backgroundColor="--off-black" />,
+    <Splash backgroundColor="--off-black" markdown>
+      {SplashLanguage}
+    </Splash>,
+    <SplashNewsletterSignup backgroundColor="--off-black">
+      <ShoutOut>{SignUpShoutOut}</ShoutOut>
+      <NewsLetterSignUp
+        text="Sign Up!"
+        color="off-white"
+        buttonWidth="long"
+        buttonThickness="thick"
+        buttonTextLength="medText"
+      ></NewsLetterSignUp>
+    </SplashNewsletterSignup>,
+    <Footer backgroundColor="--off-white" />,
   ];
 
   return <PageContainer2>{regions}</PageContainer2>;

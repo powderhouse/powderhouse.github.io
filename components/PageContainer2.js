@@ -9,10 +9,17 @@ let StyledDiv = styled.div`
 `;
 
 let containsMainContent = function (region) {
-	let regionTypes = React.Children.toArray(region.props.children).map(
-		(c) => c.type.name
+	// console.log(
+	// 	"Looking at",
+	// 	region,
+	// 	"with children",
+	// 	React.Children.toArray(region.props.children)
+	// );
+	let regionTypes = React.Children.toArray(region.props.children).map((c) =>
+		c.type ? c.type.name : typeof c
 	);
 	regionTypes.push(region.type.name);
+	// console.log(region, "has regionTypes", regionTypes);
 	return regionTypes.every(
 		(c) => !["Header", "PageSplash", "Footer"].includes(c)
 	);
