@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import Link from "next/link";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import PersonCard from "../../components/PersonCard";
+import PageContainer2 from "../../components/PageContainer2";
+import Region2 from "../../components/Region2";
 import PageTableOfContents from "../../components/PageTableOfContents";
 import ArrowButton from "../../components/ArrowButton";
 import { asteriskSVG } from "../../site-data.js";
@@ -25,154 +29,174 @@ import {
 	FullBleedImage,
 	Highlight,
 	randomRotate,
+	ShiftBy,
+	getBgFromLight,
+	Div,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 
-function TeamPage({ teamPage, teamCards }) {
+let cardSections = ["Staff", "Advisors", "Alumni"];
+
+function TeamPage({
+	teamPage: {
+		data: {
+			attributes: {
+				PageSplash: { PageHeader, PageIntro },
+				PageSections,
+			},
+		},
+	},
+	teamCards,
+}) {
+	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
+
+	alumni = alumni
+		.sort((a, b) => {
+			// Sort first by starting year, then ending year, then alphabetical by first name
+			if (a.attributes.YearStart < b.attributes.YearStart) {
+				return -1;
+			} else if (a.attributes.YearStart > b.attributes.YearStart) {
+				return 1;
+			} else {
+				if (a.attributes.YearEnd < b.attributes.YearEnd) {
+					return -1;
+				} else if (a.attributes.YearEnd > b.attributes.YearEnd) {
+					return 1;
+				} else {
+					// via https://stackoverflow.com/a/60922998
+					return a.attributes.Name.localeCompare(
+						b.attributes.Name,
+						"en",
+						{
+							sensitivity: "base",
+						}
+					);
+				}
+			}
+		})
+		.reverse();
+
+	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
+	let staffCards = (
+		<Region2 backgroundColor={getBgFromLight(staffSection.isLightSection)}>
+			<SectionHeader left={staffSection.isLeftHeader}>
+				{staffSection.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				{staff.map((s, i) => (
+					<PersonCard
+						type={s.attributes.Role}
+						key={i}
+						headshot={s.attributes.Headshot}
+						name={s.attributes.Name}
+						title={s.attributes.Title}
+						tenure={{
+							start: s.attributes.YearStart,
+							end: s.attributes.YearEnd,
+						}}
+						links={s.attributes.LinkList}
+					/>
+				))}
+			</PageSectionContent>
+		</Region2>
+	);
+
+	let advisorSection = PageSections.filter(
+		(s) => s.SectionHeader == "Advisors"
+	)[0];
+	let advisorCards = (
+		<Region2
+			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
+		>
+			<SectionHeader left={advisorSection.isLeftHeader}>
+				{advisorSection.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				{advisors.map((a, i) => (
+					<PersonCard
+						key={i}
+						type={a.attributes.Role}
+						name={a.attributes.Name}
+						bio={a.attributes.Bio}
+						links={a.attributes.LinkList}
+					/>
+				))}
+			</PageSectionContent>
+		</Region2>
+	);
+
+	let alumniSection = PageSections.filter(
+		(s) => s.SectionHeader == "Alumni"
+	)[0];
+	let alumniCards = (
+		<Region2 backgroundColor={getBgFromLight(alumniSection.isLightSection)}>
+			<SectionHeader left={alumniSection.isLeftHeader}>
+				{alumniSection.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				{alumni.map((a, i) => (
+					<PersonCard
+						type={a.attributes.Role}
+						key={i}
+						name={a.attributes.Name}
+						tenure={{
+							start: a.attributes.YearStart,
+							end: a.attributes.YearEnd,
+						}}
+						links={a.attributes.LinkList}
+					/>
+				))}
+			</PageSectionContent>
+		</Region2>
+	);
+
+	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
+
+	let regions = [
+		<Header backgroundColor="--off-white" />,
+		<PageSplash backgroundColor="--purple">
+			<PageHeading>{PageHeader}</PageHeading>
+			<PageTableOfContents sections={PageSections} />
+		</PageSplash>,
+		<PageIntroduction backgroundColor="--off-white">
+			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
+				{PageIntro}
+			</ShiftBy>
+		</PageIntroduction>,
+		staffCards,
+		advisorCards,
+		alumniCards,
+		<Region2 backgroundColor={getBgFromLight(jobs.isLightSection)}>
+			<SectionHeader left={jobs.isLeftHeader}>
+				{jobs.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				<Div markdown style={{ backgroundColor: "lightblue" }}>
+					{jobs.PageSectionContent}
+				</Div>
+				<ArrowButton
+					text="Jobs"
+					link="/team/jobs"
+					buttonWidth="long"
+					buttonThickness="thick"
+					buttonTextLength="medText"
+					style={{
+						top: "calc(-15px * ((17 * 1.3) / 2))",
+					}}
+				></ArrowButton>
+			</PageSectionContent>
+		</Region2>,
+		<Footer backgroundColor="--off-white" />,
+	];
+
 	return (
-		<PageContainer splashColor="--purple">
-			<Header />
-			<PageSplash bgColor="purple" color="off-black">
-				<PageHeading>
-					{teamPage.data.attributes.PageSplash.PageHeader}
-				</PageHeading>
-				<PageTableOfContents
-					sections={teamPage.data.attributes.PageSections}
-				/>
-			</PageSplash>
-			<PageIntroduction>
-				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-					{teamPage.data.attributes.PageSplash.PageIntro}
-				</ReactMarkdown>
-			</PageIntroduction>
-
-			{teamPage.data.attributes.PageSections.map((n) =>
-				cardSections.includes(n.SectionHeader) &&
-				teamCards.hasOwnProperty(n.SectionHeader) ? (
-					<PageSection isLightSection={true} css={baseGrid}>
-						{teamCards.hasOwnProperty(n.SectionHeader) ? (
-							<SectionHeader
-								id={n.SectionHeader.replace(
-									/\s+/g,
-									"-"
-								).toLowerCase()}
-								isLeftHeader={true}
-							>
-								{n.SectionHeader}
-							</SectionHeader>
-						) : (
-							""
-						)}
-						<WidePageSectionContent>
-							{teamCards[n.SectionHeader].map((j) => (
-								<PersonCard key={j.id}>
-									{n.SectionHeader == "Staff" ? (
-										<PersonHeadshotDiv>
-											<PersonHeadshot
-												src={
-													j.attributes.Headshot.data
-														.attributes.formats ==
-													null
-														? j.attributes.Headshot
-																.data.attributes
-																.url
-														: j.attributes.Headshot
-																.data.attributes
-																.formats
-																.thumbnail.url
-												}
-												alt={
-													j.attributes.Headshot.data
-														.attributes
-														.alternativeText
-												}
-											/>
-										</PersonHeadshotDiv>
-									) : (
-										""
-									)}
-
-									<PersonName>{j.attributes.Name}</PersonName>
-									<PersonYears>
-										{j.attributes.YearStart} —{" "}
-										{j.attributes.YearEnd}
-									</PersonYears>
-
-									{n.SectionHeader == "Staff" ? (
-										<PersonTitle>
-											{j.attributes.Title}
-										</PersonTitle>
-									) : (
-										""
-									)}
-
-									{n.SectionHeader == "Advisors" ? (
-										<PersonBio>
-											<ReactMarkdown
-												rehypePlugins={[rehypeRaw]}
-											>
-												{j.attributes.Bio}
-											</ReactMarkdown>
-										</PersonBio>
-									) : (
-										""
-									)}
-									<PersonLinks>
-										{j.attributes.LinkList.map((l) => (
-											<a key={l.id} href={l.Link}>
-												<li>{l.LinkText}</li>
-											</a>
-										))}
-									</PersonLinks>
-								</PersonCard>
-							))}
-						</WidePageSectionContent>
-					</PageSection>
-				) : cardSections.includes(n.SectionHeader) ? (
-					""
-				) : (
-					<PageSection isLightSection={true} css={baseGrid}>
-						<SectionHeader
-							id={n.SectionHeader.replace(
-								/\s+/g,
-								"-"
-							).toLowerCase()}
-							isLeftHeader={true}
-						>
-							{n.SectionHeader}
-						</SectionHeader>
-						<PageSectionContent>
-							<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-								{n.PageSectionContent}
-							</ReactMarkdown>
-							{n.SectionHeader == "Jobs" ? (
-								/* TK Better way with relative URLS? */
-								<ArrowButton
-									text="Jobs"
-									link="/team/jobs"
-									buttonWidth="long"
-									buttonThickness="thick"
-									buttonTextLength="medText"
-								></ArrowButton>
-							) : (
-								""
-							)}
-						</PageSectionContent>
-					</PageSection>
-				)
-			)}
-
-			<Footer />
-		</PageContainer>
+		<PageContainer2>
+			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
+		</PageContainer2>
 	);
 }
-
-let PersonCard = styled.div`
-	border: black dotted 1px;
-	grid-column: span 3;
-`;
 
 let PersonHeadshotDiv = styled.div`
 	height: 150px;
@@ -195,8 +219,6 @@ let PersonTitle = styled.p``;
 let PersonLinks = styled.ul``;
 
 let PersonBio = styled.p``;
-
-let cardSections = ["Staff", "Advisors", "Alumni"];
 
 function sortTeamCards(teamCards) {
 	let roleDict = {};
@@ -222,5 +244,139 @@ export async function getStaticProps(context) {
 		}, // will be passed to the page component as props
 	};
 }
+
+let getPersonLinksFromTeamCard = function (j) {
+	return (
+		<PersonLinks>
+			{j.attributes.LinkList.map((l) => (
+				<a key={l.id} href={l.Link}>
+					<li>{l.LinkText}</li>
+				</a>
+			))}
+		</PersonLinks>
+	);
+};
+
+let getPersonNameFromTeamCard = function (j) {
+	return <PersonName>{j.attributes.Name}</PersonName>;
+};
+
+let getPersonYearsFromTeamCard = function (j) {
+	return (
+		<PersonYears>
+			{j.attributes.YearStart} — {j.attributes.YearEnd}
+		</PersonYears>
+	);
+};
+
+let getHeadshotForStaff = function (j) {
+	return (
+		<PersonHeadshotDiv>
+			<PersonHeadshot
+				src={
+					j.attributes.Headshot.data.attributes.formats == null
+						? j.attributes.Headshot.data.attributes.url
+						: j.attributes.Headshot.data.attributes.formats
+								.thumbnail.url
+				}
+				alt={j.attributes.Headshot.data.attributes.alternativeText}
+			/>
+		</PersonHeadshotDiv>
+	);
+};
+
+let getPersonBioForAdvisors = function (j) {
+	return (
+		<PersonBio>
+			<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+				{j.attributes.Bio}
+			</ReactMarkdown>
+		</PersonBio>
+	);
+};
+
+let getPersonTitleForStaff = function (j) {
+	return <PersonTitle>{j.attributes.Title}</PersonTitle>;
+};
+
+let getPersonCard = function (n, j) {
+	return (
+		<PersonCard key={j.id}>
+			{n.SectionHeader == "Staff" ? getHeadshotForStaff(j) : ""}
+			{getPersonNameFromTeamCard(j)}
+			{getPersonYearsFromTeamCard(j)}
+			{n.SectionHeader == "Staff" ? getPersonTitleForStaff(j) : ""}
+			{n.SectionHeader == "Advisors" ? getPersonBioForAdvisors(j) : ""}
+			{getPersonLinksFromTeamCard(j)}
+		</PersonCard>
+	);
+};
+
+let getJobsArrow = function () {
+	return (
+		<ArrowButton
+			text="Jobs"
+			link="/team/jobs"
+			buttonWidth="long"
+			buttonThickness="thick"
+			buttonTextLength="medText"
+		></ArrowButton>
+	);
+};
+
+let getTeamCardsFromN = function (n, i, teamCards) {
+	return (
+		<Region2 key={i} backgroundColor="--off-white">
+			{getTeamCardsHeader(n, teamCards)}
+			<WidePageSectionContent>
+				{teamCards[n.SectionHeader].map((j) => getPersonCard(n, j))}
+			</WidePageSectionContent>
+		</Region2>
+	);
+};
+
+let getJobsSection = function (n, i) {
+	return (
+		<Region2 key={i} backgroundColor="--off-white">
+			<SectionHeader
+				id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+				isLeftHeader={true}
+			>
+				{n.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent>
+				<ReactMarkdown rehypePlugins={[rehypeRaw]}>
+					{n.PageSectionContent}
+				</ReactMarkdown>
+				{/*TK Better way with relative URLS?*/}
+				{n.SectionHeader == "Jobs" ? getJobsArrow() : ""}
+			</PageSectionContent>
+		</Region2>
+	);
+};
+
+let getTeamCardsHeader = function (n, teamCards) {
+	return teamCards.hasOwnProperty(n.SectionHeader) ? (
+		<SectionHeader
+			id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
+			left={true}
+		>
+			{n.SectionHeader}
+		</SectionHeader>
+	) : (
+		""
+	);
+};
+
+let getCoreFromPageSections = function (ps, teamCards) {
+	return ps.map((n, i) =>
+		cardSections.includes(n.SectionHeader) &&
+		teamCards.hasOwnProperty(n.SectionHeader)
+			? getTeamCardsFromN(n, i, teamCards)
+			: cardSections.includes(n.SectionHeader)
+			? ""
+			: getJobsSection(n, i)
+	);
+};
 
 export default TeamPage;

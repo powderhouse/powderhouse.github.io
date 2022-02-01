@@ -199,6 +199,7 @@ img {
 	font-size: 14px;
 	text-decoration: italic;
 }
+
 .fn:not(:last-child) {
 	padding-bottom: calc(1.3rem / 2);
 }
