@@ -76,7 +76,12 @@ function About2Page({
 		</Region2>,
 	];
 
-	return <PageContainer2>{regions}</PageContainer2>;
+	return (
+		<PageContainer2>
+			{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
+			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
+		</PageContainer2>
+	);
 }
 
 export async function getStaticProps(context) {
