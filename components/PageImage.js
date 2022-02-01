@@ -33,8 +33,8 @@ function PageImage(props) {
 
 		// Calculate line height for use in computing number of lines
 		let bodyStyle = window.getComputedStyle(document.body);
-		rootFontSizeInPx = parseInt(bodyStyle.fontSize);
-		rootLineHeightInPx = parseInt(bodyStyle.lineHeight);
+		rootFontSizeInPx = parseFloat(bodyStyle.fontSize);
+		rootLineHeightInPx = parseFloat(bodyStyle.lineHeight);
 		rootLineHeightInRem = rootLineHeightInPx / rootFontSizeInPx;
 
 		// Attach the observer to watch our image
