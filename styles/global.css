@@ -184,17 +184,24 @@ img {
 	max-width: calc(1440px - 2 * var(--gap));
 }
 
-/*.footnotes {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: var(--gap);
+.footnoted-text {
+	grid-column: 1 / 7;
+}
+
+.footnoted-text sup {
+	/* via https://stackoverflow.com/a/6594576 */
+	line-height: 0;
+}
+
+.footnotes {
+	grid-column: 7 / -1;
 	color: var(--purple);
 	font-size: 14px;
 	text-decoration: italic;
 }
-.fn {
-	grid-column: span 1;
-}*/
+.fn:not(:last-child) {
+	padding-bottom: calc(1.3rem / 2);
+}
 
 iframe {
 	border: none;

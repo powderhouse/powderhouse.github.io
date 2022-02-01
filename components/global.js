@@ -281,14 +281,33 @@ let PageSection = styled.section`
 `;
 
 let PageSectionContent = styled(Div)`
-	grid-column: 4 / 10;
-	letter-spacing: 0;
+	${(props) =>
+		props.wide
+			? css`
+					grid-column: 4 / -1;
+					grid-template-columns: repeat(9, 1fr);
+			  `
+			: css`
+					grid-column: 4 / 10;
+					grid-template-columns: repeat(6, 1fr);
+			  `}
 
-	& p {
+	letter-spacing: 0;
+	& p:not(:last-child) {
 		line-height: 1.3rem;
 		margin-bottom: 1.3rem;
 		display: inline-block;
 	}
+
+	${(props) =>
+		!props.grid
+			? css``
+			: css`
+					display: inherit;
+					column-gap: inherit;
+					grid-auto-rows: inherit;
+					grid-row-gap: inherit;
+			  `}
 `;
 
 let FullBleedImage = styled.div`

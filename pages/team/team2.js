@@ -80,51 +80,26 @@ function TeamPage({
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
 	let staffCards = (
-		<Region2
-			backgroundColor={getBgFromLight(staffSection.isLightSection)}
-			left={staffSection.isLeftHeader}
-			wide={true}
-			header={staffSection.SectionHeader}
-		>
-			{staff.map((s, i) => (
-				<PersonCard
-					type={s.attributes.Role}
-					key={i}
-					headshot={s.attributes.Headshot}
-					name={s.attributes.Name}
-					title={s.attributes.Title}
-					tenure={{
-						start: s.attributes.YearStart,
-						end: s.attributes.YearEnd,
-					}}
-					links={s.attributes.LinkList}
-				/>
-			))}
-		</Region2>
-	);
-
-	let alumniSection = PageSections.filter(
-		(s) => s.SectionHeader == "Alumni"
-	)[0];
-	let alumniCards = (
-		<Region2
-			backgroundColor={getBgFromLight(alumniSection.isLightSection)}
-			left={alumniSection.isLeftHeader}
-			wide={true}
-			header={alumniSection.SectionHeader}
-		>
-			{alumni.map((a, i) => (
-				<PersonCard
-					type={a.attributes.Role}
-					key={i}
-					name={a.attributes.Name}
-					tenure={{
-						start: a.attributes.YearStart,
-						end: a.attributes.YearEnd,
-					}}
-					links={a.attributes.LinkList}
-				/>
-			))}
+		<Region2 backgroundColor={getBgFromLight(staffSection.isLightSection)}>
+			<SectionHeader left={staffSection.isLeftHeader}>
+				{staffSection.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				{staff.map((s, i) => (
+					<PersonCard
+						type={s.attributes.Role}
+						key={i}
+						headshot={s.attributes.Headshot}
+						name={s.attributes.Name}
+						title={s.attributes.Title}
+						tenure={{
+							start: s.attributes.YearStart,
+							end: s.attributes.YearEnd,
+						}}
+						links={s.attributes.LinkList}
+					/>
+				))}
+			</PageSectionContent>
 		</Region2>
 	);
 
@@ -134,63 +109,86 @@ function TeamPage({
 	let advisorCards = (
 		<Region2
 			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
-			left={advisorSection.isLeftHeader}
-			wide={true}
-			header={advisorSection.SectionHeader}
 		>
-			{advisors.map((a, i) => (
-				<PersonCard
-					key={i}
-					type={a.attributes.Role}
-					name={a.attributes.Name}
-					bio={a.attributes.Bio}
-					links={a.attributes.LinkList}
-				/>
-			))}
+			<SectionHeader left={advisorSection.isLeftHeader}>
+				{advisorSection.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				{advisors.map((a, i) => (
+					<PersonCard
+						key={i}
+						type={a.attributes.Role}
+						name={a.attributes.Name}
+						bio={a.attributes.Bio}
+						links={a.attributes.LinkList}
+					/>
+				))}
+			</PageSectionContent>
+		</Region2>
+	);
+
+	let alumniSection = PageSections.filter(
+		(s) => s.SectionHeader == "Alumni"
+	)[0];
+	let alumniCards = (
+		<Region2 backgroundColor={getBgFromLight(alumniSection.isLightSection)}>
+			<SectionHeader left={alumniSection.isLeftHeader}>
+				{alumniSection.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				{alumni.map((a, i) => (
+					<PersonCard
+						type={a.attributes.Role}
+						key={i}
+						name={a.attributes.Name}
+						tenure={{
+							start: a.attributes.YearStart,
+							end: a.attributes.YearEnd,
+						}}
+						links={a.attributes.LinkList}
+					/>
+				))}
+			</PageSectionContent>
 		</Region2>
 	);
 
 	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
 
 	let regions = [
-		<Region2 backgroundColor="--off-white">
-			<Header />
-		</Region2>,
-		<Region2 backgroundColor="--purple">
-			<PageSplash>
-				<PageHeading>{PageHeader}</PageHeading>
-				<PageTableOfContents sections={PageSections} />
-			</PageSplash>
-		</Region2>,
-		<Region2 backgroundColor="--off-white">
-			<PageIntroduction>
-				<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
-					{PageIntro}
-				</ShiftBy>
-			</PageIntroduction>
-		</Region2>,
+		<Header backgroundColor="--off-white" />,
+		<PageSplash backgroundColor="--purple">
+			<PageHeading>{PageHeader}</PageHeading>
+			<PageTableOfContents sections={PageSections} />
+		</PageSplash>,
+		<PageIntroduction backgroundColor="--off-white">
+			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
+				{PageIntro}
+			</ShiftBy>
+		</PageIntroduction>,
 		staffCards,
 		advisorCards,
 		alumniCards,
-		<Region2
-			backgroundColor={getBgFromLight(jobs.isLightSection)}
-			wide={true}
-			left={jobs.isLeftHeader}
-			header={jobs.SectionHeader}
-			notGrid={true}
-		>
-			<Div markdown>{jobs.PageSectionContent}</Div>
-			<ArrowButton
-				text="Jobs"
-				link="/team/jobs"
-				buttonWidth="long"
-				buttonThickness="thick"
-				buttonTextLength="medText"
-			></ArrowButton>
+		<Region2 backgroundColor={getBgFromLight(jobs.isLightSection)}>
+			<SectionHeader left={jobs.isLeftHeader}>
+				{jobs.SectionHeader}
+			</SectionHeader>
+			<PageSectionContent wide={true} grid={true}>
+				<Div markdown style={{ backgroundColor: "lightblue" }}>
+					{jobs.PageSectionContent}
+				</Div>
+				<ArrowButton
+					text="Jobs"
+					link="/team/jobs"
+					buttonWidth="long"
+					buttonThickness="thick"
+					buttonTextLength="medText"
+					style={{
+						top: "calc(-15px * ((17 * 1.3) / 2))",
+					}}
+				></ArrowButton>
+			</PageSectionContent>
 		</Region2>,
-		<Region2 backgroundColor="--off-white">
-			<Footer />
-		</Region2>,
+		<Footer backgroundColor="--off-white" />,
 	];
 
 	return (
