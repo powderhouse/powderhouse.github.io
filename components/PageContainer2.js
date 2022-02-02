@@ -13,6 +13,7 @@ let containsMainContent = function (region) {
 		c.type ? c.type.name : typeof c
 	);
 	regionTypes.push(region.type.name);
+	console.log("Looking at", region, "has regionTypes", region);
 	return regionTypes.every(
 		(c) => !["Header", "PageSplash", "Footer"].includes(c)
 	);
@@ -31,7 +32,8 @@ function PageContainer2(props) {
 				let lastRegionRun = regionRuns.slice(-1)[0];
 				let lastRegion = lastRegionRun.slice(-1)[0];
 				let lastRegionRunBackgroundColor =
-					lastRegion.props.backgroundColor;
+					lastRegion.props.backgroundColor &&
+					lastRegion.type.name !== "Header";
 				if (
 					region.props.backgroundColor == lastRegionRunBackgroundColor
 				) {
