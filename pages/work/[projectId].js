@@ -8,7 +8,12 @@ import Footer from "../../components/Footer";
 import PageContainer2 from "../../components/PageContainer2";
 import Region2 from "../../components/Region2";
 
-import { baseGrid, PageContainer, Div } from "../../components/global.js";
+import {
+  baseGrid,
+  PageContainer,
+  Div,
+  Asterisk,
+} from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
@@ -34,13 +39,17 @@ function ProjectDetailPage({ projectData }) {
             {projectData.ProjectDescription}
           </ProjectDescription>
           <ProjectInfoList>
-            <li>
+            <ProjectLi>
+              <Asterisk key={-1} type="Default" />
               {projectData.YearStart}-{projectData.YearEnd}
-            </li>
+            </ProjectLi>
 
             {projectData.ProjectInfoList.map((n, i) => (
               <a key={i} href={n.Link}>
-                <li>{n.LinkText}</li>
+                <ProjectLi>
+                  <Asterisk key={i} type="Default" />
+                  {n.LinkText}
+                </ProjectLi>
               </a>
             ))}
           </ProjectInfoList>
@@ -81,25 +90,6 @@ function ProjectDetailPage({ projectData }) {
             </ProjectIframeDiv>
           )
         )}
-
-        {/* Code from old PageGallery content-model display */}
-        {/* <ProjectImageDiv><ProjectImage src={i.MediaUpload.data.attributes.formats == null ? i.MediaUpload.data.attributes.url : i.MediaUpload.data.attributes.formats.findLargestFormat(i.MediaUpload.data.attributes.formats,"medium").url} alt={i.MediaUpload.data.attributes.alternativeText} /></ProjectImageDiv> */}
-        {/* {JSON.stringify([i.MediaEmbed.Link,i.MediaEmbed.LinkText])} */}
-
-        {/* {projectCard.attributes.ProjectGallery.data == null ? "" : */}
-        {/*   projectCard.attributes.ProjectGallery.data.map(i => ( */}
-        {/*     <ProjectImageDiv key={i.id}> */}
-        {/*       {JSON.stringify()} */}
-        {/*       <ProjectImage */}
-        {/*         src={ */}
-        {/*           i.attributes.formats == null */}
-        {/*             ? i.attributes.url */}
-        {/*             : i.attributes.formats[findLargestFormat(i.attributes.formats,"medium")].url */}
-        {/*         } */}
-        {/*       /> */}
-        {/*     </ProjectImageDiv> */}
-        {/*   ) */}
-        {/* )} */}
       </PageGallery>
       <Footer backgroundColor="--off-white" />
     </PageContainer2>
@@ -115,9 +105,6 @@ let ProjectSplashDiv = styled.div`
     "title title"
     "info image";
   gap: var(--gap);
-
-  min-height: 640px;
-  padding: var(--gap);
 `;
 
 function ProjectSplash({ backgroundColor, ...rest }) {
@@ -152,7 +139,16 @@ let ProjectSubtitle = styled.div`
 
 let ProjectDescription = styled(Div)``;
 
-let ProjectInfoList = styled.ul``;
+let ProjectInfoList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+`;
+
+let ProjectLi = styled.li`
+  padding-left: calc(1.25 * 1.3rem);
+  position: relative;
+`;
 
 let ProjectFeatureImage = styled.div`
   grid-area: image;
@@ -178,7 +174,6 @@ let PageGalleryDiv = styled.div`
   list-style-type: none;
   column-count: 3;
   column-gap: var(--gap);
-  padding: var(--gap);
 `;
 
 function PageGallery({ backgroundColor, ...rest }) {
