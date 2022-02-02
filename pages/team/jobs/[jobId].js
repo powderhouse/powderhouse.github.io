@@ -4,26 +4,27 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { asteriskSVG } from '../../site-data.js';
+import Region2 from "../../../components/Region2";
+import PageTableOfContents from "../../../components/PageTableOfContents";
+import PageContainer2 from "../../../components/PageContainer2";
+import { asteriskSVG } from "../../../site-data.js";
 
 import {
   baseGrid,
-  PageContainer,
   Spacer,
   PageSplash,
-  PageHeader,
-  PageTableOfContents,
+  PageHeading,
   PageTOCListItem,
   PageTOCLink,
   Asterisk,
-  PageIntro,
+  PageIntroduction,
   SectionHeader,
   PageSection,
   PageSectionContent,
   WidePageSectionContent,
   FullBleedImage,
   Highlight,
-  randomRotate,
+  slugify,
 } from "../../../components/global.js";
 
 import { getStrapiMedia } from "../../../lib/media";
@@ -35,48 +36,31 @@ function JobDetailPage({ jobCards }) {
   const { jobId } = router.query;
   let jobCard = getJobCardById(jobId, jobCards);
 
-  return (
-    <PageContainer css={baseGrid}>
-      <Header />
-      <PageSplash bgColor="red" color="off-white">
-        <PageHeader>{jobCard.attributes.JobTitle}</PageHeader>
-        <PageTableOfContents>
-          {jobCard.attributes.PageSections.map((n) => (
-            <PageTOCListItem key={n.id}>
-              <PageTOCLink
-                href={"#" + n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-              >
-                <Asterisk style={{transform:randomRotate()}}>
-                  {asteriskSVG()}
-                </Asterisk>
-                <div>{n.SectionHeader}</div>
-              </PageTOCLink>
-              <Spacer />
-            </PageTOCListItem>
-          ))}
-        </PageTableOfContents>
-      </PageSplash>
-      <PageIntro>{jobCard.attributes.JobSubtitle}</PageIntro>
-
-      {jobCard.attributes.PageSections.map((n) => (
-        <PageSection key={n.id} isLightSection={true} css={baseGrid}>
-          <SectionHeader
-            id={n.SectionHeader.replace(/\s+/g, "-").toLowerCase()}
-            isLeftHeader={true}
-          >
+  let regions = [
+    <Header backgroundColor="--off-white" />,
+    <PageSplash backgroundColor="--blue">
+      <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>,
+      <PageTableOfContents sections={jobCard.attributes.PageSections} />
+    </PageSplash>,
+    <PageIntroduction backgroundColor="--off-white">
+      {jobCard.attributes.JobSubtitle}
+    </PageIntroduction>,
+    ...jobCard.attributes.PageSections.map((n) => {
+      let slug = slugify(n.SectionHeader);
+      return (
+        <Region2 backgroundColor="--off-white">
+          <SectionHeader id={slug} left={true}>
             {n.SectionHeader}
           </SectionHeader>
-          <PageSectionContent>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-              {n.PageSectionContent}
-            </ReactMarkdown>
+          <PageSectionContent markdown>
+            {n.PageSectionContent}
           </PageSectionContent>
-        </PageSection>
-      ))}
-
-      <Footer />
-    </PageContainer>
-  );
+        </Region2>
+      );
+    }),
+    <Footer backgroundColor="--off-white" />,
+  ];
+  return <PageContainer2>{regions}</PageContainer2>;
 }
 
 function getJobCardById(jobId, jobCards) {
@@ -96,7 +80,7 @@ function assemblePaths(paths) {
 }
 
 export async function getStaticPaths() {
-  let jobCards = await fetchAPI("/job-cards?populate=*");
+  let jobCards = await fetchAPI("/job-cards");
   let jobIds = jobCards.data.map((i) => i.attributes.JobId);
   return {
     paths: assemblePaths(jobIds),
@@ -104,8 +88,10 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps(context) {
-  let jobCards = await fetchAPI("/job-cards?populate=*");
+export async function getStaticProps({ params: { jobId } }) {
+  let jobCards = await fetchAPI(
+    `/job-cards?filters[JobId][$eq]=${jobId}&pagination[limit]=1&populate=*`
+  );
   return {
     props: {
       jobCards: jobCards,
