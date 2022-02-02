@@ -175,8 +175,10 @@ let AsteriskContainer = styled.div`
 			: ``}
 `;
 
+// TK Not totally sure how useState/useEffect work, but this seems to work...yeah?
 let Asterisk = (props) => {
-	const [randomRotation, setRandomRotation] = useState(null);
+	const [randomRotation, setRandomRotation] = useState(Math.round(Math.random()*360)
+);
 	useEffect(() => {
 		setRandomRotation(randomRotation);
 	}, []);

@@ -14,7 +14,8 @@ function NewsLetterSignUp({
     // Built based off this tutorial: https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
     const handleSubmit = (event) => {
         event.preventDefault();
-        submitForm("https://ptsv2.com/t/ztmrx-1642088008/post", event.target);
+        submitForm("https://powderhouse.us11.list-manage.com/subscribe/post", event.target);
+        // Test service => https://ptsv2.com/t/ztmrx-1642088008/post
     };
 
     function submitForm(URL, form) {
@@ -42,7 +43,9 @@ function NewsLetterSignUp({
 
     return (
         <NewsLetterForm method="post" onSubmit={handleSubmit}>
-            <EmailInput />
+            <input type="hidden" name="u" value="f8c818c16bcf7810f5da39962" />
+            <input type="hidden" name="id" value="5137830bcb" />
+            <EmailInput name="MERGE0" id="MERGE0" />
             <NewsLetterFormButton className="arrowButton">
                 {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
                     color
@@ -65,7 +68,7 @@ let NewsLetterForm = styled.form`
 
 let EmailInput = styled.input.attrs((props) => ({
     type: "email",
-    name: "email",
+    // name: "email",
     placeholder: "Email Address",
 }))`
     grid-column: 1 / 4;

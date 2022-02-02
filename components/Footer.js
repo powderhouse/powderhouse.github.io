@@ -74,7 +74,7 @@ function Footer({ backgroundColor, ...rest }) {
                 text="Follow us!"
                 buttonWidth="long"
                 buttonThickness="thick"
-                buttonTextLength="medText"
+                buttonTextLength="longText"
               />
             </FooterNewsletterSignup>
           ) : (
