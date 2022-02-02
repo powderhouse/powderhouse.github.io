@@ -9,17 +9,10 @@ let StyledDiv = styled.div`
 `;
 
 let containsMainContent = function (region) {
-	// console.log(
-	// 	"Looking at",
-	// 	region,
-	// 	"with children",
-	// 	React.Children.toArray(region.props.children)
-	// );
 	let regionTypes = React.Children.toArray(region.props.children).map((c) =>
 		c.type ? c.type.name : typeof c
 	);
 	regionTypes.push(region.type.name);
-	// console.log(region, "has regionTypes", regionTypes);
 	return regionTypes.every(
 		(c) => !["Header", "PageSplash", "Footer"].includes(c)
 	);
@@ -30,21 +23,28 @@ function PageContainer2(props) {
 		props.children
 	).map((c) => c.props.hasOwnProperty("backgroundColor"));
 	if (childrenHaveBackgroundColor.every((t) => t)) {
-		let regionRuns = [[props.children[0]]];
-		props.children.slice(1).forEach((region) => {
-			let lastRegionRun = regionRuns.slice(-1)[0];
-			let lastRegion = lastRegionRun.slice(-1)[0];
-			let lastRegionRunBackgroundColor = lastRegion.props.backgroundColor;
-			if (region.props.backgroundColor == lastRegionRunBackgroundColor) {
-				regionRuns.slice(-1)[0].push(region);
-			} else {
-				regionRuns.push([region]);
-			}
-		});
+		let regionRuns = [
+			[props.children.length ? props.children[0] : props.children],
+		];
+		if (props.children.length > 1) {
+			props.children.slice(1).forEach((region) => {
+				let lastRegionRun = regionRuns.slice(-1)[0];
+				let lastRegion = lastRegionRun.slice(-1)[0];
+				let lastRegionRunBackgroundColor =
+					lastRegion.props.backgroundColor;
+				if (
+					region.props.backgroundColor == lastRegionRunBackgroundColor
+				) {
+					regionRuns.slice(-1)[0].push(region);
+				} else {
+					regionRuns.push([region]);
+				}
+			});
+		}
 
-		let firstContentRegion = regionRuns.find((rr) =>
-			rr.some((r) => containsMainContent(r))
-		);
+		let firstContentRegion = regionRuns.find((rr) => {
+			rr.some((r) => containsMainContent(r));
+		});
 
 		let regionContainers = regionRuns.map((rr, i) => {
 			let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
