@@ -4,23 +4,27 @@ import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import PageContainer2 from "../../../components/PageContainer2";
+import Region2 from "../../../components/Region2";
 import PageTableOfContents from "../../../components/PageTableOfContents";
 import ArrowButton from "../../../components/ArrowButton";
 
 import {
 	baseGrid,
-	PageContainer,
 	Spacer,
 	PageSplash,
-	PageHeader,
+	PageHeading,
 	Asterisk,
-	PageIntro,
+	PageIntroduction,
 	SectionHeader,
 	PageSection,
 	PageSectionContent,
 	WidePageSectionContent,
 	FullBleedImage,
 	randomRotate,
+	getBgFromLight,
+	Div,
+	slugify,
 } from "../../../components/global.js";
 
 import { getStrapiMedia } from "../../../lib/media";
@@ -31,38 +35,30 @@ function JobsPage({ jobPage, jobCards }) {
 		return jobCards[title][0].attributes.JobId;
 	}
 
-	return (
-		<PageContainer css={baseGrid}>
-			<Header />
-			<PageSplash bgColor="purple" color="off-black">
-				<PageHeader>Jobs</PageHeader>
-				<PageTableOfContents
-					sections={jobPage.data.attributes.PageSections}
-				/>
-			</PageSplash>
-			<PageIntro>
-				{jobPage.data.attributes.PageSplash.PageIntro}
-			</PageIntro>
-
-			{jobPage.data.attributes.PageSections.map((n) =>
-				jobCards.hasOwnProperty(n.SectionHeader) ? (
-					<PageSection
-						key={n.id}
-						isLightSection={true}
-						css={baseGrid}
-					>
-						<SectionHeader
-							id={n.SectionHeader.replace(
-								/\s+/g,
-								"-"
-							).toLowerCase()}
-							isLeftHeader={true}
-						>
-							{n.SectionHeader}
-						</SectionHeader>
-						<PageSectionContent>
-							{n.PageSectionContent}
-							{/* TK buttonTextLength should alternate/choose randomly from shortText, medText, and longText */}
+	let regions = [
+		<Header backgroundColor="--off-white" />,
+		<PageSplash backgroundColor="--purple">
+			<PageHeading>Jobs</PageHeading>
+			<PageTableOfContents
+				sections={jobPage.data.attributes.PageSections}
+			/>
+		</PageSplash>,
+		<PageIntroduction backgroundColor="--off-white">
+			{jobPage.data.attributes.PageSplash.PageIntro}
+		</PageIntroduction>,
+		...jobPage.data.attributes.PageSections.map((n) => {
+			console.log("Looking at", n);
+			let slug = slugify(n.SectionHeader);
+			return (
+				<Region2 backgroundColor={getBgFromLight(n.isLightSection)}>
+					<SectionHeader id={slug} left={true}>
+						{n.SectionHeader}
+					</SectionHeader>
+					<PageSectionContent grid={true}>
+						<div style={{ gridColumn: "1 / -1" }}>
+							<Div markdown>{n.PageSectionContent}</Div>
+						</div>
+						{jobCards.hasOwnProperty(n.SectionHeader) ? (
 							<ArrowButton
 								text="Apply"
 								link={
@@ -73,32 +69,17 @@ function JobsPage({ jobPage, jobCards }) {
 								buttonThickness="thick"
 								buttonTextLength="medText"
 							></ArrowButton>
-						</PageSectionContent>
-					</PageSection>
-				) : (
-					<PageSection isLightSection={true} css={baseGrid}>
-						<SectionHeader
-							key={n.id}
-							id={n.SectionHeader.replace(
-								/\s+/g,
-								"-"
-							).toLowerCase()}
-							isLeftHeader={true}
-						>
-							{n.SectionHeader}
-						</SectionHeader>
-						<PageSectionContent>
-							<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-								{n.PageSectionContent}
-							</ReactMarkdown>
-						</PageSectionContent>
-					</PageSection>
-				)
-			)}
+						) : (
+							""
+						)}
+					</PageSectionContent>
+				</Region2>
+			);
+		}),
+		<Footer backgroundColor="--off-white" />,
+	];
 
-			<Footer />
-		</PageContainer>
-	);
+	return <PageContainer2>{regions}</PageContainer2>;
 }
 
 let JobCard = styled.div`
