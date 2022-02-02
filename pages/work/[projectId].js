@@ -17,7 +17,6 @@ import { useRouter } from "next/router";
 function ProjectDetailPage({ projectData }) {
   const router = useRouter();
   const { projectId } = router.query;
-  console.log(projectData);
   return (
     <PageContainer2>
       <Header backgroundColor="--off-white" />
@@ -47,6 +46,61 @@ function ProjectDetailPage({ projectData }) {
           </ProjectInfoList>
         </ProjectInfo>
       </ProjectSplash>
+      <PageGallery backgroundColor="--off-white">
+        {projectData.ProjectGalleryItem.map((i) =>
+          i.MediaEmbed == null ? (
+            <ProjectMediaDiv key={i.id}>
+              {isVideo(i.MediaUpload.data.attributes.ext.slice(1)) ? (
+                <video controls loop>
+                  <source src={i.MediaUpload.data.attributes.url}></source>
+                </video>
+              ) : (
+                <ProjectImage
+                  src={
+                    i.MediaUpload.data.attributes.formats == null
+                      ? i.MediaUpload.data.attributes.url
+                      : i.MediaUpload.data.attributes.formats[
+                          findLargestFormat(
+                            i.MediaUpload.data.attributes.formats,
+                            "medium"
+                          )
+                        ].url
+                  }
+                />
+              )}
+            </ProjectMediaDiv>
+          ) : (
+            <ProjectIframeDiv
+              key={i.id}
+              style={{ paddingTop: getAspectRatio(i.MediaEmbed.Link) }}
+            >
+              <GalleryIframe
+                src={i.MediaEmbed.Link}
+                alt={i.MediaEmbed.LinkText}
+              ></GalleryIframe>
+            </ProjectIframeDiv>
+          )
+        )}
+
+        {/* Code from old PageGallery content-model display */}
+        {/* <ProjectImageDiv><ProjectImage src={i.MediaUpload.data.attributes.formats == null ? i.MediaUpload.data.attributes.url : i.MediaUpload.data.attributes.formats.findLargestFormat(i.MediaUpload.data.attributes.formats,"medium").url} alt={i.MediaUpload.data.attributes.alternativeText} /></ProjectImageDiv> */}
+        {/* {JSON.stringify([i.MediaEmbed.Link,i.MediaEmbed.LinkText])} */}
+
+        {/* {projectCard.attributes.ProjectGallery.data == null ? "" : */}
+        {/*   projectCard.attributes.ProjectGallery.data.map(i => ( */}
+        {/*     <ProjectImageDiv key={i.id}> */}
+        {/*       {JSON.stringify()} */}
+        {/*       <ProjectImage */}
+        {/*         src={ */}
+        {/*           i.attributes.formats == null */}
+        {/*             ? i.attributes.url */}
+        {/*             : i.attributes.formats[findLargestFormat(i.attributes.formats,"medium")].url */}
+        {/*         } */}
+        {/*       /> */}
+        {/*     </ProjectImageDiv> */}
+        {/*   ) */}
+        {/* )} */}
+      </PageGallery>
       <Footer backgroundColor="--off-white" />
     </PageContainer2>
   );
@@ -66,10 +120,10 @@ let ProjectSplashDiv = styled.div`
   padding: var(--gap);
 `;
 
-function ProjectSplash(props) {
+function ProjectSplash({ backgroundColor, ...rest }) {
   return (
-    <Region2 backgroundColor="--off-white">
-      <ProjectSplashDiv {...props} />
+    <Region2 backgroundColor={backgroundColor}>
+      <ProjectSplashDiv {...rest} />
     </Region2>
   );
 }
@@ -117,7 +171,7 @@ let ProjectImage = styled.img`
   margin-bottom: var(--gap);
 `;
 
-let PageGallery = styled.div`
+let PageGalleryDiv = styled.div`
   grid-column: 1 / -1;
 
   /*Masonry*/
@@ -126,6 +180,14 @@ let PageGallery = styled.div`
   column-gap: var(--gap);
   padding: var(--gap);
 `;
+
+function PageGallery({ backgroundColor, ...rest }) {
+  return (
+    <Region2 backgroundColor={backgroundColor}>
+      <PageGalleryDiv {...rest} />
+    </Region2>
+  );
+}
 
 let ProjectMediaDiv = styled.li`
   overflow: hidden;
@@ -232,11 +294,21 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { projectId } }) {
-  let projectData = (
-    await fetchAPI(
-      `/project-cards?filters[ProjectId][$eq]=${projectId}&populate=*`
-    )
-  ).data[0].attributes;
+  // Sample Call: api.powderhouse.org/api/project-cards?filters[ProjectId][$eq]=spaghetti&pagination[limit]=1&populate[ProjectGalleryItem][populate]=*&populate[ProjectFeatureImage][populate]=*&populate[ProjectInfoList][populate]=*
+
+  let apiCall = [
+    "/project-cards",
+    [
+      `filters[ProjectId][$eq]=${projectId}`,
+      "pagination[limit]=1", // We are only constructing one per page
+      // Fields to deeplt populate
+      ...["ProjectGalleryItem", "ProjectFeatureImage", "ProjectInfoList"].map(
+        (f) => `populate[${f}][populate]=*`
+      ),
+    ].join("&"),
+  ].join("?");
+
+  let projectData = (await fetchAPI(apiCall)).data[0].attributes;
 
   projectData.ProjectFeatureImageInfo = {
     url:
