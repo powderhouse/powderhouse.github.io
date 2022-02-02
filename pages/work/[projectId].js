@@ -1,133 +1,58 @@
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { parse } from 'node-html-parser';
+import { parse } from "node-html-parser";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import PageContainer2 from "../../components/PageContainer2";
+import Region2 from "../../components/Region2";
 
-import { baseGrid, PageContainer } from "../../components/global.js";
+import { baseGrid, PageContainer, Div } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
 import { useRouter } from "next/router";
 
-function ProjectDetailPage({ projectCards, projectGalleries }) {
+function ProjectDetailPage({ projectData }) {
   const router = useRouter();
   const { projectId } = router.query;
-  let projectCard = getProjectCardById(projectId, projectCards);
-  let projectGallery = getProjectGalleryById(projectId, projectGalleries);
-
+  console.log(projectData);
   return (
-    <PageContainer css={baseGrid}>
-      <Header />
-      <ProjectSplash>
-        <ProjectTitle>{projectCard.attributes.ProjectTitle}</ProjectTitle>
+    <PageContainer2>
+      <Header backgroundColor="--off-white" />
+      <ProjectSplash backgroundColor="--off-white">
+        <ProjectTitle>{projectData.ProjectTitle}</ProjectTitle>
         <ProjectFeatureImage>
           <ProjectImage
-            src={
-              projectCard.attributes.ProjectFeatureImage.data.attributes
-                .formats == null
-                ? projectCard.attributes.ProjectFeatureImage.data.attributes.url
-                : projectCard.attributes.ProjectFeatureImage.data.attributes
-                    .formats[
-                    findLargestFormat(
-                      projectCard.attributes.ProjectFeatureImage.data.attributes
-                        .formats,
-                      "large"
-                    )
-                  ].url
-            }
-            alt={
-              projectCard.attributes.ProjectFeatureImage.data.attributes
-                .alternativeText
-            }
+            src={projectData.ProjectFeatureImageInfo.url}
+            alt={projectData.ProjectFeatureImageInfo.alternativeText}
           />
         </ProjectFeatureImage>
         <ProjectInfo>
-          <ProjectSubtitle>
-            {projectCard.attributes.ProjectSubtitle}
-          </ProjectSubtitle>
-          <ProjectDescription>
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-              {projectCard.attributes.ProjectDescription}
-            </ReactMarkdown>
+          <ProjectSubtitle>{projectData.ProjectSubtitle}</ProjectSubtitle>
+          <ProjectDescription markdown>
+            {projectData.ProjectDescription}
           </ProjectDescription>
           <ProjectInfoList>
             <li>
-              {projectCard.attributes.YearStart}-
-              {projectCard.attributes.YearEnd}
+              {projectData.YearStart}-{projectData.YearEnd}
             </li>
 
-            {projectCard.attributes.ProjectInfoList.map((n) => (
-              <a key={n.id} href={n.Link}>
+            {projectData.ProjectInfoList.map((n, i) => (
+              <a key={i} href={n.Link}>
                 <li>{n.LinkText}</li>
               </a>
             ))}
           </ProjectInfoList>
         </ProjectInfo>
       </ProjectSplash>
-        {/* {JSON.stringify(projectGallery)} */}
-      <PageGallery>
-        
-        {projectGallery.attributes.ProjectGalleryItem.map((i) =>
-          i.MediaEmbed == null ? (
-            <ProjectMediaDiv key={i.id}>
-
-              {
-                isVideo(i.MediaUpload.data.attributes.ext.slice(1)) 
-                ? <video controls loop>
-                    <source src={i.MediaUpload.data.attributes.url}></source>
-                  </video>
-                : (
-                  <ProjectImage
-                      src={
-                        i.MediaUpload.data.attributes.formats == null
-                          ? i.MediaUpload.data.attributes.url
-                          : i.MediaUpload.data.attributes.formats[
-                              findLargestFormat(
-                                i.MediaUpload.data.attributes.formats,
-                                "medium"
-                              )
-                            ].url
-                      }
-                    />
-                  )
-              }   
-            </ProjectMediaDiv>
-          ) : (
-            <ProjectIframeDiv key={i.id} style={{paddingTop:getAspectRatio(i.MediaEmbed.Link)}}>
-              <GalleryIframe src={i.MediaEmbed.Link} alt={i.MediaEmbed.LinkText} ></GalleryIframe>
-            </ProjectIframeDiv>
-          )
-        )}
-
-        {/* Code from old PageGallery content-model display */}
-        {/* <ProjectImageDiv><ProjectImage src={i.MediaUpload.data.attributes.formats == null ? i.MediaUpload.data.attributes.url : i.MediaUpload.data.attributes.formats.findLargestFormat(i.MediaUpload.data.attributes.formats,"medium").url} alt={i.MediaUpload.data.attributes.alternativeText} /></ProjectImageDiv> */}
-        {/* {JSON.stringify([i.MediaEmbed.Link,i.MediaEmbed.LinkText])} */}
-
-        {/* {projectCard.attributes.ProjectGallery.data == null ? "" : */}
-        {/*   projectCard.attributes.ProjectGallery.data.map(i => ( */}
-        {/*     <ProjectImageDiv key={i.id}> */}
-        {/*       {JSON.stringify()} */}
-        {/*       <ProjectImage */}
-        {/*         src={ */}
-        {/*           i.attributes.formats == null */}
-        {/*             ? i.attributes.url */}
-        {/*             : i.attributes.formats[findLargestFormat(i.attributes.formats,"medium")].url */}
-        {/*         } */}
-        {/*       /> */}
-        {/*     </ProjectImageDiv> */}
-        {/*   ) */}
-        {/* )} */}
-      </PageGallery>
-
-      <Footer />
-    </PageContainer>
+      <Footer backgroundColor="--off-white" />
+    </PageContainer2>
   );
 }
 
-let ProjectSplash = styled.div`
+let ProjectSplashDiv = styled.div`
   grid-column: 1 / -1;
 
   display: grid;
@@ -140,6 +65,14 @@ let ProjectSplash = styled.div`
   min-height: 640px;
   padding: var(--gap);
 `;
+
+function ProjectSplash(props) {
+  return (
+    <Region2 backgroundColor="--off-white">
+      <ProjectSplashDiv {...props} />
+    </Region2>
+  );
+}
 
 let ProjectTitle = styled.h2`
   grid-area: title;
@@ -163,7 +96,7 @@ let ProjectSubtitle = styled.div`
   font-size: 38px; /*TK Explicit?*/
 `;
 
-let ProjectDescription = styled.div``;
+let ProjectDescription = styled(Div)``;
 
 let ProjectInfoList = styled.ul``;
 
@@ -205,9 +138,9 @@ let ProjectIframeDiv = styled(ProjectMediaDiv)`
   /* iframe responsive full-width, via "https://www.w3schools.com/howto/howto_css_responsive_iframes.asp" */
   position: relative;
   width: 100%;
-  padding-top: 75%;  // 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) 
+  padding-top: 75%; // 16:9 Aspect Ratio (divide 9 by 16 = 0.5625)
   margin-bottom: var(--gap);
-  overflow:hidden;
+  overflow: hidden;
 `;
 
 let GalleryIframe = styled.iframe`
@@ -224,30 +157,30 @@ let GalleryIframe = styled.iframe`
 // let getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
 
 function htmlToElement(htmlString) {
-    return parse(htmlString).childNodes[0]
+  return parse(htmlString).childNodes[0];
 }
 
 function getAspectRatio(htmlString) {
   let element = htmlToElement(htmlString);
-  console.log("#############################"+element);
+  console.log("#############################" + element);
   let width = parseInt(element.getAttribute("width"));
   let height = parseInt(element.getAttribute("height"));
-  return (height/width*100).toString()
+  return ((height / width) * 100).toString();
 }
 
 function getSrc(htmlString) {
   let element = htmlToElement(htmlString);
   // console.log("############################"+element);
-  return element.getAttribute("src")
+  return element.getAttribute("src");
 }
 
 function isVideo(fileExt) {
-  let vidExts = ["mov","mp4","flv","mkv","webm"];
+  let vidExts = ["mov", "mp4", "flv", "mkv", "webm"];
   // join with uppercase
   if (vidExts.includes(fileExt)) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
@@ -262,47 +195,66 @@ function findLargestFormat(formatDict, maxSize = "large") {
 }
 
 function getProjectCardById(projectId, projectCards) {
-  for (let c in projectCards.data) {
-    if (projectCards.data[c].attributes.ProjectId == projectId) {
-      return projectCards.data[c];
-    }
-  }
-}
+  let project = projectCards.data.find(
+    ({ attributes: { ProjectId } }) => ProjectId == projectId
+  ).attributes;
 
-function getProjectGalleryById(projectId, projectGalleries) {
-  for (let g in projectGalleries.data) {
-    if (projectGalleries.data[g].attributes.ProjectId == projectId) {
-      return projectGalleries.data[g];
-    }
-  }
-}
+  project.ProjectFeatureImageInfo = {
+    url:
+      project.ProjectFeatureImage.data.attributes.formats == null
+        ? project.ProjectFeatureImage.data.attributes.url
+        : project.ProjectFeatureImage.data.attributes.formats[
+            findLargestFormat(
+              project.ProjectFeatureImage.data.attributes.formats,
+              "large"
+            )
+          ].url,
+    alternativeText:
+      project.ProjectFeatureImage.data.attributes.alternativeText,
+  };
 
-function assemblePaths(paths) {
-  let pathsList = [];
-  for (let p in paths) {
-    pathsList.push({ params: { projectId: paths[p] } });
-  }
-  return pathsList;
+  // TODO: We don't need project.ProjectFeatureImage, and could (maybe should) delete it at this point.  This would require a deep clone of the project object.
+
+  return project;
 }
 
 export async function getStaticPaths() {
-  let projectCards = await fetchAPI("/project-cards?populate=*");
+  let projectCards = await fetchAPI("/project-cards");
   let projectIds = projectCards.data.map((i) => i.attributes.ProjectId);
   return {
-    paths: assemblePaths(projectIds),
+    paths: projectIds.map((i) => ({
+      params: {
+        projectId: i,
+      },
+    })),
     fallback: false,
   };
 }
 
-export async function getStaticProps(context) {
-  let projectCards = await fetchAPI("/project-cards?populate=*");
-  let projectGalleries = await fetchAPI(
-    "/project-cards?populate[ProjectGalleryItem][populate]=*"
-  );
+export async function getStaticProps({ params: { projectId } }) {
+  let projectData = (
+    await fetchAPI(
+      `/project-cards?filters[ProjectId][$eq]=${projectId}&populate=*`
+    )
+  ).data[0].attributes;
+
+  projectData.ProjectFeatureImageInfo = {
+    url:
+      projectData.ProjectFeatureImage.data.attributes.formats == null
+        ? projectData.ProjectFeatureImage.data.attributes.url
+        : projectData.ProjectFeatureImage.data.attributes.formats[
+            findLargestFormat(
+              projectData.ProjectFeatureImage.data.attributes.formats,
+              "large"
+            )
+          ].url,
+    alternativeText:
+      projectData.ProjectFeatureImage.data.attributes.alternativeText,
+  };
+
   return {
     props: {
-      projectCards: projectCards,
-      projectGalleries: projectGalleries,
+      projectData: projectData,
     }, // will be passed to the page component as props
   };
 }
