@@ -18,6 +18,7 @@ let PageTOCItem = styled.li`
 let PageTOCLink = styled.a`
 	display: flex;
 	align-items: center;
+	width:fit-content;
 	transition: 0.8s ease;
 	text-decoration: none;
 	position: relative;
