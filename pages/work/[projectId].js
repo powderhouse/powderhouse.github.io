@@ -122,7 +122,9 @@ let ProjectTitle = styled.h2`
   flex-direction: column;
   justify-content: flex-end;
 
-  font-size: 87px; /*TK Explicit?*/
+  font-size: calc(1.3rem * 5);
+  line-height: calc(1.3rem * 5);
+  font-weight: 300;
 `;
 
 let ProjectInfo = styled.div`
@@ -134,10 +136,16 @@ let ProjectInfo = styled.div`
 `;
 
 let ProjectSubtitle = styled.div`
-  font-size: 38px; /*TK Explicit?*/
+  font-size:  calc(1.3rem * 2);
+  line-height: calc(1.3rem * 2);
+  font-weight: 300;
 `;
 
-let ProjectDescription = styled(Div)``;
+let ProjectDescription = styled(Div)`
+  font-size:  calc(1.3rem * 1.2);
+  line-height: calc(1.3rem * 1.2);
+  font-weight: 500;
+`;
 
 let ProjectInfoList = styled.ul`
   list-style-type: none;
