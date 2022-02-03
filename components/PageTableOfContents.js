@@ -27,12 +27,16 @@ let PageTOCLink = styled.a`
 	}
 `;
 
+let TOCText = styled.div`
+	margin-left:calc(1.3rem / 4);
+`;
+
 function PageTableOfContents({ sections }) {
 	let items = sections.map((n, i) => (
 		<PageTOCItem key={i}>
 			<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
 				<Asterisk key={i} type="TOC" />
-				{n.SectionHeader}
+				<TOCText>{n.SectionHeader}</TOCText>
 			</PageTOCLink>
 		</PageTOCItem>
 	));

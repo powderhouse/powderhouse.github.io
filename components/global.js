@@ -181,7 +181,7 @@ let Header2 = styled.h2`
 	font-size: inherit;
 	line-height: inherit;
 	letter-spacing: inherit;
-	${(props) => props.left ? "margin-right:calc(-1.3rem / 3);" : ""}
+	margin-left:${(props) => props.left ? "" : "calc(-1.3rem / 4)"};
 `;
 
 let sectionHeaderContainerStyles = {
@@ -214,7 +214,7 @@ let SectionHeader = ({ left, children }) => {
 	let header = (
 		<>
 			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
-			<Header2 {...left} >{children}</Header2>
+			<Header2 left={left} >{children}</Header2>
 		</>
 	);
 	return (

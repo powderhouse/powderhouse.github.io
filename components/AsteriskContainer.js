@@ -32,7 +32,7 @@ let asteriskContainerStyles = {
 		position: absolute;
 		left: calc(-1.3rem / 4);
 		top: calc(-1.3rem / 5);
-		transform: scale(1.5) var(--random-rotate);
+		transform: scale(2) var(--random-rotate);
 	`,
 	Default: css`
 		position: absolute;
