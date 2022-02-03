@@ -24,13 +24,15 @@ let asteriskContainerStyles = {
 	`,
 	LeftHeader: css`
 		position: absolute;
-		left: calc(-1.3rem / 2);
-		top: calc(-1.3rem / 2);
+		left: calc(-1.3rem / 4);
+		top: calc(-1.3rem / 5);
+		transform: scale(1.5) var(--random-rotate);
 	`,
 	CenterHeader: css`
 		position: absolute;
-		left: calc(-0.625 * 1.3rem);
-		top: calc(-1.3rem / 2 - 3.5px);
+		left: calc(-1.3rem / 4);
+		top: calc(-1.3rem / 5);
+		transform: scale(1.5) var(--random-rotate);
 	`,
 	Default: css`
 		position: absolute;
@@ -43,7 +45,7 @@ function AsteriskContainer(props) {
 	const randomRotation = useRandomNum();
 
 	return (
-		<AsteriskContainerDiv rotation={randomRotation} {...props} ></AsteriskContainerDiv>
+		<AsteriskContainerDiv rotation={randomRotation} {...props} />
 		)
 }
 
@@ -51,7 +53,9 @@ let AsteriskContainerDiv = styled.div`
 	height: calc(1.375 * 1.3rem);
 	width: calc(1.375 * 1.3rem);
 	transform-origin: 50% 50%;
-	transform: ${(props) => `rotate(${props.rotation}deg)`};
+	// In order to add other transforms later, via https://stackoverflow.com/questions/5890948/css-transform-without-overwriting-previous-transform
+	--random-rotate: ${(props) => `rotate(${props.rotation}deg)`};
+	transform: var(--random-rotate);
 
 	${(props) => asteriskContainerStyles[props.type]}
 	${(props) =>
