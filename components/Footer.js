@@ -20,11 +20,10 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
   let navItems = navMenuItems.slice();
   navItems.unshift({ text: "Home", href: "/" });
   const router = useRouter();
+
   return (
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper {...rest}>
-        <LogoContainer>{logoSVG(expandColor(accentColor))}</LogoContainer>
-
         <ContentContainer>
           <FooterNavigation>
             <NavList>
@@ -66,22 +65,26 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
             </NavList>
           </FooterContact>
           {router.pathname != "/" ? (
-            <FooterNewsletterSignup>
-              <NewsLetterShoutOut>
-                If you'd like to keep up with our work, sign up for our mailing
-                list.
-              </NewsLetterShoutOut>
-              <NewsLetterSignUp
-                color="off-black"
-                text="Follow us!"
-                buttonWidth="long"
-                buttonThickness="thick"
-                buttonTextLength="longText"
-              />
-            </FooterNewsletterSignup>
+            <>
+              <FooterNewsletterSignup>
+                <NewsLetterShoutOut>
+                  If you'd like to keep up with our work, sign up for our mailing
+                  list.
+                </NewsLetterShoutOut>
+                <NewsLetterSignUp
+                  color="off-black"
+                  text="Follow us!"
+                  buttonWidth="long"
+                  buttonThickness="thick"
+                  buttonTextLength="longText"
+                />
+              </FooterNewsletterSignup>
+              <LogoContainer>{logoSVG(expandColor(accentColor))}</LogoContainer>
+            </>
           ) : (
             ""
-          )}
+          )
+        }
         </ContentContainer>
       </Wrapper>
     </Region2>

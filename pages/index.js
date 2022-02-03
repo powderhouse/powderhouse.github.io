@@ -3,14 +3,11 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
-
-import { Div } from "../components/global";
-
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 
 import { fetchAPI } from "../lib/api";
-import { ShiftBy } from "../components/global.js";
+import { ShiftBy, Div } from "../components/global.js";
 
 let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
@@ -68,9 +65,11 @@ function HomePage({
     attributes: { SplashLanguage, SignUpShoutOut },
   },
 }) {
+  let accentColor = "--off-black";
+
   let regions = [
     <Header backgroundColor="--off-black" />,
-    <Splash backgroundColor="--off-black" markdown>
+    <Splash backgroundColor={accentColor} markdown>
       {SplashLanguage}
     </Splash>,
     <SplashNewsletterSignup backgroundColor="--off-black">
@@ -83,7 +82,7 @@ function HomePage({
         buttonTextLength="medText"
       ></NewsLetterSignUp>
     </SplashNewsletterSignup>,
-    <Footer backgroundColor="--off-white" />,
+    <Footer backgroundColor="--off-white" accentColor={accentColor} />,
   ];
 
   return <PageContainer2>{regions}</PageContainer2>;

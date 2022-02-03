@@ -6,7 +6,7 @@ let PageTOC = styled.ol`
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	padding-bottom: calc(3 * 1.3rem);
+	padding-bottom: 1.3rem;
 	position: relative;
 	left: calc(var(--gap) - 7px);
 `;
