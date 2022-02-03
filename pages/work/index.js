@@ -175,12 +175,14 @@ function WorkPage({
 			<Region2
 				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
 			>
-				<SectionHeader left={projectsDesc.isLeftHeader}>
+				<ProjectTitle left={projectsDesc.isLeftHeader}>
 					{projectsDesc.SectionHeader}
-				</SectionHeader>
+				</ProjectTitle>
 				<PageSectionContent wide={true} grid={true}>
 					{projectsDesc.PageSectionContent ? (
-						<Div>{projectsDesc.PageSectionContent}</Div>
+						<ProjectSubtitle>
+							<Div>{projectsDesc.PageSectionContent}</Div>
+						</ProjectSubtitle>
 					) : (
 						""
 					)}
@@ -250,10 +252,18 @@ let ProjectFeatureImage = styled.img`
 `;
 
 let ProjectTitle = styled.h3`
-	font-size: 31px; /*TK Explicit?*/
+	font-weight: 300;
+	line-height: calc(1.3rem * 1.5);
+	font-size: calc(1.3rem * 1.5);
+	padding: calc(1.3rem / 2) 0;
+	margin:0;
 `;
 
-let ProjectSubtitle = styled.p``;
+let ProjectSubtitle = styled.p`
+	line-height:1.3rem;
+	padding:0;
+	margin:0;
+`;
 
 let PastLifeSectionContent = styled.div`
 	display: grid;
