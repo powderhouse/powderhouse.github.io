@@ -33,9 +33,11 @@ function About2Page({
 		},
 	},
 }) {
+	let accentColor = "--yellow";
+
 	let regions = [
 		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor="--yellow">
+		<PageSplash backgroundColor={accentColor}>
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents sections={PageSections} />
 		</PageSplash>,
@@ -69,7 +71,7 @@ function About2Page({
 				);
 			}
 		),
-		<Footer backgroundColor="--off-white" />,
+		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
 	];
 
 	return (

@@ -49,6 +49,8 @@ function WorkPage({
 		},
 	},
 }) {
+	let accentColor = "--green";
+
 	let partnersDesc = PageSections.find((s) => s.SectionHeader == "Partners");
 	let partners = PartnerCards.map(
 		(
@@ -154,7 +156,7 @@ function WorkPage({
 	return (
 		<PageContainer2>
 			<Header backgroundColor="--off-white" />
-			<PageSplash backgroundColor="--green">
+			<PageSplash backgroundColor={accentColor} >
 				<PageHeading>{PageHeader}</PageHeading>
 				<PageTableOfContents sections={PageSections} />
 			</PageSplash>
@@ -204,7 +206,7 @@ function WorkPage({
 					<PastLifeSectionContent>{pastLives}</PastLifeSectionContent>
 				</PageSectionContent>
 			</Region2>
-			<Footer backgroundColor="--off-white" />
+			<Footer backgroundColor="--off-white" accentColor={accentColor} />
 		</PageContainer2>
 	);
 }

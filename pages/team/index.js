@@ -49,6 +49,8 @@ function TeamPage2({
 	},
 	teamCards,
 }) {
+	let accentColor = "--purple";
+
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
 	[staff,advisors,alumni] = [staff,advisors,alumni].map(people=>people.map(person=>person.attributes));
 
@@ -156,7 +158,7 @@ function TeamPage2({
 
 	let regions = [
 		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor="--purple">
+		<PageSplash backgroundColor={accentColor}>
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents sections={PageSections} />
 		</PageSplash>,
@@ -188,7 +190,7 @@ function TeamPage2({
 				></ArrowButton>
 			</PageSectionContent>
 		</Region2>,
-		<Footer backgroundColor="--off-white" />,
+		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
 	];
 
 	return (

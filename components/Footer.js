@@ -8,6 +8,7 @@ import { navMenuItems, socials, logoSVG } from "../site-data.js";
 
 import {
   gap,
+  expandColor,
   baseGrid,
   colorByProp,
   ShiftBy,
@@ -15,14 +16,14 @@ import {
   complementaryColor,
 } from "../components/global.js";
 
-function Footer({ backgroundColor, ...rest }) {
+function Footer({ backgroundColor, accentColor, ...rest }) {
   let navItems = navMenuItems.slice();
   navItems.unshift({ text: "Home", href: "/" });
   const router = useRouter();
   return (
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper {...rest}>
-        <LogoContainer>{logoSVG("--off-black")}</LogoContainer>
+        <LogoContainer>{logoSVG(expandColor(accentColor))}</LogoContainer>
 
         <ContentContainer>
           <FooterNavigation>
