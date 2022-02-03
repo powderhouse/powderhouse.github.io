@@ -335,6 +335,7 @@ let sizeToVerticalGridInRem = function (heightInPx) {
 export {
 	baseGrid,
 	expandColor,
+	complementaryColor,
 	PageContainer,
 	Region,
 	Markdown,

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { expandColor } from "../components/global";
+import { expandColor, complementaryColor } from "../components/global";
 import { useState, useEffect } from "react";
 
 function getRandomNum() {
@@ -55,11 +55,11 @@ let AsteriskContainerDiv = styled.div`
 
 	${(props) => asteriskContainerStyles[props.type]}
 	${(props) =>
-		props.color
+		props.backgroundColor
 			? css`
-					color: ${expandColor(props.color)};
-					stroke: ${expandColor(props.color)};
-					fill: ${expandColor(props.color)};
+					color: ${expandColor(complementaryColor(props.backgroundColor))};
+					stroke: ${expandColor(complementaryColor(props.backgroundColor))};
+					fill: ${expandColor(complementaryColor(props.backgroundColor))};
 			  `
 			: ``}
 `;

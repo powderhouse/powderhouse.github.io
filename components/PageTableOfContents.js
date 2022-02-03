@@ -36,7 +36,7 @@ function PageTableOfContents({ sections }) {
 			</PageTOCLink>
 		</PageTOCItem>
 	));
-	return <PageTOC>{items}</PageTOC>;
+	return <PageTOC >{items}</PageTOC>;
 }
 
 export default PageTableOfContents;
