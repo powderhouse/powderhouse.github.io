@@ -12,6 +12,7 @@ import {
   colorByProp,
   ShiftBy,
   highlight,
+  complementaryColor,
 } from "../components/global.js";
 
 function Footer({ backgroundColor, ...rest }) {
@@ -21,7 +22,7 @@ function Footer({ backgroundColor, ...rest }) {
   return (
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper {...rest}>
-        <LogoContainer>{logoSVG("var(--yellow)")}</LogoContainer>
+        <LogoContainer>{logoSVG("--off-black")}</LogoContainer>
 
         <ContentContainer>
           <FooterNavigation>

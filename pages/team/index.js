@@ -38,7 +38,7 @@ import { fetchAPI } from "../../lib/api";
 
 let cardSections = ["Staff", "Advisors", "Alumni"];
 
-function TeamPage({
+function TeamPage2({
 	teamPage: {
 		data: {
 			attributes: {
@@ -50,23 +50,24 @@ function TeamPage({
 	teamCards,
 }) {
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
+	[staff,advisors,alumni] = [staff,advisors,alumni].map(people=>people.map(person=>person.attributes));
 
 	alumni = alumni
 		.sort((a, b) => {
 			// Sort first by starting year, then ending year, then alphabetical by first name
-			if (a.attributes.YearStart < b.attributes.YearStart) {
+			if (a.YearStart < b.YearStart) {
 				return -1;
-			} else if (a.attributes.YearStart > b.attributes.YearStart) {
+			} else if (a.YearStart > b.YearStart) {
 				return 1;
 			} else {
-				if (a.attributes.YearEnd < b.attributes.YearEnd) {
+				if (a.YearEnd < b.YearEnd) {
 					return -1;
-				} else if (a.attributes.YearEnd > b.attributes.YearEnd) {
+				} else if (a.YearEnd > b.YearEnd) {
 					return 1;
 				} else {
 					// via https://stackoverflow.com/a/60922998
-					return a.attributes.Name.localeCompare(
-						b.attributes.Name,
+					return a.Name.localeCompare(
+						b.Name,
 						"en",
 						{
 							sensitivity: "base",
@@ -83,19 +84,19 @@ function TeamPage({
 			<SectionHeader left={staffSection.isLeftHeader}>
 				{staffSection.SectionHeader}
 			</SectionHeader>
-			<PageSectionContent wide={true} grid={true}>
+			<PageSectionContent wide={"true"} grid={true}>
 				{staff.map((s, i) => (
 					<PersonCard
-						type={s.attributes.Role}
+						type={s.Role}
 						key={i}
-						headshot={s.attributes.Headshot}
-						name={s.attributes.Name}
-						title={s.attributes.Title}
+						headshot={s.Headshot}
+						name={s.Name}
+						title={s.Title}
 						tenure={{
-							start: s.attributes.YearStart,
-							end: s.attributes.YearEnd,
+							start: s.YearStart,
+							end: s.YearEnd,
 						}}
-						links={s.attributes.LinkList}
+						links={s.LinkList}
 					/>
 				))}
 			</PageSectionContent>
@@ -116,10 +117,10 @@ function TeamPage({
 				{advisors.map((a, i) => (
 					<PersonCard
 						key={i}
-						type={a.attributes.Role}
-						name={a.attributes.Name}
-						bio={a.attributes.Bio}
-						links={a.attributes.LinkList}
+						type={a.Role}
+						name={a.Name}
+						bio={a.Bio}
+						links={a.LinkList}
 					/>
 				))}
 			</PageSectionContent>
@@ -137,14 +138,14 @@ function TeamPage({
 			<PageSectionContent wide={true} grid={true}>
 				{alumni.map((a, i) => (
 					<PersonCard
-						type={a.attributes.Role}
+						type={a.Role}
 						key={i}
-						name={a.attributes.Name}
+						name={a.Name}
 						tenure={{
-							start: a.attributes.YearStart,
-							end: a.attributes.YearEnd,
+							start: a.YearStart,
+							end: a.YearEnd,
 						}}
-						links={a.attributes.LinkList}
+						links={a.LinkList}
 					/>
 				))}
 			</PageSectionContent>
@@ -244,4 +245,4 @@ export async function getStaticProps(context) {
 	};
 }
 
-export default TeamPage;
+export default TeamPage2;
