@@ -6,11 +6,6 @@ import RegionContainer2 from "../components/RegionContainer2";
 let StyledDiv = styled.div`
 	background-color: var(--off-white);
 	color: var(--off-black);
-
-	& footer svg {
-		/*apply accent color for bottom logo here*/
-		/*maybe also have the splash section get the color here too*/
-	}
 `;
 
 let containsMainContent = function (region) {

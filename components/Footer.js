@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Icon from "../components/Icon.js";
 import Region2 from "../components/Region2.js";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
-import { navMenuItems, socials, logoSVG } from "../site-data.js";
+import { navMenuItems, socials, logotypeVertSVG } from "../site-data.js";
 
 import {
   gap,
@@ -79,7 +79,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   buttonTextLength="longText"
                 />
               </FooterNewsletterSignup>
-              <LogoContainer>{logoSVG(expandColor(accentColor))}</LogoContainer>
+              <LogoContainer>{logotypeVertSVG(expandColor(accentColor))}</LogoContainer>
             </>
           ) : (
             ""

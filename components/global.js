@@ -277,22 +277,6 @@ let PageSectionContent = styled(Div)`
 			  `}
 `;
 
-let FullBleedImage = styled.div`
-	// Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
-
-	padding: var(--gap) 0px;
-`;
-
-let FullBodyImage = styled.div`
-	padding: var(--gap) 0px;
-`;
-
 function findLargestFormat(formatDict, maxSize = "large") {
 	let formats = ["large", "medium", "small", "thumbnail"];
 	formats = formats.slice(formats.indexOf(maxSize), formats.length);
@@ -361,8 +345,6 @@ export {
 	PageSection,
 	PageSectionContent,
 	WidePageSectionContent,
-	FullBleedImage,
-	FullBodyImage,
 	findLargestFormat,
 	Highlight,
 	highlight,
