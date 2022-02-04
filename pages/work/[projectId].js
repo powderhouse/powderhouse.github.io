@@ -13,6 +13,7 @@ import {
   PageContainer,
   Div,
   Asterisk,
+  findLargestFormat,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -22,6 +23,8 @@ import { useRouter } from "next/router";
 function ProjectDetailPage({ projectData }) {
   const router = useRouter();
   const { projectId } = router.query;
+  let accentColor = "--off-black";
+
   return (
     <PageContainer2>
       <Header backgroundColor="--off-white" />
@@ -91,7 +94,7 @@ function ProjectDetailPage({ projectData }) {
           )
         )}
       </PageGallery>
-      <Footer backgroundColor="--off-white" />
+      <Footer backgroundColor="--off-white" accentColor={accentColor} />
     </PageContainer2>
   );
 }
@@ -246,16 +249,6 @@ function isVideo(fileExt) {
     return true;
   } else {
     return false;
-  }
-}
-
-function findLargestFormat(formatDict, maxSize = "large") {
-  let formats = ["large", "medium", "small", "thumbnail"];
-  formats = formats.slice(formats.indexOf(maxSize), formats.length);
-  for (let size in formats) {
-    if (formatDict.hasOwnProperty(formats[size])) {
-      return formats[size];
-    }
   }
 }
 

@@ -178,9 +178,9 @@ function WorkPage({
 			<Region2
 				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
 			>
-				<ProjectTitle left={projectsDesc.isLeftHeader}>
+				<SectionHeader left={projectsDesc.isLeftHeader}>
 					{projectsDesc.SectionHeader}
-				</ProjectTitle>
+				</SectionHeader>
 				<PageSectionContent wide={true} grid={true}>
 					{projectsDesc.PageSectionContent ? (
 						<ProjectSubtitle>
@@ -235,7 +235,7 @@ let PartnerLink = styled.a``;
 
 let ProjectCard = styled.div`
 	grid-column: span 3;
-	word-wrap: break-word; /*Just for debugging*/
+	/*word-wrap: break-word;*/
 `;
 
 let ProjectLink = styled.a`
@@ -255,6 +255,7 @@ let ProjectFeatureImage = styled.img`
 `;
 
 let ProjectTitle = styled.h3`
+	grid-column: 1 / span 3;
 	font-weight: 300;
 	line-height: calc(1.3rem * 1.5);
 	font-size: calc(1.3rem * 1.5);
