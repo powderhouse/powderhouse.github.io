@@ -210,7 +210,7 @@ let SectionHeaderContainer = styled.div`
 `;
 
 let SectionHeader = ({ left, children }) => {
-	let slug = slugify(children);
+	let slug = children ? slugify(children) : "";
 	let header = (
 		<>
 			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
@@ -293,6 +293,16 @@ let FullBodyImage = styled.div`
 	padding: var(--gap) 0px;
 `;
 
+function findLargestFormat(formatDict, maxSize = "large") {
+	let formats = ["large", "medium", "small", "thumbnail"];
+	formats = formats.slice(formats.indexOf(maxSize), formats.length);
+	for (let size in formats) {
+		if (formatDict.hasOwnProperty(formats[size])) {
+			return formats[size];
+		}
+	}
+}
+
 let WidePageSectionContent = styled(PageSectionContent)`
 	grid-column: 4 / -1;
 
@@ -353,6 +363,7 @@ export {
 	WidePageSectionContent,
 	FullBleedImage,
 	FullBodyImage,
+	findLargestFormat,
 	Highlight,
 	highlight,
 	colorByProp,

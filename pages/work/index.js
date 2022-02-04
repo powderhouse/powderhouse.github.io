@@ -21,6 +21,7 @@ import {
 	PageSection,
 	PageSectionContent,
 	FullBleedImage,
+	findLargestFormat,
 	getBgFromLight,
 	Div,
 } from "../../components/global";
@@ -286,16 +287,6 @@ let PastLifeImage = styled.img`
 `;
 
 let PastLifeLink = styled.a``;
-
-function findLargestFormat(formatDict, maxSize = "large") {
-	let formats = ["large", "medium", "small", "thumbnail"];
-	formats = formats.slice(formats.indexOf(maxSize), formats.length);
-	for (let size in formats) {
-		if (formatDict.hasOwnProperty(formats[size])) {
-			return formats[size];
-		}
-	}
-}
 
 export async function getStaticProps(context) {
 	let workPage = await fetchAPI("/work?populate=*");

@@ -44,7 +44,7 @@ function PageImage(props) {
 	let container = (
 		<div className={props.fullBleed ? "full-bleed" : ""}>
 			<Resize ref={resizer}>
-				<img ref={img} src={props.src} />
+				<img ref={img} src={props.src} alt={props.altText} />
 			</Resize>
 		</div>
 	);

@@ -52,6 +52,7 @@ function TeamPage2({
 	let accentColor = "--purple";
 
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
+	// TK Is this (below) an OK way to "destructure" (but not actually) this data structure?
 	[staff,advisors,alumni] = [staff,advisors,alumni].map(people=>people.map(person=>person.attributes));
 
 	alumni = alumni

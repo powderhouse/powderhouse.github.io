@@ -5,7 +5,7 @@
 - [ ] Clone this repository
 - [ ] Switch to the design branch (`git checkout pp-redesign`)
 - [ ] Install and switch to the appropriate node version using `nvm use`
-- [ ] Link to the Vercel project by running `vercel link`
+- [ ] Link to the Vercel project by running `vercel link` ![Terminal prompts when you run `vercel link`](https://powderhouse-strapi-uploads.s3.amazonaws.com/thumbnail_Screen_Shot_2022_02_03_at_3_34_39_PM_fbfdc04591.png?updated_at=2022-02-04T16:01:35.520Z)
 - [ ] Install required packages with `yarn install`
 
 ## Development workflow
