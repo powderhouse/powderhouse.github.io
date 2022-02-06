@@ -410,4 +410,5 @@ export {
 	getBgFromLight,
 	getLightFromBg,
 	sizeToVerticalGridInRem,
+	complementaryColor,
 };
