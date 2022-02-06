@@ -1,5 +1,6 @@
 // global.js
 
+import React from "react";
 import { useEffect, useState } from "react";
 
 import styled from "styled-components";
@@ -88,13 +89,27 @@ let Region = styled.div`
 	}
 `;
 
-let Markdown = (props) => (
-	<ReactMarkdown
-		components={{ strong: "b" }}
-		rehypePlugins={[rehypeRaw]}
-		{...props}
-	/>
-);
+let Markdown = ({ children, ...rest }) => {
+	// Here we iterate over children we pass and only wrap text/string children in Markdown.  This lets us wrap things in Markdown more cavalierly.
+	let wrappedChildren = React.Children.toArray(children).map((c, i) => {
+		if (typeof c == "string") {
+			return (
+				<ReactMarkdown
+					components={{ strong: "b" }}
+					rehypePlugins={[rehypeRaw]}
+					children={c}
+					key={i}
+					{...rest}
+				/>
+			);
+		} else {
+			// We need to clone the element because by default, JSX elements are not extensible (i.e. we can't modify their props.key after they are passed)
+			let clone = React.cloneElement(c, { key: i });
+			return clone;
+		}
+	});
+	return <>{wrappedChildren}</>;
+};
 
 let Div = (props) =>
 	props.markdown ? <Markdown {...props} /> : <div {...props} />;

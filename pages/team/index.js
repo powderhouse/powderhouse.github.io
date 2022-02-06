@@ -174,17 +174,18 @@ function TeamPage({
 			<PageSectionContent wide={true} grid={true}>
 				<Div markdown style={{ backgroundColor: "lightblue" }}>
 					{jobs.PageSectionContent}
+
+					<ArrowButton
+						text="Jobs"
+						link="/team/jobs"
+						buttonWidth="long"
+						buttonThickness="thick"
+						buttonTextLength="medText"
+						style={{
+							top: "calc(-15px * ((17 * 1.3) / 2))",
+						}}
+					></ArrowButton>
 				</Div>
-				<ArrowButton
-					text="Jobs"
-					link="/team/jobs"
-					buttonWidth="long"
-					buttonThickness="thick"
-					buttonTextLength="medText"
-					style={{
-						top: "calc(-15px * ((17 * 1.3) / 2))",
-					}}
-				></ArrowButton>
 			</PageSectionContent>
 		</Region2>,
 		<Footer backgroundColor="--off-white" />,
