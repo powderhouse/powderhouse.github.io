@@ -35,9 +35,11 @@ function JobsPage({ jobPage, jobCards }) {
 		return jobCards[title][0].attributes.JobId;
 	}
 
+	let accentColor = "--purple";
+
 	let regions = [
 		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor="--purple">
+		<PageSplash backgroundColor={accentColor} >
 			<PageHeading>Jobs</PageHeading>
 			<PageTableOfContents
 				sections={jobPage.data.attributes.PageSections}
@@ -76,7 +78,7 @@ function JobsPage({ jobPage, jobCards }) {
 				</Region2>
 			);
 		}),
-		<Footer backgroundColor="--off-white" />,
+		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
 	];
 
 	return <PageContainer2>{regions}</PageContainer2>;

@@ -28,9 +28,10 @@ import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
 function NewsPage({ newsPage, newsCards }) {
+	let accentColor = "--yellow";
 	let regions = [
 		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor="--yellow">
+		<PageSplash backgroundColor={accentColor} >
 			<PageHeading>
 				{newsPage.data.attributes.PageSplash.PageHeader}
 			</PageHeading>
@@ -64,7 +65,7 @@ function NewsPage({ newsPage, newsCards }) {
 				</NewsContent>
 			</Region2>
 		)),
-		<Footer backgroundColor="--off-white" />,
+		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
 	];
 	return <PageContainer2>{regions}</PageContainer2>;
 }

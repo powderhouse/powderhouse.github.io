@@ -107,6 +107,8 @@ dt {
 	grid-column: 1 / 3;
 	background: var(--off-black);
 	color: var(--off-white);
+	margin-top: calc(-1.3rem / 2); /*top-padding*/
+	padding-top: calc(1.3rem / 2); /*top-padding*/
 	padding-left: calc(2 * 1.3rem);
 	padding-right: calc(1.3rem / 4);
 	text-align: right;
@@ -177,11 +179,17 @@ img {
 
 	padding: 1.3rem 0px;
 	overflow: hidden;
+	grid-column: 1 / -1;
 }
 
 .full-bleed img {
 	object-fit: cover;
 	max-width: calc(1440px - 2 * var(--gap));
+}
+
+.full-body {
+	grid-column: 4 / 10;
+	padding: var(--gap) 0px;
 }
 
 .footnoted-text {

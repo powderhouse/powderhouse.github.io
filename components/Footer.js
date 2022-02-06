@@ -4,25 +4,26 @@ import { useRouter } from "next/router";
 import Icon from "../components/Icon.js";
 import Region2 from "../components/Region2.js";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
-import { navMenuItems, socials, logoSVG } from "../site-data.js";
+import { navMenuItems, socials, logotypeVertSVG } from "../site-data.js";
 
 import {
   gap,
+  expandColor,
   baseGrid,
   colorByProp,
   ShiftBy,
   highlight,
+  complementaryColor,
 } from "../components/global.js";
 
-function Footer({ backgroundColor, ...rest }) {
+function Footer({ backgroundColor, accentColor, ...rest }) {
   let navItems = navMenuItems.slice();
   navItems.unshift({ text: "Home", href: "/" });
   const router = useRouter();
+
   return (
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper {...rest}>
-        <LogoContainer>{logoSVG("var(--yellow)")}</LogoContainer>
-
         <ContentContainer>
           <FooterNavigation>
             <NavList>
@@ -64,22 +65,26 @@ function Footer({ backgroundColor, ...rest }) {
             </NavList>
           </FooterContact>
           {router.pathname != "/" ? (
-            <FooterNewsletterSignup>
-              <NewsLetterShoutOut>
-                If you'd like to keep up with our work, sign up for our mailing
-                list.
-              </NewsLetterShoutOut>
-              <NewsLetterSignUp
-                color="off-black"
-                text="Follow us!"
-                buttonWidth="long"
-                buttonThickness="thick"
-                buttonTextLength="medText"
-              />
-            </FooterNewsletterSignup>
+            <>
+              <FooterNewsletterSignup>
+                <NewsLetterShoutOut>
+                  If you'd like to keep up with our work, sign up for our mailing
+                  list.
+                </NewsLetterShoutOut>
+                <NewsLetterSignUp
+                  color="off-black"
+                  text="Follow us!"
+                  buttonWidth="long"
+                  buttonThickness="thick"
+                  buttonTextLength="longText"
+                />
+              </FooterNewsletterSignup>
+              <LogoContainer>{logotypeVertSVG(expandColor(accentColor))}</LogoContainer>
+            </>
           ) : (
             ""
-          )}
+          )
+        }
         </ContentContainer>
       </Wrapper>
     </Region2>
@@ -113,7 +118,7 @@ let LogoContainer = styled.div`
   grid-column: 1 / -1;
   grid-column-start: 1;
   grid-row-start: 2;
-  transform: rotate(180deg) scaleX(-1);
+  /*transform: rotate(180deg) scaleX(-1);*/
   /*filter:blur(1.3rem);*/
   /*opacity:0.3;*/
   pointer-events: none;

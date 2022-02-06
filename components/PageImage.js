@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useEffect, useState, useRef } from "react";
 
 let Resize = styled.div`
-	background-color: blue;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -42,9 +41,9 @@ function PageImage(props) {
 	});
 
 	let container = (
-		<div className={props.fullBleed ? "full-bleed" : ""}>
+		<div className={props.fullBleed ? "full-bleed" : "full-body"}>
 			<Resize ref={resizer}>
-				<img ref={img} src={props.src} />
+				<img ref={img} height={props.imgHeight ? props.imgHeight : ""} src={props.src} alt={props.altText} />
 			</Resize>
 		</div>
 	);

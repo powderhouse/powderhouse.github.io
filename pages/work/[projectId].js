@@ -13,6 +13,7 @@ import {
   PageContainer,
   Div,
   Asterisk,
+  findLargestFormat,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -22,6 +23,8 @@ import { useRouter } from "next/router";
 function ProjectDetailPage({ projectData }) {
   const router = useRouter();
   const { projectId } = router.query;
+  let accentColor = "--off-black";
+
   return (
     <PageContainer2>
       <Header backgroundColor="--off-white" />
@@ -91,7 +94,7 @@ function ProjectDetailPage({ projectData }) {
           )
         )}
       </PageGallery>
-      <Footer backgroundColor="--off-white" />
+      <Footer backgroundColor="--off-white" accentColor={accentColor} />
     </PageContainer2>
   );
 }
@@ -122,7 +125,9 @@ let ProjectTitle = styled.h2`
   flex-direction: column;
   justify-content: flex-end;
 
-  font-size: 87px; /*TK Explicit?*/
+  font-size: calc(1.3rem * 5);
+  line-height: calc(1.3rem * 5);
+  font-weight: 300;
 `;
 
 let ProjectInfo = styled.div`
@@ -134,10 +139,16 @@ let ProjectInfo = styled.div`
 `;
 
 let ProjectSubtitle = styled.div`
-  font-size: 38px; /*TK Explicit?*/
+  font-size:  calc(1.3rem * 2);
+  line-height: calc(1.3rem * 2);
+  font-weight: 300;
 `;
 
-let ProjectDescription = styled(Div)``;
+let ProjectDescription = styled(Div)`
+  font-size:  calc(1.3rem * 1.2);
+  line-height: calc(1.3rem * 1.2);
+  font-weight: 500;
+`;
 
 let ProjectInfoList = styled.ul`
   list-style-type: none;
@@ -238,16 +249,6 @@ function isVideo(fileExt) {
     return true;
   } else {
     return false;
-  }
-}
-
-function findLargestFormat(formatDict, maxSize = "large") {
-  let formats = ["large", "medium", "small", "thumbnail"];
-  formats = formats.slice(formats.indexOf(maxSize), formats.length);
-  for (let size in formats) {
-    if (formatDict.hasOwnProperty(formats[size])) {
-      return formats[size];
-    }
   }
 }
 

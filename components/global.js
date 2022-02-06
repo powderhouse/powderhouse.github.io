@@ -11,6 +11,7 @@ import rehypeRaw from "rehype-raw";
 import { asteriskSVG } from "../site-data.js";
 
 import Region2 from "../components/Region2.js";
+import AsteriskContainer from "../components/AsteriskContainer.js";
 
 let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
@@ -34,20 +35,26 @@ let expandColor = function (colorString) {
 let complementaryColor = function (colorString) {
 	let complements = {
 		"--off-white": "--off-black",
+		"--off-black": "--off-white",
+		"--green": "--off-white",
+		"--blue": "--off-black",
+		"--yellow": "--off-black",
+		"--purple": "--off-white",
+		"--red": "--off-white",
 	};
 
 	// TODO: Probably want this to be subtler; some colors are not simply inverted
-	if (
-		Object.keys(complements).filter((k) =>
-			Object.values(complements).includes(k)
-		).length > 0
-	) {
-		throw "`complements` has a color which would be overwritten when expanded.";
-	} else {
-		Object.keys(complements).forEach(
-			(k) => (complements[complements[k]] = k)
-		);
-	}
+	// if (
+	// 	Object.keys(complements).filter((k) =>
+	// 		Object.values(complements).includes(k)
+	// 	).length > 0
+	// ) {
+	// 	throw "`complements` has a color which would be overwritten when expanded.";
+	// } else {
+	// 	Object.keys(complements).forEach(
+	// 		(k) => (complements[complements[k]] = k)
+	// 	);
+	// }
 
 	return colorString in complements
 		? expandColor(complements[colorString])
@@ -151,54 +158,9 @@ let PageHeading = styled.h1`
 	transform: translate(-3px, calc(1.3rem / 2 - 1px));
 `;
 
-let asteriskContainerStyles = {
-	TOC: css`
-		position: absolute;
-		left: calc(-1.375 * 1.3em + 4px);
-	`,
-	LeftHeader: css`
-		position: absolute;
-		left: calc(-1.3rem / 2);
-		top: calc(-1.3rem / 2);
-	`,
-	CenterHeader: css`
-		position: absolute;
-		left: calc(-0.625 * 1.3rem);
-		top: calc(-1.3rem / 2 - 3.5px);
-	`,
-	Default: css`
-		position: absolute;
-		left: calc(-0.375 * 1.3rem);
-		top: calc(-1.3rem / 7);
-	`,
-};
-
-let AsteriskContainer = styled.div`
-	height: calc(1.375 * 1.3rem);
-	width: calc(1.375 * 1.3rem);
-	transform-origin: 50% 50%;
-	transform: ${(props) => `rotate(${props.rotation}deg)`};
-
-	${(props) => asteriskContainerStyles[props.type]}
-	${(props) =>
-		props.color
-			? css`
-					color: ${expandColor(props.color)};
-					stroke: ${expandColor(props.color)};
-					fill: ${expandColor(props.color)};
-			  `
-			: ``}
-`;
-
 let Asterisk = (props) => {
-	const [randomRotation, setRandomRotation] = useState(null);
-	useEffect(() => {
-		setRandomRotation(randomRotation);
-	}, []);
-
 	return (
 		<AsteriskContainer
-			rotation={randomRotation}
 			type={props.type}
 			color={props.color ? props.color : "--off-black"}
 		>
@@ -234,6 +196,7 @@ let Header2 = styled.h2`
 	font-size: inherit;
 	line-height: inherit;
 	letter-spacing: inherit;
+	margin-left: ${(props) => (props.left ? "" : "calc(-1.3rem / 4)")};
 `;
 
 let sectionHeaderContainerStyles = {
@@ -242,6 +205,7 @@ let sectionHeaderContainerStyles = {
 		font-size: 24px;
 		letter-spacing: -0.5;
 		padding-left: calc(1.375 * 1.3rem);
+		height: 1.3rem;
 	`,
 	center: css`
 		grid-column: 4 / 10;
@@ -250,6 +214,7 @@ let sectionHeaderContainerStyles = {
 		padding-left: calc(1.3em);
 	`,
 };
+
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	grid-row: 1 / -1;
@@ -260,11 +225,11 @@ let SectionHeaderContainer = styled.div`
 `;
 
 let SectionHeader = ({ left, children }) => {
-	let slug = slugify(children);
+	let slug = children ? slugify(children) : "";
 	let header = (
 		<>
 			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
-			<Header2>{children}</Header2>
+			<Header2 left={left}>{children}</Header2>
 		</>
 	);
 	return (
@@ -327,21 +292,15 @@ let PageSectionContent = styled(Div)`
 			  `}
 `;
 
-let FullBleedImage = styled.div`
-	// Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts
-	width: 100vw;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
-
-	padding: var(--gap) 0px;
-`;
-
-let FullBodyImage = styled.div`
-	padding: var(--gap) 0px;
-`;
+function findLargestFormat(formatDict, maxSize = "large") {
+	let formats = ["large", "medium", "small", "thumbnail"];
+	formats = formats.slice(formats.indexOf(maxSize), formats.length);
+	for (let size in formats) {
+		if (formatDict.hasOwnProperty(formats[size])) {
+			return formats[size];
+		}
+	}
+}
 
 let WidePageSectionContent = styled(PageSectionContent)`
 	grid-column: 4 / -1;
@@ -386,6 +345,8 @@ let sizeToVerticalGridInRem = function (heightInPx) {
 
 export {
 	baseGrid,
+	expandColor,
+	complementaryColor,
 	PageContainer,
 	Region,
 	Markdown,
@@ -399,8 +360,7 @@ export {
 	PageSection,
 	PageSectionContent,
 	WidePageSectionContent,
-	FullBleedImage,
-	FullBodyImage,
+	findLargestFormat,
 	Highlight,
 	highlight,
 	colorByProp,
@@ -410,5 +370,4 @@ export {
 	getBgFromLight,
 	getLightFromBg,
 	sizeToVerticalGridInRem,
-	complementaryColor,
 };

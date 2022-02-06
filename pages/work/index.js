@@ -21,6 +21,7 @@ import {
 	PageSection,
 	PageSectionContent,
 	FullBleedImage,
+	findLargestFormat,
 	getBgFromLight,
 	Div,
 } from "../../components/global";
@@ -49,6 +50,8 @@ function WorkPage({
 		},
 	},
 }) {
+	let accentColor = "--green";
+
 	let partnersDesc = PageSections.find((s) => s.SectionHeader == "Partners");
 	let partners = PartnerCards.map(
 		(
@@ -154,7 +157,7 @@ function WorkPage({
 	return (
 		<PageContainer2>
 			<Header backgroundColor="--off-white" />
-			<PageSplash backgroundColor="--green">
+			<PageSplash backgroundColor={accentColor} >
 				<PageHeading>{PageHeader}</PageHeading>
 				<PageTableOfContents sections={PageSections} />
 			</PageSplash>
@@ -180,7 +183,9 @@ function WorkPage({
 				</SectionHeader>
 				<PageSectionContent wide={true} grid={true}>
 					{projectsDesc.PageSectionContent ? (
-						<Div>{projectsDesc.PageSectionContent}</Div>
+						<ProjectSubtitle>
+							<Div>{projectsDesc.PageSectionContent}</Div>
+						</ProjectSubtitle>
 					) : (
 						""
 					)}
@@ -202,7 +207,7 @@ function WorkPage({
 					<PastLifeSectionContent>{pastLives}</PastLifeSectionContent>
 				</PageSectionContent>
 			</Region2>
-			<Footer backgroundColor="--off-white" />
+			<Footer backgroundColor="--off-white" accentColor={accentColor} />
 		</PageContainer2>
 	);
 }
@@ -230,7 +235,7 @@ let PartnerLink = styled.a``;
 
 let ProjectCard = styled.div`
 	grid-column: span 3;
-	word-wrap: break-word; /*Just for debugging*/
+	/*word-wrap: break-word;*/
 `;
 
 let ProjectLink = styled.a`
@@ -250,10 +255,19 @@ let ProjectFeatureImage = styled.img`
 `;
 
 let ProjectTitle = styled.h3`
-	font-size: 31px; /*TK Explicit?*/
+	grid-column: 1 / span 3;
+	font-weight: 300;
+	line-height: calc(1.3rem * 1.5);
+	font-size: calc(1.3rem * 1.5);
+	padding: calc(1.3rem / 2) 0;
+	margin:0;
 `;
 
-let ProjectSubtitle = styled.p``;
+let ProjectSubtitle = styled.p`
+	line-height:1.3rem;
+	padding:0;
+	margin:0;
+`;
 
 let PastLifeSectionContent = styled.div`
 	display: grid;
@@ -274,16 +288,6 @@ let PastLifeImage = styled.img`
 `;
 
 let PastLifeLink = styled.a``;
-
-function findLargestFormat(formatDict, maxSize = "large") {
-	let formats = ["large", "medium", "small", "thumbnail"];
-	formats = formats.slice(formats.indexOf(maxSize), formats.length);
-	for (let size in formats) {
-		if (formatDict.hasOwnProperty(formats[size])) {
-			return formats[size];
-		}
-	}
-}
 
 export async function getStaticProps(context) {
 	let workPage = await fetchAPI("/work?populate=*");

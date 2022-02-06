@@ -32,13 +32,14 @@ import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";
 
 function JobDetailPage({ jobCards }) {
+  let accentColor = "--red";
   const router = useRouter();
   const { jobId } = router.query;
   let jobCard = getJobCardById(jobId, jobCards);
 
   let regions = [
     <Header backgroundColor="--off-white" />,
-    <PageSplash backgroundColor="--blue">
+    <PageSplash backgroundColor={accentColor} >
       <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>,
       <PageTableOfContents sections={jobCard.attributes.PageSections} />
     </PageSplash>,
@@ -58,7 +59,7 @@ function JobDetailPage({ jobCards }) {
         </Region2>
       );
     }),
-    <Footer backgroundColor="--off-white" />,
+    <Footer backgroundColor="--off-white" accentColor={accentColor} />,
   ];
   return <PageContainer2>{regions}</PageContainer2>;
 }
