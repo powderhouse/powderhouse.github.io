@@ -18,8 +18,8 @@ let containsMainContent = function (region) {
 	);
 };
 
-let groupBy = function (array, comparator) {
-	// This is a function which takes an array and a comparator function and returns an order-preserving array of arrays where each element comprises a list of elements which returns the same value when passed to the comparator
+let groupBy = function (array, comparator, fallback = (e) => false) {
+	// This is a function which takes an array and a comparator function and returns an order-preserving array of arrays where each element comprises a list of elements which returns the same value when passed to the comparator.  `fallback` is used to allow for overrides of unequal comparators to, e.g., allow you to set the default behavior in the case that an element lacks a backgroundColor
 
 	// We use it in PageContainer2 to group attributes by backgroundColor (or to ignore missing backgroundColors)
 
@@ -32,7 +32,7 @@ let groupBy = function (array, comparator) {
 		} else {
 			return (
 				comparator(runsArray.slice(-1)[0].slice(-1)[0]) !==
-				comparator(element)
+					comparator(element) || fallback(element) == true
 			);
 		}
 	};
@@ -52,7 +52,11 @@ let groupBy = function (array, comparator) {
 };
 
 function PageContainer2(props) {
-	let regionRuns = groupBy(props.children, (c) => c.props.backgroundColor);
+	let regionRuns = groupBy(
+		props.children,
+		(c) => (c.props.backgroundColor ? c.props.backgroundColor : false),
+		(c) => (!c.props.backgroundColor ? true : false)
+	);
 
 	let firstContentRegion = regionRuns.find((rr) => {
 		rr.some((r) => containsMainContent(r));
