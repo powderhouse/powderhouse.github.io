@@ -8,6 +8,17 @@ let Resize = styled.div`
 	width: 100%;
 `;
 
+let ImageContainer = styled.figure`
+	display:flex;
+	flex-direction:column;
+`;
+
+let ImageCaption = styled.figcaption`
+	font-size:calc(1rem * 0.75);
+	font-style:italic;
+	margin:auto;
+`;
+
 function PageImage(props) {
 	// Adding `refs` to access DOM elements for our image and resizing div
 	// via https://reactjs.org/docs/hooks-reference.html#useref
@@ -41,11 +52,12 @@ function PageImage(props) {
 	});
 
 	let container = (
-		<div className={props.fullBleed ? "full-bleed" : "full-body"}>
+		<ImageContainer className={props.fullBleed ? "full-bleed" : "full-body"}>
 			<Resize ref={resizer}>
 				<img ref={img} height={props.imgHeight ? props.imgHeight : ""} src={props.src} alt={props.altText} />
 			</Resize>
-		</div>
+			<ImageCaption>{props.caption}</ImageCaption>
+		</ImageContainer>
 	);
 	return container;
 }

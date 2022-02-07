@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 import Header from "../components/Header";
@@ -76,21 +77,27 @@ function HomePage({
       <ShoutOut>{SignUpShoutOut}</ShoutOut>
       <NewsLetterSignUp
         text="Sign Up!"
-        color="off-white"
+        color="--off-white"
         buttonWidth="long"
         buttonThickness="thick"
         buttonTextLength="medText"
       ></NewsLetterSignUp>
     </SplashNewsletterSignup>,
-    <Footer backgroundColor="--off-white" accentColor={accentColor} />,
+    <Footer backgroundColor="--off-black" accentColor={accentColor} />,
   ];
 
-  return <PageContainer2>{regions}</PageContainer2>;
+  return (
+    <PageContainer2>
+      {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
+      {regions.map((r, i) => React.cloneElement(r, { key: i }))}
+    </PageContainer2>
+  );
 }
 
 export async function getStaticProps(context) {
   return {
-    props: await fetchAPI("/home"), // will be passed to the page component as props
+    props: await fetchAPI("/home"),
+    revalidate: 1000, // will be passed to the page component as props
   };
 }
 
