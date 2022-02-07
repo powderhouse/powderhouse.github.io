@@ -1,5 +1,6 @@
 // global.js
 
+import React from "react";
 import { useEffect, useState } from "react";
 
 import styled from "styled-components";
@@ -10,9 +11,9 @@ import rehypeRaw from "rehype-raw";
 import { asteriskSVG } from "../site-data.js";
 
 import Region2 from "../components/Region2.js";
-import AsteriskContainer from "../components/AsteriskContainer.js"
+import AsteriskContainer from "../components/AsteriskContainer.js";
 
-let ShiftBy = function({ x = 0, y = 0, children, ...delegated }) {
+let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
 	return (
 		<div
@@ -26,20 +27,20 @@ let ShiftBy = function({ x = 0, y = 0, children, ...delegated }) {
 	);
 };
 
-let expandColor = function(colorString) {
+let expandColor = function (colorString) {
 	let isCSSVariable = colorString.match(/^--/);
 	return isCSSVariable ? `var(${colorString})` : colorString;
 };
 
-let complementaryColor = function(colorString) {
+let complementaryColor = function (colorString) {
 	let complements = {
 		"--off-white": "--off-black",
-		"--off-black":"--off-white",
-		"--green":"--off-white",
-		"--blue":"--off-black",
-		"--yellow":"--off-black",
-		"--purple":"--off-white",
-		"--red":"--off-white"
+		"--off-black": "--off-white",
+		"--green": "--off-white",
+		"--blue": "--off-black",
+		"--yellow": "--off-black",
+		"--purple": "--off-white",
+		"--red": "--off-white",
 	};
 
 	// TODO: Probably want this to be subtler; some colors are not simply inverted
@@ -95,13 +96,27 @@ let Region = styled.div`
 	}
 `;
 
-let Markdown = (props) => (
-	<ReactMarkdown
-		components={{ strong: "b" }}
-		rehypePlugins={[rehypeRaw]}
-		{...props}
-	/>
-);
+let Markdown = ({ children, ...rest }) => {
+	// Here we iterate over children we pass and only wrap text/string children in Markdown.  This lets us wrap things in Markdown more cavalierly.
+	let wrappedChildren = React.Children.toArray(children).map((c, i) => {
+		if (typeof c == "string") {
+			return (
+				<ReactMarkdown
+					components={{ strong: "b" }}
+					rehypePlugins={[rehypeRaw]}
+					children={c}
+					key={i}
+					{...rest}
+				/>
+			);
+		} else {
+			// We need to clone the element because by default, JSX elements are not extensible (i.e. we can't modify their props.key after they are passed)
+			let clone = React.cloneElement(c, { key: i });
+			return clone;
+		}
+	});
+	return <>{wrappedChildren}</>;
+};
 
 let Div = (props) =>
 	props.markdown ? <Markdown {...props} /> : <div {...props} />;
@@ -181,7 +196,7 @@ let Header2 = styled.h2`
 	font-size: inherit;
 	line-height: inherit;
 	letter-spacing: inherit;
-	margin-left:${(props) => props.left ? "" : "calc(-1.3rem / 4)"};
+	margin-left: ${(props) => (props.left ? "" : "calc(-1.3rem / 4)")};
 `;
 
 let sectionHeaderContainerStyles = {
@@ -190,7 +205,7 @@ let sectionHeaderContainerStyles = {
 		font-size: 24px;
 		letter-spacing: -0.5;
 		padding-left: calc(1.375 * 1.3rem);
-		height:1.3rem;
+		height: 1.3rem;
 	`,
 	center: css`
 		grid-column: 4 / 10;
@@ -214,7 +229,7 @@ let SectionHeader = ({ left, children }) => {
 	let header = (
 		<>
 			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
-			<Header2 left={left} >{children}</Header2>
+			<Header2 left={left}>{children}</Header2>
 		</>
 	);
 	return (

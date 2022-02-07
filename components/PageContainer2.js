@@ -18,59 +18,69 @@ let containsMainContent = function (region) {
 	);
 };
 
-function PageContainer2(props) {
-	let childrenHaveBackgroundColor = React.Children.toArray(
-		props.children
-	).map((c) => c.props.hasOwnProperty("backgroundColor"));
-	if (childrenHaveBackgroundColor.every((t) => t)) {
-		let regionRuns = [
-			[props.children.length ? props.children[0] : props.children],
-		];
-		if (props.children.length > 1) {
-			props.children.slice(1).forEach((region) => {
-				let lastRegionRun = regionRuns.slice(-1)[0];
-				let lastRegion = lastRegionRun.slice(-1)[0];
-				let lastRegionRunBackgroundColor =
-					lastRegion.props.backgroundColor;
-				if (
-					region.props.backgroundColor == lastRegionRunBackgroundColor
-				) {
-					regionRuns.slice(-1)[0].push(region);
-				} else {
-					regionRuns.push([region]);
-				}
-			});
-		}
+let groupBy = function (array, comparator, fallback = (e) => false) {
+	// This is a function which takes an array and a comparator function and returns an order-preserving array of arrays where each element comprises a list of elements which returns the same value when passed to the comparator.  `fallback` is used to allow for overrides of unequal comparators to, e.g., allow you to set the default behavior in the case that an element lacks a backgroundColor
 
-		let firstContentRegion = regionRuns.find((rr) => {
-			rr.some((r) => containsMainContent(r));
-		});
+	// We use it in PageContainer2 to group attributes by backgroundColor (or to ignore missing backgroundColors)
 
-		let regionContainers = regionRuns.map((rr, i) => {
-			let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
-			let content =
-				rr == firstContentRegion
-					? "first"
-					: rr.some((r) => containsMainContent(r));
-			let regions = rr;
+	let runs = []; // Initialize an array to hold our "runs" (e.g. repeated backgroundColor elements)
+
+	let timeForNewRun = function (runsArray, element) {
+		// A function to check whether we should create a new run given a particular element
+		if (runsArray.length == 0) {
+			return true;
+		} else {
 			return (
-				<RegionContainer2
-					backgroundColor={backgroundColor}
-					content={content}
-					key={i}
-				>
-					{regions}
-				</RegionContainer2>
+				comparator(runsArray.slice(-1)[0].slice(-1)[0]) !==
+					comparator(element) || fallback(element) == true
 			);
-		});
+		}
+	};
+	array.forEach((element) => {
+		// Iterate over our array, checking whether it is time for a new run and either adding a new run or adding the element to the last run appropriately
+		let lastRun = runs.slice(-1)[0];
 
-		return <StyledDiv>{regionContainers}</StyledDiv>;
-	} else {
-		console.log(
-			"Error, expected all children to have backgroundColor; instead, received",
-			props.children
+		if (timeForNewRun(runs, element)) {
+			let nextRun = [element];
+			runs.push(nextRun);
+		} else {
+			lastRun.push(element);
+		}
+	});
+
+	return runs;
+};
+
+function PageContainer2(props) {
+	let regionRuns = groupBy(
+		props.children,
+		(c) => (c.props.backgroundColor ? c.props.backgroundColor : false),
+		(c) => (!c.props.backgroundColor ? true : false)
+	);
+
+	let firstContentRegion = regionRuns.find((rr) => {
+		rr.some((r) => containsMainContent(r));
+	});
+
+	let regionContainers = regionRuns.map((rr, i) => {
+		let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
+		let content =
+			rr == firstContentRegion
+				? "first"
+				: rr.some((r) => containsMainContent(r));
+		let regions = rr;
+		return (
+			<RegionContainer2
+				backgroundColor={backgroundColor}
+				content={content}
+				key={i}
+			>
+				{regions}
+			</RegionContainer2>
 		);
-	}
+	});
+
+	return <StyledDiv>{regionContainers}</StyledDiv>;
 }
 
 export default PageContainer2;
