@@ -71,7 +71,8 @@ function WorkPage({
 					<PartnerCard>
 						<PartnerLogo
 							src={
-								formats == null
+								formats == null ||
+								Object.keys(formats).length == 0
 									? url
 									: formats[
 											findLargestFormat(formats, "small")
@@ -100,27 +101,34 @@ function WorkPage({
 				},
 			},
 			index
-		) => (
-			<ProjectCard key={index}>
-				<ProjectLink href={"/work/" + id}>
-					{/* TK There's probably a better way to do this with relative URLS? */}
-					<ProjectImageDiv>
-						<ProjectFeatureImage
-							src={
-								formats == null
-									? url
-									: formats[
-											findLargestFormat(formats, "small")
-									  ].url
-							}
-							alt={alternativeText}
-						/>
-					</ProjectImageDiv>
-					<ProjectTitle>{title}</ProjectTitle>
-					<ProjectSubtitle>{subtitle}</ProjectSubtitle>
-				</ProjectLink>
-			</ProjectCard>
-		)
+		) => {
+			console.log("Looking at", title);
+			return (
+				<ProjectCard key={index}>
+					<ProjectLink href={"/work/" + id}>
+						{/* TK There's probably a better way to do this with relative URLS? */}
+						<ProjectImageDiv>
+							<ProjectFeatureImage
+								src={
+									formats == null ||
+									Object.keys(formats).length == 0
+										? url
+										: formats[
+												findLargestFormat(
+													formats,
+													"small"
+												)
+										  ].url
+								}
+								alt={alternativeText}
+							/>
+						</ProjectImageDiv>
+						<ProjectTitle>{title}</ProjectTitle>
+						<ProjectSubtitle>{subtitle}</ProjectSubtitle>
+					</ProjectLink>
+				</ProjectCard>
+			);
+		}
 	);
 	let pastLivesDesc = PageSections.find(
 		(s) => s.SectionHeader == "Past Lives"
@@ -142,7 +150,7 @@ function WorkPage({
 				<PastLifeCard>
 					<PastLifeImage
 						src={
-							formats == null
+							formats == null || Object.keys(formats).length == 0
 								? url
 								: formats[findLargestFormat(formats, "medium")]
 										.url
@@ -157,7 +165,7 @@ function WorkPage({
 	return (
 		<PageContainer2>
 			<Header backgroundColor="--off-white" />
-			<PageSplash backgroundColor={accentColor} >
+			<PageSplash backgroundColor={accentColor}>
 				<PageHeading>{PageHeader}</PageHeading>
 				<PageTableOfContents sections={PageSections} />
 			</PageSplash>
@@ -260,13 +268,13 @@ let ProjectTitle = styled.h3`
 	line-height: calc(1.3rem * 1.5);
 	font-size: calc(1.3rem * 1.5);
 	padding: calc(1.3rem / 2) 0;
-	margin:0;
+	margin: 0;
 `;
 
 let ProjectSubtitle = styled.p`
-	line-height:1.3rem;
-	padding:0;
-	margin:0;
+	line-height: 1.3rem;
+	padding: 0;
+	margin: 0;
 `;
 
 let PastLifeSectionContent = styled.div`
