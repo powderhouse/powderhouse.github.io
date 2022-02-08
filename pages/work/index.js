@@ -102,7 +102,6 @@ function WorkPage({
 			},
 			index
 		) => {
-			console.log("Looking at", title);
 			return (
 				<ProjectCard key={index}>
 					<ProjectLink href={"/work/" + id}>
