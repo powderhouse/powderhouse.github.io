@@ -263,8 +263,9 @@ let PageSection = styled.section`
 `;
 
 let PageSectionContent = styled(Div)`
+	// Using transient props to avoid passing these down to the DOM: https://styled-components.com/docs/api#transient-props
 	${(props) =>
-		props.wide
+		props.$wide
 			? css`
 					grid-column: 4 / -1;
 					grid-template-columns: repeat(9, 1fr);
@@ -282,7 +283,7 @@ let PageSectionContent = styled(Div)`
 	}
 
 	${(props) =>
-		!props.grid
+		!props.$grid
 			? css``
 			: css`
 					display: inherit;
