@@ -58,9 +58,7 @@ function TeamPage2({
 		people.map((person) => person.attributes)
 	);
 
-	alumni = alumni
-		.sort(tenureSort("YearStart", "YearEnd", "Name", "descending"))
-		.reverse();
+	alumni = alumni.sort(tenureSort()).reverse();
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
 	let staffCards = (
@@ -68,7 +66,7 @@ function TeamPage2({
 			<SectionHeader left={staffSection.isLeftHeader}>
 				{staffSection.SectionHeader}
 			</SectionHeader>
-			<PageSectionContent wide={"true"} grid={true}>
+			<PageSectionContent $wide={true} $grid={true}>
 				{staff.map((s, i) => (
 					<PersonCard
 						type={s.Role}
@@ -97,7 +95,7 @@ function TeamPage2({
 			<SectionHeader left={advisorSection.isLeftHeader}>
 				{advisorSection.SectionHeader}
 			</SectionHeader>
-			<PageSectionContent wide={true} grid={true}>
+			<PageSectionContent $wide={true} $grid={true}>
 				{advisors.map((a, i) => (
 					<PersonCard
 						key={i}
@@ -119,7 +117,7 @@ function TeamPage2({
 			<SectionHeader left={alumniSection.isLeftHeader}>
 				{alumniSection.SectionHeader}
 			</SectionHeader>
-			<PageSectionContent wide={true} grid={true}>
+			<PageSectionContent $wide={true} $grid={true}>
 				{alumni.map((a, i) => (
 					<PersonCard
 						type={a.Role}
@@ -156,7 +154,7 @@ function TeamPage2({
 			<SectionHeader left={jobs.isLeftHeader}>
 				{jobs.SectionHeader}
 			</SectionHeader>
-			<PageSectionContent wide={true} grid={true}>
+			<PageSectionContent $wide={true} $grid={true}>
 				<Div markdown style={{ backgroundColor: "lightblue" }}>
 					{jobs.PageSectionContent}
 
