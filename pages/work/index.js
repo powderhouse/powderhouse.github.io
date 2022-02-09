@@ -24,6 +24,7 @@ import {
 	findLargestFormat,
 	getBgFromLight,
 	Div,
+	tenureSort,
 } from "../../components/global";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -123,7 +124,7 @@ function WorkPage({
 							/>
 						</ProjectImageDiv>
 						<ProjectTitle>{title}</ProjectTitle>
-						<ProjectSubtitle>{subtitle}</ProjectSubtitle>
+						<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 					</ProjectLink>
 				</ProjectCard>
 			);
@@ -270,7 +271,7 @@ let ProjectTitle = styled.h3`
 	margin: 0;
 `;
 
-let ProjectSubtitle = styled.p`
+let ProjectSubtitle = styled(Div)`
 	line-height: 1.3rem;
 	padding: 0;
 	margin: 0;
@@ -302,6 +303,15 @@ export async function getStaticProps(context) {
 		"/work?populate[PartnerCards][populate]=*"
 	);
 	let projectCards = await fetchAPI("/project-cards?populate=*");
+	console.log("Attempting to sort", projectCards.data);
+	projectCards.data.sort(
+		tenureSort(
+			(x) => x.attributes.YearStart,
+			(x) => x.attributes.YearEnd,
+			(x) => x.attributes.ProjectTitle,
+			"descending"
+		)
+	);
 	let pastLifeCards = await fetchAPI(
 		"/work?populate[PastLifeCards][populate]=*"
 	);
