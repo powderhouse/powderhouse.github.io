@@ -28,28 +28,28 @@ let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 };
 
 let tenureSort = function (
-	startField = "YearStart",
-	endField = "YearEnd",
-	breakevenField = "Name",
+	getStartField = (x) => x.YearStart,
+	getEndField = (x) => x.YearEnd,
+	getBreakevenField = (x) => x.Name,
 	order = "ascending"
 ) {
 	// Generates a comparator suitable for use in comparing tenures.  Useful for sorting proejcts or people.  `startField` and `endField` are the fields containing start and end dates, expected to be years.  `breakevenField` is another field to be compared lexicographically in case years are equal.
 
 	let ascending = (a, b) => {
 		// Sort first by starting year, then ending year, then alphabetical
-		if (a[startField] < b[startField]) {
+		if (getStartField(a) < getStartField(b)) {
 			return -1;
-		} else if (a[startField] > b[startField]) {
+		} else if (getStartField(a) > getStartField(b)) {
 			return 1;
 		} else {
-			if (a[endField] < b[endField]) {
+			if (getEndField(a) < getEndField(b)) {
 				return -1;
-			} else if (a[endField] > b[endField]) {
+			} else if (getEndField(a) > getEndField(b)) {
 				return 1;
 			} else {
 				// via https://stackoverflow.com/a/60922998
-				return a[breakevenField].localeCompare(
-					b[breakevenField],
+				return getBreakevenField(a).localeCompare(
+					getBreakevenField(b),
 					"en",
 					{
 						sensitivity: "base",
