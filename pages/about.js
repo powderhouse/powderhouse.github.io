@@ -48,12 +48,13 @@ function AboutPage({
 		</PageIntroduction>,
 		...aboutPageContent.map((e,i) => (e.PageImage 
 			? (<Region2 backgroundColor="--off-black" key={i} >
-				<PageImage 
-					fullBleed={e.IsFullBleed}
-					imgHeight="600"
-					src={e.PageImage.data.attributes.formats == null ? url : e.PageImage.data.attributes.formats[findLargestFormat(e.PageImage.data.attributes.formats, "large")].url}
-					alt={e.PageImage.data.attributes.alternativeText}
-				/>
+					<PageImage 
+						fullBleed={e.IsFullBleed}
+						imgHeight="600"
+						src={e.PageImage.data.attributes.formats == null ? url : e.PageImage.data.attributes.formats[findLargestFormat(e.PageImage.data.attributes.formats, "large")].url}
+						alt={e.PageImage.data.attributes.alternativeText}
+						caption={e.PageImage.data.attributes.caption}
+					/>
 			</Region2>)
 			: (
 				<Region2 backgroundColor={getBgFromLight(e.isLightSection)} key={i} >

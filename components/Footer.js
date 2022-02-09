@@ -23,7 +23,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
 
   return (
     <Region2 backgroundColor={backgroundColor}>
-      <Wrapper {...rest}>
+      <Wrapper backgroundColor={backgroundColor} {...rest}>
         <ContentContainer>
           <FooterNavigation>
             <NavList>
@@ -156,7 +156,7 @@ let ContactNavItem = styled(NavItem)`
 `;
 
 let NavLink = styled.a`
-  color: var(--off-black);
+  color: inherit;
   text-decoration: none;
   line-height: 1.3rem;
 `;

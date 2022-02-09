@@ -75,7 +75,7 @@ function WorkPage({
 								Object.keys(formats).length == 0
 									? url
 									: formats[
-											findLargestFormat(formats, "small")
+											findLargestFormat(formats, "medium")
 									  ].url
 							}
 							alt={alternativeText}

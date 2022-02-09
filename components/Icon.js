@@ -5,6 +5,8 @@ let fontAwesomeClasses = {
 	facebook: ["fab", "fa-facebook"],
 	instagram: ["fab", "fa-instagram"],
 	youtube: ["fab", "fa-youtube"],
+	linkedin: ["fab", "fa-linkedin"],
+	website: ["fab", "fa-browser"]
 };
 
 function Icon({icon}) {

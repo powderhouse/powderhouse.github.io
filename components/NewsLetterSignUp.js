@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import { buttonSVGs } from "../site-data.js";
-import { highlight } from "./global.js";
+import { highlight, expandColor } from "./global.js";
 
 function NewsLetterSignUp({
     text,
@@ -45,7 +45,7 @@ function NewsLetterSignUp({
         <NewsLetterForm method="post" onSubmit={handleSubmit}>
             <input type="hidden" name="u" value="f8c818c16bcf7810f5da39962" />
             <input type="hidden" name="id" value="5137830bcb" />
-            <EmailInput name="MERGE0" id="MERGE0" />
+            <EmailInput name="MERGE0" id="MERGE0" color={color} />
             <NewsLetterFormButton className="arrowButton">
                 {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
                     color
@@ -74,16 +74,16 @@ let EmailInput = styled.input.attrs((props) => ({
     grid-column: 1 / 4;
 
     color: ${(props) =>
-        props.color ? "var(--" + props.color + ")" : "off-black"};
+        props.color ? expandColor(props.color) : expandColor("--off-black")};
     background: transparent;
-    border: 3px solid ${(props) =>
-        props.color ? "var(--" + props.color + ")" : "off-black"};
+    border: 2px solid ${(props) =>
+        props.color ? expandColor(props.color) : expandColor("--off-black")};
     padding: 0.5em;
 
     &::placeholder {
-        color: ${(props) =>
-        props.color ? "var(--" + props.color + ")" : "off-black"};
-        opacity: 0.625;
+        opacity:0.6;
+        color:${(props) =>
+        props.color ? expandColor(props.color) : expandColor("--off-black")};
     }
 `;
 
@@ -105,8 +105,8 @@ let ButtonText = styled.div`
     transform: translateY(-50%);
     left: 1rem;
     position: absolute;
-    color: ${(props) =>
-        props.color ? "var(--" + props.color + ")" : "off-black"};
+    color:${(props) =>
+        props.color ? expandColor(props.color) : expandColor("--off-black")};
 `;
 
 export default NewsLetterSignUp;

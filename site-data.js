@@ -466,6 +466,72 @@ let buttonSVGs = {
       ),
     },
   },
+  naked: {
+    short: {
+      1: (color = "off-black") => (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          fill="transparent" 
+          strokeWidth="5" 
+          stroke={color} 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
+          strokeDasharray=""
+        >
+          <path d="M 2.194 28.897 L 2.194 2.208 L 53.346 2.208 L 63.046 15.426 L 53.346 28.897 Z"></path>
+          <path d="M 51.5 3 L 43 27.5 L 29 3 L 23.5 27.5 L 19.5 3 L 13.5 27.5 L 3.5 3"></path>
+        </svg>
+        ),
+      2: (color = "off-black") => (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          fill="transparent" 
+          strokeWidth="5" 
+          stroke={color} 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
+          strokeDasharray=""
+        >
+          <path d="M 2 29 L 2 2 L 59.5 2 L 69 15.5 L 59.5 29 Z"></path>
+          <path d="M 62.5 7 L 51.5 27.5 L 41.5 3 L 34 29 L 30.5 2 L 14.5 29 L 4 3"></path>
+      </svg>
+      ),
+      3: (color = "off-black") =>(
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          fill="transparent" 
+          strokeWidth="5" 
+          stroke={color} 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
+          strokeDasharray=""
+        >
+          <path d="M 2.194 28.897 L 2.194 2.208 L 53.346 2.208 L 63.046 15.426 L 53.346 28.897 Z"></path>
+          <path d="M 58 10 L 43 27.5 L 38.5 3 L 23.5 27.5 L 32 2 L 13.5 27.5 L 10.5 3"></path>
+        </svg>
+        ),
+    },
+    long: {
+      1: (color = "off-black") => (
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          fill="transparent" 
+          strokeWidth="5" 
+          stroke={color} 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
+          strokeDasharray=""
+        >
+          <path d="M 2.194 28.897 L 2.194 2.208 L 90.5 2 L 100 15.5 L 90.5 29 Z"></path>
+          <path d="M 88 3 L 83 29 L 61 2 L 55 27.5 L 50.5 3 L 42 27.5 L 28 3 L 22.5 27.5 L 18.5 3 L 12.5 27.5 L 2.5 3"></path>
+        </svg>
+      ),
+    },
+  }
 };
 
 let asteriskSVG = (color = "off-black", strokeWidth="5") => (
