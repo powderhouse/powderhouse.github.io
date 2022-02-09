@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -31,14 +32,10 @@ function NewsPage({ newsPage, newsCards }) {
 	let accentColor = "--yellow";
 
 	let sortedNewsCards = newsCards.data.sort((a, b) => {
-			let aTime = new Date(a).getTime();
-			let bTime = new Date(b).getTime();
-			if (aTime < bTime) {
-				return -1
-			} else if (aTime > bTime) {
-				return 1
-			}
-		});
+			let aTime = new Date(a.attributes.NewsDate).getTime();
+			let bTime = new Date(b.attributes.NewsDate).getTime();
+			return aTime - bTime;
+		}).reverse();
 
 	let regions = [
 		<Header backgroundColor="--off-white" />,
@@ -53,7 +50,8 @@ function NewsPage({ newsPage, newsCards }) {
 		...sortedNewsCards.map((n, i) => (
 			<Region2 backgroundColor="--off-white" key={i} grid={true}>
 				<NewsItem>
-					<NewsDate>{parseDate(n.attributes.NewsDate)}</NewsDate>
+					{/* <NewsDate>{parseDate(n.attributes.NewsDate)}</NewsDate> */}
+					<NewsDate>{n.attributes.NewsDate}</NewsDate>
 					<NewsType>{n.attributes.NewsType}</NewsType>
 					<NewsTitle>{n.attributes.NewsTitle}</NewsTitle>
 					<NewsContent>
@@ -78,7 +76,13 @@ function NewsPage({ newsPage, newsCards }) {
 		)),
 		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
 	];
-	return <PageContainer2>{regions}</PageContainer2>;
+
+	return (
+		<PageContainer2>
+			{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
+			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
+		</PageContainer2>
+	);
 }
 
 let NewsItem = styled.div`
@@ -146,7 +150,8 @@ function parseDate(dateString) {
 
 export async function getStaticProps(context) {
 	let newsPage = await fetchAPI("/news-page?populate=*");
-	let newsCards = await fetchAPI("/news-cards?populate=*");
+	// TODO: Ideally would "get all" rather than "get 100"
+	let newsCards = await fetchAPI("/news-cards?populate=*&pagination[limit]=100");
 	return {
 		props: {
 			newsPage: newsPage,
