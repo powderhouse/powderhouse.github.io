@@ -31,6 +31,7 @@ import {
 	ShiftBy,
 	getBgFromLight,
 	Div,
+	tenureSort,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -53,32 +54,12 @@ function TeamPage2({
 
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
 	// TK Is this (below) an OK way to "destructure" (but not actually) this data structure?
-	[staff,advisors,alumni] = [staff,advisors,alumni].map(people=>people.map(person=>person.attributes));
+	[staff, advisors, alumni] = [staff, advisors, alumni].map((people) =>
+		people.map((person) => person.attributes)
+	);
 
 	alumni = alumni
-		.sort((a, b) => {
-			// Sort first by starting year, then ending year, then alphabetical by first name
-			if (a.YearStart < b.YearStart) {
-				return -1;
-			} else if (a.YearStart > b.YearStart) {
-				return 1;
-			} else {
-				if (a.YearEnd < b.YearEnd) {
-					return -1;
-				} else if (a.YearEnd > b.YearEnd) {
-					return 1;
-				} else {
-					// via https://stackoverflow.com/a/60922998
-					return a.Name.localeCompare(
-						b.Name,
-						"en",
-						{
-							sensitivity: "base",
-						}
-					);
-				}
-			}
-		})
+		.sort(tenureSort("YearStart", "YearEnd", "Name", "descending"))
 		.reverse();
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
