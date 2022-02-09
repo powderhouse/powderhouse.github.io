@@ -29,6 +29,7 @@ import { fetchAPI } from "../lib/api";
 
 function NewsPage({ newsPage, newsCards }) {
 	let accentColor = "--yellow";
+	
 	let regions = [
 		<Header backgroundColor="--off-white" />,
 		<PageSplash backgroundColor={accentColor} >
@@ -36,7 +37,7 @@ function NewsPage({ newsPage, newsCards }) {
 				{newsPage.data.attributes.PageSplash.PageHeader}
 			</PageHeading>
 		</PageSplash>,
-		<PageIntroduction backgroundColor="--off-white">
+		<PageIntroduction backgroundColor="--off-white" markdown>
 			{newsPage.data.attributes.PageSplash.PageIntro}
 		</PageIntroduction>,
 		...newsCards.data.map((n, i) => (

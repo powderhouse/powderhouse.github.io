@@ -9,6 +9,8 @@ import Region2 from "../components/Region2.js";
 
 function Header(props) {
   const router = useRouter();
+  let basePath = "/"+router.pathname.split("/")[1];
+
   function assignPageColor(navText) {
     let color;
     navMenuItems.forEach((el) =>
@@ -42,8 +44,8 @@ function Header(props) {
                   <NavListItem key={n.href}>
                     <NavLink
                       className={
-                        (router.pathname == n.href ? "active" : "") +
-                        " nav-link"
+                        (basePath == n.href ? "active " : "") +
+                        "nav-link"
                       }
                       color={props.color}
                       href={n.href}
