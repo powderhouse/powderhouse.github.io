@@ -29,7 +29,17 @@ import { fetchAPI } from "../lib/api";
 
 function NewsPage({ newsPage, newsCards }) {
 	let accentColor = "--yellow";
-	
+
+	let sortedNewsCards = newsCards.data.sort((a, b) => {
+			let aTime = new Date(a).getTime();
+			let bTime = new Date(b).getTime();
+			if (aTime < bTime) {
+				return -1
+			} else if (aTime > bTime) {
+				return 1
+			}
+		});
+
 	let regions = [
 		<Header backgroundColor="--off-white" />,
 		<PageSplash backgroundColor={accentColor} >
@@ -40,7 +50,7 @@ function NewsPage({ newsPage, newsCards }) {
 		<PageIntroduction backgroundColor="--off-white" markdown>
 			{newsPage.data.attributes.PageSplash.PageIntro}
 		</PageIntroduction>,
-		...newsCards.data.map((n, i) => (
+		...sortedNewsCards.map((n, i) => (
 			<Region2 backgroundColor="--off-white" key={i} grid={true}>
 				<NewsItem>
 					<NewsDate>{parseDate(n.attributes.NewsDate)}</NewsDate>
