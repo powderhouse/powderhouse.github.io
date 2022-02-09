@@ -58,24 +58,42 @@ function PageContainer2(props) {
 		(c) => (!c.props.backgroundColor ? true : false)
 	);
 
-	let firstContentRegion = regionRuns.find((rr) => {
-		rr.some((r) => containsMainContent(r));
-	});
+	let contentIndices = regionRuns
+		.map((rr, i) => (rr.some((r) => containsMainContent(r)) ? i : null))
+		.filter((x) => x);
+
+	let firstContentRegion, lastContentRegion;
+	if (contentIndices.length > 0) {
+		firstContentRegion = regionRuns[contentIndices[0]];
+		lastContentRegion = regionRuns[contentIndices.slice(-1)[0]];
+	}
 
 	let regionContainers = regionRuns.map((rr, i) => {
 		let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
-		let content =
-			rr == firstContentRegion
-				? "first"
-				: rr.some((r) => containsMainContent(r));
-		let regions = rr;
+
+		let containsContent = rr.some((r) => containsMainContent(r));
+		let isFirstContentRegion = firstContentRegion
+			? rr == firstContentRegion
+			: false;
+		let isLastContentRegion = lastContentRegion
+			? rr == lastContentRegion
+			: false;
+		let isFirstRegionContainer = i == 0;
+		let isLastRegionContainer = i == regionRuns.length - 1;
+
+		let padTop =
+			!isFirstContentRegion && !isFirstRegionContainer && containsContent;
+		let padBottom = containsContent && !isLastRegionContainer;
+		let pad = [padTop ? "top" : null, padBottom ? "bottom" : null].filter(
+			(x) => x
+		);
 		return (
 			<RegionContainer2
 				backgroundColor={backgroundColor}
-				content={content}
 				key={i}
+				pad={pad}
 			>
-				{regions}
+				{rr}
 			</RegionContainer2>
 		);
 	});

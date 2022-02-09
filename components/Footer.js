@@ -68,8 +68,8 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
             <>
               <FooterNewsletterSignup>
                 <NewsLetterShoutOut>
-                  If you'd like to keep up with our work, sign up for our mailing
-                  list.
+                  If you'd like to keep up with our work, sign up for our
+                  mailing list.
                 </NewsLetterShoutOut>
                 <NewsLetterSignUp
                   color="off-black"
@@ -79,12 +79,13 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   buttonTextLength="longText"
                 />
               </FooterNewsletterSignup>
-              <LogoContainer>{logotypeVertSVG(expandColor(accentColor))}</LogoContainer>
+              <LogoContainer>
+                {logotypeVertSVG(expandColor(accentColor))}
+              </LogoContainer>
             </>
           ) : (
             ""
-          )
-        }
+          )}
         </ContentContainer>
       </Wrapper>
     </Region2>
@@ -111,7 +112,6 @@ let Wrapper = styled.footer`
   ${baseGrid};
   ${(props) => colorByProp(props)};
   position: relative;
-  padding-bottom: 1.3rem;
 `;
 
 let LogoContainer = styled.div`
@@ -131,7 +131,7 @@ let ContentContainer = styled.div`
   ${baseGrid};
   /*position:absolute;*/
   z-index: 1;
-  padding-top: calc(2 * 1.3rem);
+  padding-bottom: var(--gap);
   /*bottom: 0;*/
 `;
 
