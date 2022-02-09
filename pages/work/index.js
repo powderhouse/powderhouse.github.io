@@ -177,7 +177,7 @@ function WorkPage({
 				<SectionHeader left={partnersDesc.isLeftHeader}>
 					{partnersDesc.SectionHeader}
 				</SectionHeader>
-				<PageSectionContent wide={"true"}>
+				<PageSectionContent $wide={true}>
 					<Div>{partnersDesc.PageSectionContent}</Div>
 					<PartnerSectionContent>{partners}</PartnerSectionContent>
 				</PageSectionContent>
@@ -188,7 +188,7 @@ function WorkPage({
 				<SectionHeader left={projectsDesc.isLeftHeader}>
 					{projectsDesc.SectionHeader}
 				</SectionHeader>
-				<PageSectionContent wide={"true"} grid={"true"}>
+				<PageSectionContent $wide={true} $grid={true}>
 					{projectsDesc.PageSectionContent ? (
 						<ProjectSubtitle>
 							<Div>{projectsDesc.PageSectionContent}</Div>
@@ -205,7 +205,7 @@ function WorkPage({
 				<SectionHeader left={pastLivesDesc.isLeftHeader}>
 					{pastLivesDesc.SectionHeader}
 				</SectionHeader>
-				<PageSectionContent wide={"true"} grid={"false"}>
+				<PageSectionContent $wide={true} $grid={false}>
 					{pastLivesDesc.PageSectionContent ? (
 						<Div>{pastLivesDesc.PageSectionContent}</Div>
 					) : (
