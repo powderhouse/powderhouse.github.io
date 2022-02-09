@@ -55,11 +55,7 @@ function NewsPage({ newsPage, newsCards }) {
 					<NewsType>{n.attributes.NewsType}</NewsType>
 					<NewsTitle>{n.attributes.NewsTitle}</NewsTitle>
 					<NewsContent>
-						<NewsExcerpt>
-							<ReactMarkdown rehypePlugins={[rehypeRaw]}>
-								{n.attributes.NewsExcerpt}
-							</ReactMarkdown>
-						</NewsExcerpt>
+						<NewsExcerpt markdown>{n.attributes.NewsExcerpt}</NewsExcerpt>
 						<NewsRelatedLinks>
 							{n.attributes.NewsRelatedLinks.map((l, i) => (
 								<a key={i} href={l.Link}>
@@ -86,7 +82,7 @@ function NewsPage({ newsPage, newsCards }) {
 }
 
 let NewsItem = styled.div`
-	grid-column: 1 / -1;
+	grid-column: 1 / 10;
 
 	display:grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -97,7 +93,6 @@ let NewsDate = styled.h3`
 	grid-column: 1 / 4;
 	grid-row: 1 / 2;
 	align-self: end;
-
 	font-weight:300;
 `;
 
@@ -105,7 +100,7 @@ let NewsType = styled.p`
 	grid-column: 1 / 4;
 	grid-row: 2 / 3;
 	align-self: start;
-
+	font-weight:300;
 	opacity:0.75;
 `;
 
@@ -113,9 +108,8 @@ let NewsTitle = styled.h2`
 	grid-column: 4 / -1;
 	grid-row: 1 / 2;
 	align-self: end;
-
-	font-size: 2rem;
-	line-height:2rem;
+	font-size: calc(1.3rem * 1.2);
+	line-height: calc(1.3rem * 1.2);
 	font-weight:300;
 `;
 
@@ -123,18 +117,22 @@ let NewsContent = styled.div`
 	grid-column: 4 / -1;
 	grid-row: 2 / 3;
 	align-self: start;
+	font-weight:300;
 `;
 
-let NewsExcerpt = styled(Markdown)``;
+let NewsExcerpt = styled(Markdown)`
+	font-weight:300;
+	opacity:0.75;
+`;
 
 let NewsRelatedLinks = styled.ul`
 	list-style-type: none;
 	margin: 0;
-	padding: calc(1.3rem / 2) 0;
+	padding: calc(1.3rem / 4) 0;
 `;
 
 let NewsLi = styled.li`
-	padding-left: calc(1.25 * 1.3rem);
+	padding-left: 1.3rem;
 	position: relative;
 `;
 
