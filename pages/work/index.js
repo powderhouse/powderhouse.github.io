@@ -1,6 +1,8 @@
-import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+
+import styled from "styled-components";
+import { css } from "styled-components";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";

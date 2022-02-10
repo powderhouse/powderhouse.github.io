@@ -117,12 +117,20 @@ function NewsItem({ date, type, title, excerpt, links }) {
 	);
 }
 
-let NewsDate = styled.h3`
+let NewsDateDiv = styled.h3`
 	grid-column: 1 / 4;
 	grid-row: 1 / 2;
 	align-self: end;
 	font-weight: 300;
 `;
+
+function NewsDate(props) {
+	const date = new Date(props.children);
+	const options = { year: "numeric", month: "long", day: "numeric" };
+	const dateString = date.toLocaleDateString(undefined, options);
+
+	return <NewsDateDiv>{dateString}</NewsDateDiv>;
+}
 
 let NewsType = styled.p`
 	grid-column: 1 / 4;
