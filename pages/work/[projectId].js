@@ -29,7 +29,10 @@ function ProjectDetailPage({ projectData }) {
     <PageContainer2>
       <Header backgroundColor="--off-white" />
       <ProjectSplash backgroundColor="--off-white">
-        <ProjectTitle><span>{projectData.ProjectTitle}</span><TenureTag>{projectData.YearStart}-{projectData.YearEnd}</TenureTag></ProjectTitle>
+        <ProjectTitle
+          title={projectData.ProjectTitle}
+          years={{ start: projectData.YearStart, end: projectData.YearEnd }}
+        />
         <ProjectFeatureImage>
           <ProjectImage
             src={projectData.ProjectFeatureImageInfo.url}
@@ -44,11 +47,6 @@ function ProjectDetailPage({ projectData }) {
             {projectData.ProjectDescription}
           </ProjectDescription>
           <ProjectInfoList>
-            {/* <ProjectLi> */}
-            {/*   <Asterisk key={-1} type="Default" /> */}
-            {/*   {projectData.YearStart}-{projectData.YearEnd} */}
-            {/* </ProjectLi> */}
-
             {projectData.ProjectInfoList.map((n, i) => (
               <a key={i} href={n.Link}>
                 <ProjectLi>
@@ -112,25 +110,48 @@ function ProjectSplash({ backgroundColor, ...rest }) {
   );
 }
 
-let ProjectTitle = styled.h2`
+let ProjectTitleHeading = styled.h2`
   grid-area: title;
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
-  align-items:flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   font-size: calc(1.3rem * 5);
   line-height: calc(1.3rem * 5);
   font-weight: 300;
-  padding-bottom:calc(1.3rem);
+  display: inline-block;
+  padding-bottom: calc(1 * 1.3rem);
 `;
 
 let TenureTag = styled.span`
   font-size: calc(1.3rem * 2);
   line-height: calc(1.3rem * 2);
   padding-bottom: calc(var(--gap) / 4);
-  font-weight:500;
-  opacity:0.625;
+  font-weight: 500;
+  opacity: 0.625;
 `;
+
+let ProjectYearsHeading = styled.span`
+  font-size: calc(3 * 1.3rem);
+  line-height: calc(3 * 1.3rem);
+  vertical-align: baseline;
+  opacity: 0.25;
+`;
+
+function ProjectTitle(props) {
+  return (
+    <ProjectTitleHeading>
+      {props.title}{" "}
+      <ProjectYearsHeading>
+        (
+        {props.years.start == props.years.end
+          ? props.years.start
+          : `${props.years.start}–${props.years.end}`}
+        )
+      </ProjectYearsHeading>
+    </ProjectTitleHeading>
+  );
+}
 
 let ProjectInfo = styled.div`
   grid-area: info;
@@ -159,7 +180,7 @@ let ProjectInfoList = styled.ul`
 `;
 
 let ProjectLi = styled.li`
-  padding-left: calc(1.25 * 1.3rem);
+  padding-left: calc(1 * 1.3rem);
   position: relative;
 `;
 
@@ -185,7 +206,7 @@ let PageGalleryDiv = styled.div`
 
   /*Masonry*/
   list-style-type: none;
-  column-count: ${(props) => props.numCols ? props.numCols : 3};
+  column-count: ${(props) => (props.numCols ? props.numCols : 3)};
   column-gap: var(--gap);
 `;
 
