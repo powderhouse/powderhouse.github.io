@@ -6,7 +6,7 @@ let PageTOC = styled.ol`
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	padding-bottom: 1.3rem;
+	padding-bottom: calc(2 * 1.3rem);
 	position: relative;
 	left: calc(var(--gap) - 7px);
 `;
@@ -18,7 +18,7 @@ let PageTOCItem = styled.li`
 let PageTOCLink = styled.a`
 	display: flex;
 	align-items: center;
-	width:fit-content;
+	width: fit-content;
 	transition: 0.8s ease;
 	text-decoration: none;
 	position: relative;
@@ -29,21 +29,23 @@ let PageTOCLink = styled.a`
 `;
 
 let TOCText = styled.div`
-	margin-left:calc(1.3rem / 4);
+	margin-left: calc(1.3rem / 4);
 `;
 
 function PageTableOfContents({ sections }) {
-	let items = sections.map((n, i) => (
-		n.SectionHeader
-		? <PageTOCItem key={i}>
-			<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
-				<Asterisk key={i} type="TOC" />
-				<TOCText>{n.SectionHeader}</TOCText>
-			</PageTOCLink>
-		</PageTOCItem>
-		: ""
-	));
-	return <PageTOC >{items}</PageTOC>;
+	let items = sections.map((n, i) =>
+		n.SectionHeader ? (
+			<PageTOCItem key={i}>
+				<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
+					<Asterisk key={i} type="TOC" />
+					<TOCText>{n.SectionHeader}</TOCText>
+				</PageTOCLink>
+			</PageTOCItem>
+		) : (
+			""
+		)
+	);
+	return <PageTOC>{items}</PageTOC>;
 }
 
 export default PageTableOfContents;

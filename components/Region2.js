@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { complementaryColor } from "../components/global";
+import { complementaryColor, SectionHeader } from "../components/global";
 
-let Region2 = styled.div`
+let StyledDiv = styled.div`
 	margin: 0 auto; // TODO: Any better way to center?
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -14,16 +14,55 @@ let Region2 = styled.div`
 	padding-right: var(--gap);
 	background-color: ${(props) =>
 		props.backgroundColor ? props.backgroundColor : "initial"};
-	color: ${(props) =>
-		props.color
-			? props.color
-			: props.backgroundColor
-			? complementaryColor(props.backgroundColor)
-			: "initial"}
 
-	&:not(:last-child) {
-		margin-bottom: calc(2 * 1.3rem);
-	}
+	${(props) => {
+		if (props.color) {
+			return css`
+				color: ${props.color};
+			`;
+		} else if (props.backgroundColor) {
+			return css`
+				color: ${complementaryColor(props.backgroundColor)};
+			`;
+		} else {
+			return css`
+				color: "initial";
+			`;
+		}
+	}}
+
+	${(props) => {
+		if (props.header) {
+			return css`
+				padding-top: calc(1 * 1.3rem);
+				padding-bottom: calc(1 * 1.3rem);
+				&:first-of-type {
+					padding-top: 0;
+				}
+				&:last-of-type {
+					padding-bottom: 0;
+				}
+			`;
+		}
+	}};
 `;
+
+function Region2({ header, left, children, ...rest }) {
+	let elements = [children];
+	if (header) {
+		let sectionHeader = (
+			<SectionHeader left={left} key={elements.length + 1}>
+				{header}
+			</SectionHeader>
+		);
+		elements = [sectionHeader].concat(elements);
+	}
+
+	return (
+		<StyledDiv header={header} left={left}>
+			{elements}
+		</StyledDiv>
+	);
+}
 
 export default Region2;

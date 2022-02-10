@@ -112,6 +112,7 @@ let Wrapper = styled.footer`
   ${baseGrid};
   ${(props) => colorByProp(props)};
   position: relative;
+  padding-top: calc(4 * 1.3rem);
 `;
 
 let LogoContainer = styled.div`

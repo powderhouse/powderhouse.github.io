@@ -31,15 +31,17 @@ import { fetchAPI } from "../lib/api";
 function NewsPage({ newsPage, newsCards }) {
 	let accentColor = "--yellow";
 
-	let sortedNewsCards = newsCards.data.sort((a, b) => {
+	let sortedNewsCards = newsCards.data
+		.sort((a, b) => {
 			let aTime = new Date(a.attributes.NewsDate).getTime();
 			let bTime = new Date(b.attributes.NewsDate).getTime();
 			return aTime - bTime;
-		}).reverse();
+		})
+		.reverse();
 
 	let regions = [
 		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor={accentColor} >
+		<PageSplash backgroundColor={accentColor}>
 			<PageHeading>
 				{newsPage.data.attributes.PageSplash.PageHeader}
 			</PageHeading>
@@ -47,29 +49,29 @@ function NewsPage({ newsPage, newsCards }) {
 		<PageIntroduction backgroundColor="--off-white" markdown>
 			{newsPage.data.attributes.PageSplash.PageIntro}
 		</PageIntroduction>,
-		...sortedNewsCards.map((n, i) => (
-			<Region2 backgroundColor="--off-white" key={i} grid={true}>
-				<NewsItem>
-					{/* <NewsDate>{parseDate(n.attributes.NewsDate)}</NewsDate> */}
-					<NewsDate>{n.attributes.NewsDate}</NewsDate>
-					<NewsType>{n.attributes.NewsType}</NewsType>
-					<NewsTitle>{n.attributes.NewsTitle}</NewsTitle>
-					<NewsContent>
-						<NewsExcerpt markdown>{n.attributes.NewsExcerpt}</NewsExcerpt>
-						<NewsRelatedLinks>
-							{n.attributes.NewsRelatedLinks.map((l, i) => (
-								<a key={i} href={l.Link}>
-									<NewsLi>
-										<Asterisk key={i} type="Default" />
-										{l.LinkText}
-									</NewsLi>
-								</a>
-							))}
-						</NewsRelatedLinks>
-					</NewsContent>
-				</NewsItem>
-			</Region2>
-		)),
+		...sortedNewsCards.map(
+			(
+				{
+					attributes: {
+						NewsDate,
+						NewsType,
+						NewsTitle,
+						NewsExcerpt,
+						NewsRelatedLinks,
+					},
+				},
+				i
+			) => (
+				<NewsItem
+					key={i}
+					date={NewsDate}
+					type={NewsType}
+					title={NewsTitle}
+					excerpt={NewsExcerpt}
+					links={NewsRelatedLinks}
+				/>
+			)
+		),
 		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
 	];
 
@@ -81,27 +83,53 @@ function NewsPage({ newsPage, newsCards }) {
 	);
 }
 
-let NewsItem = styled.div`
+let NewsItemContainer = styled.div`
 	grid-column: 1 / 10;
 
-	display:grid;
+	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	column-gap:var(--gap);
+	column-gap: var(--gap);
+	padding: calc(1 * 1.3rem) 0;
 `;
+
+function NewsItem({ date, type, title, excerpt, links }) {
+	return (
+		<Region2 backgroundColor="--off-white" $grid={true}>
+			<NewsItemContainer>
+				<NewsDate>{date}</NewsDate>
+				<NewsType>{type}</NewsType>
+				<NewsTitle>{title}</NewsTitle>
+				<NewsContent>
+					<NewsExcerpt markdown>{excerpt}</NewsExcerpt>
+					<NewsRelatedLinks>
+						{links.map((l, i) => (
+							<a key={i} href={l.Link}>
+								<NewsLi>
+									<Asterisk key={i} type="Default" />
+									{l.LinkText}
+								</NewsLi>
+							</a>
+						))}
+					</NewsRelatedLinks>
+				</NewsContent>
+			</NewsItemContainer>
+		</Region2>
+	);
+}
 
 let NewsDate = styled.h3`
 	grid-column: 1 / 4;
 	grid-row: 1 / 2;
 	align-self: end;
-	font-weight:300;
+	font-weight: 300;
 `;
 
 let NewsType = styled.p`
 	grid-column: 1 / 4;
 	grid-row: 2 / 3;
 	align-self: start;
-	font-weight:300;
-	opacity:0.75;
+	font-weight: 300;
+	opacity: 0.75;
 `;
 
 let NewsTitle = styled.h2`
@@ -110,19 +138,19 @@ let NewsTitle = styled.h2`
 	align-self: end;
 	font-size: calc(1.3rem * 1.2);
 	line-height: calc(1.3rem * 1.2);
-	font-weight:300;
+	font-weight: 300;
 `;
 
 let NewsContent = styled.div`
 	grid-column: 4 / -1;
 	grid-row: 2 / 3;
 	align-self: start;
-	font-weight:300;
+	font-weight: 300;
 `;
 
 let NewsExcerpt = styled(Markdown)`
-	font-weight:300;
-	opacity:0.75;
+	font-weight: 300;
+	opacity: 0.75;
 `;
 
 let NewsRelatedLinks = styled.ul`
@@ -140,7 +168,7 @@ function parseDate(dateString) {
 	let parts = dateString.split("-");
 	let dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
 	let day = parts[2];
-	let month = dateObj.toLocaleString('default', { month: 'long' });
+	let month = dateObj.toLocaleString("default", { month: "long" });
 	let year = parts[0];
 
 	return [day, month, year].join(" ");
@@ -149,7 +177,9 @@ function parseDate(dateString) {
 export async function getStaticProps(context) {
 	let newsPage = await fetchAPI("/news-page?populate=*");
 	// TODO: Ideally would "get all" rather than "get 100"
-	let newsCards = await fetchAPI("/news-cards?populate=*&pagination[limit]=100");
+	let newsCards = await fetchAPI(
+		"/news-cards?populate=*&pagination[limit]=100"
+	);
 	return {
 		props: {
 			newsPage: newsPage,

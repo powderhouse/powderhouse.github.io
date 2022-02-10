@@ -55,7 +55,7 @@ function PageContainer2(props) {
 	let regionRuns = groupBy(
 		props.children,
 		(c) => (c.props.backgroundColor ? c.props.backgroundColor : false),
-		(c) => (!c.props.backgroundColor ? true : false)
+		(c) => (!c.props.backgroundColor ? false : true)
 	);
 
 	let contentIndices = regionRuns

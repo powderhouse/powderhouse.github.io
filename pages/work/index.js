@@ -174,10 +174,9 @@ function WorkPage({
 			</PageIntroduction>
 			<Region2
 				backgroundColor={getBgFromLight(partnersDesc.isLightSection)}
+				header={partnersDesc.SectionHeader}
+				left={partnersDesc.isLeftHeader}
 			>
-				<SectionHeader left={partnersDesc.isLeftHeader}>
-					{partnersDesc.SectionHeader}
-				</SectionHeader>
 				<PageSectionContent $wide={true}>
 					<Div>{partnersDesc.PageSectionContent}</Div>
 					<PartnerSectionContent>{partners}</PartnerSectionContent>
@@ -185,10 +184,9 @@ function WorkPage({
 			</Region2>
 			<Region2
 				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
+				header={projectsDesc.SectionHeader}
+				left={projectsDesc.isLeftHeader}
 			>
-				<SectionHeader left={projectsDesc.isLeftHeader}>
-					{projectsDesc.SectionHeader}
-				</SectionHeader>
 				<PageSectionContent $wide={true} $grid={true}>
 					{projectsDesc.PageSectionContent ? (
 						<ProjectSubtitle>
@@ -202,10 +200,9 @@ function WorkPage({
 			</Region2>
 			<Region2
 				backgroundColor={getBgFromLight(pastLivesDesc.isLightSection)}
+				header={pastLivesDesc.SectionHeader}
+				left={pastLivesDesc.isLeftHeader}
 			>
-				<SectionHeader left={pastLivesDesc.isLeftHeader}>
-					{pastLivesDesc.SectionHeader}
-				</SectionHeader>
 				<PageSectionContent $wide={true} $grid={false}>
 					{pastLivesDesc.PageSectionContent ? (
 						<Div>{pastLivesDesc.PageSectionContent}</Div>

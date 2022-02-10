@@ -28,13 +28,13 @@ import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
 function AboutPage({
-		aboutPageMeta: {
-			PageSplash: { PageHeader, PageIntro },
-		},
-		aboutPageContent,
+	aboutPageMeta: {
+		PageSplash: { PageHeader, PageIntro },
+	},
+	aboutPageContent,
 }) {
 	let accentColor = "--yellow";
-	
+
 	let regions = [
 		<Header backgroundColor="--off-white" />,
 		<PageSplash backgroundColor={accentColor}>
@@ -46,30 +46,37 @@ function AboutPage({
 				{PageIntro}
 			</ShiftBy>
 		</PageIntroduction>,
-		...aboutPageContent.map((e,i) => (e.PageImage 
-			? (<Region2 backgroundColor="--off-black" key={i} >
-					<PageImage 
+		...aboutPageContent.map((e, i) =>
+			e.PageImage ? (
+				<Region2 backgroundColor="--off-black" key={i}>
+					<PageImage
 						fullBleed={e.IsFullBleed}
 						imgHeight="600"
-						src={e.PageImage.data.attributes.formats == null ? url : e.PageImage.data.attributes.formats[findLargestFormat(e.PageImage.data.attributes.formats, "large")].url}
+						src={
+							e.PageImage.data.attributes.formats == null
+								? url
+								: e.PageImage.data.attributes.formats[
+										findLargestFormat(
+											e.PageImage.data.attributes.formats,
+											"large"
+										)
+								  ].url
+						}
 						alt={e.PageImage.data.attributes.alternativeText}
 						caption={e.PageImage.data.attributes.caption}
 					/>
-			</Region2>)
-			: (
-				<Region2 backgroundColor={getBgFromLight(e.isLightSection)} key={i} >
-					{
-						e.SectionHeader
-						? <SectionHeader left={e.isLeftHeader ? e.isLeftHeader : false}>
-							{e.SectionHeader}
-						</SectionHeader>
-						: ""
-					}
+				</Region2>
+			) : (
+				<Region2
+					backgroundColor={getBgFromLight(e.isLightSection)}
+					key={i}
+					header={e.SectionHeader ? e.SectionHeader : null}
+					left={e.isLeftHeader ? e.isLeftHeader : null}
+				>
 					<PageSectionContent markdown>
 						{e.PageSectionContent}
 					</PageSectionContent>
 				</Region2>
-				)
 			)
 		),
 		<Footer backgroundColor="--off-white" accentColor={accentColor} />,

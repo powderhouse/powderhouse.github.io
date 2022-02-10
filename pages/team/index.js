@@ -62,10 +62,11 @@ function TeamPage2({
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
 	let staffCards = (
-		<Region2 backgroundColor={getBgFromLight(staffSection.isLightSection)}>
-			<SectionHeader left={staffSection.isLeftHeader}>
-				{staffSection.SectionHeader}
-			</SectionHeader>
+		<Region2
+			backgroundColor={getBgFromLight(staffSection.isLightSection)}
+			header={staffSection.SectionHeader}
+			left={staffSection.isLeftHeader}
+		>
 			<PageSectionContent $wide={true} $grid={true}>
 				{staff.map((s, i) => (
 					<PersonCard
@@ -91,10 +92,9 @@ function TeamPage2({
 	let advisorCards = (
 		<Region2
 			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
+			header={advisorSection.SectionHeader}
+			left={advisorSection.isLeftHeader}
 		>
-			<SectionHeader left={advisorSection.isLeftHeader}>
-				{advisorSection.SectionHeader}
-			</SectionHeader>
 			<PageSectionContent $wide={true} $grid={true}>
 				{advisors.map((a, i) => (
 					<PersonCard
@@ -113,10 +113,11 @@ function TeamPage2({
 		(s) => s.SectionHeader == "Alumni"
 	)[0];
 	let alumniCards = (
-		<Region2 backgroundColor={getBgFromLight(alumniSection.isLightSection)}>
-			<SectionHeader left={alumniSection.isLeftHeader}>
-				{alumniSection.SectionHeader}
-			</SectionHeader>
+		<Region2
+			backgroundColor={getBgFromLight(alumniSection.isLightSection)}
+			header={alumniSection.SectionHeader}
+			left={alumniSection.isLeftHeader}
+		>
 			<PageSectionContent $wide={true} $grid={true}>
 				{alumni.map((a, i) => (
 					<PersonCard
@@ -150,10 +151,11 @@ function TeamPage2({
 		staffCards,
 		advisorCards,
 		alumniCards,
-		<Region2 backgroundColor={getBgFromLight(jobs.isLightSection)}>
-			<SectionHeader left={jobs.isLeftHeader}>
-				{jobs.SectionHeader}
-			</SectionHeader>
+		<Region2
+			backgroundColor={getBgFromLight(jobs.isLightSection)}
+			header={jobs.SectionHeader}
+			left={jobs.isLeftHeader}
+		>
 			<PageSectionContent $wide={true} $grid={true}>
 				<Div markdown style={{ backgroundColor: "lightblue" }}>
 					{jobs.PageSectionContent}

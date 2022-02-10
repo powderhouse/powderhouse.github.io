@@ -211,8 +211,7 @@ let PageIntroductionDiv = styled(Div)`
 	font-size: 34px;
 	line-height: calc(2 * 1.3rem);
 	letter-spacing: -0.5;
-	padding-right: none;
-	padding-top: calc(1 * 1.3rem);
+	padding: calc(1 * 1.3rem) 0;
 `;
 
 function PageIntroduction({ children, markdown, ...rest }) {
