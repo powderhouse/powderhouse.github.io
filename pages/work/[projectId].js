@@ -62,7 +62,7 @@ function ProjectDetailPage({ projectData }) {
       </ProjectSplash>
       <PageGallery 
         backgroundColor="--off-white" 
-        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : projectData.ProjectGalleryItem.length} 
+        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2} 
       >
         {projectData.ProjectGalleryItem.map((i) =>
           i.MediaEmbed == null ? (
