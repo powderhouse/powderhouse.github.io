@@ -58,6 +58,18 @@ function PageContainer2(props) {
 		(c) => (!c.props.backgroundColor ? false : true)
 	);
 
+	let mergedRegionRuns = [regionRuns[0]];
+	regionRuns.slice(1).forEach((rr, i) => {
+		if (rr[0].props.hasOwnProperty("backgroundColor")) {
+			mergedRegionRuns.push(rr);
+		} else {
+			mergedRegionRuns[mergedRegionRuns.length - 1] = mergedRegionRuns
+				.slice(-1)[0]
+				.concat(rr);
+		}
+	});
+	console.log("mergedRegionRuns is", mergedRegionRuns);
+
 	let contentIndices = regionRuns
 		.map((rr, i) => (rr.some((r) => containsMainContent(r)) ? i : null))
 		.filter((x) => x);
@@ -68,7 +80,7 @@ function PageContainer2(props) {
 		lastContentRegion = regionRuns[contentIndices.slice(-1)[0]];
 	}
 
-	let regionContainers = regionRuns.map((rr, i) => {
+	let regionContainers = mergedRegionRuns.map((rr, i) => {
 		let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
 
 		let containsContent = rr.some((r) => containsMainContent(r));
