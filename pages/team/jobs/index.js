@@ -30,6 +30,9 @@ import {
 import { getStrapiMedia } from "../../../lib/media";
 import { fetchAPI } from "../../../lib/api";
 
+let PaddedArrowButton = styled(ArrowButton)`
+	padding-top: calc(1 * 1.3rem);
+`;
 function JobsPage({ jobPage, jobCards }) {
 	function getJobIdByTitle(title, jobCards) {
 		return jobCards[title][0].attributes.JobId;
@@ -39,7 +42,7 @@ function JobsPage({ jobPage, jobCards }) {
 
 	let regions = [
 		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor={accentColor} >
+		<PageSplash backgroundColor={accentColor}>
 			<PageHeading>Jobs</PageHeading>
 			<PageTableOfContents
 				sections={jobPage.data.attributes.PageSections}
@@ -49,7 +52,6 @@ function JobsPage({ jobPage, jobCards }) {
 			{jobPage.data.attributes.PageSplash.PageIntro}
 		</PageIntroduction>,
 		...jobPage.data.attributes.PageSections.map((n) => {
-			console.log("Looking at", n);
 			let slug = slugify(n.SectionHeader);
 			return (
 				<Region2 backgroundColor={getBgFromLight(n.isLightSection)}>
@@ -61,7 +63,7 @@ function JobsPage({ jobPage, jobCards }) {
 							<Div markdown>{n.PageSectionContent}</Div>
 						</div>
 						{jobCards.hasOwnProperty(n.SectionHeader) ? (
-							<ArrowButton
+							<PaddedArrowButton
 								text="Apply"
 								link={
 									"/team/jobs/" +
@@ -70,7 +72,7 @@ function JobsPage({ jobPage, jobCards }) {
 								buttonWidth="long"
 								buttonThickness="thick"
 								buttonTextLength="medText"
-							></ArrowButton>
+							></PaddedArrowButton>
 						) : (
 							""
 						)}
