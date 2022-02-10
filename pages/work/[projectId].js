@@ -171,7 +171,7 @@ let ProjectSubtitle = styled(Div)`
 let ProjectDescription = styled(Div)`
   font-size: calc(1.3rem * 1.2);
   line-height: calc(1.3rem * 1.2);
-  font-weight: 500;
+  font-weight: 300;
 `;
 
 let ProjectInfoList = styled.ul`
