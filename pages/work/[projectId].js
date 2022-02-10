@@ -159,7 +159,6 @@ let ProjectInfo = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 `;
 
 let ProjectSubtitle = styled(Div)`
@@ -172,12 +171,14 @@ let ProjectDescription = styled(Div)`
   font-size: calc(1.3rem * 1.2);
   line-height: calc(1.3rem * 1.2);
   font-weight: 300;
+  padding-top: 1.3rem;
 `;
 
 let ProjectInfoList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  padding-top: 1.3rem;
 `;
 
 let ProjectLi = styled.li`
