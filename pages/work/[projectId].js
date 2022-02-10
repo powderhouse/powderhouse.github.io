@@ -13,7 +13,7 @@ import {
   PageContainer,
   Div,
   Asterisk,
-  findLargestFormat,
+  getMediaURL,
 } from "../../components/global.js";
 
 import { getStrapiMedia } from "../../lib/media";
@@ -67,18 +67,7 @@ function ProjectDetailPage({ projectData }) {
                   <source src={i.MediaUpload.data.attributes.url}></source>
                 </video>
               ) : (
-                <ProjectImage
-                  src={
-                    i.MediaUpload.data.attributes.formats == null
-                      ? i.MediaUpload.data.attributes.url
-                      : i.MediaUpload.data.attributes.formats[
-                          findLargestFormat(
-                            i.MediaUpload.data.attributes.formats,
-                            "medium"
-                          )
-                        ].url
-                  }
-                />
+                <ProjectImage src={getMediaURL(i.MediaUpload, "medium")} />
               )}
             </ProjectMediaDiv>
           ) : (
@@ -139,13 +128,13 @@ let ProjectInfo = styled.div`
 `;
 
 let ProjectSubtitle = styled.div`
-  font-size:  calc(1.3rem * 2);
+  font-size: calc(1.3rem * 2);
   line-height: calc(1.3rem * 2);
   font-weight: 300;
 `;
 
 let ProjectDescription = styled(Div)`
-  font-size:  calc(1.3rem * 1.2);
+  font-size: calc(1.3rem * 1.2);
   line-height: calc(1.3rem * 1.2);
   font-weight: 500;
 `;
@@ -258,15 +247,7 @@ function getProjectCardById(projectId, projectCards) {
   ).attributes;
 
   project.ProjectFeatureImageInfo = {
-    url:
-      project.ProjectFeatureImage.data.attributes.formats == null
-        ? project.ProjectFeatureImage.data.attributes.url
-        : project.ProjectFeatureImage.data.attributes.formats[
-            findLargestFormat(
-              project.ProjectFeatureImage.data.attributes.formats,
-              "large"
-            )
-          ].url,
+    url: getMediaURL(project.ProjectFeatureImage, "large"),
     alternativeText:
       project.ProjectFeatureImage.data.attributes.alternativeText,
   };
@@ -307,15 +288,7 @@ export async function getStaticProps({ params: { projectId } }) {
   let projectData = (await fetchAPI(apiCall)).data[0].attributes;
 
   projectData.ProjectFeatureImageInfo = {
-    url:
-      projectData.ProjectFeatureImage.data.attributes.formats == null
-        ? projectData.ProjectFeatureImage.data.attributes.url
-        : projectData.ProjectFeatureImage.data.attributes.formats[
-            findLargestFormat(
-              projectData.ProjectFeatureImage.data.attributes.formats,
-              "large"
-            )
-          ].url,
+    url: getMediaURL(projectData.ProjectFeatureImage),
     alternativeText:
       projectData.ProjectFeatureImage.data.attributes.alternativeText,
   };

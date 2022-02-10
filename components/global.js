@@ -327,11 +327,22 @@ let PageSectionContent = styled(Div)`
 			  `}
 `;
 
-function findLargestFormat(formatDict, maxSize = "large") {
+let getMediaURL = function (media, maxSize = "large") {
+	let hasNoFormats =
+		!media.data.attributes.formats ||
+		Object.keys(media.data.attributes.formats).length == 0;
+
+	return hasNoFormats
+		? media.data.attributes.url
+		: media.data.attributes.formats[
+				findLargestFormat(media.data.attributes.formats)
+		  ].url;
+};
+function findLargestFormat(media, maxSize = "large") {
 	let formats = ["large", "medium", "small", "thumbnail"];
 	formats = formats.slice(formats.indexOf(maxSize), formats.length);
 	for (let size in formats) {
-		if (formatDict.hasOwnProperty(formats[size])) {
+		if (media.hasOwnProperty(formats[size])) {
 			return formats[size];
 		}
 	}
@@ -396,6 +407,7 @@ export {
 	PageSectionContent,
 	WidePageSectionContent,
 	findLargestFormat,
+	getMediaURL,
 	Highlight,
 	highlight,
 	colorByProp,
