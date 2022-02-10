@@ -37,7 +37,9 @@ function ProjectDetailPage({ projectData }) {
           />
         </ProjectFeatureImage>
         <ProjectInfo>
-          <ProjectSubtitle>{projectData.ProjectSubtitle}</ProjectSubtitle>
+          <ProjectSubtitle markdown>
+            {projectData.ProjectSubtitle}
+          </ProjectSubtitle>
           <ProjectDescription markdown>
             {projectData.ProjectDescription}
           </ProjectDescription>
@@ -127,7 +129,7 @@ let ProjectInfo = styled.div`
   justify-content: space-around;
 `;
 
-let ProjectSubtitle = styled.div`
+let ProjectSubtitle = styled(Div)`
   font-size: calc(1.3rem * 2);
   line-height: calc(1.3rem * 2);
   font-weight: 300;
