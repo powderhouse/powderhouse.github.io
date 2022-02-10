@@ -29,7 +29,7 @@ function ProjectDetailPage({ projectData }) {
     <PageContainer2>
       <Header backgroundColor="--off-white" />
       <ProjectSplash backgroundColor="--off-white">
-        <ProjectTitle>{projectData.ProjectTitle}</ProjectTitle>
+        <ProjectTitle><span>{projectData.ProjectTitle}</span><TenureTag>{projectData.YearStart}-{projectData.YearEnd}</TenureTag></ProjectTitle>
         <ProjectFeatureImage>
           <ProjectImage
             src={projectData.ProjectFeatureImageInfo.url}
@@ -42,10 +42,10 @@ function ProjectDetailPage({ projectData }) {
             {projectData.ProjectDescription}
           </ProjectDescription>
           <ProjectInfoList>
-            <ProjectLi>
-              <Asterisk key={-1} type="Default" />
-              {projectData.YearStart}-{projectData.YearEnd}
-            </ProjectLi>
+            {/* <ProjectLi> */}
+            {/*   <Asterisk key={-1} type="Default" /> */}
+            {/*   {projectData.YearStart}-{projectData.YearEnd} */}
+            {/* </ProjectLi> */}
 
             {projectData.ProjectInfoList.map((n, i) => (
               <a key={i} href={n.Link}>
@@ -58,7 +58,10 @@ function ProjectDetailPage({ projectData }) {
           </ProjectInfoList>
         </ProjectInfo>
       </ProjectSplash>
-      <PageGallery backgroundColor="--off-white">
+      <PageGallery 
+        backgroundColor="--off-white" 
+        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : projectData.ProjectGalleryItem.length} 
+      >
         {projectData.ProjectGalleryItem.map((i) =>
           i.MediaEmbed == null ? (
             <ProjectMediaDiv key={i.id}>
@@ -87,7 +90,7 @@ function ProjectDetailPage({ projectData }) {
               style={{ paddingTop: getAspectRatio(i.MediaEmbed.Link) }}
             >
               <GalleryIframe
-                src={i.MediaEmbed.Link}
+                src={getSrc(i.MediaEmbed.Link)}
                 alt={i.MediaEmbed.LinkText}
               ></GalleryIframe>
             </ProjectIframeDiv>
@@ -107,7 +110,7 @@ let ProjectSplashDiv = styled.div`
   grid-template-areas:
     "title title"
     "info image";
-  gap: var(--gap);
+  column-gap: var(--gap);
 `;
 
 function ProjectSplash({ backgroundColor, ...rest }) {
@@ -120,14 +123,22 @@ function ProjectSplash({ backgroundColor, ...rest }) {
 
 let ProjectTitle = styled.h2`
   grid-area: title;
-
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:flex-end;
   font-size: calc(1.3rem * 5);
   line-height: calc(1.3rem * 5);
   font-weight: 300;
+  padding-bottom:calc(1.3rem);
+`;
+
+let TenureTag = styled.span`
+  font-size: calc(1.3rem * 2);
+  line-height: calc(1.3rem * 2);
+  padding-bottom: calc(var(--gap) / 4);
+  font-weight:500;
+  opacity:0.625;
 `;
 
 let ProjectInfo = styled.div`
@@ -183,7 +194,7 @@ let PageGalleryDiv = styled.div`
 
   /*Masonry*/
   list-style-type: none;
-  column-count: 3;
+  column-count: ${(props) => props.numCols ? props.numCols : 3};
   column-gap: var(--gap);
 `;
 
@@ -230,7 +241,6 @@ function htmlToElement(htmlString) {
 
 function getAspectRatio(htmlString) {
   let element = htmlToElement(htmlString);
-  console.log("#############################" + element);
   let width = parseInt(element.getAttribute("width"));
   let height = parseInt(element.getAttribute("height"));
   return ((height / width) * 100).toString();
