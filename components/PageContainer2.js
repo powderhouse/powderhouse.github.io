@@ -52,12 +52,15 @@ let groupBy = function (array, comparator, fallback = (e) => false) {
 };
 
 function PageContainer2(props) {
+	// Group regions by backgroundColor into segments of contiguous background color (regionRuns)
 	let regionRuns = groupBy(
 		props.children,
 		(c) => (c.props.backgroundColor ? c.props.backgroundColor : false),
 		(c) => (!c.props.backgroundColor ? false : true)
 	);
 
+	// Merge regionRuns without a background color with previous regionRuns with one.
+	// TODO: there must be a simpler way to aggregate these.
 	let mergedRegionRuns = [regionRuns[0]];
 	regionRuns.slice(1).forEach((rr, i) => {
 		if (rr[0].props.hasOwnProperty("backgroundColor")) {
@@ -68,7 +71,6 @@ function PageContainer2(props) {
 				.concat(rr);
 		}
 	});
-	console.log("mergedRegionRuns is", mergedRegionRuns);
 
 	let contentIndices = regionRuns
 		.map((rr, i) => (rr.some((r) => containsMainContent(r)) ? i : null))
