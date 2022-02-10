@@ -76,8 +76,9 @@ function ProjectDetailPage({ projectData }) {
           ) : (
             <ProjectIframeDiv
               key={i.id}
-              style={{ paddingTop: getAspectRatio(i.MediaEmbed.Link) }}
+              aspectRatio={getAspectRatio(i.MediaEmbed.Link)}
             >
+              {console.log(getAspectRatio(i.MediaEmbed.Link))}
               <GalleryIframe
                 src={getSrc(i.MediaEmbed.Link)}
                 alt={i.MediaEmbed.LinkText}
@@ -229,7 +230,7 @@ let ProjectIframeDiv = styled(ProjectMediaDiv)`
   /* iframe responsive full-width, via "https://www.w3schools.com/howto/howto_css_responsive_iframes.asp" */
   position: relative;
   width: 100%;
-  padding-top: 75%; // 16:9 Aspect Ratio (divide 9 by 16 = 0.5625)
+  padding-top: ${(props) => `${props.aspectRatio}%`}; 
   margin-bottom: var(--gap);
   overflow: hidden;
 `;
