@@ -159,7 +159,7 @@ let ProjectInfoList = styled.ul`
 `;
 
 let ProjectLi = styled.li`
-  padding-left: calc(1.25 * 1.3rem);
+  padding-left: calc(1 * 1.3rem);
   position: relative;
 `;
 
