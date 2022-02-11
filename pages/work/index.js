@@ -180,7 +180,7 @@ function WorkPage({
 				left={partnersDesc.isLeftHeader}
 			>
 				<PageSectionContent $wide={true}>
-					<Div>{partnersDesc.PageSectionContent}</Div>
+					<SectionDesc>{partnersDesc.PageSectionContent}</SectionDesc>
 					<PartnerSectionContent>{partners}</PartnerSectionContent>
 				</PageSectionContent>
 			</Region2>
@@ -190,13 +190,7 @@ function WorkPage({
 				left={projectsDesc.isLeftHeader}
 			>
 				<PageSectionContent $wide={true} $grid={true}>
-					{projectsDesc.PageSectionContent ? (
-						<ProjectSubtitle>
-							<Div>{projectsDesc.PageSectionContent}</Div>
-						</ProjectSubtitle>
-					) : (
-						""
-					)}
+					<SectionDesc>{projectsDesc.PageSectionContent}</SectionDesc>
 					{projects}
 				</PageSectionContent>
 			</Region2>
@@ -207,7 +201,7 @@ function WorkPage({
 			>
 				<PageSectionContent $wide={true} $grid={false}>
 					{pastLivesDesc.PageSectionContent ? (
-						<Div>{pastLivesDesc.PageSectionContent}</Div>
+						<SectionDesc>{pastLivesDesc.PageSectionContent}</SectionDesc>
 					) : (
 						""
 					)}
@@ -218,6 +212,11 @@ function WorkPage({
 		</PageContainer2>
 	);
 }
+
+let SectionDesc = styled(Div)`
+	padding-bottom: 1.3rem;
+	grid-column: 1 / -1;
+`;
 
 let PartnerSectionContent = styled.div`
 	display: grid;
