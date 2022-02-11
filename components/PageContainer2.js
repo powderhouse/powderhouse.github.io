@@ -25,18 +25,6 @@ let groupBy = function (array, comparator, fallback = (e) => false) {
 				comparator(element);
 			let fallbackDecision = fallback(element) == true;
 			let isTime = comparatorsUnequal || fallbackDecision;
-			// console.log(
-			// 	"Looking at",
-			// 	comparator(runsArray.slice(-1)[0].slice(-1)[0]),
-			// 	"and",
-			// 	comparator(element),
-			// 	"comparatorsUnequal?",
-			// 	comparatorsUnequal,
-			// 	"fallbackDecision?",
-			// 	fallbackDecision,
-			// 	"is it time?",
-			// 	isTime
-			// );
 			return isTime;
 		}
 	};
@@ -71,7 +59,6 @@ function PageContainer2(props) {
 		c.props.backgroundColor ? c.props.backgroundColor : false
 	);
 
-	// console.log("Now regionRuns is", regionRuns);
 	// Merge regionRuns without a background color with previous regionRuns with one.
 	// TODO: there must be a simpler way to aggregate these.
 	let mergedRegionRuns = [regionRuns[0]];

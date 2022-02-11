@@ -68,8 +68,8 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
             <>
               <FooterNewsletterSignup>
                 <NewsLetterShoutOut>
-                  If you'd like to keep up with our work, sign up for our
-                  mailing list.
+                  {`If you'd like to keep up with our work, sign up for our
+                  mailing list.`}
                 </NewsLetterShoutOut>
                 <NewsLetterSignUp
                   color="off-black"

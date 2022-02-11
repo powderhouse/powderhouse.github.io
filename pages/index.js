@@ -69,11 +69,11 @@ function HomePage({
   let accentColor = "--off-black";
 
   let regions = [
-    <Header backgroundColor="--off-black" />,
-    <Splash backgroundColor={accentColor} markdown>
+    <Header backgroundColor="--off-black" key="header" />,
+    <Splash backgroundColor={accentColor} markdown key="splash">
       {SplashLanguage}
     </Splash>,
-    <SplashNewsletterSignup backgroundColor="--off-black">
+    <SplashNewsletterSignup backgroundColor="--off-black" key="newsletter">
       <ShoutOut>{SignUpShoutOut}</ShoutOut>
       <NewsLetterSignUp
         text="Sign Up!"
@@ -83,13 +83,17 @@ function HomePage({
         buttonTextLength="medText"
       ></NewsLetterSignUp>
     </SplashNewsletterSignup>,
-    <Footer backgroundColor="--off-black" accentColor={accentColor} />,
+    <Footer
+      backgroundColor="--off-black"
+      accentColor={accentColor}
+      key="footer"
+    />,
   ];
 
   return (
     <PageContainer2>
       {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-      {regions.map((r, i) => React.cloneElement(r, { key: i }))}
+      {regions}
     </PageContainer2>
   );
 }

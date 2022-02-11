@@ -36,19 +36,26 @@ function AboutPage({
 	let accentColor = "--yellow";
 
 	let regions = [
-		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor={accentColor}>
+		<Header backgroundColor="--off-white" key="header" />,
+		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents sections={aboutPageContent} />
 		</PageSplash>,
-		<PageIntroduction backgroundColor="--off-white">
+		<PageIntroduction backgroundColor="--off-white" key="introduction">
 			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
 				{PageIntro}
 			</ShiftBy>
 		</PageIntroduction>,
 		...aboutPageContent.map((e, i) =>
 			e.PageImage ? (
-				<Region2 backgroundColor="--off-black" key={i}>
+				<Region2
+					backgroundColor="--off-black"
+					key={
+						e.PageImage.data.attributes.caption
+							? slugify(e.PageImage.data.attributes.caption)
+							: `image-${i}`
+					}
+				>
 					<PageImage
 						fullBleed={e.IsFullBleed}
 						imgHeight="600"
@@ -69,7 +76,11 @@ function AboutPage({
 			) : (
 				<Region2
 					backgroundColor={getBgFromLight(e.isLightSection)}
-					key={i}
+					key={
+						e.SectionHeader
+							? slugify(e.SectionHeader)
+							: `section-${i}`
+					}
 					header={e.SectionHeader ? e.SectionHeader : null}
 					left={e.isLeftHeader ? e.isLeftHeader : null}
 				>
@@ -79,13 +90,16 @@ function AboutPage({
 				</Region2>
 			)
 		),
-		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
+		<Footer
+			backgroundColor="--off-white"
+			accentColor={accentColor}
+			key="footer"
+		/>,
 	];
-
 	return (
 		<PageContainer2>
 			{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
+			{regions}
 		</PageContainer2>
 	);
 }

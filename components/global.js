@@ -78,19 +78,6 @@ let complementaryColor = function (colorString) {
 		"--red": "--off-white",
 	};
 
-	// TODO: Probably want this to be subtler; some colors are not simply inverted
-	// if (
-	// 	Object.keys(complements).filter((k) =>
-	// 		Object.values(complements).includes(k)
-	// 	).length > 0
-	// ) {
-	// 	throw "`complements` has a color which would be overwritten when expanded.";
-	// } else {
-	// 	Object.keys(complements).forEach(
-	// 		(k) => (complements[complements[k]] = k)
-	// 	);
-	// }
-
 	return colorString in complements
 		? expandColor(complements[colorString])
 		: "initial";
@@ -139,10 +126,11 @@ let Markdown = ({ children, ...rest }) => {
 				<ReactMarkdown
 					components={{ strong: "b" }}
 					rehypePlugins={[rehypeRaw]}
-					children={c}
 					key={i}
 					{...rest}
-				/>
+				>
+					{c}
+				</ReactMarkdown>
 			);
 		} else {
 			// We need to clone the element because by default, JSX elements are not extensible (i.e. we can't modify their props.key after they are passed)

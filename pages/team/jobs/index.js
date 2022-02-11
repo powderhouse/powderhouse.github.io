@@ -41,24 +41,26 @@ function JobsPage({ jobPage, jobCards }) {
 	let accentColor = "--purple";
 
 	let regions = [
-		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor={accentColor}>
+		<Header backgroundColor="--off-white" key="header" />,
+		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>Jobs</PageHeading>
 			<PageTableOfContents
 				sections={jobPage.data.attributes.PageSections}
 			/>
 		</PageSplash>,
-		<PageIntroduction backgroundColor="--off-white">
+		<PageIntroduction backgroundColor="--off-white" key="introduction">
 			{jobPage.data.attributes.PageSplash.PageIntro}
 		</PageIntroduction>,
-		...jobPage.data.attributes.PageSections.map((n) => {
-			let slug = slugify(n.SectionHeader);
+		...jobPage.data.attributes.PageSections.map((n, i) => {
 			return (
-				<Region2 backgroundColor={getBgFromLight(n.isLightSection)}>
-					<SectionHeader id={slug} left={true}>
+				<Region2
+					backgroundColor={getBgFromLight(n.isLightSection)}
+					key={`section-${i}`}
+				>
+					<SectionHeader id={slugify(n.SectionHeader)} left={true}>
 						{n.SectionHeader}
 					</SectionHeader>
-					<PageSectionContent grid={true}>
+					<PageSectionContent $grid={true}>
 						<div style={{ gridColumn: "1 / -1" }}>
 							<Div markdown>{n.PageSectionContent}</Div>
 						</div>
@@ -80,7 +82,11 @@ function JobsPage({ jobPage, jobCards }) {
 				</Region2>
 			);
 		}),
-		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
+		<Footer
+			backgroundColor="--off-white"
+			accentColor={accentColor}
+			key="footer"
+		/>,
 	];
 
 	return <PageContainer2>{regions}</PageContainer2>;

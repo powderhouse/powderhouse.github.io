@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
+import Link from "next/link";
+
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
 import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
@@ -9,7 +11,7 @@ import Region2 from "../components/Region2.js";
 
 function Header(props) {
   const router = useRouter();
-  let basePath = "/"+router.pathname.split("/")[1];
+  let basePath = "/" + router.pathname.split("/")[1];
 
   function assignPageColor(navText) {
     let color;
@@ -32,7 +34,7 @@ function Header(props) {
         <ShiftBy x={0} y={-5}>
           <LogoLockup>
             <div style={{ width: "321.54px" }}>
-              <a href="/">{logotypeHorizSVG()}</a>
+              <Link href="/">{logotypeHorizSVG()}</Link>
             </div>
           </LogoLockup>
         </ShiftBy>
@@ -44,8 +46,7 @@ function Header(props) {
                   <NavListItem key={n.href}>
                     <NavLink
                       className={
-                        (basePath == n.href ? "active " : "") +
-                        "nav-link"
+                        (basePath == n.href ? "active " : "") + "nav-link"
                       }
                       color={props.color}
                       href={n.href}

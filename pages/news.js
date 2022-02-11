@@ -40,13 +40,17 @@ function NewsPage({ newsPage, newsCards }) {
 		.reverse();
 
 	let regions = [
-		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor={accentColor}>
+		<Header backgroundColor="--off-white" key="header" />,
+		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>
 				{newsPage.data.attributes.PageSplash.PageHeader}
 			</PageHeading>
 		</PageSplash>,
-		<PageIntroduction backgroundColor="--off-white" markdown>
+		<PageIntroduction
+			backgroundColor="--off-white"
+			markdown
+			key="introduction"
+		>
 			{newsPage.data.attributes.PageSplash.PageIntro}
 		</PageIntroduction>,
 		...sortedNewsCards.map(
@@ -63,7 +67,7 @@ function NewsPage({ newsPage, newsCards }) {
 				i
 			) => (
 				<NewsItem
-					key={i}
+					key={`news-item-${i}`}
 					date={NewsDate}
 					type={NewsType}
 					title={NewsTitle}
@@ -72,15 +76,14 @@ function NewsPage({ newsPage, newsCards }) {
 				/>
 			)
 		),
-		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
+		<Footer
+			backgroundColor="--off-white"
+			accentColor={accentColor}
+			key="footer"
+		/>,
 	];
 
-	return (
-		<PageContainer2>
-			{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
-		</PageContainer2>
-	);
+	return <PageContainer2>{regions}</PageContainer2>;
 }
 
 let NewsItemContainer = styled.div`
@@ -103,9 +106,9 @@ function NewsItem({ date, type, title, excerpt, links }) {
 					<NewsExcerpt markdown>{excerpt}</NewsExcerpt>
 					<NewsRelatedLinks>
 						{links.map((l, i) => (
-							<a key={i} href={l.Link}>
+							<a key={`news-link-${i}`} href={l.Link}>
 								<NewsLi>
-									<Asterisk key={i} type="Default" />
+									<Asterisk type="Default" />
 									{l.LinkText}
 								</NewsLi>
 							</a>

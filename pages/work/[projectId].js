@@ -58,9 +58,9 @@ function ProjectDetailPage({ projectData }) {
           </ProjectInfoList>
         </ProjectInfo>
       </ProjectSplash>
-      <PageGallery 
-        backgroundColor="--off-white" 
-        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2} 
+      <PageGallery
+        backgroundColor="--off-white"
+        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2}
       >
         {projectData.ProjectGalleryItem.map((i) =>
           i.MediaEmbed == null ? (
@@ -78,7 +78,6 @@ function ProjectDetailPage({ projectData }) {
               key={i.id}
               aspectRatio={getAspectRatio(i.MediaEmbed.Link)}
             >
-              {console.log(getAspectRatio(i.MediaEmbed.Link))}
               <GalleryIframe
                 src={getSrc(i.MediaEmbed.Link)}
                 alt={i.MediaEmbed.LinkText}
@@ -231,7 +230,7 @@ let ProjectIframeDiv = styled(ProjectMediaDiv)`
   /* iframe responsive full-width, via "https://www.w3schools.com/howto/howto_css_responsive_iframes.asp" */
   position: relative;
   width: 100%;
-  padding-top: ${(props) => `${props.aspectRatio}%`}; 
+  padding-top: ${(props) => `${props.aspectRatio}%`};
   margin-bottom: var(--gap);
   overflow: hidden;
 `;
@@ -262,7 +261,6 @@ function getAspectRatio(htmlString) {
 
 function getSrc(htmlString) {
   let element = htmlToElement(htmlString);
-  // console.log("############################"+element);
   return element.getAttribute("src");
 }
 

@@ -38,18 +38,18 @@ function JobDetailPage({ jobCards }) {
   let jobCard = getJobCardById(jobId, jobCards);
 
   let regions = [
-    <Header backgroundColor="--off-white" />,
-    <PageSplash backgroundColor={accentColor} >
+    <Header backgroundColor="--off-white" key="header" />,
+    <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>,
       <PageTableOfContents sections={jobCard.attributes.PageSections} />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-white">
+    <PageIntroduction backgroundColor="--off-white" key="introduction">
       {jobCard.attributes.JobSubtitle}
     </PageIntroduction>,
-    ...jobCard.attributes.PageSections.map((n) => {
+    ...jobCard.attributes.PageSections.map((n, i) => {
       let slug = slugify(n.SectionHeader);
       return (
-        <Region2 backgroundColor="--off-white">
+        <Region2 backgroundColor="--off-white" key={`job-${i}`}>
           <SectionHeader id={slug} left={true}>
             {n.SectionHeader}
           </SectionHeader>
@@ -59,7 +59,11 @@ function JobDetailPage({ jobCards }) {
         </Region2>
       );
     }),
-    <Footer backgroundColor="--off-white" accentColor={accentColor} />,
+    <Footer
+      backgroundColor="--off-white"
+      accentColor={accentColor}
+      key="footer"
+    />,
   ];
   return <PageContainer2>{regions}</PageContainer2>;
 }

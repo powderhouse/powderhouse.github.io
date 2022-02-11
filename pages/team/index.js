@@ -66,12 +66,13 @@ function TeamPage2({
 			backgroundColor={getBgFromLight(staffSection.isLightSection)}
 			header={staffSection.SectionHeader}
 			left={staffSection.isLeftHeader}
+			key="staff"
 		>
 			<PageSectionContent $wide={true} $grid={true}>
 				{staff.map((s, i) => (
 					<PersonCard
 						type={s.Role}
-						key={i}
+						key={`staff${i}`}
 						headshot={s.Headshot}
 						name={s.Name}
 						title={s.Title}
@@ -94,6 +95,7 @@ function TeamPage2({
 			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
 			header={advisorSection.SectionHeader}
 			left={advisorSection.isLeftHeader}
+			key="advisors"
 		>
 			<PageSectionContent $wide={true} $grid={true}>
 				{advisors.map((a, i) => (
@@ -117,12 +119,13 @@ function TeamPage2({
 			backgroundColor={getBgFromLight(alumniSection.isLightSection)}
 			header={alumniSection.SectionHeader}
 			left={alumniSection.isLeftHeader}
+			key="alumni"
 		>
 			<PageSectionContent $wide={true} $grid={true}>
 				{alumni.map((a, i) => (
 					<PersonCard
 						type={a.Role}
-						key={i}
+						key={`alumni-${i}`}
 						name={a.Name}
 						tenure={{
 							start: a.YearStart,
@@ -138,12 +141,12 @@ function TeamPage2({
 	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
 
 	let regions = [
-		<Header backgroundColor="--off-white" />,
-		<PageSplash backgroundColor={accentColor}>
+		<Header backgroundColor="--off-white" key="header" />,
+		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents sections={PageSections} />
 		</PageSplash>,
-		<PageIntroduction backgroundColor="--off-white">
+		<PageIntroduction backgroundColor="--off-white" key="introduction">
 			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
 				{PageIntro}
 			</ShiftBy>
@@ -155,6 +158,7 @@ function TeamPage2({
 			backgroundColor={getBgFromLight(jobs.isLightSection)}
 			header={jobs.SectionHeader}
 			left={jobs.isLeftHeader}
+			key="jobs"
 		>
 			<PageSectionContent $wide={true} $grid={true}>
 				<Div markdown style={{ backgroundColor: "lightblue" }}>
@@ -173,7 +177,11 @@ function TeamPage2({
 				</Div>
 			</PageSectionContent>
 		</Region2>,
-		<Footer backgroundColor="--off-white" accentColor={accentColor} />,
+		<Footer
+			backgroundColor="--off-white"
+			accentColor={accentColor}
+			key="footer"
+		/>,
 	];
 
 	return (
