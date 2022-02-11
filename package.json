@@ -6,7 +6,7 @@
   "scripts": {
     "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
     "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
-    "build": "yarn install --check-files && npx check-peer-dependencies --yarn --install && next build",
+    "build": "export NODE_ENV=development && yarn install --check-files && npx check-peer-dependencies --yarn --install && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/powderhouse/powderhouse.github.io#readme",
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@next/bundle-analyzer": "^12.0.10",
     "@types/react": "17.0.37",
     "babel": "^6.23.0",
     "check-peer-dependencies": "^4.1.0",
