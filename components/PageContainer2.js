@@ -8,16 +8,6 @@ let StyledDiv = styled.div`
 	color: var(--off-black);
 `;
 
-let containsMainContent = function (region) {
-	let regionTypes = React.Children.toArray(region.props.children).map((c) =>
-		c.type ? c.type.name : typeof c
-	);
-	regionTypes.push(region.type.name);
-	return regionTypes.every(
-		(c) => !["Header", "PageSplash", "Footer"].includes(c)
-	);
-};
-
 let groupBy = function (array, comparator, fallback = (e) => false) {
 	// This is a function which takes an array and a comparator function and returns an order-preserving array of arrays where each element comprises a list of elements which returns the same value when passed to the comparator.  `fallback` is used to allow for overrides of unequal comparators to, e.g., allow you to set the default behavior in the case that an element lacks a backgroundColor
 
@@ -30,10 +20,24 @@ let groupBy = function (array, comparator, fallback = (e) => false) {
 		if (runsArray.length == 0) {
 			return true;
 		} else {
-			return (
+			let comparatorsUnequal =
 				comparator(runsArray.slice(-1)[0].slice(-1)[0]) !==
-					comparator(element) || fallback(element) == true
-			);
+				comparator(element);
+			let fallbackDecision = fallback(element) == true;
+			let isTime = comparatorsUnequal || fallbackDecision;
+			// console.log(
+			// 	"Looking at",
+			// 	comparator(runsArray.slice(-1)[0].slice(-1)[0]),
+			// 	"and",
+			// 	comparator(element),
+			// 	"comparatorsUnequal?",
+			// 	comparatorsUnequal,
+			// 	"fallbackDecision?",
+			// 	fallbackDecision,
+			// 	"is it time?",
+			// 	isTime
+			// );
+			return isTime;
 		}
 	};
 	array.forEach((element) => {
@@ -51,14 +55,23 @@ let groupBy = function (array, comparator, fallback = (e) => false) {
 	return runs;
 };
 
+let isContentRegion = function (region) {
+	let nonContentComponentNames = ["Header", "PageSplash", "Footer"];
+	return region.type
+		? !nonContentComponentNames.includes(region.type.name)
+		: true;
+};
+
+let isContentRegionRun = (regionRun) =>
+	regionRun.some((r) => isContentRegion(r));
+
 function PageContainer2(props) {
 	// Group regions by backgroundColor into segments of contiguous background color (regionRuns)
-	let regionRuns = groupBy(
-		props.children,
-		(c) => (c.props.backgroundColor ? c.props.backgroundColor : false),
-		(c) => (!c.props.backgroundColor ? false : true)
+	let regionRuns = groupBy(props.children, (c) =>
+		c.props.backgroundColor ? c.props.backgroundColor : false
 	);
 
+	// console.log("Now regionRuns is", regionRuns);
 	// Merge regionRuns without a background color with previous regionRuns with one.
 	// TODO: there must be a simpler way to aggregate these.
 	let mergedRegionRuns = [regionRuns[0]];
@@ -72,35 +85,33 @@ function PageContainer2(props) {
 		}
 	});
 
-	let contentIndices = regionRuns
-		.map((rr, i) => (rr.some((r) => containsMainContent(r)) ? i : null))
+	// Identify which regionRuns have content in them
+	let contentRunIndices = mergedRegionRuns
+		.map((rr, i) => (isContentRegionRun(rr) ? i : null))
 		.filter((x) => x);
 
-	let firstContentRegion, lastContentRegion;
-	if (contentIndices.length > 0) {
-		firstContentRegion = regionRuns[contentIndices[0]];
-		lastContentRegion = regionRuns[contentIndices.slice(-1)[0]];
-	}
-
+	let contentPresent = contentRunIndices == 0 ? false : true;
+	let firstContentIndex, lastContentIndex;
 	let regionContainers = mergedRegionRuns.map((rr, i) => {
-		let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
+		let containsContent = contentRunIndices.includes(i);
+		let isFirstContentRegionContainer = contentPresent
+			? i == contentRunIndices[0]
+			: null;
+		let isLastContentRegionContainer = contentPresent
+			? i == contentRunIndices.slice(-1)[0]
+			: null;
 
-		let containsContent = rr.some((r) => containsMainContent(r));
-		let isFirstContentRegion = firstContentRegion
-			? rr == firstContentRegion
-			: false;
-		let isLastContentRegion = lastContentRegion
-			? rr == lastContentRegion
-			: false;
-		let isFirstRegionContainer = i == 0;
-		let isLastRegionContainer = i == regionRuns.length - 1;
-
+		// Define padding based on content, first/last content status
 		let padTop =
-			!isFirstContentRegion && !isFirstRegionContainer && containsContent;
-		let padBottom = containsContent && !isLastRegionContainer;
+			containsContent &&
+			(contentPresent ? !isFirstContentRegionContainer : true);
+		let padBottom = containsContent && (contentPresent ? true : false);
 		let pad = [padTop ? "top" : null, padBottom ? "bottom" : null].filter(
 			(x) => x
 		);
+
+		let backgroundColor = rr.slice(-1)[0].props.backgroundColor;
+
 		return (
 			<RegionContainer2
 				backgroundColor={backgroundColor}
