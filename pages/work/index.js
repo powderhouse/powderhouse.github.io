@@ -229,6 +229,11 @@ let PartnerSectionContent = styled.div`
 let PartnerCard = styled.div`
 	height: 100px;
 	overflow: hidden;
+	transition: 0.2s;
+
+	&:hover {
+		opacity: 0.6;
+	}
 `;
 
 let PartnerLogo = styled.img`
@@ -242,7 +247,6 @@ let PartnerLink = styled.a``;
 
 let ProjectCard = styled.div`
 	grid-column: span 3;
-	/*word-wrap: break-word;*/
 `;
 
 let ProjectLink = styled.a`
