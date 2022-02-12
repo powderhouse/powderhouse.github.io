@@ -55,7 +55,9 @@ function WorkPage({
 }) {
 	let accentColor = "--green";
 
-	let partnersDesc = PageSections.find((s) => s.SectionHeader == "Partners");
+	let partnersDesc = PageSections.find(
+		(s) => s.SectionHeader == "Selected Partners"
+	);
 	let partners = PartnerCards.map(
 		(
 			{
@@ -88,7 +90,9 @@ function WorkPage({
 			);
 		}
 	);
-	let projectsDesc = PageSections.find((s) => s.SectionHeader == "Projects");
+	let projectsDesc = PageSections.find(
+		(s) => s.SectionHeader == "Selected Projects"
+	);
 	let projects = projectCards.map(
 		(
 			{
@@ -180,7 +184,6 @@ function WorkPage({
 				left={partnersDesc.isLeftHeader}
 			>
 				<PageSectionContent $wide={true}>
-					<SectionDesc>{partnersDesc.PageSectionContent}</SectionDesc>
 					<PartnerSectionContent>{partners}</PartnerSectionContent>
 				</PageSectionContent>
 			</Region2>
@@ -190,7 +193,6 @@ function WorkPage({
 				left={projectsDesc.isLeftHeader}
 			>
 				<PageSectionContent $wide={true} $grid={true}>
-					<SectionDesc>{projectsDesc.PageSectionContent}</SectionDesc>
 					{projects}
 				</PageSectionContent>
 			</Region2>
@@ -201,7 +203,9 @@ function WorkPage({
 			>
 				<PageSectionContent $wide={true} $grid={false}>
 					{pastLivesDesc.PageSectionContent ? (
-						<SectionDesc>{pastLivesDesc.PageSectionContent}</SectionDesc>
+						<SectionDesc>
+							{pastLivesDesc.PageSectionContent}
+						</SectionDesc>
 					) : (
 						""
 					)}
@@ -215,6 +219,7 @@ function WorkPage({
 
 let SectionDesc = styled(Div)`
 	padding-bottom: 1.3rem;
+	font-size: calc(1 * 1.3rem);
 	grid-column: 1 / -1;
 `;
 
