@@ -56,7 +56,7 @@ function PageImage(props) {
 			className={props.fullBleed ? "full-bleed" : "full-body"}
 		>
 			<Resize ref={resizer}>
-				<Image
+				<img
 					ref={img}
 					height={props.imgHeight ? props.imgHeight : ""}
 					src={props.src}
