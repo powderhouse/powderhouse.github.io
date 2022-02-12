@@ -1,21 +1,25 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { expandColor, complementaryColor } from "../components/global";
+import {
+	expandColor,
+	complementaryColor,
+	colorByProp,
+} from "../components/global";
 import { useState, useEffect } from "react";
 
 function getRandomNum() {
-	return Math.round(Math.random()*360);
+	return Math.round(Math.random() * 360);
 }
 
 const useRandomNum = () => {
-    const [randomNum, setRandomNum] = useState(null)
+	const [randomNum, setRandomNum] = useState(null);
 
-    useEffect(() => {
-        setRandomNum(getRandomNum())
-    }, [])
+	useEffect(() => {
+		setRandomNum(getRandomNum());
+	}, []);
 
-    return randomNum
-}
+	return randomNum;
+};
 
 let asteriskContainerStyles = {
 	TOC: css`
@@ -44,9 +48,7 @@ let asteriskContainerStyles = {
 function AsteriskContainer(props) {
 	const randomRotation = useRandomNum();
 
-	return (
-		<AsteriskContainerDiv rotation={randomRotation} {...props} />
-		)
+	return <AsteriskContainerDiv rotation={randomRotation} {...props} />;
 }
 
 let AsteriskContainerDiv = styled.div`
@@ -58,14 +60,7 @@ let AsteriskContainerDiv = styled.div`
 	transform: var(--random-rotate);
 
 	${(props) => asteriskContainerStyles[props.type]}
-	${(props) =>
-		props.backgroundColor
-			? css`
-					color: ${expandColor(complementaryColor(props.backgroundColor))};
-					stroke: ${expandColor(complementaryColor(props.backgroundColor))};
-					fill: ${expandColor(complementaryColor(props.backgroundColor))};
-			  `
-			: ``}
+	${(props) => colorByProp(props)}
 `;
 
 export default AsteriskContainer;
