@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colorByProp } from "../components/global.js";
 
 let RegionContainer = styled("div")`
+	position: relative;
 	${(props) => colorByProp(props)}
 
 	padding-top: ${(props) =>

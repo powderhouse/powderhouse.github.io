@@ -6,6 +6,9 @@ import RegionContainer2 from "../components/RegionContainer2";
 let StyledDiv = styled.div`
 	background-color: var(--off-white);
 	color: var(--off-black);
+	height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 `;
 
 let groupBy = function (array, comparator, fallback = (e) => false) {
@@ -79,6 +82,8 @@ function PageContainer2(props) {
 
 	let contentPresent = contentRunIndices == 0 ? false : true;
 	let firstContentIndex, lastContentIndex;
+	let customRegionContainerStyle =
+		mergedRegionRuns.length == 1 ? { "min-height": "100vh" } : {};
 	let regionContainers = mergedRegionRuns.map((rr, i) => {
 		let containsContent = contentRunIndices.includes(i);
 		let isFirstContentRegionContainer = contentPresent
@@ -104,6 +109,7 @@ function PageContainer2(props) {
 				backgroundColor={backgroundColor}
 				key={i}
 				pad={pad}
+				style={customRegionContainerStyle}
 			>
 				{rr}
 			</RegionContainer2>
