@@ -8,7 +8,8 @@ import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 
 import { fetchAPI } from "../lib/api";
-import { ShiftBy, Div } from "../components/global.js";
+import { ShiftBy, Div } from "../components/global";
+import { mediaQueries } from "../site-data"
 
 let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
@@ -21,6 +22,17 @@ let SplashDiv = styled(Div)`
   padding: calc(5 * 1.3rem) 0;
   p:not(:last-child) {
     padding-bottom: calc(2 * 1.3rem);
+  }
+
+  @media ${mediaQueries.uptoTablet} {
+    grid-column: 1 / -1;
+    font-size: 36px;
+    line-height: calc(2 * 1.3rem);
+    padding: calc(2 * 1.3rem) 0;
+  }
+
+  @media ${mediaQueries.uptoMobile} {
+    font-size: 28px;
   }
 `;
 
@@ -42,16 +54,24 @@ let ShoutOut = styled.p`
 `;
 
 let SplashNewsletterSignupDiv = styled.div`
-  grid-column: 4 / 10;
+  grid-column: 1 / -1;
 
   display: grid;
   // TODO: Better way to inherit this?
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: min-content;
   column-gap: var(--gap);
   row-gap: 1.3rem;
   padding: 0 0 calc(6 * 1.3rem);
   place-items: center;
+  text-align: center;
+
+  @media ${mediaQueries.uptoTablet} {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  @media ${mediaQueries.uptoMobile} {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 function SplashNewsletterSignup({ children, ...rest }) {

@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { colorByProp, CorePageSection, Region } from "../components/global.js";
+import { colorByProp } from "../components/global.js";
 
 let RegionContainer = styled("div")`
 	${(props) => colorByProp(props)}
+
 	padding-top: ${(props) =>
 		props.pad
 			? props.pad.includes("top")

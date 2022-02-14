@@ -1,13 +1,23 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { complementaryColor, SectionHeader } from "../components/global";
+import { complementaryColor, SectionHeader, baseGrid } from "../components/global";
 import { mediaQueries } from "../site-data";
 
 let StyledDiv = styled.div`
 	margin: 0 auto; // TODO: Any better way to center?
+
+	/*Why can't I replace below with '$ {baseGrid};' (without space) from global, as in Footer*/
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	column-gap: var(--gap);
+	@media ${mediaQueries.uptoTablet} {
+		grid-template-columns: repeat(6, 1fr);
+	}
+	@media ${mediaQueries.uptoMobile} {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	//////////////////////////////////////////////**////////////
+
 	grid-auto-rows: min-content;
 	grid-row-gap: 1.3rem;
 	max-width: 1440px;
@@ -46,10 +56,6 @@ let StyledDiv = styled.div`
 			`;
 		}
 	}};
-
-	@media ${mediaQueries.mobile} {
-		grid-template-columns: repeat(3, 1fr);
-	}
 `;
 
 function Region2({ header, left, children, ...rest }) {

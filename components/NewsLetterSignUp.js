@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { buttonSVGs } from "../site-data.js";
+import { buttonSVGs, mediaQueries } from "../site-data.js";
 import { highlight, expandColor } from "./global.js";
 
 function NewsLetterSignUp({
@@ -58,12 +58,22 @@ function NewsLetterSignUp({
 
 let NewsLetterForm = styled.form`
     grid-column: 1 / -1;
+    width:100%;
 
     // Better way to inherit this?
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     grid-template-rows: min-content;
     gap: var(--gap);
+
+    @media ${mediaQueries.uptoTablet} {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    @media ${mediaQueries.uptoMobile} {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+   
 `;
 
 let EmailInput = styled.input.attrs((props) => ({
@@ -71,7 +81,7 @@ let EmailInput = styled.input.attrs((props) => ({
     // name: "email",
     placeholder: "Email Address",
 }))`
-    grid-column: 1 / 4;
+    grid-column: 4 / 7;
 
     color: ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
@@ -79,16 +89,24 @@ let EmailInput = styled.input.attrs((props) => ({
     border: 2px solid ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     padding: 0.5em;
+    height: calc(3 * 1.3rem);
 
     &::placeholder {
         opacity:0.6;
         color:${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     }
+
+    @media ${mediaQueries.uptoTablet} {
+        grid-column: 2 / -2;
+    }
+    @media ${mediaQueries.uptoMobile} {
+        grid-column: 1 / -1;
+    }
 `;
 
 let NewsLetterFormButton = styled.button`
-    grid-column: 4 / 7;
+    grid-column: 7 / 10;
 
     position: relative;
     display: flex;
@@ -98,6 +116,15 @@ let NewsLetterFormButton = styled.button`
     border: none;
     cursor: pointer;
     height: calc(3 * 1.3rem);
+
+    @media ${mediaQueries.uptoTablet} {
+        grid-column: 2 / -2;
+        grid-row: 2;
+    }
+    @media ${mediaQueries.uptoMobile} {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
 `;
 
 let ButtonText = styled.div`

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
-import { scribbleSVGs, logotypeHorizSVG, logoSVG, mediaQueries } from "../site-data.js";
-import { highlight, colorByProp, ShiftBy } from "../components/global.js";
+import { scribbleSVGs, logotypeHorizSVG, logotypeVertSVG, logoSVG, mediaQueries } from "../site-data.js";
+import { highlight, colorByProp, ShiftBy, complementaryColor } from "../components/global.js";
 import Region2 from "../components/Region2.js";
 
 function Header(props) {
@@ -28,23 +28,19 @@ function Header(props) {
     return scribbleNum;
   }
 
-  console.log("hellooooooo "+mediaQueries.mobile)
-
   return (
     <Region2 {...props}>
       <Wrapper>
-        <ShiftBy x={0} y={-5}>
+        {/* <ShiftBy x={0} y={-10}> */}
           <LogoLockup>
-            <div style={{ width: "321.54px" }}>
-              <Link href="/">
+              <a href="/">
                 <>
-                  {logoSVG("off-white navlogo-mobile")}
-                  {logotypeHorizSVG("off-white navlogo-tabletAndUp")}
+                  {logotypeVertSVG(`${complementaryColor(props.backgroundColor)} navlogo-mobile`)}
+                  {logotypeHorizSVG(`${complementaryColor(props.backgroundColor)} navlogo-tabletAndUp`)}
                 </>
-              </Link>
-            </div>
+              </a>
           </LogoLockup>
-        </ShiftBy>
+        {/* </ShiftBy> */}
         <NavMenu>
           <ShiftBy x={0} y={-3}>
             <NavList>
@@ -91,22 +87,34 @@ let Wrapper = styled.header`
     `};
   ${(props) => baseGrid};
 
-  @media ${mediaQueries.mobile} {
+  @media ${mediaQueries.uptoTablet} {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  @media ${mediaQueries.uptoMobile} {
     grid-template-columns: repeat(3, 1fr);
+    height:fit-content;
   }
 `;
 
 let LogoLockup = styled.div`
   grid-column: 1 / span 3;
-
+  width: 321.54px;
+  transform:translateY(-5px);
 
   & .navlogo-mobile {
     /*By default, hide the mobile logo*/
     display:none;
+    transform:translateY(15px);
+    flex-wrap:wrap;
   }
 
-  @media ${mediaQueries.mobile} {
-    grid-column: 1 / 2;
+  @media ${mediaQueries.uptoTablet} {
+    width:200px;
+  }
+
+  @media ${mediaQueries.uptoMobile} {
+    width: 100%;
+    grid-column: 1 / -1;
 
     /*On mobile, swap which logo is visible*/
     & .navlogo-mobile {
@@ -121,23 +129,32 @@ let LogoLockup = styled.div`
 `;
 
 let NavMenu = styled.nav`
-  grid-column: 9 / -1;
+  grid-column: -4 / -1;
+  transform:translateY(10);
 
-  @media ${mediaQueries.mobile} {
+  @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
     grid-column: 1 / -1;
+    margin:auto;
   }
 `;
 
 let NavList = styled.ol`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0;
   margin: 0;
 `;
 
 let NavListItem = styled.li`
   list-style-type: none;
+  padding-right:var(--gap);
+
+  @media ${mediaQueries.uptoMobile} {
+    padding-top: calc(var(--gap) / 2);
+    padding-bottom: calc(var(--gap) / 2);
+
+  }
 `;
 
 let NavLink = styled.a`
@@ -151,9 +168,13 @@ let NavLink = styled.a`
 `;
 
 let Scribble = styled.div`
-  visibility: hidden;
+  display: none;
   position: absolute;
   top: 9px;
+
+  @media ${mediaQueries.uptoMobile} {
+    top: 19px;
+  }
 `;
 
 export default Header;

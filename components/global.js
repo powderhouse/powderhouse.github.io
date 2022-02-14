@@ -8,7 +8,7 @@ import { css } from "styled-components";
 
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { asteriskSVG } from "../site-data.js";
+import { asteriskSVG, mediaQueries } from "../site-data.js";
 
 import Region2 from "../components/Region2.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
@@ -150,7 +150,17 @@ const baseGrid = css`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: var(--gap);
+
+	@media ${mediaQueries.uptoTablet} {
+     	grid-template-columns: repeat(6,1fr);
+   	}
+ 
+   	@media ${mediaQueries.uptoMobile} {
+     	grid-template-columns: repeat(3,1fr);
+   	}
 `;
+
+ 
 
 let PageSplashDiv = styled.div`
 	grid-column: 1 / -1;

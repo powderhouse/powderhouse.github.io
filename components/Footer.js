@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Icon from "../components/Icon.js";
 import Region2 from "../components/Region2.js";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
-import { navMenuItems, socials, logotypeVertSVG } from "../site-data.js";
+import { navMenuItems, socials, logotypeVertSVG, mediaQueries } from "../site-data.js";
 
 import {
   gap,
@@ -25,7 +25,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper backgroundColor={backgroundColor} {...rest}>
         <ContentContainer>
-          <FooterNavigation>
+          <FooterNavigation className={router.pathname != "/" ? "" : "home"} >
             <NavList>
               {navItems.map((n, i) => {
                 return (
@@ -36,7 +36,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               })}
             </NavList>
           </FooterNavigation>
-          <FooterContact>
+          <FooterContact className={router.pathname != "/" ? "" : "home"} >
             <NavList>
               <ContactNavItem>
                 <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
@@ -130,14 +130,24 @@ let ContentContainer = styled.div`
   grid-column-start: 1;
   grid-row-start: 1;
   ${baseGrid};
-  /*position:absolute;*/
   z-index: 1;
   padding-bottom: var(--gap);
-  /*bottom: 0;*/
 `;
 
 let FooterNavigation = styled.div`
   grid-column: 2 / 4;
+
+  &.home {
+    grid-column: 5 / 7;
+
+    @media ${mediaQueries.uptoTablet} {
+      /*TK I kind of think this should be centered... maybe?*/
+      grid-column: 3 / 4;
+    }
+    @media ${mediaQueries.uptoMobile} {
+      grid-column: 1 / 2;
+    }
+  }
 `;
 
 let NavList = styled.ol`
@@ -171,6 +181,17 @@ let SocialList = styled(NavList)`
 
 let FooterContact = styled.div`
   grid-column: 4 / 7;
+
+  &.home {
+    grid-column: 7 / 9;
+
+    @media ${mediaQueries.uptoTablet} {
+      grid-column: 4 / 6;
+    }
+    @media ${mediaQueries.uptoMobile} {
+      grid-column: 2 / -1;
+    }
+  }
 `;
 
 let FooterNewsletterSignup = styled.div`
