@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
-import { scribbleSVGs, logotypeHorizSVG } from "../site-data.js";
+import { scribbleSVGs, logotypeHorizSVG, logoSVG, mediaQueries } from "../site-data.js";
 import { highlight, colorByProp, ShiftBy } from "../components/global.js";
 import Region2 from "../components/Region2.js";
 
@@ -28,13 +28,20 @@ function Header(props) {
     return scribbleNum;
   }
 
+  console.log("hellooooooo "+mediaQueries.mobile)
+
   return (
     <Region2 {...props}>
       <Wrapper>
         <ShiftBy x={0} y={-5}>
           <LogoLockup>
             <div style={{ width: "321.54px" }}>
-              <Link href="/">{logotypeHorizSVG()}</Link>
+              <Link href="/">
+                <>
+                  {logoSVG("off-white navlogo-mobile")}
+                  {logotypeHorizSVG("off-white navlogo-tabletAndUp")}
+                </>
+              </Link>
             </div>
           </LogoLockup>
         </ShiftBy>
@@ -83,14 +90,43 @@ let Wrapper = styled.header`
     fill: inherit;
     `};
   ${(props) => baseGrid};
+
+  @media ${mediaQueries.mobile} {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 let LogoLockup = styled.div`
   grid-column: 1 / span 3;
+
+
+  & .navlogo-mobile {
+    /*By default, hide the mobile logo*/
+    display:none;
+  }
+
+  @media ${mediaQueries.mobile} {
+    grid-column: 1 / 2;
+
+    /*On mobile, swap which logo is visible*/
+    & .navlogo-mobile {
+      display:block;
+    }
+
+    & .navlogo-tabletAndUp {
+      display:none;
+    }
+    
+  }
 `;
 
 let NavMenu = styled.nav`
   grid-column: 9 / -1;
+
+  @media ${mediaQueries.mobile} {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
 `;
 
 let NavList = styled.ol`

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import { complementaryColor, SectionHeader } from "../components/global";
+import { mediaQueries } from "../site-data";
 
 let StyledDiv = styled.div`
 	margin: 0 auto; // TODO: Any better way to center?
@@ -45,6 +46,10 @@ let StyledDiv = styled.div`
 			`;
 		}
 	}};
+
+	@media ${mediaQueries.mobile} {
+		grid-template-columns: repeat(3, 1fr);
+	}
 `;
 
 function Region2({ header, left, children, ...rest }) {
