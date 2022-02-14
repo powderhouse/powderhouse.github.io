@@ -88,10 +88,7 @@ function NewsPage({ newsPage, newsCards }) {
 
 let NewsItemContainer = styled.div`
 	grid-column: 1 / 10;
-
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	column-gap: var(--gap);
+	${baseGrid}
 	padding: calc(1 * 1.3rem) 0;
 `;
 

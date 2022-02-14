@@ -79,7 +79,7 @@ let Wrapper = styled.header`
   gap: var(--gap);
   height: calc(6 * 1.3rem);
   align-items: center;
-  ${(props) => colorByProp(props)}
+  ${(props) => colorByProp(props)};
   ${(props) => `
     color: inherit;
     stroke: inherit;
@@ -87,11 +87,7 @@ let Wrapper = styled.header`
     `};
   ${(props) => baseGrid};
 
-  @media ${mediaQueries.uptoTablet} {
-    grid-template-columns: repeat(6, 1fr);
-  }
   @media ${mediaQueries.uptoMobile} {
-    grid-template-columns: repeat(3, 1fr);
     height:fit-content;
   }
 `;

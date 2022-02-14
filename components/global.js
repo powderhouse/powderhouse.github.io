@@ -153,11 +153,11 @@ const baseGrid = css`
 
 	@media ${mediaQueries.uptoTablet} {
      	grid-template-columns: repeat(6,1fr);
-   	}
+   	};
  
    	@media ${mediaQueries.uptoMobile} {
      	grid-template-columns: repeat(3,1fr);
-   	}
+   	};
 `;
 
  
