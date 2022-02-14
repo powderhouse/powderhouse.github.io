@@ -234,9 +234,10 @@ let PartnerCard = styled.div`
 	height: 100px;
 	overflow: hidden;
 	transition: 0.2s;
+	opacity: 0.75;
 
 	&:hover {
-		opacity: 0.6;
+		opacity: 1;
 	}
 `;
 
