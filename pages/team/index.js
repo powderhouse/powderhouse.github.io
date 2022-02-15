@@ -170,9 +170,9 @@ function TeamPage2({
 						buttonWidth="long"
 						buttonThickness="thick"
 						buttonTextLength="medText"
-						style={{
-							top: "calc(-15px * ((17 * 1.3) / 2))",
-						}}
+						// style={{
+						// 	top: "calc(-15px * ((17 * 1.3) / 2))",
+						// }}
 					></ArrowButton>
 				</Div>
 			</PageSectionContent>
