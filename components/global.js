@@ -90,12 +90,14 @@ let colorByProp = (props) => {
 	let colorString = props.color
 		? props.color
 		: complementaryColor(backgroundColorString);
-	return `
+
+	let cssString = `
 	  		background-color: ${expandColor(backgroundColorString)};
 	  		color: ${expandColor(colorString)};
 	  		stroke: ${expandColor(colorString)};
 	  		fill: ${expandColor(colorString)};
 	  	`;
+	return cssString;
 };
 
 let PageContainer = styled.div`
@@ -152,15 +154,13 @@ const baseGrid = css`
 	gap: var(--gap);
 
 	@media ${mediaQueries.uptoTablet} {
-     	grid-template-columns: repeat(6,1fr);
-   	};
- 
-   	@media ${mediaQueries.uptoMobile} {
-     	grid-template-columns: repeat(3,1fr);
-   	};
-`;
+		grid-template-columns: repeat(6, 1fr);
+	}
 
- 
+	@media ${mediaQueries.uptoMobile} {
+		grid-template-columns: repeat(3, 1fr);
+	} ;
+`;
 
 let PageSplashDiv = styled.div`
 	grid-column: 1 / -1;
@@ -235,14 +235,14 @@ let sectionHeaderContainerStyles = {
 	left: css`
 		grid-column: 1 / span 3;
 		font-size: 24px;
-		letter-spacing: -0.5;
+		letter-spacing: -0.5px;
 		padding-left: calc(1.375 * 1.3rem);
 		height: 1.3rem;
 	`,
 	center: css`
 		grid-column: 4 / 10;
 		font-size: 31px;
-		letter-spacing: -1.2;
+		letter-spacing: -1.2px;
 		padding-left: calc(1.3em);
 	`,
 };
