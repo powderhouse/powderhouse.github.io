@@ -10,7 +10,7 @@ import Region2 from "../../components/Region2";
 import PageContainer2 from "../../components/PageContainer2";
 
 import PageTableOfContents from "../../components/PageTableOfContents";
-import { asteriskSVG } from "../../site-data.js";
+import { asteriskSVG, mediaQueries } from "../../site-data.js";
 
 import {
 	baseGrid,
@@ -228,6 +228,13 @@ let PartnerSectionContent = styled.div`
 	column-gap: var(--gap);
 	row-gap: 1.3rem;
 	grid-template-columns: repeat(5, 1fr);
+
+	@media ${mediaQueries.uptoTablet} {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	@media ${mediaQueries.uptoMobile} {
+		grid-template-columns: repeat(3, 1fr);
+	}
 `;
 
 let PartnerCard = styled.div`
@@ -293,6 +300,10 @@ let PastLifeSectionContent = styled.div`
 	grid-template-columns: repeat(2, 1fr);
 	column-gap: var(--gap);
 	row-gap: 1.3rem;
+
+	@media ${mediaQueries.uptoTablet} {
+		grid-template-columns: repeat(1, 1fr);
+	}
 `;
 
 let PastLifeCard = styled.div`
