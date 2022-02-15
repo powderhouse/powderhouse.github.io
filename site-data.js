@@ -1,8 +1,8 @@
 let navMenuItems = [
-  { text: "About", href: "/about", color: "yellow", scribbleNum: "1" },
-  { text: "Team", href: "/team", color: "purple", scribbleNum: "2" },
-  { text: "Work", href: "/work", color: "green", scribbleNum: "3" },
-  { text: "News", href: "/news", color: "yellow", scribbleNum: "1" },
+  { text: "About", href: "/about", color: "--yellow", scribbleNum: "1" },
+  { text: "Team", href: "/team", color: "--purple", scribbleNum: "2" },
+  { text: "Work", href: "/work", color: "--green", scribbleNum: "3" },
+  { text: "News", href: "/news", color: "--yellow", scribbleNum: "1" },
 ];
 
 let socials = [
@@ -534,12 +534,11 @@ let buttonSVGs = {
   },
 };
 
-let asteriskSVG = (className = "--off-black", strokeWidth = "5") => (
+let asteriskSVG = (strokeWidth = "5") => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -39 150 111">
     <path
       d="M 0 43.712 L 88.25 26.838 M 57.055 78.651 L 27.423 0 M 23.298 65.652 L 57.156 8.351 M 67.46 48.363 L 7.632 19.816"
       fill="transparent"
-      className={className.slice(2)}
       strokeWidth={strokeWidth}
       strokeLinecap="square"
       strokeLinejoin="round"

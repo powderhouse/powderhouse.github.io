@@ -356,7 +356,7 @@ let PageSectionContent = styled(Div)`
 		grid-column: 1 / -1;
 		grid-template-columns: repeat(6, 1fr);
 	}
-	
+
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(3, 1fr);
 	}

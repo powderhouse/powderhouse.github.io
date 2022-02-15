@@ -164,7 +164,7 @@ let NavLink = styled.a`
 `;
 
 let Scribble = styled.div`
-  display: none;
+  visibility: hidden;
   position: absolute;
   top: 9px;
 
