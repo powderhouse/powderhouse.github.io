@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { complementaryColor, SectionHeader, baseGrid } from "../components/global";
+import {
+	complementaryColor,
+	SectionHeader,
+	baseGrid,
+} from "../components/global";
 import { mediaQueries } from "../site-data";
 
 let StyledDiv = styled.div`
@@ -37,7 +41,7 @@ let StyledDiv = styled.div`
 			`;
 		} else {
 			return css`
-				color: "initial";
+				color: initial;
 			`;
 		}
 	}}
