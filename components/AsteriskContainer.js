@@ -60,7 +60,6 @@ let AsteriskContainerDiv = styled.div`
 	transform: var(--random-rotate);
 
 	${(props) => asteriskContainerStyles[props.type]}
-	${(props) => colorByProp(props)}
 `;
 
 export default AsteriskContainer;

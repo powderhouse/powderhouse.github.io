@@ -4,6 +4,7 @@ import {
 	complementaryColor,
 	SectionHeader,
 	baseGrid,
+	colorByProp,
 } from "../components/global";
 import { mediaQueries } from "../site-data";
 
@@ -27,24 +28,8 @@ let StyledDiv = styled.div`
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);
-	background-color: ${(props) =>
-		props.backgroundColor ? props.backgroundColor : "initial"};
 
-	${(props) => {
-		if (props.color) {
-			return css`
-				color: ${props.color};
-			`;
-		} else if (props.backgroundColor) {
-			return css`
-				color: ${complementaryColor(props.backgroundColor)};
-			`;
-		} else {
-			return css`
-				color: initial;
-			`;
-		}
-	}}
+	${(props) => colorByProp(props)}
 
 	${(props) => {
 		if (props.header) {
@@ -74,7 +59,7 @@ function Region2({ header, left, children, ...rest }) {
 	}
 
 	return (
-		<StyledDiv header={header} left={left}>
+		<StyledDiv header={header} left={left} {...rest}>
 			{elements}
 		</StyledDiv>
 	);
