@@ -233,12 +233,12 @@ let PartnerSectionContent = styled.div`
 		grid-template-columns: repeat(4, 1fr);
 	}
 	@media ${mediaQueries.uptoMobile} {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 	}
 `;
 
 let PartnerCard = styled.div`
-	height: 100px;
+	height: 110px;
 	overflow: hidden;
 	transition: 0.375s;
 	opacity: 0.75;
@@ -255,7 +255,7 @@ let PartnerLogo = styled.img`
 	pointer-events: none;
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
+	object-fit: contain;
 `;
 
 let PartnerLink = styled.a``;
