@@ -28,9 +28,9 @@ socials.forEach((s) => (s.id = s.service.toLowerCase() + "-" + "social"));
 let buttonSVGs = {
   long: {
     thick: {
-      shortText: (className = "off-black", height = "100%", width = "100%") => (
+      shortText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 336 69"
           width={width}
@@ -55,9 +55,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (className = "off-black", height = "100%", width = "100%") => (
+      medText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           width="336"
           height="69"
@@ -84,9 +84,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (className = "off-black", height = "100%", width = "100%") => (
+      longText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           width="336"
           height="69"
@@ -115,9 +115,9 @@ let buttonSVGs = {
       ),
     },
     thin: {
-      shortText: (className = "off-black", height = "100%", width = "100%") => (
+      shortText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 339 49"
           width={width}
@@ -149,9 +149,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (className = "off-black", height = "100%", width = "100%") => (
+      medText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 339 49"
           width={width}
@@ -183,9 +183,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (className = "off-black", height = "100%", width = "100%") => (
+      longText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 339 49"
           width={width}
@@ -219,9 +219,9 @@ let buttonSVGs = {
   },
   medium: {
     thick: {
-      shortText: (className = "off-black", height = "100%", width = "100%") => (
+      shortText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 266 69"
           width={width}
@@ -246,9 +246,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (className = "off-black", height = "100%", width = "100%") => (
+      medText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 266 69"
           width={width}
@@ -273,9 +273,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (className = "off-black", height = "100%", width = "100%") => (
+      longText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 266 69"
           width={width}
@@ -304,9 +304,9 @@ let buttonSVGs = {
   },
   short: {
     thick: {
-      shortText: (className = "off-black", height = "100%", width = "100%") => (
+      shortText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 206 69"
           width={width}
@@ -331,9 +331,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (className = "off-black", height = "100%", width = "100%") => (
+      medText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 206 69"
           width={width}
@@ -358,9 +358,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (className = "off-black", height = "100%", width = "100%") => (
+      longText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 206 69"
           width={width}
@@ -387,9 +387,9 @@ let buttonSVGs = {
       ),
     },
     thin: {
-      shortText: (className = "off-black", height = "100%", width = "100%") => (
+      shortText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 206 49"
           width={width}
@@ -413,9 +413,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      medText: (className = "off-black", height = "100%", width = "100%") => (
+      medText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 206 49"
           width={width}
@@ -439,9 +439,9 @@ let buttonSVGs = {
           ></path>
         </svg>
       ),
-      longText: (className = "off-black", height = "100%", width = "100%") => (
+      longText: (className = "--off-black", height = "100%", width = "100%") => (
         <svg
-          className={"arrowSVG " + className}
+          className={"arrowSVG " + className.slice(2)}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 206 49"
           width={width}
@@ -468,12 +468,12 @@ let buttonSVGs = {
   },
   naked: {
     short: {
-      1: (className = "off-black") => (
+      1: (className = "--off-black") => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="transparent"
           strokeWidth="5"
-          className={className}
+          className={className.slice(2)}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -483,12 +483,12 @@ let buttonSVGs = {
           <path d="M 51.5 3 L 43 27.5 L 29 3 L 23.5 27.5 L 19.5 3 L 13.5 27.5 L 3.5 3"></path>
         </svg>
       ),
-      2: (className = "off-black") => (
+      2: (className = "--off-black") => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="transparent"
           strokeWidth="5"
-          class={className}
+          class={className.slice(2)}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -498,12 +498,12 @@ let buttonSVGs = {
           <path d="M 62.5 7 L 51.5 27.5 L 41.5 3 L 34 29 L 30.5 2 L 14.5 29 L 4 3"></path>
         </svg>
       ),
-      3: (className = "off-black") => (
+      3: (className = "--off-black") => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="transparent"
           strokeWidth="5"
-          class={className}
+          class={className.slice(2)}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -515,12 +515,12 @@ let buttonSVGs = {
       ),
     },
     long: {
-      1: (className = "off-black") => (
+      1: (className = "--off-black") => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="transparent"
           strokeWidth="5"
-          className={color}
+          className={className.slice(2)}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
@@ -534,11 +534,12 @@ let buttonSVGs = {
   },
 };
 
-let asteriskSVG = (className, strokeWidth = "5") => (
+let asteriskSVG = (className = "--off-black", strokeWidth = "5") => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -39 150 111">
     <path
       d="M 0 43.712 L 88.25 26.838 M 57.055 78.651 L 27.423 0 M 23.298 65.652 L 57.156 8.351 M 67.46 48.363 L 7.632 19.816"
       fill="transparent"
+      className={className.slice(2)}
       strokeWidth={strokeWidth}
       strokeLinecap="square"
       strokeLinejoin="round"
@@ -547,9 +548,9 @@ let asteriskSVG = (className, strokeWidth = "5") => (
 );
 
 let scribbleSVGs = {
-  1: (className = "off-black") => (
+  1: (className = "--off-black") => (
     <svg
-      className={"scribbleSVG " + className}
+      className={"scribbleSVG " + className.slice(2)}
       xmlns="http://www.w3.org/2000/svg"
       width="47.5"
       height="7.5"
@@ -563,9 +564,9 @@ let scribbleSVGs = {
       ></path>
     </svg>
   ),
-  2: (className = "off-black") => (
+  2: (className = "--off-black") => (
     <svg
-      className={"scribbleSVG " + className}
+      className={"scribbleSVG " + className.slice(2)}
       xmlns="http://www.w3.org/2000/svg"
       width="41"
       height="10"
@@ -579,9 +580,9 @@ let scribbleSVGs = {
       ></path>
     </svg>
   ),
-  3: (className = "off-black") => (
+  3: (className = "--off-black") => (
     <svg
-      className={"scribbleSVG " + className}
+      className={"scribbleSVG " + className.slice(2)}
       xmlns="http://www.w3.org/2000/svg"
       width="41"
       height="11"
@@ -597,13 +598,13 @@ let scribbleSVGs = {
   ),
 };
 
-let logotypeHorizSVG = (className = "off-black") => (
+let logotypeHorizSVG = (className = "--off-black") => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 458 47"
     preserveAspectRatio="xMinYMin meet"
     stroke="transparent"
-    className={className}
+    className={className.slice(2)}
   >
     <g>
       <path d="M 96.133 46.29 L 0.043 46.29 L 0.043 22.29 L 36.873 0 L 96.133 24.51 Z M 3.043 43.29 L 93.133 43.29 L 93.133 26.51 L 37.133 3.32 L 3.043 23.94 Z"></path>
@@ -614,12 +615,12 @@ let logotypeHorizSVG = (className = "off-black") => (
   </svg>
 );
 
-let logotypeVertSVG = (className = "off-black") => (
+let logotypeVertSVG = (className = "--off-black") => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1392 893"
     preserveAspectRatio="xMinYMin meet"
-    className={className}
+    className={className.slice(2)}
   >
     <path
       stroke="none"
@@ -628,12 +629,12 @@ let logotypeVertSVG = (className = "off-black") => (
   </svg>
 );
 
-let logoSVG = (className = "off-black") => (
+let logoSVG = (className = "--off-black") => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1392 654"
     preserveAspectRatio="xMinYMin meet"
-    className={className}
+    className={className.slice(2)}
   >
     <path d="M 535.468018 1.538025 L 531.73999 -0.025024 L 0.728996 320.594971 L 0.728996 653.598999 L 1391.779053 653.598999 L 1391.779053 356.02301 Z M 16.760002 339.992004 L 174.619995 433.011963 L 16.760002 623.500977 Z M 999.43103 210.942993 L 1364.847046 362.234985 L 1205.504028 437.700989 Z M 1190.435059 444.875 L 798.848999 630.354004 L 730.919983 465.716003 L 978.552002 211.744019 Z M 724.267029 449.604004 L 548.732971 24.382019 L 969.134033 198.398987 Z M 712.244019 462.109009 L 545.606995 632.999023 L 199.147003 428.604004 L 532.260986 26.505981 Z M 184.959991 420.507996 L 23.813004 325.523987 L 504.047974 35.442993 Z M 188.606995 441.268005 L 521.84198 637.64801 L 25.817001 637.64801 Z M 718.697021 478.219971 L 784.502014 637.728027 L 563.159973 637.728027 Z M 1201.656006 457.259033 L 1365.649048 637.607971 L 820.611023 637.607971 Z M 1216.805054 450.084961 L 1375.748047 374.780029 L 1375.748047 625.023987 Z" />
   </svg>

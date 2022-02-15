@@ -80,7 +80,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                 />
               </FooterNewsletterSignup>
               <LogoContainer>
-                {logotypeVertSVG(expandColor(accentColor))}
+                {logotypeVertSVG(accentColor)}
               </LogoContainer>
             </>
           ) : (
