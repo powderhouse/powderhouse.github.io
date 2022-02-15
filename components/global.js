@@ -159,7 +159,7 @@ const baseGrid = css`
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(3, 1fr);
-	} ;
+	}
 `;
 
 let PageSplashDiv = styled.div`
@@ -168,9 +168,7 @@ let PageSplashDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-
 	min-height: calc(29 * 1.3rem);
-
 	padding: calc(1 * 1.3rem) 0;
 `;
 
@@ -189,6 +187,10 @@ let PageHeading = styled.h1`
 	font-weight: 300;
 	line-height: 1em;
 	transform: translate(-3px, calc(1.3rem / 2 - 1px));
+
+	@media ${mediaQueries.uptoMobile} {
+		font-size: calc(6 * 1.3rem);
+	}
 `;
 
 let Asterisk = (props) => {
@@ -210,6 +212,15 @@ let PageIntroductionDiv = styled(Div)`
 	line-height: calc(2 * 1.3rem);
 	letter-spacing: -0.5;
 	padding: calc(1 * 1.3rem) 0;
+
+	@media ${mediaQueries.uptoTablet} {
+		grid-column: 1 / -1;
+	}
+
+	@media ${mediaQueries.uptoMobile} {
+		font-size: calc(1.5 * 1.3rem);
+		line-height: calc(1.5 * 1.3rem);
+	}
 `;
 
 function PageIntroduction({ children, markdown, ...rest }) {
@@ -229,6 +240,11 @@ let Header2 = styled.h2`
 	line-height: inherit;
 	letter-spacing: inherit;
 	margin-left: ${(props) => (props.left ? "" : "calc(-1.3rem / 4)")};
+
+	@media ${mediaQueries.uptoMobile} {
+		line-height: calc(1.3rem * 1.5);
+		transform: translateX(4px) translateY(-8px);
+	}
 `;
 
 let sectionHeaderContainerStyles = {
@@ -238,12 +254,20 @@ let sectionHeaderContainerStyles = {
 		letter-spacing: -0.5px;
 		padding-left: calc(1.375 * 1.3rem);
 		height: 1.3rem;
+
+		@media ${mediaQueries.uptoTablet} {
+			grid-column: 1 / -1;
+		}
 	`,
 	center: css`
 		grid-column: 4 / 10;
 		font-size: 31px;
 		letter-spacing: -1.2px;
 		padding-left: calc(1.3em);
+
+		@media ${mediaQueries.uptoTablet} {
+			grid-column: 1 / -1;
+		}
 	`,
 };
 
@@ -254,6 +278,10 @@ let SectionHeaderContainer = styled.div`
 	height: calc(2 * 1.3rem - 0.75px);
 	position: relative;
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
+
+	@media ${mediaQueries.uptoTablet} {
+		grid-column: 1 / -1;
+	}
 `;
 
 let SectionHeader = ({ left, children }) => {
@@ -323,6 +351,10 @@ let PageSectionContent = styled(Div)`
 					grid-auto-rows: inherit;
 					grid-row-gap: inherit;
 			  `}
+
+	@media ${mediaQueries.uptoTablet} {
+		grid-column: 1 / -1;
+	}
 `;
 
 let getMediaURL = function (media, maxSize = "large") {

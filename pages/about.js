@@ -58,7 +58,6 @@ function AboutPage({
 				>
 					<PageImage
 						fullBleed={e.IsFullBleed}
-						imgHeight="600"
 						src={
 							e.PageImage.data.attributes.formats == null
 								? url

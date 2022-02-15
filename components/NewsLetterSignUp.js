@@ -72,8 +72,6 @@ let NewsLetterForm = styled.form`
     @media ${mediaQueries.uptoMobile} {
         grid-template-columns: repeat(3, 1fr);
     }
-    
-   
 `;
 
 let EmailInput = styled.input.attrs((props) => ({
@@ -81,14 +79,14 @@ let EmailInput = styled.input.attrs((props) => ({
     // name: "email",
     placeholder: "Email Address",
 }))`
-    grid-column: 4 / 7;
+    grid-column: 1 / 7;
 
     color: ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     background: transparent;
     border: 2px solid ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
-    padding: 0.5em;
+    padding: calc(1.3rem / 2);
     height: calc(3 * 1.3rem);
 
     &::placeholder {
@@ -98,7 +96,7 @@ let EmailInput = styled.input.attrs((props) => ({
     }
 
     @media ${mediaQueries.uptoTablet} {
-        grid-column: 2 / -2;
+        grid-column: 1 / 4;
     }
     @media ${mediaQueries.uptoMobile} {
         grid-column: 1 / -1;
@@ -106,7 +104,7 @@ let EmailInput = styled.input.attrs((props) => ({
 `;
 
 let NewsLetterFormButton = styled.button`
-    grid-column: 7 / 10;
+    grid-column: 7 / 13;
 
     position: relative;
     display: flex;
@@ -118,8 +116,7 @@ let NewsLetterFormButton = styled.button`
     height: calc(3 * 1.3rem);
 
     @media ${mediaQueries.uptoTablet} {
-        grid-column: 2 / -2;
-        grid-row: 2;
+        grid-column: 4 / 7;
     }
     @media ${mediaQueries.uptoMobile} {
         grid-column: 1 / -1;

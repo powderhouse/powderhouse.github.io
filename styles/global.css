@@ -187,13 +187,20 @@ img {
 }
 
 .full-bleed img {
-	object-fit: cover;
+	grid-column: 1 / -1;
 	max-width: calc(1440px - 2 * var(--gap));
 }
 
 .full-body {
 	grid-column: 4 / 10;
 	padding: var(--gap) 0px;
+}
+
+/*TK Possible to pull in breakpoints?*/
+@media (min-width: 55px) {
+	.full-body {
+		grid-column: 1 / -1;
+	}
 }
 
 .footnoted-text {
