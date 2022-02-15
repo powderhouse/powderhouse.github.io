@@ -41,18 +41,22 @@ let mq = function (media) {
 };
 
 let getPadding = (media, props) => {
-	let directions = Object.keys(stylesByMedia[media]).filter((s) =>
+	let paddings = Object.keys(stylesByMedia[media]).filter((s) =>
 		s.match(/^padding-/)
 	);
-	let paddingString = directions
+	let paddingString = paddings
 		.map(
 			// Create padding-top and bottom strings
-			(direction) =>
-				`padding-${direction}: ${
-					props.pad && props.pad.includes(direction)
-						? stylesByMedia[media][`padding-${direction}`]
-						: "initial"
-				}` + ";"
+			(padding) => {
+				let direction = padding.match(/padding-(top|bottom)/)[1];
+				return (
+					`${padding}: ${
+						props.pad && props.pad.includes(direction)
+							? stylesByMedia[media][padding]
+							: "initial"
+					}` + ";"
+				);
+			}
 		)
 		.join("\n");
 	return paddingString;
