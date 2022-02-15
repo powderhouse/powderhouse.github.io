@@ -233,11 +233,14 @@ let PartnerSectionContent = styled.div`
 let PartnerCard = styled.div`
 	height: 100px;
 	overflow: hidden;
-	transition: 0.2s;
+	transition: 0.375s;
 	opacity: 0.75;
+
+	filter: grayscale(100%);
 
 	&:hover {
 		opacity: 1;
+		filter: grayscale(0%);
 	}
 `;
 
