@@ -41,8 +41,10 @@ let mq = function (media) {
 };
 
 let getPadding = (media, props) => {
-	console.log("Looking at", media, "and", props);
-	let paddingString = ["top", "bottom"]
+	let directions = Object.keys(stylesByMedia[media]).filter((s) =>
+		s.match(/^padding-/)
+	);
+	let paddingString = directions
 		.map(
 			// Create padding-top and bottom strings
 			(direction) =>
