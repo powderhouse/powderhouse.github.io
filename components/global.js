@@ -188,8 +188,11 @@ let PageHeading = styled.h1`
 	line-height: 1em;
 	transform: translate(-3px, calc(1.3rem / 2 - 1px));
 
+	@media ${mediaQueries.uptoTablet} {
+		font-size: calc(4 * 1.3rem);
+	}
 	@media ${mediaQueries.uptoMobile} {
-		font-size: calc(6 * 1.3rem);
+		font-size: calc(3 * 1.3rem);
 	}
 `;
 

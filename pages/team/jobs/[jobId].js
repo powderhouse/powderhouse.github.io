@@ -40,7 +40,7 @@ function JobDetailPage({ jobCards }) {
   let regions = [
     <Header backgroundColor="--off-white" key="header" />,
     <PageSplash backgroundColor={accentColor} key="splash">
-      <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>,
+      <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>
       <PageTableOfContents sections={jobCard.attributes.PageSections} />
     </PageSplash>,
     <PageIntroduction backgroundColor="--off-white" key="introduction">
