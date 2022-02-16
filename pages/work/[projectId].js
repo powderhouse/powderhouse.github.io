@@ -108,7 +108,7 @@ let ProjectSplashDiv = styled.div`
     grid-template-columns: 1fr;
     grid-template-areas:
       "title"
-      "image" 
+      "image"
       "info";
   }
 `;
@@ -141,6 +141,7 @@ let ProjectTitleHeading = styled.h2`
   font-weight: 300;
   /*display: inline-block;*/
   padding-bottom: calc(1 * 1.3rem);
+  text-align: left;
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(1.3rem * 3);
@@ -149,22 +150,22 @@ let ProjectTitleHeading = styled.h2`
   }
 
   @media ${mediaQueries.uptoMobile} {
-
   }
 `;
 
-let ProjectYearsHeading = styled.h2`
+let ProjectYearsHeading = styled.span`
   font-size: calc(3 * 1.3rem);
   line-height: calc(3 * 1.3rem);
   /*vertical-align: baseline;*/
   /*display: inline-block;*/
-  font-weight:300;
+  font-weight: 300;
   opacity: 0.25;
+  display: inline-block;
+  white-space: no-wrap;
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(1 * 1.3rem);
     line-height: calc(1 * 1.3rem);
-
   }
 `;
 
@@ -173,14 +174,14 @@ function ProjectTitle(props) {
     <ProjectTitleDiv>
       <ProjectTitleHeading>
         {props.title}{" "}
+        <ProjectYearsHeading>
+          (
+          {props.years.start == props.years.end
+            ? props.years.start
+            : `${props.years.start}–${props.years.end}`}
+          )
+        </ProjectYearsHeading>
       </ProjectTitleHeading>
-      <ProjectYearsHeading>
-        (
-        {props.years.start == props.years.end
-          ? props.years.start
-          : `${props.years.start}–${props.years.end}`}
-        )
-      </ProjectYearsHeading>
     </ProjectTitleDiv>
   );
 }
@@ -298,20 +299,19 @@ let GalleryIframe = styled.iframe`
 
 // let getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
 
-function htmlToElement(htmlString) {
-  return parse(htmlString).childNodes[0];
+function getAttrFromHTML(attr, htmlString) {
+  let element = parse(htmlString).querySelector(`[${attr}]`);
+  return element.getAttribute(attr);
 }
 
 function getAspectRatio(htmlString) {
-  let element = htmlToElement(htmlString);
-  let width = parseInt(element.getAttribute("width"));
-  let height = parseInt(element.getAttribute("height"));
+  let width = parseInt(getAttrFromHTML("width", htmlString));
+  let height = parseInt(getAttrFromHTML("height", htmlString));
   return ((height / width) * 100).toString();
 }
 
 function getSrc(htmlString) {
-  let element = htmlToElement(htmlString);
-  return element.getAttribute("src");
+  return getAttrFromHTML("src", htmlString);
 }
 
 function isVideo(fileExt) {
