@@ -49,10 +49,12 @@ function JobDetailPage({ jobCards }) {
     ...jobCard.attributes.PageSections.map((n, i) => {
       let slug = slugify(n.SectionHeader);
       return (
-        <Region2 backgroundColor="--off-white" key={`job-${i}`}>
-          <SectionHeader id={slug} left={true}>
-            {n.SectionHeader}
-          </SectionHeader>
+        <Region2 
+          backgroundColor="--off-white" 
+          key={`job-${i}`}
+          header={n.SectionHeader ? n.SectionHeader : null}
+          left={n.isLeftHeader ? n.isLeftHeader : null}
+        >
           <PageSectionContent markdown>
             {n.PageSectionContent}
           </PageSectionContent>
