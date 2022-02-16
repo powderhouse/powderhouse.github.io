@@ -83,7 +83,7 @@ function PageContainer2(props) {
 	let contentPresent = contentRunIndices == 0 ? false : true;
 	let firstContentIndex, lastContentIndex;
 	let customRegionContainerStyle =
-		mergedRegionRuns.length == 1 ? { "min-height": "100vh" } : {};
+		mergedRegionRuns.length == 1 ? { minHeight: "100vh" } : {};
 	let regionContainers = mergedRegionRuns.map((rr, i) => {
 		let containsContent = contentRunIndices.includes(i);
 		let isFirstContentRegionContainer = contentPresent
