@@ -33,7 +33,7 @@ function AboutPage({
 	},
 	aboutPageContent,
 }) {
-	let accentColor = "--yellow";
+	let accentColor = "--red";
 
 	let regions = [
 		<Header backgroundColor="--off-white" key="header" />,

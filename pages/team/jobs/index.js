@@ -59,9 +59,6 @@ function JobsPage({ jobPage, jobCards }) {
 					header={n.SectionHeader ? n.SectionHeader : null}
 					left={n.isLeftHeader ? n.isLeftHeader : null}
 				>
-					{/* <SectionHeader id={slugify(n.SectionHeader)} left={true}> */}
-					{/* 	{n.SectionHeader} */}
-					{/* </SectionHeader> */}
 					<PageSectionContent $grid={true}>
 						<div style={{ gridColumn: "1 / -1" }}>
 							<Div markdown>{n.PageSectionContent}</Div>

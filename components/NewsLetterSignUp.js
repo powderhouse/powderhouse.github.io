@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import { buttonSVGs, mediaQueries } from "../site-data.js";
-import { highlight, expandColor } from "./global.js";
+import { highlight, expandColor, complementaryColor } from "./global.js";
 
 function NewsLetterSignUp({
     text,
-    color,
+    backgroundColor,
     link,
     buttonWidth,
     buttonThickness,
@@ -45,12 +45,12 @@ function NewsLetterSignUp({
         <NewsLetterForm method="post" onSubmit={handleSubmit}>
             <input type="hidden" name="u" value="f8c818c16bcf7810f5da39962" />
             <input type="hidden" name="id" value="5137830bcb" />
-            <EmailInput name="MERGE0" id="MERGE0" color={color} />
+            <EmailInput name="MERGE0" id="MERGE0" color={complementaryColor(backgroundColor)} />
             <NewsLetterFormButton className="arrowButton">
                 {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
-                    color
+                    complementaryColor(backgroundColor)
                 )}
-                <ButtonText color={color}>{text}</ButtonText>
+                <ButtonText color={complementaryColor(backgroundColor)}>{text}</ButtonText>
             </NewsLetterFormButton>
         </NewsLetterForm>
     );
@@ -84,7 +84,9 @@ let EmailInput = styled.input.attrs((props) => ({
     color: ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     background: transparent;
-    border: 2px solid ${(props) =>
+    border-style: solid;
+    border-width: 2.5px;
+    border-color: ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     padding: calc(1.3rem / 2);
     height: calc(3 * 1.3rem);

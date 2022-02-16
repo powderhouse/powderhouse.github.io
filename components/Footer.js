@@ -13,7 +13,6 @@ import {
   colorByProp,
   ShiftBy,
   highlight,
-  complementaryColor,
 } from "../components/global.js";
 
 function Footer({ backgroundColor, accentColor, ...rest }) {
@@ -66,7 +65,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
           </FooterContact>
           {router.pathname != "/" ? (
             <>
-              <FooterNewsletterSignup>
+              <FooterNewsletterSignup backgroundColor={backgroundColor} >
                 <NewsLetterShoutOut>
                   {`If you'd like to keep up with our work, sign up for our
                   mailing list.`}
