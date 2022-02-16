@@ -8,6 +8,8 @@ import Footer from "../../components/Footer";
 import PageContainer2 from "../../components/PageContainer2";
 import Region2 from "../../components/Region2";
 
+import { mediaQueries } from "../../site-data";
+
 import {
   baseGrid,
   PageContainer,
@@ -100,6 +102,15 @@ let ProjectSplashDiv = styled.div`
     "title title"
     "info image";
   column-gap: var(--gap);
+  padding: calc(1.3rem) 0;
+
+  @media ${mediaQueries.uptoTablet} {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "image" 
+      "info";
+  }
 `;
 
 function ProjectSplash({ backgroundColor, ...rest }) {
@@ -110,38 +121,59 @@ function ProjectSplash({ backgroundColor, ...rest }) {
   );
 }
 
-let ProjectTitleHeading = styled.h2`
+let ProjectTitleDiv = styled.div`
   grid-area: title;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  text-align: center;
+
+  @media ${mediaQueries.uptoTablet} {
+    flex-direction: column-reverse;
+  }
+`;
+
+let ProjectTitleHeading = styled.h2`
   font-size: calc(1.3rem * 5);
   line-height: calc(1.3rem * 5);
   font-weight: 300;
-  display: inline-block;
+  /*display: inline-block;*/
   padding-bottom: calc(1 * 1.3rem);
+
+  @media ${mediaQueries.uptoTablet} {
+    font-size: calc(1.3rem * 3);
+    line-height: calc(1.3rem * 3);
+    padding-bottom: calc(1.3rem / 2);
+  }
+
+  @media ${mediaQueries.uptoMobile} {
+
+  }
 `;
 
-let TenureTag = styled.span`
-  font-size: calc(1.3rem * 2);
-  line-height: calc(1.3rem * 2);
-  padding-bottom: calc(var(--gap) / 4);
-  font-weight: 500;
-  opacity: 0.625;
-`;
-
-let ProjectYearsHeading = styled.span`
+let ProjectYearsHeading = styled.h2`
   font-size: calc(3 * 1.3rem);
   line-height: calc(3 * 1.3rem);
-  vertical-align: baseline;
+  /*vertical-align: baseline;*/
+  /*display: inline-block;*/
+  font-weight:300;
   opacity: 0.25;
+
+  @media ${mediaQueries.uptoTablet} {
+    font-size: calc(1 * 1.3rem);
+    line-height: calc(1 * 1.3rem);
+
+  }
 `;
 
 function ProjectTitle(props) {
   return (
-    <ProjectTitleHeading>
-      {props.title}{" "}
+    <ProjectTitleDiv>
+      <ProjectTitleHeading>
+        {props.title}{" "}
+      </ProjectTitleHeading>
       <ProjectYearsHeading>
         (
         {props.years.start == props.years.end
@@ -149,7 +181,7 @@ function ProjectTitle(props) {
           : `${props.years.start}–${props.years.end}`}
         )
       </ProjectYearsHeading>
-    </ProjectTitleHeading>
+    </ProjectTitleDiv>
   );
 }
 
@@ -158,12 +190,18 @@ let ProjectInfo = styled.div`
 
   display: flex;
   flex-direction: column;
+  padding-top: calc(1.3rem);
 `;
 
 let ProjectSubtitle = styled(Div)`
   font-size: calc(1.3rem * 2);
   line-height: calc(1.3rem * 2);
   font-weight: 300;
+
+  @media ${mediaQueries.uptoMobile} {
+    font-size: calc(1.3rem * 1.5);
+    line-height: calc(1.3rem * 1.5);
+  }
 `;
 
 let ProjectDescription = styled(Div)`
@@ -171,6 +209,11 @@ let ProjectDescription = styled(Div)`
   line-height: calc(1.3rem * 1.2);
   font-weight: 300;
   padding-top: 1.3rem;
+
+  @media ${mediaQueries.uptoMobile} {
+    font-size: calc(1.3rem * 1);
+    line-height: calc(1.3rem * 1);
+  }
 `;
 
 let ProjectInfoList = styled.ul`
@@ -209,6 +252,13 @@ let PageGalleryDiv = styled.div`
   list-style-type: none;
   column-count: ${(props) => (props.numCols ? props.numCols : 3)};
   column-gap: var(--gap);
+
+  @media ${mediaQueries.uptoTablet} {
+    column-count: 2;
+  }
+  @media ${mediaQueries.uptoMobile} {
+    column-count: 1;
+  }
 `;
 
 function PageGallery({ backgroundColor, ...rest }) {
