@@ -5,8 +5,19 @@ import Link from "next/link";
 
 import { navMenuItems } from "../site-data.js";
 import { gap, baseGrid } from "./global.js";
-import { scribbleSVGs, logotypeHorizSVG, logotypeVertSVG, logoSVG, mediaQueries } from "../site-data.js";
-import { highlight, colorByProp, ShiftBy, complementaryColor } from "../components/global.js";
+import {
+  scribbleSVGs,
+  logotypeHorizSVG,
+  logotypeVertSVG,
+  logoSVG,
+  mediaQueries,
+} from "../site-data.js";
+import {
+  highlight,
+  colorByProp,
+  ShiftBy,
+  complementaryColor,
+} from "../components/global.js";
 import Region2 from "../components/Region2.js";
 
 function Header(props) {
@@ -32,14 +43,20 @@ function Header(props) {
     <Region2 {...props}>
       <Wrapper>
         {/* <ShiftBy x={0} y={-10}> */}
-          <LogoLockup>
-              <a href="/">
-                <>
-                  {logotypeVertSVG(`${complementaryColor(props.backgroundColor)} navlogo-mobile`)}
-                  {logotypeHorizSVG(`${complementaryColor(props.backgroundColor)} navlogo-tabletAndUp`)}
-                </>
-              </a>
-          </LogoLockup>
+        <LogoLockup>
+          <Link href="/">
+            <>
+              {logotypeVertSVG(
+                `${complementaryColor(props.backgroundColor)} navlogo-mobile`
+              )}
+              {logotypeHorizSVG(
+                `${complementaryColor(
+                  props.backgroundColor
+                )} navlogo-tabletAndUp`
+              )}
+            </>
+          </Link>
+        </LogoLockup>
         {/* </ShiftBy> */}
         <NavMenu>
           <ShiftBy x={0} y={-3}>
@@ -88,24 +105,24 @@ let Wrapper = styled.header`
   ${(props) => baseGrid};
 
   @media ${mediaQueries.uptoMobile} {
-    height:fit-content;
+    height: fit-content;
   }
 `;
 
 let LogoLockup = styled.div`
   grid-column: 1 / span 3;
   width: 321.54px;
-  transform:translateY(-5px);
+  transform: translateY(-5px);
 
   & .navlogo-mobile {
     /*By default, hide the mobile logo*/
-    display:none;
-    transform:translateY(15px);
-    flex-wrap:wrap;
+    display: none;
+    transform: translateY(15px);
+    flex-wrap: wrap;
   }
 
   @media ${mediaQueries.uptoTablet} {
-    width:200px;
+    width: 200px;
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -114,24 +131,23 @@ let LogoLockup = styled.div`
 
     /*On mobile, swap which logo is visible*/
     & .navlogo-mobile {
-      display:block;
+      display: block;
     }
 
     & .navlogo-tabletAndUp {
-      display:none;
+      display: none;
     }
-    
   }
 `;
 
 let NavMenu = styled.nav`
   grid-column: -4 / -1;
-  transform:translateY(10);
+  transform: translateY(10);
 
   @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
     grid-column: 1 / -1;
-    margin:auto;
+    margin: auto;
   }
 `;
 
@@ -144,12 +160,11 @@ let NavList = styled.ol`
 
 let NavListItem = styled.li`
   list-style-type: none;
-  padding-right:var(--gap);
+  padding-right: var(--gap);
 
   @media ${mediaQueries.uptoMobile} {
     padding-top: calc(var(--gap) / 2);
     padding-bottom: calc(var(--gap) / 2);
-
   }
 `;
 
