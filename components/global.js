@@ -124,6 +124,15 @@ let Markdown = ({ children, ...rest }) => {
 	// Here we iterate over children we pass and only wrap text/string children in Markdown.  This lets us wrap things in Markdown more cavalierly.
 	let wrappedChildren = React.Children.toArray(children).map((c, i) => {
 		if (typeof c == "string") {
+			try {
+				if (c.match(/\.  /)) {
+					throw new Error("Formatting issue with:" + c, {
+						cause: "Period with two spaces after it appears.  We use periods with one space after them.",
+					});
+				}
+			} catch (err) {
+				console.log(err, err.cause);
+			}
 			return (
 				<ReactMarkdown
 					components={{ strong: "b" }}
