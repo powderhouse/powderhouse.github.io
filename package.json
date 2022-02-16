@@ -6,7 +6,7 @@
   "scripts": {
     "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
     "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
-    "build": "export NODE_ENV=development && yarn install --check-files && npx check-peer-dependencies --yarn --install && next build",
+    "build": "export NODE_ENV=production && yarn install --check-files && next build",
     "start": "next start",
     "lint": "next lint"
   },
