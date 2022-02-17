@@ -6,7 +6,7 @@
   "scripts": {
     "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
     "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
-    "build": "export NODE_ENV=development && yarn install --check-files && npx check-peer-dependencies --yarn --install && next build",
+    "build": "export NODE_ENV=production && yarn install --check-files && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,7 +29,7 @@
     "eslint": "8.4.1",
     "eslint-config-next": "12.0.7",
     "next": "^12.0.4",
-    "node-html-parser": "^5.1.0",
+    "node-html-parser": "^5.2.0",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
