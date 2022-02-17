@@ -602,7 +602,7 @@ let asteriskSVG = (strokeWidth = "5") => (
 let scribbleSVGs = {
   1: (className = "--off-black") => (
     <svg
-      className={"scribbleSVG " + className.substring(0,2)=="--" ? className.slice(2) : className}
+      className={"scribbleSVG " + (className.substring(0,2)=="--" ? className.slice(2) : className)}
       xmlns="http://www.w3.org/2000/svg"
       width="47.5"
       height="7.5"
@@ -619,7 +619,7 @@ let scribbleSVGs = {
   ),
   2: (className = "--off-black") => (
     <svg
-      className={"scribbleSVG " + className.substring(0,2)=="--" ? className.slice(2) : className}
+      className={"scribbleSVG " + (className.substring(0,2)=="--" ? className.slice(2) : className)}
       xmlns="http://www.w3.org/2000/svg"
       width="41"
       height="10"
@@ -636,7 +636,7 @@ let scribbleSVGs = {
   ),
   3: (className = "--off-black") => (
     <svg
-      className={"scribbleSVG " + className.substring(0,2)=="--" ? className.slice(2) : className}
+      className={"scribbleSVG " + (className.substring(0,2)=="--" ? className.slice(2) : className)}
       xmlns="http://www.w3.org/2000/svg"
       width="41"
       height="11"
