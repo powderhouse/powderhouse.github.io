@@ -36,7 +36,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
             </NavList>
           </FooterNavigation>
           <FooterContact className={router.pathname != "/" ? "" : "home"} >
-            <NavList>
+            {/* <NavList> */}
               <ContactNavItem>
                 <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
                   339R Summer Street <br />
@@ -61,7 +61,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   })}
                 </SocialList>
               </ContactNavItem>
-            </NavList>
+            {/* </NavList> */}
           </FooterContact>
           {router.pathname != "/" ? (
             <>
@@ -174,7 +174,9 @@ let NavItem = styled.li`
 `;
 
 let ContactNavItem = styled(NavItem)`
-  padding-bottom: calc(1.3rem / 4);
+  &:not(:last-child) {
+    padding-bottom: calc(1.3rem / 4);
+  }
 `;
 
 let NavLink = styled.a`
@@ -192,6 +194,9 @@ let SocialList = styled(NavList)`
 
 let FooterContact = styled.div`
   grid-column: 4 / 6;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
@@ -199,10 +204,10 @@ let FooterContact = styled.div`
 
   /*Styling for homepage footer, without newsletter signup*/
   &.home {
-    grid-column: 7 / 9;
+    grid-column: 7 / 10;
 
     @media ${mediaQueries.uptoTablet} {
-      grid-column: 4 / 6;
+      grid-column: 4 / 7;
     }
     @media ${mediaQueries.uptoMobile} {
       grid-column: 2 / -1;

@@ -8,7 +8,7 @@ import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 
 import { fetchAPI } from "../lib/api";
-import { ShiftBy, Div } from "../components/global";
+import { ShiftBy, Div, complementaryColor } from "../components/global";
 import { mediaQueries } from "../site-data"
 
 let SplashDiv = styled(Div)`
@@ -54,11 +54,11 @@ let ShoutOut = styled.p`
 `;
 
 let SplashNewsletterSignupDiv = styled.div`
-  grid-column: 1 / -1;
+  grid-column: 4 / 10;
 
   display: grid;
   // TODO: Better way to inherit this?
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: min-content;
   column-gap: var(--gap);
   row-gap: 1.3rem;
@@ -67,9 +67,11 @@ let SplashNewsletterSignupDiv = styled.div`
   text-align: center;
 
   @media ${mediaQueries.uptoTablet} {
+    grid-column: 2 / -2;
     grid-template-columns: repeat(6, 1fr);
   }
   @media ${mediaQueries.uptoMobile} {
+    grid-column: 1 / -1;
     grid-template-columns: repeat(3, 1fr);
   }
 `;
@@ -77,7 +79,7 @@ let SplashNewsletterSignupDiv = styled.div`
 function SplashNewsletterSignup({ children, ...rest }) {
   return (
     <Region2 {...rest}>
-      <SplashNewsletterSignupDiv>{children}</SplashNewsletterSignupDiv>
+      <SplashNewsletterSignupDiv {...rest}>{children}</SplashNewsletterSignupDiv>
     </Region2>
   );
 }
@@ -101,6 +103,7 @@ function HomePage({
         buttonWidth="long"
         buttonThickness="thick"
         buttonTextLength="medText"
+        backgroundColor="--off-black"
       ></NewsLetterSignUp>
     </SplashNewsletterSignup>,
     <Footer

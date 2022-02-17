@@ -44,7 +44,7 @@ function Header(props) {
       <Wrapper>
         {/* <ShiftBy x={0} y={-10}> */}
         <LogoLockup>
-          <Link href="/">
+          <a href="/">
             <>
               {logotypeVertSVG(
                 `${complementaryColor(props.backgroundColor)} navlogo-mobile`
@@ -55,7 +55,7 @@ function Header(props) {
                 )} navlogo-tabletAndUp`
               )}
             </>
-          </Link>
+          </a>
         </LogoLockup>
         {/* </ShiftBy> */}
         <NavMenu>
