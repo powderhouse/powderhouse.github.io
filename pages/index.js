@@ -46,8 +46,6 @@ function Splash({ children, ...rest }) {
 
 let ShoutOut = styled.p`
   grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
   padding: 1.3rem 0;
   height: calc(4 * 1.3rem);
   line-height: 1;
@@ -58,7 +56,7 @@ let SplashNewsletterSignupDiv = styled.div`
 
   display: grid;
   // TODO: Better way to inherit this?
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: min-content;
   column-gap: var(--gap);
   row-gap: 1.3rem;
@@ -67,11 +65,10 @@ let SplashNewsletterSignupDiv = styled.div`
   text-align: center;
 
   @media ${mediaQueries.uptoTablet} {
-    grid-column: 2 / -2;
+    grid-column: 1 / -1;
     grid-template-columns: repeat(6, 1fr);
   }
   @media ${mediaQueries.uptoMobile} {
-    grid-column: 1 / -1;
     grid-template-columns: repeat(3, 1fr);
   }
 `;
@@ -104,6 +101,7 @@ function HomePage({
         buttonThickness="thick"
         buttonTextLength="medText"
         backgroundColor="--off-black"
+        isHomePage={true}
       ></NewsLetterSignUp>
     </SplashNewsletterSignup>,
     <Footer

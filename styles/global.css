@@ -268,8 +268,9 @@ video {
 	width: 100%;
 }
 
-.arrowSVG {
-	position: relative;
+svg {
+	width: 100%;
+    height: 100%;
 }
 
 .active .nav-scribble,

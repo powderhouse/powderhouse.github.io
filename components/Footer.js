@@ -138,14 +138,14 @@ let ContentContainer = styled.div`
 `;
 
 let FooterNavigation = styled.div`
-  grid-column: 2 / 4;
+  grid-column: 2 / 3;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 1 / 2;
   }
-/*  @media ${mediaQueries.uptoMobile} {
-    grid-column: 1 / 2;
-  }*/
+  @media ${mediaQueries.uptoMobile} {
+    grid-row: 2;
+  }
 
   /*Styling for homepage footer, without newsletter signup*/
   &.home {
@@ -155,9 +155,9 @@ let FooterNavigation = styled.div`
       /*TK I kind of think this should be centered... maybe?*/
       grid-column: 3 / 4;
     }
-/*    @media ${mediaQueries.uptoMobile} {
+    @media ${mediaQueries.uptoMobile} {
       grid-column: 1 / 2;
-    }*/
+    }
   }
 `;
 
@@ -193,13 +193,16 @@ let SocialList = styled(NavList)`
 `;
 
 let FooterContact = styled.div`
-  grid-column: 4 / 6;
+  grid-column: 3 / 6;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
+  }
+  @media ${mediaQueries.uptoMobile} {
+    grid-row: 2;
   }
 
   /*Styling for homepage footer, without newsletter signup*/
@@ -217,18 +220,18 @@ let FooterContact = styled.div`
 
 let FooterNewsletterSignup = styled.div`
   grid-column: 6 / 12;
-  display: grid;
-  grid-template-columns: 6;
+  /*display: grid;*/
+  /*grid-template-columns: 6;*/
 
   @media ${mediaQueries.uptoTablet} {
-    grid-column: 4 / 7;
-    grid-template-columns: 3;
+    grid-column: 4 / -1;
+    /*grid-template-columns: 3;*/
   }
 
   @media ${mediaQueries.uptoMobile} {
     grid-column: 1 / -1;
-    grid-row: 2;
-    grid-template-columns: 3;
+    /*grid-row: 1;*/
+    /*grid-template-columns: 3;*/
   }
 `;
 
