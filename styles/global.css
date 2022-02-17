@@ -109,13 +109,12 @@ dl {
 }
 dt {
 	grid-column: 1 / 3;
-	background: var(
-		--off-black
-	); /* TODO: Reconsider whether we actually want these black backgrounds */
-	color: var(--off-white);
 	padding-right: calc(1.3rem / 4);
 	text-align: right;
 	height: calc(100% - 1.3rem);
+	font-weight: 900;
+	border-right:dashed 1px;
+	padding-right:calc(1.3rem);
 }
 dd {
 	grid-column: 3 / 7;
@@ -124,10 +123,28 @@ dd {
 	/*TODO:  Unclear why this is needed to get vertical rhythm on / */
 	padding-bottom: 0.5px;
 }
-
 dd:last-child {
 	margin-bottom: calc(1.3rem - 1px); /* TODO: unclear why this is needed */
 	overflow: hidden;
+}
+@media (max-width: 550px) {
+	dl {
+		display:flex;
+		flex-direction:column;
+	}
+	dt {
+		padding-right:0;
+		border-right:none;
+		text-decoration-line: underline;
+  		text-decoration-style: dashed;
+  		text-underline-offset: 3px;
+		/*border-bottom:dashed 1px;*/
+		/*padding-bottom:calc(1.3rem / 4);*/
+	}
+	dd {
+		padding-top:calc(1.3rem / 4);
+
+	}
 }
 
 .blue {
