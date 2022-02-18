@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { sizeToVerticalGridInRem, Asterisk, Div, ShiftBy } from "../components/global";
+import { mediaQueries } from "../site-data";
 import Icon from "../components/Icon.js";
 
 let StyledDiv = styled.div`
 	grid-column: span 3;
 	font-size: 1rem;
+
+	@media ${mediaQueries.uptoMobile} {
+		grid-column: span 1;
+	}
 `;
 
 let HeadshotDiv = styled.div`
