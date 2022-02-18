@@ -219,7 +219,6 @@ img {
 
 .full-body {
 	grid-column: 4 / 10;
-	padding: var(--gap) 0px;
 }
 
 /*TK Possible to pull in breakpoints?*/

@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Region2 from "../../components/Region2";
 import PageContainer2 from "../../components/PageContainer2";
+import PageImage from "../../components/PageImage";
 
 import PageTableOfContents from "../../components/PageTableOfContents";
 import { asteriskSVG, mediaQueries } from "../../site-data.js";
@@ -153,8 +154,8 @@ function WorkPage({
 			i
 		) => (
 			<PastLifeLink key={i} href={Link}>
-				<PastLifeCard>
-					<PastLifeImage
+					<PageImage
+						fullBleed={false}
 						src={
 							formats == null || Object.keys(formats).length == 0
 								? url
@@ -162,8 +163,8 @@ function WorkPage({
 										.url
 						}
 						alt={alternativeText}
+						caption=""
 					/>
-				</PastLifeCard>
 			</PastLifeLink>
 		)
 	);
@@ -301,20 +302,9 @@ let PastLifeSectionContent = styled.div`
 	column-gap: var(--gap);
 	row-gap: 1.3rem;
 
-	@media ${mediaQueries.uptoTablet} {
+	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(1, 1fr);
 	}
-`;
-
-let PastLifeCard = styled.div`
-	height: 330px; /*TK Explicit?*/
-	overflow: hidden;
-`;
-
-let PastLifeImage = styled.img`
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
 `;
 
 let PastLifeLink = styled.a``;
