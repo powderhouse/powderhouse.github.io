@@ -87,7 +87,7 @@ let EmailInput = styled.input.attrs((props) => ({
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     background: transparent;
     border-style: solid;
-    border-width: 2.5px;
+    border-width: 1px;
     border-color: ${(props) =>
         props.color ? expandColor(props.color) : expandColor("--off-black")};
     padding: calc(1.3rem / 2);

@@ -98,6 +98,15 @@ dd {
 	line-height: 1.3rem;
 }
 
+ul {
+	margin-top: 0;
+	padding-left: 1.3rem;
+}
+
+ul > li {
+	margin-bottom: 0;
+}
+
 /* TODO: What is going on with the padding here to get the baseline grid? It's a mess; why all the magic numbers? */
 dl {
 	display: grid;
