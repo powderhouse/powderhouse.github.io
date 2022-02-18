@@ -54,14 +54,17 @@ function TeamPage2({
 
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
 	// TK Is this (below) an OK way to "destructure" (but not actually) this data structure?
-	[staff, advisors, alumni] = [staff, advisors, alumni].map((people) =>
-		people.map((person) => person.attributes)
+	[staff, advisors, alumni] = [
+			staff ? staff : [], 
+			advisors ? advisors : [], 
+			alumni ? alumni : [],
+		].map((people) => people.map((person) => person.attributes)
 	);
 
 	alumni = alumni.sort(tenureSort()).reverse();
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
-	let staffCards = (
+	let staffCards = staff.length == 0 ? <></> : (
 		<Region2
 			backgroundColor={getBgFromLight(staffSection.isLightSection)}
 			header={staffSection.SectionHeader}
@@ -90,7 +93,7 @@ function TeamPage2({
 	let advisorSection = PageSections.filter(
 		(s) => s.SectionHeader == "Advisors"
 	)[0];
-	let advisorCards = (
+	let advisorCards = advisors.length == 0 ? <></> : (
 		<Region2
 			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
 			header={advisorSection.SectionHeader}
@@ -114,7 +117,7 @@ function TeamPage2({
 	let alumniSection = PageSections.filter(
 		(s) => s.SectionHeader == "Alumni"
 	)[0];
-	let alumniCards = (
+	let alumniCards = alumni.length == 0 ? <></> : (
 		<Region2
 			backgroundColor={getBgFromLight(alumniSection.isLightSection)}
 			header={alumniSection.SectionHeader}

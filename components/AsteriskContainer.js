@@ -41,7 +41,7 @@ let asteriskContainerStyles = {
 	Default: css`
 		position: absolute;
 		left: calc(-0.375 * 1.3rem);
-		top: calc(-1.3rem / 7);
+		top: calc(-1.3rem / 6);
 	`,
 };
 

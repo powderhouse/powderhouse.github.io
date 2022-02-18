@@ -586,7 +586,7 @@ let buttonSVGs = {
   },
 };
 
-let asteriskSVG = (strokeWidth = "5") => (
+let asteriskSVG = (strokeWidth = "1") => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -39 150 111">
     <path 
       vectorEffect="non-scaling-stroke" 

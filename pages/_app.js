@@ -1,6 +1,6 @@
 import "/styles/reset.css";
 import "/styles/global.css";
-import "/styles/devgrid.css"; // Convenience grid from https://css-tricks.com/building-css-grid-overlay/
+// import "/styles/devgrid.css"; // Convenience grid from https://css-tricks.com/building-css-grid-overlay/
 import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
