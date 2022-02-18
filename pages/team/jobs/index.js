@@ -30,9 +30,6 @@ import {
 import { getStrapiMedia } from "../../../lib/media";
 import { fetchAPI } from "../../../lib/api";
 
-let PaddedArrowButton = styled(ArrowButton)`
-	padding-top: calc(1 * 1.3rem);
-`;
 function JobsPage({ jobPage, jobCards }) {
 	function getJobIdByTitle(title, jobCards) {
 		return jobCards[title][0].attributes.JobId;
@@ -64,7 +61,7 @@ function JobsPage({ jobPage, jobCards }) {
 							<Div markdown>{n.PageSectionContent}</Div>
 						</div>
 						{jobCards.hasOwnProperty(n.SectionHeader) ? (
-							<PaddedArrowButton
+							<ArrowButton
 								text="Apply"
 								link={
 									"/team/jobs/" +
@@ -73,7 +70,7 @@ function JobsPage({ jobPage, jobCards }) {
 								buttonWidth="long"
 								buttonThickness="thick"
 								buttonTextLength="medText"
-							></PaddedArrowButton>
+							></ArrowButton>
 						) : (
 							""
 						)}

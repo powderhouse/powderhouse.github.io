@@ -12,6 +12,8 @@ import Region2 from "../../components/Region2";
 import PageTableOfContents from "../../components/PageTableOfContents";
 import ArrowButton from "../../components/ArrowButton";
 
+import { mediaQueries } from "../../site-data";
+
 import {
 	baseGrid,
 	PageContainer,
@@ -71,7 +73,7 @@ function TeamPage2({
 			left={staffSection.isLeftHeader}
 			key="staff"
 		>
-			<PageSectionContent $wide={true} $grid={true}>
+			<StaffAlumSectionContent $wide={true} $grid={true}>
 				{staff.map((s, i) => (
 					<PersonCard
 						type={s.Role}
@@ -86,7 +88,7 @@ function TeamPage2({
 						links={s.LinkList}
 					/>
 				))}
-			</PageSectionContent>
+			</StaffAlumSectionContent>
 		</Region2>
 	);
 
@@ -100,7 +102,7 @@ function TeamPage2({
 			left={advisorSection.isLeftHeader}
 			key="advisors"
 		>
-			<PageSectionContent $wide={true} $grid={true}>
+			<AdvisorSectionContent $wide={true} $grid={true}>
 				{advisors.map((a, i) => (
 					<PersonCard
 						key={i}
@@ -110,7 +112,7 @@ function TeamPage2({
 						links={a.LinkList}
 					/>
 				))}
-			</PageSectionContent>
+			</AdvisorSectionContent>
 		</Region2>
 	);
 
@@ -124,7 +126,7 @@ function TeamPage2({
 			left={alumniSection.isLeftHeader}
 			key="alumni"
 		>
-			<PageSectionContent $wide={true} $grid={true}>
+			<StaffAlumSectionContent $wide={true} $grid={true}>
 				{alumni.map((a, i) => (
 					<PersonCard
 						type={a.Role}
@@ -137,7 +139,7 @@ function TeamPage2({
 						links={a.LinkList}
 					/>
 				))}
-			</PageSectionContent>
+			</StaffAlumSectionContent>
 		</Region2>
 	);
 
@@ -193,6 +195,18 @@ function TeamPage2({
 		</PageContainer2>
 	);
 }
+
+let StaffAlumSectionContent = styled(PageSectionContent)`
+	@media ${mediaQueries.uptoMobile} {
+		grid-template-columns: repeat(2, 1fr);
+	}
+`;
+
+let AdvisorSectionContent = styled(PageSectionContent)`
+	@media ${mediaQueries.uptoMobile} {
+		grid-template-columns: repeat(1, 1fr);
+	}
+`;
 
 let PersonHeadshotDiv = styled.div`
 	height: 150px;
