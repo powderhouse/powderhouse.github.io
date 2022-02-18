@@ -91,7 +91,7 @@ function WorkPage({
 		}
 	);
 	let projectsDesc = PageSections.find(
-		(s) => s.SectionHeader == "Selected Projects"
+		(s) => s.SectionHeader == "Selected Work"
 	);
 	let projects = projectCards.map(
 		(
@@ -179,21 +179,21 @@ function WorkPage({
 				{PageIntro}
 			</PageIntroduction>
 			<Region2
-				backgroundColor={getBgFromLight(partnersDesc.isLightSection)}
-				header={partnersDesc.SectionHeader}
-				left={partnersDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true}>
-					<PartnerSectionContent>{partners}</PartnerSectionContent>
-				</PageSectionContent>
-			</Region2>
-			<Region2
 				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
 				header={projectsDesc.SectionHeader}
 				left={projectsDesc.isLeftHeader}
 			>
 				<PageSectionContent $wide={true} $grid={true}>
 					{projects}
+				</PageSectionContent>
+			</Region2>
+			<Region2
+				backgroundColor={getBgFromLight(partnersDesc.isLightSection)}
+				header={partnersDesc.SectionHeader}
+				left={partnersDesc.isLeftHeader}
+			>
+				<PageSectionContent $wide={true}>
+					<PartnerSectionContent>{partners}</PartnerSectionContent>
 				</PageSectionContent>
 			</Region2>
 			<Region2
