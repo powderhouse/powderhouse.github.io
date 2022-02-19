@@ -157,17 +157,16 @@ function WorkPage({
 			i
 		) => (
 			<PastLifeLink key={i} href={Link}>
-					<PageImage
-						fullBleed={false}
-						src={
-							formats == null || Object.keys(formats).length == 0
-								? url
-								: formats[findLargestFormat(formats, "medium")]
-										.url
-						}
-						alt={alternativeText}
-						caption=""
-					/>
+				<PageImage
+					fullBleed={false}
+					src={
+						formats == null || Object.keys(formats).length == 0
+							? url
+							: formats[findLargestFormat(formats, "medium")].url
+					}
+					alt={alternativeText}
+					caption=""
+				/>
 			</PastLifeLink>
 		)
 	);
@@ -222,15 +221,16 @@ function WorkPage({
 }
 
 let SectionDesc = styled(Div)`
-	padding-bottom: 1.3rem;
-	font-size: calc(1 * 1.3rem);
+	padding-bottom: var(--body-line-height);
+	font-size: var(--body-font-size);
+	line-height: var(--body-line-height);
 	grid-column: 1 / -1;
 `;
 
 let PartnerSectionContent = styled.div`
 	display: grid;
 	column-gap: var(--gap);
-	row-gap: 1.3rem;
+	row-gap: var(--body-line-height)
 	grid-template-columns: repeat(5, 1fr);
 	transform: translateY(-1.3rem);
 
@@ -299,14 +299,14 @@ let ProjectFeatureImage = styled.img`
 let ProjectTitle = styled.h3`
 	grid-column: 1 / span 3;
 	font-weight: 300;
-	line-height: calc(1.3rem * 1.5);
-	font-size: calc(1.3rem * 1.5);
-	padding: calc(1.3rem / 2) 0;
+	font-size: var(--small-heading-font-size);
+	line-height: var(--small-heading-line-height);
+	padding: calc(var(--body-font-size) / 2) 0;
 	margin: 0;
 `;
 
 let ProjectSubtitle = styled(Div)`
-	line-height: 1.3rem;
+	line-height: var(--body-line-height);
 	padding: 0;
 	margin: 0;
 `;
@@ -315,7 +315,7 @@ let PastLifeSectionContent = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	column-gap: var(--gap);
-	row-gap: 1.3rem;
+	row-gap: var(--body-line-height);
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(1, 1fr);

@@ -96,7 +96,8 @@ let Wrapper = styled.header`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
-  height: calc(6 * 1.3rem);
+  // TODO: Rationalize this
+  height: calc(6 * var(--body-line-height));
   align-items: center;
   ${(props) => colorByProp(props)};
   ${(props) => `

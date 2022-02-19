@@ -14,10 +14,12 @@ let StyledRegionContainer = styled("div").withConfig({
 	padding-top: ${(props) =>
 		[false, "first"].includes(props.content)
 			? "initial"
-			: "calc(4 * 1.3rem)"};
+			// TODO: Rationalize this
+			: css`calc(4 * var(--body-line-height))`};
 	padding-bottom: ${(props) =>
 		[true, "first"].includes(props.content)
-			? "calc(4 * 1.3rem)"
+			// TODO: Rationalize this
+			? css`calc(4 * var(--body-line-height))`};
 			: "initial"};
 `;
 

@@ -102,7 +102,7 @@ let ProjectSplashDiv = styled.div`
     "title title"
     "info image";
   column-gap: var(--gap);
-  padding: calc(1.3rem) 0 calc(1.3rem * 1.5) 0;
+  padding: calc(var(--body-line-height)) 0;
 
   @media ${mediaQueries.uptoTablet} {
     grid-template-columns: 1fr;
@@ -126,25 +126,33 @@ let ProjectTitleDiv = styled.div`
 `;
 
 let ProjectTitleHeading = styled.h2`
-  font-size: calc(1.3rem * 5);
-  line-height: calc(1.3rem * 5);
+  font-size: var(--medium-heading-font-size);
+  line-height: var(--medium-heading-line-height);
   font-weight: 300;
   /*display: inline-block;*/
-  padding-bottom: calc(1 * 1.3rem);
-  /*text-align: left;*/
+  // padding-bottom: calc(1 * 1.3rem);
+  // /*text-align: left;*/
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+
+  // @media ${mediaQueries.uptoTablet} {
+  //   font-size: calc(1.3rem * 3);
+  //   line-height: calc(1.3rem * 3);
+  //   padding-bottom: calc(1.3rem / 2);
+  //   flex-direction: column-reverse;
+  //   align-items: center;
+  //   text-align: center;
+  padding-bottom: var(--body-font-size);
+  text-align: left;
 
   @media ${mediaQueries.uptoTablet} {
-    font-size: calc(1.3rem * 3);
-    line-height: calc(1.3rem * 3);
-    padding-bottom: calc(1.3rem / 2);
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
+    // TODO: Check if this can be avoided re: choosing a new type hierarchy
+    // font-size: calc(1.3rem * 3);
+    // line-height: calc(1.3rem * 3);
+    // padding-bottom: calc(1.3rem / 2);
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -152,16 +160,19 @@ let ProjectTitleHeading = styled.h2`
 `;
 
 let ProjectYearsHeading = styled.span`
-  font-size: calc(3 * 1.3rem);
-  line-height: calc(3 * 1.3rem);
+  font-size: var(--large-heading-font-size);
+  line-height: var(--large-heading-line-height);
+  /*vertical-align: baseline;*/
+  /*display: inline-block;*/
   font-weight: 300;
   opacity: 0.25;
   display: inline-block;
   white-space: no-wrap;
 
   @media ${mediaQueries.uptoTablet} {
-    font-size: calc(1 * 1.3rem);
-    line-height: calc(1 * 1.3rem);
+    // TODO: Check if this can be avoided re: choosing a new type hierarchy
+    // font-size: calc(1 * 1.3rem);
+    // line-height: calc(1 * 1.3rem);
   }
 `;
 
@@ -169,11 +180,11 @@ function ProjectTitle(props) {
   return (
     <ProjectTitleDiv>
       <ProjectTitleHeading>
-        <span>{props.title}{" "}</span>
+        <span>{props.title} </span>
         <ProjectYearsHeading>
           {props.years.start == props.years.end
             ? props.years.start
-            : `${props.years.start}–${props.years.end}`}          
+            : `${props.years.start}–${props.years.end}`}
         </ProjectYearsHeading>
       </ProjectTitleHeading>
     </ProjectTitleDiv>
@@ -185,29 +196,31 @@ let ProjectInfo = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding-top: calc(1.3rem);
+  padding-top: calc(var(--body-line-height));
 `;
 
 let ProjectSubtitle = styled(Div)`
-  font-size: calc(1.3rem * 2);
-  line-height: calc(1.3rem * 2);
+  font-size: calc(var(--medium-heading-font-size));
+  line-height: calc(var(--medium-heading-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoMobile} {
-    font-size: calc(1.3rem * 1.5);
-    line-height: calc(1.3rem * 1.5);
+    // TODO: See if we need this still
+    // font-size: calc(1.3rem * 1.5);
+    // line-height: calc(1.3rem * 1.5);
   }
 `;
 
 let ProjectDescription = styled(Div)`
-  font-size: calc(1.3rem * 1.2);
-  line-height: calc(1.3rem * 1.2);
+  font-size: calc(var(--small-heading-font-size));
+  line-height: calc(var(--small-heading-line-height));
   font-weight: 300;
-  padding-top: 1.3rem;
+  padding-top: var(--body-line-height);
 
   @media ${mediaQueries.uptoMobile} {
-    font-size: calc(1.3rem * 1);
-    line-height: calc(1.3rem * 1);
+    // TODO: See if we need this still
+    // font-size: calc(1.3rem * 1);
+    // line-height: calc(1.3rem * 1);
   }
 `;
 
@@ -215,11 +228,12 @@ let ProjectInfoList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-top: 1.3rem;
+  padding-top: var(--body-line-height);
 `;
 
 let ProjectLi = styled.li`
-  padding-left: calc(1 * 1.3rem);
+  // TODO: rationalize this
+  padding-left: calc(var(--body-line-height));
   position: relative;
 `;
 

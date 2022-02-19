@@ -15,7 +15,8 @@ let ImageContainer = styled.figure`
 `;
 
 let ImageCaption = styled.figcaption`
-	font-size: calc(1rem * 0.75);
+	font-size: calc(var(--caption-font-size));
+	line-height: var(--caption-line-height);
 	font-style: italic;
 	margin: auto;
 `;

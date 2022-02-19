@@ -24,24 +24,32 @@ const useRandomNum = () => {
 let asteriskContainerStyles = {
 	TOC: css`
 		position: absolute;
-		left: calc(-1.375 * 1.3em + 4px);
+		// TODO: Rationalize this
+		// left: calc(-1.375 * 1.3em + 4px);
 	`,
 	LeftHeader: css`
 		position: absolute;
-		left: calc(-1.3rem / 4);
-		top: calc(-1.3rem / 5);
-		transform: scale(1.5) var(--random-rotate);
+		// TODO: Rationalize this
+		left: calc(-1 * var(--body-line-height) / 4);
+		top: calc(-1 * var(--body-line-height) / 5);
+		// left: calc(-1.3rem / 4);
+		// top: calc(-1.3rem / 5);
+		// transform: scale(1.5) var(--random-rotate);
 	`,
 	CenterHeader: css`
 		position: absolute;
-		left: calc(-1.3rem / 4);
-		top: calc(-1.3rem / 5);
+		// TODO: Rationalize this
+		left: calc(-1 * var(--body-line-height) / 4);
+		top: calc(-1 * var(--body-line-height) / 5);
+		// left: calc(-1.3rem / 4);
+		// top: calc(-1.3rem / 5);
 		transform: scale(2) var(--random-rotate);
 	`,
 	Default: css`
 		position: absolute;
-		left: calc(-0.375 * 1.3rem);
-		top: calc(-1.3rem / 6);
+		// TODO: Rationalize this
+		left: calc(-0.375 * var(--body-line-height));
+		top: calc(var(--body-line-height) / 6);
 	`,
 };
 
@@ -52,8 +60,9 @@ function AsteriskContainer(props) {
 }
 
 let AsteriskContainerDiv = styled.div`
-	height: calc(1.375 * 1.3rem);
-	width: calc(1.375 * 1.3rem);
+	// TODO: Rationalize this
+	height: calc(1.375 * var(--body-line-height));
+	width: calc(1.375 * var(--body-line-height));
 	transform-origin: 50% 50%;
 	// In order to add other transforms later, via https://stackoverflow.com/questions/5890948/css-transform-without-overwriting-previous-transform
 	--random-rotate: ${(props) => `rotate(${props.rotation}deg)`};
