@@ -106,6 +106,8 @@ function WorkPage({
 					ProjectTitle: title,
 					ProjectSubtitle: subtitle,
 					ProjectId: id,
+					YearStart: yearstart,
+					YearEnd: yearend,
 				},
 			},
 			index
@@ -114,6 +116,7 @@ function WorkPage({
 				<ProjectCard key={index}>
 					<ProjectLink href={"/work/" + id}>
 						{/* TK There's probably a better way to do this with relative URLS? */}
+						<ProjectTenure>{yearstart}-{yearend}</ProjectTenure>
 						<ProjectImageDiv>
 							<ProjectFeatureImage
 								src={
@@ -250,6 +253,10 @@ let PartnerCard = styled.div`
 		opacity: 1;
 		filter: grayscale(0%);
 	}
+
+	@media (hover: none) {
+		filter: grayscale(50%);
+	}
 `;
 
 let PartnerLogo = styled.img`
@@ -267,6 +274,11 @@ let ProjectCard = styled.div`
 
 let ProjectLink = styled.a`
 	text-decoration: none;
+`;
+
+let ProjectTenure = styled.div`
+	opacity: 0.6125;
+	text-align:right;
 `;
 
 let ProjectImageDiv = styled.div`
