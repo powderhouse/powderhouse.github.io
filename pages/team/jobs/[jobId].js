@@ -38,7 +38,7 @@ function JobDetailPage({ jobCards }) {
   let jobCard = getJobCardById(jobId, jobCards);
 
   let regions = [
-    <Header backgroundColor="--off-white" key="header" />,
+    <Header backgroundColor="--off-white" activeScribbleColor={accentColor} key="header" />,
     <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>
       <PageTableOfContents sections={jobCard.attributes.PageSections} />

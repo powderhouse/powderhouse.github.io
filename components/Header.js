@@ -26,9 +26,11 @@ function Header(props) {
 
   function assignPageColor(navText) {
     let color;
-    navMenuItems.forEach((el) =>
-      el["text"] == navText ? (color = el["color"]) : ""
-    );
+    props.activeScribbleColor 
+      ? (color = props.activeScribbleColor)
+      : navMenuItems.forEach((el) =>
+          el["text"] == navText ? (color = el["color"]) : ""
+        );
     return color;
   }
   function assignScribbleNum(navText) {

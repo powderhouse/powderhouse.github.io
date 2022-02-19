@@ -29,7 +29,7 @@ function ProjectDetailPage({ projectData }) {
 
   return (
     <PageContainer2>
-      <Header backgroundColor="--off-white" />
+      <Header backgroundColor="--off-white" activeScribbleColor={accentColor} />
       <ProjectSplash backgroundColor="--off-white">
         <ProjectTitle
           title={projectData.ProjectTitle}
