@@ -96,8 +96,7 @@ let Wrapper = styled.header`
   gap: var(--gap);
   // TODO: Rationalize this
   // height: calc(6 * var(--body-line-height));
-  position: relative;
-  top: 35px;
+  padding: 35px 0;
   align-items: center;
   ${(props) => colorByProp(props)};
   ${(props) => `
@@ -157,7 +156,7 @@ let NavMenu = styled.nav`
 
 let NavList = styled.ol`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0;
   margin: 0;
   transform: translateY(3px);
@@ -165,7 +164,10 @@ let NavList = styled.ol`
 
 let NavListItem = styled.li`
   list-style-type: none;
-  padding-right: var(--gap);
+  &:not(:last-child) {
+    // TODO: Decide if this makes sense
+    padding-right: var(--gap);
+  }
 
   @media ${mediaQueries.uptoMobile} {
     padding-top: calc(var(--gap) / 2);
