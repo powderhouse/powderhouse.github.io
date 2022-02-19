@@ -46,7 +46,7 @@ function Header(props) {
       <Wrapper>
         {/* <ShiftBy x={0} y={-10}> */}
         <LogoLockup>
-          <a href="/">
+          <Link href="/">
             <>
               {logotypeVertSVG(
                 `${complementaryColor(props.backgroundColor)} navlogo-mobile`
@@ -57,34 +57,32 @@ function Header(props) {
                 )} navlogo-tabletAndUp`
               )}
             </>
-          </a>
+          </Link>
         </LogoLockup>
         {/* </ShiftBy> */}
         <NavMenu>
-          <ShiftBy x={0} y={-3}>
-            <NavList>
-              {navMenuItems.map(function (n) {
-                return (
-                  <NavListItem key={n.href}>
-                    <NavLink
-                      className={
-                        (basePath == n.href ? "active " : "") + "nav-link"
-                      }
-                      color={props.color}
-                      href={n.href}
-                    >
-                      <div>{n.text}</div>
-                      <Scribble className="nav-scribble">
-                        {scribbleSVGs[assignScribbleNum(n.text)](
-                          assignPageColor(n.text)
-                        )}
-                      </Scribble>
-                    </NavLink>
-                  </NavListItem>
-                );
-              })}
-            </NavList>
-          </ShiftBy>
+          <NavList>
+            {navMenuItems.map(function (n) {
+              return (
+                <NavListItem key={n.href}>
+                  <NavLink
+                    className={
+                      (basePath == n.href ? "active " : "") + "nav-link"
+                    }
+                    color={props.color}
+                    href={n.href}
+                  >
+                    <div>{n.text}</div>
+                    <Scribble className="nav-scribble">
+                      {scribbleSVGs[assignScribbleNum(n.text)](
+                        assignPageColor(n.text)
+                      )}
+                    </Scribble>
+                  </NavLink>
+                </NavListItem>
+              );
+            })}
+          </NavList>
         </NavMenu>
       </Wrapper>
     </Region2>
@@ -97,7 +95,9 @@ let Wrapper = styled.header`
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
   // TODO: Rationalize this
-  height: calc(6 * var(--body-line-height));
+  // height: calc(6 * var(--body-line-height));
+  position: relative;
+  top: 35px;
   align-items: center;
   ${(props) => colorByProp(props)};
   ${(props) => `
@@ -114,14 +114,16 @@ let Wrapper = styled.header`
 
 let LogoLockup = styled.div`
   grid-column: 1 / span 3;
-  width: 321.54px;
-  transform: translateY(-5px);
+  width: 320px;
+  line-height: 0; // To shrink the div to the height of the logo
+  // transform: translateY(-5px);
 
   & .navlogo-mobile {
     /*By default, hide the mobile logo*/
+    // TODO: If we're hiding, do we need any of this?
     display: none;
-    transform: translateY(15px);
-    flex-wrap: wrap;
+    // transform: translateY(15px);
+    // flex-wrap: wrap;
   }
 
   @media ${mediaQueries.uptoTablet} {
@@ -145,7 +147,6 @@ let LogoLockup = styled.div`
 
 let NavMenu = styled.nav`
   grid-column: -4 / -1;
-  transform: translateY(10);
 
   @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
@@ -159,6 +160,7 @@ let NavList = styled.ol`
   justify-content: space-around;
   padding: 0;
   margin: 0;
+  transform: translateY(3px);
 `;
 
 let NavListItem = styled.li`
