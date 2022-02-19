@@ -102,7 +102,7 @@ let ProjectSplashDiv = styled.div`
     "title title"
     "info image";
   column-gap: var(--gap);
-  padding: calc(1.3rem) 0;
+  padding: calc(1.3rem) 0 calc(1.3rem * 1.5) 0;
 
   @media ${mediaQueries.uptoTablet} {
     grid-template-columns: 1fr;
@@ -123,16 +123,6 @@ function ProjectSplash({ backgroundColor, ...rest }) {
 
 let ProjectTitleDiv = styled.div`
   grid-area: title;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-
-  @media ${mediaQueries.uptoTablet} {
-    flex-direction: column-reverse;
-  }
 `;
 
 let ProjectTitleHeading = styled.h2`
@@ -141,12 +131,20 @@ let ProjectTitleHeading = styled.h2`
   font-weight: 300;
   /*display: inline-block;*/
   padding-bottom: calc(1 * 1.3rem);
-  text-align: left;
+  /*text-align: left;*/
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(1.3rem * 3);
     line-height: calc(1.3rem * 3);
     padding-bottom: calc(1.3rem / 2);
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -156,8 +154,6 @@ let ProjectTitleHeading = styled.h2`
 let ProjectYearsHeading = styled.span`
   font-size: calc(3 * 1.3rem);
   line-height: calc(3 * 1.3rem);
-  /*vertical-align: baseline;*/
-  /*display: inline-block;*/
   font-weight: 300;
   opacity: 0.25;
   display: inline-block;
@@ -173,13 +169,11 @@ function ProjectTitle(props) {
   return (
     <ProjectTitleDiv>
       <ProjectTitleHeading>
-        {props.title}{" "}
+        <span>{props.title}{" "}</span>
         <ProjectYearsHeading>
-          (
           {props.years.start == props.years.end
             ? props.years.start
-            : `${props.years.start}–${props.years.end}`}
-          )
+            : `${props.years.start}–${props.years.end}`}          
         </ProjectYearsHeading>
       </ProjectTitleHeading>
     </ProjectTitleDiv>
@@ -234,6 +228,10 @@ let ProjectFeatureImage = styled.div`
 
   height: 450px;
   overflow: hidden;
+
+  @media ${mediaQueries.uptoMobile} {
+    height: 300px;
+  }
 `;
 
 let ProjectImage = styled.img`

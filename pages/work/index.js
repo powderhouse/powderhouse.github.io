@@ -232,9 +232,11 @@ let PartnerSectionContent = styled.div`
 	column-gap: var(--gap);
 	row-gap: 1.3rem;
 	grid-template-columns: repeat(5, 1fr);
+	transform: translateY(-1.3rem);
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-template-columns: repeat(4, 1fr);
+		transform: revert;
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(2, 1fr);
@@ -291,6 +293,7 @@ let ProjectFeatureImage = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
+	border: 1px var(--off-black) solid;
 `;
 
 let ProjectTitle = styled.h3`
