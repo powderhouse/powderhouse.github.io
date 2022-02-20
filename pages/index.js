@@ -14,13 +14,15 @@ import { mediaQueries } from "../site-data";
 let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
   width: 100%;
-  font-size: var(--title-font-size);
-  letter-spacing: -0.6px; // TODO: Add letter-spacings to type hierarchy
-  line-height: var(--title-line-height);
-  font-weight: 300;
-  font-family: "GT Planar";
   // TODO: Observed column width via Framer, any way to make dependent on column width?
   padding: calc(141px - 2 * var(--gap)) 0;
+  p {
+    font-size: var(--title-font-size);
+    letter-spacing: -0.6px; // TODO: Add letter-spacings to type hierarchy
+    line-height: var(--title-line-height);
+    font-weight: 300;
+    font-family: "GT Planar";
+  }
   p:not(:last-child) {
     padding-bottom: calc(2 * 1.3rem);
   }

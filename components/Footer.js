@@ -45,7 +45,8 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
             <ContactNavItem>
               <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
                 339R Summer Street <br />
-                Somerville, MA 02144
+                Somerville, MA 02144 <br />
+                <br />
               </NavLink>
             </ContactNavItem>
             <ContactNavItem>
@@ -97,7 +98,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
 let IconListItem = ({ className, href, icon }) => {
   return (
     <li className={className}>
-      <ShiftBy x={0} y={0}>
+      <ShiftBy x={0} y={3}>
         <NavLink href={href}>
           <Icon icon={icon} />
         </NavLink>
