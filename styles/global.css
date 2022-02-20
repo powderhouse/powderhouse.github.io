@@ -106,7 +106,9 @@ body {
 	/*TODO:  Consider using --body-line-height for this;*/
 	--gap: 24px;
 }
-
+b {
+	font-weight: 500;
+}
 a {
 	color: inherit;
 	fill: inherit;

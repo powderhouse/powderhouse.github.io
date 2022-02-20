@@ -179,7 +179,7 @@ let NavItem = styled.li`
 let ContactNavItem = styled(NavItem)`
   &:not(:last-child) {
     // TODO: Rationalize this
-    padding-bottom: calc(var(--body-line-height) / 4);
+    // padding-bottom: calc(var(--body-line-height) / 4);
   }
 `;
 
@@ -198,9 +198,9 @@ let SocialList = styled(NavList)`
 
 let FooterContact = styled.div`
   grid-column: 3 / 6;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
