@@ -14,6 +14,8 @@ import ArrowButton from "../../components/ArrowButton";
 
 import { mediaQueries } from "../../site-data";
 
+import Head from "next/head";
+
 import {
 	baseGrid,
 	PageContainer,
