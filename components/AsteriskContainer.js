@@ -50,7 +50,7 @@ let asteriskContainerStyles = {
 		position: absolute;
 		// TODO: Rationalize this
 		left: calc(-0.375 * var(--body-line-height));
-		top: calc(var(--body-line-height) / 6);
+		top: calc(-1 * var(--body-line-height) / 6);
 	`,
 };
 
