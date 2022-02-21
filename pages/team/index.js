@@ -65,6 +65,8 @@ function TeamPage2({
 	].map((people) => people.map((person) => person.attributes));
 
 	alumni = alumni.sort(tenureSort()).reverse();
+	staff = staff.sort(tenureSort()).reverse();
+	advisors = advisors.sort(tenureSort()).reverse();
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
 	let staffCards =
@@ -167,7 +169,7 @@ function TeamPage2({
 			</ShiftBy>
 		</PageIntroduction>,
 		staffCards,
-		advisorCards,
+		// advisorCards, // Leaving this in adds confusing space to the RegionContainer; TODO: Make PageContainer robust to being passed fragments?
 		alumniCards,
 		<Region2
 			backgroundColor={getBgFromLight(jobs.isLightSection)}
