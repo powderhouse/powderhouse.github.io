@@ -20,7 +20,7 @@ function ArrowButton({
   );
 }
 
-let Button = styled.button`
+let Button = styled.div`
   position: relative;
   display: flex;
   margin: 0;

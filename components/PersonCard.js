@@ -79,7 +79,12 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 			: 0;
 	});
 
-	console.log("Looking at", name, "we have the links", links);
+	console.log(
+		"Looking at",
+		name,
+		"we have the alt-text",
+		headshot ? headshot : "ehh"
+	);
 
 	return (
 		<StyledDiv>
@@ -87,7 +92,7 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 				<HeadshotDiv>
 					<Headshot
 						src={getHeadshotURL(headshot)}
-						alt={headshot.alternativeText}
+						alt={headshot.data.attributes.alternativeText}
 					/>
 				</HeadshotDiv>
 			) : (
@@ -106,9 +111,11 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 			  ) ? (
 				<Name>
 					<a
-						href={sortedLinks.find(
-							(e) => e.LinkText.toLowerCase() == "website"
-						)}
+						href={
+							sortedLinks.find(
+								(e) => e.LinkText.toLowerCase() == "website"
+							).Link
+						}
 					>
 						{name}
 					</a>
