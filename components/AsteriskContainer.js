@@ -69,7 +69,7 @@ let AsteriskContainerDiv = styled.div`
 	--random-rotate: ${(props) => `rotate(${props.rotation}deg)`};
 	transform: var(--random-rotate);
 
-	${(props) => asteriskContainerStyles[props.type]}
+	${(props) => asteriskContainerStyles[props.$type]}
 `;
 
 export default AsteriskContainer;

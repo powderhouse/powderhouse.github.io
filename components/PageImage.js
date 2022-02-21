@@ -59,7 +59,7 @@ function PageImage(props) {
 			<Resize ref={resizer}>
 				<img
 					ref={img}
-					height={props.imgHeight ? props.imgHeight : ""}
+					height={props.imgHeight ? props.imgHeight : null}
 					src={props.src}
 					alt={props.altText}
 				/>

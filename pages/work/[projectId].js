@@ -52,7 +52,7 @@ function ProjectDetailPage({ projectData }) {
             {projectData.ProjectInfoList.map((n, i) => (
               <a key={i} href={n.Link}>
                 <ProjectLi>
-                  <Asterisk key={i} type="Default" />
+                  <Asterisk key={i} $type="Default" />
                   {n.LinkText}
                 </ProjectLi>
               </a>

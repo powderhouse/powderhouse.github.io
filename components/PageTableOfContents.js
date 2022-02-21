@@ -40,7 +40,7 @@ function PageTableOfContents({ sections }) {
 		n.SectionHeader ? (
 			<PageTOCItem key={i}>
 				<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
-					<Asterisk key={i} type="TOC" />
+					<Asterisk key={i} $type="TOC" />
 					<TOCText>{n.SectionHeader}</TOCText>
 				</PageTOCLink>
 			</PageTOCItem>

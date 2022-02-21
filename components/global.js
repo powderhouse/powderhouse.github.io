@@ -214,8 +214,8 @@ let PageHeading = styled.h1`
 let Asterisk = (props) => {
 	return (
 		<AsteriskContainer
-			type={props.type}
-			color={props.color ? props.color : "--off-black"}
+			$type={props.$type}
+			$color={props.$color ? props.$color : "--off-black"}
 		>
 			{asteriskSVG()}
 		</AsteriskContainer>
@@ -315,7 +315,7 @@ let SectionHeader = ({ left, children }) => {
 	let slug = children ? slugify(children) : "";
 	let header = (
 		<>
-			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
+			<Asterisk $type={left ? "LeftHeader" : "CenterHeader"} />
 			<Header2 left={left}>{children}</Header2>
 		</>
 	);

@@ -107,7 +107,7 @@ function NewsItem({ date, type, title, excerpt, links }) {
 						{links.map((l, i) => (
 							<a key={`news-link-${i}`} href={l.Link}>
 								<NewsLi>
-									<Asterisk type="Default" />
+									<Asterisk $type="Default" />
 									{l.LinkText}
 								</NewsLi>
 							</a>
@@ -128,7 +128,7 @@ let NewsDateDiv = styled.h3`
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
 		grid-row: 2;
-		opacity:0.625;
+		opacity: 0.625;
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / 3;
