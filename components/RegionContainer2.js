@@ -104,6 +104,9 @@ let RegionContainer = styled("div")`
 
 	${(props) => colorByProp(props)}
 	${(props) => getMediaQueryStyles(props)}
+	&:last-of-type {
+		padding-bottom: 0;
+	}
 `;
 
 // Older, non-media query version— Keeping until we finalize (14 February 2022)
