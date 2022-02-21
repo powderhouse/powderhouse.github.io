@@ -138,8 +138,8 @@ function WorkPage({
 							/>
 						</ProjectImageDiv>
 						<ProjectTitle>{title}</ProjectTitle>
-						<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 					</ProjectLink>
+					<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 				</ProjectCard>
 			);
 		}
@@ -168,7 +168,7 @@ function WorkPage({
 							? url
 							: formats[findLargestFormat(formats, "medium")].url
 					}
-					alt={alternativeText}
+					altText={alternativeText}
 					caption=""
 				/>
 			</PastLifeLink>
