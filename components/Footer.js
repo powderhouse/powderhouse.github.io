@@ -41,33 +41,33 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
             </NavList>
           </FooterNavigation>
           <FooterContact className={router.pathname != "/" ? "" : "home"}>
-            {/* <NavList> */}
-            <ContactNavItem>
-              <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
-                339R Summer Street <br />
-                Somerville, MA 02144 <br />
-                <br />
-              </NavLink>
-            </ContactNavItem>
-            <ContactNavItem>
-              <NavLink href="mailto:us@powderhouse.org">
-                us@powderhouse.org
-              </NavLink>
-            </ContactNavItem>
-            <ContactNavItem>
-              <SocialList>
-                {socials.map((n) => {
-                  return (
-                    <IconListItem
-                      href={n.href}
-                      key={n.id}
-                      icon={n.service.toLowerCase()}
-                    ></IconListItem>
-                  );
-                })}
-              </SocialList>
-            </ContactNavItem>
-            {/* </NavList> */}
+            <NavList>
+              <ContactNavItem>
+                <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
+                  339R Summer Street <br />
+                  Somerville, MA 02144 <br />
+                  <br />
+                </NavLink>
+              </ContactNavItem>
+              <ContactNavItem>
+                <NavLink href="mailto:us@powderhouse.org">
+                  us@powderhouse.org
+                </NavLink>
+              </ContactNavItem>
+              <ContactNavItem>
+                <SocialList>
+                  {socials.map((n) => {
+                    return (
+                      <IconListItem
+                        href={n.href}
+                        key={n.id}
+                        icon={n.service.toLowerCase()}
+                      ></IconListItem>
+                    );
+                  })}
+                </SocialList>
+              </ContactNavItem>
+            </NavList>
           </FooterContact>
           {router.pathname != "/" ? (
             <>

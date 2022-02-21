@@ -57,91 +57,99 @@ function TeamPage2({
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
 	// TK Is this (below) an OK way to "destructure" (but not actually) this data structure?
 	[staff, advisors, alumni] = [
-			staff ? staff : [], 
-			advisors ? advisors : [], 
-			alumni ? alumni : [],
-		].map((people) => people.map((person) => person.attributes)
-	);
+		staff ? staff : [],
+		advisors ? advisors : [],
+		alumni ? alumni : [],
+	].map((people) => people.map((person) => person.attributes));
 
 	alumni = alumni.sort(tenureSort()).reverse();
 
 	let staffSection = PageSections.find((s) => s.SectionHeader == "Staff");
-	let staffCards = staff.length == 0 ? <></> : (
-		<Region2
-			backgroundColor={getBgFromLight(staffSection.isLightSection)}
-			header={staffSection.SectionHeader}
-			left={staffSection.isLeftHeader}
-			key="staff"
-		>
-			<StaffAlumSectionContent $wide={true} $grid={true}>
-				{staff.map((s, i) => (
-					<PersonCard
-						type={s.Role}
-						key={`staff${i}`}
-						headshot={s.Headshot}
-						name={s.Name}
-						title={s.Title}
-						tenure={{
-							start: s.YearStart,
-							end: s.YearEnd,
-						}}
-						links={s.LinkList}
-					/>
-				))}
-			</StaffAlumSectionContent>
-		</Region2>
-	);
+	let staffCards =
+		staff.length == 0 ? (
+			<></>
+		) : (
+			<Region2
+				backgroundColor={getBgFromLight(staffSection.isLightSection)}
+				header={staffSection.SectionHeader}
+				left={staffSection.isLeftHeader}
+				key="staff"
+			>
+				<StaffAlumSectionContent $wide={true} $grid={true}>
+					{staff.map((s, i) => (
+						<PersonCard
+							type={s.Role}
+							key={`staff${i}`}
+							headshot={s.Headshot}
+							name={s.Name}
+							title={s.Title}
+							tenure={{
+								start: s.YearStart,
+								end: s.YearEnd,
+							}}
+							links={s.LinkList}
+						/>
+					))}
+				</StaffAlumSectionContent>
+			</Region2>
+		);
 
 	let advisorSection = PageSections.filter(
 		(s) => s.SectionHeader == "Advisors"
 	)[0];
-	let advisorCards = advisors.length == 0 ? <></> : (
-		<Region2
-			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
-			header={advisorSection.SectionHeader}
-			left={advisorSection.isLeftHeader}
-			key="advisors"
-		>
-			<AdvisorSectionContent $wide={true} $grid={true}>
-				{advisors.map((a, i) => (
-					<PersonCard
-						key={i}
-						type={a.Role}
-						name={a.Name}
-						bio={a.Bio}
-						links={a.LinkList}
-					/>
-				))}
-			</AdvisorSectionContent>
-		</Region2>
-	);
+	let advisorCards =
+		advisors.length == 0 ? (
+			<></>
+		) : (
+			<Region2
+				backgroundColor={getBgFromLight(advisorSection.isLightSection)}
+				header={advisorSection.SectionHeader}
+				left={advisorSection.isLeftHeader}
+				key="advisors"
+			>
+				<AdvisorSectionContent $wide={true} $grid={true}>
+					{advisors.map((a, i) => (
+						<PersonCard
+							key={i}
+							type={a.Role}
+							name={a.Name}
+							bio={a.Bio}
+							links={a.LinkList}
+						/>
+					))}
+				</AdvisorSectionContent>
+			</Region2>
+		);
 
 	let alumniSection = PageSections.filter(
 		(s) => s.SectionHeader == "Alumni"
 	)[0];
-	let alumniCards = alumni.length == 0 ? <></> : (
-		<Region2
-			backgroundColor={getBgFromLight(alumniSection.isLightSection)}
-			header={alumniSection.SectionHeader}
-			left={alumniSection.isLeftHeader}
-			key="alumni"
-		>
-			<StaffAlumSectionContent $wide={true} $grid={true}>
-				{alumni.map((a, i) => (
-					<PersonCard
-						type={a.Role}
-						key={`alumni-${i}`}
-						name={a.Name}
-						tenure={{
-							start: a.YearStart,
-							end: a.YearEnd,
-						}}
-						links={a.LinkList}
-					/>
-				))}
-			</StaffAlumSectionContent>
-		</Region2>
-	);
+	let alumniCards =
+		alumni.length == 0 ? (
+			<></>
+		) : (
+			<Region2
+				backgroundColor={getBgFromLight(alumniSection.isLightSection)}
+				header={alumniSection.SectionHeader}
+				left={alumniSection.isLeftHeader}
+				key="alumni"
+			>
+				<StaffAlumSectionContent $wide={true} $grid={true}>
+					{alumni.map((a, i) => (
+						<PersonCard
+							type={a.Role}
+							key={`alumni-${i}`}
+							name={a.Name}
+							tenure={{
+								start: a.YearStart,
+								end: a.YearEnd,
+							}}
+							links={a.LinkList}
+						/>
+					))}
+				</StaffAlumSectionContent>
+			</Region2>
+		);
 
 	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
 
@@ -190,9 +198,14 @@ function TeamPage2({
 	];
 
 	return (
-		<PageContainer2>
-			{regions.map((r, i) => React.cloneElement(r, { key: i }))}
-		</PageContainer2>
+		<>
+			<Head>
+				<title>Powderhouse's Team</title>
+			</Head>
+			<PageContainer2>
+				{regions.map((r, i) => React.cloneElement(r, { key: i }))}
+			</PageContainer2>
+		</>
 	);
 }
 

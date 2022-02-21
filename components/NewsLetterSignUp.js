@@ -57,7 +57,7 @@ function NewsLetterSignUp({
             <EmailInput
                 name="MERGE0"
                 id="MERGE0"
-                color={complementaryColor(backgroundColor)}
+                $color={complementaryColor(backgroundColor)}
                 isHomePage={isHomePage}
             />
             <NewsLetterFormButton isHomePage={isHomePage}>
@@ -67,7 +67,7 @@ function NewsLetterSignUp({
                 {buttonSVGs["naked"]["short"][1](
                     `${complementaryColor(backgroundColor)} tablet`
                 )}
-                <ButtonText color={complementaryColor(backgroundColor)}>
+                <ButtonText $color={complementaryColor(backgroundColor)}>
                     {text}
                 </ButtonText>
             </NewsLetterFormButton>
@@ -103,12 +103,12 @@ let EmailInput = styled.input.attrs((props) => ({
     grid-column: ${(props) => (props.isHomePage ? "1 / 7" : "1 / 4")};
 
     color: ${(props) =>
-        props.color ? expandColor(props.color) : expandColor("--off-black")};
+        props.$color ? expandColor(props.$color) : expandColor("--off-black")};
     background: transparent;
     border-style: solid;
     border-width: 1px;
     border-color: ${(props) =>
-        props.color ? expandColor(props.color) : expandColor("--off-black")};
+        props.$color ? expandColor(props.$color) : expandColor("--off-black")};
     // TODO: Rationalize this
     padding: calc(var(--body-line-height) / 2);
     height: calc(3 * var(--body-line-height));
@@ -116,8 +116,8 @@ let EmailInput = styled.input.attrs((props) => ({
     &::placeholder {
         opacity: 0.6;
         color: ${(props) =>
-            props.color
-                ? expandColor(props.color)
+            props.$color
+                ? expandColor(props.$color)
                 : expandColor("--off-black")};
     }
 
@@ -172,14 +172,14 @@ let NewsLetterFormButton = styled.button`
     }
 `;
 
-let ButtonText = styled.div`
+let ButtonText = styled.span`
     top: 50%;
     transform: translateY(-50%);
     // TODO: Rationalize this
     left: 1rem;
     position: absolute;
     color: ${(props) =>
-        props.color ? expandColor(props.color) : expandColor("--off-black")};
+        props.$color ? expandColor(props.$color) : expandColor("--off-black")};
 
     @media ${mediaQueries.uptoTablet} {
         display: none;

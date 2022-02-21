@@ -18,7 +18,7 @@ let ScribbleContainer = styled.div`
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
 `;
 
-function Scribble({ number, ...rest }) {
+function Scribble({ number, active, ...rest }) {
   // TODO: Make the Scribble autoscale its viewBox to fit the SVG with varying stroke width
   // let [xMin, yMin, xMax, yMax] = scribbles[number](rest)
   //   .props.viewBox.split(" ")
@@ -35,10 +35,9 @@ function Scribble({ number, ...rest }) {
     // viewBox: [xMin, yMin, xMax, yMax].join(" "),
     strokeLinecap: "round",
     strokeLinejoin: "round",
-    vectorEffect: "non-scaling-stroke",
   });
   return (
-    <ScribbleContainer active={rest.active}>
+    <ScribbleContainer active={active}>
       {React.createElement(scribbles[number], svgProps, "")}
     </ScribbleContainer>
   );

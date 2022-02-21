@@ -13,6 +13,8 @@ import PageImage from "../../components/PageImage";
 import PageTableOfContents from "../../components/PageTableOfContents";
 import { asteriskSVG, mediaQueries } from "../../site-data.js";
 
+import Head from "next/head";
+
 import {
 	baseGrid,
 	Spacer,
@@ -116,7 +118,9 @@ function WorkPage({
 				<ProjectCard key={index}>
 					<ProjectLink href={"/work/" + id}>
 						{/* TK There's probably a better way to do this with relative URLS? */}
-						<ProjectTenure>{yearstart}-{yearend}</ProjectTenure>
+						<ProjectTenure>
+							{yearstart}-{yearend}
+						</ProjectTenure>
 						<ProjectImageDiv>
 							<ProjectFeatureImage
 								src={
@@ -172,51 +176,69 @@ function WorkPage({
 	);
 
 	return (
-		<PageContainer2>
-			<Header backgroundColor="--off-white" />
-			<PageSplash backgroundColor={accentColor}>
-				<PageHeading>{PageHeader}</PageHeading>
-				<PageTableOfContents sections={PageSections} />
-			</PageSplash>
-			<PageIntroduction backgroundColor="--off-white" markdown>
-				{PageIntro}
-			</PageIntroduction>
-			<Region2
-				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
-				header={projectsDesc.SectionHeader}
-				left={projectsDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true} $grid={true}>
-					{projects}
-				</PageSectionContent>
-			</Region2>
-			<Region2
-				backgroundColor={getBgFromLight(partnersDesc.isLightSection)}
-				header={partnersDesc.SectionHeader}
-				left={partnersDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true}>
-					<PartnerSectionContent>{partners}</PartnerSectionContent>
-				</PageSectionContent>
-			</Region2>
-			<Region2
-				backgroundColor={getBgFromLight(pastLivesDesc.isLightSection)}
-				header={pastLivesDesc.SectionHeader}
-				left={pastLivesDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true} $grid={false}>
-					{pastLivesDesc.PageSectionContent ? (
-						<SectionDesc>
-							{pastLivesDesc.PageSectionContent}
-						</SectionDesc>
-					) : (
-						""
+		<>
+			<Head>
+				<title>Powderhouse's Work</title>
+			</Head>
+			<PageContainer2>
+				<Header backgroundColor="--off-white" />
+				<PageSplash backgroundColor={accentColor}>
+					<PageHeading>{PageHeader}</PageHeading>
+					<PageTableOfContents sections={PageSections} />
+				</PageSplash>
+				<PageIntroduction backgroundColor="--off-white" markdown>
+					{PageIntro}
+				</PageIntroduction>
+				<Region2
+					backgroundColor={getBgFromLight(
+						projectsDesc.isLightSection
 					)}
-					<PastLifeSectionContent>{pastLives}</PastLifeSectionContent>
-				</PageSectionContent>
-			</Region2>
-			<Footer backgroundColor="--off-white" accentColor={accentColor} />
-		</PageContainer2>
+					header={projectsDesc.SectionHeader}
+					left={projectsDesc.isLeftHeader}
+				>
+					<PageSectionContent $wide={true} $grid={true}>
+						{projects}
+					</PageSectionContent>
+				</Region2>
+				<Region2
+					backgroundColor={getBgFromLight(
+						partnersDesc.isLightSection
+					)}
+					header={partnersDesc.SectionHeader}
+					left={partnersDesc.isLeftHeader}
+				>
+					<PageSectionContent $wide={true}>
+						<PartnerSectionContent>
+							{partners}
+						</PartnerSectionContent>
+					</PageSectionContent>
+				</Region2>
+				<Region2
+					backgroundColor={getBgFromLight(
+						pastLivesDesc.isLightSection
+					)}
+					header={pastLivesDesc.SectionHeader}
+					left={pastLivesDesc.isLeftHeader}
+				>
+					<PageSectionContent $wide={true} $grid={false}>
+						{pastLivesDesc.PageSectionContent ? (
+							<SectionDesc>
+								{pastLivesDesc.PageSectionContent}
+							</SectionDesc>
+						) : (
+							""
+						)}
+						<PastLifeSectionContent>
+							{pastLives}
+						</PastLifeSectionContent>
+					</PageSectionContent>
+				</Region2>
+				<Footer
+					backgroundColor="--off-white"
+					accentColor={accentColor}
+				/>
+			</PageContainer2>
+		</>
 	);
 }
 
@@ -280,7 +302,7 @@ let ProjectLink = styled.a`
 
 let ProjectTenure = styled.div`
 	opacity: 0.6125;
-	text-align:right;
+	text-align: right;
 `;
 
 let ProjectImageDiv = styled.div`

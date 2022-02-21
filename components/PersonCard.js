@@ -79,6 +79,8 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 			: 0;
 	});
 
+	console.log("Looking at", name, "we have the links", links);
+
 	return (
 		<StyledDiv>
 			{type == "Staff" ? (
@@ -97,9 +99,11 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 				// link it to the first link in LinkList for alumni
 				// and link to only a "Website" link (when present) for people with other roles
 				<Name>
-					<a href={sortedLinks[0]}>{name}</a>
+					<a href={sortedLinks[0].Link}>{name}</a>
 				</Name>
-			) : sortedLinks.some((e) => e.LinkText.toLowerCase() == "website") ? (
+			) : sortedLinks.some(
+					(e) => e.LinkText.toLowerCase() == "website"
+			  ) ? (
 				<Name>
 					<a
 						href={sortedLinks.find(

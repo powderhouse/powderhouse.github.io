@@ -10,6 +10,7 @@ import Region2 from "../components/Region2";
 import { fetchAPI } from "../lib/api";
 import { ShiftBy, Div, complementaryColor } from "../components/global";
 import { mediaQueries } from "../site-data";
+import Head from "next/head";
 
 let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
@@ -103,13 +104,13 @@ function HomePage({
       <ShoutOut>{SignUpShoutOut}</ShoutOut>
       <NewsLetterSignUp
         text="Sign Up!"
-        color="--off-white"
+        $color="--off-white"
         buttonWidth="long"
         buttonThickness="thick"
         buttonTextLength="medText"
         backgroundColor="--off-black"
         isHomePage={true}
-      ></NewsLetterSignUp>
+      />
     </SplashNewsletterSignup>,
     <Footer
       backgroundColor="--off-black"
@@ -119,10 +120,15 @@ function HomePage({
   ];
 
   return (
-    <PageContainer2>
-      {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-      {regions}
-    </PageContainer2>
+    <>
+      <Head>
+        <title>Powderhouse</title>
+      </Head>
+      <PageContainer2>
+        {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
+        {regions}
+      </PageContainer2>
+    </>
   );
 }
 
