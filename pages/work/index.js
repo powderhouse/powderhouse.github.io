@@ -75,8 +75,8 @@ function WorkPage({
 			i
 		) => {
 			return (
-				<PartnerLink key={i} href={Link}>
-					<PartnerCard>
+				<PartnerCard key={i}>
+					<PartnerLink href={Link}>
 						<PartnerLogo
 							src={
 								formats == null ||
@@ -88,8 +88,8 @@ function WorkPage({
 							}
 							alt={alternativeText}
 						/>
-					</PartnerCard>
-				</PartnerLink>
+					</PartnerLink>
+				</PartnerCard>
 			);
 		}
 	);
@@ -252,7 +252,7 @@ let SectionDesc = styled(Div)`
 let PartnerSectionContent = styled.div`
 	display: grid;
 	column-gap: var(--gap);
-	row-gap: var(--body-line-height)
+	row-gap: var(--body-line-height);
 	grid-template-columns: repeat(5, 1fr);
 	transform: translateY(-1.3rem);
 
@@ -271,7 +271,7 @@ let PartnerCard = styled.div`
 	transition: 0.375s;
 	opacity: 0.75;
 
-	filter: grayscale(100%);
+	// filter: grayscale(100%);
 
 	&:hover {
 		opacity: 1;
