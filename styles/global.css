@@ -158,6 +158,10 @@ dt {
 	border-right: dashed 1px;
 	padding-right: calc(var(--body-line-height)); /* TODO: Rationalize this */
 }
+
+dt:last-of-type {
+	height: 100%;
+}
 dd {
 	grid-column: 3 / 7;
 	margin-bottom: var(--body-line-height);
@@ -166,10 +170,7 @@ dd {
 	padding-bottom: 0.5px;
 }
 dd:last-child {
-	margin-bottom: calc(
-		var(--body-line-height) - 1px
-	); /* TODO: unclear why this is needed */
-	overflow: hidden;
+	margin-bottom: 0;
 }
 @media (max-width: 550px) {
 	dl {
