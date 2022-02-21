@@ -214,7 +214,7 @@ let NewsRelatedLinks = styled.ul`
 `;
 
 let NewsLi = styled.li`
-	padding-left: 1.3rem;
+	padding-left: 1em;
 	position: relative;
 `;
 

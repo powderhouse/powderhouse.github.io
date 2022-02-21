@@ -42,10 +42,9 @@ let asteriskContainerStyles = {
 		transform: scale(2) var(--random-rotate);
 	`,
 	Default: css`
-		// position: absolute;
-		// TODO: Rationalize this
-		// left: calc(-0.375 * var(--body-line-height));
-		// top: calc(-1 * var(--body-line-height) / 6);
+		position: absolute;
+		left: -0.825em;
+		top: -0.25em;
 	`,
 };
 
