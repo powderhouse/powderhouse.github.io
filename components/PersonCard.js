@@ -65,9 +65,12 @@ let IconListItem = ({ className, href, icon }) => {
 };
 
 let getHeadshotURL = function (headshotObject) {
-	return headshotObject.data.attributes.formats == null
+	let largestFormat = ["large", "small", "medium", "thumbnail"].find((f) =>
+		headshotObject.data.attributes.formats.hasOwnProperty(f)
+	);
+	return headshotObject.data.attributes.url
 		? headshotObject.data.attributes.url
-		: headshotObject.data.attributes.formats.thumbnail.url;
+		: headshotObject.data.attributes.formats[largestFormat].url;
 };
 
 function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
@@ -78,13 +81,6 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 			? -1
 			: 0;
 	});
-
-	console.log(
-		"Looking at",
-		name,
-		"we have the alt-text",
-		headshot ? headshot : "ehh"
-	);
 
 	return (
 		<StyledDiv>
