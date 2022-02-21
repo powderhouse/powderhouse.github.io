@@ -3,43 +3,35 @@ import { useRouter } from "next/router";
 
 import Link from "next/link";
 
-import { navMenuItems } from "../site-data.js";
-import { gap, baseGrid } from "./global.js";
 import {
-  scribbleSVGs,
   logotypeHorizSVG,
   logotypeVertSVG,
   logoSVG,
   mediaQueries,
+  navMenuItems,
 } from "../site-data.js";
 import {
+  gap,
+  baseGrid,
   highlight,
   colorByProp,
   ShiftBy,
   complementaryColor,
 } from "../components/global.js";
+
+import Scribble from "../components/Scribble.js";
 import Region2 from "../components/Region2.js";
+
+function getPageColor(navText) {
+  return navMenuItems.find((el) => el.text == navText).color;
+}
+function getScribbleNum(navText) {
+  return navMenuItems.find((el) => el.text == navText).scribbleNum;
+}
 
 function Header(props) {
   const router = useRouter();
   let basePath = "/" + router.pathname.split("/")[1];
-
-  function assignPageColor(navText) {
-    let color;
-    props.activeScribbleColor 
-      ? (color = props.activeScribbleColor)
-      : navMenuItems.forEach((el) =>
-          el["text"] == navText ? (color = el["color"]) : ""
-        );
-    return color;
-  }
-  function assignScribbleNum(navText) {
-    let scribbleNum;
-    navMenuItems.forEach((el) =>
-      el["text"] == navText ? (scribbleNum = el["scribbleNum"]) : ""
-    );
-    return scribbleNum;
-  }
 
   return (
     <Region2 {...props}>
@@ -73,12 +65,12 @@ function Header(props) {
                     href={n.href}
                   >
                     <div>{n.text}</div>
-                    <Scribble className="nav-scribble">
-                      {scribbleSVGs[assignScribbleNum(n.text)](
-                        assignPageColor(n.text)
-                      )}
-                    </Scribble>
                   </NavLink>
+                  <Scribble
+                    number={getScribbleNum(n.text)}
+                    stroke={`var(${getPageColor(n.text)})`}
+                    active={basePath == n.href ? "active " : ""}
+                  />
                 </NavListItem>
               );
             })}
@@ -185,14 +177,29 @@ let NavLink = styled.a`
   align-items: center;
 `;
 
-let Scribble = styled.div`
-  visibility: hidden;
-  position: absolute;
-  top: 9px;
+// let Scribble = styled.div`
+//   // visibility: hidden;
+//   width: 100%;
+//   // position: absolute;
+//   // top: 9px;
 
-  @media ${mediaQueries.uptoMobile} {
-    top: 19px;
-  }
-`;
+//   display: inline-block;
+//   position: relative;
+//   width: 100%;
+//   padding-bottom: 100%;
+//   vertical-align: middle;
+//   overflow: hidden;
+
+//   svg {
+//     display: inline-block;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//   }
+
+//   @media ${mediaQueries.uptoMobile} {
+//     // top: 19px;
+//   }
+// `;
 
 export default Header;

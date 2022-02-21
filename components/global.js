@@ -13,6 +13,8 @@ import { asteriskSVG, mediaQueries } from "../site-data.js";
 import Region2 from "../components/Region2.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
 
+import { parse } from "node-html-parser";
+
 let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
 	return (
