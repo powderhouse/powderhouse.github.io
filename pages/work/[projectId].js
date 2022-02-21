@@ -10,6 +10,8 @@ import Region2 from "../../components/Region2";
 
 import { mediaQueries } from "../../site-data";
 
+import Head from "next/head";
+
 import {
   baseGrid,
   PageContainer,
@@ -28,68 +30,82 @@ function ProjectDetailPage({ projectData }) {
   let accentColor = "--off-black";
 
   return (
-    <PageContainer2>
-      <Header backgroundColor="--off-white" activeScribbleColor={accentColor} />
-      <ProjectSplash backgroundColor="--off-white">
-        <ProjectTitle
-          title={projectData.ProjectTitle}
-          years={{ start: projectData.YearStart, end: projectData.YearEnd }}
+    <>
+      <Head>
+        <title>
+          {projectData.ProjectTitle} ({projectData.YearStart}–
+          {projectData.YearEnd} — Powderhouse
+        </title>
+      </Head>
+      <PageContainer2>
+        <Header
+          backgroundColor="--off-white"
+          activeScribbleColor={accentColor}
         />
-        <ProjectFeatureImage>
-          <ProjectImage
-            src={projectData.ProjectFeatureImageInfo.url}
-            alt={projectData.ProjectFeatureImageInfo.alternativeText}
+        <ProjectSplash backgroundColor="--off-white">
+          <ProjectTitle
+            title={projectData.ProjectTitle}
+            years={{ start: projectData.YearStart, end: projectData.YearEnd }}
           />
-        </ProjectFeatureImage>
-        <ProjectInfo>
-          <ProjectSubtitle markdown>
-            {projectData.ProjectSubtitle}
-          </ProjectSubtitle>
-          <ProjectDescription markdown>
-            {projectData.ProjectDescription}
-          </ProjectDescription>
-          <ProjectInfoList>
-            {projectData.ProjectInfoList.map((n, i) => (
-              <a key={i} href={n.Link}>
+          <ProjectFeatureImage>
+            <ProjectImage
+              src={projectData.ProjectFeatureImageInfo.url}
+              alt={projectData.ProjectFeatureImageInfo.alternativeText}
+            />
+          </ProjectFeatureImage>
+          <ProjectInfo>
+            <ProjectSubtitle markdown>
+              {projectData.ProjectSubtitle}
+            </ProjectSubtitle>
+            <ProjectDescription markdown>
+              {projectData.ProjectDescription}
+            </ProjectDescription>
+            <ProjectInfoList>
+              {projectData.ProjectInfoList.map((n, i) => (
                 <ProjectLi>
-                  <Asterisk key={i} $type="Default" />
-                  {n.LinkText}
+                  <a key={i} href={n.Link}>
+                    <Asterisk key={i} $type="Default" />
+                    {n.LinkText}
+                  </a>
                 </ProjectLi>
-              </a>
-            ))}
-          </ProjectInfoList>
-        </ProjectInfo>
-      </ProjectSplash>
-      <PageGallery
-        backgroundColor="--off-white"
-        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2}
-      >
-        {projectData.ProjectGalleryItem.map((i) =>
-          i.MediaEmbed == null ? (
-            <ProjectMediaDiv key={i.id}>
-              {isVideo(i.MediaUpload.data.attributes.ext.slice(1)) ? (
-                <video controls loop>
-                  <source src={i.MediaUpload.data.attributes.url}></source>
-                </video>
-              ) : (
-                <ProjectImage src={getMediaURL(i.MediaUpload, "medium")} />
-              )}
-            </ProjectMediaDiv>
-          ) : (
-            <ProjectIframeDiv
-              key={i.id}
-              aspectRatio={getAspectRatio(i.MediaEmbed.Link)}
-            >
-              <GalleryIframe
-                src={getSrc(i.MediaEmbed.Link)}
-                alt={i.MediaEmbed.LinkText}
-              ></GalleryIframe>
-            </ProjectIframeDiv>
-          )
-        )}
-      </PageGallery>
-      <Footer backgroundColor="--off-white" accentColor={accentColor} />
-    </PageContainer2>
+              ))}
+            </ProjectInfoList>
+          </ProjectInfo>
+        </ProjectSplash>
+        <PageGallery
+          backgroundColor="--off-white"
+          numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2}
+        >
+          {projectData.ProjectGalleryItem.map((i) =>
+            i.MediaEmbed == null ? (
+              <ProjectMediaDiv key={i.id}>
+                {isVideo(i.MediaUpload.data.attributes.ext.slice(1)) ? (
+                  <video controls loop>
+                    <source src={i.MediaUpload.data.attributes.url}></source>
+                  </video>
+                ) : (
+                  <ProjectImage
+                    src={getMediaURL(i.MediaUpload, "medium")}
+                    alt={i.MediaUpload.data.attributes.alternativeText}
+                  />
+                )}
+              </ProjectMediaDiv>
+            ) : (
+              <ProjectIframeDiv
+                key={i.id}
+                aspectRatio={getAspectRatio(i.MediaEmbed.Link)}
+              >
+                <GalleryIframe
+                  src={getSrc(i.MediaEmbed.Link)}
+                  alt={i.MediaEmbed.LinkText}
+                ></GalleryIframe>
+              </ProjectIframeDiv>
+            )
+          )}
+        </PageGallery>
+        <Footer backgroundColor="--off-white" accentColor={accentColor} />
+      </PageContainer2>
+    </>
   );
 }
 
@@ -282,7 +298,7 @@ function PageGallery({ backgroundColor, ...rest }) {
   );
 }
 
-let ProjectMediaDiv = styled.li`
+let ProjectMediaDiv = styled.div`
   overflow: hidden;
 
   /*Masonry*/
