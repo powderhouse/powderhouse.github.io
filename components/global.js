@@ -275,8 +275,7 @@ let sectionHeaderContainerStyles = {
 		grid-column: 1 / span 3;
 		font-size: 24px;
 		letter-spacing: -0.5px;
-		// TODO: Rationalize this
-		padding-left: calc(1.375 * var(--body-line-height));
+		padding-left: 1.2125em; // This visually centers the asterisk on the left vertical line of the page
 		height: var(--body-line-height);
 
 		@media ${mediaQueries.uptoTablet} {
@@ -288,9 +287,7 @@ let sectionHeaderContainerStyles = {
 		// TODO: Choose a heading style for these
 		font-size: 31px;
 		letter-spacing: -1.2px;
-		// TODO: Rationalize this
-		padding-left: calc(var(--body-line-height));
-
+		padding-left: 1em;
 		@media ${mediaQueries.uptoTablet} {
 			grid-column: 1 / -1;
 		}
@@ -302,7 +299,7 @@ let SectionHeaderContainer = styled.div`
 	grid-row: 1 / -1;
 	line-height: var(--body-line-height);
 	// TODO: Rationalize this
-	height: calc(2 * var(--body-line-height) - 0.75px);
+	// height: calc(2 * var(--body-line-height) - 0.75px);
 	position: relative;
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
@@ -363,11 +360,8 @@ let PageSectionContent = styled(Div)`
 			  `}
 
 	letter-spacing: 0;
-	// TODO: Consider moving this to global
-	& p:not(:last-child) {
-		line-height: var(--body-line-height);
+	& p {
 		margin-bottom: var(--body-line-height);
-		display: inline-block;
 	}
 
 	${(props) =>

@@ -13,8 +13,9 @@ let PageTOC = styled.ol`
 `;
 
 let PageTOCItem = styled.li`
-	// TODO: Rationalize this
 	padding-bottom: calc(var(--body-line-height) / 2);
+	position: relative;
+	left: -0.21em; // Determined optically after choosing an asterisk spacing
 `;
 
 let PageTOCLink = styled.a`

@@ -22,35 +22,30 @@ const useRandomNum = () => {
 };
 
 let asteriskContainerStyles = {
+	// With relative positioning, the rotated asterisk's margin throws spacing off.  These top and left figures are derived visually, providing necessary space between the asterisk and header before aligning the center of the asterisk with the relevant vertical line by moving the container.
 	TOC: css`
 		position: absolute;
+		left: -1.375em;
 		// TODO: Rationalize this
-		// This lines up the center of the asterisks with the left edge of the page splash title
-		left: calc(-1.6625em);
+		// left: calc(-1.6625em);
 	`,
 	LeftHeader: css`
 		position: absolute;
-		// TODO: Rationalize this
-		left: calc(-1 * var(--body-line-height) / 4);
-		top: calc(-1 * var(--body-line-height) / 5);
-		// left: calc(-1.3rem / 4);
-		// top: calc(-1.3rem / 5);
-		// transform: scale(1.5) var(--random-rotate);
+		top: -0.125em;
+		left: -0.8em;
+		transform: scale(1.5) var(--random-rotate);
 	`,
 	CenterHeader: css`
 		position: absolute;
-		// TODO: Rationalize this
-		left: calc(-1 * var(--body-line-height) / 4);
-		top: calc(-1 * var(--body-line-height) / 5);
-		// left: calc(-1.3rem / 4);
-		// top: calc(-1.3rem / 5);
+		left: -0.6625em;
+		top: -0.125em;
 		transform: scale(2) var(--random-rotate);
 	`,
 	Default: css`
-		position: absolute;
+		// position: absolute;
 		// TODO: Rationalize this
-		left: calc(-0.375 * var(--body-line-height));
-		top: calc(-1 * var(--body-line-height) / 6);
+		// left: calc(-0.375 * var(--body-line-height));
+		// top: calc(-1 * var(--body-line-height) / 6);
 	`,
 };
 
