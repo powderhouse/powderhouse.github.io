@@ -66,11 +66,12 @@ function Header(props) {
                     color={props.color}
                     href={n.href}
                   >
-                    <div>{n.text}</div>
+                    {n.text}
                   </NavLink>
                   <Scribble
                     number={getScribbleNum(n.text)}
                     stroke={`var(${getPageColor(n.text)})`}
+                    strokeWidth="2"
                     active={basePath == n.href ? "active " : ""}
                   />
                 </NavListItem>
