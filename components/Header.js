@@ -37,20 +37,22 @@ function Header(props) {
     <Region2 {...props}>
       <Wrapper>
         {/* <ShiftBy x={0} y={-10}> */}
-        <LogoLockup>
-          <Link href="/">
-            <>
-              {logotypeVertSVG(
-                `${complementaryColor(props.backgroundColor)} navlogo-mobile`
-              )}
-              {logotypeHorizSVG(
-                `${complementaryColor(
-                  props.backgroundColor
-                )} navlogo-tabletAndUp`
-              )}
-            </>
-          </Link>
-        </LogoLockup>
+        <Link href="/">
+          <a>
+            <LogoLockup>
+              <>
+                {logotypeVertSVG(
+                  `${complementaryColor(props.backgroundColor)} navlogo-mobile`
+                )}
+                {logotypeHorizSVG(
+                  `${complementaryColor(
+                    props.backgroundColor
+                  )} navlogo-tabletAndUp`
+                )}
+              </>
+            </LogoLockup>
+          </a>
+        </Link>
         {/* </ShiftBy> */}
         <NavMenu>
           <NavList>
