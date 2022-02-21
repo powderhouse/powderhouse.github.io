@@ -25,7 +25,8 @@ let asteriskContainerStyles = {
 	TOC: css`
 		position: absolute;
 		// TODO: Rationalize this
-		// left: calc(-1.375 * 1.3em + 4px);
+		// This lines up the center of the asterisks with the left edge of the page splash title
+		left: calc(-1.6625em);
 	`,
 	LeftHeader: css`
 		position: absolute;
