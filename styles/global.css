@@ -56,49 +56,60 @@
 }
 
 :root {
-	--small-splash-font-size: 81pt;
-	--small-splash-line-height: 83pt;
-
-	--title-font-size: 34pt;
-	--title-line-height: 41pt;
-	/*--title-letter-spacing: ;*/
-	--large-heading-font-size: 28pt;
-	--large-heading-line-height: 34pt;
-	/*--large-heading-letter-spacing: ;*/
-	--medium-heading-font-size: 22pt;
-	--medium-heading-line-height: 28pt;
-	/*--medium-heading-letter-spacing: ;*/
-	--small-heading-font-size: 20pt;
-	--small-heading-line-height: 25pt;
-	/*--small-heading-letter-spacing: ;*/
-	--headline-font-size: 17pt;
-	--headline-line-height: 22pt;
-	/*--headline-letter-spacing: ;*/
-	--body-font-size: 17pt;
-	--body-line-height: 22pt;
-	/*--body-letter-spacing: ;*/
-	--subheading-font-size: 15pt;
-	--subheading-line-height: 20pt;
-	/*--subheading-letter-spacing: ;*/
-	--footnote-font-size: 13pt;
-	--footnote-line-height: 18pt;
-	/*--footnote-letter-spacing: ;*/
-	--caption-font-size: 12pt;
-	--caption-line-height: 16pt;
-	/*--caption-letter-spacing: ;*/
+	/*via https://blog.envylabs.com/responsive-typographic-scales-in-css-b9f60431d1c4*/
+	--step-up-5: 2em;
+	--step-up-4: 1.7511em;
+	--step-up-3: 1.5157em;
+	--step-up-2: 1.3195em;
+	--step-up-1: 1.1487em;
+	/* baseline: 1em */
+	--step-down-1: 0.8706em;
+	--step-down-2: 0.7579em;
+	--step-down-3: 0.6599em;
+	--step-down-4: 0.5745em;
+	--step-down-5: 0.5em;
 }
-html {
-	font-size: var(--body-font-size);
-}
-body {
-	height: 100%;
-	font-family: "GT Planar", sans-serif;
-	font-weight: normal;
-	font-style: normal;
-	line-height: var(--body-line-height);
-	letter-spacing: 0;
-	text-rendering: geometricPrecision;
 
+:root {
+	/*This scale is meant for GT Planar*/
+	--xxxl-font-size: calc(var(--step-up-5) * var(--base-font-size));
+	--xxxl-line-height: 1.3;
+	--xxxl-letter-spacing: 0;
+
+	--xxlarge-font-size: calc(var(--step-up-4) * var(--base-font-size));
+	--xxlarge-line-height: 41pt;
+	--xxlarge-letter-spacing: 0;
+
+	--xlarge-font-size: calc(var(--step-up-3) * var(--base-font-size));
+	--xlarge-line-height: 34pt;
+	--xlarge-heading-letter-spacing: 0;
+
+	--large-font-size: calc(var(--step-up-2) * var(--base-font-size));
+	--large-line-height: 28pt;
+	--large-heading-letter-spacing: 0;
+
+	--medium-font-size: calc(var(--step-up-1) * var(--base-font-size));
+	--medium-line-height: 25pt;
+	--medium-heading-letter-spacing: 0;
+
+	--base-font-size: 17pt;
+	--base-line-height: 1.3;
+	--base-letter-spacing: 0;
+
+	--small-font-size: calc(var(--step-down-1) * var(--base-font-size));
+	--small-line-height: 1.3;
+	--small-letter-spacing: 0;
+
+	--xsmall-font-size: calc(var(--step-down-2) * var(--base-font-size));
+	--xsmall-line-height: 1.3;
+	--xsmall-letter-spacing: 0;
+
+	--xxsmall-font-size: calc(var(--step-down-3) * var(--base-font-size));
+	--xxsmall-line-height: 1.3;
+	--xxsmall-letter-spacing: 0;
+}
+
+:root {
 	--off-black: rgb(42, 46, 47); /* #2A2E2F */
 	--off-white: rgb(245, 243, 239); /* #F5F3EF */
 	--purple: rgb(178, 131, 200); /* #B283C8 */
@@ -106,6 +117,18 @@ body {
 	--green: rgb(50, 131, 90); /* #32835A */
 	--blue: rgb(128, 210, 236); /* #80D2EC */
 	--red: rgb(226, 87, 87); /* #E25757 */
+}
+html {
+	font-size: var(--base-font-size);
+	line-height: var(--base-line-height);
+	letter-spacing: var(--base-letter-spacing);
+	font-family: "GT Planar", sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: geometricPrecision;
+}
+body {
+	height: 100%;
 	/*TODO:  Consider using --body-line-height for this;*/
 	--gap: 24px;
 }
