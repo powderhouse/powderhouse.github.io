@@ -8,6 +8,7 @@ import PageContainer2 from "../../../components/PageContainer2";
 import Region2 from "../../../components/Region2";
 import PageTableOfContents from "../../../components/PageTableOfContents";
 import ArrowButton from "../../../components/ArrowButton";
+import Head from "next/head";
 
 import {
 	baseGrid,
@@ -85,7 +86,14 @@ function JobsPage({ jobPage, jobCards }) {
 		/>,
 	];
 
-	return <PageContainer2>{regions}</PageContainer2>;
+	return (
+		<>
+			<Head>
+				<title>Jobs with Powderhouse</title>
+			</Head>
+			<PageContainer2>{regions}</PageContainer2>
+		</>
+	);
 }
 
 let JobCard = styled.div`

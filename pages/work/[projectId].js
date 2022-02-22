@@ -10,6 +10,8 @@ import Region2 from "../../components/Region2";
 
 import { mediaQueries } from "../../site-data";
 
+import Head from "next/head";
+
 import {
   baseGrid,
   PageContainer,
@@ -28,68 +30,82 @@ function ProjectDetailPage({ projectData }) {
   let accentColor = "--off-black";
 
   return (
-    <PageContainer2>
-      <Header backgroundColor="--off-white" activeScribbleColor={accentColor} />
-      <ProjectSplash backgroundColor="--off-white">
-        <ProjectTitle
-          title={projectData.ProjectTitle}
-          years={{ start: projectData.YearStart, end: projectData.YearEnd }}
+    <>
+      <Head>
+        <title>
+          {projectData.ProjectTitle} ({projectData.YearStart}–
+          {projectData.YearEnd} — Powderhouse
+        </title>
+      </Head>
+      <PageContainer2>
+        <Header
+          backgroundColor="--off-white"
+          activeScribbleColor={accentColor}
         />
-        <ProjectFeatureImage>
-          <ProjectImage
-            src={projectData.ProjectFeatureImageInfo.url}
-            alt={projectData.ProjectFeatureImageInfo.alternativeText}
+        <ProjectSplash backgroundColor="--off-white">
+          <ProjectTitle
+            title={projectData.ProjectTitle}
+            years={{ start: projectData.YearStart, end: projectData.YearEnd }}
           />
-        </ProjectFeatureImage>
-        <ProjectInfo>
-          <ProjectSubtitle markdown>
-            {projectData.ProjectSubtitle}
-          </ProjectSubtitle>
-          <ProjectDescription markdown>
-            {projectData.ProjectDescription}
-          </ProjectDescription>
-          <ProjectInfoList>
-            {projectData.ProjectInfoList.map((n, i) => (
-              <a key={i} href={n.Link}>
+          <ProjectFeatureImage>
+            <ProjectImage
+              src={projectData.ProjectFeatureImageInfo.url}
+              alt={projectData.ProjectFeatureImageInfo.alternativeText}
+            />
+          </ProjectFeatureImage>
+          <ProjectInfo>
+            <ProjectSubtitle markdown>
+              {projectData.ProjectSubtitle}
+            </ProjectSubtitle>
+            <ProjectDescription markdown>
+              {projectData.ProjectDescription}
+            </ProjectDescription>
+            <ProjectInfoList>
+              {projectData.ProjectInfoList.map((n, i) => (
                 <ProjectLi>
-                  <Asterisk key={i} type="Default" />
-                  {n.LinkText}
+                  <a key={i} href={n.Link}>
+                    <Asterisk key={i} $type="Default" />
+                    {n.LinkText}
+                  </a>
                 </ProjectLi>
-              </a>
-            ))}
-          </ProjectInfoList>
-        </ProjectInfo>
-      </ProjectSplash>
-      <PageGallery
-        backgroundColor="--off-white"
-        numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2}
-      >
-        {projectData.ProjectGalleryItem.map((i) =>
-          i.MediaEmbed == null ? (
-            <ProjectMediaDiv key={i.id}>
-              {isVideo(i.MediaUpload.data.attributes.ext.slice(1)) ? (
-                <video controls loop>
-                  <source src={i.MediaUpload.data.attributes.url}></source>
-                </video>
-              ) : (
-                <ProjectImage src={getMediaURL(i.MediaUpload, "medium")} />
-              )}
-            </ProjectMediaDiv>
-          ) : (
-            <ProjectIframeDiv
-              key={i.id}
-              aspectRatio={getAspectRatio(i.MediaEmbed.Link)}
-            >
-              <GalleryIframe
-                src={getSrc(i.MediaEmbed.Link)}
-                alt={i.MediaEmbed.LinkText}
-              ></GalleryIframe>
-            </ProjectIframeDiv>
-          )
-        )}
-      </PageGallery>
-      <Footer backgroundColor="--off-white" accentColor={accentColor} />
-    </PageContainer2>
+              ))}
+            </ProjectInfoList>
+          </ProjectInfo>
+        </ProjectSplash>
+        <PageGallery
+          backgroundColor="--off-white"
+          numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2}
+        >
+          {projectData.ProjectGalleryItem.map((i) =>
+            i.MediaEmbed == null ? (
+              <ProjectMediaDiv key={i.id}>
+                {isVideo(i.MediaUpload.data.attributes.ext.slice(1)) ? (
+                  <video controls loop>
+                    <source src={i.MediaUpload.data.attributes.url}></source>
+                  </video>
+                ) : (
+                  <ProjectImage
+                    src={getMediaURL(i.MediaUpload, "medium")}
+                    alt={i.MediaUpload.data.attributes.alternativeText}
+                  />
+                )}
+              </ProjectMediaDiv>
+            ) : (
+              <ProjectIframeDiv
+                key={i.id}
+                aspectRatio={getAspectRatio(i.MediaEmbed.Link)}
+              >
+                <GalleryIframe
+                  src={getSrc(i.MediaEmbed.Link)}
+                  alt={i.MediaEmbed.LinkText}
+                ></GalleryIframe>
+              </ProjectIframeDiv>
+            )
+          )}
+        </PageGallery>
+        <Footer backgroundColor="--off-white" accentColor={accentColor} />
+      </PageContainer2>
+    </>
   );
 }
 
@@ -102,7 +118,7 @@ let ProjectSplashDiv = styled.div`
     "title title"
     "info image";
   column-gap: var(--gap);
-  padding: calc(1.3rem) 0 calc(1.3rem * 1.5) 0;
+  padding: calc(var(--body-line-height)) 0;
 
   @media ${mediaQueries.uptoTablet} {
     grid-template-columns: 1fr;
@@ -126,25 +142,33 @@ let ProjectTitleDiv = styled.div`
 `;
 
 let ProjectTitleHeading = styled.h2`
-  font-size: calc(1.3rem * 5);
-  line-height: calc(1.3rem * 5);
+  font-size: var(--medium-heading-font-size);
+  line-height: var(--medium-heading-line-height);
   font-weight: 300;
   /*display: inline-block;*/
-  padding-bottom: calc(1 * 1.3rem);
-  /*text-align: left;*/
+  // padding-bottom: calc(1 * 1.3rem);
+  // /*text-align: left;*/
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+
+  // @media ${mediaQueries.uptoTablet} {
+  //   font-size: calc(1.3rem * 3);
+  //   line-height: calc(1.3rem * 3);
+  //   padding-bottom: calc(1.3rem / 2);
+  //   flex-direction: column-reverse;
+  //   align-items: center;
+  //   text-align: center;
+  padding-bottom: var(--body-font-size);
+  text-align: left;
 
   @media ${mediaQueries.uptoTablet} {
-    font-size: calc(1.3rem * 3);
-    line-height: calc(1.3rem * 3);
-    padding-bottom: calc(1.3rem / 2);
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
+    // TODO: Check if this can be avoided re: choosing a new type hierarchy
+    // font-size: calc(1.3rem * 3);
+    // line-height: calc(1.3rem * 3);
+    // padding-bottom: calc(1.3rem / 2);
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -152,16 +176,19 @@ let ProjectTitleHeading = styled.h2`
 `;
 
 let ProjectYearsHeading = styled.span`
-  font-size: calc(3 * 1.3rem);
-  line-height: calc(3 * 1.3rem);
+  font-size: var(--large-heading-font-size);
+  line-height: var(--large-heading-line-height);
+  /*vertical-align: baseline;*/
+  /*display: inline-block;*/
   font-weight: 300;
   opacity: 0.25;
   display: inline-block;
   white-space: no-wrap;
 
   @media ${mediaQueries.uptoTablet} {
-    font-size: calc(1 * 1.3rem);
-    line-height: calc(1 * 1.3rem);
+    // TODO: Check if this can be avoided re: choosing a new type hierarchy
+    // font-size: calc(1 * 1.3rem);
+    // line-height: calc(1 * 1.3rem);
   }
 `;
 
@@ -169,11 +196,11 @@ function ProjectTitle(props) {
   return (
     <ProjectTitleDiv>
       <ProjectTitleHeading>
-        <span>{props.title}{" "}</span>
+        <span>{props.title} </span>
         <ProjectYearsHeading>
           {props.years.start == props.years.end
             ? props.years.start
-            : `${props.years.start}–${props.years.end}`}          
+            : `${props.years.start}–${props.years.end}`}
         </ProjectYearsHeading>
       </ProjectTitleHeading>
     </ProjectTitleDiv>
@@ -185,28 +212,34 @@ let ProjectInfo = styled.div`
 
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
+=======
+  padding-top: calc(var(--body-line-height));
+>>>>>>> 6d5b3ff23bdef9acb04514de58013caaddc6c077
 `;
 
 let ProjectSubtitle = styled(Div)`
-  font-size: calc(1.3rem * 2);
-  line-height: calc(1.3rem * 2);
+  font-size: calc(var(--medium-heading-font-size));
+  line-height: calc(var(--medium-heading-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoMobile} {
-    font-size: calc(1.3rem * 1.5);
-    line-height: calc(1.3rem * 1.5);
+    // TODO: See if we need this still
+    // font-size: calc(1.3rem * 1.5);
+    // line-height: calc(1.3rem * 1.5);
   }
 `;
 
 let ProjectDescription = styled(Div)`
-  font-size: calc(1.3rem * 1.2);
-  line-height: calc(1.3rem * 1.2);
+  font-size: calc(var(--small-heading-font-size));
+  line-height: calc(var(--small-heading-line-height));
   font-weight: 300;
-  padding-top: 1.3rem;
+  padding-top: var(--body-line-height);
 
   @media ${mediaQueries.uptoMobile} {
-    font-size: calc(1.3rem * 1);
-    line-height: calc(1.3rem * 1);
+    // TODO: See if we need this still
+    // font-size: calc(1.3rem * 1);
+    // line-height: calc(1.3rem * 1);
   }
 `;
 
@@ -214,11 +247,12 @@ let ProjectInfoList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-top: 1.3rem;
+  padding-top: var(--body-line-height);
 `;
 
 let ProjectLi = styled.li`
-  padding-left: calc(1 * 1.3rem);
+  // TODO: rationalize this
+  padding-left: calc(var(--body-line-height));
   position: relative;
 `;
 
@@ -267,7 +301,7 @@ function PageGallery({ backgroundColor, ...rest }) {
   );
 }
 
-let ProjectMediaDiv = styled.li`
+let ProjectMediaDiv = styled.div`
   overflow: hidden;
 
   /*Masonry*/

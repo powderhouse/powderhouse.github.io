@@ -24,7 +24,7 @@ let StyledDiv = styled.div`
 	//////////////////////////////////////////////**////////////
 
 	grid-auto-rows: min-content;
-	grid-row-gap: 1.3rem;
+	grid-row-gap: var(--body-line-height);
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);

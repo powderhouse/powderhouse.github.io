@@ -13,6 +13,8 @@ import PageImage from "../../components/PageImage";
 import PageTableOfContents from "../../components/PageTableOfContents";
 import { asteriskSVG, mediaQueries } from "../../site-data.js";
 
+import Head from "next/head";
+
 import {
 	baseGrid,
 	Spacer,
@@ -73,8 +75,8 @@ function WorkPage({
 			i
 		) => {
 			return (
-				<PartnerLink key={i} href={Link}>
-					<PartnerCard>
+				<PartnerCard key={i}>
+					<PartnerLink href={Link}>
 						<PartnerLogo
 							src={
 								formats == null ||
@@ -86,8 +88,8 @@ function WorkPage({
 							}
 							alt={alternativeText}
 						/>
-					</PartnerCard>
-				</PartnerLink>
+					</PartnerLink>
+				</PartnerCard>
 			);
 		}
 	);
@@ -116,7 +118,9 @@ function WorkPage({
 				<ProjectCard key={index}>
 					<ProjectLink href={"/work/" + id}>
 						{/* TK There's probably a better way to do this with relative URLS? */}
-						<ProjectTenure>{yearstart}-{yearend}</ProjectTenure>
+						<ProjectTenure>
+							{yearstart}-{yearend}
+						</ProjectTenure>
 						<ProjectImageDiv>
 							<ProjectFeatureImage
 								src={
@@ -134,8 +138,8 @@ function WorkPage({
 							/>
 						</ProjectImageDiv>
 						<ProjectTitle>{title}</ProjectTitle>
-						<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 					</ProjectLink>
+					<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 				</ProjectCard>
 			);
 		}
@@ -157,80 +161,98 @@ function WorkPage({
 			i
 		) => (
 			<PastLifeLink key={i} href={Link}>
-					<PageImage
-						fullBleed={false}
-						src={
-							formats == null || Object.keys(formats).length == 0
-								? url
-								: formats[findLargestFormat(formats, "medium")]
-										.url
-						}
-						alt={alternativeText}
-						caption=""
-					/>
+				<PageImage
+					fullBleed={false}
+					src={
+						formats == null || Object.keys(formats).length == 0
+							? url
+							: formats[findLargestFormat(formats, "medium")].url
+					}
+					altText={alternativeText}
+					caption=""
+				/>
 			</PastLifeLink>
 		)
 	);
 
 	return (
-		<PageContainer2>
-			<Header backgroundColor="--off-white" />
-			<PageSplash backgroundColor={accentColor}>
-				<PageHeading>{PageHeader}</PageHeading>
-				<PageTableOfContents sections={PageSections} />
-			</PageSplash>
-			<PageIntroduction backgroundColor="--off-white" markdown>
-				{PageIntro}
-			</PageIntroduction>
-			<Region2
-				backgroundColor={getBgFromLight(projectsDesc.isLightSection)}
-				header={projectsDesc.SectionHeader}
-				left={projectsDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true} $grid={true}>
-					{projects}
-				</PageSectionContent>
-			</Region2>
-			<Region2
-				backgroundColor={getBgFromLight(partnersDesc.isLightSection)}
-				header={partnersDesc.SectionHeader}
-				left={partnersDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true}>
-					<PartnerSectionContent>{partners}</PartnerSectionContent>
-				</PageSectionContent>
-			</Region2>
-			<Region2
-				backgroundColor={getBgFromLight(pastLivesDesc.isLightSection)}
-				header={pastLivesDesc.SectionHeader}
-				left={pastLivesDesc.isLeftHeader}
-			>
-				<PageSectionContent $wide={true} $grid={false}>
-					{pastLivesDesc.PageSectionContent ? (
-						<SectionDesc>
-							{pastLivesDesc.PageSectionContent}
-						</SectionDesc>
-					) : (
-						""
+		<>
+			<Head>
+				<title>Powderhouse's Work</title>
+			</Head>
+			<PageContainer2>
+				<Header backgroundColor="--off-white" />
+				<PageSplash backgroundColor={accentColor}>
+					<PageHeading>{PageHeader}</PageHeading>
+					<PageTableOfContents sections={PageSections} />
+				</PageSplash>
+				<PageIntroduction backgroundColor="--off-white" markdown>
+					{PageIntro}
+				</PageIntroduction>
+				<Region2
+					backgroundColor={getBgFromLight(
+						projectsDesc.isLightSection
 					)}
-					<PastLifeSectionContent>{pastLives}</PastLifeSectionContent>
-				</PageSectionContent>
-			</Region2>
-			<Footer backgroundColor="--off-white" accentColor={accentColor} />
-		</PageContainer2>
+					header={projectsDesc.SectionHeader}
+					left={projectsDesc.isLeftHeader}
+				>
+					<PageSectionContent $wide={true} $grid={true}>
+						{projects}
+					</PageSectionContent>
+				</Region2>
+				<Region2
+					backgroundColor={getBgFromLight(
+						partnersDesc.isLightSection
+					)}
+					header={partnersDesc.SectionHeader}
+					left={partnersDesc.isLeftHeader}
+				>
+					<PageSectionContent $wide={true}>
+						<PartnerSectionContent>
+							{partners}
+						</PartnerSectionContent>
+					</PageSectionContent>
+				</Region2>
+				<Region2
+					backgroundColor={getBgFromLight(
+						pastLivesDesc.isLightSection
+					)}
+					header={pastLivesDesc.SectionHeader}
+					left={pastLivesDesc.isLeftHeader}
+				>
+					<PageSectionContent $wide={true} $grid={false}>
+						{pastLivesDesc.PageSectionContent ? (
+							<SectionDesc>
+								{pastLivesDesc.PageSectionContent}
+							</SectionDesc>
+						) : (
+							""
+						)}
+						<PastLifeSectionContent>
+							{pastLives}
+						</PastLifeSectionContent>
+					</PageSectionContent>
+				</Region2>
+				<Footer
+					backgroundColor="--off-white"
+					accentColor={accentColor}
+				/>
+			</PageContainer2>
+		</>
 	);
 }
 
 let SectionDesc = styled(Div)`
-	padding-bottom: 1.3rem;
-	font-size: calc(1 * 1.3rem);
+	padding-bottom: var(--body-line-height);
+	font-size: var(--body-font-size);
+	line-height: var(--body-line-height);
 	grid-column: 1 / -1;
 `;
 
 let PartnerSectionContent = styled.div`
 	display: grid;
 	column-gap: var(--gap);
-	row-gap: 1.3rem;
+	row-gap: var(--body-line-height);
 	grid-template-columns: repeat(5, 1fr);
 	transform: translateY(-1.3rem);
 
@@ -249,7 +271,7 @@ let PartnerCard = styled.div`
 	transition: 0.375s;
 	opacity: 0.75;
 
-	filter: grayscale(100%);
+	// filter: grayscale(100%);
 
 	&:hover {
 		opacity: 1;
@@ -280,7 +302,7 @@ let ProjectLink = styled.a`
 
 let ProjectTenure = styled.div`
 	opacity: 0.6125;
-	text-align:right;
+	text-align: right;
 `;
 
 let ProjectImageDiv = styled.div`
@@ -299,14 +321,14 @@ let ProjectFeatureImage = styled.img`
 let ProjectTitle = styled.h3`
 	grid-column: 1 / span 3;
 	font-weight: 300;
-	line-height: calc(1.3rem * 1.5);
-	font-size: calc(1.3rem * 1.5);
-	padding: calc(1.3rem / 2) 0;
+	font-size: var(--small-heading-font-size);
+	line-height: var(--small-heading-line-height);
+	padding: calc(var(--body-font-size) / 2) 0;
 	margin: 0;
 `;
 
 let ProjectSubtitle = styled(Div)`
-	line-height: 1.3rem;
+	line-height: var(--body-line-height);
 	padding: 0;
 	margin: 0;
 `;
@@ -315,7 +337,7 @@ let PastLifeSectionContent = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	column-gap: var(--gap);
-	row-gap: 1.3rem;
+	row-gap: var(--body-line-height);
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(1, 1fr);

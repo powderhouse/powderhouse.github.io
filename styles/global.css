@@ -55,16 +55,44 @@
 	font-display: swap;
 }
 
+:root {
+	--title-font-size: 34pt;
+	--title-line-height: 41pt;
+	/*--title-letter-spacing: ;*/
+	--large-heading-font-size: 28pt;
+	--large-heading-line-height: 34pt;
+	/*--large-heading-letter-spacing: ;*/
+	--medium-heading-font-size: 22pt;
+	--medium-heading-line-height: 28pt;
+	/*--medium-heading-letter-spacing: ;*/
+	--small-heading-font-size: 20pt;
+	--small-heading-line-height: 25pt;
+	/*--small-heading-letter-spacing: ;*/
+	--headline-font-size: 17pt;
+	--headline-line-height: 22pt;
+	/*--headline-letter-spacing: ;*/
+	--body-font-size: 17pt;
+	--body-line-height: 22pt;
+	/*--body-letter-spacing: ;*/
+	--subheading-font-size: 15pt;
+	--subheading-line-height: 20pt;
+	/*--subheading-letter-spacing: ;*/
+	--footnote-font-size: 13pt;
+	--footnote-line-height: 18pt;
+	/*--footnote-letter-spacing: ;*/
+	--caption-font-size: 12pt;
+	--caption-line-height: 16pt;
+	/*--caption-letter-spacing: ;*/
+}
 html {
-	font-size: 17px;
+	font-size: var(--body-font-size);
 }
 body {
 	height: 100%;
 	font-family: "GT Planar", sans-serif;
-	font-size: 17px;
 	font-weight: normal;
 	font-style: normal;
-	line-height: 1.3rem;
+	line-height: var(--body-line-height);
 	letter-spacing: 0;
 	text-rendering: geometricPrecision;
 
@@ -75,9 +103,12 @@ body {
 	--green: rgb(50, 131, 90); /* #32835A */
 	--blue: rgb(128, 210, 236); /* #80D2EC */
 	--red: rgb(226, 87, 87); /* #E25757 */
+	/*TODO:  Consider using --body-line-height for this;*/
 	--gap: 24px;
 }
-
+b {
+	font-weight: 500;
+}
 a {
 	color: inherit;
 	fill: inherit;
@@ -95,12 +126,12 @@ dd {
 	padding: 0;
 	border: 0;
 	outline: 0;
-	line-height: 1.3rem;
+	line-height: inherit;
 }
 
 ul {
 	margin-top: 0;
-	padding-left: 1.3rem;
+	padding-left: var(--body-line-height); /* TODO: Rationalize this */
 }
 
 ul > li {
@@ -118,41 +149,45 @@ dl {
 }
 dt {
 	grid-column: 1 / 3;
-	padding-right: calc(1.3rem / 4);
+	padding-right: calc(
+		var(--body-line-height) / 4
+	); /* TODO: Rationalize this */
 	text-align: right;
-	height: calc(100% - 1.3rem);
+	height: calc(100% - var(--body-line-height));
 	font-weight: 900;
-	border-right:dashed 1px;
-	padding-right:calc(1.3rem);
+	border-right: dashed 1px;
+	padding-right: calc(var(--body-line-height)); /* TODO: Rationalize this */
+}
+
+dt:last-of-type {
+	height: 100%;
 }
 dd {
 	grid-column: 3 / 7;
-	margin-bottom: 1.3rem;
+	margin-bottom: var(--body-line-height);
 	display: flex;
 	/*TODO:  Unclear why this is needed to get vertical rhythm on / */
 	padding-bottom: 0.5px;
 }
 dd:last-child {
-	margin-bottom: calc(1.3rem - 1px); /* TODO: unclear why this is needed */
-	overflow: hidden;
+	margin-bottom: 0;
 }
 @media (max-width: 550px) {
 	dl {
-		display:flex;
-		flex-direction:column;
+		display: flex;
+		flex-direction: column;
 	}
 	dt {
-		padding-right:0;
-		border-right:none;
+		padding-right: 0;
+		border-right: none;
 		text-decoration-line: underline;
-  		text-decoration-style: dashed;
-  		text-underline-offset: 3px;
+		text-decoration-style: dashed;
+		text-underline-offset: 3px;
 		/*border-bottom:dashed 1px;*/
 		/*padding-bottom:calc(1.3rem / 4);*/
 	}
 	dd {
-		padding-top:calc(1.3rem / 4);
-
+		padding-top: calc(var(--body-line-height) / 4);
 	}
 }
 
@@ -207,7 +242,7 @@ img {
 	margin-left: -50vw;
 	margin-right: -50vw;
 
-	padding: 1.3rem 0px;
+	padding: var(--body-line-height) 0px;
 	overflow: hidden;
 	grid-column: 1 / -1;
 }
@@ -239,13 +274,13 @@ img {
 
 .footnotes {
 	grid-column: 7 / -1;
-	font-size: calc(1.3rem / 2);
-	line-height: calc(1.3rem / 2);
+	font-size: var(--footnote-font-size);
+	line-height: var(--footnote-line-height);
 	text-decoration: italic;
 }
 
 .fn:not(:last-child) {
-	padding-bottom: calc(1.3rem / 2);
+	padding-bottom: calc(var(--body-line-height) / 2);
 }
 
 @media (max-width: 1100px) {
@@ -276,12 +311,6 @@ video {
 	width: 100%;
 }
 
-svg {
-	width: 100%;
-    height: 100%;
-}
-
-.active .nav-scribble,
-.nav-link:hover .nav-scribble {
+.active .nav-link:hover {
 	visibility: visible;
 }

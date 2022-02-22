@@ -4,7 +4,12 @@ import { useRouter } from "next/router";
 import Icon from "../components/Icon.js";
 import Region2 from "../components/Region2.js";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
-import { navMenuItems, socials, logotypeVertSVG, mediaQueries } from "../site-data.js";
+import {
+  navMenuItems,
+  socials,
+  logotypeVertSVG,
+  mediaQueries,
+} from "../site-data.js";
 
 import {
   gap,
@@ -24,7 +29,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper backgroundColor={backgroundColor} {...rest}>
         <ContentContainer>
-          <FooterNavigation className={router.pathname != "/" ? "" : "home"} >
+          <FooterNavigation className={router.pathname != "/" ? "" : "home"}>
             <NavList>
               {navItems.map((n, i) => {
                 return (
@@ -35,12 +40,13 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               })}
             </NavList>
           </FooterNavigation>
-          <FooterContact className={router.pathname != "/" ? "" : "home"} >
-            {/* <NavList> */}
+          <FooterContact className={router.pathname != "/" ? "" : "home"}>
+            <NavList>
               <ContactNavItem>
                 <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
                   339R Summer Street <br />
-                  Somerville, MA 02144
+                  Somerville, MA 02144 <br />
+                  <br />
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem>
@@ -61,11 +67,11 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   })}
                 </SocialList>
               </ContactNavItem>
-            {/* </NavList> */}
+            </NavList>
           </FooterContact>
           {router.pathname != "/" ? (
             <>
-              <FooterNewsletterSignup backgroundColor={backgroundColor} >
+              <FooterNewsletterSignup backgroundColor={backgroundColor}>
                 <NewsLetterShoutOut>
                   {`If you'd like to keep up with our work, sign up for our
                   mailing list.`}
@@ -78,9 +84,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   buttonTextLength="longText"
                 />
               </FooterNewsletterSignup>
-              <LogoContainer>
-                {logotypeVertSVG(accentColor)}
-              </LogoContainer>
+              <LogoContainer>{logotypeVertSVG(accentColor)}</LogoContainer>
             </>
           ) : (
             ""
@@ -94,7 +98,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
 let IconListItem = ({ className, href, icon }) => {
   return (
     <li className={className}>
-      <ShiftBy x={0} y={0}>
+      <ShiftBy x={0} y={3}>
         <NavLink href={href}>
           <Icon icon={icon} />
         </NavLink>
@@ -111,7 +115,7 @@ let Wrapper = styled.footer`
   ${baseGrid};
   ${(props) => colorByProp(props)};
   position: relative;
-  padding-top: calc(4 * 1.3rem);
+  padding-top: calc(4 * var(--body-line-height));
 `;
 
 let LogoContainer = styled.div`
@@ -124,7 +128,7 @@ let LogoContainer = styled.div`
   pointer-events: none;
 
   @media ${mediaQueries.uptoTablet} {
-    grid-row-start:3;
+    grid-row-start: 3;
   }
 `;
 
@@ -175,14 +179,15 @@ let NavItem = styled.li`
 
 let ContactNavItem = styled(NavItem)`
   &:not(:last-child) {
-    padding-bottom: calc(1.3rem / 4);
+    // TODO: Rationalize this
+    // padding-bottom: calc(var(--body-line-height) / 4);
   }
 `;
 
 let NavLink = styled.a`
   color: inherit;
   text-decoration: none;
-  line-height: 1.3rem;
+  line-height: var(--body-line-height);
 `;
 
 let SocialList = styled(NavList)`
@@ -194,9 +199,9 @@ let SocialList = styled(NavList)`
 
 let FooterContact = styled.div`
   grid-column: 3 / 6;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
@@ -236,7 +241,8 @@ let FooterNewsletterSignup = styled.div`
 `;
 
 let NewsLetterShoutOut = styled.p`
-  padding-bottom: calc(1.3rem / 4);
+  // TODO: Rationalize this
+  padding-bottom: calc(var(--body-line-height) / 4);
 `;
 
 export default Footer;

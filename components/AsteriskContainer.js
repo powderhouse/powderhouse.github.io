@@ -22,26 +22,29 @@ const useRandomNum = () => {
 };
 
 let asteriskContainerStyles = {
+	// With relative positioning, the rotated asterisk's margin throws spacing off.  These top and left figures are derived visually, providing necessary space between the asterisk and header before aligning the center of the asterisk with the relevant vertical line by moving the container.
 	TOC: css`
 		position: absolute;
-		left: calc(-1.375 * 1.3em + 4px);
+		left: -1.375em;
+		// TODO: Rationalize this
+		// left: calc(-1.6625em);
 	`,
 	LeftHeader: css`
 		position: absolute;
-		left: calc(-1.3rem / 4);
-		top: calc(-1.3rem / 5);
+		top: -0.25em;
+		left: -0.8em;
 		transform: scale(1.5) var(--random-rotate);
 	`,
 	CenterHeader: css`
 		position: absolute;
-		left: calc(-1.3rem / 4);
-		top: calc(-1.3rem / 5);
+		left: -0.6625em;
+		top: -0.125em;
 		transform: scale(2) var(--random-rotate);
 	`,
 	Default: css`
 		position: absolute;
-		left: calc(-0.375 * 1.3rem);
-		top: calc(-1.3rem / 7);
+		left: -0.825em;
+		top: -0.25em;
 	`,
 };
 
@@ -52,14 +55,15 @@ function AsteriskContainer(props) {
 }
 
 let AsteriskContainerDiv = styled.div`
-	height: calc(1.375 * 1.3rem);
-	width: calc(1.375 * 1.3rem);
+	// TODO: Rationalize this
+	height: calc(1.375 * var(--body-line-height));
+	width: calc(1.375 * var(--body-line-height));
 	transform-origin: 50% 50%;
 	// In order to add other transforms later, via https://stackoverflow.com/questions/5890948/css-transform-without-overwriting-previous-transform
 	--random-rotate: ${(props) => `rotate(${props.rotation}deg)`};
 	transform: var(--random-rotate);
 
-	${(props) => asteriskContainerStyles[props.type]}
+	${(props) => asteriskContainerStyles[props.$type]}
 `;
 
 export default AsteriskContainer;

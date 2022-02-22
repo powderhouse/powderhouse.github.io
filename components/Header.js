@@ -3,88 +3,81 @@ import { useRouter } from "next/router";
 
 import Link from "next/link";
 
-import { navMenuItems } from "../site-data.js";
-import { gap, baseGrid } from "./global.js";
 import {
-  scribbleSVGs,
   logotypeHorizSVG,
   logotypeVertSVG,
   logoSVG,
   mediaQueries,
+  navMenuItems,
 } from "../site-data.js";
 import {
+  gap,
+  baseGrid,
   highlight,
   colorByProp,
   ShiftBy,
   complementaryColor,
 } from "../components/global.js";
+
+import Scribble from "../components/Scribble.js";
 import Region2 from "../components/Region2.js";
+
+function getPageColor(navText) {
+  return navMenuItems.find((el) => el.text == navText).color;
+}
+function getScribbleNum(navText) {
+  return navMenuItems.find((el) => el.text == navText).scribbleNum;
+}
 
 function Header(props) {
   const router = useRouter();
   let basePath = "/" + router.pathname.split("/")[1];
 
-  function assignPageColor(navText) {
-    let color;
-    props.activeScribbleColor 
-      ? (color = props.activeScribbleColor)
-      : navMenuItems.forEach((el) =>
-          el["text"] == navText ? (color = el["color"]) : ""
-        );
-    return color;
-  }
-  function assignScribbleNum(navText) {
-    let scribbleNum;
-    navMenuItems.forEach((el) =>
-      el["text"] == navText ? (scribbleNum = el["scribbleNum"]) : ""
-    );
-    return scribbleNum;
-  }
-
   return (
     <Region2 {...props}>
       <Wrapper>
         {/* <ShiftBy x={0} y={-10}> */}
-        <LogoLockup>
-          <a href="/">
-            <>
-              {logotypeVertSVG(
-                `${complementaryColor(props.backgroundColor)} navlogo-mobile`
-              )}
-              {logotypeHorizSVG(
-                `${complementaryColor(
-                  props.backgroundColor
-                )} navlogo-tabletAndUp`
-              )}
-            </>
+        <Link href="/">
+          <a>
+            <LogoLockup>
+              <>
+                {logotypeVertSVG(
+                  `${complementaryColor(props.backgroundColor)} navlogo-mobile`
+                )}
+                {logotypeHorizSVG(
+                  `${complementaryColor(
+                    props.backgroundColor
+                  )} navlogo-tabletAndUp`
+                )}
+              </>
+            </LogoLockup>
           </a>
-        </LogoLockup>
+        </Link>
         {/* </ShiftBy> */}
         <NavMenu>
-          <ShiftBy x={0} y={-3}>
-            <NavList>
-              {navMenuItems.map(function (n) {
-                return (
-                  <NavListItem key={n.href}>
-                    <NavLink
-                      className={
-                        (basePath == n.href ? "active " : "") + "nav-link"
-                      }
-                      color={props.color}
-                      href={n.href}
-                    >
-                      <div>{n.text}</div>
-                      <Scribble className="nav-scribble">
-                        {scribbleSVGs[assignScribbleNum(n.text)](
-                          assignPageColor(n.text)
-                        )}
-                      </Scribble>
-                    </NavLink>
-                  </NavListItem>
-                );
-              })}
-            </NavList>
-          </ShiftBy>
+          <NavList>
+            {navMenuItems.map(function (n) {
+              return (
+                <NavListItem key={n.href}>
+                  <NavLink
+                    className={
+                      (basePath == n.href ? "active " : "") + "nav-link"
+                    }
+                    color={props.color}
+                    href={n.href}
+                  >
+                    {n.text}
+                  </NavLink>
+                  <Scribble
+                    number={getScribbleNum(n.text)}
+                    stroke={`var(${getPageColor(n.text)})`}
+                    strokeWidth="2"
+                    active={basePath == n.href ? "active " : ""}
+                  />
+                </NavListItem>
+              );
+            })}
+          </NavList>
         </NavMenu>
       </Wrapper>
     </Region2>
@@ -96,7 +89,9 @@ let Wrapper = styled.header`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--gap);
-  height: calc(6 * 1.3rem);
+  // TODO: Rationalize this
+  // height: calc(6 * var(--body-line-height));
+  padding: 35px 0;
   align-items: center;
   ${(props) => colorByProp(props)};
   ${(props) => `
@@ -113,14 +108,16 @@ let Wrapper = styled.header`
 
 let LogoLockup = styled.div`
   grid-column: 1 / span 3;
-  width: 321.54px;
-  transform: translateY(-5px);
+  width: 320px;
+  line-height: 0; // To shrink the div to the height of the logo
+  // transform: translateY(-5px);
 
   & .navlogo-mobile {
     /*By default, hide the mobile logo*/
+    // TODO: If we're hiding, do we need any of this?
     display: none;
-    transform: translateY(15px);
-    flex-wrap: wrap;
+    // transform: translateY(15px);
+    // flex-wrap: wrap;
   }
 
   @media ${mediaQueries.uptoTablet} {
@@ -144,7 +141,6 @@ let LogoLockup = styled.div`
 
 let NavMenu = styled.nav`
   grid-column: -4 / -1;
-  transform: translateY(10);
 
   @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
@@ -155,14 +151,18 @@ let NavMenu = styled.nav`
 
 let NavList = styled.ol`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0;
   margin: 0;
+  transform: translateY(3px);
 `;
 
 let NavListItem = styled.li`
   list-style-type: none;
-  padding-right: var(--gap);
+  &:not(:last-child) {
+    // TODO: Decide if this makes sense
+    padding-right: var(--gap);
+  }
 
   @media ${mediaQueries.uptoMobile} {
     padding-top: calc(var(--gap) / 2);
@@ -180,14 +180,29 @@ let NavLink = styled.a`
   align-items: center;
 `;
 
-let Scribble = styled.div`
-  visibility: hidden;
-  position: absolute;
-  top: 9px;
+// let Scribble = styled.div`
+//   // visibility: hidden;
+//   width: 100%;
+//   // position: absolute;
+//   // top: 9px;
 
-  @media ${mediaQueries.uptoMobile} {
-    top: 19px;
-  }
-`;
+//   display: inline-block;
+//   position: relative;
+//   width: 100%;
+//   padding-bottom: 100%;
+//   vertical-align: middle;
+//   overflow: hidden;
+
+//   svg {
+//     display: inline-block;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//   }
+
+//   @media ${mediaQueries.uptoMobile} {
+//     // top: 19px;
+//   }
+// `;
 
 export default Header;

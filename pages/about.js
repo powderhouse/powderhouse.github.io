@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Head from "next/head";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageTableOfContents from "../components/PageTableOfContents";
@@ -42,6 +44,7 @@ function AboutPage({
 			<PageTableOfContents sections={aboutPageContent} />
 		</PageSplash>,
 		<PageIntroduction backgroundColor="--off-white" key="introduction">
+			{/*TODO: Redefine ShitBy to use units, and convert to calc/variables*/}
 			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
 				{PageIntro}
 			</ShiftBy>
@@ -96,10 +99,15 @@ function AboutPage({
 		/>,
 	];
 	return (
-		<PageContainer2>
-			{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-			{regions}
-		</PageContainer2>
+		<>
+			<Head>
+				<title>About Powderhouse</title>
+			</Head>
+			<PageContainer2>
+				{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
+				{regions}
+			</PageContainer2>
+		</>
 	);
 }
 

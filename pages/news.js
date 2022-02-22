@@ -10,6 +10,8 @@ import Region2 from "../components/Region2";
 import ArrowButton from "../components/ArrowButton";
 import { mediaQueries } from "../site-data.js";
 
+import Head from "next/head";
+
 import {
 	baseGrid,
 	PageSplash,
@@ -84,7 +86,14 @@ function NewsPage({ newsPage, newsCards }) {
 		/>,
 	];
 
-	return <PageContainer2>{regions}</PageContainer2>;
+	return (
+		<>
+			<Head>
+				<title>News about Powderhouse</title>
+			</Head>
+			<PageContainer2>{regions}</PageContainer2>
+		</>
+	);
 }
 
 let NewsItemContainer = styled.div`
@@ -105,12 +114,12 @@ function NewsItem({ date, type, title, excerpt, links }) {
 					<NewsExcerpt markdown>{excerpt}</NewsExcerpt>
 					<NewsRelatedLinks>
 						{links.map((l, i) => (
-							<a key={`news-link-${i}`} href={l.Link}>
-								<NewsLi>
-									<Asterisk type="Default" />
+							<NewsLi>
+								<Asterisk $type="Default" />
+								<a key={`news-link-${i}`} href={l.Link}>
 									{l.LinkText}
-								</NewsLi>
-							</a>
+								</a>
+							</NewsLi>
 						))}
 					</NewsRelatedLinks>
 				</NewsContent>
@@ -128,7 +137,7 @@ let NewsDateDiv = styled.h3`
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
 		grid-row: 2;
-		opacity:0.625;
+		opacity: 0.625;
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / 3;
@@ -205,7 +214,7 @@ let NewsRelatedLinks = styled.ul`
 `;
 
 let NewsLi = styled.li`
-	padding-left: 1.3rem;
+	padding-left: 1em;
 	position: relative;
 `;
 

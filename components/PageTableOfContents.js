@@ -6,13 +6,16 @@ let PageTOC = styled.ol`
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	padding-bottom: calc(2 * 1.3rem);
+	// TODO: Rationalize this
+	padding-bottom: calc(2 * var(--body-line-height));
 	position: relative;
 	left: calc(var(--gap) - 7px);
 `;
 
 let PageTOCItem = styled.li`
-	padding-bottom: calc(1.3rem / 2);
+	padding-bottom: calc(var(--body-line-height) / 2);
+	position: relative;
+	left: -0.21em; // Determined optically after choosing an asterisk spacing
 `;
 
 let PageTOCLink = styled.a`
@@ -29,7 +32,8 @@ let PageTOCLink = styled.a`
 `;
 
 let TOCText = styled.div`
-	margin-left: calc(1.3rem / 4);
+	// TODO: Rationalize this
+	margin-left: calc(var(--body-line-height) / 4);
 `;
 
 function PageTableOfContents({ sections }) {
@@ -37,7 +41,7 @@ function PageTableOfContents({ sections }) {
 		n.SectionHeader ? (
 			<PageTOCItem key={i}>
 				<PageTOCLink href={"#" + slugify(n.SectionHeader)}>
-					<Asterisk key={i} type="TOC" />
+					<Asterisk key={i} $type="TOC" />
 					<TOCText>{n.SectionHeader}</TOCText>
 				</PageTOCLink>
 			</PageTOCItem>

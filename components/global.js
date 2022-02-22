@@ -13,6 +13,8 @@ import { asteriskSVG, mediaQueries } from "../site-data.js";
 import Region2 from "../components/Region2.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
 
+import { parse } from "node-html-parser";
+
 let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
 	return (
@@ -116,7 +118,7 @@ let Region = styled.div`
 	padding-right: var(--gap);
 
 	&:not(:last-child) {
-		margin-bottom: calc(2 * 1.3rem);
+		margin-bottom: calc(2 * var(--body-line-height));
 	}
 `;
 
@@ -177,8 +179,9 @@ let PageSplashDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	min-height: calc(29 * 1.3rem);
-	padding: calc(1 * 1.3rem) 0;
+	// TODO: Rationalize this, and consider for mobile
+	min-height: calc(29 * var(--body-line-height));
+	padding: calc(1 * var(--body-line-height)) 0;
 `;
 
 function PageSplash({ children, ...rest }) {
@@ -195,21 +198,24 @@ let PageHeading = styled.h1`
 	letter-spacing: -4.8px;
 	font-weight: 300;
 	line-height: 1em;
-	transform: translate(-3px, calc(1.3rem / 2 - 1px));
+	// TODO: Rationalize this
+	transform: translate(-3px, calc(var(--body-line-height) / 2 - 1px));
 
 	@media ${mediaQueries.uptoTablet} {
-		font-size: calc(4 * 1.3rem);
+		// Check if still required
+		// font-size: calc(4 * 1.3rem);
 	}
 	@media ${mediaQueries.uptoMobile} {
-		font-size: calc(3 * 1.3rem);
+		// Check if still required
+		// font-size: calc(3 * 1.3rem);
 	}
 `;
 
 let Asterisk = (props) => {
 	return (
 		<AsteriskContainer
-			type={props.type}
-			color={props.color ? props.color : "--off-black"}
+			$type={props.$type}
+			$color={props.$color ? props.$color : "--off-black"}
 		>
 			{asteriskSVG()}
 		</AsteriskContainer>
@@ -220,18 +226,20 @@ let PageIntroductionDiv = styled(Div)`
 	grid-column: 1 / span 9;
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
+	// TODO: Choose the right font size and line height here for this in the type hierarchy
 	font-size: 34px;
-	line-height: calc(2 * 1.3rem);
+	line-height: calc(2 * var(--body-line-height));
 	letter-spacing: -0.5;
-	padding: calc(1 * 1.3rem) 0;
+	padding: calc(1 * var(--body-line-height)) 0;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
 	}
 
 	@media ${mediaQueries.uptoMobile} {
-		font-size: calc(1.5 * 1.3rem);
-		line-height: calc(1.5 * 1.3rem);
+		// TODO: Check if this is still required
+		// font-size: calc(1.5 * 1.3rem);
+		// line-height: calc(1.5 * 1.3rem);
 	}
 `;
 
@@ -251,11 +259,14 @@ let Header2 = styled.h2`
 	font-size: inherit;
 	line-height: inherit;
 	letter-spacing: inherit;
-	margin-left: ${(props) => (props.left ? "" : "calc(-1.3rem / 4)")};
+	// TODO: rationalize this
+	margin-left: ${(props) =>
+		props.left ? "" : css`calc(var(--body-line-height) / 4)`};
 
 	@media ${mediaQueries.uptoMobile} {
-		line-height: calc(1.3rem * 1.5);
-		transform: translateX(4px) translateY(-8px);
+		// TODO: Check if this is still needed
+		// line-height: calc(1.3rem * 1.5);
+		// transform: translateX(4px) translateY(-8px);
 	}
 `;
 
@@ -264,8 +275,8 @@ let sectionHeaderContainerStyles = {
 		grid-column: 1 / span 3;
 		font-size: 24px;
 		letter-spacing: -0.5px;
-		padding-left: calc(1.375 * 1.3rem);
-		height: 1.3rem;
+		padding-left: 1.2125em; // This visually centers the asterisk on the left vertical line of the page
+		height: var(--body-line-height);
 
 		@media ${mediaQueries.uptoTablet} {
 			grid-column: 1 / -1;
@@ -273,10 +284,10 @@ let sectionHeaderContainerStyles = {
 	`,
 	center: css`
 		grid-column: 4 / 10;
+		// TODO: Choose a heading style for these
 		font-size: 31px;
 		letter-spacing: -1.2px;
-		padding-left: calc(1.3em);
-
+		padding-left: 1em;
 		@media ${mediaQueries.uptoTablet} {
 			grid-column: 1 / -1;
 		}
@@ -286,8 +297,9 @@ let sectionHeaderContainerStyles = {
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	grid-row: 1 / -1;
-	line-height: 1.3rem;
-	height: calc(2 * 1.3rem - 0.75px);
+	line-height: var(--body-line-height);
+	// TODO: Rationalize this
+	// height: calc(2 * var(--body-line-height) - 0.75px);
 	position: relative;
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
@@ -300,7 +312,7 @@ let SectionHeader = ({ left, children }) => {
 	let slug = children ? slugify(children) : "";
 	let header = (
 		<>
-			<Asterisk type={left ? "LeftHeader" : "CenterHeader"} />
+			<Asterisk $type={left ? "LeftHeader" : "CenterHeader"} />
 			<Header2 left={left}>{children}</Header2>
 		</>
 	);
@@ -348,10 +360,8 @@ let PageSectionContent = styled(Div)`
 			  `}
 
 	letter-spacing: 0;
-	& p:not(:last-child) {
-		line-height: 1.3rem;
-		margin-bottom: 1.3rem;
-		display: inline-block;
+	& p {
+		margin-bottom: var(--body-line-height);
 	}
 
 	${(props) =>
@@ -428,6 +438,7 @@ let getBgFromLight = (isLight) => (isLight ? "--off-white" : "--off-black");
 let getLightFromBg = (bg) => (bg == "--off-white" ? true : false);
 
 let sizeToVerticalGridInRem = function (heightInPx) {
+	// TODO: Conver this to pts and compute correctly, or maybe just drop?
 	let rootFontSizeInPx = 17;
 	let rootLineHeightInRem = 1.3;
 	return (

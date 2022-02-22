@@ -20,7 +20,7 @@ function ArrowButton({
   );
 }
 
-let Button = styled.button`
+let Button = styled.div`
   position: relative;
   display: flex;
   margin: 0;
@@ -37,8 +37,11 @@ let ButtonLink = styled.a`
 
 let ButtonText = styled.div`
   position: absolute;
-  bottom: calc(3px + 1.3rem);
-  left: calc(3px + 1.3rem);
+  // TODO: CHeck whether we really need the px
+  // bottom: calc(3px + 1.3rem);
+  // left: calc(3px + 1.3rem);
+  bottom: calc(var(--body-line-height));
+  left: calc(var(--body-line-height));
   color: ${(props) =>
     props.color ? "var(--" + props.color + ")" : "off-black"};
 `;

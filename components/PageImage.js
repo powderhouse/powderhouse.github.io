@@ -15,7 +15,8 @@ let ImageContainer = styled.figure`
 `;
 
 let ImageCaption = styled.figcaption`
-	font-size: calc(1rem * 0.75);
+	font-size: calc(var(--caption-font-size));
+	line-height: var(--caption-line-height);
 	font-style: italic;
 	margin: auto;
 `;
@@ -58,7 +59,7 @@ function PageImage(props) {
 			<Resize ref={resizer}>
 				<img
 					ref={img}
-					height={props.imgHeight ? props.imgHeight : ""}
+					height={props.imgHeight ? props.imgHeight : null}
 					src={props.src}
 					alt={props.altText}
 				/>

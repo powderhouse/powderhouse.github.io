@@ -9,30 +9,36 @@ import Region2 from "../components/Region2";
 
 import { fetchAPI } from "../lib/api";
 import { ShiftBy, Div, complementaryColor } from "../components/global";
-import { mediaQueries } from "../site-data"
+import { mediaQueries } from "../site-data";
+import Head from "next/head";
 
 let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
   width: 100%;
-  font-size: 45px; // TODO: consider bread trail of pixels in calc, note the need to drop px in computing ratio
-  letter-spacing: -0.6px;
-  line-height: calc(3 * 1.3rem);
-  font-weight: 300;
-  font-family: "GT Planar";
-  padding: calc(5 * 1.3rem) 0;
+  // TODO: Observed column width via Framer, any way to make dependent on column width?
+  padding: calc(141px - 2 * var(--gap)) 0;
+  p {
+    font-size: var(--title-font-size);
+    letter-spacing: -0.6px; // TODO: Add letter-spacings to type hierarchy
+    line-height: var(--title-line-height);
+    font-weight: 300;
+    font-family: "GT Planar";
+  }
   p:not(:last-child) {
     padding-bottom: calc(2 * 1.3rem);
   }
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 1 / -1;
-    font-size: 36px;
-    line-height: calc(2 * 1.3rem);
-    padding: calc(2 * 1.3rem) 0;
+    // TODO: Check if we need this
+    // font-size: 36px;
+    // line-height: calc(2 * 1.3rem);
+    // padding: calc(2 * 1.3rem) 0;
   }
 
   @media ${mediaQueries.uptoMobile} {
-    font-size: 28px;
+    // TODO: Check if we need this
+    // font-size: 28px;
   }
 `;
 
@@ -76,7 +82,9 @@ let SplashNewsletterSignupDiv = styled.div`
 function SplashNewsletterSignup({ children, ...rest }) {
   return (
     <Region2 {...rest}>
-      <SplashNewsletterSignupDiv {...rest}>{children}</SplashNewsletterSignupDiv>
+      <SplashNewsletterSignupDiv {...rest}>
+        {children}
+      </SplashNewsletterSignupDiv>
     </Region2>
   );
 }
@@ -96,13 +104,13 @@ function HomePage({
       <ShoutOut>{SignUpShoutOut}</ShoutOut>
       <NewsLetterSignUp
         text="Sign Up!"
-        color="--off-white"
+        $color="--off-white"
         buttonWidth="long"
         buttonThickness="thick"
         buttonTextLength="medText"
         backgroundColor="--off-black"
         isHomePage={true}
-      ></NewsLetterSignUp>
+      />
     </SplashNewsletterSignup>,
     <Footer
       backgroundColor="--off-black"
@@ -112,10 +120,15 @@ function HomePage({
   ];
 
   return (
-    <PageContainer2>
-      {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-      {regions}
-    </PageContainer2>
+    <>
+      <Head>
+        <title>Powderhouse</title>
+      </Head>
+      <PageContainer2>
+        {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
+        {regions}
+      </PageContainer2>
+    </>
   );
 }
 
