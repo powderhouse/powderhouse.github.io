@@ -191,10 +191,15 @@ let ProjectSubtitle = styled(Div)`
   line-height: calc(1.25 * var(--medium-heading-line-height));
   font-weight: 300;
 
+  @media ${mediaQueries.uptoTablet} {
+    grid-column: 2 / -2;
+  }
+
   @media ${mediaQueries.uptoMobile} {
     /*TODO: See if we need this still*/
     font-size: calc(1.3rem * 1.5);
     line-height: calc(1.3rem * 1.5);
+    grid-column: 1 / -1;
   }
 `;
 
@@ -205,6 +210,7 @@ let ProjectDescription = styled(Div)`
   line-height: calc(var(--small-heading-line-height));
   font-weight: 300;
   // padding-top: var(--body-line-height);
+
 
   @media ${mediaQueries.uptoMobile} {
     /*TODO: See if we need this still*/
