@@ -161,7 +161,11 @@ function TeamPage2({
 		<Header backgroundColor="--off-white" key="header" />,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
-			<PageTableOfContents sections={PageSections} />
+			<PageTableOfContents
+				sections={PageSections.filter(
+					(s) => s.SectionHeader != "Advisors"
+				)}
+			/>
 		</PageSplash>,
 		<PageIntroduction backgroundColor="--off-white" key="introduction">
 			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
