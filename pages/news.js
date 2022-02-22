@@ -136,7 +136,7 @@ let NewsDateDiv = styled.h3`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-row: 2;
+		grid-row: 1;
 		opacity: 0.625;
 	}
 	@media ${mediaQueries.uptoMobile} {
@@ -161,9 +161,10 @@ let NewsType = styled.p`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-row: 1;
+		grid-row: 2;
 	}
 	@media ${mediaQueries.uptoMobile} {
+		grid-row: 1;
 		grid-column: 3 / -1;
 	}
 `;
