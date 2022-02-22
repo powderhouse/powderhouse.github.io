@@ -208,7 +208,7 @@ function TeamPage2({
 	return (
 		<>
 			<Head>
-				<title>Powderhouse's Team</title>
+				<title>{`Powderhouse's Team`}</title>
 			</Head>
 			<PageContainer2>
 				{regions.map((r, i) => React.cloneElement(r, { key: i }))}

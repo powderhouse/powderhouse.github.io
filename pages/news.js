@@ -114,11 +114,9 @@ function NewsItem({ date, type, title, excerpt, links }) {
 					<NewsExcerpt markdown>{excerpt}</NewsExcerpt>
 					<NewsRelatedLinks>
 						{links.map((l, i) => (
-							<NewsLi>
+							<NewsLi key={`news-link-${i}`}>
 								<Asterisk $type="Default" />
-								<a key={`news-link-${i}`} href={l.Link}>
-									{l.LinkText}
-								</a>
+								<a href={l.Link}>{l.LinkText}</a>
 							</NewsLi>
 						))}
 					</NewsRelatedLinks>

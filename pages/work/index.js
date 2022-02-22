@@ -178,7 +178,7 @@ function WorkPage({
 	return (
 		<>
 			<Head>
-				<title>Powderhouse's Work</title>
+				<title>{`Powderhouse's Work`}</title>
 			</Head>
 			<PageContainer2>
 				<Header backgroundColor="--off-white" activeScribbleColor={accentColor} />

@@ -66,9 +66,9 @@ function ProjectDetailPage({ projectData }) {
             : ""}
           <ProjectInfoList>
             {projectData.ProjectInfoList.map((n, i) => (
-              <ProjectLi>
-                <a key={i} href={n.Link}>
-                  <Asterisk key={i} $type="Default" />
+              <ProjectLi key={i}>
+                <a href={n.Link}>
+                  <Asterisk $type="Default" />
                   {n.LinkText}
                 </a>
               </ProjectLi>
@@ -139,10 +139,10 @@ let ProjectTitleContainer = styled.h2`
   // padding-bottom: var(--body-font-size);
 
   @media ${mediaQueries.uptoTablet} {
-     /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
-     font-size: calc(1.3rem * 3);
-     line-height: calc(1.3rem * 3);
-     padding-bottom: calc(1.3rem / 2);
+    /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
+    font-size: calc(1.3rem * 3);
+    line-height: calc(1.3rem * 3);
+    padding-bottom: calc(1.3rem / 2);
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -163,9 +163,9 @@ let ProjectYearsHeading = styled.span`
   opacity: 0.25;
 
   @media ${mediaQueries.uptoTablet} {
-     /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
-     font-size: calc(1 * 1.3rem);
-     line-height: calc(1 * 1.3rem);
+    /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
+    font-size: calc(1 * 1.3rem);
+    line-height: calc(1 * 1.3rem);
   }
 `;
 
