@@ -138,8 +138,8 @@ function WorkPage({
 							/>
 						</ProjectImageDiv>
 						<ProjectTitle>{title}</ProjectTitle>
+						<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 					</ProjectLink>
-					<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 				</ProjectCard>
 			);
 		}
@@ -294,14 +294,15 @@ let PartnerLink = styled.a``;
 
 let ProjectCard = styled.div`
 	grid-column: span 3;
-`;
-
-let ProjectLink = styled.a`
-	text-decoration: none;
+	transition: border-color 1s ease;
 
 	&:hover img {
 		border-color: var(--off-black);
 	}
+`;
+
+let ProjectLink = styled.a`
+	text-decoration: none;
 `;
 
 let ProjectTenure = styled.div`
@@ -319,7 +320,7 @@ let ProjectFeatureImage = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
-	border: 1px rgb(42, 46, 47, 0.625) solid; 
+	border: 1px rgb(42, 46, 47, 0.6125) solid; 
 	// border color is --off-black with alpha channel
 `;
 
