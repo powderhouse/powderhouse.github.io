@@ -10,6 +10,7 @@ import {
   mediaQueries,
   navMenuItems,
 } from "../site-data.js";
+
 import {
   gap,
   baseGrid,
@@ -21,10 +22,6 @@ import {
 
 import Scribble from "../components/Scribble.js";
 import Region2 from "../components/Region2.js";
-
-function getScribbleNum(navText) {
-  return navMenuItems.find((el) => el.text == navText).scribbleNum;
-}
 
 function Header(props) {
   const router = useRouter();
