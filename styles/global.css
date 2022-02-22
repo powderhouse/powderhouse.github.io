@@ -56,6 +56,9 @@
 }
 
 :root {
+	--small-splash-font-size: 81pt;
+	--small-splash-line-height: 83pt;
+
 	--title-font-size: 34pt;
 	--title-line-height: 41pt;
 	/*--title-letter-spacing: ;*/
@@ -267,8 +270,9 @@ img {
 	grid-column: 1 / 7;
 }
 
-.footnoted-text sup {
+sup {
 	/* via https://stackoverflow.com/a/6594576 */
+	font-size: var(--footnote-font-size);
 	line-height: 0;
 }
 
@@ -313,4 +317,8 @@ video {
 
 .active .nav-link:hover {
 	visibility: visible;
+}
+
+p:last-child {
+	margin-bottom: 0;
 }

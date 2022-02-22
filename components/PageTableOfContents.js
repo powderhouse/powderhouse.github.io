@@ -7,9 +7,16 @@ let PageTOC = styled.ol`
 	padding: 0;
 	margin: 0;
 	// TODO: Rationalize this
-	padding-bottom: calc(2 * var(--body-line-height));
+	// padding-bottom: calc(2 * var(--body-line-height));
 	position: relative;
 	left: calc(var(--gap) - 7px);
+
+	& li:last-of-type {
+		padding-bottom: 0;
+	}
+	padding-bottom: calc(
+		var(--large-heading-line-height) - var(--body-line-height)
+	);
 `;
 
 let PageTOCItem = styled.li`

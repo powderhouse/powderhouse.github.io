@@ -118,7 +118,7 @@ let ProjectSplashDiv = styled.div`
     "title title"
     "info image";
   column-gap: var(--gap);
-  padding: calc(var(--body-line-height)) 0;
+  // padding: calc(var(--body-line-height)) 0;
 
   @media ${mediaQueries.uptoTablet} {
     grid-template-columns: 1fr;
@@ -139,13 +139,19 @@ function ProjectSplash({ backgroundColor, ...rest }) {
 
 let ProjectTitleDiv = styled.div`
   grid-area: title;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
 `;
 
-let ProjectTitleHeading = styled.h2`
-  font-size: var(--medium-heading-font-size);
-  line-height: var(--medium-heading-line-height);
+let ProjectTitleContainer = styled.h2`
+  line-height: 0em;
   font-weight: 300;
-  /*display: inline-block;*/
+  // font-size: var(--small-splash-font-size);
+  // line-height: var(--small-splash-line-height);
+  // letter-spacing: -3px;
+  // font-weight: 300;
+  // display: inline-block;
   // padding-bottom: calc(1 * 1.3rem);
   // /*text-align: left;*/
 
@@ -162,7 +168,7 @@ let ProjectTitleHeading = styled.h2`
   //   align-items: center;
   //   text-align: center;
   padding-bottom: var(--body-font-size);
-  text-align: left;
+  // text-align: left;
 
   @media ${mediaQueries.uptoTablet} {
     // TODO: Check if this can be avoided re: choosing a new type hierarchy
@@ -175,15 +181,19 @@ let ProjectTitleHeading = styled.h2`
   }
 `;
 
+let ProjectTitleHeading = styled.span`
+  font-size: var(--small-splash-font-size);
+  line-height: var(--small-splash-line-height);
+`;
+
 let ProjectYearsHeading = styled.span`
-  font-size: var(--large-heading-font-size);
-  line-height: var(--large-heading-line-height);
+  font-size: calc(0.625 * var(--small-splash-font-size));
+  line-height: calc(var(--small-splash-line-height));
   /*vertical-align: baseline;*/
-  /*display: inline-block;*/
+  display: inline-block;
+  white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
-  display: inline-block;
-  white-space: no-wrap;
 
   @media ${mediaQueries.uptoTablet} {
     // TODO: Check if this can be avoided re: choosing a new type hierarchy
@@ -195,14 +205,14 @@ let ProjectYearsHeading = styled.span`
 function ProjectTitle(props) {
   return (
     <ProjectTitleDiv>
-      <ProjectTitleHeading>
-        <span>{props.title} </span>
+      <ProjectTitleContainer>
+        <ProjectTitleHeading>{props.title} </ProjectTitleHeading>
         <ProjectYearsHeading>
           {props.years.start == props.years.end
             ? props.years.start
             : `${props.years.start}–${props.years.end}`}
         </ProjectYearsHeading>
-      </ProjectTitleHeading>
+      </ProjectTitleContainer>
     </ProjectTitleDiv>
   );
 }
@@ -212,15 +222,14 @@ let ProjectInfo = styled.div`
 
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-=======
-  padding-top: calc(var(--body-line-height));
->>>>>>> 6d5b3ff23bdef9acb04514de58013caaddc6c077
+  @media ${mediaQueries.uptoTablet} {
+    padding-top: calc(var(--body-line-height));
+  }
 `;
 
 let ProjectSubtitle = styled(Div)`
-  font-size: calc(var(--medium-heading-font-size));
-  line-height: calc(var(--medium-heading-line-height));
+  font-size: calc(var(--large-heading-font-size));
+  line-height: calc(var(--large-heading-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoMobile} {
@@ -248,6 +257,7 @@ let ProjectInfoList = styled.ul`
   margin: 0;
   padding: 0;
   padding-top: var(--body-line-height);
+  font-weight: 300;
 `;
 
 let ProjectLi = styled.li`

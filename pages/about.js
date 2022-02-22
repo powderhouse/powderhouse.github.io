@@ -44,10 +44,7 @@ function AboutPage({
 			<PageTableOfContents sections={aboutPageContent} />
 		</PageSplash>,
 		<PageIntroduction backgroundColor="--off-white" key="introduction">
-			{/*TODO: Redefine ShitBy to use units, and convert to calc/variables*/}
-			<ShiftBy x={0} y={(17 * 1.3) / 2 - 1}>
-				{PageIntro}
-			</ShiftBy>
+			{PageIntro}
 		</PageIntroduction>,
 		...aboutPageContent.map((e, i) =>
 			e.PageImage ? (
