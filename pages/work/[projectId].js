@@ -61,7 +61,9 @@ function ProjectDetailPage({ projectData }) {
           <ProjectDescription markdown>
             {projectData.ProjectDescription}
           </ProjectDescription>
-          <ProjectSubtitle>Related Materials</ProjectSubtitle>
+          {projectData.ProjectInfoList.length > 0 
+            ? <ProjectSubtitle>Related Materials</ProjectSubtitle>
+            : ""}
           <ProjectInfoList>
             {projectData.ProjectInfoList.map((n, i) => (
               <ProjectLi>
@@ -183,10 +185,10 @@ function ProjectTitle(props) {
 }
 
 let ProjectSubtitle = styled(Div)`
-  grid-column: 3 / -3;
+  grid-column: 4 / -4;
 
-  font-size: calc(var(--medium-heading-font-size));
-  line-height: calc(var(--medium-heading-line-height));
+  font-size: calc(1.25 * var(--medium-heading-font-size));
+  line-height: calc(1.25 * var(--medium-heading-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoMobile} {
@@ -197,7 +199,7 @@ let ProjectSubtitle = styled(Div)`
 `;
 
 let ProjectDescription = styled(Div)`
-  grid-column: 3 / -3;
+  grid-column: 4 / -4;
 
   font-size: calc(var(--small-heading-font-size));
   line-height: calc(var(--small-heading-line-height));
@@ -212,7 +214,7 @@ let ProjectDescription = styled(Div)`
 `;
 
 let ProjectInfoList = styled.ul`
-  grid-column: 3 / -3;
+  grid-column: 4 / -4;
 
   list-style-type: none;
   margin: 0;
@@ -228,11 +230,11 @@ let ProjectLi = styled.li`
 `;
 
 let FeatureImageContainer = styled.div`
-  grid-column: 3 / -3;
+  grid-column: 4 / -4;
 `;
 
 let ProjectFeatureImage = styled(PageImage)`
-  grid-column: 3 / -3;
+  grid-column: 4 / -4;
   height: 450px;
 
   @media ${mediaQueries.uptoMobile} {
