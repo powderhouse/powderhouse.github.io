@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -11,18 +9,12 @@ import ArrowButton from "../../../components/ArrowButton";
 import Head from "next/head";
 
 import {
-	baseGrid,
-	Spacer,
 	PageSplash,
 	PageHeading,
 	Asterisk,
 	PageIntroduction,
 	SectionHeader,
-	PageSection,
 	PageSectionContent,
-	WidePageSectionContent,
-	FullBleedImage,
-	randomRotate,
 	getBgFromLight,
 	Div,
 	slugify,
@@ -39,7 +31,11 @@ function JobsPage({ jobPage, jobCards }) {
 	let accentColor = "--purple";
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
+		<Header
+			backgroundColor="--off-white"
+			key="header"
+			activeScribbleColor={accentColor}
+		/>,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>Jobs</PageHeading>
 			<PageTableOfContents

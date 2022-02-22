@@ -1,29 +1,18 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
 import PageTableOfContents from "../../../components/PageTableOfContents";
 import PageContainer2 from "../../../components/PageContainer2";
-import { asteriskSVG } from "../../../site-data.js";
 
 import {
-  baseGrid,
-  Spacer,
   PageSplash,
   PageHeading,
-  PageTOCListItem,
-  PageTOCLink,
   Asterisk,
   PageIntroduction,
   SectionHeader,
-  PageSection,
   PageSectionContent,
-  WidePageSectionContent,
-  FullBleedImage,
-  Highlight,
   slugify,
 } from "../../../components/global.js";
 
@@ -38,7 +27,11 @@ function JobDetailPage({ jobCards }) {
   let jobCard = getJobCardById(jobId, jobCards);
 
   let regions = [
-    <Header backgroundColor="--off-white" activeScribbleColor={accentColor} key="header" />,
+    <Header
+      backgroundColor="--off-white"
+      activeScribbleColor={accentColor}
+      key="header"
+    />,
     <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>{jobCard.attributes.JobTitle}</PageHeading>
       <PageTableOfContents sections={jobCard.attributes.PageSections} />
@@ -49,8 +42,8 @@ function JobDetailPage({ jobCards }) {
     ...jobCard.attributes.PageSections.map((n, i) => {
       let slug = slugify(n.SectionHeader);
       return (
-        <Region2 
-          backgroundColor="--off-white" 
+        <Region2
+          backgroundColor="--off-white"
           key={`job-${i}`}
           header={n.SectionHeader ? n.SectionHeader : null}
           left={n.isLeftHeader ? n.isLeftHeader : null}

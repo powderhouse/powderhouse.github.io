@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -7,25 +6,19 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
-import ArrowButton from "../components/ArrowButton";
 import { mediaQueries } from "../site-data.js";
 
 import Head from "next/head";
 
 import {
-	baseGrid,
-	PageSplash,
-	PageHeading,
-	PageTOCListItem,
-	PageTOCLink,
-	PageIntroduction,
-	SectionHeader,
-	PageSection,
-	PageSectionContent,
-	WidePageSectionContent,
-	FullBleedImage,
-	Markdown,
 	Asterisk,
+	baseGrid,
+	Markdown,
+	PageHeading,
+	PageIntroduction,
+	PageSectionContent,
+	PageSplash,
+	SectionHeader,
 } from "../components/global.js";
 
 import { getStrapiMedia } from "../lib/media";
@@ -43,7 +36,11 @@ function NewsPage({ newsPage, newsCards }) {
 		.reverse();
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
+		<Header
+			backgroundColor="--off-white"
+			key="header"
+			activeScribbleColor={accentColor}
+		/>,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>
 				{newsPage.data.attributes.PageSplash.PageHeader}
@@ -114,11 +111,9 @@ function NewsItem({ date, type, title, excerpt, links }) {
 					<NewsExcerpt markdown>{excerpt}</NewsExcerpt>
 					<NewsRelatedLinks>
 						{links.map((l, i) => (
-							<NewsLi>
+							<NewsLi key={`news-link-${i}`}>
 								<Asterisk $type="Default" />
-								<a key={`news-link-${i}`} href={l.Link}>
-									{l.LinkText}
-								</a>
+								<a href={l.Link}>{l.LinkText}</a>
 							</NewsLi>
 						))}
 					</NewsRelatedLinks>
