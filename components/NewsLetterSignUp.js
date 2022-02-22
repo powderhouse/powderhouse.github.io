@@ -46,6 +46,8 @@ function NewsLetterSignUp({
         XHR.send(FD);
     }
 
+    let buttonColor = expandColor(complementaryColor(backgroundColor));
+
     return (
         <NewsLetterForm
             method="post"
@@ -57,17 +59,17 @@ function NewsLetterSignUp({
             <EmailInput
                 name="MERGE0"
                 id="MERGE0"
-                $color={complementaryColor(backgroundColor)}
+                $color={buttonColor}
                 isHomePage={isHomePage}
             />
             <NewsLetterFormButton isHomePage={isHomePage}>
                 {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
-                    `${complementaryColor(backgroundColor)} arrowButton`
+                    `${buttonColor} arrowButton`
                 )}
                 {buttonSVGs["naked"]["short"][1](
-                    `${complementaryColor(backgroundColor)} tablet`
+                    `${buttonColor} tablet`
                 )}
-                <ButtonText $color={complementaryColor(backgroundColor)}>
+                <ButtonText $color={buttonColor}>
                     {text}
                 </ButtonText>
             </NewsLetterFormButton>

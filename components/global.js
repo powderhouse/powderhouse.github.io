@@ -77,7 +77,7 @@ let complementaryColor = function (colorString) {
 	};
 
 	return colorString in complements
-		? expandColor(complements[colorString])
+		? complements[colorString]
 		: "initial";
 };
 

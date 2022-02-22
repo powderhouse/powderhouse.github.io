@@ -1,10 +1,5 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import {
-	expandColor,
-	complementaryColor,
-	colorByProp,
-} from "../components/global";
 import { useState, useEffect } from "react";
 
 function getRandomNum() {

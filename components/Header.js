@@ -107,6 +107,7 @@ let Wrapper = styled.header`
     `};
 
   @media ${mediaQueries.uptoMobile} {
+    flex-direction: column;
     height: fit-content;
   }
 `;
@@ -146,6 +147,7 @@ let LogoLockup = styled.div`
 
 let NavMenu = styled.nav`
   grid-column: -5 / -1;
+  padding-top: calc(var(--gap) / 2);
 
   @media ${mediaQueries.uptoLaptop} {
     grid-column: -4 / -1;
@@ -169,6 +171,7 @@ let NavList = styled.ol`
 let NavListItem = styled.li`
   position: relative;
   list-style-type: none;
+
   &:not(:last-child) {
     // TODO: Decide if this makes sense
     margin-right: var(--gap);

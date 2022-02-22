@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import {
-	complementaryColor,
 	SectionHeader,
 	baseGrid,
 	colorByProp,
