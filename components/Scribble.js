@@ -13,8 +13,9 @@ let scribbles = {
 let ScribbleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  position: relative;
-  top: calc(-1 / 5 * var(--body-line-height));
+  position: absolute;
+  width: 100%;
+  top: calc(1em);
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
 `;
 

@@ -227,8 +227,8 @@ let PageIntroductionDiv = styled(Div)`
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
 	// TODO: Choose the right font size and line height here for this in the type hierarchy
-	font-size: 34px;
-	line-height: calc(2 * var(--body-line-height));
+	font-size: var(--large-heading-font-size);
+	line-height: var(--large-heading-line-height);
 	letter-spacing: -0.5;
 	padding: calc(1 * var(--body-line-height)) 0;
 
@@ -273,10 +273,13 @@ let Header2 = styled.h2`
 let sectionHeaderContainerStyles = {
 	left: css`
 		grid-column: 1 / span 3;
-		font-size: 24px;
+		font-size: var(--small-heading-font-size);
+		line-height: var(--small-heading-line-height);
 		letter-spacing: -0.5px;
-		padding-left: 1.2125em; // This visually centers the asterisk on the left vertical line of the page
-		height: var(--body-line-height);
+
+		position: relative;
+		top: -4px;
+		padding-left: 1em; // This visually centers the asterisk on the left vertical line of the page
 
 		@media ${mediaQueries.uptoTablet} {
 			grid-column: 1 / -1;
@@ -360,7 +363,7 @@ let PageSectionContent = styled(Div)`
 			  `}
 
 	letter-spacing: 0;
-	& p {
+	& p:not(:last-child) {
 		margin-bottom: var(--body-line-height);
 	}
 

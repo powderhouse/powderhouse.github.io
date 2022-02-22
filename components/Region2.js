@@ -45,6 +45,15 @@ let StyledDiv = styled.div`
 			`;
 		}
 	}};
+
+	&:not(:last-of-type) {
+		margin-bottom: var(
+			--body-line-height
+		); // To make sure that spacing before headings for the next section are slightly greater than inter-paragraph headings
+	}
+	margin-bottom: var(
+		--body-line-height
+	); // To make sure that spacing before headings for the next section are slightly greater than inter-paragraph headings
 `;
 
 function Region2({ header, left, children, ...rest }) {

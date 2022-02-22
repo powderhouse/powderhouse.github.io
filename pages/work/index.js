@@ -254,7 +254,7 @@ let PartnerSectionContent = styled.div`
 	column-gap: var(--gap);
 	row-gap: var(--body-line-height);
 	grid-template-columns: repeat(5, 1fr);
-	transform: translateY(-1.3rem);
+	transform: translateY(-1rem);
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-template-columns: repeat(4, 1fr);
@@ -303,6 +303,7 @@ let ProjectLink = styled.a`
 let ProjectTenure = styled.div`
 	opacity: 0.6125;
 	text-align: right;
+	font-weight: 300;
 `;
 
 let ProjectImageDiv = styled.div`
@@ -323,7 +324,8 @@ let ProjectTitle = styled.h3`
 	font-weight: 300;
 	font-size: var(--small-heading-font-size);
 	line-height: var(--small-heading-line-height);
-	padding: calc(var(--body-font-size) / 2) 0;
+	padding-top: calc(var(--body-line-height) / 2);
+	padding-bottom: calc(var(--body-line-height) / 2 - 10px);
 	margin: 0;
 `;
 
@@ -331,6 +333,7 @@ let ProjectSubtitle = styled(Div)`
 	line-height: var(--body-line-height);
 	padding: 0;
 	margin: 0;
+	font-weight: 300;
 `;
 
 let PastLifeSectionContent = styled.div`
