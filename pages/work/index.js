@@ -298,6 +298,10 @@ let ProjectCard = styled.div`
 
 let ProjectLink = styled.a`
 	text-decoration: none;
+
+	&:hover img {
+		border-color: var(--off-black);
+	}
 `;
 
 let ProjectTenure = styled.div`
@@ -307,7 +311,6 @@ let ProjectTenure = styled.div`
 `;
 
 let ProjectImageDiv = styled.div`
-	background-color: var(--yellow);
 	height: 200px; /*TK Explicit?*/
 	overflow: hidden;
 `;
@@ -316,7 +319,8 @@ let ProjectFeatureImage = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
-	border: 1px var(--off-black) solid;
+	border: 1px rgb(42, 46, 47, 0.625) solid; 
+	// border color is --off-black with alpha channel
 `;
 
 let ProjectTitle = styled.h3`
