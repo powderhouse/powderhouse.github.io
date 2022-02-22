@@ -38,9 +38,9 @@ function Header(props) {
   return (
     <Region2 {...props}>
       <Wrapper>
-        <Link href="/">
-          <a>
-            <LogoLockup>
+        <LogoLockup>
+          <Link href="/">
+            <a>
               <>
                 {logotypeVertSVG(
                   `${complementaryColor(props.backgroundColor)} navlogo-mobile`
@@ -51,9 +51,9 @@ function Header(props) {
                   )} navlogo-tabletAndUp`
                 )}
               </>
-            </LogoLockup>
-          </a>
-        </Link>
+            </a>
+          </Link>
+        </LogoLockup>
         <NavMenu>
           <NavList>
             {navMenuItems.map(function (n, i) {
