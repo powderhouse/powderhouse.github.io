@@ -208,11 +208,15 @@ let ProjectDescription = styled(Div)`
   line-height: calc(var(--small-heading-line-height));
   font-weight: 300;
 
+  @media ${mediaQueries.uptoTablet} {
+    grid-column: 2 / -2;
+  }
 
   @media ${mediaQueries.uptoMobile} {
     // TODO: Implement new type hierarchy
     font-size: calc(1.3rem * 1);
     line-height: calc(1.3rem * 1);
+    grid-column: 1 / -1;
   }
 `;
 
@@ -224,6 +228,14 @@ let ProjectInfoList = styled.ul`
   padding: 0;
   padding-bottom: var(--body-line-height);
   font-weight: 300;
+
+  @media ${mediaQueries.uptoTablet} {
+    grid-column: 2 / -2;
+  }
+
+  @media ${mediaQueries.uptoMobile} {
+    grid-column: 1 / -1;
+  }
 `;
 
 let ProjectLi = styled.li`
@@ -234,13 +246,26 @@ let ProjectLi = styled.li`
 
 let FeatureImageContainer = styled.div`
   grid-column: 4 / -4;
+  
+  @media ${mediaQueries.uptoTablet} {
+    grid-column: 2 / -2;
+  }
+
+  @media ${mediaQueries.uptoMobile} {
+    grid-column: 1 / -1;
+  }
 `;
 
 let ProjectFeatureImage = styled(PageImage)`
   grid-column: 4 / -4;
   height: 450px;
 
+  @media ${mediaQueries.uptoTablet} {
+    grid-column: 2 / -2;
+  }
+
   @media ${mediaQueries.uptoMobile} {
+    grid-column: 1 / -1;
     height: 300px;
   }
 `;
