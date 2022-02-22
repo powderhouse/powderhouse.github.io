@@ -3,6 +3,7 @@ import React from "react";
 import Scribble1 from "../public/scribbles/scribble1.svg";
 import Scribble2 from "../public/scribbles/scribble2.svg";
 import Scribble3 from "../public/scribbles/scribble3.svg";
+import { mediaQueries } from "../site-data";
 
 let scribbles = {
   1: Scribble1,
@@ -17,6 +18,10 @@ let ScribbleContainer = styled.div`
   width: 100%;
   top: calc(1em);
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
+
+  @media ${mediaQueries.uptoMobile} {
+    top: calc(1.5em);
+  }
 `;
 
 function Scribble({ number, active, ...rest }) {
