@@ -1,8 +1,6 @@
 // global.js
 
 import React from "react";
-import { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import { css } from "styled-components";
 
@@ -12,8 +10,6 @@ import { asteriskSVG, mediaQueries } from "../site-data.js";
 
 import Region2 from "../components/Region2.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
-
-import { parse } from "node-html-parser";
 
 let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
@@ -102,26 +98,6 @@ let colorByProp = (props) => {
 	return cssString;
 };
 
-let PageContainer = styled.div`
-	background-color: var(--off-white);
-	color: var(--off-black);
-`;
-
-let Region = styled.div`
-	margin: 0 auto; // TODO: Any better way to center?
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	column-gap: var(--gap);
-	grid-auto-rows: min-content;
-	max-width: 1440px;
-	padding-left: var(--gap);
-	padding-right: var(--gap);
-
-	&:not(:last-child) {
-		margin-bottom: calc(2 * var(--body-line-height));
-	}
-`;
-
 let Markdown = ({ children, ...rest }) => {
 	// Here we iterate over children we pass and only wrap text/string children in Markdown.  This lets us wrap things in Markdown more cavalierly.
 	let wrappedChildren = React.Children.toArray(children).map((c, i) => {
@@ -156,8 +132,6 @@ let Markdown = ({ children, ...rest }) => {
 
 let Div = (props) =>
 	props.markdown ? <Markdown {...props} /> : <div {...props} />;
-
-let Spacer = styled.div``;
 
 const baseGrid = css`
 	display: grid;
@@ -202,12 +176,12 @@ let PageHeading = styled.h1`
 	transform: translate(-3px, calc(var(--body-line-height) / 2 - 1px));
 
 	@media ${mediaQueries.uptoTablet} {
-		// Check if still required
-		// font-size: calc(4 * 1.3rem);
+		// TODO: Integrate with type hierarchy
+		font-size: calc(4 * 1.3rem);
 	}
 	@media ${mediaQueries.uptoMobile} {
-		// Check if still required
-		// font-size: calc(3 * 1.3rem);
+		// TODO: Integrate with type hierarchy
+		font-size: calc(3 * 1.3rem);
 	}
 `;
 
@@ -226,20 +200,19 @@ let PageIntroductionDiv = styled(Div)`
 	grid-column: 1 / span 9;
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
-	// TODO: Choose the right font size and line height here for this in the type hierarchy
 	font-size: var(--large-heading-font-size);
 	line-height: var(--large-heading-line-height);
+	// TODO: Add letter-spacing to type-hierarchy
 	letter-spacing: -0.5;
 	padding: calc(1 * var(--body-line-height)) 0;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
+		// TODO: Implement type hierarchy
 	}
 
 	@media ${mediaQueries.uptoMobile} {
-		// TODO: Check if this is still required
-		// font-size: calc(1.5 * 1.3rem);
-		// line-height: calc(1.5 * 1.3rem);
+		// TODO: Implement type hierarchy
 	}
 `;
 
@@ -261,12 +234,10 @@ let Header2 = styled.h2`
 	letter-spacing: inherit;
 	// TODO: rationalize this
 	margin-left: ${(props) =>
-		props.left ? "" : css`calc(var(--body-line-height) / 4)`};
+		props.left ? "" : `calc(var(--body-line-height) / 4)`};
 
 	@media ${mediaQueries.uptoMobile} {
-		// TODO: Check if this is still needed
-		// line-height: calc(1.3rem * 1.5);
-		// transform: translateX(4px) translateY(-8px);
+		// TODO: Implement type hierarchy
 	}
 `;
 
@@ -287,7 +258,7 @@ let sectionHeaderContainerStyles = {
 	`,
 	center: css`
 		grid-column: 4 / 10;
-		// TODO: Choose a heading style for these
+		// TODO: Implement type hierarchy
 		font-size: 31px;
 		letter-spacing: -1.2px;
 		padding-left: 1em;
@@ -301,8 +272,6 @@ let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	grid-row: 1 / -1;
 	line-height: var(--body-line-height);
-	// TODO: Rationalize this
-	// height: calc(2 * var(--body-line-height) - 0.75px);
 	position: relative;
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
@@ -326,31 +295,12 @@ let SectionHeader = ({ left, children }) => {
 	);
 };
 
-// TODO: Named this way since PageSection is deprecated for Region
-let CorePageSection = ({ left, header, backgroundColor, children }) => {
-	let slug = slugify(header);
-	return (
-		<Region id={slug} backgroundColor={backgroundColor}>
-			<SectionHeader left={left}>{header}</SectionHeader>
-			<PageSectionContent markdown>{children}</PageSectionContent>
-		</Region>
-	);
-};
-
-let PageSection = styled.section`
-	// TODO: Can remove, replace with Region
-	grid-column: 1 / -1;
-	padding: var(--gap);
-	background-color: ${(props) =>
-		props.isLightSection ? "inherit" : "var(--off-black)"};
-	color: ${(props) =>
-		props.isLightSection ? "inherit" : "var(--off-white)"};
-	padding-left: calc((100vw - 1440px) / 2);
-	padding-right: calc((100vw - 1440px) / 2);
-`;
-
 let PageSectionContent = styled(Div)`
 	// Using transient props to avoid passing these down to the DOM: https://styled-components.com/docs/api#transient-props
+	letter-spacing: 0;
+	& p:not(:last-child) {
+		margin-bottom: var(--body-line-height);
+	}
 	${(props) =>
 		props.$wide
 			? css`
@@ -361,11 +311,6 @@ let PageSectionContent = styled(Div)`
 					grid-column: 4 / 10;
 					grid-template-columns: repeat(6, 1fr);
 			  `}
-
-	letter-spacing: 0;
-	& p:not(:last-child) {
-		margin-bottom: var(--body-line-height);
-	}
 
 	${(props) =>
 		!props.$grid
@@ -406,26 +351,12 @@ function findLargestFormat(media, maxSize = "large") {
 			return formats[size];
 		}
 	}
+	console.error(
+		"ERROR: Looking for the largest format of",
+		media,
+		"and didn't find."
+	);
 }
-
-let WidePageSectionContent = styled(PageSectionContent)`
-	grid-column: 4 / -1;
-
-	display: grid;
-	grid-template-columns: repeat(9, 1fr);
-	gap: var(--gap);
-`;
-
-let Highlight = styled.span`
-	color: var(--${(props) => props.highlight});
-`;
-
-let highlight = function (component, color = "red") {
-	return styled(component)`
-		border: 1px dotted ${color};
-		box-sizing: border-box;
-	`;
-};
 
 let slugify = function (toSlug) {
 	// via https://gist.github.com/codeguy/6684588
@@ -451,32 +382,24 @@ let sizeToVerticalGridInRem = function (heightInPx) {
 };
 
 export {
-	baseGrid,
-	expandColor,
-	complementaryColor,
-	PageContainer,
-	Region,
-	Markdown,
-	Div,
-	Spacer,
-	PageSplash,
-	PageHeading,
 	Asterisk,
-	PageIntroduction,
-	SectionHeader,
-	PageSection,
-	PageSectionContent,
-	WidePageSectionContent,
-	findLargestFormat,
-	getMediaURL,
-	Highlight,
-	highlight,
+	baseGrid,
 	colorByProp,
-	ShiftBy,
-	slugify,
-	CorePageSection,
+	complementaryColor,
+	Div,
+	expandColor,
+	findLargestFormat,
 	getBgFromLight,
 	getLightFromBg,
+	getMediaURL,
+	Markdown,
+	PageHeading,
+	PageIntroduction,
+	PageSectionContent,
+	PageSplash,
+	SectionHeader,
+	ShiftBy,
 	sizeToVerticalGridInRem,
+	slugify,
 	tenureSort,
 };

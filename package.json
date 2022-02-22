@@ -4,8 +4,8 @@
   "description": "powderhouse.org",
   "main": "index.js",
   "scripts": {
-    "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel pull && next dev",
-    "dev": "export NODE_ENV=development && vercel pull && next dev",
+    "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
+    "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
     "build": "export NODE_ENV=production && yarn install --check-files && next build",
     "start": "next start",
     "lint": "next lint"
@@ -23,6 +23,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@next/bundle-analyzer": "^12.0.10",
+    "@svgr/webpack": "^6.2.1",
     "@types/react": "17.0.37",
     "babel": "^6.23.0",
     "check-peer-dependencies": "^4.1.0",
@@ -44,8 +45,9 @@
     "node": "^14.18.1"
   },
   "devDependencies": {
-    "@svgr/webpack": "^6.2.1",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "find-unused-exports": "^3.0.0",
+    "glyphhanger": "^5.0.0",
     "vercel": "^24.0.0"
   }
 }

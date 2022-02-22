@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import Link from "next/link";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -17,21 +14,12 @@ import { mediaQueries } from "../../site-data";
 import Head from "next/head";
 
 import {
-	baseGrid,
-	PageContainer,
-	RegionContainer,
-	Spacer,
 	PageSplash,
 	PageHeading,
 	PageIntroduction,
 	Asterisk,
 	SectionHeader,
-	PageSection,
 	PageSectionContent,
-	WidePageSectionContent,
-	FullBleedImage,
-	Highlight,
-	randomRotate,
 	ShiftBy,
 	getBgFromLight,
 	Div,
@@ -57,7 +45,6 @@ function TeamPage2({
 	let accentColor = "--purple";
 
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
-	// TK Is this (below) an OK way to "destructure" (but not actually) this data structure?
 	[staff, advisors, alumni] = [
 		staff ? staff : [],
 		advisors ? advisors : [],
@@ -158,7 +145,11 @@ function TeamPage2({
 	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
+		<Header
+			backgroundColor="--off-white"
+			key="header"
+			activeScribbleColor={accentColor}
+		/>,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents

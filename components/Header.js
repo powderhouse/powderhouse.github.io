@@ -23,6 +23,14 @@ import {
 import Scribble from "../components/Scribble.js";
 import Region2 from "../components/Region2.js";
 
+function getScribbleNum(navText) {
+  return navMenuItems.find((el) => el.text == navText).scribbleNum;
+}
+
+function getScribbleColor(navText) {
+  return navMenuItems.find((el) => el.text == navText).color;
+}
+
 function Header(props) {
   const router = useRouter();
   let basePath = "/" + router.pathname.split("/")[1];
@@ -61,8 +69,14 @@ function Header(props) {
                     {n.text}
                   </NavLink>
                   <Scribble
-                    number={i % 3 + 1}
-                    stroke={`var(${props.activeScribbleColor})`}
+                    number={(i % 3) + 1}
+                    stroke={`var(${
+                      basePath == n.href
+                        ? props.activeScribbleColor
+                          ? props.activeScribbleColor
+                          : getScribbleColor(n.text)
+                        : getScribbleColor(n.text)
+                    })`}
                     strokeWidth="2"
                     active={basePath == n.href ? "active " : ""}
                   />
@@ -160,6 +174,10 @@ let NavListItem = styled.li`
     margin-right: var(--gap);
   }
 
+  &:hover div {
+    visibility: visible;
+  }
+
   @media ${mediaQueries.uptoMobile} {
     padding-top: calc(var(--gap) / 2);
     padding-bottom: calc(var(--gap) / 2);
@@ -175,30 +193,5 @@ let NavLink = styled.a`
   flex-direction: column;
   align-items: center;
 `;
-
-// let Scribble = styled.div`
-//   // visibility: hidden;
-//   width: 100%;
-//   // position: absolute;
-//   // top: 9px;
-
-//   display: inline-block;
-//   position: relative;
-//   width: 100%;
-//   padding-bottom: 100%;
-//   vertical-align: middle;
-//   overflow: hidden;
-
-//   svg {
-//     display: inline-block;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//   }
-
-//   @media ${mediaQueries.uptoMobile} {
-//     // top: 19px;
-//   }
-// `;
 
 export default Header;

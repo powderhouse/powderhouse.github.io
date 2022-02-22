@@ -1,16 +1,16 @@
-import React from "react";
 import styled from "styled-components";
+
+import Head from "next/head";
+
+import { fetchAPI } from "../lib/api";
+import { mediaQueries } from "../site-data";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
-
-import { fetchAPI } from "../lib/api";
-import { ShiftBy, Div, complementaryColor } from "../components/global";
-import { mediaQueries } from "../site-data";
-import Head from "next/head";
+import { Div } from "../components/global";
 
 let SplashDiv = styled(Div)`
   grid-column: 2 / -2;
@@ -25,20 +25,19 @@ let SplashDiv = styled(Div)`
     font-family: "GT Planar";
   }
   p:not(:last-child) {
-    padding-bottom: calc(2 * 1.3rem);
+    padding-bottom: calc(2 * var(--body-line-height));
   }
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 1 / -1;
-    // TODO: Check if we need this
-    // font-size: 36px;
-    // line-height: calc(2 * 1.3rem);
-    // padding: calc(2 * 1.3rem) 0;
+    // TODO: Implement type hierarchy
+    font-size: 36px;
+    line-height: calc(2 * 1.3rem);
+    padding: calc(2 * 1.3rem) 0;
   }
 
   @media ${mediaQueries.uptoMobile} {
-    // TODO: Check if we need this
-    // font-size: 28px;
+    // TODO: Implement type hierarchy
   }
 `;
 
@@ -52,8 +51,8 @@ function Splash({ children, ...rest }) {
 
 let ShoutOut = styled.p`
   grid-column: 1 / -1;
-  padding: 1.3rem 0;
-  height: calc(4 * 1.3rem);
+  padding: var(--body-line-height) 0;
+  height: calc(4 * var(--body-line-height));
   line-height: 1;
 `;
 
@@ -66,7 +65,7 @@ let SplashNewsletterSignupDiv = styled.div`
   grid-template-rows: min-content;
   column-gap: var(--gap);
   row-gap: 1.3rem;
-  padding: 0 0 calc(6 * 1.3rem);
+  padding: 0 0 calc(6 * var(--body-line-height));
   place-items: center;
   text-align: center;
 
@@ -96,7 +95,11 @@ function HomePage({
   let accentColor = "--off-black";
 
   let regions = [
-    <Header backgroundColor="--off-black" key="header" activeScribbleColor={accentColor} />,
+    <Header
+      backgroundColor="--off-black"
+      key="header"
+      activeScribbleColor={accentColor}
+    />,
     <Splash backgroundColor={accentColor} markdown key="splash">
       {SplashLanguage}
     </Splash>,
@@ -124,10 +127,7 @@ function HomePage({
       <Head>
         <title>Powderhouse</title>
       </Head>
-      <PageContainer2>
-        {/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-        {regions}
-      </PageContainer2>
+      <PageContainer2>{regions}</PageContainer2>
     </>
   );
 }
@@ -135,7 +135,6 @@ function HomePage({
 export async function getStaticProps(context) {
   return {
     props: await fetchAPI("/home"),
-    revalidate: 1000, // will be passed to the page component as props
   };
 }
 

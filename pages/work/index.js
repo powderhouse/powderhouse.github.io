@@ -16,16 +16,12 @@ import { asteriskSVG, mediaQueries } from "../../site-data.js";
 import Head from "next/head";
 
 import {
-	baseGrid,
-	Spacer,
 	PageSplash,
 	PageHeading,
 	Asterisk,
 	PageIntroduction,
 	SectionHeader,
-	PageSection,
 	PageSectionContent,
-	FullBleedImage,
 	findLargestFormat,
 	getBgFromLight,
 	Div,
@@ -76,7 +72,7 @@ function WorkPage({
 		) => {
 			return (
 				<PartnerCard key={i}>
-					<PartnerLink href={Link}>
+					<a href={Link}>
 						<PartnerLogo
 							src={
 								formats == null ||
@@ -88,7 +84,7 @@ function WorkPage({
 							}
 							alt={alternativeText}
 						/>
-					</PartnerLink>
+					</a>
 				</PartnerCard>
 			);
 		}
@@ -116,8 +112,7 @@ function WorkPage({
 		) => {
 			return (
 				<ProjectCard key={index}>
-					<ProjectLink href={"/work/" + id}>
-						{/* TK There's probably a better way to do this with relative URLS? */}
+					<ProjectLink href={`/work/${id}`}>
 						<ProjectTenure>
 							{yearstart}-{yearend}
 						</ProjectTenure>
@@ -181,7 +176,10 @@ function WorkPage({
 				<title>{`Powderhouse's Work`}</title>
 			</Head>
 			<PageContainer2>
-				<Header backgroundColor="--off-white" activeScribbleColor={accentColor} />
+				<Header
+					backgroundColor="--off-white"
+					activeScribbleColor={accentColor}
+				/>
 				<PageSplash backgroundColor={accentColor}>
 					<PageHeading>{PageHeader}</PageHeading>
 					<PageTableOfContents sections={PageSections} />
@@ -288,8 +286,6 @@ let PartnerLogo = styled.img`
 	object-fit: contain;
 `;
 
-let PartnerLink = styled.a``;
-
 let ProjectCard = styled.div`
 	grid-column: span 3;
 	transition: border-color 1s ease;
@@ -318,7 +314,7 @@ let ProjectFeatureImage = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
-	border: 1px rgb(42, 46, 47, 0.6125) solid; 
+	border: 1px rgb(42, 46, 47, 0.6125) solid;
 	// border color is --off-black with alpha channel
 `;
 
@@ -328,7 +324,9 @@ let ProjectTitle = styled.h3`
 	font-size: var(--small-heading-font-size);
 	line-height: var(--small-heading-line-height);
 	padding-top: calc(var(--body-line-height) / 2);
-	padding-bottom: calc(var(--body-line-height) / 2 - 10px);
+	padding-bottom: calc(
+		var(--body-line-height) / 2 - 10px
+	); // Optically aligned to equalize height above and below
 	margin: 0;
 `;
 

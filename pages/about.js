@@ -6,7 +6,6 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageTableOfContents from "../components/PageTableOfContents";
-import RegionContainer2 from "../components/RegionContainer2";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import PageImage from "../components/PageImage";
@@ -20,7 +19,6 @@ import {
 	PageSectionContent,
 	SectionHeader,
 	slugify,
-	ShiftBy,
 	findLargestFormat,
 	getBgFromLight,
 	getLightFromBg,
@@ -38,7 +36,11 @@ function AboutPage({
 	let accentColor = "--red";
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
+		<Header
+			backgroundColor="--off-white"
+			key="header"
+			activeScribbleColor={accentColor}
+		/>,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents sections={aboutPageContent} />
@@ -100,10 +102,7 @@ function AboutPage({
 			<Head>
 				<title>About Powderhouse</title>
 			</Head>
-			<PageContainer2>
-				{/*TODO: Some way to avoid cloning to add keys?  Maybe in PageContainer?*/}
-				{regions}
-			</PageContainer2>
+			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);
 }

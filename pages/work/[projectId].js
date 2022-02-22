@@ -15,7 +15,6 @@ import Head from "next/head";
 
 import {
   baseGrid,
-  PageContainer,
   Div,
   Asterisk,
   getMediaURL,
@@ -136,10 +135,9 @@ let ProjectTitleDiv = styled.div`
 let ProjectTitleContainer = styled.h2`
   line-height: 0em;
   font-weight: 300;
-  // padding-bottom: var(--body-font-size);
 
   @media ${mediaQueries.uptoTablet} {
-    /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
+    // TODO: Implement new type hierarchy
     font-size: calc(1.3rem * 3);
     line-height: calc(1.3rem * 3);
     padding-bottom: calc(1.3rem / 2);
@@ -163,7 +161,7 @@ let ProjectYearsHeading = styled.span`
   opacity: 0.25;
 
   @media ${mediaQueries.uptoTablet} {
-    /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
+    // TODO: Implement new type hierarchy
     font-size: calc(1 * 1.3rem);
     line-height: calc(1 * 1.3rem);
   }
@@ -192,7 +190,7 @@ let ProjectSubtitle = styled(Div)`
   font-weight: 300;
 
   @media ${mediaQueries.uptoMobile} {
-    /*TODO: See if we need this still*/
+    // TODO: Implement new type hierarchy
     font-size: calc(1.3rem * 1.5);
     line-height: calc(1.3rem * 1.5);
   }
@@ -204,12 +202,11 @@ let ProjectDescription = styled(Div)`
   font-size: calc(var(--small-heading-font-size));
   line-height: calc(var(--small-heading-line-height));
   font-weight: 300;
-  // padding-top: var(--body-line-height);
 
   @media ${mediaQueries.uptoMobile} {
-    /*TODO: See if we need this still*/
-    /*font-size: calc(1.3rem * 1);*/
-    /*line-height: calc(1.3rem * 1);*/
+    // TODO: Implement new type hierarchy
+    font-size: calc(1.3rem * 1);
+    line-height: calc(1.3rem * 1);
   }
 `;
 
@@ -255,7 +252,7 @@ let ProjectImage = styled.img`
 let ProjectGalleryDiv = styled.div`
   grid-column: 1 / -1;
 
-  /*Masonry*/
+  // Implements Masonry layout
   list-style-type: none;
   column-count: ${(props) => (props.numCols ? props.numCols : 3)};
   column-gap: var(--gap);
@@ -284,7 +281,7 @@ let ProjectMediaDiv = styled.div`
 `;
 
 let ProjectIframeDiv = styled(ProjectMediaDiv)`
-  /* iframe responsive full-width, via "https://www.w3schools.com/howto/howto_css_responsive_iframes.asp" */
+  // iframe responsive full-width, via https://css-tricks.com/responsive-iframes/
   position: relative;
   width: 100%;
   padding-top: ${(props) => `${props.aspectRatio}%`};
@@ -293,7 +290,7 @@ let ProjectIframeDiv = styled(ProjectMediaDiv)`
 `;
 
 let GalleryIframe = styled.iframe`
-  /* iframe responsive full-width, via "https://www.w3schools.com/howto/howto_css_responsive_iframes.asp" */
+  // iframe responsive full-width, via https://css-tricks.com/responsive-iframes/
   position: absolute;
   top: 0;
   left: 0;
@@ -302,8 +299,6 @@ let GalleryIframe = styled.iframe`
   width: 100%;
   height: 100%;
 `;
-
-// let getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
 
 function getAttrFromHTML(attr, htmlString) {
   let element = parse(htmlString).querySelector(`[${attr}]`);
@@ -322,12 +317,7 @@ function getSrc(htmlString) {
 
 function isVideo(fileExt) {
   let vidExts = ["mov", "mp4", "flv", "mkv", "webm"];
-  // join with uppercase
-  if (vidExts.includes(fileExt)) {
-    return true;
-  } else {
-    return false;
-  }
+  return vidExts.includes(fileExt.toLowerCase());
 }
 
 function getProjectCardById(projectId, projectCards) {
