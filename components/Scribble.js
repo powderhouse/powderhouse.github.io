@@ -18,7 +18,7 @@ let ScribbleContainer = styled.div`
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
 `;
 
-function Scribble({ number, active, ...rest }) {
+function Scribble({ number, active, activeScribbleColor, ...rest }) {
   // TODO: Make the Scribble autoscale its viewBox to fit the SVG with varying stroke width
   // let [xMin, yMin, xMax, yMax] = scribbles[number](rest)
   //   .props.viewBox.split(" ")
@@ -38,6 +38,7 @@ function Scribble({ number, active, ...rest }) {
   });
   return (
     <ScribbleContainer active={active}>
+      {/* className={activeScribbleColor} */}
       {React.createElement(scribbles[number], svgProps, "")}
     </ScribbleContainer>
   );

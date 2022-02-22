@@ -73,6 +73,7 @@ function Header(props) {
                     stroke={`var(${getPageColor(n.text)})`}
                     strokeWidth="2"
                     active={basePath == n.href ? "active " : ""}
+                    activeScribbleColor={props.activeScribbleColor}
                   />
                 </NavListItem>
               );
