@@ -163,7 +163,7 @@ function TeamPage2({
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents
 				sections={PageSections.filter(
-					(s) => s.SectionHeader != "Advisors"
+					(s) => s.SectionHeader != "Advisors" // TODO: Make this less explicit
 				)}
 			/>
 		</PageSplash>,
