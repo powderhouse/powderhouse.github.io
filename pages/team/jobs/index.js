@@ -39,7 +39,7 @@ function JobsPage({ jobPage, jobCards }) {
 	let accentColor = "--purple";
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" />,
+		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>Jobs</PageHeading>
 			<PageTableOfContents

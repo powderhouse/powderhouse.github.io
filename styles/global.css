@@ -256,7 +256,8 @@ img {
 }
 
 .full-body {
-	grid-column: 4 / 10;
+	/*grid-column: 4 / 10;*/
+	width: 100%;
 }
 
 /*TK Possible to pull in breakpoints?*/

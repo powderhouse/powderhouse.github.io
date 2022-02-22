@@ -38,7 +38,7 @@ function AboutPage({
 	let accentColor = "--red";
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" />,
+		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents sections={aboutPageContent} />

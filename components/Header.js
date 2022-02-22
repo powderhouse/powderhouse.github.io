@@ -22,9 +22,6 @@ import {
 import Scribble from "../components/Scribble.js";
 import Region2 from "../components/Region2.js";
 
-function getPageColor(navText) {
-  return navMenuItems.find((el) => el.text == navText).color;
-}
 function getScribbleNum(navText) {
   return navMenuItems.find((el) => el.text == navText).scribbleNum;
 }
@@ -36,7 +33,6 @@ function Header(props) {
   return (
     <Region2 {...props}>
       <Wrapper>
-        {/* <ShiftBy x={0} y={-10}> */}
         <Link href="/">
           <a>
             <LogoLockup>
@@ -53,10 +49,9 @@ function Header(props) {
             </LogoLockup>
           </a>
         </Link>
-        {/* </ShiftBy> */}
         <NavMenu>
           <NavList>
-            {navMenuItems.map(function (n) {
+            {navMenuItems.map(function (n, i) {
               return (
                 <NavListItem key={n.href}>
                   <NavLink
@@ -69,11 +64,10 @@ function Header(props) {
                     {n.text}
                   </NavLink>
                   <Scribble
-                    number={getScribbleNum(n.text)}
-                    stroke={`var(${getPageColor(n.text)})`}
+                    number={i % 3 + 1}
+                    stroke={`var(${props.activeScribbleColor})`}
                     strokeWidth="2"
                     active={basePath == n.href ? "active " : ""}
-                    activeScribbleColor={props.activeScribbleColor}
                   />
                 </NavListItem>
               );
@@ -167,10 +161,6 @@ let NavListItem = styled.li`
   &:not(:last-child) {
     // TODO: Decide if this makes sense
     margin-right: var(--gap);
-  }
-
-  &:hover div {
-    visibility: visible;
   }
 
   @media ${mediaQueries.uptoMobile} {

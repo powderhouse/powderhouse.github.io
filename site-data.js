@@ -1,8 +1,8 @@
 let navMenuItems = [
-  { text: "About", href: "/about", color: "--red", scribbleNum: "1" },
-  { text: "Team", href: "/team", color: "--purple", scribbleNum: "2" },
-  { text: "Work", href: "/work", color: "--green", scribbleNum: "3" },
-  { text: "News", href: "/news", color: "--yellow", scribbleNum: "1" },
+  { text: "About", href: "/about" },
+  { text: "Team", href: "/team" },
+  { text: "Work", href: "/work" },
+  { text: "News", href: "/news" },
 ];
 
 let socials = [

@@ -181,7 +181,7 @@ function WorkPage({
 				<title>Powderhouse's Work</title>
 			</Head>
 			<PageContainer2>
-				<Header backgroundColor="--off-white" />
+				<Header backgroundColor="--off-white" activeScribbleColor={accentColor} />
 				<PageSplash backgroundColor={accentColor}>
 					<PageHeading>{PageHeader}</PageHeading>
 					<PageTableOfContents sections={PageSections} />

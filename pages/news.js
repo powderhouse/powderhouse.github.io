@@ -43,7 +43,7 @@ function NewsPage({ newsPage, newsCards }) {
 		.reverse();
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" />,
+		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>
 				{newsPage.data.attributes.PageSplash.PageHeader}

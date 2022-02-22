@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PageContainer2 from "../../components/PageContainer2";
 import Region2 from "../../components/Region2";
+import PageImage from "../../components/PageImage";
 
 import { mediaQueries } from "../../site-data";
 
@@ -42,37 +43,37 @@ function ProjectDetailPage({ projectData }) {
           backgroundColor="--off-white"
           activeScribbleColor={accentColor}
         />
-        <ProjectSplash backgroundColor="--off-white">
+        <ProjectContent backgroundColor="--off-white">
           <ProjectTitle
             title={projectData.ProjectTitle}
             years={{ start: projectData.YearStart, end: projectData.YearEnd }}
           />
-          <ProjectFeatureImage>
-            <ProjectImage
+          <ProjectSubtitle markdown>
+            {projectData.ProjectSubtitle}
+          </ProjectSubtitle>
+          <FeatureImageContainer>
+            <ProjectFeatureImage
+              fullBleed={true}
               src={projectData.ProjectFeatureImageInfo.url}
               alt={projectData.ProjectFeatureImageInfo.alternativeText}
             />
-          </ProjectFeatureImage>
-          <ProjectInfo>
-            <ProjectSubtitle markdown>
-              {projectData.ProjectSubtitle}
-            </ProjectSubtitle>
-            <ProjectDescription markdown>
-              {projectData.ProjectDescription}
-            </ProjectDescription>
-            <ProjectInfoList>
-              {projectData.ProjectInfoList.map((n, i) => (
-                <ProjectLi>
-                  <a key={i} href={n.Link}>
-                    <Asterisk key={i} $type="Default" />
-                    {n.LinkText}
-                  </a>
-                </ProjectLi>
-              ))}
-            </ProjectInfoList>
-          </ProjectInfo>
-        </ProjectSplash>
-        <PageGallery
+          </FeatureImageContainer>
+          <ProjectDescription markdown>
+            {projectData.ProjectDescription}
+          </ProjectDescription>
+          <ProjectSubtitle>Related Materials</ProjectSubtitle>
+          <ProjectInfoList>
+            {projectData.ProjectInfoList.map((n, i) => (
+              <ProjectLi>
+                <a key={i} href={n.Link}>
+                  <Asterisk key={i} $type="Default" />
+                  {n.LinkText}
+                </a>
+              </ProjectLi>
+            ))}
+          </ProjectInfoList>
+        </ProjectContent>
+        <ProjectGallery
           backgroundColor="--off-white"
           numCols={projectData.ProjectGalleryItem.length > 2 ? 3 : 2}
         >
@@ -102,43 +103,29 @@ function ProjectDetailPage({ projectData }) {
               </ProjectIframeDiv>
             )
           )}
-        </PageGallery>
+        </ProjectGallery>
         <Footer backgroundColor="--off-white" accentColor={accentColor} />
       </PageContainer2>
     </>
   );
 }
 
-let ProjectSplashDiv = styled.div`
+let ProjectContentDiv = styled.div`
   grid-column: 1 / -1;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "title title"
-    "info image";
-  column-gap: var(--gap);
-  // padding: calc(var(--body-line-height)) 0;
-
-  @media ${mediaQueries.uptoTablet} {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "title"
-      "image"
-      "info";
-  }
+  ${baseGrid};
 `;
 
-function ProjectSplash({ backgroundColor, ...rest }) {
+function ProjectContent({ backgroundColor, ...rest }) {
   return (
     <Region2 backgroundColor={backgroundColor}>
-      <ProjectSplashDiv {...rest} />
+      <ProjectContentDiv {...rest} />
     </Region2>
   );
 }
 
 let ProjectTitleDiv = styled.div`
-  grid-area: title;
+  grid-column: 1 / -1;
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
@@ -147,34 +134,13 @@ let ProjectTitleDiv = styled.div`
 let ProjectTitleContainer = styled.h2`
   line-height: 0em;
   font-weight: 300;
-  // font-size: var(--small-splash-font-size);
-  // line-height: var(--small-splash-line-height);
-  // letter-spacing: -3px;
-  // font-weight: 300;
-  // display: inline-block;
-  // padding-bottom: calc(1 * 1.3rem);
-  // /*text-align: left;*/
-
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
-
-  // @media ${mediaQueries.uptoTablet} {
-  //   font-size: calc(1.3rem * 3);
-  //   line-height: calc(1.3rem * 3);
-  //   padding-bottom: calc(1.3rem / 2);
-  //   flex-direction: column-reverse;
-  //   align-items: center;
-  //   text-align: center;
-  padding-bottom: var(--body-font-size);
-  // text-align: left;
+  // padding-bottom: var(--body-font-size);
 
   @media ${mediaQueries.uptoTablet} {
-    // TODO: Check if this can be avoided re: choosing a new type hierarchy
-    // font-size: calc(1.3rem * 3);
-    // line-height: calc(1.3rem * 3);
-    // padding-bottom: calc(1.3rem / 2);
+     /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
+     font-size: calc(1.3rem * 3);
+     line-height: calc(1.3rem * 3);
+     padding-bottom: calc(1.3rem / 2);
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -189,16 +155,15 @@ let ProjectTitleHeading = styled.span`
 let ProjectYearsHeading = styled.span`
   font-size: calc(0.625 * var(--small-splash-font-size));
   line-height: calc(var(--small-splash-line-height));
-  /*vertical-align: baseline;*/
   display: inline-block;
   white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
 
   @media ${mediaQueries.uptoTablet} {
-    // TODO: Check if this can be avoided re: choosing a new type hierarchy
-    // font-size: calc(1 * 1.3rem);
-    // line-height: calc(1 * 1.3rem);
+     /*TODO: Check if this can be avoided re: choosing a new type hierarchy*/
+     font-size: calc(1 * 1.3rem);
+     line-height: calc(1 * 1.3rem);
   }
 `;
 
@@ -217,46 +182,42 @@ function ProjectTitle(props) {
   );
 }
 
-let ProjectInfo = styled.div`
-  grid-area: info;
-
-  display: flex;
-  flex-direction: column;
-  @media ${mediaQueries.uptoTablet} {
-    padding-top: calc(var(--body-line-height));
-  }
-`;
-
 let ProjectSubtitle = styled(Div)`
-  font-size: calc(var(--large-heading-font-size));
-  line-height: calc(var(--large-heading-line-height));
+  grid-column: 3 / -3;
+
+  font-size: calc(var(--medium-heading-font-size));
+  line-height: calc(var(--medium-heading-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoMobile} {
-    // TODO: See if we need this still
-    // font-size: calc(1.3rem * 1.5);
-    // line-height: calc(1.3rem * 1.5);
+    /*TODO: See if we need this still*/
+    font-size: calc(1.3rem * 1.5);
+    line-height: calc(1.3rem * 1.5);
   }
 `;
 
 let ProjectDescription = styled(Div)`
+  grid-column: 3 / -3;
+
   font-size: calc(var(--small-heading-font-size));
   line-height: calc(var(--small-heading-line-height));
   font-weight: 300;
-  padding-top: var(--body-line-height);
+  // padding-top: var(--body-line-height);
 
   @media ${mediaQueries.uptoMobile} {
-    // TODO: See if we need this still
-    // font-size: calc(1.3rem * 1);
-    // line-height: calc(1.3rem * 1);
+    /*TODO: See if we need this still*/
+    /*font-size: calc(1.3rem * 1);*/
+    /*line-height: calc(1.3rem * 1);*/
   }
 `;
 
 let ProjectInfoList = styled.ul`
+  grid-column: 3 / -3;
+
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-top: var(--body-line-height);
+  padding-bottom: var(--body-line-height);
   font-weight: 300;
 `;
 
@@ -266,11 +227,13 @@ let ProjectLi = styled.li`
   position: relative;
 `;
 
-let ProjectFeatureImage = styled.div`
-  grid-area: image;
+let FeatureImageContainer = styled.div`
+  grid-column: 3 / -3;
+`;
 
+let ProjectFeatureImage = styled(PageImage)`
+  grid-column: 3 / -3;
   height: 450px;
-  overflow: hidden;
 
   @media ${mediaQueries.uptoMobile} {
     height: 300px;
@@ -287,7 +250,7 @@ let ProjectImage = styled.img`
   margin-bottom: var(--gap);
 `;
 
-let PageGalleryDiv = styled.div`
+let ProjectGalleryDiv = styled.div`
   grid-column: 1 / -1;
 
   /*Masonry*/
@@ -303,10 +266,10 @@ let PageGalleryDiv = styled.div`
   }
 `;
 
-function PageGallery({ backgroundColor, ...rest }) {
+function ProjectGallery({ backgroundColor, ...rest }) {
   return (
     <Region2 backgroundColor={backgroundColor}>
-      <PageGalleryDiv {...rest} />
+      <ProjectGalleryDiv {...rest} />
     </Region2>
   );
 }

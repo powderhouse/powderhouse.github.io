@@ -96,7 +96,7 @@ function HomePage({
   let accentColor = "--off-black";
 
   let regions = [
-    <Header backgroundColor="--off-black" key="header" />,
+    <Header backgroundColor="--off-black" key="header" activeScribbleColor={accentColor} />,
     <Splash backgroundColor={accentColor} markdown key="splash">
       {SplashLanguage}
     </Splash>,

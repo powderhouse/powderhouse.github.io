@@ -158,7 +158,7 @@ function TeamPage2({
 	let jobs = PageSections.find((s) => s.SectionHeader == "Jobs");
 
 	let regions = [
-		<Header backgroundColor="--off-white" key="header" />,
+		<Header backgroundColor="--off-white" key="header" activeScribbleColor={accentColor} />,
 		<PageSplash backgroundColor={accentColor} key="splash">
 			<PageHeading>{PageHeader}</PageHeading>
 			<PageTableOfContents
