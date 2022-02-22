@@ -185,7 +185,6 @@ let ProjectInfo = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding-top: calc(1.3rem);
 `;
 
 let ProjectSubtitle = styled(Div)`
