@@ -86,9 +86,9 @@ function Header(props) {
 
 let Wrapper = styled.header`
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--gap);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   // TODO: Rationalize this
   // height: calc(6 * var(--body-line-height));
   padding: 35px 0;
@@ -99,7 +99,6 @@ let Wrapper = styled.header`
     stroke: inherit;
     fill: inherit;
     `};
-  ${(props) => baseGrid};
 
   @media ${mediaQueries.uptoMobile} {
     height: fit-content;
@@ -140,7 +139,11 @@ let LogoLockup = styled.div`
 `;
 
 let NavMenu = styled.nav`
-  grid-column: -4 / -1;
+  grid-column: -5 / -1;
+
+  @media ${mediaQueries.uptoLaptop} {
+    grid-column: -4 / -1;
+  }
 
   @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
@@ -158,10 +161,15 @@ let NavList = styled.ol`
 `;
 
 let NavListItem = styled.li`
+  position: relative;
   list-style-type: none;
   &:not(:last-child) {
     // TODO: Decide if this makes sense
-    padding-right: var(--gap);
+    margin-right: var(--gap);
+  }
+
+  &:hover div {
+    visibility: visible;
   }
 
   @media ${mediaQueries.uptoMobile} {
