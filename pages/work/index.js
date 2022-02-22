@@ -271,8 +271,6 @@ let PartnerCard = styled.div`
 	transition: 0.375s;
 	opacity: 0.75;
 
-	// filter: grayscale(100%);
-
 	&:hover {
 		opacity: 1;
 		filter: grayscale(0%);

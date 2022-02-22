@@ -29,32 +29,32 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
     <Region2 backgroundColor={backgroundColor}>
       <Wrapper backgroundColor={backgroundColor} {...rest}>
         <ContentContainer>
-          <FooterNavigation className={router.pathname != "/" ? "" : "home"}>
-            <NavList>
-              {navItems.map((n, i) => {
-                return (
-                  <NavItem key={i}>
-                    <NavLink href={n.href}>{n.text}</NavLink>
-                  </NavItem>
-                );
-              })}
-            </NavList>
-          </FooterNavigation>
+          {router.pathname != "/" ? (
+            <FooterNavigation className={router.pathname != "/" ? "" : "home"}>
+              <NavList>
+                {navItems.map((n, i) => {
+                  return (
+                    <NavItem key={i}>
+                      <NavLink href={n.href}>{n.text}</NavLink>
+                    </NavItem>
+                  );
+                })}
+              </NavList>
+            </FooterNavigation>
+            ) : ""}
           <FooterContact className={router.pathname != "/" ? "" : "home"}>
-            <NavList>
-              <ContactNavItem>
+            <ContactNavList className={router.pathname != "/" ? "" : "home"}>
+              <ContactNavItem className="irl">
                 <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
                   339R Summer Street <br />
                   Somerville, MA 02144 <br />
                   <br />
                 </NavLink>
               </ContactNavItem>
-              <ContactNavItem>
+              <ContactNavItem className="www">
                 <NavLink href="mailto:us@powderhouse.org">
                   us@powderhouse.org
                 </NavLink>
-              </ContactNavItem>
-              <ContactNavItem>
                 <SocialList>
                   {socials.map((n) => {
                     return (
@@ -67,7 +67,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   })}
                 </SocialList>
               </ContactNavItem>
-            </NavList>
+            </ContactNavList>
           </FooterContact>
           {router.pathname != "/" ? (
             <>
@@ -177,7 +177,42 @@ let NavItem = styled.li`
   align-items: center;
 `;
 
+let ContactNavList = styled(NavList)`
+  &.home {
+    grid-column: 1 / -1;
+    display:grid;
+    grid-template-areas:"irl www";
+    column-gap:var(--gap);
+
+    @media ${mediaQueries.uptoMobile} {
+      grid-template-areas:
+        "irl" 
+        "www";
+    }
+  }
+  &.home .irl {
+    grid-area:irl;
+    justify-content: flex-end;
+    text-align: end;
+    @media ${mediaQueries.uptoMobile} {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  &.home .www {
+    grid-area:www;
+    @media ${mediaQueries.uptoMobile} {
+      align-items: center;
+    }
+  }
+`;
+
 let ContactNavItem = styled(NavItem)`
+  &.www {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   &:not(:last-child) {
     // TODO: Rationalize this
     // padding-bottom: calc(var(--body-line-height) / 4);
@@ -195,13 +230,18 @@ let SocialList = styled(NavList)`
   align-items: center;
   justify-content: space-between;
   width: 50%; // TODO: Not on horizontal grid, but better looking?
+
+  @media ${mediaQueries.uptoMobile} {
+    justify-content:center;
+
+    & li {
+      padding:10px;
+    }
+  }
 `;
 
 let FooterContact = styled.div`
   grid-column: 3 / 6;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
@@ -212,13 +252,13 @@ let FooterContact = styled.div`
 
   /*Styling for homepage footer, without newsletter signup*/
   &.home {
-    grid-column: 7 / 10;
+    grid-column: 4 / 10;
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    column-gap:var(--gap);
 
     @media ${mediaQueries.uptoTablet} {
-      grid-column: 4 / 7;
-    }
-    @media ${mediaQueries.uptoMobile} {
-      grid-column: 2 / -1;
+      grid-column: 1 / -1;
     }
   }
 `;
