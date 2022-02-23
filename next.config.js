@@ -1,17 +1,16 @@
 const withPlugins = require("next-compose-plugins");
-
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withPlugins([[withBundleAnalyzer({})]], {
+let nextConfig = {
   images: {
     domains: ["powderhouse-strapi-uploads.s3.amazonaws.com"],
   },
-  // experimental: {
-  //   // Enables the styled-components SWC transform, via https://stackoverflow.com/a/70429669
-  //   styledComponents: true,
-  // },
+  compiler: {
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -21,4 +20,11 @@ module.exports = withPlugins([[withBundleAnalyzer({})]], {
 
     return config;
   },
-});
+};
+
+let plugins = [
+  // https://github.com/cyrilwanner/next-compose-plugins
+  [withBundleAnalyzer],
+];
+
+module.exports = withPlugins(plugins, nextConfig);
