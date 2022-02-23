@@ -49,13 +49,6 @@ function Splash({ children, ...rest }) {
   );
 }
 
-let ShoutOut = styled.p`
-  grid-column: 1 / -1;
-  padding: var(--body-line-height) 0;
-  height: calc(4 * var(--body-line-height));
-  line-height: 1;
-`;
-
 let SplashNewsletterSignupDiv = styled.div`
   grid-column: 4 / 10;
 
@@ -104,7 +97,6 @@ function HomePage({
       {SplashLanguage}
     </Splash>,
     <SplashNewsletterSignup backgroundColor="--off-black" key="newsletter">
-      <ShoutOut>{SignUpShoutOut}</ShoutOut>
       <NewsLetterSignUp
         text="Sign Up!"
         $color="--off-white"
@@ -113,6 +105,7 @@ function HomePage({
         buttonTextLength="medText"
         backgroundColor="--off-black"
         isHomePage={true}
+        shoutOut={SignUpShoutOut}
       />
     </SplashNewsletterSignup>,
     <Footer

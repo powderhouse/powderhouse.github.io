@@ -72,16 +72,14 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
           {router.pathname != "/" ? (
             <>
               <FooterNewsletterSignup backgroundColor={backgroundColor}>
-                <NewsLetterShoutOut>
-                  {`If you'd like to keep up with our work, sign up for our
-                  mailing list.`}
-                </NewsLetterShoutOut>
                 <NewsLetterSignUp
                   color="off-black"
                   text="Follow us!"
                   buttonWidth="long"
                   buttonThickness="thick"
                   buttonTextLength="longText"
+                  shoutOut="If you'd like to keep up with our work, sign up for our
+                  mailing list."
                 />
               </FooterNewsletterSignup>
               <LogoContainer>{logotypeVertSVG(accentColor)}</LogoContainer>
@@ -278,11 +276,6 @@ let FooterNewsletterSignup = styled.div`
     /*grid-row: 1;*/
     /*grid-template-columns: 3;*/
   }
-`;
-
-let NewsLetterShoutOut = styled.p`
-  // TODO: Rationalize this
-  padding-bottom: calc(var(--body-line-height) / 4);
 `;
 
 export default Footer;

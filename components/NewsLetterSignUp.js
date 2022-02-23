@@ -12,7 +12,9 @@ function NewsLetterSignUp({
     buttonThickness,
     buttonTextLength,
     isHomePage,
+    shoutOut,
 }) {
+    console.log(isHomePage);
     // 1. Create a reference to the input so we can fetch/clear it's value.
       const inputEl = useRef(null);
       // 2. Hold a message in state to handle the response from our API.
@@ -43,42 +45,47 @@ function NewsLetterSignUp({
 
         // 5. Clear the input value and show a success message.
         inputEl.current.value = '';
-        setMessage('Success! 🎉 You are now subscribed to the newsletter.');
+        setMessage('🎉 You are now subscribed to our newsletter.');
       };
 
     let buttonColor = expandColor(complementaryColor(backgroundColor));
 
     return (
-        <NewsLetterForm onSubmit={subscribe} isHomePage={isHomePage}>
-          <EmailInput
-            id="email-input"
-            name="email"
-            placeholder="you@awesome.com"
-            ref={inputEl}
-            required
-            type="email"
-            $color={buttonColor}
-            isHomePage={isHomePage}
-          />
-          {/*<div>
-            {message
-              ? message
-              : `I'll only send emails when new content is posted. No spam.`}
-          </div>*/}
-          <NewsLetterFormButton isHomePage={isHomePage}>
-                {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
-                    `${buttonColor} arrowButton`
-                )}
-                {buttonSVGs["naked"]["short"][1](
-                    `${buttonColor} tablet`
-                )}
-                <ButtonText $color={buttonColor}>
-                    {text}
-                </ButtonText>
-            </NewsLetterFormButton>
-        </NewsLetterForm>
+        <>
+            <ShoutOut>{!message ? shoutOut : message}</ShoutOut>
+            <NewsLetterForm onSubmit={subscribe} isHomePage={isHomePage} submitStatus={message ? message : false}>
+              <EmailInput
+                id="email-input"
+                name="email"
+                placeholder="you@awesome.com"
+                ref={inputEl}
+                required
+                type="email"
+                $color={buttonColor}
+                isHomePage={isHomePage}
+              />
+              <NewsLetterFormButton isHomePage={isHomePage}>
+                    {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
+                        `${buttonColor} arrowButton`
+                    )}
+                    {buttonSVGs["naked"]["short"][1](
+                        `${buttonColor} tablet`
+                    )}
+                    <ButtonText $color={buttonColor}>
+                        {text}
+                    </ButtonText>
+                </NewsLetterFormButton>
+            </NewsLetterForm>
+        </>
     );
 }
+
+let ShoutOut = styled.p`
+  grid-column: 1 / -1;
+  line-height: var(--body-line-height);
+  padding: ${(props) => props.isHomePage ? "var(--body-line-height) 0" : ""};
+  height: ${(props) => props.isHomePage ? "calc(4 * var(--body-line-height))" : ""};
+`;
 
 let NewsLetterForm = styled.form`
     grid-column: 1 / -1;
