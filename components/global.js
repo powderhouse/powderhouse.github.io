@@ -154,8 +154,16 @@ let PageSplashDiv = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	// TODO: Rationalize this, and consider for mobile
-	min-height: calc(29 * var(--body-line-height));
+	min-height: calc(24 * var(--body-line-height));
 	padding: calc(1 * var(--body-line-height)) 0;
+
+	@media ${mediaQueries.uptoTablet} {
+		min-height: calc(20 * var(--body-line-height));
+	}
+
+	@media ${mediaQueries.uptoMobile} {
+		min-height: calc(16 * var(--body-line-height));
+	}
 `;
 
 function PageSplash({ children, ...rest }) {

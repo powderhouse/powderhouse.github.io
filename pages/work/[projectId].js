@@ -68,7 +68,7 @@ function ProjectDetailPage({ projectData }) {
               <ProjectLi key={i}>
                 <a href={n.Link}>
                   <Asterisk $type="Default" />
-                  {n.LinkText}
+                  <Div markdown>{n.LinkText}</Div>
                 </a>
               </ProjectLi>
             ))}
@@ -240,8 +240,18 @@ let ProjectInfoList = styled.ul`
 
 let ProjectLi = styled.li`
   // TODO: rationalize this
-  padding-left: calc(var(--body-line-height));
+  padding-left: calc(var(--body-line-height) * 3 / 4);
   position: relative;
+
+  @media (hover:hover) {
+    & a {
+      text-decoration:none;
+    }
+
+    & a:hover {
+      text-decoration:underline;
+    }
+  }
 `;
 
 let FeatureImageContainer = styled.div`

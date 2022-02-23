@@ -109,6 +109,7 @@ let Wrapper = styled.header`
   @media ${mediaQueries.uptoMobile} {
     flex-direction: column;
     height: fit-content;
+    padding-bottom: calc(var(--body-line-height) / 2);
   }
 `;
 
@@ -147,7 +148,7 @@ let LogoLockup = styled.div`
 
 let NavMenu = styled.nav`
   grid-column: -5 / -1;
-  padding-top: calc(var(--gap) / 2);
+  padding-top: calc(var(--body-line-height) / 2);
 
   @media ${mediaQueries.uptoLaptop} {
     grid-column: -4 / -1;
@@ -157,6 +158,7 @@ let NavMenu = styled.nav`
     grid-row: 2;
     grid-column: 1 / -1;
     margin: auto;
+    // padding-top:0;
   }
 `;
 
