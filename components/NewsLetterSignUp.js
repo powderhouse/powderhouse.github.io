@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
+import React, { useRef, useState } from 'react';
+
 import { buttonSVGs, mediaQueries } from "../site-data.js";
 import { highlight, expandColor, complementaryColor } from "./global.js";
 
@@ -12,57 +13,59 @@ function NewsLetterSignUp({
     buttonTextLength,
     isHomePage,
 }) {
-    // Built based off this tutorial: https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        submitForm(
-            "https://powderhouse.us11.list-manage.com/subscribe/post",
-            event.target
-        );
-        // Test service => https://ptsv2.com/t/ztmrx-1642088008/post
-    };
+    // 1. Create a reference to the input so we can fetch/clear it's value.
+      const inputEl = useRef(null);
+      // 2. Hold a message in state to handle the response from our API.
+      const [message, setMessage] = useState('');
 
-    function submitForm(URL, form) {
-        // TODO: Replace with fetch or maybe extract into global
-        const XHR = new XMLHttpRequest();
+      const subscribe = async (e) => {
+        e.preventDefault();
 
-        // Bind the FormData object and the form element
-        const FD = new FormData(form);
-
-        // Define what happens on successful data submission
-        XHR.addEventListener("load", function (event) {
-            alert(event.target.responseText);
+        // 3. Send a request to our API with the user's email address.
+        const res = await fetch('/api/subscribe', {
+          body: JSON.stringify({
+            email: inputEl.current.value
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST'
         });
 
-        // Define what happens in case of error
-        XHR.addEventListener("error", function (event) {
-            alert("Oops! Something went wrong.");
-        });
+        const { error } = await res.json();
 
-        // Set up our request
-        XHR.open("POST", URL);
+        if (error) {
+          // 4. If there was an error, update the message in state.
+          setMessage(error);
 
-        // The data sent is what the user provided in the form
-        XHR.send(FD);
-    }
+          return;
+        }
+
+        // 5. Clear the input value and show a success message.
+        inputEl.current.value = '';
+        setMessage('Success! 🎉 You are now subscribed to the newsletter.');
+      };
 
     let buttonColor = expandColor(complementaryColor(backgroundColor));
 
     return (
-        <NewsLetterForm
-            method="post"
-            onSubmit={handleSubmit}
+        <NewsLetterForm onSubmit={subscribe} isHomePage={isHomePage}>
+          <EmailInput
+            id="email-input"
+            name="email"
+            placeholder="you@awesome.com"
+            ref={inputEl}
+            required
+            type="email"
+            $color={buttonColor}
             isHomePage={isHomePage}
-        >
-            <input type="hidden" name="u" value="f8c818c16bcf7810f5da39962" />
-            <input type="hidden" name="id" value="5137830bcb" />
-            <EmailInput
-                name="MERGE0"
-                id="MERGE0"
-                $color={buttonColor}
-                isHomePage={isHomePage}
-            />
-            <NewsLetterFormButton isHomePage={isHomePage}>
+          />
+          {/*<div>
+            {message
+              ? message
+              : `I'll only send emails when new content is posted. No spam.`}
+          </div>*/}
+          <NewsLetterFormButton isHomePage={isHomePage}>
                 {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](
                     `${buttonColor} arrowButton`
                 )}
