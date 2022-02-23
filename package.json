@@ -8,7 +8,8 @@
     "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
     "build": "export NODE_ENV=production && yarn install --check-files && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@mailchimp/mailchimp_marketing": "^3.0.74",
-    "@next/bundle-analyzer": "^12.0.10",
+    "@next/bundle-analyzer": "^12.1.0",
     "@svgr/webpack": "^6.2.1",
     "@types/react": "17.0.37",
     "babel": "^6.23.0",
@@ -31,6 +32,7 @@
     "eslint": "^8.9.0",
     "eslint-config-next": "12.0.7",
     "next": "^12.0.4",
+    "next-compose-plugins": "^2.2.1",
     "node-html-parser": "^5.2.0",
     "prettier": "^2.5.1",
     "react": "^17.0.2",

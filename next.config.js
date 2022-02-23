@@ -1,10 +1,10 @@
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({
-//   enabled: process.env.ANALYZE === "true",
-// });
+const withPlugins = require("next-compose-plugins");
 
-// module.exports = withBundleAnalyzer({});
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-module.exports = {
+module.exports = withPlugins([[withBundleAnalyzer({})]], {
   images: {
     domains: ["powderhouse-strapi-uploads.s3.amazonaws.com"],
   },
@@ -21,4 +21,4 @@ module.exports = {
 
     return config;
   },
-};
+});
