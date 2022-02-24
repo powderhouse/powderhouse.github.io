@@ -205,7 +205,7 @@ function TeamPage2({
 }
 
 let JobsContent = styled(PageSectionContent)`
-	grid-template-columns: inherit;
+	grid-template-columns: repeat(9, 1fr);
 	grid-template-areas: "footnoted-text footnotes" "jobs-button footnotes";
 	@media ${mediaQueries.uptoTablet} {
 		display: flex;
@@ -216,11 +216,11 @@ let JobsContent = styled(PageSectionContent)`
 
 let JobsButton = styled(ArrowButton)`
 	grid-area: jobs-button;
-	align-self: end;
-	@media ${mediaQueries.uptoTablet} {
-		align-self: start;
-	}
+	grid-column: 1 / span 6;
+	align-self: start;
+	justify-content:center;
 `;
+
 let StaffAlumSectionContent = styled(PageSectionContent)`
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(2, 1fr);

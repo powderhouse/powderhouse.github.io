@@ -48,6 +48,7 @@ let Links = styled.ul`
 
 let PersonLi = styled.li`
 	padding-right: calc(var(--gap) / 2);
+	opacity: 0.75;
 `;
 
 let PersonBio = styled(Div)``;
@@ -124,7 +125,7 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 
 			{["Staff", "Alumni"].includes(type) ? (
 				<Years>
-					{tenure.start}–{tenure.end ? tenure.end : "present"}
+					{tenure.end ? `${tenure.start}–${tenure.end}` : `since ${tenure.start}`}
 				</Years>
 			) : (
 				""
@@ -140,7 +141,7 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 									href={link.Link}
 									key={index}
 									icon={link.LinkText.toLowerCase()}
-								></IconListItem>
+								/>
 							) : (
 								""
 							)
