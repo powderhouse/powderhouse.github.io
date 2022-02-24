@@ -11,7 +11,7 @@ import { asteriskSVG, mediaQueries } from "../site-data.js";
 import Region2 from "../components/Region2.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
 
-import ltx from "ltx";
+import { parse, stringify } from "ltx";
 import svgPathBbox from "svg-path-bbox";
 import svgson from "svgson";
 import toPath from "element-to-path";
@@ -451,7 +451,7 @@ let zoomViewBox = function (svgString) {
 	};
 
 	let pathedSvg = pathThatSvg(svgString);
-	let parsed = ltx.parse(pathedSvg);
+	let parsed = parse(pathedSvg);
 	// console.log("viewBox starts as", parsed.attrs.viewBox);
 	updateViewBoxWith(parsed);
 	// console.log("Finally, viewBox is", viewBox);
@@ -461,7 +461,7 @@ let zoomViewBox = function (svgString) {
 		height: viewBox[3] - viewBox[1],
 	};
 	Object.keys(newDims).forEach((d) => (parsed.attrs[d] = newDims[d]));
-	return ltx.stringify(parsed);
+	return stringify(parsed);
 };
 
 export {
