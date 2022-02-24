@@ -84,6 +84,10 @@
 
 :root {
 	/*This scale is meant for GT Planar*/
+	--splash-font-size: 166px;
+	--splash-line-height: 1.35em;
+	--splash-letter-spacing: -4.8px;
+
 	--xxxlarge-font-size: calc(var(--up-5) * var(--base-font-size));
 	--xxxlarge-line-height: 1.35em;
 	--xxxlarge-letter-spacing: 0;

@@ -131,43 +131,44 @@ let ProjectTitleDiv = styled.div`
   grid-column: 1 / -1;
   display: flex;
   align-items: baseline;
-  flex-wrap: wrap;
 `;
 
 let ProjectTitleContainer = styled.h2`
   line-height: 0em;
   font-weight: 300;
-
-  @media ${mediaQueries.uptoTablet} {
-    // TODO: Implement new type hierarchy
-    font-size: calc(1.3rem * 3);
-    line-height: calc(1.3rem * 3);
-    padding-bottom: calc(1.3rem / 2);
-  }
-
-  @media ${mediaQueries.uptoMobile} {
-  }
 `;
 
 let ProjectTitleHeading = styled.span`
-  // TODO: Check whether this is correct
-  font-size: var(--xxlarge-font-size);
-  line-height: var(--xxlarge-line-height);
+  font-size: calc(var(--splash-font-size) * 0.625);
+  line-height: calc(var(--splash-line-height) * 0.625);
+
+  @media ${mediaQueries.uptoTablet} {
+    font-size: calc(var(--splash-font-size) * 0.5);
+    line-height: calc(var(--splash-line-height) * 0.625);
+  }
+
+  @media ${mediaQueries.uptoTablet} {
+    font-size: calc(var(--splash-font-size) * 0.33);
+    line-height: calc(var(--splash-line-height) * 0.625);
+  }
 `;
 
 let ProjectYearsHeading = styled.span`
-  // TODO: Check whether this is correct
-  font-size: calc(0.625 * var(--xxlarge-font-size));
-  line-height: calc(var(--xxlarge-line-height));
+  font-size: calc(0.625 * 0.625 * var(--splash-font-size));
+  line-height: calc(0.625 * var(--splash-line-height));
   display: inline-block;
   white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
 
   @media ${mediaQueries.uptoTablet} {
-    // TODO: Implement new type hierarchy
-    font-size: calc(1 * 1.3rem);
-    line-height: calc(1 * 1.3rem);
+    font-size: calc(0.625 * 0.5 * var(--splash-font-size));
+    line-height: var(--splash-line-height);
+  }
+
+  @media ${mediaQueries.uptoTablet} {
+    font-size: calc(0.625 * 0.5 * 0.33 var(--splash-font-size));
+    line-height: var(--splash-line-height);
   }
 `;
 
@@ -189,20 +190,20 @@ function ProjectTitle(props) {
 let ProjectSubtitle = styled(Div)`
   grid-column: 4 / -4;
 
-  // TODO: Check whether this is correct
-  font-size: calc(1.25 * var(--xlarge-font-size));
-  line-height: calc(1.25 * var(--xlarge-line-height));
+  font-size: var(--xlarge-font-size);
+  line-height: var(--xlarge-line-height);
   font-weight: 300;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -2;
+    font-size: var(--large-font-size);
+    line-height: var(--large-line-height);
   }
 
   @media ${mediaQueries.uptoMobile} {
-    // TODO: Implement new type hierarchy
-    font-size: calc(1.3rem * 1.5);
-    line-height: calc(1.3rem * 1.5);
     grid-column: 1 / -1;
+    font-size: var(--medium-font-size);
+    line-height: var(--medium-line-height);
   }
 `;
 
@@ -216,13 +217,14 @@ let ProjectDescription = styled(Div)`
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -2;
+    font-size: calc(var(--medium-font-size));
+    line-height: calc(var(--medium-line-height));
   }
 
   @media ${mediaQueries.uptoMobile} {
-    // TODO: Implement new type hierarchy
-    font-size: calc(1.3rem * 1);
-    line-height: calc(1.3rem * 1);
     grid-column: 1 / -1;
+    font-size: calc(var(--base-font-size));
+    line-height: calc(var(--base-line-height));
   }
 `;
 
@@ -269,6 +271,10 @@ let FeatureImageContainer = styled.div`
 
   @media ${mediaQueries.uptoMobile} {
     grid-column: 1 / -1;
+  }
+
+  & figure {
+    padding:0;
   }
 `;
 

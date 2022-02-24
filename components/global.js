@@ -179,8 +179,8 @@ function PageSplash({ children, ...rest }) {
 
 let PageHeading = styled.h1`
 	font-family: "GT Planar", sans-serif;
-	font-size: 166px;
-	letter-spacing: -4.8px;
+	font-size: var(--splash-font-size);
+	letter-spacing: var(--splash-letter-spacing);
 	font-weight: 300;
 	// line-height: 1em;
 	// TODO: Rationalize this

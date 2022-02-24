@@ -5,7 +5,7 @@ mailchimp.setConfig({
   server: process.env.MAILCHIMP_API_SERVER, // e.g. us1
 });
 
-async function subcribe(req, res) {
+async function subscribe(req, res) {
   const { email } = req.body;
 
   if (!email) {
