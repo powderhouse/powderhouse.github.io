@@ -269,8 +269,8 @@ let sectionHeaderContainerStyles = {
 	`,
 	center: css`
 		grid-column: 4 / 10;
-		// TODO: Implement type hierarchy
-		font-size: 31px;
+		font-size: var(--xxlarge-font-size);
+		line-height: var(--xxlarge-line-height);
 		letter-spacing: -1.2px;
 		padding-left: 1em;
 		@media ${mediaQueries.uptoTablet} {

@@ -114,7 +114,7 @@ function WorkPage({
 				<ProjectCard key={index}>
 					<ProjectLink href={`/work/${id}`}>
 						<ProjectTenure>
-							{yearstart}-{yearend}
+							{yearstart==yearend ? yearstart : `${yearstart}-${yearend}`}
 						</ProjectTenure>
 						<ProjectImageDiv>
 							<ProjectFeatureImage
@@ -133,8 +133,8 @@ function WorkPage({
 							/>
 						</ProjectImageDiv>
 						<ProjectTitle>{title}</ProjectTitle>
-						<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 					</ProjectLink>
+					<ProjectSubtitle markdown>{subtitle}</ProjectSubtitle>
 				</ProjectCard>
 			);
 		}
@@ -194,9 +194,9 @@ function WorkPage({
 					header={projectsDesc.SectionHeader}
 					left={projectsDesc.isLeftHeader}
 				>
-					<PageSectionContent $wide={true} $grid={true}>
+					<ProjectSectionContent $wide={true} $grid={true}>
 						{projects}
-					</PageSectionContent>
+					</ProjectSectionContent>
 				</Region2>
 				<Region2
 					backgroundColor={getBgFromLight(
@@ -271,11 +271,10 @@ let PartnerCard = styled.div`
 
 	&:hover {
 		opacity: 1;
-		filter: grayscale(0%);
 	}
 
 	@media (hover: none) {
-		filter: grayscale(50%);
+		opacity: 1;
 	}
 `;
 
@@ -286,13 +285,17 @@ let PartnerLogo = styled.img`
 	object-fit: contain;
 `;
 
+let ProjectSectionContent = styled(PageSectionContent)`
+	transform: translateY(-1rem);
+
+	@media ${mediaQueries.uptoTablet} {
+		transform: revert;
+	}
+`;
+
 let ProjectCard = styled.div`
 	grid-column: span 3;
-	transition: border-color 1s ease;
-
-	&:hover img {
-		border-color: var(--off-black);
-	}
+	border-color: var(--off-black);
 `;
 
 let ProjectLink = styled.a`
@@ -303,6 +306,10 @@ let ProjectTenure = styled.div`
 	opacity: 0.6125;
 	text-align: right;
 	font-weight: 300;
+
+	@media ${mediaQueries.uptoTablet} {
+		text-align: revert;
+	}
 `;
 
 let ProjectImageDiv = styled.div`
@@ -323,9 +330,9 @@ let ProjectTitle = styled.h3`
 	font-weight: 300;
 	font-size: var(--large-font-size);
 	line-height: var(--large-line-height);
-	padding-top: calc(var(--base-line-height) / 2);
+	padding-top: calc(var(--base-line-height) / 4 - 5px);
 	padding-bottom: calc(
-		var(--base-line-height) / 2 - 10px
+		var(--base-line-height) / 4 - 10px
 	); // Optically aligned to equalize height above and below
 	margin: 0;
 `;
@@ -348,7 +355,11 @@ let PastLifeSectionContent = styled.div`
 	}
 `;
 
-let PastLifeLink = styled.a``;
+let PastLifeLink = styled.a`
+	& img {
+		border: 1px var(--off-black) solid;
+	}
+`;
 
 export async function getStaticProps(context) {
 	let workPage = await fetchAPI("/work?populate=*");
