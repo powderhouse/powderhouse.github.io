@@ -152,7 +152,6 @@ let LogoLockup = styled.div`
 `;
 
 let NavMenu = styled.nav`
-  width: 33%;
   position: relative;
   padding-bottom: 0.25em;
 
