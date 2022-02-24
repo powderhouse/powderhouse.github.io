@@ -83,7 +83,8 @@ function NewsLetterSignUp({
 let ShoutOut = styled.p`
   grid-column: 1 / -1;
   line-height: var(--body-line-height);
-  padding: ${(props) => props.isHomePage ? "var(--body-line-height) 0" : ""};
+  // TK should the not-home-page (aka footer) version be a full line-height lower?
+  padding: ${(props) => props.isHomePage ? "var(--body-line-height) 0" : "0 0 calc(var(--body-line-height) / 2) 0"};
   height: ${(props) => props.isHomePage ? "calc(4 * var(--body-line-height))" : ""};
 `;
 
