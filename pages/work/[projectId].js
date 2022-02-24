@@ -61,20 +61,22 @@ function ProjectDetailPage({ projectData }) {
             {projectData.ProjectDescription}
           </ProjectDescription>
           {projectData.ProjectInfoList.length > 0 ? (
-            <ProjectSubtitle>Related Materials</ProjectSubtitle>
+            <ProjectRelatedResources>
+              <ProjectSubtitle>Related Materials</ProjectSubtitle>
+              <ProjectInfoList>
+              {projectData.ProjectInfoList.map((n, i) => (
+                <ProjectLi key={i}>
+                  <a href={n.Link}>
+                    <Asterisk $type="Default" />
+                    <Div markdown>{n.LinkText}</Div>
+                  </a>
+                </ProjectLi>
+              ))}
+            </ProjectInfoList>
+          </ProjectRelatedResources>
           ) : (
             ""
           )}
-          <ProjectInfoList>
-            {projectData.ProjectInfoList.map((n, i) => (
-              <ProjectLi key={i}>
-                <a href={n.Link}>
-                  <Asterisk $type="Default" />
-                  <Div markdown>{n.LinkText}</Div>
-                </a>
-              </ProjectLi>
-            ))}
-          </ProjectInfoList>
         </ProjectContent>
         <ProjectGallery
           backgroundColor="--off-white"
@@ -140,14 +142,14 @@ let ProjectTitleContainer = styled.h2`
 
 let ProjectTitleHeading = styled.span`
   font-size: calc(var(--splash-font-size) * 0.625);
-  line-height: calc(var(--splash-line-height) * 0.625);
+  line-height: calc(var(--splash-line-height) * 0.75);
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(var(--splash-font-size) * 0.5);
-    line-height: calc(var(--splash-line-height) * 0.625);
+    line-height: calc(var(--splash-line-height) * 0.75);
   }
 
-  @media ${mediaQueries.uptoTablet} {
+  @media ${mediaQueries.uptoMobile} {
     font-size: calc(var(--splash-font-size) * 0.33);
     line-height: calc(var(--splash-line-height) * 0.625);
   }
@@ -155,7 +157,7 @@ let ProjectTitleHeading = styled.span`
 
 let ProjectYearsHeading = styled.span`
   font-size: calc(0.625 * 0.625 * var(--splash-font-size));
-  line-height: calc(0.625 * var(--splash-line-height));
+  line-height: calc(var(--splash-line-height));
   display: inline-block;
   white-space: nowrap;
   font-weight: 300;
@@ -188,7 +190,7 @@ function ProjectTitle(props) {
 }
 
 let ProjectSubtitle = styled(Div)`
-  grid-column: 4 / -4;
+  grid-column: 4 / -4; // TK 3 / -3 for wider option
 
   font-size: var(--xlarge-font-size);
   line-height: var(--xlarge-line-height);
@@ -208,9 +210,8 @@ let ProjectSubtitle = styled(Div)`
 `;
 
 let ProjectDescription = styled(Div)`
-  grid-column: 4 / -4;
+  grid-column: 4 / -4; // TK 3 / -3 for wider option
 
-  // TODO: Check whether this is correct
   font-size: calc(var(--large-font-size));
   line-height: calc(var(--large-line-height));
   font-weight: 300;
@@ -228,14 +229,8 @@ let ProjectDescription = styled(Div)`
   }
 `;
 
-let ProjectInfoList = styled.ul`
-  grid-column: 4 / -4;
-
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  padding-bottom: var(--base-line-height);
-  font-weight: 300;
+let ProjectRelatedResources = styled.div`
+  grid-column: 4 / -4; // TK 3 / -3 for wider option
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -2;
@@ -246,24 +241,23 @@ let ProjectInfoList = styled.ul`
   }
 `;
 
+let ProjectInfoList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: calc(var(--base-line-height) / 4);
+  font-weight: 300;
+`;
+
 let ProjectLi = styled.li`
   // TODO: rationalize this
   padding-left: calc(var(--base-line-height) * 3 / 4);
+  padding-bottom: calc(var(--base-line-height) / 4);
   position: relative;
-
-  @media (hover: hover) {
-    & a {
-      text-decoration: none;
-    }
-
-    & a:hover {
-      text-decoration: underline;
-    }
-  }
 `;
 
 let FeatureImageContainer = styled.div`
-  grid-column: 4 / -4;
+  grid-column: 4 / -4; // TK 3 / -3 for wider option
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -2;
@@ -279,7 +273,7 @@ let FeatureImageContainer = styled.div`
 `;
 
 let ProjectFeatureImage = styled(PageImage)`
-  grid-column: 4 / -4;
+  grid-column: 4 / -4; // TK 3 / -3 for wider option
   height: 450px;
 
   @media ${mediaQueries.uptoTablet} {
@@ -315,6 +309,10 @@ let ProjectGalleryDiv = styled.div`
   }
   @media ${mediaQueries.uptoMobile} {
     column-count: 1;
+  }
+
+  & video {
+    padding-bottom: var(--gap);
   }
 `;
 
