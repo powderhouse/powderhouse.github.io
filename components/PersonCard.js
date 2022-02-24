@@ -10,7 +10,7 @@ import Icon from "../components/Icon.js";
 
 let StyledDiv = styled.div`
 	grid-column: span 3;
-	font-size: var(--body-font-height);
+	font-size: var(--base-font-height);
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: span 1;
@@ -28,11 +28,11 @@ let Headshot = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
-	margin-bottom: var(--body-line-height);
+	margin-bottom: var(--base-line-height);
 `;
 
 let Name = styled.h3`
-	font-size: var(--body-font-size);
+	font-size: var(--base-font-size);
 `;
 
 let Years = styled.div``;

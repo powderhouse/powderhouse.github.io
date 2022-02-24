@@ -19,20 +19,20 @@ let stylesByMedia = {
 	// A dictionary of styles to apply per media query
 	// TODO: Rationalize this
 	uptoMobile: {
-		"padding-top": `calc(4 * var(--body-line-height))`,
-		"padding-bottom": `calc(4 * var(--body-line-height))`,
+		"padding-top": `calc(4 * var(--base-line-height))`,
+		"padding-bottom": `calc(4 * var(--base-line-height))`,
 	},
 	uptoTablet: {
-		"padding-top": `calc(4 * var(--body-line-height))`,
-		"padding-bottom": `calc(4 * var(--body-line-height))`,
+		"padding-top": `calc(4 * var(--base-line-height))`,
+		"padding-bottom": `calc(4 * var(--base-line-height))`,
 	},
 	uptoLaptop: {
-		"padding-top": `calc(4 * var(--body-line-height))`,
-		"padding-bottom": `calc(4 * var(--body-line-height))`,
+		"padding-top": `calc(4 * var(--base-line-height))`,
+		"padding-bottom": `calc(4 * var(--base-line-height))`,
 	},
 	minLaptop: {
-		"padding-top": `calc(4 * var(--body-line-height))`,
-		"padding-bottom": `calc(4 * var(--body-line-height))`,
+		"padding-top": `calc(4 * var(--base-line-height))`,
+		"padding-bottom": `calc(4 * var(--base-line-height))`,
 	},
 };
 

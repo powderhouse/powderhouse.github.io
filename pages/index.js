@@ -18,14 +18,15 @@ let SplashDiv = styled(Div)`
   // TODO: Observed column width via Framer, any way to make dependent on column width?
   padding: calc(141px - 2 * var(--gap)) 0;
   p {
-    font-size: var(--title-font-size);
+    // TODO: Check whether this is right
+    font-size: var(--xxxlarge-font-size);
+    line-height: var(--xxxlarge-line-height);
     letter-spacing: -0.6px; // TODO: Add letter-spacings to type hierarchy
-    line-height: var(--title-line-height);
     font-weight: 300;
     font-family: "GT Planar";
   }
   p:not(:last-child) {
-    padding-bottom: calc(2 * var(--body-line-height));
+    padding-bottom: calc(var(--base-line-height));
   }
 
   @media ${mediaQueries.uptoTablet} {
@@ -49,6 +50,13 @@ function Splash({ children, ...rest }) {
   );
 }
 
+let ShoutOut = styled.p`
+  font-size: var(--medium-font-size);
+  line-height: var(--medium-line-height);
+  grid-column: 1 / -1;
+  line-height: 1;
+`;
+
 let SplashNewsletterSignupDiv = styled.div`
   grid-column: 4 / 10;
 
@@ -58,7 +66,7 @@ let SplashNewsletterSignupDiv = styled.div`
   grid-template-rows: min-content;
   column-gap: var(--gap);
   row-gap: 1.3rem;
-  padding: 0 0 calc(6 * var(--body-line-height));
+  padding: 0 0 calc(6 * var(--base-line-height));
   place-items: center;
   text-align: center;
 

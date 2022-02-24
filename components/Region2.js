@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import {
-	SectionHeader,
-	baseGrid,
-	colorByProp,
-} from "../components/global";
+import { SectionHeader, baseGrid, colorByProp } from "../components/global";
 import { mediaQueries } from "../site-data";
 
 let StyledDiv = styled.div`
@@ -23,7 +19,7 @@ let StyledDiv = styled.div`
 	//////////////////////////////////////////////**////////////
 
 	grid-auto-rows: min-content;
-	grid-row-gap: var(--body-line-height);
+	grid-row-gap: var(--base-line-height);
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);
@@ -47,12 +43,9 @@ let StyledDiv = styled.div`
 
 	&:not(:last-of-type) {
 		margin-bottom: var(
-			--body-line-height
+			--base-line-height
 		); // To make sure that spacing before headings for the next section are slightly greater than inter-paragraph headings
 	}
-	margin-bottom: var(
-		--body-line-height
-	); // To make sure that spacing before headings for the next section are slightly greater than inter-paragraph headings
 `;
 
 function Region2({ header, left, children, ...rest }) {

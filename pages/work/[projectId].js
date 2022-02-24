@@ -60,9 +60,11 @@ function ProjectDetailPage({ projectData }) {
           <ProjectDescription markdown>
             {projectData.ProjectDescription}
           </ProjectDescription>
-          {projectData.ProjectInfoList.length > 0 
-            ? <ProjectSubtitle>Related Materials</ProjectSubtitle>
-            : ""}
+          {projectData.ProjectInfoList.length > 0 ? (
+            <ProjectSubtitle>Related Materials</ProjectSubtitle>
+          ) : (
+            ""
+          )}
           <ProjectInfoList>
             {projectData.ProjectInfoList.map((n, i) => (
               <ProjectLi key={i}>
@@ -148,13 +150,15 @@ let ProjectTitleContainer = styled.h2`
 `;
 
 let ProjectTitleHeading = styled.span`
-  font-size: var(--small-splash-font-size);
-  line-height: var(--small-splash-line-height);
+  // TODO: Check whether this is correct
+  font-size: var(--xxlarge-font-size);
+  line-height: var(--xxlarge-line-height);
 `;
 
 let ProjectYearsHeading = styled.span`
-  font-size: calc(0.625 * var(--small-splash-font-size));
-  line-height: calc(var(--small-splash-line-height));
+  // TODO: Check whether this is correct
+  font-size: calc(0.625 * var(--xxlarge-font-size));
+  line-height: calc(var(--xxlarge-line-height));
   display: inline-block;
   white-space: nowrap;
   font-weight: 300;
@@ -185,8 +189,9 @@ function ProjectTitle(props) {
 let ProjectSubtitle = styled(Div)`
   grid-column: 4 / -4;
 
-  font-size: calc(1.25 * var(--medium-heading-font-size));
-  line-height: calc(1.25 * var(--medium-heading-line-height));
+  // TODO: Check whether this is correct
+  font-size: calc(1.25 * var(--xlarge-font-size));
+  line-height: calc(1.25 * var(--xlarge-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoTablet} {
@@ -204,8 +209,9 @@ let ProjectSubtitle = styled(Div)`
 let ProjectDescription = styled(Div)`
   grid-column: 4 / -4;
 
-  font-size: calc(var(--small-heading-font-size));
-  line-height: calc(var(--small-heading-line-height));
+  // TODO: Check whether this is correct
+  font-size: calc(var(--large-font-size));
+  line-height: calc(var(--large-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoTablet} {
@@ -226,7 +232,7 @@ let ProjectInfoList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-bottom: var(--body-line-height);
+  padding-bottom: var(--base-line-height);
   font-weight: 300;
 
   @media ${mediaQueries.uptoTablet} {
@@ -240,23 +246,23 @@ let ProjectInfoList = styled.ul`
 
 let ProjectLi = styled.li`
   // TODO: rationalize this
-  padding-left: calc(var(--body-line-height) * 3 / 4);
+  padding-left: calc(var(--base-line-height) * 3 / 4);
   position: relative;
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     & a {
-      text-decoration:none;
+      text-decoration: none;
     }
 
     & a:hover {
-      text-decoration:underline;
+      text-decoration: underline;
     }
   }
 `;
 
 let FeatureImageContainer = styled.div`
   grid-column: 4 / -4;
-  
+
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -2;
   }

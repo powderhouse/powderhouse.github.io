@@ -15,8 +15,8 @@ let ImageContainer = styled.figure`
 `;
 
 let ImageCaption = styled.figcaption`
-	font-size: calc(var(--caption-font-size));
-	line-height: var(--caption-line-height);
+	font-size: calc(var(--small-font-size));
+	line-height: var(--small-line-height);
 	font-style: italic;
 	margin: auto;
 `;
@@ -57,11 +57,7 @@ function PageImage(props) {
 			className={props.fullBleed ? "full-bleed" : "full-body"}
 		>
 			<Resize ref={resizer}>
-				<img
-					ref={img}
-					src={props.src}
-					alt={props.altText}
-				/>
+				<img ref={img} src={props.src} alt={props.altText} />
 			</Resize>
 			<ImageCaption>{props.caption}</ImageCaption>
 		</ImageContainer>

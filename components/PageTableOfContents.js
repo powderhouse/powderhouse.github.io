@@ -7,20 +7,20 @@ let PageTOC = styled.ol`
 	padding: 0;
 	margin: 0;
 	// TODO: Rationalize this
-	// padding-bottom: calc(2 * var(--body-line-height));
+	// padding-bottom: calc(2 * var(--base-line-height));
 	position: relative;
 	left: calc(var(--gap) - 7px);
 
 	& li:last-of-type {
 		padding-bottom: 0;
 	}
-	padding-bottom: calc(
-		var(--large-heading-line-height) - var(--body-line-height)
-	);
+
+	// TODO: Check whether this is correct— guessing during typer hierarchy shift
+	padding-bottom: calc(var(--xlarge-line-height) - var(--base-line-height));
 `;
 
 let PageTOCItem = styled.li`
-	padding-bottom: calc(var(--body-line-height) / 2);
+	padding-bottom: calc(var(--base-line-height) / 2);
 	position: relative;
 	left: -0.21em; // Determined optically after choosing an asterisk spacing
 `;
@@ -40,7 +40,7 @@ let PageTOCLink = styled.a`
 
 let TOCText = styled.div`
 	// TODO: Rationalize this
-	margin-left: calc(var(--body-line-height) / 4);
+	margin-left: calc(var(--base-line-height) / 4);
 `;
 
 function PageTableOfContents({ sections }) {

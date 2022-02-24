@@ -172,22 +172,18 @@ function TeamPage2({
 			left={jobs.isLeftHeader}
 			key="jobs"
 		>
-			<PageSectionContent $wide={true} $grid={true}>
+			<JobsContent $wide={true} $grid={true}>
 				<Div markdown style={{ backgroundColor: "lightblue" }}>
 					{jobs.PageSectionContent}
-
-					<ArrowButton
+					<JobsButton
 						text="Jobs"
 						link="/team/jobs"
 						buttonWidth="long"
 						buttonThickness="thick"
 						buttonTextLength="medText"
-						// style={{
-						// 	top: "calc(-15px * ((17 * 1.3) / 2))",
-						// }}
-					></ArrowButton>
+					/>
 				</Div>
-			</PageSectionContent>
+			</JobsContent>
 		</Region2>,
 		<Footer
 			backgroundColor="--off-white"
@@ -208,6 +204,23 @@ function TeamPage2({
 	);
 }
 
+let JobsContent = styled(PageSectionContent)`
+	grid-template-columns: inherit;
+	grid-template-areas: "footnoted-text footnotes" "jobs-button footnotes";
+	@media ${mediaQueries.uptoTablet} {
+		display: flex;
+		flex-direction: column;
+	}
+}
+`;
+
+let JobsButton = styled(ArrowButton)`
+	grid-area: jobs-button;
+	align-self: end;
+	@media ${mediaQueries.uptoTablet} {
+		align-self: start;
+	}
+`;
 let StaffAlumSectionContent = styled(PageSectionContent)`
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(2, 1fr);

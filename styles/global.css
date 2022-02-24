@@ -57,55 +57,67 @@
 
 :root {
 	/*via https://blog.envylabs.com/responsive-typographic-scales-in-css-b9f60431d1c4*/
-	--step-up-5: 2em;
-	--step-up-4: 1.7511em;
-	--step-up-3: 1.5157em;
-	--step-up-2: 1.3195em;
-	--step-up-1: 1.1487em;
+	--up-5: 2;
+	--up-4: 1.7511;
+	--up-3: 1.5157;
+	--up-2: 1.3195;
+	--up-1: 1.1487;
 	/* baseline: 1em */
-	--step-down-1: 0.8706em;
-	--step-down-2: 0.7579em;
-	--step-down-3: 0.6599em;
-	--step-down-4: 0.5745em;
-	--step-down-5: 0.5em;
+	--down-1: 0.8706;
+	--down-2: 0.7579;
+	--down-3: 0.6599;
+	--down-4: 0.5745;
+	--down-5: 0.5;
+
+	--step-up-5: calc(var(--up-5) * 1em);
+	--step-up-4: calc(var(--up-4) * 1em);
+	--step-up-3: calc(var(--up-3) * 1em);
+	--step-up-2: calc(var(--up-2) * 1em);
+	--step-up-1: calc(var(--up-1) * 1em);
+	/* baseline: 1em */
+	--step-down-1: calc(var(--down-1) * 1em);
+	--step-down-2: calc(var(--down-2) * 1em);
+	--step-down-3: calc(var(--down-3) * 1em);
+	--step-down-4: calc(var(--down-4) * 1em);
+	--step-down-5: calc(var(--down-5) * 1em);
 }
 
 :root {
 	/*This scale is meant for GT Planar*/
-	--xxxl-font-size: calc(var(--step-up-5) * var(--base-font-size));
-	--xxxl-line-height: 1.3;
-	--xxxl-letter-spacing: 0;
+	--xxxlarge-font-size: calc(var(--up-5) * var(--base-font-size));
+	--xxxlarge-line-height: 1.35em;
+	--xxxlarge-letter-spacing: 0;
 
-	--xxlarge-font-size: calc(var(--step-up-4) * var(--base-font-size));
-	--xxlarge-line-height: 41pt;
+	--xxlarge-font-size: calc(var(--up-4) * var(--base-font-size));
+	--xxlarge-line-height: 1.35em;
 	--xxlarge-letter-spacing: 0;
 
-	--xlarge-font-size: calc(var(--step-up-3) * var(--base-font-size));
-	--xlarge-line-height: 34pt;
+	--xlarge-font-size: calc(var(--up-3) * var(--base-font-size));
+	--xlarge-line-height: 1.35em;
 	--xlarge-heading-letter-spacing: 0;
 
-	--large-font-size: calc(var(--step-up-2) * var(--base-font-size));
-	--large-line-height: 28pt;
+	--large-font-size: calc(var(--up-2) * var(--base-font-size));
+	--large-line-height: 1.35em;
 	--large-heading-letter-spacing: 0;
 
-	--medium-font-size: calc(var(--step-up-1) * var(--base-font-size));
-	--medium-line-height: 25pt;
+	--medium-font-size: calc(var(--up-1) * var(--base-font-size));
+	--medium-line-height: 1.35em;
 	--medium-heading-letter-spacing: 0;
 
 	--base-font-size: 17pt;
-	--base-line-height: 1.3;
+	--base-line-height: 1.35em;
 	--base-letter-spacing: 0;
 
-	--small-font-size: calc(var(--step-down-1) * var(--base-font-size));
-	--small-line-height: 1.3;
+	--small-font-size: calc(var(--down-1) * var(--base-font-size));
+	--small-line-height: 1.35em;
 	--small-letter-spacing: 0;
 
-	--xsmall-font-size: calc(var(--step-down-2) * var(--base-font-size));
-	--xsmall-line-height: 1.3;
+	--xsmall-font-size: calc(var(--down-2) * var(--base-font-size));
+	--xsmall-line-height: 1.35em;
 	--xsmall-letter-spacing: 0;
 
-	--xxsmall-font-size: calc(var(--step-down-3) * var(--base-font-size));
-	--xxsmall-line-height: 1.3;
+	--xxsmall-font-size: calc(var(--down-3) * var(--base-font-size));
+	--xxsmall-line-height: 1.35em;
 	--xxsmall-letter-spacing: 0;
 }
 
@@ -123,13 +135,13 @@ html {
 	line-height: var(--base-line-height);
 	letter-spacing: var(--base-letter-spacing);
 	font-family: "GT Planar", sans-serif;
-	font-weight: normal;
+	font-weight: 300;
 	font-style: normal;
 	text-rendering: geometricPrecision;
 }
 body {
 	height: 100%;
-	/*TODO:  Consider using --body-line-height for this;*/
+	/*TODO:  Consider using --base-line-height for this;*/
 	--gap: 24px;
 }
 b {
@@ -157,7 +169,7 @@ dd {
 
 ul {
 	margin-top: 0;
-	padding-left: var(--body-line-height); /* TODO: Rationalize this */
+	padding-left: var(--base-line-height); /* TODO: Rationalize this */
 }
 
 ul > li {
@@ -174,13 +186,13 @@ dl {
 dt {
 	grid-column: 1 / 3;
 	padding-right: calc(
-		var(--body-line-height) / 4
+		var(--base-line-height) / 4
 	); /* TODO: Rationalize this */
 	text-align: right;
-	height: calc(100% - var(--body-line-height));
+	height: calc(100% - var(--base-line-height));
 	font-weight: 900;
 	border-right: dashed 1px;
-	padding-right: calc(var(--body-line-height)); /* TODO: Rationalize this */
+	padding-right: calc(var(--base-line-height)); /* TODO: Rationalize this */
 }
 
 dt:last-of-type {
@@ -188,7 +200,7 @@ dt:last-of-type {
 }
 dd {
 	grid-column: 3 / 7;
-	margin-bottom: var(--body-line-height);
+	margin-bottom: var(--base-line-height);
 	display: flex;
 }
 dd:last-child {
@@ -207,7 +219,7 @@ dd:last-child {
 		text-underline-offset: 3px;
 	}
 	dd {
-		padding-top: calc(var(--body-line-height) / 4);
+		padding-top: calc(var(--base-line-height) / 4);
 	}
 }
 
@@ -262,7 +274,7 @@ img {
 	margin-left: -50vw;
 	margin-right: -50vw;
 
-	padding: var(--body-line-height) 0px;
+	padding: var(--base-line-height) 0px;
 	overflow: hidden;
 	grid-column: 1 / -1;
 }
@@ -285,24 +297,29 @@ img {
 }
 
 .footnoted-text {
+	grid-area: footnoted-text;
 	grid-column: 1 / 7;
 }
 
-sup {
-	/* via https://stackoverflow.com/a/6594576 */
-	font-size: var(--footnote-font-size);
-	line-height: 0;
-}
-
 .footnotes {
+	/*display: none;*/
+	grid-area: footnotes;
 	grid-column: 7 / -1;
-	font-size: var(--footnote-font-size);
-	line-height: var(--footnote-line-height);
+	/*TODO: Check whether this is correct*/
+	font-size: var(--small-font-size);
+	line-height: var(--small-line-height);
 	text-decoration: italic;
 }
 
 .fn:not(:last-child) {
-	padding-bottom: calc(var(--body-line-height) / 2);
+	padding-bottom: calc(var(--base-line-height) / 2);
+}
+
+sup {
+	/* via https://stackoverflow.com/a/6594576 */
+	/*TODO: Check whether this is correct*/
+	font-size: var(--small-font-size);
+	line-height: 0;
 }
 
 @media (max-width: 1100px) {

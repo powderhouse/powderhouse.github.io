@@ -241,16 +241,16 @@ function WorkPage({
 }
 
 let SectionDesc = styled(Div)`
-	padding-bottom: var(--body-line-height);
-	font-size: var(--body-font-size);
-	line-height: var(--body-line-height);
+	padding-bottom: var(--base-line-height);
+	font-size: var(--base-font-size);
+	line-height: var(--base-line-height);
 	grid-column: 1 / -1;
 `;
 
 let PartnerSectionContent = styled.div`
 	display: grid;
 	column-gap: var(--gap);
-	row-gap: var(--body-line-height);
+	row-gap: var(--base-line-height);
 	grid-template-columns: repeat(5, 1fr);
 	transform: translateY(-1rem);
 
@@ -321,17 +321,17 @@ let ProjectFeatureImage = styled.img`
 let ProjectTitle = styled.h3`
 	grid-column: 1 / span 3;
 	font-weight: 300;
-	font-size: var(--small-heading-font-size);
-	line-height: var(--small-heading-line-height);
-	padding-top: calc(var(--body-line-height) / 2);
+	font-size: var(--large-font-size);
+	line-height: var(--large-line-height);
+	padding-top: calc(var(--base-line-height) / 2);
 	padding-bottom: calc(
-		var(--body-line-height) / 2 - 10px
+		var(--base-line-height) / 2 - 10px
 	); // Optically aligned to equalize height above and below
 	margin: 0;
 `;
 
 let ProjectSubtitle = styled(Div)`
-	line-height: var(--body-line-height);
+	line-height: var(--base-line-height);
 	padding: 0;
 	margin: 0;
 	font-weight: 300;
@@ -341,7 +341,7 @@ let PastLifeSectionContent = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	column-gap: var(--gap);
-	row-gap: var(--body-line-height);
+	row-gap: var(--base-line-height);
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(1, 1fr);
