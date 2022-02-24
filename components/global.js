@@ -11,6 +11,11 @@ import { asteriskSVG, mediaQueries } from "../site-data.js";
 import Region2 from "../components/Region2.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
 
+import ltx from "ltx";
+import svgPathBbox from "svg-path-bbox";
+import svgson from "svgson";
+import toPath from "element-to-path";
+
 let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 	// via https://www.joshwcomeau.com/css/pixel-perfection/
 	return (
@@ -76,9 +81,7 @@ let complementaryColor = function (colorString) {
 		"--red": "--off-white",
 	};
 
-	return colorString in complements
-		? complements[colorString]
-		: "initial";
+	return colorString in complements ? complements[colorString] : "initial";
 };
 
 let colorByProp = (props) => {
@@ -154,15 +157,15 @@ let PageSplashDiv = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	// TODO: Rationalize this, and consider for mobile
-	min-height: calc(24 * var(--body-line-height));
-	padding: calc(1 * var(--body-line-height)) 0;
+	min-height: calc(24 * var(--base-line-height));
+	padding: calc(1 * var(--base-line-height)) 0;
 
 	@media ${mediaQueries.uptoTablet} {
-		min-height: calc(20 * var(--body-line-height));
+		min-height: calc(20 * var(--base-line-height));
 	}
 
 	@media ${mediaQueries.uptoMobile} {
-		min-height: calc(16 * var(--body-line-height));
+		min-height: calc(16 * var(--base-line-height));
 	}
 `;
 
@@ -179,9 +182,9 @@ let PageHeading = styled.h1`
 	font-size: 166px;
 	letter-spacing: -4.8px;
 	font-weight: 300;
-	line-height: 1em;
+	// line-height: 1em;
 	// TODO: Rationalize this
-	transform: translate(-3px, calc(var(--body-line-height) / 2 - 1px));
+	transform: translate(-3px, calc(var(--base-line-height) / 2 - 1px));
 
 	@media ${mediaQueries.uptoTablet} {
 		// TODO: Integrate with type hierarchy
@@ -208,11 +211,11 @@ let PageIntroductionDiv = styled(Div)`
 	grid-column: 1 / span 9;
 	font-family: "GT Planar", sans-serif;
 	font-weight: 300;
-	font-size: var(--large-heading-font-size);
-	line-height: var(--large-heading-line-height);
+	font-size: var(--xlarge-font-size);
+	line-height: var(--xlarge-line-height);
 	// TODO: Add letter-spacing to type-hierarchy
 	letter-spacing: -0.5;
-	padding: calc(1 * var(--body-line-height)) 0;
+	padding: calc(1 * var(--base-line-height)) 0;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
@@ -242,7 +245,7 @@ let Header2 = styled.h2`
 	letter-spacing: inherit;
 	// TODO: rationalize this
 	margin-left: ${(props) =>
-		props.left ? "" : `calc(var(--body-line-height) / 4)`};
+		props.left ? "" : `calc(var(--base-line-height) / 4)`};
 
 	@media ${mediaQueries.uptoMobile} {
 		// TODO: Implement type hierarchy
@@ -252,8 +255,8 @@ let Header2 = styled.h2`
 let sectionHeaderContainerStyles = {
 	left: css`
 		grid-column: 1 / span 3;
-		font-size: var(--small-heading-font-size);
-		line-height: var(--small-heading-line-height);
+		font-size: var(--large-font-size);
+		line-height: var(--large-line-height);
 		letter-spacing: -0.5px;
 
 		position: relative;
@@ -279,7 +282,7 @@ let sectionHeaderContainerStyles = {
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	grid-row: 1 / -1;
-	line-height: var(--body-line-height);
+	line-height: var(--base-line-height);
 	position: relative;
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
@@ -307,7 +310,7 @@ let PageSectionContent = styled(Div)`
 	// Using transient props to avoid passing these down to the DOM: https://styled-components.com/docs/api#transient-props
 	letter-spacing: 0;
 	& p:not(:last-child) {
-		margin-bottom: var(--body-line-height);
+		margin-bottom: var(--base-line-height);
 	}
 	${(props) =>
 		props.$wide
@@ -389,6 +392,78 @@ let sizeToVerticalGridInRem = function (heightInPx) {
 	);
 };
 
+let zoomViewBox = function (svgString) {
+	let pathThatSvg = function (svgString) {
+		// Adapted from https://github.com/elrumordelaluz/path-that-svg/blob/master/index.js
+		const elemToPath = (node) => {
+			let o = Object.assign({}, node);
+
+			if (
+				/(rect|circle|ellipse|polygon|polyline|line|path)/.test(o.name)
+			) {
+				o.attributes = Object.assign({}, o.attributes, {
+					d: toPath(o),
+				});
+				for (const attr in o.attributes) {
+					// Remove geometry properties not used
+					if (
+						/^(x|y|x1|y1|x2|y2|points|width|height|cx|cy|rx|ry|r)$/.test(
+							attr
+						)
+					) {
+						delete o.attributes[attr];
+					}
+				}
+				o.name = "path";
+			} else if (o.children && Array.isArray(o.children)) {
+				o.children = o.children.map(elemToPath);
+			}
+
+			return o;
+		};
+
+		const parsed = svgson.parseSync(svgString);
+		const convertedPath = elemToPath(parsed);
+		return svgson.stringify(convertedPath);
+	};
+
+	let viewBox = [0, 0, 0, 0];
+	let mergeViewBoxes = function (vb1, vb2) {
+		let minimize = (a, b) => (a < b ? a : b);
+		let maximize = (a, b) => (a < b ? b : a);
+		return [
+			minimize(vb1[0], vb2[0]),
+			minimize(vb1[1], vb2[1]),
+			maximize(vb1[2], vb2[2]),
+			maximize(vb1[3], vb2[3]),
+		];
+	};
+
+	let updateViewBoxWith = function (element) {
+		if (element.attrs.hasOwnProperty("d")) {
+			// console.log(element, "has a path");
+			viewBox = mergeViewBoxes(viewBox, svgPathBbox(element.attrs.d));
+			// console.log("Now viewBox is", viewBox);
+		}
+		if (element.children.length > 0) {
+			element.children.forEach(updateViewBoxWith);
+		}
+	};
+
+	let pathedSvg = pathThatSvg(svgString);
+	let parsed = ltx.parse(pathedSvg);
+	// console.log("viewBox starts as", parsed.attrs.viewBox);
+	updateViewBoxWith(parsed);
+	// console.log("Finally, viewBox is", viewBox);
+	let newDims = {
+		viewBox: viewBox.join(" "),
+		width: viewBox[2] - viewBox[0],
+		height: viewBox[3] - viewBox[1],
+	};
+	Object.keys(newDims).forEach((d) => (parsed.attrs[d] = newDims[d]));
+	return ltx.stringify(parsed);
+};
+
 export {
 	Asterisk,
 	baseGrid,
@@ -410,4 +485,5 @@ export {
 	sizeToVerticalGridInRem,
 	slugify,
 	tenureSort,
+	zoomViewBox,
 };

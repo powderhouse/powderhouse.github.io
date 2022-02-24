@@ -21,6 +21,7 @@ import {
 } from "../components/global.js";
 
 import Scribble from "../components/Scribble.js";
+import Logo from "../components/Logo.js";
 import Region2 from "../components/Region2.js";
 
 function getScribbleNum(navText) {
@@ -42,14 +43,18 @@ function Header(props) {
           <Link href="/">
             <a>
               <>
-                {logotypeVertSVG(
-                  `${complementaryColor(props.backgroundColor)} navlogo-mobile`
-                )}
-                {logotypeHorizSVG(
-                  `${complementaryColor(
-                    props.backgroundColor
-                  )} navlogo-tabletAndUp`
-                )}
+                <Logo
+                  direction="vertical"
+                  logotype={true}
+                  stroke={complementaryColor(props.backgroundColor)}
+                  className="navlogo-mobile"
+                />
+                <Logo
+                  direction="horizontal"
+                  logotype={true}
+                  stroke={complementaryColor(props.backgroundColor)}
+                  className="navlogo-tabletAndUp"
+                />
               </>
             </a>
           </Link>
@@ -96,7 +101,7 @@ let Wrapper = styled.header`
   justify-content: space-between;
   align-items: flex-end;
   // TODO: Rationalize this
-  // height: calc(6 * var(--body-line-height));
+  // height: calc(6 * var(--base-line-height));
   padding: 35px 0;
   align-items: center;
   ${(props) => colorByProp(props)};
@@ -109,7 +114,7 @@ let Wrapper = styled.header`
   @media ${mediaQueries.uptoMobile} {
     flex-direction: column;
     height: fit-content;
-    padding-bottom: calc(var(--body-line-height) / 2);
+    padding-bottom: calc(var(--base-line-height) / 2);
   }
 `;
 
@@ -147,8 +152,9 @@ let LogoLockup = styled.div`
 `;
 
 let NavMenu = styled.nav`
-  grid-column: -5 / -1;
-  padding-top: calc(var(--body-line-height) / 2);
+  width: 33%;
+  position: relative;
+  padding-bottom: 0.25em;
 
   @media ${mediaQueries.uptoLaptop} {
     grid-column: -4 / -1;
@@ -173,6 +179,7 @@ let NavList = styled.ol`
 let NavListItem = styled.li`
   position: relative;
   list-style-type: none;
+  cursor: pointer;
 
   &:not(:last-child) {
     // TODO: Decide if this makes sense

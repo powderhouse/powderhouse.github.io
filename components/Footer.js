@@ -2,14 +2,10 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import Icon from "../components/Icon.js";
+import Logo from "../components/Logo.js";
 import Region2 from "../components/Region2.js";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
-import {
-  navMenuItems,
-  socials,
-  logotypeVertSVG,
-  mediaQueries,
-} from "../site-data.js";
+import { navMenuItems, socials, mediaQueries } from "../site-data.js";
 
 import {
   gap,
@@ -41,7 +37,9 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                 })}
               </NavList>
             </FooterNavigation>
-            ) : ""}
+          ) : (
+            ""
+          )}
           <FooterContact className={router.pathname != "/" ? "" : "home"}>
             <ContactNavList className={router.pathname != "/" ? "" : "home"}>
               <ContactNavItem className="irl">
@@ -80,9 +78,15 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   buttonTextLength="longText"
                   shoutOut="If you'd like to keep up with our work, sign up for our
                   mailing list."
+                  backgroundColor={backgroundColor}
                 />
               </FooterNewsletterSignup>
-              <LogoContainer>{logotypeVertSVG(accentColor)}</LogoContainer>
+              <Logo
+                direction="vertical"
+                logotype={true}
+                $color={`var(${accentColor})`} // TODO: Make color syntax consistent
+                style={{ gridColumn: "1 / -1" }}
+              />
             </>
           ) : (
             ""
@@ -113,7 +117,7 @@ let Wrapper = styled.footer`
   ${baseGrid};
   ${(props) => colorByProp(props)};
   position: relative;
-  padding-top: calc(4 * var(--body-line-height));
+  padding-top: calc(4 * var(--base-line-height));
 `;
 
 let LogoContainer = styled.div`
@@ -178,18 +182,18 @@ let NavItem = styled.li`
 let ContactNavList = styled(NavList)`
   &.home {
     grid-column: 1 / -1;
-    display:grid;
-    grid-template-areas:"irl www";
-    column-gap:var(--gap);
+    display: grid;
+    grid-template-areas: "irl www";
+    column-gap: var(--gap);
 
     @media ${mediaQueries.uptoMobile} {
       grid-template-areas:
-        "irl" 
+        "irl"
         "www";
     }
   }
   &.home .irl {
-    grid-area:irl;
+    grid-area: irl;
     justify-content: flex-end;
     text-align: end;
     @media ${mediaQueries.uptoMobile} {
@@ -199,7 +203,7 @@ let ContactNavList = styled(NavList)`
   }
 
   &.home .www {
-    grid-area:www;
+    grid-area: www;
     @media ${mediaQueries.uptoMobile} {
       align-items: center;
     }
@@ -213,14 +217,14 @@ let ContactNavItem = styled(NavItem)`
   }
   &:not(:last-child) {
     // TODO: Rationalize this
-    // padding-bottom: calc(var(--body-line-height) / 4);
+    // padding-bottom: calc(var(--base-line-height) / 4);
   }
 `;
 
 let NavLink = styled.a`
   color: inherit;
   text-decoration: none;
-  line-height: var(--body-line-height);
+  line-height: var(--base-line-height);
 `;
 
 let SocialList = styled(NavList)`
@@ -230,10 +234,10 @@ let SocialList = styled(NavList)`
   width: 50%; // TODO: Not on horizontal grid, but better looking?
 
   @media ${mediaQueries.uptoMobile} {
-    justify-content:center;
+    justify-content: center;
 
     & li {
-      padding:10px;
+      padding: 10px;
     }
   }
 `;
@@ -251,9 +255,9 @@ let FooterContact = styled.div`
   /*Styling for homepage footer, without newsletter signup*/
   &.home {
     grid-column: 4 / 10;
-    display:grid;
-    grid-template-columns:repeat(6, 1fr);
-    column-gap:var(--gap);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: var(--gap);
 
     @media ${mediaQueries.uptoTablet} {
       grid-column: 1 / -1;
@@ -276,6 +280,11 @@ let FooterNewsletterSignup = styled.div`
     /*grid-row: 1;*/
     /*grid-template-columns: 3;*/
   }
+`;
+
+let NewsLetterShoutOut = styled.p`
+  // TODO: Rationalize this
+  padding-bottom: calc(var(--base-line-height) / 4);
 `;
 
 export default Footer;

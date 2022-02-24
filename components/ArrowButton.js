@@ -1,5 +1,8 @@
+// import React from "react";
 import styled from "styled-components";
-import { buttonSVGs } from "../site-data.js";
+import SVG from "react-inlinesvg";
+import svgPathBBox from "svg-path-bbox";
+import { zoomViewBox } from "../components/global.js";
 
 function ArrowButton({
   text,
@@ -13,21 +16,39 @@ function ArrowButton({
   return (
     <Button {...rest}>
       <ButtonLink href={link}>
-        {buttonSVGs[buttonWidth][buttonThickness][buttonTextLength](color)}
-        <ButtonText color={color}>{text}</ButtonText>
+        <ArrowContainer>
+          <SVG
+            src={`../buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
+            stroke={color}
+            strokeWidth={1}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            // preProcessor={zoomViewBox}
+            {...rest}
+          />
+          <ButtonText color={color}>{text}</ButtonText>
+        </ArrowContainer>
       </ButtonLink>
     </Button>
   );
 }
 
+let ArrowContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left; // TODO: Figure out why we need this
+  // TODO: Fix hack designed around the jobs page
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & svg path {
+    vector-effect: non-scaling-stroke;
+  }
+`;
+
 let Button = styled.div`
   position: relative;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  grid-column: 1 / ${(props) => (props.colWidth ? props.colWidth : 4)};
 `;
 
 let ButtonLink = styled.a`
@@ -37,13 +58,9 @@ let ButtonLink = styled.a`
 
 let ButtonText = styled.div`
   position: absolute;
-  // TODO: CHeck whether we really need the px
-  // bottom: calc(3px + 1.3rem);
-  // left: calc(3px + 1.3rem);
-  bottom: calc(var(--body-line-height));
-  left: calc(var(--body-line-height));
-  color: ${(props) =>
-    props.color ? "var(--" + props.color + ")" : "off-black"};
+  // font-size: var(--step-down-2);f
+  color: ${(props) => props.color};
+  padding-left: 0.75em;
 `;
 
 export default ArrowButton;
