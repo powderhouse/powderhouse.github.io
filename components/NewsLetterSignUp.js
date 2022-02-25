@@ -13,6 +13,7 @@ function NewsLetterSignUp({
     buttonThickness,
     buttonTextLength,
     isHomePage,
+    $color,
     shoutOut,
 }) {
     // console.log(isHomePage);
@@ -49,7 +50,10 @@ function NewsLetterSignUp({
         setMessage("🎉 You are now subscribed to our newsletter.");
     };
 
-    let buttonColor = expandColor(complementaryColor(backgroundColor));
+    let buttonColor = expandColor(
+        $color ? $color : complementaryColor(backgroundColor)
+    );
+    console.log("Now color is", $color);
 
     return (
         <>
@@ -77,6 +81,8 @@ function NewsLetterSignUp({
                         color={buttonColor == "initial" ? "" : buttonColor} // TODO: Fix this hack; initial doesn't work for SVG color
                         text={text}
                         className="arrowButton"
+                        width="100%"
+                        preserveAspectRatio="none"
                     />
                     <ArrowButton
                         buttonWidth="naked"
@@ -146,6 +152,8 @@ let EmailInput = styled.input.attrs((props) => ({
     // TODO: Rationalize this
     padding: calc(var(--base-line-height) / 2);
     // height: calc(3 * var(--base-line-height));
+    // width: calc(3 * 94px + 2 * var(--gap));
+    // min-width: 14em;
 
     &::placeholder {
         opacity: 0.6;
