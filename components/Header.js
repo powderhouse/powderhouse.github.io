@@ -155,6 +155,12 @@ let NavMenu = styled.nav`
     grid-column: -4 / -1;
   }
 
+  @media ${mediaQueries.uptoTablet} {
+    // To line up nav and logotype optically
+    font-size: var(--step-down-1);
+    top: 2px;
+  }
+
   @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
     grid-column: 1 / -1;

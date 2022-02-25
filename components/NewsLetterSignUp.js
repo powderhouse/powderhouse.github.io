@@ -92,6 +92,7 @@ function NewsLetterSignUp({
                         className="tablet"
                         width="100%"
                         height="100%"
+                        preserveAspectRatio="none"
                     />
                 </NewsLetterFormButton>
             </NewsLetterForm>

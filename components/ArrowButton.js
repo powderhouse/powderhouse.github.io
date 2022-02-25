@@ -49,6 +49,8 @@ let ArrowContainer = styled.div`
 
 let Button = styled.div`
   position: relative;
+  width: 100%;
+  height: 100%;
 `;
 
 let ButtonLink = styled.a`
