@@ -53,7 +53,6 @@ function NewsLetterSignUp({
     let buttonColor = expandColor(
         $color ? $color : complementaryColor(backgroundColor)
     );
-    console.log("Now color is", $color);
 
     return (
         <>
@@ -103,8 +102,11 @@ function NewsLetterSignUp({
 let ShoutOut = styled.p`
     grid-column: 1 / -1;
     line-height: var(--base-line-height);
-    // padding-bottom: calc(var(--base-line-height) / 2);
-    height: calc(var(--base-line-height) * 2);
+    padding-bottom: calc(var(--base-line-height) / 2);
+    min-height: calc(var(--base-line-height) * 3);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
     // I don't think anything below here was being applied, and not sure why? (removed $ before vars so comments would work)
     // TK should the not-home-page (aka footer) version be a full line-height lower?

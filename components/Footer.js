@@ -50,7 +50,9 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               </ContactNavItem>
               <ContactNavItem className="www1">
                 <NavLink href="mailto:us@powderhouse.org">
-                  us@powder<wbr/>house.org
+                  us@powder
+                  <wbr />
+                  house.org
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem className="www2">
@@ -181,9 +183,9 @@ let NavItem = styled.li`
 `;
 
 let ContactNavList = styled(NavList)`
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &.home {
     grid-column: 1 / -1;
@@ -203,11 +205,11 @@ let ContactNavList = styled(NavList)`
   &.home .irl {
     grid-area: irl;
     justify-content: flex-end;
-    text-align:right;
+    text-align: right;
     @media ${mediaQueries.uptoMobile} {
       justify-content: center;
       text-align: center;
-      padding-bottom: calc(var(--base-line-height) / 2)
+      padding-bottom: calc(var(--base-line-height) / 2);
     }
   }
 
@@ -217,17 +219,17 @@ let ContactNavList = styled(NavList)`
 
     @media ${mediaQueries.uptoMobile} {
       justify-content: center;
-      padding-bottom: calc(var(--base-line-height) / 4)
+      padding-bottom: calc(var(--base-line-height) / 4);
     }
   }
 
   &.home .www2 {
     grid-area: www2;
-    width:50%;
+    width: 50%;
 
     @media ${mediaQueries.uptoMobile} {
       justify-content: center;
-      margin:auto;
+      margin: auto;
     }
   }
 `;
@@ -256,17 +258,17 @@ let SocialList = styled(NavList)`
   width: 75%; // TODO: Not on horizontal grid, but better looking?
 
   & li:not(:last-child) {
-    padding-right:6px;
+    padding-right: 6px;
   }
   & li:not(:first-child) {
-    padding-left:6px;
+    padding-left: 6px;
   }
 `;
 
 let FooterContact = styled.div`
   grid-column: 3 / 6;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
@@ -292,6 +294,10 @@ let FooterNewsletterSignup = styled.div`
   grid-column: 6 / 12;
   /*display: grid;*/
   /*grid-template-columns: 6;*/
+  display: flex;
+  row-gap: 0;
+  flex-direction: column;
+  justify-content: flex-end;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 4 / -1;
