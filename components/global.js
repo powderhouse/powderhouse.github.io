@@ -216,7 +216,7 @@ let PageIntroductionDiv = styled(Div)`
 	line-height: var(--xlarge-line-height);
 	// TODO: Add letter-spacing to type-hierarchy
 	letter-spacing: -0.5;
-	padding: var(--base-line-height) 0 calc(var(--base-line-height) / 2) 0;
+	padding: calc(var(--base-line-height)) 0 calc(var(--base-line-height) / 2) 0;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;

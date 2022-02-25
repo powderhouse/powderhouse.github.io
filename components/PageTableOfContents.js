@@ -16,7 +16,7 @@ let PageTOC = styled.ol`
 	}
 
 	// TODO: Check whether this is correct— guessing during typer hierarchy shift
-	padding-bottom: calc(var(--base-line-height) + 10px);
+	// padding-bottom: calc(var(--base-line-height) + 10px);
 `;
 
 let PageTOCItem = styled.li`

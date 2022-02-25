@@ -102,7 +102,7 @@ let Wrapper = styled.header`
   align-items: flex-end;
   // TODO: Rationalize this
   // height: calc(6 * var(--base-line-height));
-  padding: 35px 0;
+  padding: var(--base-line-height) 0;
   align-items: center;
   ${(props) => colorByProp(props)};
   ${(props) => `
@@ -169,6 +169,10 @@ let NavList = styled.ol`
   padding: 0;
   margin: 0;
   transform: translateY(3px);
+
+  @media ${mediaQueries.uptoMobile} {
+    padding-top: calc(var(--base-line-height) / 2);
+  }
 `;
 
 let NavListItem = styled.li`
