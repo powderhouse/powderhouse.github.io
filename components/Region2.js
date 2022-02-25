@@ -12,6 +12,13 @@ let StyledDiv = styled.div`
 	column-gap: var(--gap);
 	@media ${mediaQueries.uptoTablet} {
 		grid-template-columns: repeat(6, 1fr);
+		${(props) =>
+			props.$content
+				? css`
+						margin-left: 0;
+						max-width: 35em;
+				  `
+				: ""}
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(3, 1fr);

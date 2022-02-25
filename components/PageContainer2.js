@@ -111,7 +111,11 @@ function PageContainer2(props) {
 				pad={pad}
 				style={customRegionContainerStyle}
 			>
-				{rr}
+				{rr.map((r) =>
+					isContentRegion(r)
+						? React.cloneElement(r, { $content: true })
+						: r
+				)}
 			</RegionContainer2>
 		);
 	});
