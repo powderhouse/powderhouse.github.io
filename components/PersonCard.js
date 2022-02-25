@@ -12,7 +12,7 @@ let StyledDiv = styled.div`
 	grid-column: span 3;
 	font-size: var(--base-font-height);
 
-	@media ${mediaQueries.uptoMobile} {
+	@media ${mediaQueries.uptoTablet} {
 		grid-column: span 1;
 	}
 `;

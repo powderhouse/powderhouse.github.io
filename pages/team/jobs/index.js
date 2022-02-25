@@ -67,7 +67,7 @@ function JobsPage({ jobPage, jobCards }) {
 								buttonWidth="long"
 								buttonThickness="thick"
 								buttonTextLength="medText"
-								width="262.5%" // TODO: Fix this hack
+								// width="262.5%" // TODO: Fix this hack
 							></ArrowButton>
 						) : (
 							""

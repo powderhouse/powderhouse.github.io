@@ -19,6 +19,7 @@ let ImageCaption = styled.figcaption`
 	line-height: var(--small-line-height);
 	font-style: italic;
 	margin: auto;
+	text-align:center;
 `;
 
 function PageImage(props) {

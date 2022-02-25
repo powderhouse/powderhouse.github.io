@@ -95,14 +95,17 @@ function NewsLetterSignUp({
 
 let ShoutOut = styled.p`
     grid-column: 1 / -1;
-    line-height: var(--body-line-height);
+    line-height: var(--base-line-height);
+    padding-bottom: calc(var(--base-line-height) / 2);
+
+    // I don't think anything below here was being applied, and not sure why? (removed $ before vars so comments would work)
     // TK should the not-home-page (aka footer) version be a full line-height lower?
-    padding: ${(props) =>
-        props.isHomePage
-            ? "var(--body-line-height) 0"
-            : "0 0 calc(var(--body-line-height) / 2) 0"};
-    height: ${(props) =>
-        props.isHomePage ? "calc(4 * var(--body-line-height))" : ""};
+    // padding: {(props) =>
+    //     props.isHomePage
+    //         ? "var(--body-line-height) 0"
+    //         : "0 0 calc(var(--body-line-height) / 2) 0"};
+    // height: {(props) =>
+    //     props.isHomePage ? "calc(4 * var(--body-line-height))" : ""};
 `;
 
 let NewsLetterForm = styled.form`

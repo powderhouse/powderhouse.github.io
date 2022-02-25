@@ -16,13 +16,15 @@ let PageTOC = styled.ol`
 	}
 
 	// TODO: Check whether this is correct— guessing during typer hierarchy shift
-	padding-bottom: calc(var(--xlarge-line-height) - var(--base-line-height));
+	padding-bottom: calc(var(--base-line-height) + 10px);
 `;
 
 let PageTOCItem = styled.li`
-	padding-bottom: calc(var(--base-line-height) / 2);
 	position: relative;
 	left: -0.21em; // Determined optically after choosing an asterisk spacing
+	&:not(:last-child) {
+		padding-bottom: calc(var(--base-line-height) / 2);
+	}
 `;
 
 let PageTOCLink = styled.a`
@@ -33,9 +35,12 @@ let PageTOCLink = styled.a`
 	text-decoration: none;
 	position: relative;
 
-	&:hover {
-		transform: translateX(var(--gap));
+	@media (hover:hover) {
+		&:hover {
+			transform: translateX(var(--gap));
+		}
 	}
+	
 `;
 
 let TOCText = styled.div`

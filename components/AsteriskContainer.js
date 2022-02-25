@@ -26,7 +26,7 @@ let asteriskContainerStyles = {
 	`,
 	LeftHeader: css`
 		position: absolute;
-		top: -0.2em;
+		top: -0.3em;
 		left: -0.725em;
 		transform: scale(1.125) var(--random-rotate);
 	`,

@@ -31,14 +31,21 @@ let SplashDiv = styled(Div)`
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 1 / -1;
-    // TODO: Implement type hierarchy
-    font-size: 36px;
-    line-height: calc(2 * 1.3rem);
-    padding: calc(2 * 1.3rem) 0;
+    padding: calc(141px - 3 * var(--gap)) 0;
+
+    p {
+      font-size: var(--xxlarge-font-size);
+      line-height: var(--xxlarge-line-height);
+      font-weight: 100;
+    }
   }
 
   @media ${mediaQueries.uptoMobile} {
-    // TODO: Implement type hierarchy
+
+    p {
+      font-size: var(--xlarge-font-size);
+      line-height: var(--xlarge-line-height);
+    }
   }
 `;
 
@@ -66,16 +73,19 @@ let SplashNewsletterSignupDiv = styled.div`
   grid-template-rows: min-content;
   column-gap: var(--gap);
   row-gap: 1.3rem;
-  padding: 0 0 calc(6 * var(--base-line-height));
+  padding-bottom: calc(6 * var(--base-line-height));
   place-items: center;
   text-align: center;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 1 / -1;
     grid-template-columns: repeat(6, 1fr);
+    padding-bottom: calc(0 * var(--base-line-height));
   }
   @media ${mediaQueries.uptoMobile} {
     grid-template-columns: repeat(3, 1fr);
+    padding-top: calc(2 * var(--base-line-height));
+    padding-bottom: 0;
   }
 `;
 

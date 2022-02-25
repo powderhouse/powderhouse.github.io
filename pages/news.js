@@ -95,9 +95,22 @@ function NewsPage({ newsPage, newsCards }) {
 
 let NewsItemContainer = styled.div`
 	grid-column: 1 / -1;
-	padding: 1.3rem 0;
+	padding: var(--base-line-height) 0;
 	${baseGrid};
-	grid-row-gap: calc(1.3rem / 4);
+	grid-row-gap: calc(var(--base-line-height) / 4);
+
+	@media ${mediaQueries.uptoTablet} {
+		padding: calc(var(--base-line-height) / 2) 0;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: 
+			"newsdate newstype"
+			"newstitle newstitle"
+			"newscontent newscontent" 
+	}
+
+	@media ${mediaQueries.uptoMobile} {
+		grid-template-columns: repeat(3, 1fr);
+	}
 `;
 
 function NewsItem({ date, type, title, excerpt, links }) {
@@ -131,6 +144,7 @@ let NewsDateDiv = styled.h3`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
+		grid-area:newsdate;
 		grid-row: 1;
 		opacity: 0.625;
 	}
@@ -152,11 +166,12 @@ let NewsType = styled.p`
 	grid-column: 1 / 4;
 	grid-row: 2;
 	font-weight: 300;
-	opacity: 0.75;
+	opacity: 0.625;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-row: 2;
+		grid-area:newstype;
+		grid-row: 1;
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-row: 1;
@@ -174,7 +189,8 @@ let NewsTitle = styled.h2`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-row: 3;
+		grid-area:newstitle;
+		grid-row: 2;
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / -1;
@@ -190,7 +206,8 @@ let NewsContent = styled.div`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-row: 4;
+		grid-area:newscontent;
+		grid-row: 3;
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / -1;
@@ -200,7 +217,7 @@ let NewsContent = styled.div`
 
 let NewsExcerpt = styled(Markdown)`
 	font-weight: 300;
-	opacity: 0.75;
+	opacity: 0.625;
 `;
 
 let NewsRelatedLinks = styled.ul`

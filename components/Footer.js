@@ -45,14 +45,15 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               <ContactNavItem className="irl">
                 <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
                   339R Summer Street <br />
-                  Somerville, MA 02144 <br />
-                  <br />
+                  Somerville, MA 02144
                 </NavLink>
               </ContactNavItem>
-              <ContactNavItem className="www">
+              <ContactNavItem className="www1">
                 <NavLink href="mailto:us@powderhouse.org">
-                  us@powderhouse.org
+                  us@powder<wbr/>house.org
                 </NavLink>
+              </ContactNavItem>
+              <ContactNavItem className="www2">
                 <SocialList>
                   {socials.map((n) => {
                     return (
@@ -117,7 +118,7 @@ let Wrapper = styled.footer`
   ${baseGrid};
   ${(props) => colorByProp(props)};
   position: relative;
-  padding-top: calc(4 * var(--base-line-height));
+  padding-top: calc(2 * var(--base-line-height));
 `;
 
 let LogoContainer = styled.div`
@@ -180,32 +181,53 @@ let NavItem = styled.li`
 `;
 
 let ContactNavList = styled(NavList)`
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
   &.home {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-areas: "irl www";
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "irl www1" "irl www2";
     column-gap: var(--gap);
 
     @media ${mediaQueries.uptoMobile} {
+      grid-template-columns: 1fr;
       grid-template-areas:
         "irl"
-        "www";
+        "www1"
+        "www2";
     }
   }
   &.home .irl {
     grid-area: irl;
     justify-content: flex-end;
-    text-align: end;
+    text-align:right;
     @media ${mediaQueries.uptoMobile} {
       justify-content: center;
       text-align: center;
+      padding-bottom: calc(var(--base-line-height) / 2)
     }
   }
 
-  &.home .www {
-    grid-area: www;
+  &.home .www1 {
+    grid-area: www1;
+    hyphens: manual;
+
     @media ${mediaQueries.uptoMobile} {
-      align-items: center;
+      justify-content: center;
+      padding-bottom: calc(var(--base-line-height) / 4)
+    }
+  }
+
+  &.home .www2 {
+    grid-area: www2;
+    width:50%;
+
+    @media ${mediaQueries.uptoMobile} {
+      justify-content: center;
+      margin:auto;
     }
   }
 `;
@@ -231,19 +253,20 @@ let SocialList = styled(NavList)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%; // TODO: Not on horizontal grid, but better looking?
+  width: 75%; // TODO: Not on horizontal grid, but better looking?
 
-  @media ${mediaQueries.uptoMobile} {
-    justify-content: center;
-
-    & li {
-      padding: 10px;
-    }
+  & li:not(:last-child) {
+    padding-right:6px;
+  }
+  & li:not(:first-child) {
+    padding-left:6px;
   }
 `;
 
 let FooterContact = styled.div`
   grid-column: 3 / 6;
+  display: flex;
+  justify-content:space-between;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / 4;
@@ -280,11 +303,6 @@ let FooterNewsletterSignup = styled.div`
     /*grid-row: 1;*/
     /*grid-template-columns: 3;*/
   }
-`;
-
-let NewsLetterShoutOut = styled.p`
-  // TODO: Rationalize this
-  padding-bottom: calc(var(--base-line-height) / 4);
 `;
 
 export default Footer;

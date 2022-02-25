@@ -222,7 +222,7 @@ let JobsButton = styled(ArrowButton)`
 `;
 
 let StaffAlumSectionContent = styled(PageSectionContent)`
-	@media ${mediaQueries.uptoMobile} {
+	@media ${mediaQueries.uptoTablet} {
 		grid-template-columns: repeat(2, 1fr);
 	}
 `;
