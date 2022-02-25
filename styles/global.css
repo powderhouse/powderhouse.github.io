@@ -85,7 +85,7 @@
 :root {
 	/*This scale is meant for GT Planar*/
 	--splash-font-size: 166px;
-	--splash-line-height: 1.35em;
+	--splash-line-height: 0.9em;
 	--splash-letter-spacing: -4.8px;
 
 	--xxxlarge-font-size: calc(var(--up-5) * var(--base-font-size));
@@ -163,11 +163,14 @@ img {
 
 ul {
 	margin-top: 0;
-	padding-left: var(--base-line-height); /* TODO: Rationalize this */
 }
 
-ul > li {
-	margin-bottom: 0;
+ul > li:not(:last-child) {
+	margin-bottom: calc(var(--base-line-height) / 4);
+}
+
+ul ul {
+	margin-top: calc(var(--base-line-height) / 4);
 }
 
 dl,
@@ -196,7 +199,7 @@ dt {
 	height: calc(100% - var(--base-line-height));
 	font-weight: 900;
 	border-right: dashed 1px;
-	padding-right: calc(var(--base-line-height) - 10px); /* TODO: Rationalize this */
+	padding-right: calc(var(--base-line-height) - 8px); /* TODO: Rationalize this */
 	hyphens: auto;
 }
 

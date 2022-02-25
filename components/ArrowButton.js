@@ -18,7 +18,7 @@ function ArrowButton({
       <ButtonLink href={link}>
         <ArrowContainer>
           <SVG
-            src={`../buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
+            src={`/buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
             stroke={color}
             strokeWidth={1}
             strokeLinecap="round"

@@ -122,14 +122,10 @@ let LogoLockup = styled.div`
   grid-column: 1 / span 3;
   width: 320px;
   line-height: 0; // To shrink the div to the height of the logo
-  // transform: translateY(-5px);
 
   & .navlogo-mobile {
     /*By default, hide the mobile logo*/
-    // TODO: If we're hiding, do we need any of this?
     display: none;
-    // transform: translateY(15px);
-    // flex-wrap: wrap;
   }
 
   @media ${mediaQueries.uptoTablet} {

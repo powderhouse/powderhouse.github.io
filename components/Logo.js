@@ -5,7 +5,7 @@ import { mediaQueries } from "../site-data";
 let LogoContainer = styled.div``;
 
 function Logo({ $color, logotype, direction, style, ...rest }) {
-  let logoRoot = "../logo";
+  let logoRoot = "/logo";
   let path = `${logoRoot}/${logotype ? `logotype-${direction}` : `logo`}.svg`;
   return (
     <LogoContainer style={style}>

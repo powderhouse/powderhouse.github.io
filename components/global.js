@@ -180,11 +180,12 @@ function PageSplash({ children, ...rest }) {
 let PageHeading = styled.h1`
 	font-family: "GT Planar", sans-serif;
 	font-size: var(--splash-font-size);
+	line-height: var(--splash-line-height);
 	letter-spacing: var(--splash-letter-spacing);
 	font-weight: 300;
 	// line-height: 1em;
 	// TODO: Rationalize this
-	transform: translate(-3px, calc(var(--base-line-height) / 2 - 1px));
+	transform: translateY(calc(var(--base-line-height) / 25));
 
 	@media ${mediaQueries.uptoTablet} {
 		// TODO: Integrate with type hierarchy
@@ -219,11 +220,13 @@ let PageIntroductionDiv = styled(Div)`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		// TODO: Implement type hierarchy
+		font-size: var(--large-font-size);
+		line-height: var(--large-line-height);
 	}
 
 	@media ${mediaQueries.uptoMobile} {
-		// TODO: Implement type hierarchy
+		font-size: var(--medium-font-size);
+		line-height: var(--medium-line-height);
 	}
 `;
 
@@ -238,7 +241,7 @@ function PageIntroduction({ children, markdown, ...rest }) {
 }
 
 let Header2 = styled.h2`
-	font-weight: normal;
+	font-weight: 500;
 	font-family: "GT Planar", sans-serif;
 	font-size: inherit;
 	line-height: inherit;
@@ -284,6 +287,7 @@ let SectionHeaderContainer = styled.div`
 	grid-row: 1 / -1;
 	line-height: var(--base-line-height);
 	position: relative;
+	transform: ${(props) => props.left ? "translateY(-4px)" : ""};
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
 	@media ${mediaQueries.uptoTablet} {

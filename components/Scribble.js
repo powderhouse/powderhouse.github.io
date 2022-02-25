@@ -36,7 +36,7 @@ function Scribble({ number, active, ...rest }) {
   return (
     <ScribbleContainer active={active}>
       <SVG
-        src={`../scribbles/scribble${number}.svg`}
+        src={`/scribbles/scribble${number}.svg`}
         strokeLinecap="round"
         strokeLinejoin="round"
         {...rest}
