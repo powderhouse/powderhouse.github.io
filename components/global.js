@@ -287,7 +287,7 @@ let SectionHeaderContainer = styled.div`
 	grid-row: 1 / -1;
 	line-height: var(--base-line-height);
 	position: relative;
-	transform: ${(props) => props.left ? "translateY(-4px)" : ""};
+	transform: ${(props) => (props.left ? "translateY(-4px)" : "")};
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
 	@media ${mediaQueries.uptoTablet} {

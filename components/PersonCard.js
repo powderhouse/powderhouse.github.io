@@ -48,7 +48,10 @@ let Links = styled.ul`
 
 let PersonLi = styled.li`
 	padding-right: calc(var(--gap) / 2);
-	opacity: 0.75;
+	& .svg-inline--fa {
+		vertical-align: -0.22em;
+	}
+	margin-bottom: 0 !important;
 `;
 
 let PersonBio = styled(Div)``;
@@ -56,11 +59,9 @@ let PersonBio = styled(Div)``;
 let IconListItem = ({ className, href, icon }) => {
 	return (
 		<PersonLi className={className}>
-			<ShiftBy x={0} y={0}>
-				<a href={href}>
-					<Icon icon={icon} />
-				</a>
-			</ShiftBy>
+			<a href={href}>
+				<Icon icon={icon} />
+			</a>
 		</PersonLi>
 	);
 };
@@ -125,7 +126,9 @@ function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
 
 			{["Staff", "Alumni"].includes(type) ? (
 				<Years>
-					{tenure.end ? `${tenure.start}–${tenure.end}` : `since ${tenure.start}`}
+					{tenure.end
+						? `${tenure.start}–${tenure.end}`
+						: `since ${tenure.start}`}
 				</Years>
 			) : (
 				""

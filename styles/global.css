@@ -134,6 +134,7 @@
 	--blue: rgb(128, 210, 236); /* #80D2EC */
 	--red: rgb(226, 87, 87); /* #E25757 */
 }
+
 html {
 	font-size: var(--base-font-size);
 	line-height: var(--base-line-height);
@@ -199,7 +200,9 @@ dt {
 	height: calc(100% - var(--base-line-height));
 	font-weight: 900;
 	border-right: dashed 1px;
-	padding-right: calc(var(--base-line-height) - 8px); /* TODO: Rationalize this */
+	padding-right: calc(
+		var(--base-line-height) - 8px
+	); /* TODO: Rationalize this */
 	hyphens: auto;
 }
 
