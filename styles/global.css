@@ -275,6 +275,12 @@ img {
 	width: 100%;
 }
 
+p + ul {
+	position: relative;
+	top: calc(-3 / 4 * var(--base-line-height));
+	/*background: lightblue;*/
+}
+
 .full-bleed {
 	/*Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts*/
 	width: 100vw;

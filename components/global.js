@@ -269,6 +269,9 @@ let sectionHeaderContainerStyles = {
 		@media ${mediaQueries.uptoTablet} {
 			grid-column: 1 / -1;
 		}
+		@media ${mediaQueries.uptoMobile} {
+			top: 0;
+		}
 	`,
 	center: css`
 		grid-column: 4 / 10;
@@ -292,6 +295,11 @@ let SectionHeaderContainer = styled.div`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
+	}
+	@media ${mediaQueries.uptoMobile} {
+		transform: translateY(
+			0
+		); // TODO: Check whether this transform and the "top" positioning of the SectionHeaderContaineer can be combined
 	}
 `;
 

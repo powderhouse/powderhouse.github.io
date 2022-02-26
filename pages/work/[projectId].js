@@ -64,16 +64,16 @@ function ProjectDetailPage({ projectData }) {
             <ProjectRelatedResources>
               <ProjectSubtitle>Related Materials</ProjectSubtitle>
               <ProjectInfoList>
-              {projectData.ProjectInfoList.map((n, i) => (
-                <ProjectLi key={i}>
-                  <a href={n.Link}>
-                    <Asterisk $type="Default" />
-                    <Div markdown>{n.LinkText}</Div>
-                  </a>
-                </ProjectLi>
-              ))}
-            </ProjectInfoList>
-          </ProjectRelatedResources>
+                {projectData.ProjectInfoList.map((n, i) => (
+                  <ProjectLi key={i}>
+                    <a href={n.Link}>
+                      <Asterisk $type="Default" />
+                      <Div markdown>{n.LinkText}</Div>
+                    </a>
+                  </ProjectLi>
+                ))}
+              </ProjectInfoList>
+            </ProjectRelatedResources>
           ) : (
             ""
           )}
@@ -252,7 +252,6 @@ let ProjectInfoList = styled.ul`
 let ProjectLi = styled.li`
   // TODO: rationalize this
   padding-left: calc(var(--base-line-height) * 3 / 4);
-  padding-bottom: calc(var(--base-line-height) / 4);
   position: relative;
 `;
 
@@ -268,7 +267,7 @@ let FeatureImageContainer = styled.div`
   }
 
   & figure {
-    padding:0;
+    padding: 0;
   }
 `;
 

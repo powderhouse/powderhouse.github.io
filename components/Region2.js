@@ -37,6 +37,10 @@ let StyledDiv = styled.div`
 				&:last-of-type {
 					padding-bottom: 0;
 				}
+				@media ${mediaQueries.uptoMobile} {
+					// TODO: This feels messy/inconsistent/complex; any way to simplify row-gap behavior?
+					grid-row-gap: calc(var(--base-line-height) / 2);
+				}
 			`;
 		}
 	}};

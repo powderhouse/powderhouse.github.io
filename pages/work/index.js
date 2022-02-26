@@ -114,7 +114,9 @@ function WorkPage({
 				<ProjectCard key={index}>
 					<ProjectLink href={`/work/${id}`}>
 						<ProjectTenure>
-							{yearstart==yearend ? yearstart : `${yearstart}-${yearend}`}
+							{yearstart == yearend
+								? yearstart
+								: `${yearstart}-${yearend}`}
 						</ProjectTenure>
 						<ProjectImageDiv>
 							<ProjectFeatureImage
@@ -323,6 +325,12 @@ let ProjectFeatureImage = styled.img`
 	object-fit: cover;
 	border: 1px rgb(42, 46, 47, 0.6125) solid;
 	// border color is --off-black with alpha channel
+	opacity: 90%;
+
+	&:hover {
+		opacity: 1;
+		transition: 0.25s;
+	}
 `;
 
 let ProjectTitle = styled.h3`
@@ -330,11 +338,9 @@ let ProjectTitle = styled.h3`
 	font-weight: 300;
 	font-size: var(--large-font-size);
 	line-height: var(--large-line-height);
-	padding-top: calc(var(--base-line-height) / 4 - 5px);
-	padding-bottom: calc(
-		var(--base-line-height) / 4 - 10px
+	padding-top: calc(
+		2 * (var(--base-line-height) / 4 - 4px)
 	); // Optically aligned to equalize height above and below
-	margin: 0;
 `;
 
 let ProjectSubtitle = styled(Div)`
