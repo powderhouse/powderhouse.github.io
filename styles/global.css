@@ -275,10 +275,10 @@ img {
 	width: 100%;
 }
 
-p + ul {
+p + ul,
+p + ol {
 	position: relative;
 	top: calc(-3 / 4 * var(--base-line-height));
-	/*background: lightblue;*/
 }
 
 .full-bleed {
