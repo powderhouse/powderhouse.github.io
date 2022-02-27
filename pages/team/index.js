@@ -186,7 +186,7 @@ function TeamPage2({
 			</JobsContent>
 		</Region2>,
 		<Footer
-			backgroundColor="--off-white"
+			backgroundColor="--off-black"
 			accentColor={accentColor}
 			key="footer"
 		/>,

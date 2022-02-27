@@ -235,7 +235,7 @@ function WorkPage({
 					</PageSectionContent>
 				</Region2>
 				<Footer
-					backgroundColor="--off-white"
+					backgroundColor="--off-black"
 					accentColor={accentColor}
 				/>
 			</PageContainer2>

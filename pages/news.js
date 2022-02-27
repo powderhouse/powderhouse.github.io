@@ -77,7 +77,7 @@ function NewsPage({ newsPage, newsCards }) {
 			)
 		),
 		<Footer
-			backgroundColor="--off-white"
+			backgroundColor="--off-black"
 			accentColor={accentColor}
 			key="footer"
 		/>,
@@ -101,7 +101,7 @@ let NewsItemContainer = styled.div`
 
 	@media ${mediaQueries.uptoTablet} {
 		padding: calc(var(--vertical-rhythm) / 2) 0;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		grid-template-areas:
 			"newsdate newstype"
 			"newstitle newstitle"
@@ -183,8 +183,8 @@ let NewsTitle = styled.h2`
 	grid-column: 4 / 10;
 	grid-row: 1;
 	align-self: end;
-	font-size: calc(1.3rem * 1.2);
-	line-height: calc(1.3rem * 1.2);
+	font-size: var(--xlarge-font-size);
+	line-height: var(--xlarge-line-height);
 	font-weight: 300;
 
 	@media ${mediaQueries.uptoTablet} {
