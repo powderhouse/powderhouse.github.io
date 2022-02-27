@@ -299,7 +299,7 @@ let PartnerLogo = styled.img`
 `;
 
 let ProjectSectionContent = styled(PageSectionContent)`
-	transform: translateY(-1rem);
+	transform: translateY(0em);
 
 	@media ${mediaQueries.uptoTablet} {
 		transform: revert;
@@ -324,6 +324,10 @@ let ProjectTenure = styled.div`
 	opacity: 0.6125;
 	text-align: right;
 	font-weight: 300;
+	line-height: 1em;
+	// Optical alignment with top of Left Header
+	position: relative;
+	top: -2px;
 
 	@media ${mediaQueries.uptoTablet} {
 		text-align: revert;
@@ -331,7 +335,7 @@ let ProjectTenure = styled.div`
 `;
 
 let ProjectImageDiv = styled.div`
-	height: 200px; /*TK Explicit?*/
+	height: 200px; /*TODO: Rationalize this*/
 	overflow: hidden;
 `;
 
