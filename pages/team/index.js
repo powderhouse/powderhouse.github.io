@@ -217,8 +217,14 @@ let JobsContent = styled(PageSectionContent)`
 let JobsButton = styled(ArrowButton)`
 	grid-area: jobs-button;
 	grid-column: 1 / span 6;
-	align-self: start;
-	justify-content:center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	position: relative;
+	top: -2.5px; // Optical alignment with footnote on desktop
+	@media ${mediaQueries.uptoTablet} {
+		top: 0;
+	}
 `;
 
 let StaffAlumSectionContent = styled(PageSectionContent)`

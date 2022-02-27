@@ -26,7 +26,7 @@ let SplashDiv = styled(Div)`
     font-family: "GT Planar";
   }
   p:not(:last-child) {
-    padding-bottom: calc(var(--base-line-height));
+    padding-bottom: 1.35em;
   }
 
   @media ${mediaQueries.uptoTablet} {
@@ -41,7 +41,6 @@ let SplashDiv = styled(Div)`
   }
 
   @media ${mediaQueries.uptoMobile} {
-
     p {
       font-size: var(--xlarge-font-size);
       line-height: var(--xlarge-line-height);
@@ -71,21 +70,20 @@ let SplashNewsletterSignupDiv = styled.div`
   // TODO: Better way to inherit this?
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: min-content;
+  // TODO: We should probably make the verticaly rhythm and the column gap the same
   column-gap: var(--gap);
-  row-gap: 1.3rem;
-  padding-bottom: calc(6 * var(--base-line-height));
+  row-gap: var(--vertical-rhythm);
+  padding-bottom: 8em;
   place-items: center;
   text-align: center;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 1 / -1;
     grid-template-columns: repeat(6, 1fr);
-    padding-bottom: calc(0 * var(--base-line-height));
+    padding-bottom: 0;
   }
   @media ${mediaQueries.uptoMobile} {
     grid-template-columns: repeat(3, 1fr);
-    padding-top: calc(2 * var(--base-line-height));
-    padding-bottom: 0;
   }
 `;
 

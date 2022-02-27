@@ -28,7 +28,6 @@ let Headshot = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
-	margin-bottom: var(--base-line-height);
 `;
 
 let Name = styled.h3`

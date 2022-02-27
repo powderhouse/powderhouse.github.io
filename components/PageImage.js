@@ -19,46 +19,53 @@ let ImageCaption = styled.figcaption`
 	line-height: var(--small-line-height);
 	font-style: italic;
 	margin: auto;
-	text-align:center;
+	text-align: center;
 `;
 
 function PageImage(props) {
+	// TODO: Decide whether to remove this
 	// Adding `refs` to access DOM elements for our image and resizing div
 	// via https://reactjs.org/docs/hooks-reference.html#useref
-	const img = useRef(null);
-	const resizer = useRef(null);
+	// const img = useRef(null);
+	// const resizer = useRef(null);
 
-	useEffect(() => {
-		// When the component loads, create an observer
-		let observer = new ResizeObserver((entries) => {
-			// via https://web.dev/resize-observer/
-			for (let entry of entries) {
-				const rectangle = entry.contentRect;
+	// useEffect(() => {
+	// 	// When the component loads, create an observer
+	// 	let observer = new ResizeObserver((entries) => {
+	// 		// via https://web.dev/resize-observer/
+	// 		for (let entry of entries) {
+	// 			const rectangle = entry.contentRect;
 
-				// Count the number of lines and set our height
-				let numLines = Math.ceil(rectangle.height / rootLineHeightInPx);
-				let calcString = `calc(${numLines} * ${rootLineHeightInRem}rem)`;
+	// 			// Count the number of lines and set our height
+	// 			let numLines = Math.ceil(rectangle.height / rootLineHeightInPx);
+	// 			let calcString = `calc(${numLines} * ${rootLineHeightInRem}rem)`;
 
-				resizer.current.style.height = calcString;
-			}
-		});
+	// 			resizer.current.style.height = calcString;
+	// 		}
+	// 	});
 
-		// Calculate line height for use in computing number of lines
-		let bodyStyle = window.getComputedStyle(document.body);
-		let rootFontSizeInPx = parseFloat(bodyStyle.fontSize);
-		let rootLineHeightInPx = parseFloat(bodyStyle.lineHeight);
-		let rootLineHeightInRem = rootLineHeightInPx / rootFontSizeInPx;
+	// 	// Calculate line height for use in computing number of lines
+	// 	let bodyStyle = window.getComputedStyle(document.body);
+	// 	let rootFontSizeInPx = parseFloat(bodyStyle.fontSize);
+	// 	let rootLineHeightInPx = parseFloat(bodyStyle.lineHeight);
+	// 	let rootLineHeightInRem = rootLineHeightInPx / rootFontSizeInPx;
 
-		// Attach the observer to watch our image
-		observer.observe(img.current);
-	});
+	// 	// Attach the observer to watch our image
+	// 	observer.observe(img.current);
+	// });
 
 	let container = (
 		<ImageContainer
 			className={props.fullBleed ? "full-bleed" : "full-body"}
 		>
-			<Resize ref={resizer}>
-				<img ref={img} src={props.src} alt={props.altText} />
+			<Resize
+			// ref={resizer}
+			>
+				<img
+					// ref={img}
+					src={props.src}
+					alt={props.altText}
+				/>
 			</Resize>
 			<ImageCaption>{props.caption}</ImageCaption>
 		</ImageContainer>

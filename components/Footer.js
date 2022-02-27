@@ -120,7 +120,7 @@ let Wrapper = styled.footer`
   ${baseGrid};
   ${(props) => colorByProp(props)};
   position: relative;
-  padding-top: calc(2 * var(--base-line-height));
+  padding-top: 2.75em;
 `;
 
 let LogoContainer = styled.div`
@@ -203,6 +203,7 @@ let ContactNavList = styled(NavList)`
     }
   }
   &.home .irl {
+    // TODO: Rename to make class name more readable
     grid-area: irl;
     justify-content: flex-end;
     text-align: right;
@@ -214,12 +215,12 @@ let ContactNavList = styled(NavList)`
   }
 
   &.home .www1 {
+    // TODO: Rename to make class name more readable
     grid-area: www1;
     hyphens: manual;
 
     @media ${mediaQueries.uptoMobile} {
       justify-content: center;
-      padding-bottom: calc(var(--base-line-height) / 4);
     }
   }
 
@@ -239,15 +240,12 @@ let ContactNavItem = styled(NavItem)`
     flex-direction: column;
     align-items: flex-start;
   }
-  &:not(:last-child) {
-    // TODO: Rationalize this
-    // padding-bottom: calc(var(--base-line-height) / 4);
-  }
 `;
 
 let NavLink = styled.a`
   color: inherit;
   text-decoration: none;
+  // TODO: Search and make sure all line-heights set to base-line-height are accompanied by fonts
   line-height: var(--base-line-height);
 `;
 

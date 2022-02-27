@@ -6,17 +6,12 @@ let PageTOC = styled.ol`
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-	// TODO: Rationalize this
-	// padding-bottom: calc(2 * var(--base-line-height));
 	position: relative;
 	left: calc(var(--gap) - 7px);
 
 	& li:last-of-type {
 		padding-bottom: 0;
 	}
-
-	// TODO: Check whether this is correct— guessing during typer hierarchy shift
-	// padding-bottom: calc(var(--base-line-height) + 10px);
 `;
 
 let PageTOCItem = styled.li`
@@ -35,17 +30,15 @@ let PageTOCLink = styled.a`
 	text-decoration: none;
 	position: relative;
 
-	@media (hover:hover) {
+	@media (hover: hover) {
 		&:hover {
 			transform: translateX(var(--gap));
 		}
 	}
-	
 `;
 
 let TOCText = styled.div`
-	// TODO: Rationalize this
-	margin-left: calc(var(--base-line-height) / 4);
+	margin-left: 0.5em; // TOC AsteriskContainer width minus its left shift
 `;
 
 function PageTableOfContents({ sections }) {

@@ -245,13 +245,13 @@ let ProjectInfoList = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-top: calc(var(--base-line-height) / 4);
+  // TODO: Search for vertical-rhythm/4— We probably don't want bumps that small
+  padding-top: calc(var(--vertical-rhythm) / 4);
   font-weight: 300;
 `;
 
 let ProjectLi = styled.li`
-  // TODO: rationalize this
-  padding-left: calc(var(--base-line-height) * 3 / 4);
+  padding-left: 1em; // AsteriskContainer is 0.5em (diff of left placement and padding)
   position: relative;
 `;
 

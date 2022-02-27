@@ -223,6 +223,7 @@ function WorkPage({
 					<PageSectionContent $wide={true} $grid={false}>
 						{pastLivesDesc.PageSectionContent ? (
 							<SectionDesc>
+								{/*TODO: Add descriptions for past lives*/}
 								{pastLivesDesc.PageSectionContent}
 							</SectionDesc>
 						) : (
@@ -243,7 +244,7 @@ function WorkPage({
 }
 
 let SectionDesc = styled(Div)`
-	padding-bottom: var(--base-line-height);
+	padding-bottom: var(--vertical-rhythm);
 	font-size: var(--base-font-size);
 	line-height: var(--base-line-height);
 	grid-column: 1 / -1;
@@ -252,7 +253,7 @@ let SectionDesc = styled(Div)`
 let PartnerSectionContent = styled.div`
 	display: grid;
 	column-gap: var(--gap);
-	row-gap: var(--base-line-height);
+	row-gap: var(--vertical-rhythm);
 	grid-template-columns: repeat(5, 1fr);
 	transform: translateY(-1rem);
 
@@ -338,9 +339,7 @@ let ProjectTitle = styled.h3`
 	font-weight: 300;
 	font-size: var(--large-font-size);
 	line-height: var(--large-line-height);
-	padding-top: calc(
-		2 * (var(--base-line-height) / 4 - 4px)
-	); // Optically aligned to equalize height above and below
+	padding-top: 4pt; // Optically aligned to equalize height above and below
 `;
 
 let ProjectSubtitle = styled(Div)`
@@ -353,8 +352,9 @@ let ProjectSubtitle = styled(Div)`
 let PastLifeSectionContent = styled.div`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	// TODO: --gap and --vertical-rhythm should probably match
 	column-gap: var(--gap);
-	row-gap: var(--base-line-height);
+	row-gap: var(--vertical-rhythm);
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(1, 1fr);

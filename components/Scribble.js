@@ -11,7 +11,7 @@ let ScribbleContainer = styled.div`
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
 
   @media ${mediaQueries.uptoMobile} {
-    top: calc(1.5em);
+    top: 0.875em;
   }
 `;
 

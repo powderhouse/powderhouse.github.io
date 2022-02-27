@@ -156,16 +156,15 @@ let PageSplashDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	// TODO: Rationalize this, and consider for mobile
-	min-height: calc(24 * var(--base-line-height));
-	padding: var(--base-line-height) 0;
+	min-height: 32.5em;
+	padding: var(--vertical-rhythm) 0;
 
 	@media ${mediaQueries.uptoTablet} {
-		min-height: calc(20 * var(--base-line-height));
+		min-height: 27em;
 	}
 
 	@media ${mediaQueries.uptoMobile} {
-		min-height: calc(16 * var(--base-line-height));
+		min-height: 21.5em;
 	}
 `;
 
@@ -183,9 +182,6 @@ let PageHeading = styled.h1`
 	line-height: var(--splash-line-height);
 	letter-spacing: var(--splash-letter-spacing);
 	font-weight: 300;
-	// line-height: 1em;
-	// TODO: Rationalize this
-	transform: translateY(calc(var(--base-line-height) / 25));
 
 	@media ${mediaQueries.uptoTablet} {
 		// TODO: Integrate with type hierarchy
@@ -216,7 +212,8 @@ let PageIntroductionDiv = styled(Div)`
 	line-height: var(--xlarge-line-height);
 	// TODO: Add letter-spacing to type-hierarchy
 	letter-spacing: -0.5;
-	padding: calc(var(--base-line-height)) 0 calc(var(--base-line-height) / 2) 0;
+	padding-top: var(--xlarge-line-height);
+	padding-bottom: var(--xlarge-line-height) / 2;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
@@ -246,9 +243,9 @@ let Header2 = styled.h2`
 	font-size: inherit;
 	line-height: inherit;
 	letter-spacing: inherit;
-	// TODO: rationalize this
-	margin-left: ${(props) =>
-		props.left ? "" : `calc(var(--base-line-height) / 4)`};
+	margin-left: ${
+		(props) => (props.left ? "" : css`calc(1em/3)`) //Aligned optically
+	};
 
 	@media ${mediaQueries.uptoMobile} {
 		// TODO: Implement type hierarchy
@@ -288,9 +285,10 @@ let sectionHeaderContainerStyles = {
 let SectionHeaderContainer = styled.div`
 	grid-column: 1 / span 3;
 	grid-row: 1 / -1;
-	line-height: var(--base-line-height);
+	// TODO: Review usage of em line-heights in light of https://css-tricks.com/almanac/properties/l/line-height/#aa-unitless-line-heights
+	line-height: 1.35em;
 	position: relative;
-	transform: ${(props) => (props.left ? "translateY(-4px)" : "")};
+	transform: ${(props) => (props.left ? css`translateY(-4px)` : "")};
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
 	@media ${mediaQueries.uptoTablet} {

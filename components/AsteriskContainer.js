@@ -50,9 +50,9 @@ function AsteriskContainer(props) {
 }
 
 let AsteriskContainerDiv = styled.div`
-	// TODO: Rationalize this
-	height: calc(1.375 * var(--base-line-height));
-	width: calc(1.375 * var(--base-line-height));
+	// Optically adjusted
+	height: 1.875em;
+	width: 1.875em;
 	transform-origin: 50% 50%;
 	// In order to add other transforms later, via https://stackoverflow.com/questions/5890948/css-transform-without-overwriting-previous-transform
 	--random-rotate: ${(props) => `rotate(${props.rotation}deg)`};

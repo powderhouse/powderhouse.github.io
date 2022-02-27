@@ -19,7 +19,7 @@ let StyledDiv = styled.div`
 	//////////////////////////////////////////////**////////////
 
 	grid-auto-rows: min-content;
-	grid-row-gap: var(--base-line-height);
+	grid-row-gap: var(--vertical-rhythm);
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);
@@ -29,8 +29,8 @@ let StyledDiv = styled.div`
 	${(props) => {
 		if (props.header) {
 			return css`
-				padding-top: calc(1 * 1.3rem);
-				padding-bottom: calc(1 * 1.3rem);
+				padding-top: calc(1 * 1.35rem);
+				padding-bottom: calc(1 * 1.35rem);
 				&:first-of-type {
 					padding-top: 0;
 				}
@@ -39,7 +39,7 @@ let StyledDiv = styled.div`
 				}
 				@media ${mediaQueries.uptoMobile} {
 					// TODO: This feels messy/inconsistent/complex; any way to simplify row-gap behavior?
-					grid-row-gap: calc(var(--base-line-height) / 2);
+					grid-row-gap: calc(var(--vertical-rhythm) / 2);
 				}
 			`;
 		}
@@ -49,6 +49,12 @@ let StyledDiv = styled.div`
 		margin-bottom: var(
 			--base-line-height
 		); // To make sure that spacing before headings for the next section are slightly greater than inter-paragraph headings
+	}
+
+	&.containsPageImage {
+		margin-top: calc(
+			-1 * var(--base-line-height)
+		); // TODO: Total hack: We don't want more margin before images, just for headers…
 	}
 `;
 
@@ -63,8 +69,17 @@ function Region2({ header, left, children, ...rest }) {
 		elements = [sectionHeader].concat(elements);
 	}
 
+	let isPageImage = (children) =>
+		children.hasOwnProperty("type")
+			? children.type.name == "PageImage"
+			: false;
 	return (
-		<StyledDiv header={header} left={left} {...rest}>
+		<StyledDiv
+			header={header}
+			left={left}
+			{...rest}
+			className={isPageImage(children) ? "containsPageImage" : ""}
+		>
 			{elements}
 		</StyledDiv>
 	);

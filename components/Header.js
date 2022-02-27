@@ -100,9 +100,7 @@ let Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  // TODO: Rationalize this
-  // height: calc(6 * var(--base-line-height));
-  padding: var(--base-line-height) 0;
+  padding: var(--vertical-rhythm) 0;
   align-items: center;
   ${(props) => colorByProp(props)};
   ${(props) => `
@@ -114,7 +112,6 @@ let Wrapper = styled.header`
   @media ${mediaQueries.uptoMobile} {
     flex-direction: column;
     height: fit-content;
-    padding-bottom: calc(var(--base-line-height) / 2);
   }
 `;
 
@@ -165,7 +162,7 @@ let NavMenu = styled.nav`
     grid-row: 2;
     grid-column: 1 / -1;
     margin: auto;
-    // padding-top:0;
+    top: 0; // TODO: Fix media queries to apply to one device at a time.
   }
 `;
 
@@ -177,7 +174,11 @@ let NavList = styled.ol`
   transform: translateY(3px);
 
   @media ${mediaQueries.uptoMobile} {
-    padding-top: calc(var(--base-line-height) / 2);
+    padding-top: 1.35em;
+    transform: translateY(
+      0px
+    ); // TODO: Fix media queries to apply to one device at a time.
+    line-height: 1em;
   }
 `;
 
@@ -196,8 +197,6 @@ let NavListItem = styled.li`
   }
 
   @media ${mediaQueries.uptoMobile} {
-    padding-top: calc(var(--gap) / 2);
-    padding-bottom: calc(var(--gap) / 2);
   }
 `;
 

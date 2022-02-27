@@ -101,6 +101,7 @@ function NewsLetterSignUp({
 
 let ShoutOut = styled.p`
     grid-column: 1 / -1;
+    font-size: var(--base-font-size);
     line-height: var(--base-line-height);
     padding-bottom: calc(var(--base-line-height) / 2);
     min-height: calc(var(--base-line-height) * 3);
@@ -152,11 +153,7 @@ let EmailInput = styled.input.attrs((props) => ({
     border-width: 1px;
     border-color: ${(props) =>
         props.$color ? expandColor(props.$color) : expandColor("--off-black")};
-    // TODO: Rationalize this
     padding: calc(var(--base-line-height) / 2);
-    // height: calc(3 * var(--base-line-height));
-    // width: calc(3 * 94px + 2 * var(--gap));
-    // min-width: 14em;
 
     &::placeholder {
         opacity: 0.6;
@@ -184,8 +181,6 @@ let NewsLetterFormButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    // TODO: Rationalize this
-    // height: calc(3 * var(--base-line-height));
 
     @media ${mediaQueries.uptoTablet} {
         grid-column: ${(props) => (props.isHomePage ? "5 / 6" : "3 / 4")};

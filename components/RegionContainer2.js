@@ -19,23 +19,24 @@ let stylesByMedia = {
 	// A dictionary of styles to apply per media query
 	// TODO: Rationalize this
 	uptoMobile: {
-		"padding-top": `calc(4 * var(--base-line-height))`,
-		"padding-bottom": `calc(4 * var(--base-line-height))`,
+		"padding-top": `calc(4 * var(--vertical-rhythm))`,
+		"padding-bottom": `calc(4 * var(--vertical-rhythm))`,
 	},
 	uptoTablet: {
-		"padding-top": `calc(4 * var(--base-line-height))`,
-		"padding-bottom": `calc(4 * var(--base-line-height))`,
+		"padding-top": `calc(4 * var(--vertical-rhythm))`,
+		"padding-bottom": `calc(4 * var(--vertical-rhythm))`,
 	},
 	uptoLaptop: {
-		"padding-top": `calc(4 * var(--base-line-height))`,
-		"padding-bottom": `calc(4 * var(--base-line-height))`,
+		"padding-top": `calc(4 * var(--vertical-rhythm))`,
+		"padding-bottom": `calc(4 * var(--vertical-rhythm))`,
 	},
 	minLaptop: {
-		"padding-top": `calc(4 * var(--base-line-height))`,
-		"padding-bottom": `calc(4 * var(--base-line-height))`,
+		"padding-top": `calc(4 * var(--vertical-rhythm))`,
+		"padding-bottom": `calc(4 * var(--vertical-rhythm))`,
 	},
 };
 
+// TODO: Make use of this consistent; we use it nowhere else
 let mq = function (media) {
 	// A function which wraps its argument in the right media query
 	return (style) => `@media ${mediaQueries[media]} {\n${style}\n}`;
@@ -108,23 +109,5 @@ let RegionContainer = styled("div")`
 		padding-bottom: 0;
 	}
 `;
-
-// Older, non-media query version— Keeping until we finalize (14 February 2022)
-// let RegionContainer = styled("div")
-// 	position: relative;
-// 	${(props) => colorByProp(props)}
-// 	padding-top: ${(props) =>
-// 		props.pad
-// 			? props.pad.includes("top")
-// 				? "calc(4 * 1.3rem)"
-// 				: "initial"
-// 			: "initial"};
-// 	padding-bottom: ${(props) =>
-// 		props.pad
-// 			? props.pad.includes("bottom")
-// 				? "calc(4 * 1.3rem)"
-// 				: "initial"
-// 			: "initial"};
-// `;
 
 export default RegionContainer;
