@@ -185,11 +185,11 @@ let PageHeading = styled.h1`
 
 	@media ${mediaQueries.uptoTablet} {
 		// TODO: Integrate with type hierarchy
-		font-size: calc(4 * 1.3rem);
+		font-size: calc(0.75 * var(--splash-font-size));
 	}
 	@media ${mediaQueries.uptoMobile} {
 		// TODO: Integrate with type hierarchy
-		font-size: calc(3 * 1.3rem);
+		font-size: calc(0.5 * var(--splash-font-size));
 	}
 `;
 
