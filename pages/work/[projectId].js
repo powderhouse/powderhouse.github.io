@@ -142,35 +142,32 @@ let ProjectTitleContainer = styled.h2`
 
 let ProjectTitleHeading = styled.span`
   font-size: calc(var(--splash-font-size) * 0.625);
-  line-height: calc(var(--splash-line-height) * 0.75);
+  line-height: calc(var(--splash-line-height) * 1.125);
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(var(--splash-font-size) * 0.5);
-    line-height: calc(var(--splash-line-height) * 0.75);
+    line-height: calc(var(--splash-line-height) * 1.125);
   }
 
   @media ${mediaQueries.uptoMobile} {
     font-size: calc(var(--splash-font-size) * 0.33);
-    line-height: calc(var(--splash-line-height) * 0.625);
+    line-height: calc(var(--splash-line-height) * 1.125);
   }
 `;
 
-let ProjectYearsHeading = styled.span`
-  font-size: calc(0.625 * 0.625 * var(--splash-font-size));
-  line-height: calc(var(--splash-line-height));
-  display: inline-block;
+let ProjectYearsHeading = styled.h3`
+  font-size: calc(0.5 * 0.625 * var(--splash-font-size));
+  line-height: calc(2 * var(--splash-line-height));
   white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(0.625 * 0.5 * var(--splash-font-size));
-    line-height: var(--splash-line-height);
   }
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(0.625 * 0.5 * 0.33 var(--splash-font-size));
-    line-height: var(--splash-line-height);
   }
 `;
 
