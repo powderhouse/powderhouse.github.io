@@ -322,6 +322,12 @@ let PageSectionContent = styled(Div)`
 	& p:not(:last-child) {
 		margin-bottom: var(--base-line-height);
 	}
+
+	& ul {
+		// Optically align bullets with left border of text
+		padding-left: calc(1em - 7px);
+	}
+
 	${(props) =>
 		props.$wide
 			? css`
