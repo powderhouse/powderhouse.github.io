@@ -155,20 +155,30 @@ function WorkPage({
 				Link,
 				LinkText,
 			},
-			i
+			index
 		) => (
-			<PastLifeLink key={i} href={Link}>
-				<PageImage
-					fullBleed={false}
-					src={
-						formats == null || Object.keys(formats).length == 0
-							? url
-							: formats[findLargestFormat(formats, "medium")].url
-					}
-					altText={alternativeText}
-					caption=""
-				/>
-			</PastLifeLink>
+			<PastLifeCard key={index}>
+				<ProjectLink href={Link}>
+					{/*TODO: Add tenure back into past lives*/}
+					{/*<ProjectTenure>
+							{yearstart == yearend
+								? yearstart
+								: `${yearstart}-${yearend}`}
+						</ProjectTenure>*/}
+					<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
+					<PageImage
+						fullBleed={false}
+						src={
+							formats == null || Object.keys(formats).length == 0
+								? url
+								: formats[findLargestFormat(formats, "medium")]
+										.url
+						}
+						altText={alternativeText}
+						caption=""
+					/>
+				</ProjectLink>
+			</PastLifeCard>
 		)
 	);
 
@@ -269,8 +279,8 @@ let PartnerSectionContent = styled.div`
 let PartnerCard = styled.div`
 	height: 110px;
 	overflow: hidden;
-	transition: 0.375s;
-	opacity: 0.75;
+	transition: 0.25s;
+	opacity: 90%;
 
 	&:hover {
 		opacity: 1;
@@ -303,6 +313,11 @@ let ProjectCard = styled.div`
 
 let ProjectLink = styled.a`
 	text-decoration: none;
+
+	& img {
+		border: 1px rgb(42, 46, 47) solid;
+		// border color is --off-black with alpha channel
+	}
 `;
 
 let ProjectTenure = styled.div`
@@ -324,8 +339,6 @@ let ProjectFeatureImage = styled.img`
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
-	border: 1px rgb(42, 46, 47, 0.6125) solid;
-	// border color is --off-black with alpha channel
 	opacity: 90%;
 
 	&:hover {
@@ -360,11 +373,12 @@ let PastLifeSectionContent = styled.div`
 		grid-template-columns: repeat(1, 1fr);
 	}
 `;
-
-let PastLifeLink = styled.a`
-	& img {
-		border: 1px var(--off-black) solid;
-	}
+let PastLifeCard = styled(ProjectCard)`
+	grid-column: span 1;
+`;
+let PastLifeDesc = styled(Div)`
+	font-size: var(--step-up-1);
+	padding-bottom: calc(var(--vertical-rhythm) / 2);
 `;
 
 export async function getStaticProps(context) {
