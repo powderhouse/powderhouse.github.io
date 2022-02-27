@@ -123,20 +123,6 @@ let Wrapper = styled.footer`
   padding-top: 2.75em;
 `;
 
-let LogoContainer = styled.div`
-  grid-column: 1 / -1;
-  grid-column-start: 1;
-  grid-row-start: 2;
-  /*transform: rotate(180deg) scaleX(-1);*/
-  /*filter:blur(1.3rem);*/
-  /*opacity:0.3;*/
-  pointer-events: none;
-
-  @media ${mediaQueries.uptoTablet} {
-    grid-row-start: 3;
-  }
-`;
-
 let ContentContainer = styled.div`
   grid-column: 1 / -1;
   grid-column-start: 1;
