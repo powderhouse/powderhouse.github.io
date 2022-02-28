@@ -165,7 +165,6 @@ function WorkPage({
 								? yearstart
 								: `${yearstart}-${yearend}`}
 						</ProjectTenure>*/}
-					<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
 					<PageImage
 						fullBleed={false}
 						src={
@@ -177,6 +176,7 @@ function WorkPage({
 						altText={alternativeText}
 						caption=""
 					/>
+					<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
 				</ProjectLink>
 			</PastLifeCard>
 		)
@@ -382,7 +382,7 @@ let PastLifeCard = styled(ProjectCard)`
 `;
 let PastLifeDesc = styled(Div)`
 	font-size: var(--step-up-1);
-	padding-bottom: calc(var(--vertical-rhythm) / 2);
+	padding-top: calc(var(--vertical-rhythm) / 2);
 `;
 
 export async function getStaticProps(context) {
