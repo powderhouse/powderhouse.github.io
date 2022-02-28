@@ -178,6 +178,7 @@ function WorkPage({
 					/>
 					<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
 				</ProjectLink>
+				<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
 			</PastLifeCard>
 		)
 	);
