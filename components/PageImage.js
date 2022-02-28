@@ -17,6 +17,7 @@ let ImageContainer = styled.figure`
 let ImageCaption = styled.figcaption`
 	font-size: calc(var(--small-font-size));
 	line-height: var(--small-line-height);
+	padding-top: calc(var(--vertical-rhythm) / 4);
 	font-style: italic;
 	margin: auto;
 	text-align: center;
