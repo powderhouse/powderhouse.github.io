@@ -260,7 +260,7 @@ let sectionHeaderContainerStyles = {
 
 		position: relative;
 		top: -4px;
-		padding-left: 1em; // This visually centers the asterisk on the left vertical line of the page
+		padding-left: 0.875em;
 
 		@media ${mediaQueries.uptoTablet} {
 			grid-column: 1 / -1;

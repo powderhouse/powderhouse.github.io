@@ -28,7 +28,7 @@ let asteriskContainerStyles = {
 	LeftHeader: css`
 		position: absolute;
 		top: -0.3em;
-		left: -0.725em;
+		left: -0.875em; // This visually centers the asterisk on the left vertical line of the page
 		transform: scale(1.125) var(--random-rotate);
 	`,
 	CenterHeader: css`
