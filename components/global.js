@@ -31,32 +31,31 @@ let ShiftBy = function ({ x = 0, y = 0, children, ...delegated }) {
 };
 
 let tenureSort = function (
-	getStartField = (x) => x.YearStart,
-	getEndField = (x) => x.YearEnd,
-	getBreakevenField = (x) => x.Name,
-	order = "ascending"
+	firstSortField = (x) => x.YearStart,
+	secondSortField = (x) => x.YearEnd,
+	breakevenField = (x) => x.Name,
+	order = "ascending" // TODO: The order is a bad design: We may want to order ascending on some and descending on others; right now breakevenField is just hardcoded to invert!
 ) {
 	// Generates a comparator suitable for use in comparing tenures.  Useful for sorting proejcts or people.  `startField` and `endField` are the fields containing start and end dates, expected to be years.  `breakevenField` is another field to be compared lexicographically in case years are equal.
 
 	let ascending = (a, b) => {
 		// Sort first by starting year, then ending year, then alphabetical
-		if (getStartField(a) < getStartField(b)) {
+		if (firstSortField(a) < firstSortField(b)) {
 			return -1;
-		} else if (getStartField(a) > getStartField(b)) {
+		} else if (firstSortField(a) > firstSortField(b)) {
 			return 1;
 		} else {
-			if (getEndField(a) < getEndField(b)) {
+			if (secondSortField(a) < secondSortField(b)) {
 				return -1;
-			} else if (getEndField(a) > getEndField(b)) {
+			} else if (secondSortField(a) > secondSortField(b)) {
 				return 1;
 			} else {
 				// via https://stackoverflow.com/a/60922998
-				return getBreakevenField(a).localeCompare(
-					getBreakevenField(b),
-					"en",
-					{
+				return (
+					-1 *
+					breakevenField(a).localeCompare(breakevenField(b), "en", {
 						sensitivity: "base",
-					}
+					})
 				);
 			}
 		}
