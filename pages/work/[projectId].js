@@ -161,6 +161,7 @@ let ProjectYearsHeading = styled.h3`
   white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
+  display:inline;
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(0.625 * 0.5 * var(--splash-font-size));
