@@ -41,9 +41,11 @@ let SplashDiv = styled(Div)`
   }
 
   @media ${mediaQueries.uptoMobile} {
+    padding: 0 0 calc(141px - 5 * var(--gap)) 0;
+
     p {
-      font-size: var(--xlarge-font-size);
-      line-height: var(--xlarge-line-height);
+      font-size: var(--medium-font-size);
+      line-height: var(--medium-line-height);
     }
   }
 `;

@@ -30,9 +30,9 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               <NavList>
                 {navItems.map((n, i) => {
                   return (
-                    <NavItem key={i}>
+                    <li key={i}>
                       <NavLink href={n.href}>{n.text}</NavLink>
-                    </NavItem>
+                    </li>
                   );
                 })}
               </NavList>
@@ -79,7 +79,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                   buttonWidth="long"
                   buttonThickness="thick"
                   buttonTextLength="longText"
-                  shoutOut="If you'd like to keep up with our work, sign up for our
+                  shoutOut="If you'd like to keep up with our work, join our
                   mailing list."
                   backgroundColor={backgroundColor}
                 />
@@ -136,10 +136,14 @@ let FooterNavigation = styled.div`
   grid-column: 2 / 3;
 
   @media ${mediaQueries.uptoTablet} {
-    grid-column: 1 / 2;
+    grid-column: -3 / -2;
+    grid-row:2;
   }
   @media ${mediaQueries.uptoMobile} {
+    grid-column: 1 / 2;
     grid-row: 2;
+    font-size: var(--small-font-size);
+    line-height: var(--small-line-height);
   }
 
   /*Styling for homepage footer, without newsletter signup*/
@@ -161,11 +165,6 @@ let NavList = styled.ol`
   padding: 0;
   margin: 0;
   grid-column: 4 / 6;
-`;
-
-let NavItem = styled.li`
-  display: flex;
-  align-items: center;
 `;
 
 let ContactNavList = styled(NavList)`
@@ -221,7 +220,7 @@ let ContactNavList = styled(NavList)`
   }
 `;
 
-let ContactNavItem = styled(NavItem)`
+let ContactNavItem = styled.li`
   &.www {
     flex-direction: column;
     align-items: flex-start;
@@ -237,15 +236,16 @@ let NavLink = styled.a`
 
 let SocialList = styled(NavList)`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 75%; // TODO: Not on horizontal grid, but better looking?
 
   & li:not(:last-child) {
     padding-right: 6px;
   }
   & li:not(:first-child) {
     padding-left: 6px;
+  }
+
+  @media ${mediaQueries.uptoTablet} {
+    justify-content:end;
   }
 `;
 
@@ -255,10 +255,17 @@ let FooterContact = styled.div`
   justify-content: space-between;
 
   @media ${mediaQueries.uptoTablet} {
-    grid-column: 2 / 4;
+    grid-column: 2 / -3;
+    grid-row:2;
+
+    justify-content: end;
+    text-align: right;
   }
   @media ${mediaQueries.uptoMobile} {
+    grid-column: 2 / -1;
     grid-row: 2;
+    font-size: var(--small-font-size);
+    line-height: var(--small-line-height);
   }
 
   /*Styling for homepage footer, without newsletter signup*/
@@ -281,17 +288,15 @@ let FooterNewsletterSignup = styled.div`
   display: flex;
   row-gap: 0;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
   @media ${mediaQueries.uptoTablet} {
-    grid-column: 4 / -1;
-    /*grid-template-columns: 3;*/
+    grid-column: 2 / -2;
+    grid-row: 1;
   }
 
   @media ${mediaQueries.uptoMobile} {
     grid-column: 1 / -1;
-    /*grid-row: 1;*/
-    /*grid-template-columns: 3;*/
   }
 `;
 

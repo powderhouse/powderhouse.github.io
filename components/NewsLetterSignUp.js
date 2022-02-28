@@ -104,10 +104,10 @@ let ShoutOut = styled.p`
     font-size: var(--base-font-size);
     line-height: var(--base-line-height);
     padding-bottom: calc(var(--base-line-height) / 2);
-    min-height: calc(var(--base-line-height) * 3);
+    min-height: calc(var(--base-line-height) * 2);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
 
     // I don't think anything below here was being applied, and not sure why? (removed $ before vars so comments would work)
     // TK should the not-home-page (aka footer) version be a full line-height lower?
@@ -132,7 +132,7 @@ let NewsLetterForm = styled.form`
 
     @media ${mediaQueries.uptoTablet} {
         grid-template-columns: ${(props) =>
-            props.isHomePage ? "repeat(6, 1fr)" : "repeat(3, 1fr)"};
+            props.isHomePage ? "repeat(6, 1fr)" : "repeat(4, 1fr)"};
     }
     @media ${mediaQueries.uptoMobile} {
         grid-template-columns: repeat(3, 1fr);
@@ -164,7 +164,7 @@ let EmailInput = styled.input.attrs((props) => ({
     }
 
     @media ${mediaQueries.uptoTablet} {
-        grid-column: ${(props) => (props.isHomePage ? "2 / 5" : "1 / 3")};
+        grid-column: ${(props) => (props.isHomePage ? "2 / 5" : "1 / 4")};
     }
     @media ${mediaQueries.uptoMobile} {
         grid-column: 1 / -1;
@@ -183,7 +183,7 @@ let NewsLetterFormButton = styled.button`
     cursor: pointer;
 
     @media ${mediaQueries.uptoTablet} {
-        grid-column: ${(props) => (props.isHomePage ? "5 / 6" : "3 / 4")};
+        grid-column: ${(props) => (props.isHomePage ? "5 / 6" : "4 / 5")};
     }
     @media ${mediaQueries.uptoMobile} {
         grid-column: 1 / -1;
