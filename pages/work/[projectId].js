@@ -210,20 +210,18 @@ let ProjectSubtitle = styled(Div)`
 let ProjectDescription = styled(Div)`
   grid-column: 4 / -4; // TK 3 / -3 for wider option
 
-  font-size: calc(var(--large-font-size));
-  line-height: calc(var(--large-line-height));
+  font-size: calc(var(--medium-font-size));
+  line-height: calc(var(--medium-line-height));
   font-weight: 300;
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -2;
-    font-size: calc(var(--medium-font-size));
-    line-height: calc(var(--medium-line-height));
+    font-size: calc(var(--base-font-size));
+    line-height: calc(var(--base-line-height));
   }
 
   @media ${mediaQueries.uptoMobile} {
     grid-column: 1 / -1;
-    font-size: calc(var(--base-font-size));
-    line-height: calc(var(--base-line-height));
   }
 `;
 

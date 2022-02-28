@@ -182,14 +182,15 @@ let PageHeading = styled.h1`
 	line-height: var(--splash-line-height);
 	letter-spacing: var(--splash-letter-spacing);
 	font-weight: 300;
+	hyphens: auto;
 
 	@media ${mediaQueries.uptoTablet} {
 		// TODO: Integrate with type hierarchy
-		font-size: calc(0.75 * var(--splash-font-size));
+		font-size: calc(0.65 * var(--splash-font-size));
 	}
 	@media ${mediaQueries.uptoMobile} {
 		// TODO: Integrate with type hierarchy
-		font-size: calc(0.5 * var(--splash-font-size));
+		font-size: calc(0.45 * var(--splash-font-size));
 	}
 `;
 
@@ -365,6 +366,7 @@ let PageSectionContent = styled(Div)`
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(3, 1fr);
+		grid-row-gap: var(--vertical-rhythm);
 	}
 `;
 

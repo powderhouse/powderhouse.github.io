@@ -151,6 +151,8 @@ let NewsDateDiv = styled.h3`
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / 3;
 		grid-row: 1;
+		font-size: var(--base-font-size);
+		line-height: var(--base-line-height);
 	}
 `;
 
@@ -186,6 +188,7 @@ let NewsTitle = styled.h2`
 	font-size: var(--xlarge-font-size);
 	line-height: var(--xlarge-line-height);
 	font-weight: 300;
+	hyphens: auto;
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
@@ -195,6 +198,7 @@ let NewsTitle = styled.h2`
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / -1;
 		grid-row: 2;
+
 	}
 `;
 
@@ -218,6 +222,7 @@ let NewsContent = styled.div`
 let NewsExcerpt = styled(Markdown)`
 	font-weight: 300;
 	opacity: 0.625;
+	margin: calc(var(--vertical-rhythm) / 2) 0;
 `;
 
 let NewsRelatedLinks = styled.ul`

@@ -173,7 +173,7 @@ function TeamPage2({
 			key="jobs"
 		>
 			<JobsContent $wide={true} $grid={true}>
-				<Div markdown style={{ backgroundColor: "lightblue" }}>
+				<Div markdown>
 					{jobs.PageSectionContent}
 					<JobsButton
 						text="Jobs"
@@ -219,11 +219,14 @@ let JobsButton = styled(ArrowButton)`
 	grid-column: 1 / span 6;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: flex-start;
 	position: relative;
 	top: -2.5px; // Optical alignment with footnote on desktop
+	margin-top: calc(-1 * var(--verical-rhythm) / 2);
+
 	@media ${mediaQueries.uptoTablet} {
 		top: 0;
+		margin-top:0;
 	}
 `;
 

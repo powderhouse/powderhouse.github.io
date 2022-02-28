@@ -365,6 +365,7 @@ let ProjectSubtitle = styled(Div)`
 	padding: 0;
 	margin: 0;
 	font-weight: 300;
+	hyphens: auto;
 `;
 
 let PastLifeSectionContent = styled.div`

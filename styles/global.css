@@ -270,6 +270,41 @@ dd:last-child {
 	fill: var(--off-black);
 }
 
+/*blockquote design adapted from https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/*/
+blockquote {
+  border-left: 2px dashed var(--off-black);
+  color: var(--off-black);
+  margin: calc(var(--vertical-rhythm) / 2) 0;
+  padding-left: var(--gap);
+  position: relative;
+  transform: translateX(1px);
+}
+blockquote::before {
+	content: '';
+    position: absolute;
+    top: 50%;
+    left: -4px;
+    height: 2em;
+    background-color: var(--off-white);
+    width: 5px;
+    margin-top: -1em;
+}
+blockquote::after {
+	quotes: "“" "”";
+	content: open-quote;
+    position: absolute;
+    top: 50%;
+    left: -0.5em;
+    color: var(--off-black);
+    font-size: calc(var(--splash-font-size) / 2);
+    line-height: 1em;
+    text-align: center;
+    text-indent: -2px;
+    width: 1em;
+    margin-top: -0.26em;
+    opacity: 0.55;
+}
+
 img {
 	width: 100%;
 }

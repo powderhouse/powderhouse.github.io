@@ -19,7 +19,7 @@ let StyledDiv = styled.div`
 	//////////////////////////////////////////////**////////////
 
 	grid-auto-rows: min-content;
-	grid-row-gap: var(--vertical-rhythm);
+	grid-row-gap: calc(var(--vertical-rhythm) / 2);
 	max-width: 1440px;
 	padding-left: var(--gap);
 	padding-right: var(--gap);
