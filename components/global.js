@@ -254,8 +254,8 @@ let Header2 = styled.h2`
 let sectionHeaderContainerStyles = {
 	left: css`
 		grid-column: 1 / span 3;
-		font-size: var(--large-font-size);
-		line-height: var(--large-line-height);
+		font-size: var(--xlarge-font-size);
+		line-height: var(--xlarge-line-height);
 		letter-spacing: -0.5px;
 
 		position: relative;
@@ -271,8 +271,8 @@ let sectionHeaderContainerStyles = {
 	`,
 	center: css`
 		grid-column: 4 / 10;
-		font-size: var(--xxlarge-font-size);
-		line-height: var(--xxlarge-line-height);
+		font-size: var(--xlarge-font-size);
+		line-height: var(--xlarge-line-height);
 		letter-spacing: -1.2px;
 		padding-left: 1em;
 		@media ${mediaQueries.uptoTablet} {

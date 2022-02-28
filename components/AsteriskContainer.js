@@ -34,8 +34,8 @@ let asteriskContainerStyles = {
 	CenterHeader: css`
 		position: absolute;
 		left: -0.6625em;
-		top: -0.125em;
-		transform: scale(1.375) var(--random-rotate);
+		top: -0.1875em;
+		transform: scale(1.125) var(--random-rotate);
 
 		@media ${mediaQueries.uptoTablet} {
 			position: absolute;
