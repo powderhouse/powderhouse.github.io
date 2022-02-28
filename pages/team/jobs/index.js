@@ -55,6 +55,8 @@ function JobsPage({ jobPage, jobCards }) {
 				>
 					<PageSectionContent $grid={true}>
 						<div style={{ gridColumn: "1 / -1" }}>
+							{/*TODO: Why is this wrapper div needed v. putting
+							gridColumn inline with the Div?*/}
 							<Div markdown>{n.PageSectionContent}</Div>
 						</div>
 						{jobCards.hasOwnProperty(n.SectionHeader) ? (
@@ -67,6 +69,7 @@ function JobsPage({ jobPage, jobCards }) {
 								buttonWidth="long"
 								buttonThickness="thick"
 								buttonTextLength="medText"
+								style={{ gridColumn: "1 / span 3" }}
 								// width="262.5%" // TODO: Fix this hack
 							></ArrowButton>
 						) : (
