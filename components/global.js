@@ -277,7 +277,16 @@ let sectionHeaderContainerStyles = {
 		letter-spacing: -1.2px;
 		padding-left: 1em;
 		@media ${mediaQueries.uptoTablet} {
+			// This matches the left header, as left headers *become* center headers on mobile/tablet
 			grid-column: 1 / -1;
+			font-size: var(--large-font-size);
+			line-height: var(--large-line-height);
+			letter-spacing: -0.5px;
+
+			position: relative;
+			top: -4px;
+			padding-left: 1em; // This visually centers the asterisk on the left vertical line of the page
+
 		}
 	`,
 };

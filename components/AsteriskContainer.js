@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import { useState, useEffect } from "react";
+import { mediaQueries } from "../site-data";
 
 function getRandomNum() {
 	return Math.round(Math.random() * 360);
@@ -35,6 +36,13 @@ let asteriskContainerStyles = {
 		left: -0.6625em;
 		top: -0.125em;
 		transform: scale(1.375) var(--random-rotate);
+
+		@media ${mediaQueries.uptoTablet} {
+			position: absolute;
+			top: -0.3em;
+			left: -0.725em;
+			transform: scale(1.125) var(--random-rotate);
+		}
 	`,
 	Default: css`
 		position: absolute;
