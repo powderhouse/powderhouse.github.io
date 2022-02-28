@@ -80,7 +80,7 @@ function JobsPage({ jobPage, jobCards }) {
 			);
 		}),
 		<Footer
-			backgroundColor="--off-white"
+			backgroundColor="--off-black"
 			accentColor={accentColor}
 			key="footer"
 		/>,

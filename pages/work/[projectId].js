@@ -27,7 +27,7 @@ import { useRouter } from "next/router";
 function ProjectDetailPage({ projectData }) {
   const router = useRouter();
   const { projectId } = router.query;
-  let accentColor = "--off-black";
+  let accentColor = "--off-white";
 
   return (
     <>
@@ -109,7 +109,7 @@ function ProjectDetailPage({ projectData }) {
             )
           )}
         </ProjectGallery>
-        <Footer backgroundColor="--off-white" accentColor={accentColor} />
+        <Footer backgroundColor="--off-black" accentColor={accentColor} />
       </PageContainer2>
     </>
   );
@@ -161,7 +161,7 @@ let ProjectYearsHeading = styled.h3`
   white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
-  display:inline;
+  display: inline;
 
   @media ${mediaQueries.uptoTablet} {
     font-size: calc(0.625 * 0.5 * var(--splash-font-size));

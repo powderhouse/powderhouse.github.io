@@ -14,6 +14,7 @@ import {
   colorByProp,
   ShiftBy,
   highlight,
+  complementaryColor,
 } from "../components/global.js";
 
 function Footer({ backgroundColor, accentColor, ...rest }) {
