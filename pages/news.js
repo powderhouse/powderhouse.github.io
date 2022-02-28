@@ -101,7 +101,7 @@ let NewsItemContainer = styled.div`
 
 	@media ${mediaQueries.uptoTablet} {
 		padding: calc(var(--vertical-rhythm) / 2) 0;
-		grid-template-columns: 1fr;
+		grid-template-columns: fit-content(500px) 1fr;
 		grid-template-areas:
 			"newsdate newstype"
 			"newstitle newstitle"
