@@ -53,7 +53,7 @@ let StyledDiv = styled.div`
 
 	&.containsPageImage {
 		margin-top: calc(
-			-1 * var(--base-line-height)
+			0
 		); // TODO: Total hack: We don't want more margin before images, just for headers…
 	}
 `;

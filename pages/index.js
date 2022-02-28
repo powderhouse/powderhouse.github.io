@@ -41,8 +41,7 @@ let SplashDiv = styled(Div)`
   }
 
   @media ${mediaQueries.uptoMobile} {
-    padding: 0 0 calc(141px - 5 * var(--gap)) 0;
-
+    padding: 0;
     p {
       font-size: var(--medium-font-size);
       line-height: var(--medium-line-height);
@@ -120,7 +119,7 @@ function HomePage({
         $color="--off-white"
         buttonWidth="long"
         buttonThickness="thick"
-        buttonTextLength="medText"
+        buttonTextLength="longText"
         backgroundColor="--off-black"
         isHomePage={true}
         shoutOut={SignUpShoutOut}

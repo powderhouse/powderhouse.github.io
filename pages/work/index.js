@@ -395,8 +395,8 @@ export async function getStaticProps(context) {
 	let projectCards = await fetchAPI("/project-cards?populate=*");
 	projectCards.data.sort(
 		tenureSort(
-			(x) => x.attributes.YearStart,
 			(x) => x.attributes.YearEnd,
+			(x) => x.attributes.YearEnd - x.attributes.YearStart,
 			(x) => x.attributes.ProjectTitle,
 			"descending"
 		)
