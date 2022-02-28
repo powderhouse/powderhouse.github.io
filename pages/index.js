@@ -120,7 +120,7 @@ function HomePage({
         $color="--off-white"
         buttonWidth="long"
         buttonThickness="thick"
-        buttonTextLength="medText"
+        buttonTextLength="longText"
         backgroundColor="--off-black"
         isHomePage={true}
         shoutOut={SignUpShoutOut}
