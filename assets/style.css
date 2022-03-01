@@ -119,6 +119,57 @@
     color: var(--phs-blue);
 }
 
+/* Archive banner additions */
+:root {
+    --archive-banner-height: calc(4 * 17px);
+}
+#archive-banner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    font-family: "Rum Sans Thin";
+    font-size: 1.5rem;
+    padding: 0 1.5rem;
+    height: var(--archive-banner-height);
+    color: var(--black-90);
+    background-color: var(--phs-orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#archive-banner a {
+    color: inherit;
+    font-weight: bold;
+}
+main {
+    margin-top: var(--archive-banner-height);
+}
+#logo-container, #version {
+    transform: translateY(var(--archive-banner-height));
+}
+#nav-links {
+    font-size: 30px;
+}
+@media screen and (max-width: 30em) {
+    :root {
+        --archive-banner-height: calc(6 * 17px);
+    }
+    #logo-container {
+        transform: revert;
+    }
+    header {
+        margin-top: var(--archive-banner-height);
+    }
+    main {
+        margin-top: 0;
+    }
+}
+
+/* End archive banner additions */
+
+
 .phone-number,
 .email,
 .url {
@@ -393,7 +444,6 @@ li .icon.email {
         }
     }
 }
-
 
 /* NOTHING BELOW */
 

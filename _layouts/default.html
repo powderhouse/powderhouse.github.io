@@ -18,29 +18,34 @@
 </head>
 
 <body {% if page.slug %}data-slug='{{ page.slug}}' {% endif %} class='bg-near-white near-black'>
-    <header class='pa4-ns pa3-m pa2 pb4-ns pb3'>
-        {% include header.html %}
-    </header>
-    <main class='lh-copy pa4-ns pa2 pt0-ns pt1 f2-ns f3-m f4'>
-        <aside class='w-25-ns tr f5 pr0-ns' style='position: relative; right: 0;'>
-            🗺 <a class='link dim red' href='https://translate.google.com/translate?sl=auto&tl=es&u={{ site.url | append: page.url | url_encode }}'>Español</a>, <a class='link dim red' href='https://translate.google.com/translate?sl=auto&tl=pt&u={{ site.url | append: page.url | url_encode }}'>Português</a>, &amp; <a class='link dim red' href='https://translate.google.com/translate?hl=&sl=en&tl=ht&u={{ site.url | append: page.url | url_encode }}'>Kreyòl Ayisyen</a>
-        </aside>
-        <section id='main-content'>
-            {{ content }}
-        </section>
-        <section id="search-results" class='dn'>
-            {% raw %}
-            <script type="text/html" id="search-result-template">
-                <div class="search-result f3 pb4 pt4 bb b--moon-gray">
-                    <a href='{{{ _highlightResult.url }}}' class='url link dim blue'>🔗 powderhouse.org{{{ _highlightResult.url }}}</a> —  {{{_highlightResult.text.value}}}
-                </div>
-            </script>
-            {% endraw %}
-        </section>
-    </main>
-    <footer>
-        {% include footer.html %}
-    </footer>
+    {% include archive-banner.html %}
+    <div id="site-container">
+        <header class='pa4-ns pa3-m pa2 pb4-ns pb3'>
+            {% include header.html %}
+        </header>
+        
+        <main class='lh-copy pa4-ns pa2 pt0-ns pt1 f2-ns f3-m f4'>
+            <aside class='w-25-ns tr f5 pr0-ns' style='position: relative; right: 0;'>
+                🗺 <a class='link dim red' href='https://translate.google.com/translate?sl=auto&tl=es&u={{ site.url | append: page.url | url_encode }}'>Español</a>, <a class='link dim red' href='https://translate.google.com/translate?sl=auto&tl=pt&u={{ site.url | append: page.url | url_encode }}'>Português</a>, &amp; <a class='link dim red' href='https://translate.google.com/translate?hl=&sl=en&tl=ht&u={{ site.url | append: page.url | url_encode }}'>Kreyòl Ayisyen</a>
+            </aside>
+            <section id='main-content'>
+                {{ content }}
+            </section>
+            <section id="search-results" class='dn'>
+                {% raw %}
+                <script type="text/html" id="search-result-template">
+                    <div class="search-result f3 pb4 pt4 bb b--moon-gray">
+                        <a href='{{{ _highlightResult.url }}}' class='url link dim blue'>🔗 powderhouse.org{{{ _highlightResult.url }}}</a> —  {{{_highlightResult.text.value}}}
+                    </div>
+                </script>
+                {% endraw %}
+            </section>
+        </main>
+        <footer>
+            {% include footer.html %}
+        </footer>
+    </div>
+    
     <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
     <script>
     // To clear the placeholder value in the search of the input
