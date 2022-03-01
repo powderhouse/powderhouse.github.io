@@ -297,7 +297,7 @@ let SectionHeaderContainer = styled.div`
 	// TODO: Review usage of em line-heights in light of https://css-tricks.com/almanac/properties/l/line-height/#aa-unitless-line-heights
 	line-height: 1.35em;
 	position: relative;
-	transform: ${(props) => (props.left ? css`translateY(-4px)` : "")};
+	transform: ${(props) => (props.left ? css`translateY(-8px)` : "")};
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
 	@media ${mediaQueries.uptoTablet} {
