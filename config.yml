@@ -1,0 +1,21 @@
+# Setting additional local flags
+
+# force-local: This option sets the level of logging required. Set 1 to debug issues related to setting up connections. Set 2 for logs related to network information. Set 3 to dump all communication to local servers for each request and response. The default value for this option is 1.
+--force-local 3
+# verbose: This option restricts Binary usage to Automate product, and it cannot be used for Live/Screenshot testing.
+# --verbose 3
+
+# local-identifier: This options routes all traffic via the proxy specified - otherwise, binary tries to connect directly as well for better performance.
+# --local-identifier <YOUR_LOCAL_IDENTIFIER_STRING>
+
+# proxy-host: If you are behind corporate proxy setup, please specify your proxy port using this option. Default value is 3128.
+# --proxy-host
+
+# proxy-port: If you are behind corporate proxy which requires authentication, please specify your proxy username using this option. As of now, only HTTP Basic authentication is supported.
+# --proxy-port
+
+# proxy-user: If you are behind corporate proxy which requires authentication, please specify your proxy password using this option. As of now, only HTTP Basic authentication is supported.
+# --proxy-user
+
+# proxy-pass: If you are running multiple copies of BrowserStackLocal binary (for better performance or other reasons), please specify unique strings for BrowserStack to uniquely identify them. You will need to specify the same string in Automate tests as well.
+# --proxy-pass

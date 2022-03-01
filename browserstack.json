@@ -1,0 +1,30 @@
+{
+    "auth": {
+        "username": "alecresnick_BKH0yY",
+        "access_key": "vD4uxFtkMzTkpo76hqyB"
+    },
+    "browsers": [
+        {
+            "browser": "chrome",
+            "os": "Windows 10",
+            "versions": ["latest", "latest-1"]
+        }
+    ],
+    "run_settings": {
+        "cypress_config_file": "./cypress.json",
+        "project_name": "powderhouse.org",
+        "build_name": "0.01",
+        "exclude": [],
+        "parallels": "1",
+        "npm_dependencies": {},
+        "package_config_options": {},
+        "headless": true
+    },
+    "connection_settings": {
+        "local": true,
+        "local_identifier": "CypressLocalConnection1",
+        "local_mode": null,
+        "local_config_file": "./config.yml"
+    },
+    "disable_usage_reporting": false
+}

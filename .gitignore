@@ -4,3 +4,7 @@ node_modules/
 .vercel
 .env*
 *.sublime-workspace
+cypress/screenshots
+cypress/videos
+*.log
+./log/
