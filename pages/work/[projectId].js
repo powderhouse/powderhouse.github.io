@@ -293,6 +293,7 @@ let ProjectImage = styled.img`
 
 let ProjectGalleryDiv = styled.div`
   grid-column: 1 / -1;
+  padding-bottom: calc(1.5 * var(--vertical-rhythm));
 
   // Implements Masonry layout
   list-style-type: none;

@@ -176,7 +176,6 @@ function WorkPage({
 						altText={alternativeText}
 						caption=""
 					/>
-					<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
 				</ProjectLink>
 				<PastLifeDesc markdown>{LinkText}</PastLifeDesc>
 			</PastLifeCard>
@@ -300,10 +299,8 @@ let PartnerLogo = styled.img`
 `;
 
 let ProjectSectionContent = styled(PageSectionContent)`
-	transform: translateY(0em);
-
 	@media ${mediaQueries.uptoTablet} {
-		transform: revert;
+		grid-row-gap: var(--vertical-rhythm);
 	}
 `;
 
@@ -374,6 +371,7 @@ let PastLifeSectionContent = styled.div`
 	// TODO: --gap and --vertical-rhythm should probably match
 	column-gap: var(--gap);
 	row-gap: var(--vertical-rhythm);
+	transform: translateY(6px);
 
 	@media ${mediaQueries.uptoMobile} {
 		grid-template-columns: repeat(1, 1fr);

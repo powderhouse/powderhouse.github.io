@@ -185,8 +185,8 @@ let NewsTitle = styled.h2`
 	grid-column: 4 / 10;
 	grid-row: 1;
 	align-self: end;
-	font-size: var(--xlarge-font-size);
-	line-height: var(--xlarge-line-height);
+	font-size: var(--large-font-size);
+	line-height: var(--large-line-height);
 	font-weight: 300;
 	hyphens: auto;
 
@@ -194,11 +194,14 @@ let NewsTitle = styled.h2`
 		grid-column: 1 / -1;
 		grid-area: newstitle;
 		grid-row: 2;
+		font-size: var(--large-font-size);
+		line-height: var(--large-line-height);
 	}
 	@media ${mediaQueries.uptoMobile} {
 		grid-column: 1 / -1;
 		grid-row: 2;
-
+		font-size: var(--medium-font-size);
+		line-height: var(--medium-line-height);
 	}
 `;
 
@@ -222,7 +225,7 @@ let NewsContent = styled.div`
 let NewsExcerpt = styled(Markdown)`
 	font-weight: 300;
 	opacity: 0.625;
-	margin: calc(var(--vertical-rhythm) / 2) 0;
+	margin: 0;
 `;
 
 let NewsRelatedLinks = styled.ul`
