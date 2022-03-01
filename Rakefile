@@ -32,4 +32,9 @@ task :check => [:build] do
   end
 end
 
+desc 'Serve the site…'
+task :serve do
+  Jekyll::Commands::Serve.process(profile: true)
+end
+
 task :default => [:check]
