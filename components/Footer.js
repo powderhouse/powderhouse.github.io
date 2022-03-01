@@ -204,8 +204,10 @@ let ContactNavList = styled(NavList)`
     // TODO: Rename to make class name more readable
     grid-area: www1;
     hyphens: manual;
+    text-align:left;
 
     @media ${mediaQueries.uptoMobile} {
+      text-align: center;
       justify-content: center;
     }
   }
@@ -245,8 +247,8 @@ let SocialList = styled(NavList)`
     padding-left: 6px;
   }
 
-  @media ${mediaQueries.uptoTablet} {
-    justify-content:end;
+  @media ${mediaQueries.uptoMobile} {
+    justify-content:center;
   }
 `;
 
