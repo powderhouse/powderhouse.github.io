@@ -8,6 +8,48 @@
             "browser": "chrome",
             "os": "Windows 10",
             "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "firefox",
+            "os": "Windows 10",
+            "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "edge",
+            "os": "Windows 10",
+            "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "chrome",
+            "os": "OS X Mojave",
+            "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "firefox",
+            "os": "OS X Mojave",
+            "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "safari",
+            "os": "OS X Mojave",
+            "versions": ["latest", "latest-1"]
+        }
+    ],
+    "other-browsers": [
+        {
+            "browser": "chrome",
+            "os": "OS X Catalina",
+            "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "firefox",
+            "os": "OS X Catalina",
+            "versions": ["latest", "latest-1"]
+        },
+        {
+            "browser": "edge",
+            "os": "OS X Catalina",
+            "versions": ["latest", "latest-1"]
         }
     ],
     "run_settings": {
@@ -16,15 +58,20 @@
         "build_name": "0.01",
         "exclude": [],
         "parallels": "1",
-        "npm_dependencies": {},
+        "npm_dependencies": {
+            "@percy/cli": "^1.0.0-beta.76",
+            "@percy/cypress": "^3.1.1",
+            "browserslist": "^4.19.3",
+            "cypress": "^9.5.0"
+        },
         "package_config_options": {},
         "headless": true
     },
     "connection_settings": {
-        "local": true,
-        "local_identifier": "CypressLocalConnection1",
+        "local": false,
+        "local_identifier": null,
         "local_mode": null,
-        "local_config_file": "./config.yml"
+        "local_config_file": null
     },
     "disable_usage_reporting": false
 }
