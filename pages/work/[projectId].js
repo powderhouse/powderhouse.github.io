@@ -404,7 +404,7 @@ export async function getStaticProps({ params: { projectId } }) {
     [
       `filters[ProjectId][$eq]=${projectId}`,
       "pagination[limit]=1", // We are only constructing one per page
-      // Fields to deeplt populate
+      // Fields to deeply populate
       ...["ProjectGalleryItem", "ProjectFeatureImage", "ProjectInfoList"].map(
         (f) => `populate[${f}][populate]=*`
       ),
