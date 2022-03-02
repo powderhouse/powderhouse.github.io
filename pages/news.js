@@ -11,10 +11,10 @@ import Head from "next/head";
 import {
 	Asterisk,
 	baseGrid,
-	Markdown,
 	PageHeading,
 	PageIntroduction,
 	PageSplash,
+	Div,
 } from "../components/global.js";
 
 import { fetchAPI } from "../lib/api";
@@ -217,7 +217,7 @@ let NewsContent = styled.div`
 	}
 `;
 
-let NewsExcerpt = styled(Markdown)`
+let NewsExcerpt = styled(Div)`
 	font-weight: 300;
 	opacity: 0.625;
 	margin: 0;
