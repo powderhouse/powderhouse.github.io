@@ -48,12 +48,14 @@ function Header(props) {
                   logotype={true}
                   stroke={complementaryColor(props.backgroundColor)}
                   className="navlogo-mobile"
+                  alt="Go to home page"
                 />
                 <Logo
                   direction="horizontal"
                   logotype={true}
                   stroke={complementaryColor(props.backgroundColor)}
                   className="navlogo-tabletAndUp"
+                  alt="Go to home page"
                 />
               </>
             </a>
