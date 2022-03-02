@@ -1,6 +1,3 @@
----
----
-
 @font-face {
   font-family: "Rum Platak";
   src: url("/assets/fonts/Rum-Plakat.otf");
@@ -22,22 +19,145 @@
   font-style: normal;
 }
 
-{%- assign fonts = "Rum Sans,Rum Serif" | split: "," -%}
-{%- assign weights = "Bold,Light,Medium,Semibold,Thin" | split: "," -%}
-{%- assign styles = ",Italic" | split: "," -%}
+@font-face {
+  font-family: "Rum Sans Bold";
+  src: url("/assets/fonts/RumSans-Bold.otf");
+  font-weight: bold;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Sans Bold Italic";
+  src: url("/assets/fonts/RumSans-BoldItalic.otf");
+  font-weight: bold;
+  font-style: italic;
+}
 
-{% for font in fonts %}
-{% for weight in weights %}
-{% for style in styles %}
-{%- assign fontName = font | append: " " | append:  weight | append: " " | append: style | strip -%}
-{%- assign otfFontFile = fontName | replace_first: " ", "" | replace_first: " ", "-" | replace: " ", "" | append: ".otf" -%}
 
 @font-face {
-  font-family: "{{ fontName }}";
-  src: url("/assets/fonts/{{ otfFontFile }}");
-  font-weight: {{ weight | downcase }};
-  font-style: {{ style | downcase }};
+  font-family: "Rum Sans Light";
+  src: url("/assets/fonts/RumSans-Light.otf");
+  font-weight: light;
+  font-style: ;
 }
-{% endfor %}
-{% endfor %}
-{% endfor %}
+@font-face {
+  font-family: "Rum Sans Light Italic";
+  src: url("/assets/fonts/RumSans-LightItalic.otf");
+  font-weight: light;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Sans Medium";
+  src: url("/assets/fonts/RumSans-Medium.otf");
+  font-weight: medium;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Sans Medium Italic";
+  src: url("/assets/fonts/RumSans-MediumItalic.otf");
+  font-weight: medium;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Sans Semibold";
+  src: url("/assets/fonts/RumSans-Semibold.otf");
+  font-weight: semibold;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Sans Semibold Italic";
+  src: url("/assets/fonts/RumSans-SemiboldItalic.otf");
+  font-weight: semibold;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Sans Thin";
+  src: url("/assets/fonts/RumSans-Thin.otf");
+  font-weight: thin;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Sans Thin Italic";
+  src: url("/assets/fonts/RumSans-ThinItalic.otf");
+  font-weight: thin;
+  font-style: italic;
+}
+
+
+
+
+@font-face {
+  font-family: "Rum Serif Bold";
+  src: url("/assets/fonts/RumSerif-Bold.otf");
+  font-weight: bold;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Serif Bold Italic";
+  src: url("/assets/fonts/RumSerif-BoldItalic.otf");
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Serif Light";
+  src: url("/assets/fonts/RumSerif-Light.otf");
+  font-weight: light;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Serif Light Italic";
+  src: url("/assets/fonts/RumSerif-LightItalic.otf");
+  font-weight: light;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Serif Medium";
+  src: url("/assets/fonts/RumSerif-Medium.otf");
+  font-weight: medium;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Serif Medium Italic";
+  src: url("/assets/fonts/RumSerif-MediumItalic.otf");
+  font-weight: medium;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Serif Semibold";
+  src: url("/assets/fonts/RumSerif-Semibold.otf");
+  font-weight: semibold;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Serif Semibold Italic";
+  src: url("/assets/fonts/RumSerif-SemiboldItalic.otf");
+  font-weight: semibold;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Rum Serif Thin";
+  src: url("/assets/fonts/RumSerif-Thin.otf");
+  font-weight: thin;
+  font-style: ;
+}
+@font-face {
+  font-family: "Rum Serif Thin Italic";
+  src: url("/assets/fonts/RumSerif-ThinItalic.otf");
+  font-weight: thin;
+  font-style: italic;
+}
+
+
