@@ -106,9 +106,9 @@ let Markdown = ({ children, ...rest }) => {
 		if (typeof c == "string") {
 			try {
 				if (c.match(/\.  /)) {
-					throw new Error("Formatting issue with:" + c, {
-						cause: "Period with two spaces after it appears.  We use periods with one space after them.",
-					});
+					// throw new Error("Formatting issue with:" + c, {
+					// 	cause: "Period with two spaces after it appears.  We use periods with one space after them.",
+					// });
 				}
 			} catch (err) {
 				console.log(err, err.cause);
@@ -380,6 +380,7 @@ let getMediaURL = function (media, maxSize = "large") {
 				findLargestFormat(media.data.attributes.formats)
 		  ].url;
 };
+
 function findLargestFormat(media, maxSize = "large") {
 	let formats = ["large", "medium", "small", "thumbnail"];
 	formats = formats.slice(formats.indexOf(maxSize), formats.length);

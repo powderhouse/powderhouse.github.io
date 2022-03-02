@@ -79,11 +79,14 @@ function assemblePaths(paths) {
   return pathsList;
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(context) {
   let jobCards = await fetchAPI("/job-cards");
   let jobIds = jobCards.data.map((i) => i.attributes.JobId);
+  console.log("context prop is.........." + JSON.stringify(context));
+
   return {
     paths: assemblePaths(jobIds),
+    // route: context.locale,
     fallback: false,
   };
 }
