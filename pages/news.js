@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -16,12 +14,9 @@ import {
 	Markdown,
 	PageHeading,
 	PageIntroduction,
-	PageSectionContent,
 	PageSplash,
-	SectionHeader,
 } from "../components/global.js";
 
-import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
 function NewsPage({ newsPage, newsCards }) {
@@ -239,16 +234,6 @@ let NewsLi = styled.li`
 	position: relative;
 `;
 
-function parseDate(dateString) {
-	let parts = dateString.split("-");
-	let dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-	let day = parts[2];
-	let month = dateObj.toLocaleString("default", { month: "long" });
-	let year = parts[0];
-
-	return [day, month, year].join(" ");
-}
-
 export async function getStaticProps(context) {
 	let newsPage = await fetchAPI("/news-page?populate=*");
 	// TODO: Ideally would "get all" rather than "get 100"
@@ -260,6 +245,7 @@ export async function getStaticProps(context) {
 			newsPage: newsPage,
 			newsCards: newsCards,
 		}, // will be passed to the page component as props
+		context,
 	};
 }
 

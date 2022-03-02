@@ -286,7 +286,6 @@ let sectionHeaderContainerStyles = {
 			position: relative;
 			top: -4px;
 			padding-left: 1em; // This visually centers the asterisk on the left vertical line of the page
-
 		}
 	`,
 };
@@ -297,7 +296,8 @@ let SectionHeaderContainer = styled.div`
 	// TODO: Review usage of em line-heights in light of https://css-tricks.com/almanac/properties/l/line-height/#aa-unitless-line-heights
 	line-height: 1.35em;
 	position: relative;
-	transform: ${(props) => (props.left ? css`translateY(-8px)` : css`translateX(-6px)`)};
+	transform: ${(props) =>
+		props.left ? css`translateY(-8px)` : css`translateX(-6px)`};
 	${(props) => sectionHeaderContainerStyles[props.left ? "left" : "center"]}
 
 	@media ${mediaQueries.uptoTablet} {
@@ -377,7 +377,7 @@ let getMediaURL = function (media, maxSize = "large") {
 	return hasNoFormats
 		? media.data.attributes.url
 		: media.data.attributes.formats[
-				findLargestFormat(media.data.attributes.formats)
+				findLargestFormat(media.data.attributes.formats, maxSize)
 		  ].url;
 };
 function findLargestFormat(media, maxSize = "large") {

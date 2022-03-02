@@ -8,13 +8,9 @@ import NewsLetterSignUp from "../components/NewsLetterSignUp";
 import { navMenuItems, socials, mediaQueries } from "../site-data.js";
 
 import {
-  gap,
-  expandColor,
   baseGrid,
   colorByProp,
   ShiftBy,
-  highlight,
-  complementaryColor,
 } from "../components/global.js";
 
 function Footer({ backgroundColor, accentColor, ...rest }) {

@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import { parse } from "node-html-parser";
 
 import Header from "../../components/Header";
@@ -20,13 +18,9 @@ import {
   getMediaURL,
 } from "../../components/global.js";
 
-import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
-import { useRouter } from "next/router";
 
 function ProjectDetailPage({ projectData }) {
-  const router = useRouter();
-  const { projectId } = router.query;
   let accentColor = "--off-white";
 
   return (
@@ -365,22 +359,6 @@ function getSrc(htmlString) {
 function isVideo(fileExt) {
   let vidExts = ["mov", "mp4", "flv", "mkv", "webm"];
   return vidExts.includes(fileExt.toLowerCase());
-}
-
-function getProjectCardById(projectId, projectCards) {
-  let project = projectCards.data.find(
-    ({ attributes: { ProjectId } }) => ProjectId == projectId
-  ).attributes;
-
-  project.ProjectFeatureImageInfo = {
-    url: getMediaURL(project.ProjectFeatureImage, "large"),
-    alternativeText:
-      project.ProjectFeatureImage.data.attributes.alternativeText,
-  };
-
-  // TODO: We don't need project.ProjectFeatureImage, and could (maybe should) delete it at this point.  This would require a deep clone of the project object.
-
-  return project;
 }
 
 export async function getStaticPaths() {

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SVG from "react-inlinesvg";
-import { mediaQueries } from "../site-data";
 
 let LogoContainer = styled.div``;
 

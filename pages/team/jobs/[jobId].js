@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
@@ -9,14 +7,10 @@ import PageContainer2 from "../../../components/PageContainer2";
 import {
   PageSplash,
   PageHeading,
-  Asterisk,
   PageIntroduction,
-  SectionHeader,
   PageSectionContent,
-  slugify,
 } from "../../../components/global.js";
 
-import { getStrapiMedia } from "../../../lib/media";
 import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";
 
@@ -40,7 +34,6 @@ function JobDetailPage({ jobCards }) {
       {jobCard.attributes.JobSubtitle}
     </PageIntroduction>,
     ...jobCard.attributes.PageSections.map((n, i) => {
-      let slug = slugify(n.SectionHeader);
       return (
         <Region2
           backgroundColor="--off-white"

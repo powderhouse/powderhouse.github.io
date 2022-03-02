@@ -17,8 +17,6 @@ import {
 	PageSplash,
 	PageHeading,
 	PageIntroduction,
-	Asterisk,
-	SectionHeader,
 	PageSectionContent,
 	ShiftBy,
 	getBgFromLight,
@@ -26,10 +24,7 @@ import {
 	tenureSort,
 } from "../../components/global.js";
 
-import { getStrapiMedia } from "../../lib/media";
 import { fetchAPI } from "../../lib/api";
-
-let cardSections = ["Staff", "Advisors", "Alumni"];
 
 function TeamPage2({
 	teamPage: {
@@ -85,32 +80,32 @@ function TeamPage2({
 			</Region2>
 		);
 
-	let advisorSection = PageSections.filter(
-		(s) => s.SectionHeader == "Advisors"
-	)[0];
-	let advisorCards =
-		advisors.length == 0 ? (
-			<></>
-		) : (
-			<Region2
-				backgroundColor={getBgFromLight(advisorSection.isLightSection)}
-				header={advisorSection.SectionHeader}
-				left={advisorSection.isLeftHeader}
-				key="advisors"
-			>
-				<AdvisorSectionContent $wide={true} $grid={true}>
-					{advisors.map((a, i) => (
-						<PersonCard
-							key={i}
-							type={a.Role}
-							name={a.Name}
-							bio={a.Bio}
-							links={a.LinkList}
-						/>
-					))}
-				</AdvisorSectionContent>
-			</Region2>
-		);
+	// let advisorSection = PageSections.filter(
+	// 	(s) => s.SectionHeader == "Advisors"
+	// )[0];
+	// let advisorCards =
+	// 	advisors.length == 0 ? (
+	// 		<></>
+	// 	) : (
+	// 		<Region2
+	// 			backgroundColor={getBgFromLight(advisorSection.isLightSection)}
+	// 			header={advisorSection.SectionHeader}
+	// 			left={advisorSection.isLeftHeader}
+	// 			key="advisors"
+	// 		>
+	// 			<AdvisorSectionContent $wide={true} $grid={true}>
+	// 				{advisors.map((a, i) => (
+	// 					<PersonCard
+	// 						key={i}
+	// 						type={a.Role}
+	// 						name={a.Name}
+	// 						bio={a.Bio}
+	// 						links={a.LinkList}
+	// 					/>
+	// 				))}
+	// 			</AdvisorSectionContent>
+	// 		</Region2>
+	// 	);
 
 	let alumniSection = PageSections.filter(
 		(s) => s.SectionHeader == "Alumni"
@@ -226,7 +221,7 @@ let JobsButton = styled(ArrowButton)`
 
 	@media ${mediaQueries.uptoTablet} {
 		top: 0;
-		margin-top:0;
+		margin-top: 0;
 	}
 `;
 
@@ -236,33 +231,11 @@ let StaffAlumSectionContent = styled(PageSectionContent)`
 	}
 `;
 
-let AdvisorSectionContent = styled(PageSectionContent)`
-	@media ${mediaQueries.uptoMobile} {
-		grid-template-columns: repeat(1, 1fr);
-	}
-`;
-
-let PersonHeadshotDiv = styled.div`
-	height: 150px;
-	width: 150px;
-	overflow: hidden;
-`;
-
-let PersonHeadshot = styled.img`
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
-`;
-
-let PersonName = styled.h3``;
-
-let PersonYears = styled.div``;
-
-let PersonTitle = styled.p``;
-
-let PersonLinks = styled.ul``;
-
-let PersonBio = styled.p``;
+// let AdvisorSectionContent = styled(PageSectionContent)`
+// 	@media ${mediaQueries.uptoMobile} {
+// 		grid-template-columns: repeat(1, 1fr);
+// 	}
+// `;
 
 function sortTeamCards(teamCards) {
 	let roleDict = {};
@@ -286,6 +259,7 @@ export async function getStaticProps(context) {
 			teamPage: teamPage,
 			teamCards: sortTeamCards(teamCards),
 		}, // will be passed to the page component as props
+		context,
 	};
 }
 

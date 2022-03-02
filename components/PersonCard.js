@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-	sizeToVerticalGridInRem,
-	Asterisk,
-	Div,
-	ShiftBy,
-} from "../components/global";
+import { sizeToVerticalGridInRem, Div } from "../components/global";
 import { mediaQueries } from "../site-data";
 import Icon from "../components/Icon.js";
 
@@ -35,8 +30,6 @@ let Name = styled.h3`
 `;
 
 let Years = styled.div``;
-
-let Title = styled.p``;
 
 let Links = styled.ul`
 	margin: 0;
@@ -74,7 +67,7 @@ let getHeadshotURL = function (headshotObject) {
 		: headshotObject.data.attributes.formats[largestFormat].url;
 };
 
-function PersonCard({ type, headshot, name, title, tenure, links, bio }) {
+function PersonCard({ type, headshot, name, tenure, links, bio }) {
 	let sortedLinks = links.sort(function (first, second) {
 		return second.LinkText.toLowerCase() < first.LinkText.toLowerCase()
 			? 1

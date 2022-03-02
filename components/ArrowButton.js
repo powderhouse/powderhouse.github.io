@@ -1,8 +1,6 @@
 // import React from "react";
 import styled from "styled-components";
 import SVG from "react-inlinesvg";
-import svgPathBBox from "svg-path-bbox";
-import { zoomViewBox } from "../components/global.js";
 
 function ArrowButton({
   text,
