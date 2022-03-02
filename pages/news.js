@@ -234,7 +234,7 @@ let NewsLi = styled.li`
 	position: relative;
 `;
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let newsPage = await fetchAPI("/news-page?populate=*");
 	// TODO: Ideally would "get all" rather than "get 100"
 	let newsCards = await fetchAPI(
@@ -245,7 +245,6 @@ export async function getStaticProps(context) {
 			newsPage: newsPage,
 			newsCards: newsCards,
 		}, // will be passed to the page component as props
-		context,
 	};
 }
 

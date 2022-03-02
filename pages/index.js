@@ -135,10 +135,9 @@ function HomePage({
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   return {
     props: await fetchAPI("/home"),
-    context: context,
   };
 }
 

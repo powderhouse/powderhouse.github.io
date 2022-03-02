@@ -104,7 +104,7 @@ function sortJobCards(jobCards) {
 	return jobDict;
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let jobPage = await fetchAPI("/jobs?populate=*");
 	let jobCards = await fetchAPI("/job-cards?populate=*");
 	return {
@@ -112,7 +112,6 @@ export async function getStaticProps(context) {
 			jobPage: jobPage,
 			jobCards: sortJobCards(jobCards),
 		}, // will be passed to the page component as props
-		context,
 	};
 }
 

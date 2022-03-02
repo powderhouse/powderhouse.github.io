@@ -377,7 +377,7 @@ let PastLifeDesc = styled(Div)`
 	padding-top: calc(var(--vertical-rhythm) / 2);
 `;
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let workPage = await fetchAPI("/work?populate=*");
 	let partnerCards = await fetchAPI(
 		"/work?populate[PartnerCards][populate]=*"
@@ -401,7 +401,6 @@ export async function getStaticProps(context) {
 			projectCards: projectCards,
 			pastLifeCards: pastLifeCards,
 		}, // will be passed to the page component as props
-		context,
 	};
 }
 export default WorkPage;

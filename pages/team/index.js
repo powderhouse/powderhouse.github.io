@@ -251,7 +251,7 @@ function sortTeamCards(teamCards) {
 	return roleDict;
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let teamPage = await fetchAPI("/team?populate=*");
 	let teamCards = await fetchAPI("/team-cards?populate=*");
 	return {
@@ -259,7 +259,6 @@ export async function getStaticProps(context) {
 			teamPage: teamPage,
 			teamCards: sortTeamCards(teamCards),
 		}, // will be passed to the page component as props
-		context,
 	};
 }
 

@@ -101,7 +101,7 @@ function AboutPage({
 	);
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let aboutPageMeta = await fetchAPI("/about?populate=*");
 	let aboutPageContent = await fetchAPI(
 		"/about?populate[PageMixedContent][populate]=*"
@@ -111,7 +111,6 @@ export async function getStaticProps(context) {
 			aboutPageMeta: aboutPageMeta.data.attributes,
 			aboutPageContent: aboutPageContent.data.attributes.PageMixedContent,
 		}, // will be passed to the page component as props
-		context: context,
 	};
 }
 
