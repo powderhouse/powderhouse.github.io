@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import PageContainer2 from "../../../components/PageContainer2";
@@ -11,16 +9,12 @@ import Head from "next/head";
 import {
 	PageSplash,
 	PageHeading,
-	Asterisk,
 	PageIntroduction,
-	SectionHeader,
 	PageSectionContent,
 	getBgFromLight,
 	Div,
-	slugify,
 } from "../../../components/global.js";
 
-import { getStrapiMedia } from "../../../lib/media";
 import { fetchAPI } from "../../../lib/api";
 
 function JobsPage({ jobPage, jobCards }) {
@@ -96,10 +90,6 @@ function JobsPage({ jobPage, jobCards }) {
 	);
 }
 
-let JobCard = styled.div`
-	grid-column: 1 / -1;
-`;
-
 function sortJobCards(jobCards) {
 	let jobDict = {};
 	let uniqueJobs = [
@@ -114,7 +104,7 @@ function sortJobCards(jobCards) {
 	return jobDict;
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let jobPage = await fetchAPI("/jobs?populate=*");
 	let jobCards = await fetchAPI("/job-cards?populate=*");
 	return {

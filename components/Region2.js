@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
-import { SectionHeader, baseGrid, colorByProp } from "../components/global";
+import { SectionHeader, colorByProp } from "../components/global";
 import { mediaQueries } from "../site-data";
 
 let StyledDiv = styled.div`

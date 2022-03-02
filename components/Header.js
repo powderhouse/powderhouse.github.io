@@ -3,30 +3,13 @@ import { useRouter } from "next/router";
 
 import Link from "next/link";
 
-import {
-  logotypeHorizSVG,
-  logotypeVertSVG,
-  logoSVG,
-  mediaQueries,
-  navMenuItems,
-} from "../site-data.js";
+import { mediaQueries, navMenuItems } from "../site-data.js";
 
-import {
-  gap,
-  baseGrid,
-  highlight,
-  colorByProp,
-  ShiftBy,
-  complementaryColor,
-} from "../components/global.js";
+import { colorByProp, complementaryColor } from "../components/global.js";
 
 import Scribble from "../components/Scribble.js";
 import Logo from "../components/Logo.js";
 import Region2 from "../components/Region2.js";
-
-function getScribbleNum(navText) {
-  return navMenuItems.find((el) => el.text == navText).scribbleNum;
-}
 
 function getScribbleColor(navText) {
   return navMenuItems.find((el) => el.text == navText).color;
@@ -105,11 +88,9 @@ let Wrapper = styled.header`
   padding: var(--vertical-rhythm) 0;
   align-items: center;
   ${(props) => colorByProp(props)};
-  ${(props) => `
-    color: inherit;
-    stroke: inherit;
-    fill: inherit;
-    `};
+  color: inherit;
+  stroke: inherit;
+  fill: inherit;
 
   @media ${mediaQueries.uptoMobile} {
     flex-direction: column;

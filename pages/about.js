@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import Head from "next/head";
 
@@ -9,22 +8,17 @@ import PageTableOfContents from "../components/PageTableOfContents";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import PageImage from "../components/PageImage";
-import { asteriskSVG } from "../site-data.js";
 
 import {
-	Region,
 	PageSplash,
 	PageHeading,
 	PageIntroduction,
 	PageSectionContent,
-	SectionHeader,
 	slugify,
 	findLargestFormat,
 	getBgFromLight,
-	getLightFromBg,
 } from "../components/global";
 
-import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
 function AboutPage({
@@ -116,7 +110,7 @@ function AboutPage({
 	);
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 	let aboutPageMeta = await fetchAPI("/about?populate=*");
 	let aboutPageContent = await fetchAPI(
 		"/about?populate[PageMixedContent][populate]=*"

@@ -1,14 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import React, { useRef, useState } from "react";
 
 import { mediaQueries } from "../site-data.js";
-import { highlight, expandColor, complementaryColor } from "./global.js";
+import { expandColor, complementaryColor } from "./global.js";
 import ArrowButton from "../components/ArrowButton.js";
 
 function NewsLetterSignUp({
     text,
     backgroundColor,
-    link,
     buttonWidth,
     buttonThickness,
     buttonTextLength,
@@ -139,7 +138,7 @@ let NewsLetterForm = styled.form`
     }
 `;
 
-let EmailInput = styled.input.attrs((props) => ({
+let EmailInput = styled.input.attrs(() => ({
     type: "email",
     // name: "email",
     placeholder: "Email Address",

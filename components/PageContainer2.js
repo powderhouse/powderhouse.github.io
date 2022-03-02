@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import { useRef } from "react";
 import RegionContainer2 from "../components/RegionContainer2";
 
 let StyledDiv = styled.div`
@@ -11,7 +10,7 @@ let StyledDiv = styled.div`
 	grid-template-rows: auto 1fr auto;
 `;
 
-let groupBy = function (array, comparator, fallback = (e) => false) {
+let groupBy = function (array, comparator, fallback = () => false) {
 	// This is a function which takes an array and a comparator function and returns an order-preserving array of arrays where each element comprises a list of elements which returns the same value when passed to the comparator.  `fallback` is used to allow for overrides of unequal comparators to, e.g., allow you to set the default behavior in the case that an element lacks a backgroundColor
 
 	// We use it in PageContainer2 to group attributes by backgroundColor (or to ignore missing backgroundColors)
@@ -65,7 +64,7 @@ function PageContainer2(props) {
 	// Merge regionRuns without a background color with previous regionRuns with one.
 	// TODO: there must be a simpler way to aggregate these.
 	let mergedRegionRuns = [regionRuns[0]];
-	regionRuns.slice(1).forEach((rr, i) => {
+	regionRuns.slice(1).forEach((rr) => {
 		if (rr[0].props.hasOwnProperty("backgroundColor")) {
 			mergedRegionRuns.push(rr);
 		} else {
@@ -81,7 +80,6 @@ function PageContainer2(props) {
 		.filter((x) => x);
 
 	let contentPresent = contentRunIndices == 0 ? false : true;
-	let firstContentIndex, lastContentIndex;
 	let customRegionContainerStyle =
 		mergedRegionRuns.length == 1 ? { minHeight: "100vh" } : {};
 	let regionContainers = mergedRegionRuns.map((rr, i) => {
@@ -89,9 +87,9 @@ function PageContainer2(props) {
 		let isFirstContentRegionContainer = contentPresent
 			? i == contentRunIndices[0]
 			: null;
-		let isLastContentRegionContainer = contentPresent
-			? i == contentRunIndices.slice(-1)[0]
-			: null;
+		// let isLastContentRegionContainer = contentPresent
+		// 	? i == contentRunIndices.slice(-1)[0]
+		// 	: null;
 
 		// Define padding based on content, first/last content status
 		let padTop =

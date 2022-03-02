@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
 // import Image from "next/image";
 
 let Resize = styled.div`

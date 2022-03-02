@@ -57,13 +57,6 @@ function Splash({ children, ...rest }) {
   );
 }
 
-let ShoutOut = styled.p`
-  font-size: var(--medium-font-size);
-  line-height: var(--medium-line-height);
-  grid-column: 1 / -1;
-  line-height: 1;
-`;
-
 let SplashNewsletterSignupDiv = styled.div`
   grid-column: 4 / 10;
 
@@ -142,7 +135,7 @@ function HomePage({
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   return {
     props: await fetchAPI("/home"),
   };

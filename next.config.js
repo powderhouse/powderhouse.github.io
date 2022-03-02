@@ -1,7 +1,7 @@
 const withPlugins = require("next-compose-plugins");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
+// const withBundleAnalyzer = require("@next/bundle-analyzer")({
+//   enabled: process.env.ANALYZE === "true",
+// });
 
 let nextConfig = {
   images: {
@@ -15,7 +15,7 @@ let nextConfig = {
 
 let plugins = [
   // https://github.com/cyrilwanner/next-compose-plugins
-  [withBundleAnalyzer],
+  // [withBundleAnalyzer],
 ];
 
 module.exports = withPlugins(plugins, nextConfig);
