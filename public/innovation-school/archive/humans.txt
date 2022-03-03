@@ -20,7 +20,7 @@ Name: Seymour Papert
 Name: John Holt
                             
 /* SITE */
-Last update: 2022/03/02
+Last update: 2022/03/03
 Standards: HTML5, CSS3
 Components: tachyons, algolia
 Software: Jekyll, Sublime Text, Netlify

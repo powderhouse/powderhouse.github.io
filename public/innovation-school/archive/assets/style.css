@@ -191,8 +191,8 @@ footer {
 }
 
 header #logo {
-    -webkit-mask: url(/work/powderhouse-studios-archive/assets/phs-leftaligned-logo.svg) no-repeat 100% 100%;
-    mask: url(/work/powderhouse-studios-archive/assets/phs-leftaligned-logo.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/phs-leftaligned-logo.svg) no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/phs-leftaligned-logo.svg) no-repeat 100% 100%;
     background-color: var(--near-black);
     -webkit-mask-position: 0% 50%;
     mask-position: 0% 50%;
@@ -450,8 +450,8 @@ li .icon.email {
 
 
 .icon.twitter {
-    -webkit-mask: url(/work/powderhouse-studios-archive/assets/sc-twitter.svg) no-repeat 100% 100%;
-    mask: url(/work/powderhouse-studios-archive/assets/sc-twitter.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-twitter.svg) no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-twitter.svg) no-repeat 100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -460,8 +460,8 @@ li .icon.email {
 }
 
 .icon.facebook {
-    -webkit-mask: url(/work/powderhouse-studios-archive/assets/sc-facebook.svg) no-repeat 100% 100%;
-    mask: url(/work/powderhouse-studios-archive/assets/sc-facebook.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-facebook.svg) no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-facebook.svg) no-repeat 100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -470,8 +470,8 @@ li .icon.email {
 }
 
 .icon.instagram {
-    -webkit-mask: url(/work/powderhouse-studios-archive/assets/sc-instagram.svg) no-repeat 100% 100%;
-    mask: url(/work/powderhouse-studios-archive/assets/sc-instagram.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-instagram.svg) no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-instagram.svg) no-repeat 100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -480,8 +480,8 @@ li .icon.email {
 }
 
 .icon.youtube {
-    -webkit-mask: url(/work/powderhouse-studios-archive/assets/sc-youtube.svg) no-repeat 100% 100%;
-    mask: url(/work/powderhouse-studios-archive/assets/sc-youtube.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-youtube.svg) no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-youtube.svg) no-repeat 100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -490,8 +490,8 @@ li .icon.email {
 }
 
 .icon.email {
-    -webkit-mask: url(/work/powderhouse-studios-archive/assets/sc-email.svg) no-repeat 100% 100%;
-    mask: url(/work/powderhouse-studios-archive/assets/sc-email.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-email.svg) no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-email.svg) no-repeat 100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
