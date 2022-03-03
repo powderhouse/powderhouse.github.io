@@ -1,0 +1,505 @@
+@import "base.scss";
+
+body {
+  background-color: $body-background;
+}
+
+a:hover {
+  text-decoration: none;
+  @include transition(color 0.25s ease-in);
+}
+
+.page-title {
+  width: 100%;
+  font-size: 4em;
+  margin-top: 1em;
+  margin-bottom: 0.75em;
+}
+
+#content {
+  padding-top: 3em;
+}
+
+#logotype {
+  font-family: $adelle;
+  font-size: 1.125em;
+  text-align: right;
+  line-height: 1.5em;
+}
+
+#mission {
+  p {
+    max-width: 531px;
+  }
+  font-family: $museo;
+  font-size: 0.5em;
+  line-height: 1.25em;
+  text-align: justify;
+}
+
+.splash #logotype {
+  margin-top: -0.375em;
+  padding-bottom: 0.4375em;
+}
+
+#nav {
+  font-family: $museo;
+  font-size: 0.5em;
+  line-height: 3.25em;
+}
+
+#nav {
+  ul {
+    list-style-type: none;
+    letter-spacing: -0.03125em;
+    text-align: left;
+  }
+  li {
+    display: inline-block;
+    text-align: center;
+    padding: 0em;
+    padding-right: 1.75em;
+    font-size: 1.25em;
+    line-height: 0.375em;
+  }
+}
+
+header, footer {
+  @include rgba-background($sprout-green, 0.9);
+  a {
+    color: #cbd4dc;
+
+    &:hover {
+      color: #555;
+    }
+  }
+}
+
+header {
+  #logotype a {
+  text-shadow: 0 1px 1px #aaaaaa;
+  text-decoration: none;
+  color: $dark-grey;
+  margin-right: -2px;
+    &:hover {
+      color: black;
+    }
+  }
+
+  #nav ul li.active > a {
+    color: #555;
+  }
+
+  width: 100%;
+  font-size: 3em;
+  line-height: 1em;
+  box-shadow: inset 0px -3px 5px $grey;
+  border-top: 4px solid #3c3c3c;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  behavior: url(/assets/PIE.htc);
+
+  &.splash {
+    padding-top: 1.25em;
+    padding-bottom: 0.6875em;
+    #logotype {
+      text-align: right;
+    }
+
+    #nav {
+      margin-top: -0.875em;
+      ul {
+        text-align: right;
+      }
+      li {
+        padding: 0;
+        padding-left: 1.75em;
+        text-align: right;
+        &:first-child {
+          padding-left: 0em;
+        }
+      }
+    }
+  }
+
+  #nav ul {
+    margin-left: 0;
+  }
+}
+
+.fadeout {
+  position: absolute;
+  bottom: 0em;
+  width: 100%;
+  height: 50%;
+  @include background(linear-gradient(rgba(249, 250, 251, 0) 0%, rgba(249, 250, 251, 1) 100%));
+  behavior: url(/assets/PIE.htc);
+}
+
+.even .fadeout {
+  @include background(linear-gradient(rgba(249, 250, 251, 0) 0%, rgba(249, 250, 251, 1) 100%));
+}
+
+.odd .fadeout {
+  @include background(linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.06125) 100%));
+}
+
+footer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: -1em;
+  /* TODO hack, why needed? */
+  border-bottom: 4px solid $dark-grey;
+  font-size: 3em;
+  line-height: 1em;
+  box-shadow: inset 0px 3px 5px $grey;
+  behavior: url(/assets/PIE.htc);
+
+  .help-block {
+    text-align: right;
+    font-size: 0.375em;
+    line-height: 1.125em;
+    color: #555;
+  }
+
+  blockquote {
+    margin-top: 11.5px;
+    border-left: none;
+  }
+
+  #footer-quote {
+    font-family: $museo;
+    font-size: 0.4125em;
+    line-height: 1.125em;
+    margin-bottom: 1em;
+  }
+
+  textarea#email-message {
+    margin-top: 11px;
+    /* TODO: hack */
+    width: 356px;
+  }
+
+  .legend {
+    text-align: right;
+    font-size: 0.5em;
+    width: 100%;
+    font-family: $museo;
+    border-bottom: 1px dashed #cccccc;
+  }
+
+  #sprout-elsewhere .legend {
+    font-size: 1.25em;
+    line-height: 1.25em;
+    text-align: left;
+    margin-bottom: 1em;
+  }
+
+  #footer-connect-container {
+    div {
+      margin-bottom: 0.645em;
+    }
+    ul#elsewhere li a div {
+      display: inline-block;
+      margin-bottom: 0em;
+    }
+  }
+
+  #lifestream {
+    font-size: 0.895em;
+    height: 352px;
+  }
+
+  ul.lifestream {
+    list-style-type: none;
+    margin: 0;
+    width: 95%;
+    max-height: 352px;
+    overflow: hidden;
+    li {
+      margin-bottom: 1.25em;
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      background-position: 0 50%;
+      max-height: 4em;
+      overflow: hidden;
+      position: relative;
+      > div {
+        display: table;
+      }
+    }
+    .icon {
+      position: absolute;
+      top: 50%;
+      height: 30px;
+      margin-top: -15px;
+      display: inline-block;
+      float: left;
+      border-radius: 15px;
+      opacity: 0.875;
+      box-shadow: inset 0 0px 3px $light-grey;
+      behavior: url(/assets/PIE.htc);
+    }
+  }
+
+  .elsewhere-story {
+    padding-left: 38px;
+    /* = 30px + 0.5em */
+    display: table-cell;
+    vertical-align: middle;
+    height: 30px;
+  }
+
+  #sprout-elsewhere {
+    margin-top: 25.75px;
+  }
+
+  #scrapbook-lede {
+    font-size: 0.75em;
+    font-style: italic;
+    text-align: right;
+    line-height: 1.375em;
+  }
+
+  #support-sprout hr {
+    margin-top: -0.375em;
+    margin-bottom: 1.55em;
+  }
+}
+
+.section-summary {
+  margin-bottom: 2em;
+}
+
+.vertical-centering {
+  &.outer {
+    height: 270px;
+    overflow: hidden;
+    position: relative;
+    display: table;
+    position: static;
+  }
+  &.middle {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    position: static;
+  }
+}
+
+
+hr.page-summary-delimiter {
+  border-top: 1px solid #dddddd;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+h2.page-section {
+  font-family: $museo;
+}
+
+
+.page-section h2 {
+  font-size: 3.25em;
+  margin-bottom: 1em;
+}
+
+.page-summary p, .featurette-details p {
+  text-align: justify;
+  font-family: $museo;
+  font-size: 1.75em;
+  line-height: 1.25em;
+  margin-top: 1em;
+}
+
+h1 {
+  margin-bottom: 0.5em;
+  line-height: 1em;
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
+
+.page-section {
+  margin-bottom: 7em;
+}
+
+h1, h2 {
+  text-align: center;
+  font-family: $museo;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+.page-summary .page-title {
+  width: 100%;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.page-section h2 {
+  font-family: $adelle;
+  text-shadow: 0px 2px 3px white;
+  color: #ccc;
+}
+
+h1 > a:hover, h2 > a:hover, .article-info a:hover {
+  text-decoration: none;
+}
+
+.quote-author {
+  text-align: right;
+  i {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+
+hr.section-divider {
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html, body {
+  padding: 0;
+  /* for mobile devices */
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -100px;
+}
+
+#push {
+  height: 200px;
+}
+
+@media (max-width: 480px) {
+  #content {
+    font-size: 0.8em;
+    padding-top: 0em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  header.splash #mission {
+    font-size: 0.375em;
+    max-width: 480px;
+    margin-right: 0px;
+    margin-top: 2.75em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    p {
+      margin-right: 0px;
+    }
+  }
+
+  header.splash {
+    padding: 0;
+    padding-top: 1.25em;
+    padding-bottom: 0.25em;
+  }
+  footer {
+    margin: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+  footer {
+    height: 1650px;
+  }
+  footer {
+    input#tlemail {
+      width: 76%;
+    }
+    fieldset {
+      width: 100%;
+    }
+    textarea#email-message {
+      width: 95%;
+    }
+    input#message-author {
+      width: 76%;
+    }
+  }
+  header.non-splash, header.splash {
+    #nav ul li:first-child {
+      padding-left: 0em;
+    }
+  }
+
+  header hr {
+    border-top: 2px solid #eeeeee;
+    border-bottom: 2px solid white;
+    display: block;
+  }
+  header.non-splash {
+    padding: 0;
+    padding-top: 1.25em;
+    padding-bottom: 0.25em;
+    height: 2em;
+  }
+  header.non-splash {
+    #logotype {
+      position: absolute;
+      top: 0.375em;
+      text-align: center;
+      width: 100%;
+    }
+    #nav {
+      margin: 0em;
+      margin-top: 1em;
+      position: absolute;
+      width: 100%;
+      top: 3em;
+      ul {
+        line-height: 1em;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        li {
+          font-size: 0.875em;
+          padding-left: 0.75em;
+          padding-right: 0em;
+        }
+      }
+    }
+  }
+  header.splash {
+    #logotype {
+      position: absolute;
+      top: 0.375em;
+      text-align: center;
+      width: 100%;
+    }
+    #nav {
+      margin: 0em;
+      position: absolute;
+      width: 100%;
+      top: 3em;
+      ul {
+        line-height: 1em;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        li {
+          font-size: 0.875em;
+          padding-left: 0.75em;
+        }
+      }
+    }
+  }
+}

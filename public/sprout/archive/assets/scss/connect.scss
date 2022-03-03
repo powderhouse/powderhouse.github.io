@@ -1,0 +1,144 @@
+@import "base.scss";
+
+#footer-connect {
+  input {
+    margin: 0;
+    width: 304px;
+  }
+}
+
+#connect-options em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+ul#elsewhere {
+  text-align: right;
+  margin: 0;
+  list-style: none;
+  li {
+    display: inline;
+    width: 56px;
+    img {
+      width: 15%;
+      opacity: 0.875;
+    }
+  }
+}
+
+.elsewhere-description p {
+  margin-top: 0.5em;
+}
+
+ul#elsewhere li img:hover {
+  opacity: 1;
+  @include transition(opacity 0.125s ease-in);
+}
+
+#connect-options .page-section {
+  text-align: justify;
+}
+
+#sprout-map {
+  text-align: center;
+  @include border-radius(5px);
+  @include box-shadow(inset 0 0 10px black);
+  behavior: url(/assets/PIE.htc);
+}
+
+form#donate {
+  > div {
+    margin-bottom: 0.5em;
+  }
+  input {
+    &#email {
+      margin-left: 0.375em;
+      width: 90%;
+    }
+    &#donation_amount {
+      width: 60%;
+      margin-left: 0.5em;
+    }
+  }
+}
+
+#dollar {
+  padding-left: 0.125em;
+  font-size: 1.25em;
+}
+
+.stripe-button-inner {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#connect-options #elsewhere-option img {
+  width: 75%;
+  opacity: 0.875;
+}
+
+.elsewhere-option {
+  margin-bottom: 1em;
+}
+
+.verbatim {
+  font-family: Courier;
+}
+
+#connect-options .page-section {
+  margin-top: 0em;
+}
+
+.elsewhere-icon {
+  @include border-radius(35px);
+  height: 70px;
+  opacity: 0.875;
+  @include box-shadow(inset 0 0 5px black);
+  behavior: url(/assets/PIE.htc);
+}
+
+#connect-options {
+  p {
+    font-size: 1.125em;
+    font-weight: 300;
+    line-height: 1.375em;
+  }
+  .page-section h2 {
+    margin-bottom: 0.5em;
+  }
+}
+
+#support-sprout-option hr {
+  margin-top: -1em;
+}
+
+@media (max-width: 480px) {
+  .web-sprout-map {
+    width: 100%;
+  }
+  .elsewhere-icon {
+    display: inline-block;
+  }
+  .elsewhere-description {
+    display: inline-block;
+    width: 75%;
+    position: relative;
+    top: -1.125em;
+    margin-left: 0.375em;
+  }
+  #connect-options .page-section {
+    margin-bottom: 3em;
+  }
+  form#donate input {
+    &#email {
+      margin: 0;
+      margin-left: 5px;
+      width: 89%;
+    }
+    &#donation_amount {
+      margin: 0;
+      margin-left: 5px;
+      width: 52%;
+    }
+  }
+}

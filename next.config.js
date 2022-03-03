@@ -34,6 +34,11 @@ let nextConfig = {
           source: `/work/:path(innovation-school/archive[^.]*)`,
           destination: "/:path/index.html",
         },
+        {
+          // TODO: I don't understand why this matches, e.g., /jobs/apply, but it seems to work
+          source: `/work/:path(sprout/archive[^.]*)`,
+          destination: "/:path/index.html",
+        },
       ],
       // afterFiles: [
       //   // These rewrites are checked after pages/public files
@@ -46,6 +51,10 @@ let nextConfig = {
         {
           source: "/work/innovation-school/archive/:path*",
           destination: "/innovation-school/archive/:path*",
+        },
+        {
+          source: "/work/sprout/archive/:path*",
+          destination: "/sprout/archive/:path*",
         },
       ],
     };

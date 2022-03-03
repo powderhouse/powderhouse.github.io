@@ -1,0 +1,246 @@
+@import "base.scss";
+
+.article {
+  blockquote {
+    ol, ul {
+      margin-left: 2em;
+      li {
+        font-size: 1em;
+        font-weight: 300;
+        margin-bottom: 0.75em;
+        line-height: 1.375em;
+      }
+    }
+  }
+  > h2 {
+    margin-bottom: 0.375em;
+  }
+}
+
+.article-info {
+  text-align: right;
+  font-style: italic;
+  font-family: $museo;
+  font-size: 0.875em;
+  line-height: 1.75em;
+  margin-top: 0.75em;
+}
+
+.post-summary {
+  font-family: $museo;
+  font-size: 1.25em;
+  line-height: 1.25em;
+  text-align: justify;
+  margin-top: 0.5em;
+}
+
+.article-body {
+  margin-top: 2em;
+  font-family: Helvetica, Verdana, sans-serif;
+  p {
+    margin-bottom: 1em;
+  }
+}
+
+div.article {
+  font-size: 1.75em;
+  line-height: 1.25em;
+}
+
+.page-end-delimiter {
+  margin-top: 10em;
+  margin-bottom: 10em;
+  border-bottom: 1.5px dashed $grey;
+  height: 1.5px;
+}
+
+.blog-container h3 {
+  height: 3.25em;
+  text-align: center;
+  font-family: $museo;
+}
+
+.blog-post-date {
+  text-align: right;
+  font-family: $museo;
+  text-shadow: 0px 2px 3px white;
+  color: #ccc;
+  margin-top: -0.5em;
+}
+
+.blog-post-summary {
+  margin-top: 1em;
+  overflow: hidden;
+  hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid white;
+  }
+}
+
+.article blockquote p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+blockquote p.attribution {
+  width: 100%;
+  text-align: right;
+  margin-top: -1em;
+}
+
+.blog-toc {
+  h3 {
+    text-align: center;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 3.5em;
+    color: $light-grey;
+    text-shadow: 0px 2px 3px white;
+  }
+}
+
+.blog-toc-card {
+  height: 370px;
+  max-height: 370px;
+  overflow: hidden;
+}
+
+.blog-toc-card, .blog-container {
+  @include border-radius(7px);
+  height: 370px;
+  behavior: url(/assets/PIE.htc);
+  margin-top: 1.5em;
+}
+
+.blog-container.even {
+  @include box-shadow(0 0 7px #999);
+}
+
+#blog-posts > .blog-container[class*='span4'] {
+  height: 100%;
+}
+
+.blog-toc-card.odd, .blog-container.odd {
+  @include rgba-background(rgb(0, 0, 0), 0.06125);
+  @include box-shadow(0 0 7px #808080);
+}
+
+.blog-toc-card.odd .lede-info {
+  color: #555;
+}
+
+.spacer {
+  padding: 1em;
+}
+
+.book {
+  font-style: italic;
+}
+
+.article p span.lede {
+  font-variant: small-caps;
+}
+
+ol, ul
+{
+  li {
+    line-height: 1.125em;
+    margin-bottom: 0.75em;
+    margin-top: 0.75em
+  }
+}
+
+.img .caption {
+  position: absolute;
+  text-align: right;
+  min-height: 1em;
+  @include rgba-background(rgb(248, 249, 250), 0.75);
+  bottom: 0;
+  font-size: .625em;
+  line-height: 1em;
+  padding: 2.5%;
+  color: #333;
+  width: 95%; /* Why doesn't 100% work? */
+  box-shadow: 0px -3.75px 3.75px -1.625px rgba(0, 0, 0, 0.75);
+  behavior: url(/assets/PIE.htc);
+}
+
+.article {
+  .img {
+    position: relative;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    float: left;
+    border-radius: 7.5px;
+    width: 300px;
+    height: 300px;
+    @include box-shadow(inset 0px 0px 7.5px rgba(0, 0, 0, 0.75));
+    behavior: url(/assets/PIE.htc);
+  }
+}
+
+div.article > h2, .blog-toc > h2 {
+  text-align: center;
+  font-size: 1.75em;
+  font-family: $adelle;
+}
+
+div.article > h2 {
+  line-height: 1.125em;
+}
+
+div.article h3 {
+  font-size: 1.375em;
+  font-family: $adelle;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+div.article h4 {
+  font-size: 1.125em;
+  margin-top: 1.125em;
+  margin-bottom: 0.375em;
+}
+
+div.article {
+  h3, h4 {
+    margin-left: -0.5em;
+  }
+
+  .unshift-left-quote {
+    margin-left: 0em;
+  }
+}
+
+#blog-posts hr.section-divider {
+  width: 100%;
+  clear: both;
+  height: 2px;
+  display: inline-block;
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid white;
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+
+p.acknowledgements {
+  font-size: 0.75em;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .article .img {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .article blockquote {
+    padding-left: 0.25em;
+    border-left: 2px solid #eee;
+  }
+}

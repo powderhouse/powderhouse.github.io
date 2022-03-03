@@ -1,0 +1,90 @@
+@import "base.scss";
+
+.blog-toc .lede {
+  padding: 1.5em;
+}
+
+.blog-post-summary blockquote {
+  border-left: 3px solid #eeeeee;
+  color: $light-grey;
+  margin: 0;
+  position: relative;
+}
+
+.featurette #blog-posts {
+  margin-top: 1.5em;
+}
+
+.featurette-title > h2 {
+  margin-bottom: 0.5em;
+}
+
+
+h2.featurette-title {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+h2.featurette-title a:hover {
+  color: $grey;
+  @include transition(color 0.25s ease-in);
+}
+
+.page-title, h2.featurette-title a {
+  font-family: $museo;
+  line-height: 2em;
+  color: $light-grey;
+  line-height: 1em;
+}
+
+.featurette-title {
+  width: 61.8%;
+  margin-left: 19.1%;
+  margin-right: 19.1%;
+}
+
+.featurette-details {
+  margin-bottom: 4em;
+  margin-left: 19.1%;
+  margin-right: 19.1%;
+  font-family: $museo;
+  font-size: 1.25em;
+  line-height: 1.375em;
+  text-align: center;
+
+}
+
+.featurette {
+  h2 {
+    font-family: $adelle;
+    text-align: center;
+    font-size: 4em;
+  }
+  hr {
+    border-top: 2px solid #eeeeee;
+    border-bottom: 2px solid white;
+  }
+}
+
+@media (max-width: 480px) {
+  .read-more {
+    margin-top: 0em;
+  }
+
+  .featurette-details {
+    margin-left: 0em;
+    margin-right: 0em;
+
+    p {
+      font-size: 1.25em;
+      line-height: 1.125em;
+    }
+  }
+  #blog-posts {
+    padding: 0em;
+    width: 100%;
+  }
+  ul#elsewhere {
+    padding-left: 2em;
+  }
+}
