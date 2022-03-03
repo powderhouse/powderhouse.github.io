@@ -1,3 +1,5 @@
+// import { useEffect, useState } from "react";
+
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
@@ -17,7 +19,26 @@ import { useRouter } from "next/router";
 function JobDetailPage({ jobCards }) {
   let accentColor = "--red";
   const router = useRouter();
-  const { jobId } = router.query;
+  let { jobId } = router.query;
+
+  // function getJobId() {
+  //   let href = window.location.href;
+
+  //   // These lines get the full path
+  //   // let re = /https*:\/\/[^\/]*(\/.+)/;
+  //   // return href.match(re)[1];
+
+  //   // These get just the jobId
+  //   let parts = href.split("/");
+  //   return parts[parts.length - 1];
+  // }
+
+  // const [jobId, setJobId] = useState(null);
+
+  // useEffect(() => {
+  //     setJobId(window.location.href);
+  // }, [])
+
   let jobCard = getJobCardById(jobId, jobCards);
 
   let regions = [
@@ -72,14 +93,12 @@ function assemblePaths(paths) {
   return pathsList;
 }
 
-export async function getStaticPaths(context) {
+export async function getStaticPaths() {
   let jobCards = await fetchAPI("/job-cards");
   let jobIds = jobCards.data.map((i) => i.attributes.JobId);
-  console.log("context prop is.........." + JSON.stringify(context));
 
   return {
     paths: assemblePaths(jobIds),
-    // route: context.locale,
     fallback: false,
   };
 }

@@ -243,8 +243,8 @@ let SocialList = styled(NavList)`
     padding-left: 6px;
   }
 
-  @media ${mediaQueries.uptoTablet} {
-    justify-content:end;
+  @media ${mediaQueries.uptoMobile} {
+    justify-content:center;
   }
 `;
 

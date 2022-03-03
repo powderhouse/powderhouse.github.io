@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import Head from "next/head";
 
@@ -28,15 +28,6 @@ function AboutPage({
 	aboutPageContent,
 }) {
 	let accentColor = "--red";
-
-	// function getCurrentPath() {
-	//     let path =  __filename.includes("index.js") 
-	//       ? __filename.split("index.js")[0]
-	//       : __filename.split(".")[0]
-	//     console.log(__filename);
-	//   }
-
-	//   getCurrentPath();
 
 	let regions = [
 		<Header
