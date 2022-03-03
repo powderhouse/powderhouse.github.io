@@ -4,11 +4,10 @@ import React from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import { asteriskSVG, mediaQueries } from "../site-data.js";
 
 import Region2 from "../components/Region2.js";
+import Markdown from "../components/Markdown.js";
 import AsteriskContainer from "../components/AsteriskContainer.js";
 
 import { parse, stringify } from "ltx";
@@ -98,38 +97,6 @@ let colorByProp = (props) => {
 	  		fill: ${expandColor(colorString)};
 	  	`;
 	return cssString;
-};
-
-let Markdown = ({ children, ...rest }) => {
-	// Here we iterate over children we pass and only wrap text/string children in Markdown.  This lets us wrap things in Markdown more cavalierly.
-	let wrappedChildren = React.Children.toArray(children).map((c, i) => {
-		if (typeof c == "string") {
-			try {
-				if (c.match(/\.  /)) {
-					// throw new Error("Formatting issue with:" + c, {
-					// 	cause: "Period with two spaces after it appears.  We use periods with one space after them.",
-					// });
-				}
-			} catch (err) {
-				console.log(err, err.cause);
-			}
-			return (
-				<ReactMarkdown
-					components={{ strong: "b" }}
-					rehypePlugins={[rehypeRaw]}
-					key={i}
-					{...rest}
-				>
-					{c}
-				</ReactMarkdown>
-			);
-		} else {
-			// We need to clone the element because by default, JSX elements are not extensible (i.e. we can't modify their props.key after they are passed)
-			let clone = React.cloneElement(c, { key: i });
-			return clone;
-		}
-	});
-	return <>{wrappedChildren}</>;
 };
 
 let Div = (props) =>
