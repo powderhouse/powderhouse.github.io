@@ -24,16 +24,31 @@ let nextConfig = {
   //   return config;
   // },
   rewrites: async () => {
-    return [
-      // {
-      //   source: `/work/powderhouse-studios-archive/:path/:last(.+(?!\..+))`,
-      //   destination: "/powderhouse-studios-archive/:path/:last/index.html",
-      // },
-      {
-        source: "/work/powderhouse-studios-archive/:path*/:last",
-        destination: "/powderhouse-studios-archive/:path*/:last",
-      },
-    ];
+    return {
+      beforeFiles: [
+        // These rewrites are checked after headers/redirects
+        // and before all files including _next/public files which
+        // allows overriding page files
+        {
+          // TODO: I don't understand why this matches, e.g., /jobs/apply, but it seems to work
+          source: `/work/powderhouse-studios-archive/:path([^.]+)`,
+          destination: "/powderhouse-studios-archive/:path/index.html",
+        },
+      ],
+      // afterFiles: [
+      //   // These rewrites are checked after pages/public files
+      //   // are checked but before dynamic routes
+      //   {},
+      // ],
+      fallback: [
+        // These rewrites are checked after both pages/public files
+        // and dynamic routes are checked
+        {
+          source: "/work/powderhouse-studios-archive/:path*",
+          destination: "/powderhouse-studios-archive/:path*",
+        },
+      ],
+    };
   },
 };
 
