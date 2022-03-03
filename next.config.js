@@ -31,8 +31,8 @@ let nextConfig = {
         // allows overriding page files
         {
           // TODO: I don't understand why this matches, e.g., /jobs/apply, but it seems to work
-          source: `/work/powderhouse-studios-archive/:path([^.]+)`,
-          destination: "/powderhouse-studios-archive/:path/index.html",
+          source: `/work/:path(powderhouse-studios-archive[^.]*)`,
+          destination: "/:path/index.html",
         },
       ],
       // afterFiles: [
