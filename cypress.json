@@ -1,3 +1,6 @@
 {
-    "projectId": "vcktph"
+    "projectId": "vcktph",
+    "env": {
+        "PERCY_TOKEN": "0ae09b008c0e33818bf01f642f47d84c1e563189451f2b421a2d4bd3e1e0bb1a"
+    }
 }

@@ -8,7 +8,9 @@
             "browser": "chrome",
             "os": "Windows 10",
             "versions": ["latest", "latest-1"]
-        },
+        }
+    ],
+    "other-browsers": [
         {
             "browser": "firefox",
             "os": "Windows 10",
@@ -33,9 +35,7 @@
             "browser": "safari",
             "os": "OS X Mojave",
             "versions": ["latest", "latest-1"]
-        }
-    ],
-    "other-browsers": [
+        },
         {
             "browser": "chrome",
             "os": "OS X Catalina",
