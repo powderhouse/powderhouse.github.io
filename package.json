@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "export NODE_ENV=development && next dev",
-    "build": "export NODE_ENV=production && npx check-peer-dependencies --install && next build",
+    "build": "export NODE_ENV=production && next build",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build"
