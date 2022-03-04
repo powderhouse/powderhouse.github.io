@@ -42,7 +42,7 @@ let mq = function (media) {
 	return (style) => `@media ${mediaQueries[media]} {\n${style}\n}`;
 };
 
-let getPadding = (media, props) => {
+let getPaddingString = (media, props) => {
 	let paddings = Object.keys(stylesByMedia[media]).filter((s) =>
 		s.match(/^padding-/)
 	);
@@ -64,6 +64,19 @@ let getPadding = (media, props) => {
 	return paddingString;
 };
 
+let getPaddingStyle = (props) => {
+	let paddingStyle = {};
+	if (props.pad) {
+		props.pad.forEach(
+			(p) =>
+				(paddingStyle[
+					`padding-${p}`
+				] = `calc(4 * var(--vertical-rhythm))`)
+		); // TODO: Total hack to work around breaking RegionContainer styling
+	}
+	return paddingStyle;
+};
+
 let getMediaQueryStyles = (props) => {
 	// This constructs the media queries for the paddings for regions.  Note that we only handle padding here.
 
@@ -73,7 +86,7 @@ let getMediaQueryStyles = (props) => {
 		.map((media) => {
 			// For each media type, construct styles
 			let styles = [
-				getPadding(media, props), // Right now, we only have padding, but you can add strings to this array to have wrapped in media queries as appropriate
+				getPaddingString(media, props), // Right now, we only have padding, but you can add strings to this array to have wrapped in media queries as appropriate
 			].join("\n");
 			return mq(media)(styles); // and return those padding-top and bottom strings wrapped in the appropriate media query
 		})
@@ -102,7 +115,7 @@ let getMediaQueryStyles = (props) => {
 
 let RegionContainer = styled.div.attrs((props) => ({
 	className: `region-container ${props.className ? props.className : ""}`,
-	style: colorStyleByProp(props), // TODO: No idea why this is needed instead of colorByProp below.  So frustrating.
+	style: Object.assign({}, colorStyleByProp(props), getPaddingStyle(props)), // TODO: No idea why this is needed instead of colorByProp below.  So frustrating.
 }))`
 	position: relative;
 
