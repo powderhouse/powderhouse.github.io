@@ -53,7 +53,7 @@ function Header(props) {
                     className={
                       (basePath == n.href ? "active " : "") + "nav-link"
                     }
-                    color={props.color}
+                    color={complementaryColor(props.backgroundColor)}
                     href={n.href}
                   >
                     {n.text}
