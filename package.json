@@ -4,8 +4,8 @@
   "description": "powderhouse.org",
   "main": "index.js",
   "scripts": {
-    "dev": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
-    "build": "export NODE_ENV=production && yarn install --check-files && next build",
+    "dev": "export NODE_ENV=development && next dev",
+    "build": "export NODE_ENV=production && next build",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build"
