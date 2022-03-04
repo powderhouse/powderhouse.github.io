@@ -6,6 +6,10 @@ describe("powderhouse.org Home", function () {
 
   it("Loads the homepage", function () {
     cy.get("title").should("contain", "Powderhouse");
+  });
+
+  it("Loads fonts correctly", function () {
+    cy.document().its("fonts.status").should("equal", "loaded");
     cy.percySnapshot();
   });
 });
