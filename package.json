@@ -4,8 +4,7 @@
   "description": "powderhouse.org",
   "main": "index.js",
   "scripts": {
-    "stage": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
-    "dev": "export NODE_ENV=development && vercel env pull .env.local && next dev",
+    "dev": "export NODE_ENV=development && export POWDERHOUSE_ENV=staging && vercel env pull .env.local && next dev",
     "build": "export NODE_ENV=production && yarn install --check-files && next build",
     "start": "next start",
     "lint": "next lint",
@@ -66,6 +65,10 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "find-unused-exports": "^3.0.0",
     "glyphhanger": "^5.0.0",
+    "stylelint": "^14.5.3",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-webpack-plugin": "^3.1.1",
     "vercel": "^24.0.0"
   }
 }

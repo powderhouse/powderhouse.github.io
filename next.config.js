@@ -1,15 +1,22 @@
+const StylelintPlugin = require("stylelint-webpack-plugin"); // line to add
+
 const withPlugins = require("next-compose-plugins");
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",
 // });
 
 let nextConfig = {
+  reactStrictMode: true,
   images: {
     domains: ["powderhouse-strapi-uploads.s3.amazonaws.com"],
   },
   compiler: {
     // ssr and displayName are configured by default
     styledComponents: true,
+  },
+  webpack: (config, options) => {
+    config.plugins.push(new StylelintPlugin());
+    return config;
   },
   // webpack: (config, { dev, isServer }) => {
   //   // Replace React with Preact only in client production build

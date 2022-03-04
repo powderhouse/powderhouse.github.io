@@ -1,277 +1,287 @@
-/*Global CSS*/
+/* Global CSS */
 
 /* Generated via https://transfonter.org/ */
 @font-face {
-	font-family: "GT Planar";
-	src: local("GT Planar Bold"), local("GTPlanar-Bold"),
-		url("/fonts/GT-Planar-Bold-subset.woff2") format("woff2");
-	font-weight: bold;
-	font-style: normal;
-	font-display: swap;
+  font-family: "GT Planar";
+  src: local("GT Planar Bold"), local("GTPlanar-Bold"),
+    url("/fonts/GT-Planar-Bold-subset.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "GT Planar";
-	src: local("GT Planar Italic 15 Bold"), local("GTPlanar-Italic15Bold"),
-		url("/fonts/GT-Planar-Italic-15-Bold-subset.woff2") format("woff2");
-	font-weight: bold;
-	font-style: italic;
-	font-display: swap;
+  font-family: "GT Planar";
+  src: local("GT Planar Italic 15 Bold"), local("GTPlanar-Italic15Bold"),
+    url("/fonts/GT-Planar-Italic-15-Bold-subset.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "GT Planar";
-	src: local("GT Planar Regular"), local("GTPlanar-Regular"),
-		url("/fonts/GT-Planar-Regular-subset.woff2") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
+  font-family: "GT Planar";
+  src: local("GT Planar Regular"), local("GTPlanar-Regular"),
+    url("/fonts/GT-Planar-Regular-subset.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "GT Planar";
-	src: local("GT Planar Italic 15 Light"), local("GTPlanar-Italic15Light"),
-		url("/fonts/GT-Planar-Italic-15-Light-subset.woff2") format("woff2");
-	font-weight: 300;
-	font-style: italic;
-	font-display: swap;
+  font-family: "GT Planar";
+  src: local("GT Planar Italic 15 Light"), local("GTPlanar-Italic15Light"),
+    url("/fonts/GT-Planar-Italic-15-Light-subset.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "GT Planar";
-	src: local("GT Planar Light"), local("GTPlanar-Light"),
-		url("/fonts/GT-Planar-Light-subset.woff2") format("woff2");
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
+  font-family: "GT Planar";
+  src: local("GT Planar Light"), local("GTPlanar-Light"),
+    url("/fonts/GT-Planar-Light-subset.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "GT Planar";
-	src: local("GT Planar Italic 15 Regular"), local("GTPlanar-Italic15Regular"),
-		url("/fonts/GT-Planar-Italic-15-Regular-subset.woff2") format("woff2");
-	font-weight: normal;
-	font-style: italic;
-	font-display: swap;
+  font-family: "GT Planar";
+  src: local("GT Planar Italic 15 Regular"), local("GTPlanar-Italic15Regular"),
+    url("/fonts/GT-Planar-Italic-15-Regular-subset.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
 }
 
 :root {
-	/*via https://blog.envylabs.com/responsive-typographic-scales-in-css-b9f60431d1c4*/
-	--up-5: 2;
-	--up-4: 1.7511;
-	--up-3: 1.5157;
-	--up-2: 1.3195;
-	--up-1: 1.1487;
-	/* baseline: 1em */
-	--down-1: 0.8706;
-	--down-2: 0.7579;
-	--down-3: 0.6599;
-	--down-4: 0.5745;
-	--down-5: 0.5;
+  /* General scale */
 
-	--step-up-5: calc(var(--up-5) * 1em);
-	--step-up-4: calc(var(--up-4) * 1em);
-	--step-up-3: calc(var(--up-3) * 1em);
-	--step-up-2: calc(var(--up-2) * 1em);
-	--step-up-1: calc(var(--up-1) * 1em);
-	/* baseline: 1em */
-	--step-down-1: calc(var(--down-1) * 1em);
-	--step-down-2: calc(var(--down-2) * 1em);
-	--step-down-3: calc(var(--down-3) * 1em);
-	--step-down-4: calc(var(--down-4) * 1em);
-	--step-down-5: calc(var(--down-5) * 1em);
-}
+  /* via https://blog.envylabs.com/responsive-typographic-scales-in-css-b9f60431d1c4 */
+  --up-5: 2;
+  --up-4: 1.7511;
+  --up-3: 1.5157;
+  --up-2: 1.3195;
+  --up-1: 1.1487;
 
-:root {
-	/*This scale is meant for GT Planar*/
-	--splash-font-size: 166px;
-	--splash-line-height: 0.9em;
-	--splash-letter-spacing: -4.8px;
+  /* baseline: 1em */
+  --down-1: 0.8706;
+  --down-2: 0.7579;
+  --down-3: 0.6599;
+  --down-4: 0.5745;
+  --down-5: 0.5;
+  --step-up-5: calc(var(--up-5) * 1em);
+  --step-up-4: calc(var(--up-4) * 1em);
+  --step-up-3: calc(var(--up-3) * 1em);
+  --step-up-2: calc(var(--up-2) * 1em);
+  --step-up-1: calc(var(--up-1) * 1em);
 
-	--xxxlarge-font-size: calc(var(--up-5) * var(--base-font-size));
-	--xxxlarge-line-height: 1.35em;
-	--xxxlarge-letter-spacing: 0;
+  /* baseline: 1em */
+  --step-down-1: calc(var(--down-1) * 1em);
+  --step-down-2: calc(var(--down-2) * 1em);
+  --step-down-3: calc(var(--down-3) * 1em);
+  --step-down-4: calc(var(--down-4) * 1em);
+  --step-down-5: calc(var(--down-5) * 1em);
 
-	--xxlarge-font-size: calc(var(--up-4) * var(--base-font-size));
-	--xxlarge-line-height: 1.35em;
-	--xxlarge-letter-spacing: 0;
+  /* Typographic hierarchy */
 
-	--xlarge-font-size: calc(var(--up-3) * var(--base-font-size));
-	--xlarge-line-height: 1.35em;
-	--xlarge-heading-letter-spacing: 0;
+  /* This scale is meant for GT Planar */
+  --splash-font-size: 166px;
+  --splash-line-height: 0.9em;
+  --splash-letter-spacing: -4.8px;
+  --xxxlarge-font-size: calc(var(--up-5) * var(--base-font-size));
+  --xxxlarge-line-height: 1.35em;
+  --xxxlarge-letter-spacing: 0;
+  --xxlarge-font-size: calc(var(--up-4) * var(--base-font-size));
+  --xxlarge-line-height: 1.35em;
+  --xxlarge-letter-spacing: 0;
+  --xlarge-font-size: calc(var(--up-3) * var(--base-font-size));
+  --xlarge-line-height: 1.35em;
+  --xlarge-heading-letter-spacing: 0;
+  --large-font-size: calc(var(--up-2) * var(--base-font-size));
+  --large-line-height: 1.35em;
+  --large-heading-letter-spacing: 0;
+  --medium-font-size: calc(var(--up-1) * var(--base-font-size));
+  --medium-line-height: 1.35em;
+  --medium-heading-letter-spacing: 0;
+  --base-font-size: 17pt;
+  --base-line-height: 1.35em;
 
-	--large-font-size: calc(var(--up-2) * var(--base-font-size));
-	--large-line-height: 1.35em;
-	--large-heading-letter-spacing: 0;
+  /* Vertical rhythm is equal to one base line height; we work in increments of 1/2 of this, but use the whole line height since that's more common */
+  --vertical-rhythm: calc(17pt * 1.35);
+  --base-letter-spacing: 0;
+  --small-font-size: calc(var(--down-1) * var(--base-font-size));
+  --small-line-height: 1.35em;
+  --small-letter-spacing: 0;
+  --xsmall-font-size: calc(var(--down-2) * var(--base-font-size));
+  --xsmall-line-height: 1.35em;
+  --xsmall-letter-spacing: 0;
+  --xxsmall-font-size: calc(var(--down-3) * var(--base-font-size));
+  --xxsmall-line-height: 1.35em;
+  --xxsmall-letter-spacing: 0;
 
-	--medium-font-size: calc(var(--up-1) * var(--base-font-size));
-	--medium-line-height: 1.35em;
-	--medium-heading-letter-spacing: 0;
-
-	--base-font-size: 17pt;
-	--base-line-height: 1.35em;
-	/*Vertical rhythm is equal to one base line height; we work in increments of 1/2 of this, but use the whole line height since that's more common*/
-	--vertical-rhythm: calc(17pt * 1.35);
-	--base-letter-spacing: 0;
-
-	--small-font-size: calc(var(--down-1) * var(--base-font-size));
-	--small-line-height: 1.35em;
-	--small-letter-spacing: 0;
-
-	--xsmall-font-size: calc(var(--down-2) * var(--base-font-size));
-	--xsmall-line-height: 1.35em;
-	--xsmall-letter-spacing: 0;
-
-	--xxsmall-font-size: calc(var(--down-3) * var(--base-font-size));
-	--xxsmall-line-height: 1.35em;
-	--xxsmall-letter-spacing: 0;
-}
-
-:root {
-	--off-black: rgb(42, 46, 47); /* #2A2E2F */
-	--off-white: rgb(245, 243, 239); /* #F5F3EF */
-	--purple: rgb(178, 131, 200); /* #B283C8 */
-	--yellow: rgb(255, 200, 93); /* #FFC85D */
-	--green: rgb(50, 131, 90); /* #32835A */
-	--blue: rgb(128, 210, 236); /* #80D2EC */
-	--red: rgb(226, 87, 87); /* #E25757 */
+  /* Colors */
+  --off-black: rgb(42 46 47); /* #2A2E2F */
+  --off-white: rgb(245 243 239); /* #F5F3EF */
+  --purple: rgb(178 131 200); /* #B283C8 */
+  --yellow: rgb(255 200 93); /* #FFC85D */
+  --green: rgb(50 131 90); /* #32835A */
+  --blue: rgb(128 210 236); /* #80D2EC */
+  --red: rgb(226 87 87); /* #E25757 */
 }
 
 html {
-	font-size: var(--base-font-size);
-	line-height: var(--base-line-height);
-	letter-spacing: var(--base-letter-spacing);
-	font-family: "GT Planar", sans-serif;
-	font-weight: 300;
-	font-style: normal;
-	text-rendering: geometricPrecision;
+  font-size: var(--base-font-size);
+  line-height: var(--base-line-height);
+  letter-spacing: var(--base-letter-spacing);
+  font-family: "GT Planar", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  text-rendering: geometricprecision;
 }
+
 body {
-	height: 100%;
-	/*TODO:  Consider using --base-line-height for this;*/
-	--gap: 24px;
+  height: 100%;
+
+  /* TODO:  Consider using --base-line-height for this; */
+  --gap: 24px;
 }
+
 b {
-	font-weight: 500;
+  font-weight: 500;
 }
+
 a {
-	color: inherit;
-	fill: inherit;
-	stroke: inherit;
+  color: inherit;
+  fill: inherit;
+  stroke: inherit;
 }
 
 img {
-	width: 100%;
+  width: 100%;
 }
 
 ul {
-	margin-top: 0;
-}
-
-ul > li:not(:last-child), dt > dl:not(:last-child) {
-	margin-bottom: calc(var(--vertical-rhythm) / 4);
+  margin-top: 0;
 }
 
 ul ul {
-	margin-top: calc(var(--vertical-rhythm) / 4);
+  margin-top: calc(var(--vertical-rhythm) / 4);
 }
 
-dl,
 dt,
+dl,
 dd {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	line-height: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: inherit;
 }
 
 dl {
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	column-gap: var(--gap);
-	grid-column: 1 / 8;
-	align-items: start;
-	padding-bottom: var(--vertical-rhythm);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: var(--gap);
+  grid-column: 1 / 8;
+  align-items: start;
+  padding-bottom: var(--vertical-rhythm);
 }
+
 dt {
-	grid-column: 1 / 3;
-	text-align: right;
-	height: calc(100% - var(--base-line-height));
-	font-weight: 900;
-	border-right: dashed 1px;
-	padding-right: var(--gap);
-	hyphens: auto;
+  grid-column: 1 / 3;
+  text-align: right;
+  height: calc(100% - var(--base-line-height));
+  font-weight: 900;
+  border-right: dashed 1px;
+  padding-right: var(--gap);
+  hyphens: auto;
 }
 
 dt:last-of-type {
-	height: 100%;
+  height: 100%;
 }
+
 dd {
-	grid-column: 3 / 7;
-	margin-bottom: var(--vertical-rhythm);
-	display: flex;
+  grid-column: 3 / 7;
+  margin-bottom: var(--vertical-rhythm);
+  display: flex;
 }
+
 dd:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+ul > li:not(:last-child),
+dl > dt:not(:last-child) {
+  margin-bottom: calc(var(--vertical-rhythm) / 4);
 }
 
 @media (max-width: 550px) {
-	/*upToMobile*/
-	dl {
-		display: flex;
-		flex-direction: column;
-	}
-	dt {
-		padding-right: 0;
-		border-right: none;
-		text-decoration-line: underline;
-		text-decoration-style: dashed;
-		text-underline-offset: 5px;
-		text-decoration-thickness: 1px;
-	}
-	dd {
-		padding-top: calc(var(--vertical-rhythm) / 4);
-	}
+  /* upToMobile */
+  dl {
+    display: flex;
+    flex-direction: column;
+  }
+
+  dt {
+    padding-right: 0;
+    border-right: none;
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
+  }
+
+  dd {
+    padding-top: calc(var(--vertical-rhythm) / 4);
+  }
 }
 
 .blue {
-	color: var(--blue);
-	stroke: var(--blue);
-	fill: var(--blue);
-}
-.purple {
-	color: var(--purple);
-	stroke: var(--purple);
-	fill: var(--purple);
-}
-.yellow {
-	color: var(--yellow);
-	stroke: var(--yellow);
-	fill: var(--yellow);
-}
-.red {
-	color: var(--red);
-	stroke: var(--red);
-	fill: var(--red);
-}
-.green {
-	color: var(--green);
-	stroke: var(--green);
-	fill: var(--green);
-}
-.off-white {
-	color: var(--off-white);
-	stroke: var(--off-white);
-	fill: var(--off-white);
-}
-.off-black {
-	color: var(--off-black);
-	stroke: var(--off-black);
-	fill: var(--off-black);
+  color: var(--blue);
+  stroke: var(--blue);
+  fill: var(--blue);
 }
 
-/*blockquote design adapted from https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/*/
+.purple {
+  color: var(--purple);
+  stroke: var(--purple);
+  fill: var(--purple);
+}
+
+.yellow {
+  color: var(--yellow);
+  stroke: var(--yellow);
+  fill: var(--yellow);
+}
+
+.red {
+  color: var(--red);
+  stroke: var(--red);
+  fill: var(--red);
+}
+
+.green {
+  color: var(--green);
+  stroke: var(--green);
+  fill: var(--green);
+}
+
+.off-white {
+  color: var(--off-white);
+  stroke: var(--off-white);
+  fill: var(--off-white);
+}
+
+.off-black {
+  color: var(--off-black);
+  stroke: var(--off-black);
+  fill: var(--off-black);
+}
+
+/* blockquote design adapted from https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/ */
 blockquote {
   border-left: 2px dashed var(--off-black);
   color: var(--off-black);
@@ -280,139 +290,141 @@ blockquote {
   position: relative;
   transform: translateX(2px);
 }
+
 blockquote::before {
-	content: '';
-    position: absolute;
-    top: 50%;
-    left: -4px;
-    height: 2em;
-    background-color: var(--off-white);
-    width: 5px;
-    margin-top: -1em;
-}
-blockquote::after {
-	quotes: "“" "”";
-	content: open-quote;
-    position: absolute;
-    top: 50%;
-    left: -0.5em;
-    color: var(--off-black);
-    font-size: calc(var(--splash-font-size) / 2);
-    line-height: 1em;
-    text-align: center;
-    text-indent: -2px;
-    width: 1em;
-    margin-top: -0.26em;
-    opacity: 0.55;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  height: 2em;
+  background-color: var(--off-white);
+  width: 5px;
+  margin-top: -1em;
 }
 
-img {
-	width: 100%;
+blockquote::after {
+  quotes: "“" "”";
+  content: open-quote;
+  position: absolute;
+  top: 50%;
+  left: -0.5em;
+  color: var(--off-black);
+  font-size: calc(var(--splash-font-size) / 2);
+  line-height: 1em;
+  text-align: center;
+  text-indent: -2px;
+  width: 1em;
+  margin-top: -0.26em;
+  opacity: 0.55;
 }
 
 p + ul,
 p + ol {
-	/*Optically adjusted*/
-	position: relative;
-	top: calc(-3 / 4 * var(--vertical-rhythm));
+  /* Optically adjusted */
+  position: relative;
+  top: calc(-3 / 4 * var(--vertical-rhythm));
 }
 
 .full-bleed {
-	/*Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts*/
-	width: 100vw;
-	display: flex;
-	justify-content: center;
-	position: relative;
-	left: 50%;
-	right: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
-
-	padding: var(--vertical-rhythm) 0px;
-	overflow: hidden;
-	grid-column: 1 / -1;
+  /* Taken from https://css-tricks.com/full-bleed/ - suggests it may require overflow-x: hidden; on the containing div, in some contexts */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: var(--vertical-rhythm) 0;
+  overflow: hidden;
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 1100px) {
-	.full-bleed {
-		padding: 0;
-	}
+  .full-bleed {
+    padding: 0;
+  }
 }
 
 .full-bleed img {
-	grid-column: 1 / -1;
-	max-width: calc(1440px - 2 * var(--gap));
+  grid-column: 1 / -1;
+  max-width: calc(1440px - 2 * var(--gap));
 }
 
 .full-body {
-	/*grid-column: 4 / 10;*/
-	width: 100%;
+  /* grid-column: 4 / 10; */
+  width: 100%;
 }
 
-/* TODO Possible to pull in breakpoints?*/
+/* TODO Possible to pull in breakpoints? */
 @media (min-width: 55px) {
-	.full-body {
-		grid-column: 1 / -1;
-	}
+  .full-body {
+    grid-column: 1 / -1;
+  }
 }
 
 .footnoted-text {
-	grid-area: footnoted-text;
-	grid-column: 1 / 7;
+  grid-area: footnoted-text;
+  grid-column: 1 / 7;
 }
 
 .footnotes {
-	/*display: none;*/
-	grid-area: footnotes;
-	grid-column: 7 / -1;
-	/*TODO: Check whether this is correct*/
-	font-size: var(--small-font-size);
-	line-height: var(--small-line-height);
-	text-decoration: italic;
+  /* display: none; */
+  grid-area: footnotes;
+  grid-column: 7 / -1;
+
+  /* TODO: Check whether this is correct */
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
+  text-decoration: italic;
 }
 
 .fn:not(:last-child) {
-	padding-bottom: 1.35em;
+  padding-bottom: 1.35em;
 }
 
 sup {
-	/* via https://stackoverflow.com/a/6594576 */
-	/*TODO: Check whether this is correct*/
-	font-size: var(--small-font-size);
-	line-height: 0;
+  /* via https://stackoverflow.com/a/6594576 */
+
+  /* TODO: Check whether this is correct */
+  font-size: var(--small-font-size);
+  line-height: 0;
 }
 
 @media (max-width: 1100px) {
-	.footnoted-text {
-		grid-column: 1 / 5;
-	}
-	.footnotes {
-		grid-column: 5 / 7;
-	}
+  .footnoted-text {
+    grid-column: 1 / 5;
+  }
+
+  .footnotes {
+    grid-column: 5 / 7;
+  }
 }
+
 @media (max-width: 1100px) {
-	.footnoted-text {
-		grid-column: 1 / -1;
-	}
-	.footnotes {
-		grid-column: 1 / -1;
-		grid-row: 2;
-	}
+  .footnoted-text {
+    grid-column: 1 / -1;
+  }
+
+  .footnotes {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 }
 
 iframe {
-	border: none;
-	width: 100%;
+  border: none;
+  width: 100%;
 }
 
 video {
-	width: 100%;
+  width: 100%;
 }
 
 .active .nav-link:hover {
-	visibility: visible;
+  visibility: visible;
 }
 
 p:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }

@@ -1,52 +1,17 @@
 /* Settings */
 :root {
   --offset: 24px; /* 1.5rem; */
-  --max_width: calc(1440px - 2 * 24px);
+  --max-width: calc(1440px - 2 * 24px);
   --columns: 12;
   --gutter: 24px; /* .5rem; */
   --baseline: calc(1.3rem / 2);
-  /*--baseline-shift: 2rem;*/
-  --color: hsla(100, 80%, 72%, 0.25);
-  --color-text: hsla(100, 80%, 72%, 1);
+
+  /* --baseline-shift: 2rem; */
+  --color: hsl(100deg 80% 72% / 25%);
+  --color-text: hsl(100deg 80% 72% / 100%);
   --media-query: "upto-desktop";
-}
 
-@media (max-width: 1440px) {
-  :root {
-    --columns: 12;
-    --offset: 24px; /* 4rem */
-    --color: hsla(50, 51%, 44%, 0.25);
-    --color-text: hsla(50, 51%, 44%, 1);
-    --media-query: "upto-laptop";
-  }
-}
-
-@media (max-width: 1100px) {
-  :root {
-    --offset: 24px; /*3rem;*/
-    --columns: 6;
-    --gutter: 24px; /*1rem;*/
-    --color: hsla(100, 80%, 72%, 0.25);
-    --color-text: hsla(100, 80%, 72%, 1);
-    --media-query: "upto-tablet";
-  }
-}
-
-@media (max-width: 550px) {
-  :root {
-    --columns: 3;
-    --offset: 24px; /* 2rem; */
-    --gutter: 24px; /* .75rem; */
-    --color: hsla(50, 51%, 44%, 0.25);
-    --color-text: hsla(50, 51%, 44%, 1);
-    --media-query: "upto-mobile";
-  }
-}
-
-
-
-/* Helper variables */
-:root {
+  /* Helper variables */
   --repeating-width: calc(100% / var(--columns));
   --column-width: calc((100% / var(--columns)) - var(--gutter));
   --background-width: calc(100% + var(--gutter));
@@ -66,12 +31,44 @@
   );
 }
 
-/*via https://github.com/andrasna/postcss-baseline-grid-overlay*/
+@media (max-width: 1440px) {
+  :root {
+    --columns: 12;
+    --offset: 24px; /* 4rem */
+    --color: hsl(50deg 51% 44% / 25%);
+    --color-text: hsl(50deg 51% 44% / 100%);
+    --media-query: "upto-laptop";
+  }
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --offset: 24px; /* 3rem; */
+    --columns: 6;
+    --gutter: 24px; /* 1rem; */
+    --color: hsl(100deg 80% 72% / 25%);
+    --color-text: hsl(100deg 80% 72% / 100%);
+    --media-query: "upto-tablet";
+  }
+}
+
+@media (max-width: 550px) {
+  :root {
+    --columns: 3;
+    --offset: 24px; /* 2rem; */
+    --gutter: 24px; /* .75rem; */
+    --color: hsl(50deg 51% 44% / 25%);
+    --color-text: hsl(50deg 51% 44% / 100%);
+    --media-query: "upto-mobile";
+  }
+}
+
+/* via https://github.com/andrasna/postcss-baseline-grid-overlay */
 body::after {
   background: linear-gradient(
     to bottom,
-    hsla(300, 70%, 70%, 0.5),
-    hsla(300, 70%, 70%, 0.5) 1px,
+    hsl(300deg 70% 70% / 50%),
+    hsl(300deg 70% 70% / 50%) 1px,
     transparent 1px,
     transparent
   );
@@ -100,14 +97,16 @@ html::before {
   margin-right: auto;
   margin-left: auto;
   width: calc(100% - (2 * var(--offset)));
-  max-width: var(--max_width);
+  max-width: var(--max-width);
   min-height: 100vh;
   content: "";
   background-image: var(
     --background-columns
-  ); /*, var(--background-baseline);   */
+  ); /* , var(--background-baseline);   */
+
   background-size: var(--background-width) 100%;
-  /*background-position: 0 var(--baseline-shift);*/
+
+  /* background-position: 0 var(--baseline-shift); */
   z-index: 1000;
   pointer-events: none;
 }

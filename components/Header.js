@@ -53,8 +53,11 @@ function Header(props) {
                     className={
                       (basePath == n.href ? "active " : "") + "nav-link"
                     }
-                    color={complementaryColor(props.backgroundColor)}
-                    href={n.href}
+                    color={
+                      props.color
+                        ? props.color
+                        : complementaryColor(props.backgroundColor)
+                    }
                   >
                     {n.text}
                   </NavLink>
@@ -185,9 +188,6 @@ let NavListItem = styled.li`
 
 let NavLink = styled.a`
   text-decoration: none;
-  color: var(--off-white);
-  color: var(--${(props) => props.color});
-
   display: flex;
   flex-direction: column;
   align-items: center;
