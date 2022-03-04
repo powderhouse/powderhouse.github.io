@@ -82,6 +82,22 @@ let complementaryColor = function (colorString) {
 	return colorString in complements ? complements[colorString] : "initial";
 };
 
+let colorStyleByProp = (props) => {
+	let backgroundColorString = props.backgroundColor
+		? props.backgroundColor
+		: "initial";
+	let colorString = props.color
+		? props.color
+		: complementaryColor(backgroundColorString);
+
+	let style = {
+		backgroundColor: expandColor(backgroundColorString),
+		color: expandColor(colorString),
+		stroke: expandColor(colorString),
+		fill: expandColor(colorString),
+	};
+	return style;
+};
 let colorByProp = (props) => {
 	let backgroundColorString = props.backgroundColor
 		? props.backgroundColor
@@ -462,6 +478,7 @@ export {
 	Asterisk,
 	baseGrid,
 	colorByProp,
+	colorStyleByProp,
 	complementaryColor,
 	Div,
 	expandColor,

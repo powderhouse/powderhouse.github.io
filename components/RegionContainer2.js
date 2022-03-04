@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colorByProp } from "../components/global.js";
+import { colorByProp, colorStyleByProp } from "../components/global.js";
 
 const BREAKPOINTS = {
 	mobileMax: 550,
@@ -100,7 +100,10 @@ let getMediaQueryStyles = (props) => {
 	return mediaQueryWrappedPadding;
 };
 
-let RegionContainer = styled("div")`
+let RegionContainer = styled.div.attrs((props) => ({
+	className: `region-container ${props.className ? props.className : ""}`,
+	style: colorStyleByProp(props), // TODO: No idea why this is needed instead of colorByProp below.  So frustrating.
+}))`
 	position: relative;
 
 	${(props) => colorByProp(props)}

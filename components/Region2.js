@@ -4,7 +4,7 @@ import { SectionHeader, colorByProp } from "../components/global";
 import { mediaQueries } from "../site-data";
 
 let StyledDiv = styled.div`
-	// margin: 0 auto; // TODO: Any better way to center?
+	margin: 0 auto; // TODO: Any better way to center?
 
 	/*Why can't I replace below with '$ {baseGrid};' (without space) from global, as in Footer*/
 	display: grid;
@@ -78,7 +78,9 @@ function Region2({ header, left, children, ...rest }) {
 			header={header}
 			left={left}
 			{...rest}
-			className={isPageImage(children) ? "containsPageImage" : ""}
+			className={`region ${
+				isPageImage(children) ? "containsPageImage" : ""
+			}`}
 		>
 			{elements}
 		</StyledDiv>
