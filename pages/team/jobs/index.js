@@ -55,14 +55,14 @@ function JobsPage({ jobPage, jobCards }) {
 						</div>
 						{jobCards.hasOwnProperty(n.SectionHeader) ? (
 							<ArrowButton
-								text="Apply"
+								text="Read more"
 								link={
 									"/team/jobs/" +
 									getJobIdByTitle(n.SectionHeader, jobCards)
 								}
 								buttonWidth="long"
 								buttonThickness="thick"
-								buttonTextLength="medText"
+								buttonTextLength="longText"
 								style={{ gridColumn: "1 / span 3" }}
 								// width="262.5%" // TODO: Fix this hack
 							></ArrowButton>
