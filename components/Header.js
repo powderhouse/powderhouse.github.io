@@ -58,6 +58,7 @@ function Header(props) {
                         ? props.color
                         : complementaryColor(props.backgroundColor)
                     }
+                    href={n.href}
                   >
                     {n.text}
                   </NavLink>

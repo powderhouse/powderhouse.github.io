@@ -1,4 +1,4 @@
-const StylelintPlugin = require("stylelint-webpack-plugin"); // line to add
+// const StylelintPlugin = require("stylelint-webpack-plugin");
 
 const withPlugins = require("next-compose-plugins");
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
@@ -14,10 +14,10 @@ let nextConfig = {
     // ssr and displayName are configured by default
     styledComponents: true,
   },
-  webpack: (config, options) => {
-    config.plugins.push(new StylelintPlugin());
-    return config;
-  },
+  // webpack: (config, options) => {
+  //   config.plugins.push(new StylelintPlugin());
+  //   return config;
+  // },
   // webpack: (config, { dev, isServer }) => {
   //   // Replace React with Preact only in client production build
   //   if (!dev && !isServer) {
