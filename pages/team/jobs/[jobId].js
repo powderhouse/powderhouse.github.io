@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-
+import Head from "next/head";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
@@ -74,7 +74,14 @@ function JobDetailPage({ jobCards }) {
       key="footer"
     />,
   ];
-  return <PageContainer2>{regions}</PageContainer2>;
+  return (
+    <>
+      <Head>
+        <title>{`${jobCard.attributes.JobTitle} at Powderhouse`}</title>
+      </Head>
+      <PageContainer2>{regions}</PageContainer2>
+    </>
+  );
 }
 
 function getJobCardById(jobId, jobCards) {
