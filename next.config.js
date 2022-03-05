@@ -1,9 +1,4 @@
-// const StylelintPlugin = require("stylelint-webpack-plugin");
-
 const withPlugins = require("next-compose-plugins");
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({
-//   enabled: process.env.ANALYZE === "true",
-// });
 
 let nextConfig = {
   reactStrictMode: true,
@@ -14,22 +9,18 @@ let nextConfig = {
     // ssr and displayName are configured by default
     styledComponents: true,
   },
-  // webpack: (config, options) => {
-  //   config.plugins.push(new StylelintPlugin());
-  //   return config;
-  // },
-  // webpack: (config, { dev, isServer }) => {
-  //   // Replace React with Preact only in client production build
-  //   if (!dev && !isServer) {
-  //     Object.assign(config.resolve.alias, {
-  //       react: "preact/compat",
-  //       "react-dom/test-utils": "preact/test-utils",
-  //       "react-dom": "preact/compat",
-  //     });
-  //   }
+  webpack: (config, { dev, isServer }) => {
+    // Replace React with Preact only in client production build
+    if (!dev && !isServer) {
+      Object.assign(config.resolve.alias, {
+        react: "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat",
+      });
+    }
 
-  //   return config;
-  // },
+    return config;
+  },
   rewrites: async () => {
     return {
       beforeFiles: [
@@ -70,7 +61,14 @@ let nextConfig = {
 
 let plugins = [
   // https://github.com/cyrilwanner/next-compose-plugins
-  // [withBundleAnalyzer],
+  [
+    // stylelint
+    require("stylelint-webpack-plugin"),
+    // bundle-analyzer
+    // require("@next/bundle-analyzer")({
+    //   enabled: process.env.ANALYZE === "true",
+    // }),
+  ],
 ];
 
 module.exports = withPlugins(plugins, nextConfig);
