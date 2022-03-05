@@ -81,6 +81,7 @@ function NewsLetterSignUp({
                         className="arrowButton"
                         width="100%"
                         preserveAspectRatio="none"
+                        link="#" // TODO: Is this in fact what we want here?
                     />
                     <ArrowButton
                         buttonWidth="naked"
@@ -91,6 +92,7 @@ function NewsLetterSignUp({
                         width="100%"
                         height="100%"
                         preserveAspectRatio="none"
+                        link="#" // TODO: Is this in fact what we want here?
                     />
                 </NewsLetterFormButton>
             </NewsLetterForm>

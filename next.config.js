@@ -5,10 +5,16 @@ let nextConfig = {
   images: {
     domains: ["powderhouse-strapi-uploads.s3.amazonaws.com"],
   },
-  compiler: {
-    // ssr and displayName are configured by default
-    styledComponents: true,
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
   },
+  // compiler: {
+  //   // ssr and displayName are configured by default
+  //   styledComponents: true,
+  //   ssr: true,
+  //   displayName: true,
+  // },
   webpack: (config, { dev, isServer }) => {
     // Replace React with Preact only in client production build
     if (!dev && !isServer) {

@@ -31,14 +31,14 @@ function Header(props) {
                   logotype={true}
                   stroke={complementaryColor(props.backgroundColor)}
                   className="navlogo-mobile"
-                  alt="Go to home page"
+                  title="Powderhouse Home"
                 />
                 <Logo
                   direction="horizontal"
                   logotype={true}
                   stroke={complementaryColor(props.backgroundColor)}
                   className="navlogo-tabletAndUp"
-                  alt="Go to home page"
+                  title="Powderhouse Home"
                 />
               </>
             </a>
