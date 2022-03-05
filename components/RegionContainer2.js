@@ -70,7 +70,7 @@ let getPaddingStyle = (props) => {
 		props.pad.forEach(
 			(p) =>
 				(paddingStyle[
-					`padding-${p}`
+					`padding${p.charAt(0).toUpperCase}${p.slice(1)}`
 				] = `calc(4 * var(--vertical-rhythm))`)
 		); // TODO: Total hack to work around breaking RegionContainer styling
 	}
