@@ -63,7 +63,7 @@ let plugins = [
   // https://github.com/cyrilwanner/next-compose-plugins
   [
     // stylelint
-    require("stylelint-webpack-plugin"),
+    new (require("stylelint-webpack-plugin"))(),
     // bundle-analyzer
     // require("@next/bundle-analyzer")({
     //   enabled: process.env.ANALYZE === "true",

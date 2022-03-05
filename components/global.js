@@ -3,8 +3,6 @@ import dynamic from "next/dynamic";
 import { css } from "styled-components";
 import { mediaQueries } from "../site-data.js";
 
-const Region2 = dynamic(() => import("../components/Region2.js"));
-const Asterisk = dynamic(() => import("../components/Asterisk.js"));
 const Markdown = dynamic(() => import("../components/Markdown.js"));
 let Div = (props) =>
 	props.markdown ? <Markdown {...props} /> : <div {...props} />;
@@ -77,21 +75,20 @@ let complementaryColor = function (colorString) {
 };
 
 let colorStyleByProp = (props) => {
-	// let backgroundColorString = props.backgroundColor
-	// 	? props.backgroundColor
-	// 	: "initial";
-	// let colorString = props.color
-	// 	? props.color
-	// 	: complementaryColor(backgroundColorString);
+	let backgroundColorString = props.backgroundColor
+		? props.backgroundColor
+		: "initial";
+	let colorString = props.color
+		? props.color
+		: complementaryColor(backgroundColorString);
 
-	// let style = {
-	// 	backgroundColor: expandColor(backgroundColorString),
-	// 	color: expandColor(colorString),
-	// 	stroke: expandColor(colorString),
-	// 	fill: expandColor(colorString),
-	// };
-	// return style;
-	return {};
+	let style = {
+		backgroundColor: expandColor(backgroundColorString),
+		color: expandColor(colorString),
+		stroke: expandColor(colorString),
+		fill: expandColor(colorString),
+	};
+	return style;
 };
 let colorByProp = (props) => {
 	let backgroundColorString = props.backgroundColor

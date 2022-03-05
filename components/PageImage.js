@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 // import Image from "next/image";
 
@@ -61,7 +62,7 @@ function PageImage(props) {
 			<Resize
 			// ref={resizer}
 			>
-				<img
+				<Image
 					// ref={img}
 					src={props.src}
 					alt={props.altText}
