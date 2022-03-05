@@ -1,19 +1,25 @@
-import React from "react";
-
 import Head from "next/head";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import PageTableOfContents from "../components/PageTableOfContents";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import PageImage from "../components/PageImage";
 
+// import PageSplash from "../components/PageSplash";
+// import PageIntroduction from "../components/PageIntroduction";
+// import PageSectionContent from "../components/PageSectionContent";
+// import PageHeading from "../components/PageHeading";
+
 import {
+	PageTableOfContents,
 	PageSplash,
-	PageHeading,
 	PageIntroduction,
 	PageSectionContent,
+	PageHeading,
+} from "../components/Page.js";
+
+import {
 	slugify,
 	findLargestFormat,
 	getBgFromLight,

@@ -6,7 +6,6 @@ import Footer from "../../components/Footer";
 import PersonCard from "../../components/PersonCard";
 import PageContainer2 from "../../components/PageContainer2";
 import Region2 from "../../components/Region2";
-import PageTableOfContents from "../../components/PageTableOfContents";
 import ArrowButton from "../../components/ArrowButton";
 
 import { mediaQueries } from "../../site-data";
@@ -14,14 +13,18 @@ import { mediaQueries } from "../../site-data";
 import Head from "next/head";
 
 import {
+	PageTableOfContents,
 	PageSplash,
-	PageHeading,
 	PageIntroduction,
 	PageSectionContent,
+	PageHeading,
+} from "../../components/Page.js";
+
+import {
 	ShiftBy,
 	getBgFromLight,
-	Div,
 	tenureSort,
+	Div,
 } from "../../components/global.js";
 
 import { fetchAPI } from "../../lib/api";

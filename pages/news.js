@@ -2,20 +2,19 @@ import styled from "styled-components";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Asterisk from "../components/Asterisk";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import { mediaQueries } from "../site-data.js";
 
 import Head from "next/head";
-
 import {
-	Asterisk,
-	baseGrid,
-	PageHeading,
-	PageIntroduction,
 	PageSplash,
-	Div,
-} from "../components/global.js";
+	PageIntroduction,
+	PageHeading,
+} from "../components/Page.js";
+
+import { baseGrid, Div } from "../components/global.js";
 
 import { fetchAPI } from "../lib/api";
 

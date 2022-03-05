@@ -3,6 +3,7 @@ import { parse } from "node-html-parser";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Asterisk from "../../components/Asterisk";
 import PageContainer2 from "../../components/PageContainer2";
 import Region2 from "../../components/Region2";
 import PageImage from "../../components/PageImage";
@@ -11,12 +12,7 @@ import { mediaQueries } from "../../site-data";
 
 import Head from "next/head";
 
-import {
-  baseGrid,
-  Div,
-  Asterisk,
-  getMediaURL,
-} from "../../components/global.js";
+import { baseGrid, getMediaURL, Div } from "../../components/global.js";
 
 import { fetchAPI } from "../../lib/api";
 

@@ -3,7 +3,6 @@
 const fs = require("fs");
 const ltx = require("ltx");
 const svgPathBbox = require("svg-path-bbox");
-const { pathThatSvg } = require("path-that-svg");
 
 const svgson = require("svgson");
 const toPath = require("element-to-path");

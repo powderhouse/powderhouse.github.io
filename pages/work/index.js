@@ -5,20 +5,23 @@ import Footer from "../../components/Footer";
 import Region2 from "../../components/Region2";
 import PageContainer2 from "../../components/PageContainer2";
 import PageImage from "../../components/PageImage";
-import PageTableOfContents from "../../components/PageTableOfContents";
 import { mediaQueries } from "../../site-data.js";
 
 import Head from "next/head";
 
 import {
+	PageTableOfContents,
 	PageSplash,
-	PageHeading,
 	PageIntroduction,
 	PageSectionContent,
+	PageHeading,
+} from "../../components/Page.js";
+
+import {
 	findLargestFormat,
 	getBgFromLight,
-	Div,
 	tenureSort,
+	Div,
 } from "../../components/global";
 
 import { fetchAPI } from "../../lib/api";

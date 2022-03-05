@@ -2,18 +2,18 @@ import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import PageContainer2 from "../../../components/PageContainer2";
 import Region2 from "../../../components/Region2";
-import PageTableOfContents from "../../../components/PageTableOfContents";
 import ArrowButton from "../../../components/ArrowButton";
 import Head from "next/head";
 
 import {
+	PageTableOfContents,
 	PageSplash,
-	PageHeading,
 	PageIntroduction,
 	PageSectionContent,
-	getBgFromLight,
-	Div,
-} from "../../../components/global.js";
+	PageHeading,
+} from "../../../components/Page.js";
+
+import { getBgFromLight, Div } from "../../../components/global.js";
 
 import { fetchAPI } from "../../../lib/api";
 

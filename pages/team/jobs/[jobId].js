@@ -3,15 +3,15 @@
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
-import PageTableOfContents from "../../../components/PageTableOfContents";
 import PageContainer2 from "../../../components/PageContainer2";
 
 import {
+  PageTableOfContents,
   PageSplash,
-  PageHeading,
   PageIntroduction,
   PageSectionContent,
-} from "../../../components/global.js";
+  PageHeading,
+} from "../../../components/Page.js";
 
 import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";

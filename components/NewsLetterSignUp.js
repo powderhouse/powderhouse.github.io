@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { mediaQueries } from "../site-data.js";
 import { expandColor, complementaryColor } from "./global.js";
