@@ -4,6 +4,7 @@
     // "plugin:jsx-a11y/strict"
   ],
   "plugins": ["unused-imports"],
+  "ignorePatterns": ["public/*/archive/", "cypress/"],
   "rules": {
     "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
