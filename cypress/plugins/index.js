@@ -16,10 +16,15 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
+
+const browserify = require("@cypress/browserify-preprocessor");
+
 const htmlvalidate = require("cypress-html-validate/dist/plugin");
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on("file:preprocessor", browserify()); // TODO: Workaround to make sure Cypress's browserlist is updated, via https://github.com/cypress-io/cypress/issues/2983#issuecomment-570616682
   htmlvalidate.install(on, {
     extends: ["html-validate:standard"],
   });
