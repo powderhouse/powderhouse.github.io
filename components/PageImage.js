@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import Image from "next/image";
+import Image from "next/image";
 
 let Resize = styled.div`
 	display: flex;
@@ -54,6 +54,10 @@ function PageImage(props) {
 	// 	observer.observe(img.current);
 	// });
 
+	let width = props.fullBleed ? 1440 : props.width;
+	let height = props.fullBleed
+		? (1440 / props.width) * props.height
+		: props.height;
 	let container = (
 		<ImageContainer
 			className={props.fullBleed ? "full-bleed" : "full-body"}
@@ -61,10 +65,12 @@ function PageImage(props) {
 			<Resize
 			// ref={resizer}
 			>
-				<img
+				<Image
 					// ref={img}
 					src={props.src}
 					alt={props.altText}
+					width={width}
+					height={height}
 				/>
 			</Resize>
 			<ImageCaption>{props.caption}</ImageCaption>
