@@ -382,7 +382,10 @@ export async function getStaticProps() {
 	let partnerCards = await fetchAPI(
 		"/work?populate[PartnerCards][populate]=*"
 	);
-	let projectCards = await fetchAPI("/project-cards?populate=*");
+
+	let projectCards = await fetchAPI(
+		"/project-cards?populate[0]=ProjectFeatureImage"
+	);
 	projectCards.data.sort(
 		tenureSort(
 			(x) => x.attributes.YearEnd,
