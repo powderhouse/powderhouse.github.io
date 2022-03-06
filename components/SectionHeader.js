@@ -5,7 +5,7 @@ import Asterisk from "../components/Asterisk.js";
 import { mediaQueries } from "../site-data.js";
 
 let Header2 = styled.h2`
-	font-weight: 500;
+	font-weight: 300;
 	font-family: "GT Planar", sans-serif;
 	font-size: inherit;
 	line-height: inherit;
