@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-
+import SEO from "../../components/SEO";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PersonCard from "../../components/PersonCard";
@@ -9,8 +9,6 @@ import Region2 from "../../components/Region2";
 import ArrowButton from "../../components/ArrowButton";
 
 import { mediaQueries } from "../../site-data";
-
-import Head from "next/head";
 
 import {
 	PageTableOfContents,
@@ -35,6 +33,7 @@ function TeamPage2({
 			attributes: {
 				PageSplash: { PageHeader, PageIntro },
 				PageSections,
+				meta,
 			},
 		},
 	},
@@ -192,9 +191,7 @@ function TeamPage2({
 
 	return (
 		<>
-			<Head>
-				<title>{`Powderhouse's Team`}</title>
-			</Head>
+			<SEO meta={meta} />
 			<PageContainer2>
 				{regions.map((r, i) => React.cloneElement(r, { key: i }))}
 			</PageContainer2>

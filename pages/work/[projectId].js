@@ -9,8 +9,7 @@ import Region2 from "../../components/Region2";
 import PageImage from "../../components/PageImage";
 
 import { mediaQueries } from "../../site-data";
-
-import Head from "next/head";
+import SEO from "../../components/SEO";
 
 import { baseGrid, getMediaURL, Div } from "../../components/global.js";
 
@@ -18,15 +17,9 @@ import { fetchAPI } from "../../lib/api";
 
 function ProjectDetailPage({ projectData }) {
   let accentColor = "--off-white";
-
   return (
     <>
-      <Head>
-        <title>
-          {projectData.ProjectTitle} ({projectData.YearStart}–
-          {projectData.YearEnd} — Powderhouse
-        </title>
-      </Head>
+      <SEO meta={projectData.meta} />
       <PageContainer2>
         <Header
           backgroundColor="--off-white"
@@ -379,9 +372,12 @@ export async function getStaticProps({ params: { projectId } }) {
       `filters[ProjectId][$eq]=${projectId}`,
       "pagination[limit]=1", // We are only constructing one per page
       // Fields to deeply populate
-      ...["ProjectGalleryItem", "ProjectFeatureImage", "ProjectInfoList"].map(
-        (f) => `populate[${f}][populate]=*`
-      ),
+      ...[
+        "ProjectGalleryItem",
+        "ProjectFeatureImage",
+        "ProjectInfoList",
+        "meta",
+      ].map((f) => `populate[${f}][populate]=*`),
     ].join("&"),
   ].join("?");
 
@@ -392,6 +388,7 @@ export async function getStaticProps({ params: { projectId } }) {
     alternativeText:
       projectData.ProjectFeatureImage.data.attributes.alternativeText,
   };
+  projectData.meta[0].title = `${projectData.ProjectTitle} (${projectData.YearStart}–${projectData.YearEnd} — Powderhouse`;
 
   return {
     props: {

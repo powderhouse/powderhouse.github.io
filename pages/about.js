@@ -1,5 +1,4 @@
-import Head from "next/head";
-
+import SEO from "../components/SEO";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageContainer2 from "../components/PageContainer2";
@@ -30,6 +29,7 @@ import { fetchAPI } from "../lib/api";
 function AboutPage({
 	aboutPageMeta: {
 		PageSplash: { PageHeader, PageIntro },
+		meta,
 	},
 	aboutPageContent,
 }) {
@@ -99,9 +99,7 @@ function AboutPage({
 	];
 	return (
 		<>
-			<Head>
-				<title>About Powderhouse</title>
-			</Head>
+			<SEO meta={meta} />
 			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);

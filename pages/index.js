@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import Head from "next/head";
-
+import SEO from "../components/SEO";
 import { fetchAPI } from "../lib/api";
 import { mediaQueries } from "../site-data";
 
@@ -92,7 +91,7 @@ function SplashNewsletterSignup({ children, ...rest }) {
 }
 function HomePage({
   data: {
-    attributes: { SplashLanguage, SignUpShoutOut },
+    attributes: { SplashLanguage, SignUpShoutOut, meta },
   },
 }) {
   let accentColor = "--off-black";
@@ -127,9 +126,7 @@ function HomePage({
 
   return (
     <>
-      <Head>
-        <title>Powderhouse</title>
-      </Head>
+      <SEO meta={meta} />
       <PageContainer2>{regions}</PageContainer2>
     </>
   );
@@ -137,7 +134,7 @@ function HomePage({
 
 export async function getStaticProps() {
   return {
-    props: await fetchAPI("/home"),
+    props: await fetchAPI("/home?populate=*"),
   };
 }
 

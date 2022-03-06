@@ -3,8 +3,7 @@ import Footer from "../../../components/Footer";
 import PageContainer2 from "../../../components/PageContainer2";
 import Region2 from "../../../components/Region2";
 import ArrowButton from "../../../components/ArrowButton";
-import Head from "next/head";
-
+import SEO from "../../../components/SEO";
 import {
 	PageTableOfContents,
 	PageSplash,
@@ -82,9 +81,8 @@ function JobsPage({ jobPage, jobCards }) {
 
 	return (
 		<>
-			<Head>
-				<title>Jobs with Powderhouse</title>
-			</Head>
+			{/*TODO: Should destructure and reformat this to avoid data/attributes*/}
+			<SEO meta={jobPage.data.attributes.meta} />
 			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);

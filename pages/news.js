@@ -7,7 +7,7 @@ import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import { mediaQueries } from "../site-data.js";
 
-import Head from "next/head";
+import SEO from "../components/SEO";
 import {
 	PageSplash,
 	PageIntroduction,
@@ -79,9 +79,8 @@ function NewsPage({ newsPage, newsCards }) {
 
 	return (
 		<>
-			<Head>
-				<title>News about Powderhouse</title>
-			</Head>
+			{/*TODO: Should destructure and reformat this to avoid data/attributes*/}
+			<SEO meta={newsPage.data.attributes.meta} />
 			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);

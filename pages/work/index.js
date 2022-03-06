@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
+import SEO from "../../components/SEO";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Region2 from "../../components/Region2";
 import PageContainer2 from "../../components/PageContainer2";
 import PageImage from "../../components/PageImage";
 import { mediaQueries } from "../../site-data.js";
-
-import Head from "next/head";
 
 import {
 	PageTableOfContents,
@@ -32,6 +31,7 @@ function WorkPage({
 			attributes: {
 				PageSplash: { PageHeader, PageIntro },
 				PageSections,
+				meta,
 			},
 		},
 	},
@@ -178,9 +178,7 @@ function WorkPage({
 
 	return (
 		<>
-			<Head>
-				<title>{`Powderhouse's Work`}</title>
-			</Head>
+			<SEO meta={meta} />
 			<PageContainer2>
 				<Header
 					backgroundColor="--off-white"

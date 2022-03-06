@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import Head from "next/head";
+import SEO from "../../../components/SEO";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
@@ -76,9 +76,7 @@ function JobDetailPage({ jobCards }) {
   ];
   return (
     <>
-      <Head>
-        <title>{`${jobCard.attributes.JobTitle} at Powderhouse`}</title>
-      </Head>
+      <SEO meta={jobCard.attributes.meta} />
       <PageContainer2>{regions}</PageContainer2>
     </>
   );
