@@ -1,4 +1,4 @@
-export default {
+let nextSeoConfig = {
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -11,3 +11,5 @@ export default {
     cardType: "summary_large_image",
   },
 };
+
+export default nextSeoConfig;
