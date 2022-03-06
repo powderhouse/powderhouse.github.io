@@ -5,9 +5,10 @@ import Script from "next/script";
 import { DefaultSeo } from "next-seo";
 import SEO from "../next-seo.config";
 
-export function reportWebVitals(metric) {
-  // console.log(metric);
-}
+// export function reportWebVitals(metric) {
+//   console.log(metric);
+// }
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
