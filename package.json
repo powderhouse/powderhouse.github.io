@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "export NODE_ENV=development && next dev",
     "build": "export NODE_ENV=production && next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build"
@@ -67,6 +68,7 @@
     "html-validate": "^6.5.0",
     "ltx": "^3.0.0",
     "next-compose-plugins": "^2.2.1",
+    "next-sitemap": "^2.5.4",
     "path-that-svg": "^1.2.4",
     "stylelint": "^14.5.3",
     "stylelint-config-prettier": "^9.0.3",

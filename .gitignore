@@ -10,3 +10,5 @@ cypress/videos
 *.log
 log/
 results/
+public/robots.txt
+public/sitemap*.xml
