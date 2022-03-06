@@ -118,12 +118,15 @@ let ProjectTitleDiv = styled.div`
   align-items: baseline;
 `;
 
-let ProjectTitleContainer = styled.h2`
+let ProjectTitleContainer = styled.div`
   line-height: 0em;
   font-weight: 300;
 `;
 
-let ProjectTitleHeading = styled.span`
+let ProjectTitleHeading = styled.h2`
+  display: inline-block;
+  font-weight: 300;
+  padding-right: 0.25em; // TODO: Check if this in fact looks right
   font-size: calc(var(--splash-font-size) * 0.625);
   line-height: calc(var(--splash-line-height) * 1.125);
 
