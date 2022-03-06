@@ -17,3 +17,4 @@
 import "./commands";
 
 import "@percy/cypress";
+import "cypress-html-validate/dist/commands";
