@@ -172,7 +172,7 @@ let EmailInput = styled.input.attrs(() => ({
     }
 `;
 
-let NewsLetterFormButton = styled.button`
+let NewsLetterFormButton = styled.div`
     grid-column: ${(props) => (props.isHomePage ? "7 / 13" : "4 / 7")};
 
     position: relative;
