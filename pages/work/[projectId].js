@@ -86,7 +86,7 @@ function ProjectDetailPage({ projectData }) {
               >
                 <GalleryIframe
                   src={getSrc(i.MediaEmbed.Link)}
-                  alt={i.MediaEmbed.LinkText}
+                  title={i.MediaEmbed.LinkText}
                 ></GalleryIframe>
               </ProjectIframeDiv>
             )
