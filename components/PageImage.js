@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Image from "next/image";
+// import Image from "next/image";
 
 let Resize = styled.div`
 	display: flex;
