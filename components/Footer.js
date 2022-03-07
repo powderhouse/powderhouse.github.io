@@ -53,7 +53,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem className="www2">
-                <SocialList>
+                <SocialList className={router.pathname != "/" ? "" : "home"}>
                   {socials.map((n) => {
                     return (
                       <IconListItem
@@ -243,8 +243,15 @@ let SocialList = styled(NavList)`
     padding-left: 6px;
   }
 
-  @media ${mediaQueries.uptoMobile} {
-    justify-content:center;
+  @media ${mediaQueries.uptoTablet} {
+    justify-content:flex-end;
+  }
+
+  /*Styling for homepage footer, without newsletter signup*/
+  &.home {
+    @media ${mediaQueries.uptoMobile} {
+      justify-content:center;
+    }
   }
 `;
 
