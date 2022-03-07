@@ -9,10 +9,6 @@ let ScribbleContainer = styled.div`
   width: 100%;
   top: calc(1em);
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
-
-  @media ${mediaQueries.uptoMobile} {
-    top: 0.875em;
-  }
 `;
 
 function Scribble({ number, active, ...rest }) {
