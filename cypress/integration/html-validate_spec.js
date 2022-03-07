@@ -1,4 +1,4 @@
-let baseURL = "http://localhost:3000";
+let baseURL = "https://powderhouseorg-powderhouse1.vercel.app/";
 let pathsToValidate = [
   // TODO: Hardcoded for now, but should talk to CMS or similar
   "/",

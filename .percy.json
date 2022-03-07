@@ -7,7 +7,10 @@
   },
   "discovery": {
     "allowedHostnames": [],
-    "networkIdleTimeout": 750
+    "networkIdleTimeout": 750,
+    "launchOptions": {
+      "args": ["--disable-system-font-check"]
+    }
   },
   "static": {
     "cleanUrls": false
