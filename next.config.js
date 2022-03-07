@@ -5,10 +5,10 @@ let nextConfig = {
   images: {
     domains: ["powderhouse-strapi-uploads.s3.amazonaws.com"],
   },
-  // i18n: {
-  //   locales: ["en"],
-  //   defaultLocale: "en",
-  // },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   // compiler: {
   //   // ssr and displayName are configured by default
   //   styledComponents: true,
@@ -34,12 +34,14 @@ let nextConfig = {
         // and before all files including _next/public files which
         // allows overriding page files
         {
-          source: `/work/:path(innovation-school/archive[^.]*)`,
+          source: `/en/work/:path(innovation-school/archive[^.]*)`,
           destination: "/:path/index.html",
+          locale: false,
         },
         {
-          source: `/work/:path(sprout/archive[^.]*)`,
+          source: `/en/work/:path(sprout/archive[^.]*)`,
           destination: "/:path/index.html",
+          locale: false,
         },
       ],
       afterFiles: [
@@ -51,12 +53,14 @@ let nextConfig = {
         // These rewrites are checked after both pages/public files
         // and dynamic routes are checked
         {
-          source: "/work/innovation-school/archive/:path*",
+          source: "/en/work/innovation-school/archive/:path*",
           destination: "/innovation-school/archive/:path*",
+          locale: false,
         },
         {
-          source: "/work/sprout/archive/:path*",
+          source: "/en/work/sprout/archive/:path*",
           destination: "/sprout/archive/:path*",
+          locale: false,
         },
       ],
     };
