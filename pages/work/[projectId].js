@@ -118,13 +118,13 @@ let ProjectTitleDiv = styled.div`
   align-items: baseline;
 `;
 
-let ProjectTitleContainer = styled.div`
+let ProjectTitleContainer = styled.h2`
   line-height: 0em;
   font-weight: 300;
 `;
 
-let ProjectTitleHeading = styled.h2`
-  display: inline-block;
+let ProjectTitleHeading = styled.span`
+  display: inline;
   font-weight: 300;
   padding-right: 0.25em; // TODO: Check if this in fact looks right
   font-size: calc(var(--splash-font-size) * 0.625);
@@ -141,20 +141,20 @@ let ProjectTitleHeading = styled.h2`
   }
 `;
 
-let ProjectYearsHeading = styled.h3`
+let ProjectYearsHeading = styled.span`
   font-size: calc(0.5 * 0.625 * var(--splash-font-size));
-  line-height: calc(2 * var(--splash-line-height));
+  line-height: calc(var(--splash-line-height) * 1.5);
   white-space: nowrap;
   font-weight: 300;
   opacity: 0.25;
   display: inline;
 
   @media ${mediaQueries.uptoTablet} {
-    font-size: calc(0.625 * 0.5 * var(--splash-font-size));
+    font-size: calc(0.5 * 0.625 * var(--splash-font-size));
   }
 
   @media ${mediaQueries.uptoTablet} {
-    font-size: calc(0.625 * 0.5 * 0.33 var(--splash-font-size));
+    font-size: calc(0.75 * 0.5 * 0.625 * var(--splash-font-size));
   }
 `;
 
@@ -162,7 +162,10 @@ function ProjectTitle(props) {
   return (
     <ProjectTitleDiv>
       <ProjectTitleContainer>
-        <ProjectTitleHeading>{props.title} </ProjectTitleHeading>
+        <ProjectTitleHeading>
+          {props.title}
+        </ProjectTitleHeading>
+        <wbr/>
         <ProjectYearsHeading>
           {props.years.start == props.years.end
             ? props.years.start
