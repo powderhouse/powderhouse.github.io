@@ -129,7 +129,7 @@ function NewsItem({ date, type, title, excerpt, links }) {
 	);
 }
 
-let NewsDateDiv = styled.h3`
+let NewsDateDiv = styled.span`
 	grid-column: 1 / 4;
 	grid-row: 1;
 	align-self: end;
@@ -157,7 +157,7 @@ function NewsDate(props) {
 	return <NewsDateDiv>{dateString}</NewsDateDiv>;
 }
 
-let NewsType = styled.p`
+let NewsType = styled.span`
 	grid-column: 1 / 4;
 	grid-row: 2;
 	font-weight: 300;
@@ -179,7 +179,6 @@ let NewsTitle = styled.h2`
 	grid-row: 1;
 	align-self: end;
 	font-size: var(--large-font-size);
-	line-height: var(--large-line-height);
 	font-weight: 300;
 	hyphens: auto;
 
