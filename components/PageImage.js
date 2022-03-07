@@ -54,10 +54,11 @@ function PageImage(props) {
 	// 	observer.observe(img.current);
 	// });
 
-	let width = props.fullBleed ? 1440 : props.width;
-	let height = props.fullBleed
-		? (1440 / props.width) * props.height
-		: props.height;
+	// TODO: Incorporate <Image> instead
+	// let width = props.fullBleed ? 1440 : props.width;
+	// let height = props.fullBleed
+	// 	? (1440 / props.width) * props.height
+	// 	: props.height;
 	let container = (
 		<ImageContainer
 			className={props.fullBleed ? "full-bleed" : "full-body"}
@@ -65,12 +66,13 @@ function PageImage(props) {
 			<Resize
 			// ref={resizer}
 			>
-				<Image
+				<img
+					// Image
 					// ref={img}
 					src={props.src}
 					alt={props.altText}
-					width={width}
-					height={height}
+					// width={width}
+					// height={height}
 				/>
 			</Resize>
 			<ImageCaption>{props.caption}</ImageCaption>
