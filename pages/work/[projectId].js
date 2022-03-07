@@ -11,12 +11,12 @@ import PageImage from "../../components/PageImage";
 import { mediaQueries } from "../../site-data";
 import SEO from "../../components/SEO";
 
-import { baseGrid, getMediaURL, Div } from "../../components/global.js";
+import { baseGrid, getMediaURL, Div, complementaryColor } from "../../components/global.js";
 
 import { fetchAPI } from "../../lib/api";
 
 function ProjectDetailPage({ projectData }) {
-  let accentColor = "--off-white";
+  let accentColor = "--off-black";
   return (
     <>
       <SEO meta={projectData.meta} />
@@ -92,7 +92,7 @@ function ProjectDetailPage({ projectData }) {
             )
           )}
         </ProjectGallery>
-        <Footer backgroundColor="--off-black" accentColor={accentColor} />
+        <Footer backgroundColor="--off-black" accentColor={complementaryColor(accentColor)} />
       </PageContainer2>
     </>
   );
