@@ -5,10 +5,10 @@ let nextConfig = {
   images: {
     domains: ["powderhouse-strapi-uploads.s3.amazonaws.com"],
   },
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
+  // i18n: {
+  //   locales: ["en"],
+  //   defaultLocale: "en",
+  // },
   // compiler: {
   //   // ssr and displayName are configured by default
   //   styledComponents: true,
@@ -34,21 +34,19 @@ let nextConfig = {
         // and before all files including _next/public files which
         // allows overriding page files
         {
-          // TODO: I don't understand why this matches, e.g., /jobs/apply, but it seems to work
           source: `/work/:path(innovation-school/archive[^.]*)`,
           destination: "/:path/index.html",
         },
         {
-          // TODO: I don't understand why this matches, e.g., /jobs/apply, but it seems to work
           source: `/work/:path(sprout/archive[^.]*)`,
           destination: "/:path/index.html",
         },
       ],
-      // afterFiles: [
-      //   // These rewrites are checked after pages/public files
-      //   // are checked but before dynamic routes
-      //   {},
-      // ],
+      afterFiles: [
+        // These rewrites are checked after pages/public files
+        // are checked but before dynamic routes
+        // {}
+      ],
       fallback: [
         // These rewrites are checked after both pages/public files
         // and dynamic routes are checked
