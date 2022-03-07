@@ -77,6 +77,8 @@ let SplashNewsletterSignupDiv = styled.div`
   }
   @media ${mediaQueries.uptoMobile} {
     grid-template-columns: repeat(3, 1fr);
+    padding-top: calc(1.5 * var(--vertical-rhythm));
+
   }
 `;
 
