@@ -249,6 +249,8 @@ let SocialList = styled(NavList)`
 
   /*Styling for homepage footer, without newsletter signup*/
   &.home {
+    justify-content:flex-start;
+
     @media ${mediaQueries.uptoMobile} {
       justify-content:center;
     }
