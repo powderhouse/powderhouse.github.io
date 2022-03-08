@@ -6,8 +6,8 @@
     "percyCSS": ""
   },
   "discovery": {
-    "allowedHostnames": [],
     "networkIdleTimeout": 750,
+    "disableCache": true,
     "launchOptions": {
       "args": ["--disable-system-font-check"]
     }
