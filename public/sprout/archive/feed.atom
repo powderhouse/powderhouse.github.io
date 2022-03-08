@@ -3,7 +3,7 @@
 
   <title>sprout & co</title>
   <description>dispatches from the future of learning</description>
-  <link type="application/atom+xml" rel="self" href="http://thesprouts.org//feed.atom"/>
+  <link type="application/atom+xml" rel="self" type="application/atom+xml" href="http://thesprouts.org//feed.atom"/>
   <link href="http://thesprouts.org/"/>
   <updated>2022-03-03T11:37:09-05:00</updated>
   <id>http://thesprouts.org/</id>

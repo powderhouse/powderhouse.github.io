@@ -9,7 +9,8 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "test:check-links": "blc --exclude \"linkedin\" --follow --get --user-agent=\"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36\" -r http://localhost:3000"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "@percy/cli": "^1.0.0-beta.76",
     "@percy/cypress": "^3.1.1",
     "babel-plugin-styled-components": "^2.0.6",
+    "broken-link-checker": "^0.7.8",
     "browserslist": "^4.19.3",
     "browserstack-cypress-cli": "^1.12.1",
     "check-peer-dependencies": "^4.1.0",
