@@ -21,31 +21,31 @@
 
     --transparent: transparent;
 
-    --black-90: rgba(0, 0, 0, .9);
-    --black-80: rgba(0, 0, 0, .8);
-    --black-70: rgba(0, 0, 0, .7);
-    --black-60: rgba(0, 0, 0, .6);
-    --black-50: rgba(0, 0, 0, .5);
-    --black-40: rgba(0, 0, 0, .4);
-    --black-30: rgba(0, 0, 0, .3);
-    --black-20: rgba(0, 0, 0, .2);
-    --black-10: rgba(0, 0, 0, .1);
-    --black-05: rgba(0, 0, 0, .05);
-    --black-025: rgba(0, 0, 0, .025);
-    --black-0125: rgba(0, 0, 0, .0125);
+    --black-90: rgba(0, 0, 0, 0.9);
+    --black-80: rgba(0, 0, 0, 0.8);
+    --black-70: rgba(0, 0, 0, 0.7);
+    --black-60: rgba(0, 0, 0, 0.6);
+    --black-50: rgba(0, 0, 0, 0.5);
+    --black-40: rgba(0, 0, 0, 0.4);
+    --black-30: rgba(0, 0, 0, 0.3);
+    --black-20: rgba(0, 0, 0, 0.2);
+    --black-10: rgba(0, 0, 0, 0.1);
+    --black-05: rgba(0, 0, 0, 0.05);
+    --black-025: rgba(0, 0, 0, 0.025);
+    --black-0125: rgba(0, 0, 0, 0.0125);
 
-    --white-90: rgba(255, 255, 255, .9);
-    --white-80: rgba(255, 255, 255, .8);
-    --white-70: rgba(255, 255, 255, .7);
-    --white-60: rgba(255, 255, 255, .6);
-    --white-50: rgba(255, 255, 255, .5);
-    --white-40: rgba(255, 255, 255, .4);
-    --white-30: rgba(255, 255, 255, .3);
-    --white-20: rgba(255, 255, 255, .2);
-    --white-10: rgba(255, 255, 255, .1);
-    --white-05: rgba(255, 255, 255, .05);
-    --white-025: rgba(255, 255, 255, .025);
-    --white-0125: rgba(255, 255, 255, .0125);
+    --white-90: rgba(255, 255, 255, 0.9);
+    --white-80: rgba(255, 255, 255, 0.8);
+    --white-70: rgba(255, 255, 255, 0.7);
+    --white-60: rgba(255, 255, 255, 0.6);
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-40: rgba(255, 255, 255, 0.4);
+    --white-30: rgba(255, 255, 255, 0.3);
+    --white-20: rgba(255, 255, 255, 0.2);
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-05: rgba(255, 255, 255, 0.05);
+    --white-025: rgba(255, 255, 255, 0.025);
+    --white-0125: rgba(255, 255, 255, 0.0125);
 
     --dark-red: #e7040f;
     --red: #ff4136;
@@ -144,11 +144,14 @@
 main {
     margin-top: var(--archive-banner-height);
 }
-#logo-container, #version {
+#logo-container,
+#version {
     transform: translateY(var(--archive-banner-height));
 }
 #nav-links {
-    font-size: 30px;
+    /*Hack to fix spacing for inclusion of #archive-banner, added 8 March 2022 */
+    font-size: 22px;
+    line-height: 22px;
 }
 @media screen and (max-width: 30em) {
     :root {
@@ -166,7 +169,6 @@ main {
 }
 
 /* End archive banner additions */
-
 
 .phone-number,
 .email,
@@ -191,8 +193,10 @@ footer {
 }
 
 header #logo {
-    -webkit-mask: url(/work/innovation-school/archive/assets/phs-leftaligned-logo.svg) no-repeat 100% 100%;
-    mask: url(/work/innovation-school/archive/assets/phs-leftaligned-logo.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/phs-leftaligned-logo.svg)
+        no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/phs-leftaligned-logo.svg)
+        no-repeat 100% 100%;
     background-color: var(--near-black);
     -webkit-mask-position: 0% 50%;
     mask-position: 0% 50%;
@@ -231,7 +235,7 @@ header input:hover {
 .algolia__result-highlight {
     background-color: rgba(240, 78, 48, 0.25);
     -webkit-text-decoration: underline wavy rgba(240, 78, 48, 0.75);
-            text-decoration: underline wavy rgba(240, 78, 48, 0.75);
+    text-decoration: underline wavy rgba(240, 78, 48, 0.75);
 }
 
 span.date {
@@ -365,16 +369,16 @@ li .icon.email {
         -webkit-mask-size: 7rem;
         mask-size: 7rem;
     }
-    @supports (zoom:1.25) {
+    @supports (zoom: 1.25) {
         input[type="radio"],
-        input[type=checkbox] {
+        input[type="checkbox"] {
             zoom: 1.25;
         }
     }
 
-    @supports not (zoom:1.25) {
+    @supports not (zoom: 1.25) {
         input[type="radio"],
-        input[type=checkbox] {
+        input[type="checkbox"] {
             transform: scale(1.25);
         }
     }
@@ -408,16 +412,16 @@ li .icon.email {
         background-position: 50% 0;
     }
 
-    @supports (zoom:1.5) {
+    @supports (zoom: 1.5) {
         input[type="radio"],
-        input[type=checkbox] {
+        input[type="checkbox"] {
             zoom: 1.5;
         }
     }
 
-    @supports not (zoom:1.5) {
+    @supports not (zoom: 1.5) {
         input[type="radio"],
-        input[type=checkbox] {
+        input[type="checkbox"] {
             transform: scale(1.5);
         }
     }
@@ -429,16 +433,16 @@ li .icon.email {
         margin-top: -4rem;
     }
 
-    @supports (zoom:1.75) {
+    @supports (zoom: 1.75) {
         input[type="radio"],
-        input[type=checkbox] {
+        input[type="checkbox"] {
             zoom: 1.75;
         }
     }
 
-    @supports not (zoom:1.75) {
+    @supports not (zoom: 1.75) {
         input[type="radio"],
-        input[type=checkbox] {
+        input[type="checkbox"] {
             transform: scale(1.75);
         }
     }
@@ -446,12 +450,11 @@ li .icon.email {
 
 /* NOTHING BELOW */
 
-
-
-
 .icon.twitter {
-    -webkit-mask: url(/work/innovation-school/archive/assets/sc-twitter.svg) no-repeat 100% 100%;
-    mask: url(/work/innovation-school/archive/assets/sc-twitter.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-twitter.svg)
+        no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-twitter.svg) no-repeat
+        100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -460,8 +463,10 @@ li .icon.email {
 }
 
 .icon.facebook {
-    -webkit-mask: url(/work/innovation-school/archive/assets/sc-facebook.svg) no-repeat 100% 100%;
-    mask: url(/work/innovation-school/archive/assets/sc-facebook.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-facebook.svg)
+        no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-facebook.svg) no-repeat
+        100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -470,8 +475,10 @@ li .icon.email {
 }
 
 .icon.instagram {
-    -webkit-mask: url(/work/innovation-school/archive/assets/sc-instagram.svg) no-repeat 100% 100%;
-    mask: url(/work/innovation-school/archive/assets/sc-instagram.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-instagram.svg)
+        no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-instagram.svg) no-repeat
+        100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -480,8 +487,10 @@ li .icon.email {
 }
 
 .icon.youtube {
-    -webkit-mask: url(/work/innovation-school/archive/assets/sc-youtube.svg) no-repeat 100% 100%;
-    mask: url(/work/innovation-school/archive/assets/sc-youtube.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-youtube.svg)
+        no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-youtube.svg) no-repeat
+        100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
@@ -490,8 +499,10 @@ li .icon.email {
 }
 
 .icon.email {
-    -webkit-mask: url(/work/innovation-school/archive/assets/sc-email.svg) no-repeat 100% 100%;
-    mask: url(/work/innovation-school/archive/assets/sc-email.svg) no-repeat 100% 100%;
+    -webkit-mask: url(/work/innovation-school/archive/assets/sc-email.svg)
+        no-repeat 100% 100%;
+    mask: url(/work/innovation-school/archive/assets/sc-email.svg) no-repeat
+        100% 100%;
     -webkit-mask-position: center;
     mask-position: center;
     background-color: white;
