@@ -53,13 +53,8 @@ let nextConfig = {
         // These rewrites are checked after both pages/public files
         // and dynamic routes are checked
         {
-          source: "/en/work/innovation-school/archive/:path*",
-          destination: "/innovation-school/archive/:path*",
-          locale: false,
-        },
-        {
-          source: "/en/work/sprout/archive/:path*",
-          destination: "/sprout/archive/:path*",
+          source: "/en/work/:org(innovation-school|sprout)/archive/:path*",
+          destination: "/:org/archive/:path*",
           locale: false,
         },
       ],
