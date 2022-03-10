@@ -14,7 +14,7 @@ function Icon({ icon, fixedWidth }) {
 		<i
 			className={classString + (fixedWidth ? "fa-fw" : "")}
 			title={altText}
-		></i>
+		/>
 	);
 }
 
