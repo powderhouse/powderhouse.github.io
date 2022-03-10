@@ -1,7 +1,7 @@
 describe("Home", function () {
   beforeEach(function () {
     // Load our app before starting each test case
-    cy.visit("https://powderhouseorg-powderhouse1.vercel.app/");
+    cy.visit("http://localhost:3000");
   });
 
   it("Snapshot", function () {
