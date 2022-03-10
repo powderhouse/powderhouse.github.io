@@ -1,19 +1,6 @@
 import styled from "styled-components";
 import { colorByProp, colorStyleByProp } from "../components/global.js";
-
-const BREAKPOINTS = {
-	mobileMax: 550,
-	tabletMax: 1100,
-	laptopMax: 1440,
-	minLaptop: 1440.1,
-};
-
-const mediaQueries = {
-	uptoMobile: `(max-width: ${BREAKPOINTS.mobileMax}px)`,
-	uptoTablet: `(max-width: ${BREAKPOINTS.tabletMax}px)`,
-	uptoLaptop: `(max-width: ${BREAKPOINTS.laptopMax}px)`,
-	minLaptop: `(min-width: ${BREAKPOINTS.minLaptop}px)`,
-};
+import { mediaQueries } from "../site-data.js";
 
 let stylesByMedia = {
 	// A dictionary of styles to apply per media query
