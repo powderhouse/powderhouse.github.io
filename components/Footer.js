@@ -7,11 +7,7 @@ import Region2 from "../components/Region2.js";
 import NewsLetterSignUp from "../components/NewsLetterSignUp";
 import { navMenuItems, socials, mediaQueries } from "../site-data.js";
 
-import {
-  baseGrid,
-  colorByProp,
-  ShiftBy,
-} from "../components/global.js";
+import { baseGrid, colorByProp, ShiftBy } from "../components/global.js";
 
 function Footer({ backgroundColor, accentColor, ...rest }) {
   let navItems = navMenuItems.slice();
@@ -60,7 +56,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                         href={n.href}
                         key={n.id}
                         icon={n.service.toLowerCase()}
-                      ></IconListItem>
+                      />
                     );
                   })}
                 </SocialList>
@@ -134,7 +130,7 @@ let FooterNavigation = styled.div`
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: -3 / -2;
-    grid-row:2;
+    grid-row: 2;
   }
   @media ${mediaQueries.uptoMobile} {
     grid-column: 1 / 2;
@@ -200,7 +196,7 @@ let ContactNavList = styled(NavList)`
     // TODO: Rename to make class name more readable
     grid-area: www1;
     hyphens: manual;
-    text-align:left;
+    text-align: left;
 
     @media ${mediaQueries.uptoMobile} {
       text-align: center;
@@ -244,17 +240,17 @@ let SocialList = styled(NavList)`
   }
 
   @media ${mediaQueries.uptoTablet} {
-    justify-content:flex-end;
+    justify-content: flex-end;
   }
 
   /*Styling for homepage footer, without newsletter signup*/
   &.home {
     @media ${mediaQueries.uptoTablet} {
-      justify-content:flex-start;
+      justify-content: flex-start;
     }
 
     @media ${mediaQueries.uptoMobile} {
-      justify-content:center;
+      justify-content: center;
     }
   }
 `;
@@ -266,7 +262,7 @@ let FooterContact = styled.div`
 
   @media ${mediaQueries.uptoTablet} {
     grid-column: 2 / -3;
-    grid-row:2;
+    grid-row: 2;
 
     justify-content: end;
     text-align: right;

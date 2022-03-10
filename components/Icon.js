@@ -1,21 +1,15 @@
-let fontAwesomeClasses = {
-	twitter: ["fab", "fa-twitter", "Powderhouse Twitter"],
-	facebook: ["fab", "fa-facebook", "Powderhouse Facebook"],
-	instagram: ["fab", "fa-instagram", "Powderhouse Instagram"],
-	youtube: ["fab", "fa-youtube", "Powderhouse Youtube"],
-	linkedin: ["fab", "fa-linkedin", "Powderhouse Linkedin"],
-	website: ["fab", "fa-browser", "Powderhouse Website"],
+import SVG from "react-inlinesvg";
+
+let fontAwesomeInfo = {
+	twitter: <SVG src="/media/twitter.svg" title="Powderhouse Twitter" />,
+	facebook: <SVG src="/media/facebook.svg" title="Powderhouse Facebook" />,
+	instagram: <SVG src="/media/instagram.svg" title="Powderhouse Instagram" />,
+	youtube: <SVG src="/media/youtube.svg" title="Powderhouse Youtube" />,
+	linkedin: <SVG src="/media/linkedin.svg" title="Powderhouse Linkedin" />,
 };
 
-function Icon({ icon, fixedWidth }) {
-	let classString = fontAwesomeClasses[icon].slice(0, 2).join(" ");
-	let altText = fontAwesomeClasses[icon][2];
-	return (
-		<i
-			className={classString + (fixedWidth ? "fa-fw" : "")}
-			title={altText}
-		/>
-	);
+function Icon({ icon }) {
+	return fontAwesomeInfo[icon];
 }
 
 export default Icon;
