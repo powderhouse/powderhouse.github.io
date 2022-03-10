@@ -20,7 +20,11 @@ async function subscribe(req, res) {
 
     return res.status(201).json({ error: "" });
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    return res.status(500).json({
+      error: `🙃 Sorry, ${JSON.parse(
+        error.response.text
+      ).title.toLowerCase()}.`,
+    });
   }
 }
 

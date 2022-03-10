@@ -38,6 +38,7 @@ function NewsLetterSignUp({
         const { error } = await res.json();
 
         if (error) {
+            // TODO: Maybe also check response code, in case error message is blank or undefined
             // 4. If there was an error, update the message in state.
             setMessage(error);
 
