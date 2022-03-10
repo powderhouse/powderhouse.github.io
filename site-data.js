@@ -65,6 +65,7 @@ const mediaQueries = {
   uptoMobile: `(max-width: ${breakpoints.mobileMax}px)`,
   uptoTablet: `(max-width: ${breakpoints.tabletMax}px)`,
   uptoLaptop: `(max-width: ${breakpoints.laptopMax}px)`,
+  minLaptop: `(min-width: ${breakpoints.desktopMin}px)`,
 };
 
 export { navMenuItems, socials, mediaQueries, breakpoints, validationPaths };
