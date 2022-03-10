@@ -7,28 +7,51 @@ function ArrowButton({
   buttonWidth,
   buttonThickness,
   buttonTextLength,
+  link,
   ...rest
 }) {
   return (
     <Button {...rest}>
-      <label>
-        <ArrowContainer>
-          <input style={{ display: "none" }} type="submit" />
-          <SVG
-            src={`/buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
-            stroke={color}
-            strokeWidth={1}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            // preProcessor={zoomViewBox}
-            {...rest}
-          />
-          <ButtonText color={color}>{text}</ButtonText>
-        </ArrowContainer>
-      </label>
+      {link ? (
+        <ButtonLink href={link}>
+          <ArrowContainer>
+            <SVG
+              src={`/buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
+              stroke={color}
+              strokeWidth={1}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              // preProcessor={zoomViewBox}
+              {...rest}
+            />
+            <ButtonText color={color}>{text}</ButtonText>
+          </ArrowContainer>
+        </ButtonLink>
+      ) : (
+        <label>
+          <ArrowContainer>
+            <input style={{ display: "none" }} type="submit" />
+            <SVG
+              src={`/buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
+              stroke={color}
+              strokeWidth={1}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              // preProcessor={zoomViewBox}
+              {...rest}
+            />
+            <ButtonText color={color}>{text}</ButtonText>
+          </ArrowContainer>
+        </label>
+      )}
     </Button>
   );
 }
+
+let ButtonLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;
 
 let ArrowContainer = styled.div`
   position: relative;
