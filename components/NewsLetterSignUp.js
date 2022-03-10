@@ -22,7 +22,6 @@ function NewsLetterSignUp({
     const [message, setMessage] = useState("");
 
     const subscribe = async (e) => {
-        console.log(e);
         e.preventDefault();
 
         // 3. Send a request to our API with the user's email address.

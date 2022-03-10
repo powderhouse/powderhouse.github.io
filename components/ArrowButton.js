@@ -4,7 +4,6 @@ import SVG from "react-inlinesvg";
 function ArrowButton({
   text,
   color,
-  link,
   buttonWidth,
   buttonThickness,
   buttonTextLength,
@@ -50,11 +49,6 @@ let Button = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`;
-
-let ButtonLink = styled.a`
-  text-decoration: none;
-  color: inherit;
 `;
 
 let ButtonText = styled.div`
