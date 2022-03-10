@@ -155,6 +155,7 @@ let EmailInput = styled.input.attrs(() => ({
     border-color: ${(props) =>
         props.$color ? expandColor(props.$color) : expandColor("--off-black")};
     padding: calc(var(--base-line-height) / 2);
+    max-width: 100%;
 
     &::placeholder {
         opacity: 0.6;
