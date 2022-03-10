@@ -22,6 +22,7 @@ function NewsLetterSignUp({
     const [message, setMessage] = useState("");
 
     const subscribe = async (e) => {
+        console.log(e);
         e.preventDefault();
 
         // 3. Send a request to our API with the user's email address.
@@ -46,7 +47,7 @@ function NewsLetterSignUp({
 
         // 5. Clear the input value and show a success message.
         inputEl.current.value = "";
-        setMessage("🎉 You are now subscribed to our newsletter.");
+        setMessage("🎉 You are now subscribed to our mailing list.");
     };
 
     let buttonColor = expandColor(
@@ -71,6 +72,8 @@ function NewsLetterSignUp({
                     $color={buttonColor}
                     isHomePage={isHomePage}
                 />
+                {/*<label>*/}
+                {/*                    <input style={{ display: "none" }} type="submit" />*/}
                 <NewsLetterFormButton isHomePage={isHomePage}>
                     <ArrowButton
                         buttonWidth={buttonWidth}
@@ -81,7 +84,7 @@ function NewsLetterSignUp({
                         className="arrowButton"
                         width="100%"
                         preserveAspectRatio="none"
-                        link="#" // TODO: Is this in fact what we want here?
+                        link="" // TODO: Is this in fact what we want here?
                     />
                     <ArrowButton
                         buttonWidth="naked"
@@ -92,9 +95,10 @@ function NewsLetterSignUp({
                         width="100%"
                         height="100%"
                         preserveAspectRatio="none"
-                        link="#" // TODO: Is this in fact what we want here?
+                        link="" // TODO: Is this in fact what we want here?
                     />
                 </NewsLetterFormButton>
+                {/*</label>*/}
             </NewsLetterForm>
         </>
     );

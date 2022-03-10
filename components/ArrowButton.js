@@ -12,8 +12,9 @@ function ArrowButton({
 }) {
   return (
     <Button {...rest}>
-      <ButtonLink href={link}>
+      <label>
         <ArrowContainer>
+          <input style={{ display: "none" }} type="submit" />
           <SVG
             src={`/buttons/${buttonWidth}-${buttonThickness}-${buttonTextLength}.svg`}
             stroke={color}
@@ -25,13 +26,14 @@ function ArrowButton({
           />
           <ButtonText color={color}>{text}</ButtonText>
         </ArrowContainer>
-      </ButtonLink>
+      </label>
     </Button>
   );
 }
 
 let ArrowContainer = styled.div`
   position: relative;
+  cursor: pointer;
   width: 100%;
   height: 100%;
   text-align: left; // TODO: Figure out why we need this
