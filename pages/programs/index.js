@@ -75,10 +75,19 @@ function ProgramsPage({ programsPage, programCards }) {
                 </div>*/}
                 <OverviewNavList>
                   {program[0].OverviewNav.map((l) => 
-                    <OverviewNavLi><a href={l.Link}>{l.LinkText}</a></OverviewNavLi>
+                    <OverviewNavLi>
+                      <a href={l.LinkText.toLowerCase() == "read more"
+                        ? `/programs/${programCards[n.SectionHeader][1]}`
+                        : l.LinkText.toLowerCase() == "apply"
+                          ? `/programs/${programCards[n.SectionHeader][1]}/apply`
+                          : l.Link
+                      }>
+                        {l.LinkText}
+                      </a>
+                    </OverviewNavLi>
                   )}
                 </OverviewNavList>
-                <ArrowButton
+                {/*<ArrowButton
                   text="Apply"
                   link={"/programs/" + programCards[n.SectionHeader][1]}
                   buttonWidth="long"
@@ -86,7 +95,7 @@ function ProgramsPage({ programsPage, programCards }) {
                   buttonTextLength="longText"
                   style={{ gridColumn: "1 / span 3" }}
                   // width="262.5%" // TODO: Fix this hack
-                ></ArrowButton>
+                ></ArrowButton>*/}
               </div> 
             : (
               <div style={{ gridColumn: "1 / -1" }}>
