@@ -7,14 +7,14 @@ function SEO({ meta }) {
 	return (
 		<NextSeo
 			// TODO: It was a mistake to make `meta` a repeating component in Strapi; we need to grab the first element here
-			title={meta[0].title}
-			description={meta[0].Description}
+			title={meta.title}
+			description={meta.Description}
 			canonical={`https://powderhouse.org${path}`}
 			openGraph={{
 				url: `https://powderhouse.org${path}`,
-				type: meta[0].type,
-				title: meta[0].title,
-				description: meta[0].Description,
+				type: meta.type,
+				title: meta.title,
+				description: meta.Description,
 			}}
 		/>
 	);
