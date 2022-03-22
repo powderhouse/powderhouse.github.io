@@ -18,13 +18,8 @@ import { getBgFromLight, Div } from "../../components/global.js";
 import { fetchAPI } from "../../lib/api";
 
 function ProgramsPage({ programsPage, programCards }) {
-  function getProgramIdByTitle(title, programCards) {
-    return programCards[title][0].attributes.ProgramId;
-  }
-
-  console.log(programCards)
-
   let accentColor = "--blue";
+  console.log(programCards)
 
   let regions = [
     <Header
@@ -41,25 +36,6 @@ function ProgramsPage({ programsPage, programCards }) {
     <PageIntroduction backgroundColor="--off-white" key="introduction">
       {programsPage.data.attributes.PageSplash.PageIntro}
     </PageIntroduction>,
-    // ...programsPage.data.attributes.PageSection.map((n, i) => {
-    //   return (
-    //     <Region2
-    //       backgroundColor={getBgFromLight(n.isLightSection)}
-    //       key={`section-${i}`}
-    //       header={n.SectionHeader ? n.SectionHeader : null}
-    //       left={n.isLeftHeader ? n.isLeftHeader : null}
-    //     >
-    //       <PageSectionContent $grid={true}>
-    //         <div style={{ gridColumn: "1 / -1" }}>
-    //           {/*TODO: Why is this wrapper div needed v. putting
-    //           gridColumn inline with the Div?*/}
-    //           <Div markdown>{n.PageSectionContent}</Div>
-    //         </div>
-    //         {programCards.hasOwnProperty(n.SectionHeader)}
-    //       </PageSectionContent>
-    //     </Region2>
-    //   );
-    // }),
     ...programsPage.data.attributes.PageSections.map((n, i) => {
       let program = programCards[n.SectionHeader];
       return (
@@ -70,7 +46,6 @@ function ProgramsPage({ programsPage, programCards }) {
           left={n.isLeftHeader ? n.isLeftHeader : null}
         >
           <PageSectionContent $grid={true}>
-            
             {programCards.hasOwnProperty(n.SectionHeader) 
               ? <div style={{ gridColumn: "1 / -1" }}>
                 <Div markdown>{program[0].OverviewIntro}</Div>
@@ -99,13 +74,13 @@ function ProgramsPage({ programsPage, programCards }) {
                   </ul>
                 </div>*/}
                 <OverviewNavList>
-                  {program[0].OverviewNav.map((n) => 
-                    <OverviewNavLi><a href={n.Link}>{n.LinkText}</a></OverviewNavLi>
+                  {program[0].OverviewNav.map((l) => 
+                    <OverviewNavLi><a href={l.Link}>{l.LinkText}</a></OverviewNavLi>
                   )}
                 </OverviewNavList>
                 <ArrowButton
                   text="Apply"
-                  link="#tk"
+                  link={"/programs/" + programCards[n.SectionHeader][1]}
                   buttonWidth="long"
                   buttonThickness="thick"
                   buttonTextLength="longText"
@@ -134,7 +109,7 @@ function ProgramsPage({ programsPage, programCards }) {
   return (
     <>
       {/*TODO: Should destructure and reformat this to avoid data/attributes*/}
-      {/*<SEO meta={programsPage.data.attributes.meta} />*/}
+      <SEO meta={programsPage.data.attributes.Meta} />
       <PageContainer2>{regions}</PageContainer2>
     </>
   );
@@ -160,6 +135,7 @@ function sortProgramCards(programCards) {
   }
   for (let j of programCards.data) {
     programDict[j.attributes.ProgramTitle].push(j.attributes.ProgramOverview);
+    programDict[j.attributes.ProgramTitle].push(j.attributes.ProgramId);
   }
   return programDict;
 }
