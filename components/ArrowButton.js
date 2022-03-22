@@ -57,7 +57,7 @@ let ArrowContainer = styled.div`
   position: relative;
   cursor: pointer;
   width: 100%;
-  height: 100%;
+  // height: 100%; // Commented this out after funky behavior on /programs...seemed to have no effect elsewhere
   text-align: left; // TODO: Figure out why we need this
   // TODO: Fix hack designed around the jobs page
   display: flex;
