@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PageContainer2 from "../../components/PageContainer2";
@@ -21,6 +22,8 @@ function ProgramsPage({ programsPage, programCards }) {
     return programCards[title][0].attributes.ProgramId;
   }
 
+  console.log(programCards)
+
   let accentColor = "--blue";
 
   let regions = [
@@ -32,13 +35,33 @@ function ProgramsPage({ programsPage, programCards }) {
     <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>Programs</PageHeading>
       <PageTableOfContents
-        sections={programsPage.data.attributes.PageSection}
+        sections={programsPage.data.attributes.PageSections}
       />
     </PageSplash>,
     <PageIntroduction backgroundColor="--off-white" key="introduction">
       {programsPage.data.attributes.PageSplash.PageIntro}
     </PageIntroduction>,
-    ...programsPage.data.attributes.PageSection.map((n, i) => {
+    // ...programsPage.data.attributes.PageSection.map((n, i) => {
+    //   return (
+    //     <Region2
+    //       backgroundColor={getBgFromLight(n.isLightSection)}
+    //       key={`section-${i}`}
+    //       header={n.SectionHeader ? n.SectionHeader : null}
+    //       left={n.isLeftHeader ? n.isLeftHeader : null}
+    //     >
+    //       <PageSectionContent $grid={true}>
+    //         <div style={{ gridColumn: "1 / -1" }}>
+    //           {/*TODO: Why is this wrapper div needed v. putting
+    //           gridColumn inline with the Div?*/}
+    //           <Div markdown>{n.PageSectionContent}</Div>
+    //         </div>
+    //         {programCards.hasOwnProperty(n.SectionHeader)}
+    //       </PageSectionContent>
+    //     </Region2>
+    //   );
+    // }),
+    ...programsPage.data.attributes.PageSections.map((n, i) => {
+      let program = programCards[n.SectionHeader];
       return (
         <Region2
           backgroundColor={getBgFromLight(n.isLightSection)}
@@ -47,12 +70,56 @@ function ProgramsPage({ programsPage, programCards }) {
           left={n.isLeftHeader ? n.isLeftHeader : null}
         >
           <PageSectionContent $grid={true}>
-            <div style={{ gridColumn: "1 / -1" }}>
-              {/*TODO: Why is this wrapper div needed v. putting
-              gridColumn inline with the Div?*/}
-              <Div markdown>{n.PageSectionContent}</Div>
-            </div>
-            {programCards.hasOwnProperty(n.SectionHeader)}
+            
+            {programCards.hasOwnProperty(n.SectionHeader) 
+              ? <div style={{ gridColumn: "1 / -1" }}>
+                <Div markdown>{program[0].OverviewIntro}</Div>
+                <dl>
+                  <dt>What?</dt>
+                  <dd>{program[0].OverviewWhat}</dd>
+                  <dt>How?</dt>
+                  <dd>{program[0].OverviewHow}</dd>
+                  <dt>How Much?</dt>
+                  <dd>{program[0].OverviewHowMuch}</dd>
+                  <dt>Who?</dt>
+                  <dd>{program[0].OverviewWho}</dd>
+                  <dt>When?</dt>
+                  <dd>{program[0].OverviewWhen}</dd>
+                  <dt>Where?</dt>
+                  <dd>{program[0].OverviewWhere}</dd>
+                </dl>
+                {/*<div style={{ gridColumn: "1 / -1" }}>
+                  <ul>
+                    <li><b>What?</b> {program[0].OverviewWhat}</li>
+                    <li><b>How?</b> {program[0].OverviewHow}</li>
+                    <li><b>How Much?</b> {program[0].OverviewHowMuch}</li>
+                    <li><b>Who?</b> {program[0].OverviewWho}</li>
+                    <li><b>When?</b> {program[0].OverviewWhen}</li>
+                    <li><b>Where?</b> {program[0].OverviewWhere}</li>
+                  </ul>
+                </div>*/}
+                <OverviewNavList>
+                  {program[0].OverviewNav.map((n) => 
+                    <OverviewNavLi><a href={n.Link}>{n.LinkText}</a></OverviewNavLi>
+                  )}
+                </OverviewNavList>
+                <ArrowButton
+                  text="Apply"
+                  link="#tk"
+                  buttonWidth="long"
+                  buttonThickness="thick"
+                  buttonTextLength="longText"
+                  style={{ gridColumn: "1 / span 3" }}
+                  // width="262.5%" // TODO: Fix this hack
+                ></ArrowButton>
+              </div> 
+            : (
+              <div style={{ gridColumn: "1 / -1" }}>
+                {/*TODO: Why is this wrapper div needed v. putting
+                gridColumn inline with the Div?*/}
+                <Div markdown>{n.PageSectionContent}</Div>
+              </div>
+            )}
           </PageSectionContent>
         </Region2>
       );
@@ -73,6 +140,16 @@ function ProgramsPage({ programsPage, programCards }) {
   );
 }
 
+let OverviewNavList = styled.ul`
+  grid-column: 1 / -1;
+  padding-left:0 !important;
+`;
+
+let OverviewNavLi = styled.li`
+  display:inline;
+  padding-right:var(--gap);
+`;
+
 function sortProgramCards(programCards) {
   let programDict = {};
   let uniquePrograms = [
@@ -82,18 +159,18 @@ function sortProgramCards(programCards) {
     programDict[uniquePrograms[i]] = [];
   }
   for (let j of programCards.data) {
-    programDict[j.attributes.ProgramTitle].push(j);
+    programDict[j.attributes.ProgramTitle].push(j.attributes.ProgramOverview);
   }
   return programDict;
 }
 
 export async function getStaticProps() {
   let programsPage = await fetchAPI("/programs?populate=*");
-  let programCards = await fetchAPI("/program-cards?populate=*");
+  let programCards = await fetchAPI("/program-cards?populate[ProgramOverview][populate][0]=OverviewNav");
   return {
     props: {
       programsPage: programsPage,
-      programCards: programCards // sortJobCards(programCards),
+      programCards: sortProgramCards(programCards) // sortJobCards(programCards),
     }, // will be passed to the page component as props
   };
 }
