@@ -1,4 +1,4 @@
-// import { useEffect, useState } from "react";
+import styled from "styled-components";
 import SEO from "../../components/SEO";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -18,13 +18,14 @@ import { Div } from "../../components/global";
 import { fetchAPI } from "../../lib/api";
 import { useRouter } from "next/router";
 
-function ProgramDetailPage({ programCards }) {
+function ProgramDetailPage({ programCards, faqs }) {
   let accentColor = "--red";
   const router = useRouter();
   let { programId } = router.query;
 
   let programCard = getProgramCardById(programId, programCards);
-  console.log(programCard.attributes.Meta)
+  let programFAQs = sortFAQsByProgram(programId, faqs);
+  console.log(programFAQs);
 
   let regions = [
     <Header
@@ -48,7 +49,6 @@ function ProgramDetailPage({ programCards }) {
           left={n.isLeftHeader ? n.isLeftHeader : null}
         >
           <PageSectionContent>
-            <Div markdown>{n.PageSectionContent}</Div>
             { n.SectionHeader == "Apply" 
               ? <ArrowButton
                     text="Apply"
@@ -59,7 +59,18 @@ function ProgramDetailPage({ programCards }) {
                     style={{ gridColumn: "1 / span 3" }}
                     // width="262.5%" // TODO: Fix this hack
                   ></ArrowButton>
-              : ""
+              : n.SectionHeader == "FAQ" 
+                ? <FAQList>
+                  {
+                    programFAQs.map(faq => 
+                      <>
+                        <dt>{faq.Question}</dt>
+                        <dd>{faq.Answer}</dd>
+                      </>
+                    )
+                  } 
+                </FAQList>
+                : <Div markdown>{n.PageSectionContent}</Div>
             }
           </PageSectionContent>
         </Region2>
@@ -79,12 +90,34 @@ function ProgramDetailPage({ programCards }) {
   );
 }
 
+let FAQList = styled.dl`
+  
+`;
+
 function getProgramCardById(programId, programCards) {
   for (let card in programCards.data) {
     if (programCards.data[card].attributes.ProgramId == programId) {
       return programCards.data[card];
     }
   }
+}
+
+function sortFAQsByProgram(programId, faqs) {
+  let relevantFAQs = [];
+  for (let i in faqs.data) {
+    let faq = faqs.data[i];
+    for (let j in faq.attributes.Answer) {
+      let whichPrograms = faq.attributes.Answer[j].AnswerForWhichPrograms;
+      for (let k in whichPrograms) {
+        let thisQuestionsProgram = whichPrograms[k].ProgramType.toLowerCase();
+        let currentProgram = programId.split("-").join("").toLowerCase();
+        if (thisQuestionsProgram == currentProgram) {            
+          relevantFAQs.push({Question:faq.attributes.Question, Answer:faq.attributes.Answer[j].Answer});
+        }
+      }   
+    }
+  }
+  return relevantFAQs;
 }
 
 function assemblePaths(paths) {
@@ -109,9 +142,14 @@ export async function getStaticProps({ params: { programId } }) {
   let programCards = await fetchAPI(
     `/program-cards?filters[ProgramId][$eq]=${programId}&pagination[limit]=1&populate=*`
   );
+  let faqs = await fetchAPI(
+    `/program-faqs?populate[Answer][populate][0]=AnswerForWhichPrograms`
+  );
+
   return {
     props: {
       programCards: programCards,
+      faqs: faqs,
     }, // will be passed to the page component as props
   };
 }
