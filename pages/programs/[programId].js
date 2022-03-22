@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Region2 from "../../components/Region2";
 import PageContainer2 from "../../components/PageContainer2";
+import ArrowButton from "../../components/ArrowButton";
 
 import {
   PageTableOfContents,
@@ -12,6 +13,7 @@ import {
   PageSectionContent,
   PageHeading,
 } from "../../components/Page.js";
+import { Div } from "../../components/global";
 
 import { fetchAPI } from "../../lib/api";
 import { useRouter } from "next/router";
@@ -32,12 +34,12 @@ function ProgramDetailPage({ programCards }) {
     />,
     <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>{programCard.attributes.ProgramTitle}</PageHeading>
-      {/*<PageTableOfContents sections={programCard.attributes.PageSections} />*/}
+      <PageTableOfContents sections={programCard.attributes.PageSections} />
     </PageSplash>,
     <PageIntroduction backgroundColor="--off-white" key="introduction">
       {programCard.attributes.ProgramOverview.OverviewIntro}
     </PageIntroduction>,
-    ...programCard.attributes.PageSection.map((n, i) => {
+    ...programCard.attributes.PageSections.map((n, i) => {
       return (
         <Region2
           backgroundColor="--off-white"
@@ -45,8 +47,20 @@ function ProgramDetailPage({ programCards }) {
           header={n.SectionHeader ? n.SectionHeader : null}
           left={n.isLeftHeader ? n.isLeftHeader : null}
         >
-          <PageSectionContent markdown>
-            {n.PageSectionContent}
+          <PageSectionContent>
+            <Div markdown>{n.PageSectionContent}</Div>
+            { n.SectionHeader == "Apply" 
+              ? <ArrowButton
+                    text="Apply"
+                    link={"/programs/" + programCard.attributes.ProgramId + "/apply"}
+                    buttonWidth="long"
+                    buttonThickness="thick"
+                    buttonTextLength="longText"
+                    style={{ gridColumn: "1 / span 3" }}
+                    // width="262.5%" // TODO: Fix this hack
+                  ></ArrowButton>
+              : ""
+            }
           </PageSectionContent>
         </Region2>
       );
