@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Asterisk from "../components/Asterisk";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
-import { mediaQueries } from "../site-data.js";
+import { mediaQueries } from "../site-data";
 
 import SEO from "../components/SEO";
 import {
@@ -14,7 +14,7 @@ import {
 	PageHeading,
 } from "../components/Page.js";
 
-import { baseGrid, Div } from "../components/global.js";
+import { baseGrid, Div } from "../components/global";
 
 import { fetchAPI } from "../lib/api";
 
@@ -80,7 +80,7 @@ function NewsPage({ newsPage, newsCards }) {
 	return (
 		<>
 			{/*TODO: Should destructure and reformat this to avoid data/attributes*/}
-			<SEO meta={newsPage.data.attributes.meta} />
+			<SEO meta={newsPage.data.attributes.Meta} />
 			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);

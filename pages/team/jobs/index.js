@@ -82,7 +82,7 @@ function JobsPage({ jobPage, jobCards }) {
 	return (
 		<>
 			{/*TODO: Should destructure and reformat this to avoid data/attributes*/}
-			<SEO meta={jobPage.data.attributes.meta} />
+			<SEO meta={jobPage.data.attributes.Meta} />
 			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);
