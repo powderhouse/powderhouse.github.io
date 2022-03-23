@@ -60,16 +60,16 @@ function ProgramDetailPage({ programCards, faqs }) {
                     // width="262.5%" // TODO: Fix this hack
                   ></ArrowButton>
               : n.SectionHeader == "FAQ" 
-                ? <FAQList>
-                  {
-                    programFAQs.map(faq => 
-                      <>
-                        <dt>{faq.Question}</dt>
-                        <dd>{faq.Answer}</dd>
-                      </>
-                    )
-                  } 
-                </FAQList>
+                ? <>
+                    {
+                      programFAQs.map(faq => 
+                        <details>
+                          <summary>{faq.Question}</summary>
+                          <p>{faq.Answer}</p>
+                        </details>
+                      )
+                    } 
+                  </>
                 : <Div markdown>{n.PageSectionContent}</Div>
             }
           </PageSectionContent>
@@ -90,9 +90,7 @@ function ProgramDetailPage({ programCards, faqs }) {
   );
 }
 
-let FAQList = styled.dl`
-  
-`;
+let FAQList = styled.dl``;
 
 function getProgramCardById(programId, programCards) {
   for (let card in programCards.data) {

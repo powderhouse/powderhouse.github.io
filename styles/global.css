@@ -212,6 +212,23 @@ dl > dt:not(:last-child) {
   margin-bottom: calc(var(--vertical-rhythm) / 4);
 }
 
+details {
+  cursor: pointer;
+}
+
+details:not(:last-child) {
+  margin-bottom: calc(var(--vertical-rhythm) / 2);
+}
+
+details > summary {
+    /*list-style-type: '▶️';*/
+}
+
+details > p {
+  opacity: 0.6125;
+  padding: calc(0.85em / 2) 0.85em;
+}
+
 @media (max-width: 550px) {
   /* upToMobile */
   dl {
