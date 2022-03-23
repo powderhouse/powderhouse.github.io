@@ -24,7 +24,7 @@ function ArrowButton({
               // preProcessor={zoomViewBox}
               {...rest}
             />
-            <ButtonText color={color}>{text}</ButtonText>
+            <ButtonText className="buttonText" color={color}>{text}</ButtonText>
           </ArrowContainer>
         </ButtonLink>
       ) : (
@@ -76,7 +76,6 @@ let Button = styled.div`
 
 let ButtonText = styled.div`
   position: absolute;
-  // font-size: var(--step-down-2);f
   color: ${(props) => props.color};
   padding-left: 0.75em;
 `;
