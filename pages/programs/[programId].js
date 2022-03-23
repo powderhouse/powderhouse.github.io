@@ -50,7 +50,9 @@ function ProgramDetailPage({ programCards, faqs }) {
         >
           <PageSectionContent>
             { n.SectionHeader == "Apply" 
-              ? <ArrowButton
+              ? <>
+                <Div markdown>{n.PageSectionContent}</Div>
+                <ArrowButton
                     text="Apply"
                     link={"/programs/" + programCard.attributes.ProgramId + "/apply"}
                     buttonWidth="long"
@@ -59,6 +61,7 @@ function ProgramDetailPage({ programCards, faqs }) {
                     style={{ gridColumn: "1 / span 3" }}
                     // width="262.5%" // TODO: Fix this hack
                   ></ArrowButton>
+                </>
               : n.SectionHeader == "FAQ" 
                 ? <>
                     {
