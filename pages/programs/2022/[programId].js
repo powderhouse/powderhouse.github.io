@@ -65,7 +65,7 @@ function ProgramDetailPage({ programCards, faqs }) {
                 ? <>
                     {
                       programFAQs.map(faq => 
-                        <details>
+                        <details id={faq.Slug}>
                           <summary>{faq.Question}</summary>
                           <p>{faq.Answer}</p>
                         </details>
@@ -110,7 +110,10 @@ function sortFAQsByProgram(programId, faqs) {
         let thisQuestionsProgram = whichPrograms[k].ProgramType.toLowerCase();
         let currentProgram = programId.split("-").join("").toLowerCase();
         if (thisQuestionsProgram == currentProgram) {            
-          relevantFAQs.push({Question:faq.attributes.Question, Answer:faq.attributes.Answer[j].Answer});
+          relevantFAQs.push({
+            Question:faq.attributes.Question, 
+            Answer:faq.attributes.Answer[j].Answer, 
+            Slug: faq.attributes.Question.toLowerCase().replace(/[^a-z ]/g, "").split(" ").join("-")});
         }
       }   
     }
