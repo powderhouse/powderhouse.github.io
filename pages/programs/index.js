@@ -76,12 +76,7 @@ function ProgramsPage({ programsPage, programCards }) {
                 <OverviewNavList>
                   {program[0].OverviewNav.map((l) => 
                     <OverviewNavLi>
-                      <a href={l.LinkText.toLowerCase() == "read more"
-                        ? `/programs/${programCards[n.SectionHeader][1]}`
-                        : l.LinkText.toLowerCase() == "apply"
-                          ? `/programs/${programCards[n.SectionHeader][1]}/apply`
-                          : l.Link
-                      }>
+                      <a href={l.Link}>
                         {l.LinkText}
                       </a>
                     </OverviewNavLi>
