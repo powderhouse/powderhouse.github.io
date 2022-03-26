@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import SEO from "../../components/SEO";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import Region2 from "../../components/Region2";
-import PageContainer2 from "../../components/PageContainer2";
-import ArrowButton from "../../components/ArrowButton";
+import SEO from "../../../components/SEO";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import Region2 from "../../../components/Region2";
+import PageContainer2 from "../../../components/PageContainer2";
+import ArrowButton from "../../../components/ArrowButton";
 
 import {
   PageTableOfContents,
@@ -12,20 +12,19 @@ import {
   PageIntroduction,
   PageSectionContent,
   PageHeading,
-} from "../../components/Page.js";
-import { Div } from "../../components/global";
+} from "../../../components/Page.js";
+import { Div } from "../../../components/global";
 
-import { fetchAPI } from "../../lib/api";
+import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";
 
 function ProgramDetailPage({ programCards, faqs }) {
   let accentColor = "--red";
   const router = useRouter();
   let { programId } = router.query;
-
+  programId += "-2022";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
-  console.log(programFAQs);
 
   let regions = [
     <Header
@@ -93,8 +92,6 @@ function ProgramDetailPage({ programCards, faqs }) {
   );
 }
 
-let FAQList = styled.dl``;
-
 function getProgramCardById(programId, programCards) {
   for (let card in programCards.data) {
     if (programCards.data[card].attributes.ProgramId == programId) {
@@ -131,7 +128,7 @@ function assemblePaths(paths) {
 
 export async function getStaticPaths() {
   let programCards = await fetchAPI("/program-cards");
-  let programIds = programCards.data.map((i) => i.attributes.ProgramId);
+  let programIds = programCards.data.map((i) => i.attributes.ProgramId.split("-")[0]);
 
   return {
     paths: assemblePaths(programIds),
@@ -141,7 +138,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { programId } }) {
   let programCards = await fetchAPI(
-    `/program-cards?filters[ProgramId][$eq]=${programId}&pagination[limit]=1&populate=*`
+    `/program-cards?filters[ProgramId][$eq]=${programId}-2022&pagination[limit]=1&populate=*`
   );
   let faqs = await fetchAPI(
     `/program-faqs?populate[Answer][populate][0]=AnswerForWhichPrograms`

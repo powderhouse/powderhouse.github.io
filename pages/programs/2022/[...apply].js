@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import SEO from "../../components/SEO";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import Region2 from "../../components/Region2";
-import PageContainer2 from "../../components/PageContainer2";
-import ArrowButton from "../../components/ArrowButton";
+import SEO from "../../../components/SEO";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import Region2 from "../../../components/Region2";
+import PageContainer2 from "../../../components/PageContainer2";
+import ArrowButton from "../../../components/ArrowButton";
 
 import {
   PageTableOfContents,
@@ -12,9 +12,9 @@ import {
   PageIntroduction,
   PageSectionContent,
   PageHeading,
-} from "../../components/Page.js";
+} from "../../../components/Page.js";
 
-import { fetchAPI } from "../../lib/api";
+import { fetchAPI } from "../../../lib/api";
 
 function ProgramApplicationPage({ programTitle, programApplication }) {
   let accentColor = "--purple";
@@ -26,12 +26,12 @@ function ProgramApplicationPage({ programTitle, programApplication }) {
       activeScribbleColor={accentColor}
       key="header"
     />,
-    <PageSplash backgroundColor={accentColor} key="splash">
+   <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>{programTitle}</PageHeading>
       <PageTableOfContents sections={programApplication.PageSections} />
     </PageSplash>,
     <PageIntroduction backgroundColor="--off-white" key="introduction">
-      {/*{programCard.ProgramOverview.OverviewIntro}*/}
+      {programApplication.ApplicationIntro}
     </PageIntroduction>,
     ...programApplication.PageSections.map((n, i) => {
       return (
@@ -86,7 +86,7 @@ function ProgramApplicationPage({ programTitle, programApplication }) {
   ];
   return (
     <>
-      <SEO meta={programApplication.Meta} />
+      {/*<SEO meta={programApplication.Meta} />*/}
       <PageContainer2>{regions}</PageContainer2>
     </>
   );
@@ -139,7 +139,7 @@ let ApplyButton = styled(ArrowButton)`
 
 export async function getStaticPaths() {
   let programCards = await fetchAPI("/program-cards");
-  let programIds = programCards.data.map((i) => i.attributes.ProgramId);
+  let programIds = programCards.data.map((i) => i.attributes.ProgramId.split("-")[0]);
   let pathParams = [];
   for (let i in programIds) {
     pathParams.push( { params: {apply: [ programIds[i], "apply"] } } );
@@ -154,7 +154,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   let programId = context.params.apply[0];
   let programCard = await fetchAPI(
-    `/program-cards?filters[ProgramId][$eq]=${programId}&populate[ProgramApplication][populate]=*`
+    `/program-cards?filters[ProgramId][$eq]=${programId}-2022&populate[ProgramApplication][populate]=*`
   );
   return {
     props: {
