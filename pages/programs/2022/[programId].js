@@ -63,11 +63,12 @@ function ProgramDetailPage({ programCards, faqs }) {
                 </>
               : n.SectionHeader == "FAQ" 
                 ? <>
+                    <Div markdown>{programCard.attributes.FAQIntro}</Div>
                     {
                       programFAQs.map(faq => 
-                        <details id={faq.Slug}>
+                        <details id={faq.Slug} className="faq">
                           <summary>{faq.Question}</summary>
-                          <p>{faq.Answer}</p>
+                          <Div markdown>{faq.Answer}</Div>
                         </details>
                       )
                     } 

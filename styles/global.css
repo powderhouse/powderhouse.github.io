@@ -394,6 +394,14 @@ p + ol {
   padding-bottom: 1.35em;
 }
 
+details.faq > p:not(:last-child) {
+  margin-bottom: 0;
+}
+details.faq ul, details.faq ol {
+  padding: var(--vertical-rhythm) 0 0 calc(1.5 * var(--gap));
+  opacity: 0.6125;
+}
+
 sup {
   /* via https://stackoverflow.com/a/6594576 */
 
