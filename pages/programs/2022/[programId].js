@@ -48,22 +48,19 @@ function ProgramDetailPage({ programCards, faqs }) {
           left={n.isLeftHeader ? n.isLeftHeader : null}
         >
           <PageSectionContent>
+            <Div markdown>{n.PageSectionContent}</Div>
             { n.SectionHeader == "Apply" 
-              ? <>
-                <Div markdown>{n.PageSectionContent}</Div>
-                <ArrowButton
-                    text="Apply"
-                    link={"/programs/" + programCard.attributes.ProgramId + "/apply"}
-                    buttonWidth="long"
-                    buttonThickness="thick"
-                    buttonTextLength="longText"
-                    style={{ gridColumn: "1 / span 3" }}
-                    // width="262.5%" // TODO: Fix this hack
-                  ></ArrowButton>
-                </>
+              ? <ArrowButton
+                  text="Apply"
+                  link={"/programs/" + programCard.attributes.ProgramId + "/apply"}
+                  buttonWidth="long"
+                  buttonThickness="thick"
+                  buttonTextLength="longText"
+                  style={{ gridColumn: "1 / span 3" }}
+                  // width="262.5%" // TODO: Fix this hack
+                ></ArrowButton>
               : n.SectionHeader == "FAQ" 
                 ? <>
-                    <Div markdown>{programCard.attributes.FAQIntro}</Div>
                     {
                       programFAQs.map(faq => 
                         <details id={faq.Slug} className="faq">
@@ -73,7 +70,7 @@ function ProgramDetailPage({ programCards, faqs }) {
                       )
                     } 
                   </>
-                : <Div markdown>{n.PageSectionContent}</Div>
+                : ""
             }
           </PageSectionContent>
         </Region2>
