@@ -30,7 +30,7 @@ function ProgramApplicationPage({ programTitle, programApplication }) {
       <PageHeading>{programTitle}</PageHeading>
       <PageTableOfContents sections={programApplication.PageSections} />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-white" key="introduction">
+    <PageIntroduction backgroundColor="--off-white" key="introduction" markdown>
       {programApplication.ApplicationIntro}
     </PageIntroduction>,
     ...programApplication.PageSections.map((n, i) => {

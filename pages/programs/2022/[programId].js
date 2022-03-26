@@ -36,7 +36,7 @@ function ProgramDetailPage({ programCards, faqs }) {
       <PageHeading>{programCard.attributes.ProgramTitle}</PageHeading>
       <PageTableOfContents sections={programCard.attributes.PageSections} />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-white" key="introduction">
+    <PageIntroduction backgroundColor="--off-white" key="introduction" markdown>
       {programCard.attributes.ProgramOverview.OverviewIntro}
     </PageIntroduction>,
     ...programCard.attributes.PageSections.map((n, i) => {

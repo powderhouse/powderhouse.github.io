@@ -33,7 +33,7 @@ function ProgramsPage({ programsPage, programCards }) {
         sections={programsPage.data.attributes.PageSections}
       />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-white" key="introduction">
+    <PageIntroduction backgroundColor="--off-white" key="introduction" markdown>
       {programsPage.data.attributes.PageSplash.PageIntro}
     </PageIntroduction>,
     ...programsPage.data.attributes.PageSections.map((n, i) => {
