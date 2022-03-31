@@ -25,6 +25,7 @@ function ProgramDetailPage({ programCards, faqs }) {
   programId += "-2022";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
+  console.log()
 
   let regions = [
     <Header
@@ -52,7 +53,7 @@ function ProgramDetailPage({ programCards, faqs }) {
             { n.SectionHeader == "Apply" 
               ? <ArrowButton
                   text="Apply"
-                  link={"/programs/" + programCard.attributes.ProgramId + "/apply"}
+                  link={programCard.attributes.ProgramApplicationLink}
                   buttonWidth="long"
                   buttonThickness="thick"
                   buttonTextLength="longText"
