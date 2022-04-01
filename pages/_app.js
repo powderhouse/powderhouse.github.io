@@ -22,8 +22,8 @@ function MyApp({ Component, pageProps }) {
     //  - Do not include https://
     //  - This must be an exact match of your domain.
     //  - If you're using www. for your domain, make sure you include that here.
-    Fathom.load('YOUR_FATHOM_TRACKING_CODE', {
-      includedDomains: ['powderhouse.org'],
+    Fathom.load('STKORBGR', {
+      includedDomains: ['powderhouse.org','www.powderhouse.org'],
     });
 
     function onRouteChangeComplete() {
