@@ -27,6 +27,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.74",
     "@types/react": "17.0.37",
     "babel": "^6.23.0",
+    "fathom-client": "^3.4.1",
     "next": "^12.1.0",
     "next-seo": "^5.1.0",
     "node-html-parser": "^5.2.0",
