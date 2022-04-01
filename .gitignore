@@ -12,3 +12,4 @@ log/
 results/
 public/robots.txt
 public/sitemap*.xml
+yarn.lock
