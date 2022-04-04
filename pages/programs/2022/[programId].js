@@ -1,4 +1,4 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import SEO from "../../../components/SEO";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -62,8 +62,8 @@ function ProgramDetailPage({ programCards, faqs }) {
               ></ArrowButton>
             ) : n.SectionHeader == "FAQ" ? (
               <>
-                {programFAQs.map((faq) => (
-                  <details id={faq.Slug} className="faq">
+                {programFAQs.map((faq, faqIdx) => (
+                  <details id={faq.Slug} className="faq" key={faqIdx}>
                     <summary>{faq.Question}</summary>
                     <Div markdown>{faq.Answer}</Div>
                   </details>

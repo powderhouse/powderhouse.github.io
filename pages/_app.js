@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
     return () => {
       router.events.off("routeChangeComplete", onRouteChangeComplete);
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <>
@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
         strategy="beforeInteractive"
       />
       <Script
-        src="https://cdn.usefathom.com/script.js"
+        src="https://apple-respected.powderhouse.org/script.js"
         data-site="STKORBGR"
         defer
       />

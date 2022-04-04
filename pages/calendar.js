@@ -112,7 +112,7 @@ const [PreviousMonthChevron, NextMonthChevron] = [
   ChevronLeftIcon,
   ChevronRightIcon,
 ].map(
-  (c) => styled(c).attrs((props) => chevronProps)`
+  (c) => styled(c).attrs(() => chevronProps)`
     ${chevronStyling}
   `
 );
@@ -136,7 +136,7 @@ const MonthNavLabel = styled.span`
   borderwidth: 0;
 `;
 
-const MonthNavButton = styled.button.attrs((props) => {
+const MonthNavButton = styled.button.attrs(() => {
   type: "button";
 })`
   display: flex;
@@ -196,21 +196,21 @@ const DayHeadingRow = styled.div`
   grid-template-columns: repeat(7, minmax(0, 1fr));
 `;
 
-const Calendar = styled.section.attrs((props) => {
-  key: props.monthIdx;
-})`
-  ${(props) =>
-    props.monthIdx == props.months.length - 1
-      ? css`
-          display: none;
+// const Calendar = styled.section.attrs((props) => {
+//   key: props.monthIdx;
+// })`
+//   ${(props) =>
+//     props.monthIdx == props.months.length - 1
+//       ? css`
+//           display: none;
 
-          @media (min-width: 768px) {
-            display: block;
-          }
-        `
-      : ""}
-  text-align: center;
-`;
+//           @media (min-width: 768px) {
+//             display: block;
+//           }
+//         `
+//       : ""}
+//   text-align: center;
+// `;
 
 export default function Example() {
   return (
@@ -228,8 +228,8 @@ export default function Example() {
           >
             <MonthTitle>{month.name}</MonthTitle>
             <DayHeadingRow>
-              {["M", "T", "W", "R", "F", "S", "S"].map((d) => (
-                <div>{d}</div>
+              {["M", "T", "W", "R", "F", "S", "S"].map((d, i) => (
+                <div key={i}>{d}</div>
               ))}
             </DayHeadingRow>
             <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200">

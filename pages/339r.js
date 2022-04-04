@@ -1,18 +1,18 @@
- import styled from "styled-components";
+// import styled from "styled-components";
 
-import SEO from "../components/SEO";
+// import SEO from "../components/SEO";
 import { fetchAPI } from "../lib/api";
-import { mediaQueries } from "../site-data";
+// import { mediaQueries } from "../site-data";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import NewsLetterSignUp from "../components/NewsLetterSignUp";
+// import NewsLetterSignUp from "../components/NewsLetterSignUp";
 import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import PageImage from "../components/PageImage";
 
 import {
-  Div,
+  // Div,
   slugify,
   findLargestFormat,
   getBgFromLight,
@@ -29,7 +29,7 @@ import {
 function WherePage({
   wherePageMeta: {
     PageSplash: { PageHeader, PageIntro },
-    Meta,
+    // Meta,
   },
   wherePageContent,
 }) {
@@ -73,18 +73,12 @@ function WherePage({
             alt={e.PageImage.data.attributes.alternativeText}
             width={
               e.PageImage.data.attributes.formats[
-                findLargestFormat(
-                  e.PageImage.data.attributes.formats,
-                  "large"
-                )
+                findLargestFormat(e.PageImage.data.attributes.formats, "large")
               ].width
             }
             height={
               e.PageImage.data.attributes.formats[
-                findLargestFormat(
-                  e.PageImage.data.attributes.formats,
-                  "large"
-                )
+                findLargestFormat(e.PageImage.data.attributes.formats, "large")
               ].height
             }
             caption={e.PageImage.data.attributes.caption}
@@ -93,11 +87,7 @@ function WherePage({
       ) : (
         <Region2
           backgroundColor={getBgFromLight(e.isLightSection)}
-          key={
-            e.SectionHeader
-              ? slugify(e.SectionHeader)
-              : `section-${i}`
-          }
+          key={e.SectionHeader ? slugify(e.SectionHeader) : `section-${i}`}
           header={e.SectionHeader ? e.SectionHeader : null}
           left={e.isLeftHeader ? e.isLeftHeader : null}
         >

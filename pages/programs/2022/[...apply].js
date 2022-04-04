@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SEO from "../../../components/SEO";
+// import SEO from "../../../components/SEO";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
@@ -26,7 +26,7 @@ function ProgramApplicationPage({ programTitle, programApplication }) {
       activeScribbleColor={accentColor}
       key="header"
     />,
-   <PageSplash backgroundColor={accentColor} key="splash">
+    <PageSplash backgroundColor={accentColor} key="splash">
       <PageHeading>{programTitle}</PageHeading>
       <PageTableOfContents sections={programApplication.PageSections} />
     </PageSplash>,
@@ -44,37 +44,40 @@ function ProgramApplicationPage({ programTitle, programApplication }) {
           <PageSectionContent markdown>
             {n.PageSectionContent}
           </PageSectionContent>
-          {n.SectionHeader == "Apply"
-            ? <PageSectionContent>
-                <ApplyForm>
-                  {programApplication.ApplicationQuestions.map((e) => 
-                    <>
-                      <ApplyPrompt>{e.Prompt}</ApplyPrompt>
-                      {e.PromptDescription 
-                        ? <ApplyDescription>{e.PromptDescription}</ApplyDescription> 
-                        : ""
-                      }
-                      {e.isLongAnswer 
-                        ? <ApplyLongInput type="text" />
-                        : <ApplyInput type="text" />
-                      }
-                    </>
-                  )}
-                  <ApplyButton
-                    buttonWidth="long"
-                    buttonThickness="thick"
-                    buttonTextLength="shortText"
-                    color="--off-black"
-                    text="Apply"
-                    className="arrowButton"
-                    // width="100%"
-                    preserveAspectRatio="none"
-                    link="#tk" // TODO: Is this in fact what we want here?
-                  />
-                </ApplyForm>
-              </PageSectionContent>
-            : ""
-          }
+          {n.SectionHeader == "Apply" ? (
+            <PageSectionContent>
+              <ApplyForm>
+                {programApplication.ApplicationQuestions.map((e) => (
+                  <>
+                    <ApplyPrompt>{e.Prompt}</ApplyPrompt>
+                    {e.PromptDescription ? (
+                      <ApplyDescription>{e.PromptDescription}</ApplyDescription>
+                    ) : (
+                      ""
+                    )}
+                    {e.isLongAnswer ? (
+                      <ApplyLongInput type="text" />
+                    ) : (
+                      <ApplyInput type="text" />
+                    )}
+                  </>
+                ))}
+                <ApplyButton
+                  buttonWidth="long"
+                  buttonThickness="thick"
+                  buttonTextLength="shortText"
+                  color="--off-black"
+                  text="Apply"
+                  className="arrowButton"
+                  // width="100%"
+                  preserveAspectRatio="none"
+                  link="#tk" // TODO: Is this in fact what we want here?
+                />
+              </ApplyForm>
+            </PageSectionContent>
+          ) : (
+            ""
+          )}
         </Region2>
       );
     }),
@@ -93,17 +96,18 @@ function ProgramApplicationPage({ programTitle, programApplication }) {
 }
 
 let ApplyForm = styled.form`
-  padding-top:calc(var(--vertical-rhythm) / 2);
+  padding-top: calc(var(--vertical-rhythm) / 2);
   & * {
-    display:block;
+    display: block;
   }
-  & textarea, input {
+  & textarea,
+  input {
     width: 100%;
     max-width: 100%;
     margin-top: calc(var(--vertical-rhythm) / 4);
     margin-bottom: var(--vertical-rhythm);
     border-radius: 0;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.5);
     border-style: solid;
     border-width: 1px;
     padding: calc(var(--base-line-height) / 2);
@@ -133,16 +137,20 @@ let ApplyButton = styled(ArrowButton)`
   cursor: pointer;
 
   & .buttonText {
-    transform: translateY(-160%); // TK I don't know why this text isn't in the right place without this text...
+    transform: translateY(
+      -160%
+    ); // TK I don't know why this text isn't in the right place without this text...
   }
 `;
 
 export async function getStaticPaths() {
   let programCards = await fetchAPI("/program-cards");
-  let programIds = programCards.data.map((i) => i.attributes.ProgramId.split("-")[0]);
+  let programIds = programCards.data.map(
+    (i) => i.attributes.ProgramId.split("-")[0]
+  );
   let pathParams = [];
   for (let i in programIds) {
-    pathParams.push( { params: {apply: [ programIds[i], "apply"] } } );
+    pathParams.push({ params: { apply: [programIds[i], "apply"] } });
   }
 
   return {
