@@ -221,7 +221,7 @@ details:not(:last-child) {
 }
 
 details > summary {
-    /*list-style-type: '▶️';*/
+  /*list-style-type: '▶️';*/
 }
 
 details > p {
@@ -363,7 +363,7 @@ p + ol {
 }
 
 .full-body {
-  grid-column: 4 / -4; 
+  grid-column: 4 / -4;
 }
 
 /* TODO Possible to pull in breakpoints? */
@@ -401,7 +401,8 @@ p + ol {
 details.faq > p:not(:last-child) {
   margin-bottom: 0;
 }
-details.faq ul, details.faq ol {
+details.faq ul,
+details.faq ol {
   padding: var(--vertical-rhythm) 0 0 calc(1.5 * var(--gap));
   opacity: 0.6125;
 }
@@ -451,3 +452,7 @@ video {
 p:last-child {
   margin-bottom: 0;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
