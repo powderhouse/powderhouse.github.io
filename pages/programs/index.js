@@ -19,7 +19,7 @@ import { fetchAPI } from "../../lib/api";
 
 function ProgramsPage({ programsPage, programCards }) {
   let accentColor = "--blue";
-  console.log(programCards)
+  // console.log(programCards)
 
   let regions = [
     <Header
@@ -46,8 +46,8 @@ function ProgramsPage({ programsPage, programCards }) {
           left={n.isLeftHeader ? n.isLeftHeader : null}
         >
           <PageSectionContent $grid={true}>
-            {programCards.hasOwnProperty(n.SectionHeader) 
-              ? <div style={{ gridColumn: "1 / -1" }}>
+            {programCards.hasOwnProperty(n.SectionHeader) ? (
+              <div style={{ gridColumn: "1 / -1" }}>
                 <Div markdown>{program[0].OverviewIntro}</Div>
                 <dl>
                   <dt>What?</dt>
@@ -74,13 +74,11 @@ function ProgramsPage({ programsPage, programCards }) {
                   </ul>
                 </div>*/}
                 <OverviewNavList>
-                  {program[0].OverviewNav.map((l) => 
+                  {program[0].OverviewNav.map((l) => (
                     <OverviewNavLi>
-                      <a href={l.Link}>
-                        {l.LinkText}
-                      </a>
+                      <a href={l.Link}>{l.LinkText}</a>
                     </OverviewNavLi>
-                  )}
+                  ))}
                 </OverviewNavList>
                 {/*<ArrowButton
                   text="Apply"
@@ -91,8 +89,8 @@ function ProgramsPage({ programsPage, programCards }) {
                   style={{ gridColumn: "1 / span 3" }}
                   // width="262.5%" // TODO: Fix this hack
                 ></ArrowButton>*/}
-              </div> 
-            : (
+              </div>
+            ) : (
               <div style={{ gridColumn: "1 / -1" }}>
                 {/*TODO: Why is this wrapper div needed v. putting
                 gridColumn inline with the Div?*/}
@@ -121,12 +119,12 @@ function ProgramsPage({ programsPage, programCards }) {
 
 let OverviewNavList = styled.ul`
   grid-column: 1 / -1;
-  padding-left:0 !important;
+  padding-left: 0 !important;
 `;
 
 let OverviewNavLi = styled.li`
-  display:inline;
-  padding-right:var(--gap);
+  display: inline;
+  padding-right: var(--gap);
 `;
 
 function sortProgramCards(programCards) {
@@ -146,11 +144,13 @@ function sortProgramCards(programCards) {
 
 export async function getStaticProps() {
   let programsPage = await fetchAPI("/programs?populate=*");
-  let programCards = await fetchAPI("/program-cards?populate[ProgramOverview][populate][0]=OverviewNav");
+  let programCards = await fetchAPI(
+    "/program-cards?populate[ProgramOverview][populate][0]=OverviewNav"
+  );
   return {
     props: {
       programsPage: programsPage,
-      programCards: sortProgramCards(programCards) // sortJobCards(programCards),
+      programCards: sortProgramCards(programCards), // sortJobCards(programCards),
     }, // will be passed to the page component as props
   };
 }

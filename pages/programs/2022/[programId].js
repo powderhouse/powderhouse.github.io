@@ -25,7 +25,7 @@ function ProgramDetailPage({ programCards, faqs }) {
   programId += "-2022";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
-  console.log()
+  // console.log()
 
   let regions = [
     <Header
@@ -50,29 +50,28 @@ function ProgramDetailPage({ programCards, faqs }) {
         >
           <PageSectionContent>
             <Div markdown>{n.PageSectionContent}</Div>
-            { n.SectionHeader == "Apply" 
-              ? <ArrowButton
-                  text="Apply"
-                  link={programCard.attributes.ProgramApplicationLink}
-                  buttonWidth="long"
-                  buttonThickness="thick"
-                  buttonTextLength="longText"
-                  style={{ gridColumn: "1 / span 3" }}
-                  // width="262.5%" // TODO: Fix this hack
-                ></ArrowButton>
-              : n.SectionHeader == "FAQ" 
-                ? <>
-                    {
-                      programFAQs.map(faq => 
-                        <details id={faq.Slug} className="faq">
-                          <summary>{faq.Question}</summary>
-                          <Div markdown>{faq.Answer}</Div>
-                        </details>
-                      )
-                    } 
-                  </>
-                : ""
-            }
+            {n.SectionHeader == "Apply" ? (
+              <ArrowButton
+                text="Apply"
+                link={programCard.attributes.ProgramApplicationLink}
+                buttonWidth="long"
+                buttonThickness="thick"
+                buttonTextLength="longText"
+                style={{ gridColumn: "1 / span 3" }}
+                // width="262.5%" // TODO: Fix this hack
+              ></ArrowButton>
+            ) : n.SectionHeader == "FAQ" ? (
+              <>
+                {programFAQs.map((faq) => (
+                  <details id={faq.Slug} className="faq">
+                    <summary>{faq.Question}</summary>
+                    <Div markdown>{faq.Answer}</Div>
+                  </details>
+                ))}
+              </>
+            ) : (
+              ""
+            )}
           </PageSectionContent>
         </Region2>
       );
@@ -108,13 +107,17 @@ function sortFAQsByProgram(programId, faqs) {
       for (let k in whichPrograms) {
         let thisQuestionsProgram = whichPrograms[k].ProgramType.toLowerCase();
         let currentProgram = programId.split("-").join("").toLowerCase();
-        if (thisQuestionsProgram == currentProgram) {            
+        if (thisQuestionsProgram == currentProgram) {
           relevantFAQs.push({
-            Question:faq.attributes.Question, 
-            Answer:faq.attributes.Answer[j].Answer, 
-            Slug: faq.attributes.Question.toLowerCase().replace(/[^a-z ]/g, "").split(" ").join("-")});
+            Question: faq.attributes.Question,
+            Answer: faq.attributes.Answer[j].Answer,
+            Slug: faq.attributes.Question.toLowerCase()
+              .replace(/[^a-z ]/g, "")
+              .split(" ")
+              .join("-"),
+          });
         }
-      }   
+      }
     }
   }
   return relevantFAQs;
@@ -130,7 +133,9 @@ function assemblePaths(paths) {
 
 export async function getStaticPaths() {
   let programCards = await fetchAPI("/program-cards");
-  let programIds = programCards.data.map((i) => i.attributes.ProgramId.split("-")[0]);
+  let programIds = programCards.data.map(
+    (i) => i.attributes.ProgramId.split("-")[0]
+  );
 
   return {
     paths: assemblePaths(programIds),

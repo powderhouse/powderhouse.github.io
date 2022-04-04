@@ -40,7 +40,7 @@ function TeamPage2({
 	teamCards,
 }) {
 	let accentColor = "--purple";
-	console.log(PageSections)
+	// console.log(PageSections)
 
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
 	[staff, advisors, alumni] = [
