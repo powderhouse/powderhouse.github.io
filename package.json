@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "export NODE_ENV=development && yarn vercel pull && next dev",
-    "build": "export NODE_ENV=production && yarn vercel pull && next build",
+    "build": "export NODE_ENV=production && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
