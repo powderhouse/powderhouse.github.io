@@ -24,7 +24,7 @@ function ArrowButton({
               // preProcessor={zoomViewBox}
               {...rest}
             />
-            <ButtonText color={color}>{text}</ButtonText>
+            <ButtonText className="buttonText" color={color}>{text}</ButtonText>
           </ArrowContainer>
         </ButtonLink>
       ) : (
@@ -57,7 +57,7 @@ let ArrowContainer = styled.div`
   position: relative;
   cursor: pointer;
   width: 100%;
-  height: 100%;
+  // height: 100%; // Commented this out after funky behavior on /programs...seemed to have no effect elsewhere
   text-align: left; // TODO: Figure out why we need this
   // TODO: Fix hack designed around the jobs page
   display: flex;
@@ -76,7 +76,6 @@ let Button = styled.div`
 
 let ButtonText = styled.div`
   position: absolute;
-  // font-size: var(--step-down-2);f
   color: ${(props) => props.color};
   padding-left: 0.75em;
 `;

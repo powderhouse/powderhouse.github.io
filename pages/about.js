@@ -5,11 +5,6 @@ import PageContainer2 from "../components/PageContainer2";
 import Region2 from "../components/Region2";
 import PageImage from "../components/PageImage";
 
-// import PageSplash from "../components/PageSplash";
-// import PageIntroduction from "../components/PageIntroduction";
-// import PageSectionContent from "../components/PageSectionContent";
-// import PageHeading from "../components/PageHeading";
-
 import {
 	PageTableOfContents,
 	PageSplash,
@@ -29,7 +24,7 @@ import { fetchAPI } from "../lib/api";
 function AboutPage({
 	aboutPageMeta: {
 		PageSplash: { PageHeader, PageIntro },
-		meta,
+		Meta,
 	},
 	aboutPageContent,
 }) {
@@ -115,7 +110,7 @@ function AboutPage({
 	];
 	return (
 		<>
-			<SEO meta={meta} />
+			<SEO meta={Meta} />
 			<PageContainer2>{regions}</PageContainer2>
 		</>
 	);

@@ -31,7 +31,7 @@ function WorkPage({
 			attributes: {
 				PageSplash: { PageHeader, PageIntro },
 				PageSections,
-				meta,
+				Meta,
 			},
 		},
 	},
@@ -178,7 +178,7 @@ function WorkPage({
 
 	return (
 		<>
-			<SEO meta={meta} />
+			<SEO meta={Meta} />
 			<PageContainer2>
 				<Header
 					backgroundColor="--off-white"

@@ -2,6 +2,7 @@ let navMenuItems = [
   { text: "About", href: "/about", color: "--red" },
   { text: "Team", href: "/team", color: "--purple" },
   { text: "Work", href: "/work", color: "--green" },
+  // { text: "Programs", href: "/programs", color: "--blue" },
   { text: "News", href: "/news", color: "--yellow" },
 ];
 

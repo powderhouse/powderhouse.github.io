@@ -33,13 +33,14 @@ function TeamPage2({
 			attributes: {
 				PageSplash: { PageHeader, PageIntro },
 				PageSections,
-				meta,
+				Meta,
 			},
 		},
 	},
 	teamCards,
 }) {
 	let accentColor = "--purple";
+	// console.log(PageSections)
 
 	let { Staff: staff, Advisors: advisors, Alumni: alumni } = teamCards;
 	[staff, advisors, alumni] = [
@@ -191,7 +192,7 @@ function TeamPage2({
 
 	return (
 		<>
-			<SEO meta={meta} />
+			<SEO meta={Meta} />
 			<PageContainer2>
 				{regions.map((r, i) => React.cloneElement(r, { key: i }))}
 			</PageContainer2>
