@@ -219,7 +219,7 @@ export default function Example() {
         <MonthNav type="previous" />
         <MonthNav type="next" />
         {months.map((month, monthIdx) => (
-          <Calendar months={months} monthIdx={monthIdx}>
+          <Calendar months={months} monthIdx={monthIdx} key={monthIdx}>
             <MonthTitle>{month.name}</MonthTitle>
             <DayHeadingRow>
               {["M", "T", "W", "R", "F", "S", "S"].map((d, i) => (
