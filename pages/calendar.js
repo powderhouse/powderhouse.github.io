@@ -1,6 +1,6 @@
 // /* This example requires Tailwind CSS v2.0+ */
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
-import styled, { css } from "styled-components";
+// import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+// import styled, { css } from "styled-components";
 
 // const months = [
 //   {
