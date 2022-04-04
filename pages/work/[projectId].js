@@ -19,7 +19,7 @@ function ProjectDetailPage({ projectData }) {
   let accentColor = "--off-black";
   return (
     <>
-      <SEO meta={projectData.meta} />
+      <SEO meta={projectData.Meta} />
       <PageContainer2>
         <Header
           backgroundColor="--off-white"
@@ -382,7 +382,7 @@ export async function getStaticProps({ params: { projectId } }) {
         "ProjectGalleryItem",
         "ProjectFeatureImage",
         "ProjectInfoList",
-        "meta",
+        "Meta",
       ].map((f) => `populate[${f}][populate]=*`),
     ].join("&"),
   ].join("?");
@@ -394,7 +394,7 @@ export async function getStaticProps({ params: { projectId } }) {
     alternativeText:
       projectData.ProjectFeatureImage.data.attributes.alternativeText,
   };
-  projectData.meta[0].title = `${projectData.ProjectTitle} (${projectData.YearStart}–${projectData.YearEnd} — Powderhouse`;
+  projectData.Meta.title = `${projectData.ProjectTitle} (${projectData.YearStart}–${projectData.YearEnd} — Powderhouse`;
 
   return {
     props: {

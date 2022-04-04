@@ -212,6 +212,23 @@ dl > dt:not(:last-child) {
   margin-bottom: calc(var(--vertical-rhythm) / 4);
 }
 
+details {
+  cursor: pointer;
+}
+
+details:not(:last-child) {
+  margin-bottom: calc(var(--vertical-rhythm) / 2);
+}
+
+details > summary {
+  /*list-style-type: '▶️';*/
+}
+
+details > p {
+  opacity: 0.6125;
+  padding: calc(0.85em / 2) 0.85em;
+}
+
 @media (max-width: 550px) {
   /* upToMobile */
   dl {
@@ -346,12 +363,16 @@ p + ol {
 }
 
 .full-body {
-  /* grid-column: 4 / 10; */
-  width: 100%;
+  grid-column: 4 / -4;
 }
 
 /* TODO Possible to pull in breakpoints? */
-@media (min-width: 55px) {
+@media (max-width: 1100px) {
+  .full-body {
+    grid-column: 2 / -2;
+  }
+}
+@media (max-width: 550px) {
   .full-body {
     grid-column: 1 / -1;
   }
@@ -375,6 +396,15 @@ p + ol {
 
 .fn:not(:last-child) {
   padding-bottom: 1.35em;
+}
+
+details.faq > p:not(:last-child) {
+  margin-bottom: 0;
+}
+details.faq ul,
+details.faq ol {
+  padding: var(--vertical-rhythm) 0 0 calc(1.5 * var(--gap));
+  opacity: 0.6125;
 }
 
 sup {
@@ -422,3 +452,7 @@ video {
 p:last-child {
   margin-bottom: 0;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

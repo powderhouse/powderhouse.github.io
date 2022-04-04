@@ -45,7 +45,8 @@ let TOCText = styled.div`
 `;
 
 function PageTableOfContents({ sections }) {
-	let items = sections.map((n, i) =>
+	let TOCsections = sections.filter(s => !s.isSubheading);
+	let items = TOCsections.map((n, i) =>
 		n.SectionHeader ? (
 			<PageTOCItem key={i}>
 				<PageTOCLink href={"#" + slugify(n.SectionHeader)}>

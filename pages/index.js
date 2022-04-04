@@ -90,11 +90,13 @@ function SplashNewsletterSignup({ children, ...rest }) {
     </Region2>
   );
 }
-function HomePage({
+function HomePage(
+{
   data: {
-    attributes: { SplashLanguage, SignUpShoutOut, meta },
+    attributes: { SplashLanguage, SignUpShoutOut, Meta },
   },
-}) {
+}
+) {
   let accentColor = "--off-black";
 
   let regions = [
@@ -127,7 +129,7 @@ function HomePage({
 
   return (
     <>
-      <SEO meta={meta} />
+      <SEO meta={Meta} />
       <PageContainer2>{regions}</PageContainer2>
     </>
   );

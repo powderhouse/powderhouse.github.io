@@ -5,9 +5,10 @@ let ScribbleContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  width: 100%;
+  min-width: 100%;
   top: calc(1em);
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
+  max-height:10px;
 `;
 
 function Scribble({ number, active, ...rest }) {
@@ -34,6 +35,7 @@ function Scribble({ number, active, ...rest }) {
         src={`/scribbles/scribble${number}.svg`}
         strokeLinecap="round"
         strokeLinejoin="round"
+        preserveAspectRatio="none"
         {...rest}
       />
     </ScribbleContainer>

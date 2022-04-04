@@ -76,7 +76,7 @@ function JobDetailPage({ jobCards }) {
   ];
   return (
     <>
-      <SEO meta={jobCard.attributes.meta} />
+      <SEO meta={jobCard.attributes.Meta} />
       <PageContainer2>{regions}</PageContainer2>
     </>
   );

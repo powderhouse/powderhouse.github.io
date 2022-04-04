@@ -6,15 +6,14 @@ function SEO({ meta }) {
 	const path = useRouter().pathname;
 	return (
 		<NextSeo
-			// TODO: It was a mistake to make `meta` a repeating component in Strapi; we need to grab the first element here
-			title={meta[0].title}
-			description={meta[0].Description}
+			title={meta.Title}
+			description={meta.Description}
 			canonical={`https://powderhouse.org${path}`}
 			openGraph={{
 				url: `https://powderhouse.org${path}`,
-				type: meta[0].type,
-				title: meta[0].title,
-				description: meta[0].Description,
+				type: meta.Type,
+				title: meta.Title,
+				description: meta.Description,
 			}}
 		/>
 	);
