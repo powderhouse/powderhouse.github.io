@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
         strategy="beforeInteractive"
       />
       <Script src="https://cdn.usefathom.com/script.js" data-site="STKORBGR" defer />
-
+      
     </>
   );
 }
