@@ -105,7 +105,7 @@ const chevronStyling = css`
 `;
 
 const chevronProps = {
-  ariaHidden: true,
+  "aria-hidden": true,
 };
 
 const [PreviousMonthChevron, NextMonthChevron] = [
@@ -196,21 +196,21 @@ const DayHeadingRow = styled.div`
   grid-template-columns: repeat(7, minmax(0, 1fr));
 `;
 
-// const Calendar = styled.section.attrs((props) => {
-//   key: props.monthIdx;
-// })`
-//   ${(props) =>
-//     props.monthIdx == props.months.length - 1
-//       ? css`
-//           display: none;
+const Calendar = styled.section.attrs((props) => {
+  key: props.monthIdx;
+})`
+  ${(props) =>
+    props.monthIdx == props.months.length - 1
+      ? css`
+          display: none;
 
-//           @media (min-width: 768px) {
-//             display: block;
-//           }
-//         `
-//       : ""}
-//   text-align: center;
-// `;
+          @media (min-width: 768px) {
+            display: block;
+          }
+        `
+      : ""}
+  text-align: center;
+`;
 
 export default function Example() {
   return (
@@ -219,13 +219,7 @@ export default function Example() {
         <MonthNav type="previous" />
         <MonthNav type="next" />
         {months.map((month, monthIdx) => (
-          <section
-            key={monthIdx}
-            className={classNames(
-              monthIdx === months.length - 1 && "hidden md:block",
-              "text-center"
-            )}
-          >
+          <Calendar months={months} monthIdx={monthIdx}>
             <MonthTitle>{month.name}</MonthTitle>
             <DayHeadingRow>
               {["M", "T", "W", "R", "F", "S", "S"].map((d, i) => (
@@ -260,7 +254,7 @@ export default function Example() {
                 </button>
               ))}
             </div>
-          </section>
+          </Calendar>
         ))}
       </CalendarContainer>
       <section className="mt-12">
