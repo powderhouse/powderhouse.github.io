@@ -19,7 +19,6 @@ import { fetchAPI } from "../../lib/api";
 
 function ProgramsPage({ programsPage, programCards }) {
   let accentColor = "--blue";
-  // console.log(programCards)
 
   let regions = [
     <Header
@@ -48,47 +47,32 @@ function ProgramsPage({ programsPage, programCards }) {
           <PageSectionContent $grid={true}>
             {programCards.hasOwnProperty(n.SectionHeader) ? (
               <div style={{ gridColumn: "1 / -1" }}>
-                <Div markdown>{program[0].OverviewIntro}</Div>
+                <Div markdown>{program[0].ProgramOverview.OverviewIntro}</Div>
                 <dl>
                   <dt>What?</dt>
-                  <dd>{program[0].OverviewWhat}</dd>
+                  <dd>{program[0].ProgramOverview.OverviewWhat}</dd>
                   <dt>How?</dt>
-                  <dd>{program[0].OverviewHow}</dd>
+                  <dd>{program[0].ProgramOverview.OverviewHow}</dd>
                   <dt>How Much?</dt>
-                  <dd>{program[0].OverviewHowMuch}</dd>
+                  <dd>{program[0].ProgramOverview.OverviewHowMuch}</dd>
                   <dt>Who?</dt>
-                  <dd>{program[0].OverviewWho}</dd>
+                  <dd>{program[0].ProgramOverview.OverviewWho}</dd>
                   <dt>When?</dt>
-                  <dd>{program[0].OverviewWhen}</dd>
+                  <dd>{program[0].ProgramOverview.OverviewWhen}</dd>
                   <dt>Where?</dt>
-                  <dd>{program[0].OverviewWhere}</dd>
+                  <dd>{program[0].ProgramOverview.OverviewWhere}</dd>
                 </dl>
-                {/*<div style={{ gridColumn: "1 / -1" }}>
-                  <ul>
-                    <li><b>What?</b> {program[0].OverviewWhat}</li>
-                    <li><b>How?</b> {program[0].OverviewHow}</li>
-                    <li><b>How Much?</b> {program[0].OverviewHowMuch}</li>
-                    <li><b>Who?</b> {program[0].OverviewWho}</li>
-                    <li><b>When?</b> {program[0].OverviewWhen}</li>
-                    <li><b>Where?</b> {program[0].OverviewWhere}</li>
-                  </ul>
-                </div>*/}
                 <OverviewNavList>
-                  {program[0].OverviewNav.map((l, i) => (
+                  {program[0].ProgramOverview.OverviewNav.map((l, i) => (
                     <OverviewNavLi key={i}>
-                      <a href={l.Link}>{l.LinkText}</a>
+                      {
+                        l.LinkText=="Apply"
+                          ? <a href={program[0].ProgramApplicationLink}>{l.LinkText}</a>
+                          : <a href={l.Link}>{l.LinkText}</a>
+                      }
                     </OverviewNavLi>
                   ))}
                 </OverviewNavList>
-                {/*<ArrowButton
-                  text="Apply"
-                  link={"/programs/" + programCards[n.SectionHeader][1]}
-                  buttonWidth="long"
-                  buttonThickness="thick"
-                  buttonTextLength="longText"
-                  style={{ gridColumn: "1 / span 3" }}
-                  // width="262.5%" // TODO: Fix this hack
-                ></ArrowButton>*/}
               </div>
             ) : (
               <div style={{ gridColumn: "1 / -1" }}>
@@ -136,8 +120,11 @@ function sortProgramCards(programCards) {
     programDict[uniquePrograms[i]] = [];
   }
   for (let j of programCards.data) {
-    programDict[j.attributes.ProgramTitle].push(j.attributes.ProgramOverview);
-    programDict[j.attributes.ProgramTitle].push(j.attributes.ProgramId);
+    programDict[j.attributes.ProgramTitle].push({
+      ProgramOverview: j.attributes.ProgramOverview,
+      ProgramId: j.attributes.ProgramId,
+      ProgramApplicationLink: j.attributes.ProgramApplicationLink,
+    })
   }
   return programDict;
 }
