@@ -63,6 +63,8 @@ let ArrowContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  pointer-events: none; // TODO: This is a hack-fix for the fact that the container gets why to big in some contexts...not sure what the root issue is
+
   & svg path {
     vector-effect: non-scaling-stroke;
   }
