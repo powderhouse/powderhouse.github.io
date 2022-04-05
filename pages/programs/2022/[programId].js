@@ -63,7 +63,7 @@ function ProgramDetailPage({ programCards, faqs }) {
             ) : n.SectionHeader == "FAQ" ? (
               <>
                 {programFAQs.map((faq, faqIdx) => (
-                  <details id={faq.Slug} className="faq" key={faqIdx}>
+                  <details id={faq.Slug} className="faq" key={faqIdx} style={{position: "relative",zIndex: "1"}}>
                     <summary>{faq.Question}</summary>
                     <Div markdown>{faq.Answer}</Div>
                   </details>
