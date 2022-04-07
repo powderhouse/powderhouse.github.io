@@ -65,7 +65,7 @@ let complementaryColor = function (colorString) {
 		"--off-white": "--off-black",
 		"--off-black": "--off-white",
 		"--green": "--off-white",
-		"--blue": "--off-white",
+		"--blue": "--off-black",
 		"--yellow": "--off-black",
 		"--purple": "--off-white",
 		"--red": "--off-white",
