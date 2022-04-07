@@ -5,6 +5,7 @@ import Footer from "../../../components/Footer";
 import Region2 from "../../../components/Region2";
 import PageContainer2 from "../../../components/PageContainer2";
 import ArrowButton from "../../../components/ArrowButton";
+import PageImage from "../../../components/PageImage";
 
 import {
   PageTableOfContents,
@@ -13,7 +14,7 @@ import {
   PageSectionContent,
   PageHeading,
 } from "../../../components/Page.js";
-import { Div } from "../../../components/global";
+import { Div, findLargestFormat, slugify } from "../../../components/global";
 
 import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";
@@ -25,7 +26,7 @@ function ProgramDetailPage({ programCards, faqs }) {
   programId += "-2022";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
-  // console.log()
+  console.log(programCard)
 
   let regions = [
     <Header
@@ -40,8 +41,54 @@ function ProgramDetailPage({ programCards, faqs }) {
     <PageIntroduction backgroundColor="--off-white" key="introduction" markdown>
       {programCard.attributes.ProgramOverview.OverviewIntro}
     </PageIntroduction>,
-    ...programCard.attributes.PageSections.map((n, i) => {
-      return (
+    ...programCard.attributes.PageSections.map((n, i) => 
+        n.PageImage ? (
+        <Region2
+          backgroundColor="--off-white"
+          key={
+            n.PageImage.data.attributes.caption
+              ? slugify(n.PageImage.data.attributes.caption)
+              : `image-${i}`
+          }
+        >
+          {console.log("Found an image!")}
+          <PageImage
+            fullBleed={n.IsFullBleed}
+            src={
+              n.PageImage.data.attributes.formats == null
+                ? n.PageImage.data.attributes.url
+                : n.PageImage.data.attributes.formats[
+                    findLargestFormat(
+                      n.PageImage.data.attributes.formats,
+                      "large"
+                    )
+                  ].url
+            }
+            alt={n.PageImage.data.attributes.alternativeText}
+            width={
+              n.PageImage.data.attributes.formats == null
+                ? ""
+                : n.PageImage.data.attributes.formats[
+                  findLargestFormat(
+                    n.PageImage.data.attributes.formats,
+                    "large"
+                  )
+                ].width
+            }
+            height={
+              n.PageImage.data.attributes.formats == null
+                ? ""
+                : n.PageImage.data.attributes.formats[
+                  findLargestFormat(
+                    n.PageImage.data.attributes.formats,
+                    "large"
+                  )
+                ].height
+            }
+            caption={n.PageImage.data.attributes.caption}
+          />
+        </Region2>
+      ) : (
         <Region2
           backgroundColor="--off-white"
           key={`program-${i}`}
@@ -74,8 +121,8 @@ function ProgramDetailPage({ programCards, faqs }) {
             )}
           </PageSectionContent>
         </Region2>
-      );
-    }),
+      )
+    ),
     <Footer
       backgroundColor="--off-black"
       accentColor={accentColor}
@@ -145,7 +192,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { programId } }) {
   let programCards = await fetchAPI(
-    `/program-cards?filters[ProgramId][$eq]=${programId}-2022&pagination[limit]=1&populate=*`
+    `/program-cards?filters[ProgramId][$eq]=${programId}-2022&populate[PageSections][populate][0]=PageImage&populate[Meta][populate]=*&populate[ProgramOverview][populate]=*`
   );
   let faqs = await fetchAPI(
     `/program-faqs?populate[Answer][populate][0]=AnswerForWhichPrograms`

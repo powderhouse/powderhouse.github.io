@@ -67,20 +67,24 @@ function AboutPage({
 						}
 						alt={e.PageImage.data.attributes.alternativeText}
 						width={
-							e.PageImage.data.attributes.formats[
-								findLargestFormat(
-									e.PageImage.data.attributes.formats,
-									"large"
-								)
-							].width
+							e.PageImage.data.attributes.formats == null
+				                ? ""
+				                : e.PageImage.data.attributes.formats[
+									findLargestFormat(
+										e.PageImage.data.attributes.formats,
+										"large"
+									)
+								].width
 						}
 						height={
-							e.PageImage.data.attributes.formats[
-								findLargestFormat(
-									e.PageImage.data.attributes.formats,
-									"large"
-								)
-							].height
+							e.PageImage.data.attributes.formats == null
+				                ? ""
+				                : e.PageImage.data.attributes.formats[
+									findLargestFormat(
+										e.PageImage.data.attributes.formats,
+										"large"
+									)
+								].height
 						}
 						caption={e.PageImage.data.attributes.caption}
 					/>
