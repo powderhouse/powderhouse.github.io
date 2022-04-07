@@ -62,6 +62,7 @@ function ProgramsPage({ programsPage, programCards }) {
                   <dt>Where?</dt>
                   <dd>{program[0].ProgramOverview.OverviewWhere}</dd>
                 </dl>
+                <hr style={{ marginBottom: "var(--base-line-height)" }} />
                 <OverviewNavList>
                   {program[0].ProgramOverview.OverviewNav.map((l, i) => (
                     <OverviewNavLi key={i}>
@@ -104,6 +105,8 @@ function ProgramsPage({ programsPage, programCards }) {
 let OverviewNavList = styled.ul`
   grid-column: 1 / -1;
   padding-left: 0 !important;
+  display: flex;
+  justify-content: center;
 `;
 
 let OverviewNavLi = styled.li`
