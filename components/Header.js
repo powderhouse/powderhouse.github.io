@@ -116,6 +116,17 @@ let LogoLockup = styled.div`
     width: 200px;
   }
 
+  @media only screen and (max-width: 650px) {
+    // TODO: Fix this hack to workaround resizing of the logo between 550 and 650px;
+    & .navlogo-mobile {
+      display: block;
+    }
+
+    & .navlogo-tabletAndUp {
+      display: none;
+    }
+  }
+
   @media ${mediaQueries.uptoMobile} {
     width: 100%;
     grid-column: 1 / -1;
@@ -134,6 +145,7 @@ let LogoLockup = styled.div`
 let NavMenu = styled.nav`
   position: relative;
   padding-bottom: 0.25em;
+  padding-left: 1rem;
 
   @media ${mediaQueries.uptoLaptop} {
     grid-column: -4 / -1;
