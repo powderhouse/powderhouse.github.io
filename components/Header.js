@@ -96,6 +96,11 @@ let Wrapper = styled.header`
   stroke: inherit;
   fill: inherit;
 
+  @media only screen and (max-width: 650px) {
+    // Dealing with longer nav bar on small tablets
+    align-items: flex-end;
+  }
+
   @media ${mediaQueries.uptoMobile} {
     flex-direction: column;
     height: fit-content;
@@ -118,6 +123,9 @@ let LogoLockup = styled.div`
 
   @media only screen and (max-width: 650px) {
     // TODO: Fix this hack to workaround resizing of the logo between 550 and 650px;
+    width: 100px;
+    justify-content: end;
+
     & .navlogo-mobile {
       display: block;
     }
@@ -157,20 +165,30 @@ let NavMenu = styled.nav`
     top: 2px;
   }
 
+  @media only screen and (max-width: 650px) {
+    // Dealing with longer nav bar on small tablets
+    transform: translateY(8px);
+  }
+
   @media ${mediaQueries.uptoMobile} {
     grid-row: 2;
     grid-column: 1 / -1;
     margin: auto;
     top: 0; // TODO: Fix media queries to apply to one device at a time.
+    padding:0;
   }
 `;
 
 let NavList = styled.ol`
   display: flex;
-  justify-content: space-between;
+  // flex: 1 1 0px;
+  justify-content: center;
+  align-items: center;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   transform: translateY(3px);
+  flex-wrap: wrap;
+
 
   @media ${mediaQueries.uptoMobile} {
     padding-top: 1.35em;
@@ -196,6 +214,8 @@ let NavListItem = styled.li`
   }
 
   @media ${mediaQueries.uptoMobile} {
+    flex-basis: 20%;
+    margin: 0 calc(var(--gap) / 2) !important;
   }
 `;
 
