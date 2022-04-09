@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import SVG from "react-inlinesvg";
+import { mediaQueries } from "../site-data.js";
+
 
 let ScribbleContainer = styled.div`
   display: flex;
@@ -9,6 +11,10 @@ let ScribbleContainer = styled.div`
   top: calc(1em);
   visibility: ${(props) => (props.active ? "visible" : "hidden")};
   max-height:10px;
+
+  @media ${mediaQueries.uptoMobile} {
+    display:none;
+  }
 `;
 
 function Scribble({ number, active, ...rest }) {
