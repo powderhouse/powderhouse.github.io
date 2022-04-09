@@ -224,6 +224,12 @@ let NavLink = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${mediaQueries.uptoMobile} {
+    &.active {
+      text-decoration:underline;
+    }
+  }
 `;
 
 export default Header;
