@@ -26,7 +26,6 @@ function ProgramDetailPage({ programCards, faqs }) {
   programId += "-2022";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
-  console.log(programCard)
 
   let regions = [
     <Header
@@ -51,7 +50,6 @@ function ProgramDetailPage({ programCards, faqs }) {
               : `image-${i}`
           }
         >
-          {console.log("Found an image!")}
           <PageImage
             fullBleed={n.IsFullBleed}
             src={
