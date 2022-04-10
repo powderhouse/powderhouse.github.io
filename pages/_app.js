@@ -8,10 +8,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import * as Fathom from "fathom-client";
 
-// export function reportWebVitals(metric) {
-//   console.log(metric);
-// }
-
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 

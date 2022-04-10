@@ -10,6 +10,7 @@ let nextSeoConfig = {
     creator: "@powderhs",
     cardType: "summary_large_image",
   },
+  defaultTitle: "Powderhouse",
 };
 
 export default nextSeoConfig;
