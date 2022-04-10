@@ -20,7 +20,11 @@ function Header(props) {
   let basePath = "/" + router.pathname.split("/")[1];
 
   return (
-    <Region2 {...props}>
+    <Region2 {...props} style={
+      {
+      //TODO: Fix this inline styling working around the :not(:last-of-type) selector from Region2
+      marginBottom: 0
+    }}>
       <Wrapper>
         <LogoLockup>
           <Link href="/">
@@ -96,14 +100,10 @@ let Wrapper = styled.header`
   stroke: inherit;
   fill: inherit;
 
-  @media only screen and (max-width: 650px) {
-    // Dealing with longer nav bar on small tablets
-    align-items: flex-end;
-  }
-
   @media ${mediaQueries.uptoMobile} {
     flex-direction: column;
     height: fit-content;
+    padding-bottom: var(--gap);
   }
 `;
 
@@ -119,20 +119,6 @@ let LogoLockup = styled.div`
 
   @media ${mediaQueries.uptoTablet} {
     width: 200px;
-  }
-
-  @media only screen and (max-width: 650px) {
-    // TODO: Fix this hack to workaround resizing of the logo between 550 and 650px;
-    width: 100px;
-    justify-content: end;
-
-    & .navlogo-mobile {
-      display: block;
-    }
-
-    & .navlogo-tabletAndUp {
-      display: none;
-    }
   }
 
   @media ${mediaQueries.uptoMobile} {
@@ -161,37 +147,30 @@ let NavMenu = styled.nav`
 
   @media ${mediaQueries.uptoTablet} {
     // To line up nav and logotype optically
-    font-size: var(--step-down-1);
     top: 2px;
-  }
-
-  @media only screen and (max-width: 650px) {
-    // Dealing with longer nav bar on small tablets
-    transform: translateY(8px);
+    font-size: var(--step-down-2)
   }
 
   @media ${mediaQueries.uptoMobile} {
+    width: 100%;
     grid-row: 2;
     grid-column: 1 / -1;
     margin: auto;
     top: 0; // TODO: Fix media queries to apply to one device at a time.
     padding:0;
+    font-size: var(--step-down-3);
   }
 `;
 
 let NavList = styled.ol`
   display: flex;
-  // flex: 1 1 0px;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   padding: 0;
   margin: 0 auto;
   transform: translateY(3px);
-  flex-wrap: wrap;
-
 
   @media ${mediaQueries.uptoMobile} {
-    padding-top: 1.35em;
+    padding-top: 0.75em;
     transform: translateY(
       0px
     ); // TODO: Fix media queries to apply to one device at a time.
@@ -203,6 +182,7 @@ let NavListItem = styled.li`
   position: relative;
   list-style-type: none;
   cursor: pointer;
+  text-align: center;
 
   &:not(:last-child) {
     // TODO: Decide if this makes sense
@@ -213,17 +193,14 @@ let NavListItem = styled.li`
     visibility: visible;
   }
 
-  @media ${mediaQueries.uptoMobile} {
-    flex-basis: 20%;
-    margin: 0 calc(var(--gap) / 2) !important;
-  }
+  // @media ${mediaQueries.uptoMobile} {
+  //   flex-basis: 20%;
+  //   margin: 0 calc(var(--gap) / 2) !important;
+  // }
 `;
 
 let NavLink = styled.a`
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   @media ${mediaQueries.uptoMobile} {
     &.active {
