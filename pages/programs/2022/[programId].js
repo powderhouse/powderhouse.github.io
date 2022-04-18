@@ -40,8 +40,8 @@ function ProgramDetailPage({ programCards, faqs }) {
     <PageIntroduction backgroundColor="--off-white" key="introduction" markdown>
       {programCard.attributes.ProgramOverview.OverviewIntro}
     </PageIntroduction>,
-    ...programCard.attributes.PageSections.map((n, i) => 
-        n.PageImage ? (
+    ...programCard.attributes.PageSections.map((n, i) =>
+      n.PageImage ? (
         <Region2
           backgroundColor="--off-white"
           key={
@@ -67,21 +67,21 @@ function ProgramDetailPage({ programCards, faqs }) {
               n.PageImage.data.attributes.formats == null
                 ? ""
                 : n.PageImage.data.attributes.formats[
-                  findLargestFormat(
-                    n.PageImage.data.attributes.formats,
-                    "large"
-                  )
-                ].width
+                    findLargestFormat(
+                      n.PageImage.data.attributes.formats,
+                      "large"
+                    )
+                  ].width
             }
             height={
               n.PageImage.data.attributes.formats == null
                 ? ""
                 : n.PageImage.data.attributes.formats[
-                  findLargestFormat(
-                    n.PageImage.data.attributes.formats,
-                    "large"
-                  )
-                ].height
+                    findLargestFormat(
+                      n.PageImage.data.attributes.formats,
+                      "large"
+                    )
+                  ].height
             }
             caption={n.PageImage.data.attributes.caption}
           />
@@ -108,7 +108,12 @@ function ProgramDetailPage({ programCards, faqs }) {
             ) : n.SectionHeader == "FAQ" ? (
               <>
                 {programFAQs.map((faq, faqIdx) => (
-                  <details id={faq.Slug} className="faq" key={faqIdx} style={{position: "relative",zIndex: "1"}}>
+                  <details
+                    id={faq.Slug}
+                    className="faq"
+                    key={faqIdx}
+                    style={{ position: "relative", zIndex: "1" }}
+                  >
                     <summary>{faq.Question}</summary>
                     <Div markdown>{faq.Answer}</Div>
                   </details>
@@ -192,8 +197,9 @@ export async function getStaticProps({ params: { programId } }) {
   let programCards = await fetchAPI(
     `/program-cards?filters[ProgramId][$eq]=${programId}-2022&populate[PageSections][populate][0]=PageImage&populate[Meta][populate]=*&populate[ProgramOverview][populate]=*`
   );
+  // TODO: This should paginate; right now artificially limited to 100
   let faqs = await fetchAPI(
-    `/program-faqs?populate[Answer][populate][0]=AnswerForWhichPrograms`
+    `/program-faqs?populate[Answer][populate][0]=AnswerForWhichPrograms&pagination[start]=0&pagination[limit]=100`
   );
 
   return {
