@@ -1,0 +1,23 @@
+From 44375a20716032bf5042dcd8006619f7ccc49d86 Mon Sep 17 00:00:00 2001
+From: RosaliePHS <rosalienorris@Rosalies-MacBook-Pro.local>
+Date: Fri, 4 Jan 2019 17:50:22 -0500
+Subject: [PATCH 3/6] jobs overview update
+
+---
+ jobs/_overview.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/jobs/_overview.html b/jobs/_overview.html
+index 05cf2e2..a97788b 100644
+--- a/jobs/_overview.html
++++ b/jobs/_overview.html
+@@ -1,5 +1,5 @@
+ <p>
+-    We're building our founding team now. There are <a href="/about#team" class='link dim blue'>four of us</a> so far. We're going to spend the next year training and working together as part of an intensive on-boarding process.
++    We're building our founding team now. We're going to spend the next year training and working together as part of an intensive on-boarding process.
+ </p>
+ <aside class='bg-moon-gray o-70 tc f2-ns f4-m f5'>Interested in joining Powderhouse Studios? 🎈 <a href='/jobs/apply' class='rum-serif link blue dim'>Apply now</a>.</aside>
+ <p class='list-intro'>
+-- 
+2.35.1
+

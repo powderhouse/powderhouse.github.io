@@ -1,0 +1,21 @@
+From 51f23854904a0f0e2cdeca2b3a2892511768f472 Mon Sep 17 00:00:00 2001
+From: RosaliePHS <rosalienorris@Rosalies-MacBook-Pro.local>
+Date: Fri, 4 Jan 2019 17:42:44 -0500
+Subject: [PATCH 2/6] bundle change
+
+---
+ .ruby-version | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.ruby-version b/.ruby-version
+index a625450..6550da6 100644
+--- a/.ruby-version
++++ b/.ruby-version
+@@ -1 +1 @@
+-2.3.1
+\ No newline at end of file
++2.4.3
+\ No newline at end of file
+-- 
+2.35.1
+

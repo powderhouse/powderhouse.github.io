@@ -1,0 +1,25 @@
+From 6dd9bd3f8f56535260fe7670ce09397afa7883cf Mon Sep 17 00:00:00 2001
+From: RosaliePHS <rosalienorris@Rosalies-MacBook-Pro.local>
+Date: Fri, 4 Jan 2019 18:28:35 -0500
+Subject: [PATCH 5/6] tweaking rosalie bio
+
+---
+ _data/team.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/_data/team.json b/_data/team.json
+index 47f9ce4..79c8aab 100644
+--- a/_data/team.json
++++ b/_data/team.json
+@@ -31,7 +31,7 @@
+ },
+ {
+     "name": "Rosalie Norris",
+-    "bio": "A director, performer, and facilitator of theatrical and dance experiences, Rosalie loves all things fun, collaborative, and embodied. Rosalie lead youth programs with <a href='http://www.citystage.org/' class='link dim blue'>City Stage Co.</a>, , and Boston Public Schools, <a href='https://web.archive.org/web/20150223233720/http://www.artscienceprize.org:80/boston/' class='link dim blue'>The ArtScience Prize</a> and currently co-leads the powerfully fun, intergenerational <a href='http://schoolofhonk.org/video-killed-the-radio-star/' class='link dim blue'>School of Honk Dance Troupe</a>. She loves trying to keep houseplants alive, and her chihuahua Piña. ",
++    "bio": "A director, performer, and facilitator of theatrical and dance experiences, Rosalie loves all things fun, collaborative, and embodied. Rosalie lead youth programs with <a href='http://www.citystage.org/' class='link dim blue'>City Stage Co.</a>, and Boston Public Schools, <a href='https://web.archive.org/web/20150223233720/http://www.artscienceprize.org:80/boston/' class='link dim blue'>The ArtScience Prize</a> and currently co-leads the powerfully fun, intergenerational <a href='http://schoolofhonk.org/video-killed-the-radio-star/' class='link dim blue'>School of Honk Dance Troupe</a>. She loves trying to keep houseplants alive, and her chihuahua Piña. ",
+     "date_joined": "2018-08-01"
+ },
+ {
+-- 
+2.35.1
+

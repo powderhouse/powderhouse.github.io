@@ -1,0 +1,25 @@
+From f8a5d76749a5f24ec9453aa54e82aef5ea033586 Mon Sep 17 00:00:00 2001
+From: RosaliePHS <rosalienorris@Rosalies-MacBook-Pro.local>
+Date: Fri, 4 Jan 2019 17:55:28 -0500
+Subject: [PATCH 4/6] removing photos
+
+---
+ about/_team.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/about/_team.html b/about/_team.html
+index 6ac505d..27c74ac 100644
+--- a/about/_team.html
++++ b/about/_team.html
+@@ -11,7 +11,7 @@
+ {% for person in sorted_people %}
+ <div id='{{ person.name | slugify }}' class='person-container mb4 w-100 v-center-children cf-ns pb0-ns pb3'>
+     <h4 class='portrait-title f2 lh-title mb0 dn-ns o-80'>{{ person.name}}</h4>
+-    <img alt='Portrait of {{ person.name }}' class='portrait w-20-ns w-100 fl-ns o-90' src='/assets/portraits/{{ person.name | slugify: "default" }}.png'>
++    <!-- <img alt='Portrait of {{ person.name }}' class='portrait w-20-ns w-100 fl-ns o-90' src='/assets/portraits/{{ person.name | slugify: "default" }}.png'> -->
+     <div class='bio w-80-ns w-100 f3 pl4-ns fl-ns'>
+       <div>{{ person.bio }}</div>
+     </div>
+-- 
+2.35.1
+
