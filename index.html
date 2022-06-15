@@ -63,11 +63,10 @@
 			left: 0;
 			padding: var(--gap);
 			height: 100%;
-			/*display: none;*/
+			display: none;
 			overflow: hidden;
 			color: white;
 			transition: all .5s ease;
-			opacity: 0;		
 		}
         .info h2 {
             font-size:2rem;
@@ -89,11 +88,27 @@
 			text-decoration: none;
             font-size: 1.5rem;
 		}
+
+		@keyframes fadeInFromNone {
+		    0% {
+		        display: none;
+		        opacity: 0;
+		    }
+
+		    1% {
+		        display: block;
+		        opacity: 0;
+		    }
+
+		    100% {
+		        display: block;
+		        opacity: 1;
+		    }
+		}
 		.visible {
 			display: block;
 			background-color: var(--off-black);
-			opacity: 0.75;
-			transition: all .5s ease;
+			animation: fadeInFromNone 0.5s ease;
 		}
 
 		body {
@@ -112,7 +127,7 @@
 		#header {
 			display: flex;
 			justify-content: center;
-			align-items: center;
+			align-items: end;
 			grid-row: 1;
 			grid-column: 1 / -1;
 			background-color: var(--off-white);
@@ -125,6 +140,7 @@
 			color: var(--off-black);
 		}
 		.fa-close {
+			padding: var(--gap) calc(var(--gap) * 1.2);
 			display: none;
 		}
 		@media (max-width: 550px) {
@@ -152,8 +168,6 @@
 			}
 			.panel {
 				grid-row: auto;
-				/*height: var(--panel-height);*/
-				/*width: var(--panel-width);*/
 			}
 			.panel .info {
 				position: fixed;
@@ -163,6 +177,7 @@
 				width: 100%;
 				font-size: 2rem;
 				padding: calc(4 * var(--gap));
+				display: none;
 			}
 			.panel .info h2 {
 				font-size: 3rem;
@@ -172,11 +187,14 @@
 				top: var(--gap);
 				right: var(--gap);
 				display: block;
-				z-index: 3;
 				text-decoration: none;
 			}
-			.visible {
+			.info.visible {
+				position: fixed;
+				display: block;
 				opacity: 0.95;
+				z-index: 2;
+				animation: revert;
 			}
 		}
 	</style>
@@ -194,8 +212,9 @@
 					<li><a href="http://twitter.com" class="fa fa-twitter"></a></li>
 					<li><a href="http://linkedin.com" class="fa fa-linkedin"></a></li>
 					<li><a href="http://facebook.com" class="fa fa-facebook"></a></li>
-					<li><a href="./shduff/index.html" class="fa fa-lock"></a></li>
+					<li><a href="./aresnick/index.html" class="fa fa-lock"></a></li>
 				</ul>
+				<a href="" class="fa fa-close close"></a>
 			</div>
 		</div>
 		
@@ -208,8 +227,9 @@
 					<li><a href="http://twitter.com" class="fa fa-twitter"></a></li>
 					<li><a href="http://linkedin.com" class="fa fa-linkedin"></a></li>
 					<li><a href="http://facebook.com" class="fa fa-facebook"></a></li>
-					<li><a href="./shduff/index.html" class="fa fa-lock"></a></li>
+					<li><a href="#" class="fa fa-lock"></a></li>
 				</ul>
+				<a href="" class="fa fa-close close"></a>
 			</div>
 		</div>
 		<div class="panel" id="lea">
@@ -221,8 +241,9 @@
 					<li><a href="http://twitter.com" class="fa fa-twitter"></a></li>
 					<li><a href="http://linkedin.com" class="fa fa-linkedin"></a></li>
 					<li><a href="http://facebook.com" class="fa fa-facebook"></a></li>
-					<li><a href="./shduff/index.html" class="fa fa-lock"></a></li>
+					<li><a href="./lea/index.html" class="fa fa-lock"></a></li>
 				</ul>
+				<a href="" class="fa fa-close close"></a>
 			</div>
 		</div>
 		<div class="panel" id="shane">
@@ -234,8 +255,9 @@
 					<li><a href="http://twitter.com" class="fa fa-twitter"></a></li>
 					<li><a href="http://linkedin.com" class="fa fa-linkedin"></a></li>
 					<li><a href="http://facebook.com" class="fa fa-facebook"></a></li>
-					<li><a href="./shduff/index.html" class="fa fa-lock"></a></li>
+					<li><a href="./shane/index.html" class="fa fa-lock"></a></li>
 				</ul>
+				<a href="" class="fa fa-close close"></a>
 			</div>
 		</div>
 		<div class="panel" id="shduff">
@@ -258,24 +280,22 @@
 	</div>
 
 	<script>
-		let panels = Array.prototype.slice.call(document.getElementsByClassName("panel"));
-		// console.log(panels);
+		let panels = Array.from(document.getElementsByClassName("panel"));
 
 		panels.forEach((panel) => {
-			let infoDiv = Array.prototype.slice.call(panel.getElementsByClassName("info"))[0];
-			// console.log(infoDiv);
+			let infoDiv = panel.querySelector(".info");
 
 			panel.addEventListener("mouseover", function() {
 				infoDiv.classList.toggle("visible");
-				// console.log("mouseenter");
 			})
 			panel.addEventListener("mouseout", function() {
 				infoDiv.classList.toggle("visible");
-				// console.log("mouseout");
 			})
             panel.addEventListener("click", function() {
                 infoDiv.classList.toggle("visible");
-                // console.log("click");
+            })
+            panel.querySelector(".close").addEventListener("click", function() {
+            	infoDiv.classList.toggle("visible");
             })
 
 		})
