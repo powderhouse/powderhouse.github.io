@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- The doctype tells the browser what kind of file this is— In our case, it's html. You can read more about doctypes at https://developer.mozilla.org/en-US/docs/Glossary/Doctype -->
+<html>
+  <!-- Everything that's rendered in the browser lives within this `html` tag -->
+  <head>
+    <!-- The `head` is where metadata about the HTML document lives: Things that aren't rendered, but which either tell the browser about the document or help it to render it correctly: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head -->
+    <title>
+      <!-- The title sets the title the browser displays (e.g. in a tab), and
+      which other services (like Google) use to understand what the page is
+      about: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title -->
+      Secret Contributor's Page
+    </title>
+    <!-- `meta` tags are where "all the other meta stuff" lives— everything from the image to use for twitter previews to the authors of the document. They're all optional; this one (the charset) helps tell the browser to interpret all the text as UTF-8: Among other things, this lets us use emoji -->
+    <meta charset="UTF-8" />
+
+    <style>
+      /* `style` is a tag we can use to write CSS directly into our HTML document. The tag tells the browser to interpret everything between the tags as CSS. Sometimes, we'd rather write our CSS in a separate file; in those cases, we can load it into the HTML document using the `link` tag: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link
+
+      /* In CSS, we use "selectors" to write rules which style all elements matched by that selector: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors */
+      body {
+        position: relative;
+      }
+      #desk {
+        width: 100%;
+      }
+
+      #secret {
+        display: none;
+        position: fixed; /* This lets us position the #secret div relative to the window so that, e.g., it doesn't scroll: https://learnlayout.com/position.html#:~:text=%3C/div%3E-,fixed,-%3Cdiv%20class%3D%22fixed */
+
+        /* This sets the width and height to 80% of the window's width and height, respectively: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units */
+        width: 100%;
+        height: 100%;
+        top: 10%;
+
+        /* This sets the background color of the #secret— `lightblue` is one of the named colors in HTML, but you can also specify colors using HSL and RGB and hexadecimal codes. https://developer.mozilla.org/en-US/docs/Web/CSS/color_value offers a good reference on the topic, and https://css-tricks.com/nerds-guide-color-web/ a good intro */
+        /* background-color: black; */
+        background-image: url("desk3.jpeg");
+
+        /* Here we set the font size https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/font-size and center align the text we put in #secret https://developer.mozilla.org/en-US/docs/Web/CSS/text-align We use pixels (px) as our unit, which can be a bit confusing since they are not actual, physical pixels: https://webplatform.github.io/docs/tutorials/understanding-css-units/ */
+        font-size: 100px;
+        text-align: center;
+      }
+
+      #table {
+        display: none;
+        position: fixed;
+        width: 100vh;
+        height: 100vh;
+      }
+
+      #op1 {
+        /* display: none; */
+        cursor: pointer;
+        position: absolute;
+        width: 25%;
+        top: 10%;
+        left: 35%;
+      }
+
+      #spectrogram {
+        /* display: none; */
+        position: fixed;
+        width: 30%;
+        top: 45%;
+        left: 35%;
+        cursor: pointer;
+      }
+
+      /* This rule styles everything within the `form` element. https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/form offers a good reference, while https://developer.mozilla.org/en-US/docs/Learn/Forms and https://web.dev/learn/forms/ offer good introductions to how forms themselves work */
+      form {
+        position: absolute;
+        /* We set the position fixed (as we did above for #secret), but here we are also setting the position explicitly using bottom https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/bottom and right https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/right which are setting how far from the bottom and right of the window the bottom and right of the form appear. You can read more about positioning at https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning */
+        bottom: 10%;
+        left: 30%;
+        text-align: center;
+      }
+      #secret-exit {
+        /* Instead of setting the position to `fixed` here, we are setting it to `absolute`, which is like `fixed`, except instead of using the _window_ as the reference point, it uses _the nearest, explicitly positioned element_—in our case, #secret. This lets us set the `top` and `right` attributes relative to the #secret div, which might change with, e.g., the window size. You can read more about absolute (and other kinds of positioning at https://developer.mozilla.org/en-US/docs/Web/CSS/position and https://www.freecodecamp.org/news/css-positioning-position-absolute-and-relative/ */
+        position: absolute;
+        top: 0%;
+        right: 11%;
+        font-size: 25px;
+
+        /* Even though the "x" we're using is just a div with an emoji in it, to make it look like (and invite getting clicked on like) a button, we can change the cursor a user sees when they hover over it to the familiar "pointer": https://developer.mozilla.org/en-US/docs/Web/CSS/cursor */
+        cursor: pointer;
+      }
+      #nope {
+        display: none;
+        position: fixed;
+        color: red;
+        left: 33%;
+        top: 22%;
+        font-size: 100px;
+      }
+      input {
+        font-size: 5%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- The `body` is the outermost content tag in a typical HTML document. There can only be on in the document, and it represents the root of what is actually rendered: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body -->
+
+    <!-- op1 + audio -->
+    <div>
+      <script>
+        function play() {
+          var audio = document.getElementById("audio");
+          audio.play();
+        }
+      </script>
+
+      <input type="image" src="images/op1.png" onclick="play()" id="op1" />
+      <audio id="audio" src="audio/snail-song.wav"></audio>
+
+      <!-- <audio controls hidden="true">
+        <source src="audio/snail-secret.wav" />
+      </audio> -->
+    </div>
+    <div>
+      <map name="ipad-map">
+        <area
+          shape="rect"
+          coords="500,340,900,620"
+          alt="ipad"
+          href="https://powderhouse.notion.site/Spectrogram-Instructions-e9d88745663c4ed2b7c37697ef53bb4f"
+          target="_blank"
+        />
+        <area
+          shape="rect"
+          coords="540,780,890,1020"
+          alt="sticky"
+          id="pass-try"
+          href="#"
+        />
+      </map>
+    </div>
+
+    <!-- <div>
+      <a
+        href="https://www.sonicvisualiser.org/"
+        target="_blank"
+      >
+        <img src="images/spectrogram.png" id="spectrogram" />
+      </a>
+    </div> -->
+
+    <!-- A `div` is the most generic HTML element: It just represents a box of some sort of content. We can put text or video or nothing or images in it, and style it appropriately. It's the workhorse of laying out and organizing things. You can read more about it at https://www.freecodecamp.org/news/html-div-what-is-a-div-tag-and-how-to-style-it-with-css/ -->
+
+    <!-- `id` and `class` are two of the most common attributes to set on HTML elements. We use them to identify and group elements for easy access via CSS and JavaScript: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors In this case, we're "naming" each of the two divs we want to manipulate. Because we want to identify them uniquely, we are using an `id`—only one element can have a given `id` on each page -->
+    <div id="secret">
+      <iframe
+        style="border-radius: 12px;"
+        src="https://open.spotify.com/embed/playlist/4vWATOTUgjipfYmCl2smuI?utm_source=generator&theme=0"
+        width="80%"
+        height="80%"
+        frameborder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      ></iframe>
+      <div id="secret-exit"></div>
+    </div>
+    <div id="nope"><p>Try again!</p></div>
+
+    <div>
+      <img
+        src="images/desk3.jpeg"
+        id="desk"
+        alt="Workplace"
+        usemap="#ipad-map"
+      />
+    </div>
+
+    <!-- add table background -->
+    <!-- <div>
+      <img src="images/desk2.jpeg" id="table" />
+    </div> -->
+
+    <!-- add op1 music player -->
+    <!-- <div>
+      <img src="images/op1.png" id="op1" />
+    </div> -->
+
+    <script>
+      /* Like `style`, `script` is a tag we can use to tell the browser we're embedding something other than HTML in our document. But instead of CSS, `script` lets us embed JavaScript directly. Also like CSS, we can load load external [in this case JavaScript] files— Unlike with CSS, we use the `script` tag as well, rather than `link`: https://www.geeksforgeeks.org/what-is-external-javascript/ */
+
+      // In this page, we have a password input we'd like to check, and a "secret" display we'd like to be able to show (when the right password is entered) and hide (when people exit out of the display). To be able to interact with them programatically, we need some way to refer to them. We use `document.querySelector` https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll to find them, and we store a reference to them in a variable using `let` https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let `querySelector` lets us use the syntax for CSS selectors to search for matching elements from JavaScript. The `document` object is the programmatic representation of the entire document the browser is currently displaying, https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
+      // let form = document.querySelector("form");
+      let pass_try = document.querySelector("#pass-try");
+      let secret = document.querySelector("#secret");
+      let nope = document.querySelector("#nope");
+
+      // Now, with the `form` element in hand (a reference saved in a variable called `form`—but which we could have called anything), we want to make something happen when we "submit" the form: In particular, we want to check whether the password is correct, and if it is, reveal the secret.
+
+      // To do this, we add an `eventListener`: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events which lets us run a function when a particular event happens. The browser (and you can) define "events" which it lets you monitor—things like `click` and `mousemove`. These events "fire" (i.e. are broadcast) when they happen to different elements—e.g. when something is clicked, that something broadcasts a `click` event. In our case, we have a form, and since it includes an `input` with type `submit` https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/submit we can listen for the `submit` event.
+      pass_try.addEventListener("click", function (event) {
+        // Then, we tell the eventListener what to do when the submit event happens with a function we write inline. That function takes information about the event (passed as the first argument, which we call "event").
+
+        // // Normally, form submission redirects you to a new page— `preventDefault` prevents that from happening, since we don't want to send the information anywhere or go to a new page; we're just going to process it all ourselves https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+        // event.preventDefault();
+
+        // At this point, the `submit` event has fired, which means the `submit` button was clicked, which means we can go grab the value of the password. To do this, we look at the event, and we look at the `target`: https://dillionmegida.com/p/understanding-event-target-and-use-cases/ which is the thing that experienced the event. In our case, since the `form` element contains two `input`s (one for entering the password, and one for the "submit" button), `event.target` is a list of references to each of those— We want to get the first, so we use `event.target[0]`, since lists (often called arrays) in JavaScript refer to their entries starting at 0— so the "first" element is actually the 0th, the "second" is the 1st, and so forth: https://javascript.info/array
+
+        // Then, we look at the `value` of that `input`—The `value` is what's actually _in_ the `input`; at this point and time it should be the password which was entered. For ease of use, we save this in another variable.
+        let submittedPassword = prompt("What is the password?");
+        if (submittedPassword == "snail") {
+          // Then, we check if password matches the string "password" (the "right" answer), and if it does…
+          console.log("🎉 The correct password was entered!"); // We print out a message to the console: https://developer.mozilla.org/en-US/docs/Web/API/console
+          secret.style.display = "block"; // And we go back to the #secret div (to which we've stored a reference in a variable called `secret`), and we use the `style` attribute to set the "inline" style of the div: https://www.javascripttutorial.net/javascript-dom/javascript-style/ Because inline styling take precedence (in the CSS cascade: https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) over the rules which we wrote in the `style` tag earlier, this sets the `display` attribute back to `block` (the default: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout), instead of `none`, which has the effect of showing the div which has been hidden
+          nope.style.display = "none";
+        } else {
+          // If they get the password wrong, print that message to the console
+          console.log("🤮 Sorry, that password is wrong…");
+          nope.style.display = "block";
+        }
+      });
+
+      // Finally, we want to offer the ability to "exit" our secret. We've put a div inside the #secret div, and given it an ID of `secret-exit`. Just as we grabbed references to the `form` and #secret div earlier with `querySelector`, we do the same here
+      let secretExit = document.querySelector("#secret-exit");
+      // So that we can add a `click` eventListener, and this time when it is clicked…
+      secretExit.addEventListener("click", function (event) {
+        // We are going to set the #secret's inline style to `none`, hiding it
+        secret.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
