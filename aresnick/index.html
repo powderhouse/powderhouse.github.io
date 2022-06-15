@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Alec Resnick's Contributor's Page (Kindling, Summer 2022)</title>
+		<style>
+			body {
+				background-color: black;
+				position: relative;
+				margin: 0;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+			}
+			body.solved {
+				overflow: auto;
+			}
+			img {
+				position: relative;
+				width: 100%;
+			}
+
+			#secret-image {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: pink;
+				background: url(play2-trimmed.png);
+				background-repeat: no-repeat;
+				background-size: cover;
+				display: inline-block;
+			}
+			#interface {
+				width: 100%;
+
+				aspect-ratio: 1 / 2.165;
+
+				/*min-width: 360px;*/
+				/*min-height: 780px;*/
+
+				/*max-width: 428px;*/
+				/*max-height: 926px;*/
+			}
+			#interface {
+				/*display: grid;
+				grid-template-columns: auto 10%;
+				grid-template-rows: auto 5%
+				grid-column-gap: 0px;
+				grid-row-gap: 0px;*/
+				display: grid; 
+				grid-template-columns: auto 10%; 
+				grid-template-rows: auto 5%; 
+  				grid-column-gap: 0px;
+				grid-row-gap: 0px;
+				grid-template-areas: 
+				"image slider ."
+				"password password ."
+				". . ."; 
+				transition: all 750ms linear;
+			}
+
+			#interface {
+				position: absolute;
+				left: 20%;
+				top: -73.35%;
+				transform: scale(-0.143) rotate(180deg);
+			}
+
+			.solved #interface {
+				opacity: 0;
+			}
+
+			#film-strip {
+				position: relative;
+				top: -8px;
+			}
+			#film-strip-container {
+				position: relative;
+
+				/*grid-area: 1 / 1 / 2 / 2;*/
+				grid-area: image;
+
+				background: url(play1-trimmed.png);
+				background-repeat: no-repeat;
+				background-position: 0 2px;
+				background-size: cover;
+				display: inline-block;
+				overflow: hidden;
+
+				-webkit-mask-image: linear-gradient(
+					to top,
+					transparent 1%,
+					black 10%
+				), linear-gradient(
+					to bottom,
+					transparent 1%,
+					black 10%
+				);
+				-webkit-mask-composite: source-in; /* For Chrome */
+				mask-image: linear-gradient(
+					to top,
+					transparent 1%,
+					black 10%
+				), linear-gradient(
+					to bottom,
+					transparent 1%,
+					black 10%
+				);
+  				mask-composite: intersect; /* For Firefox */
+			}
+			#password {
+				text-align: center;
+			}
+			#password::placeholder {
+				font-family: monospace;
+				text-align: center;
+			}
+			#password-container {
+				/*grid-area: 2 / 1 / 3 / 2;*/
+				grid-area: password;
+				
+				display: flex;
+				align-items: center;
+				margin-top: 5rem;
+			}
+			#slider-container {
+				/*grid-area: 1 / 2 / 3 / 3;*/
+				grid-area: slider;
+				background-color: linear-gradient(
+					to bottom,
+					rgb(7, 27, 17),
+					rgb(6, 25, 20)
+				);
+				position: relative;
+			}
+			#slider {
+				transform: rotate(90deg) scale(5);
+				width: 399%;
+				top:  50%;
+				left:  -135%;
+				position: relative;
+			}
+
+			#password {
+				display: inline-block;
+				flex-grow: 1;
+				font-size: 8rem;
+				padding: 3rem;
+				margin-right: 3rem;
+				margin-top: 4.25rem;
+				border-radius: 20px;
+			}
+			button[type="submit"] {
+				background: transparent;
+				filter: invert();
+				border:  none;
+				width: 8rem;
+				height: 8rem;
+				margin-top: 2rem;
+				position: relative;
+				left: 15px;
+				cursor: pointer;
+			}
+
+			button[type="submit"].locked .locked, button[type="submit"].unlocked .unlocked {
+				display: inline-block;
+			}
+			button[type="submit"].locked .unlocked, button[type="submit"].unlocked .locked {
+				display: none;
+			}
+
+			#password-container.incorrect input {
+				animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+				transform: translateX(0);
+				backface-visibility: hidden;
+				perspective: 1000px;
+			}
+
+			@keyframes shake {
+				10%, 90% { transform: translateX(-1px); }
+
+				20%, 80% { transform: translateX(2px); }
+
+				30%, 50%, 70% { transform: translateX(-4px); }
+
+				40%, 60% { transform: translateX(4px); }
+			}
+
+			#childhood {
+				width: 100%;
+				max-width: 100vw;
+				/*max-height: 100vh;*/
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+
+				filter: blur(10px);
+				opacity:  0.5;
+				transition: all 750ms linear;
+			}
+			#childhood img {
+				/*max-height:  100vh;*/
+			}
+
+			.solved #childhood {
+				filter: none;
+				opacity:  1;
+			}
+
+			body.solved {
+				transform: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="childhood">
+			<img src="./contact-sheet-raw.png" />
+		</div>
+
+		<div id="interface">
+			<div id="film-strip-container">
+				<div id="secret-image"></div>
+				<img id="film-strip" src="./new-film-strip-trimmed-2.png" />
+			</div>
+			<div id="slider-container">
+				<input id="slider" type="range" min="0" max="1000" value="0" />
+			</div>
+			<form id="password-container">
+				<input id="password" type="password" placeholder="What's the word?" />
+				<!-- <input id="submit" type="submit" value="🔐" /> -->
+				<button type="submit" class="locked">
+					<img class='locked' src='locked.png'/>
+					<img class='unlocked' src='unlocked.png'/>
+				</button>
+			</form>
+		</div>
+
+		<script>
+			let form = document.querySelector("form");
+			let slider = document.querySelector("#slider");
+			let secretImage = document.querySelector("#secret-image");
+			slider.addEventListener("input", (e) => {
+				console.log(e.target.max);
+				secretImage.style.transform = `translateY(${
+					(e.target.value / 1000) *
+					secretImage.offsetHeight *
+					(1 - 211 / 2349)
+				}px)`;
+			});
+
+			form.addEventListener(
+				"submit",
+				function (event) {
+					event.preventDefault();
+
+					document.body.style.transition = "all 750ms linear"
+					let passwordInput = document.querySelector("#password");
+					if (passwordInput.value.toLowerCase() == "play") {
+						document.body.classList.add("solved");
+						document.body.style.transform = "none";
+						document.querySelector('button').classList.remove('locked')
+						document.querySelector('button').classList.add('unlocked')
+						setTimeout(
+							() =>
+								(document.querySelector(
+									"#interface"
+								).style.display = "none"),
+							800
+						);
+					} else {
+						form.classList.add("incorrect");
+						setTimeout(() => {
+							form.classList.remove("incorrect");
+						}, 830);
+					}
+				},
+				false
+			);
+
+			// via https://stackoverflow.com/a/15355860
+
+			if ("scrollRestoration" in history) {
+				history.scrollRestoration = "manual";
+			}
+			window.scrollTo(0, 0);
+
+			window.addEventListener("load", (e) => {
+				let image = {
+					element: document.querySelector("#childhood img"),
+				};
+				image.width = image.element.naturalWidth;
+				image.height = image.element.naturalHeight;
+
+				let screen = {
+					element: document.body,
+				};
+				screen.width = document.body.offsetWidth;
+				screen.height = document.body.offsetHeight;
+
+				let areaOfInterest = {
+					native: {
+						width: 579,
+						height: 1343,
+						x: 2517.6,
+						y: 909.5,
+					},
+					target: {
+						x: null,
+						y: null,
+						width: 1.25*200,
+						height: 1.25*464,
+					},
+				};
+				areaOfInterest.target.x =
+					screen.width / 2 - areaOfInterest.target.width / 2;
+				areaOfInterest.target.y =
+					(screen.height - areaOfInterest.target.height) / 2 - 250;
+
+				let screenScaleFactor = Math.min(
+					screen.width / image.width,
+					screen.height / image.height
+				);
+
+				let scaleFactor = Math.min(
+					areaOfInterest.target.width / areaOfInterest.native.width,
+					areaOfInterest.target.height / areaOfInterest.native.height
+				);
+
+				console.log(
+					"Natively, the image is",
+					`${image.width} x ${image.height}`
+				);
+				console.log(
+					"The screen is",
+					`${screen.width} x ${screen.height}`
+				);
+				console.log("So, from image to screen is", screenScaleFactor);
+				console.log("We want to scale a total of", scaleFactor);
+				let newOrigin = {
+					x:
+						(areaOfInterest.native.x -
+							areaOfInterest.target.x / scaleFactor) *
+						screenScaleFactor,
+					y:
+						(areaOfInterest.native.y -
+							areaOfInterest.target.y / scaleFactor) *
+						screenScaleFactor,
+				};
+				console.log(newOrigin);
+				document.body.style.transformOrigin = `${newOrigin.x}px ${newOrigin.y}px`;
+				document.body.style.transform = [
+					`translate(${-1 * newOrigin.x}px, ${-1 * newOrigin.y}px)`,
+					`scale(${scaleFactor / screenScaleFactor})`,
+				].join(" ");
+			});
+		</script>
+	</body>
+</html>
