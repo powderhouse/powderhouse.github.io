@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Secret Contributor's Page</title>
+    <meta charset="UTF-8" />
+
+    <style>
+      body {
+        margin: 0;
+      }
+      #passphrase {
+        text-align: center;
+        color: black;
+        bottom: 1px;
+        left: 25px;
+        display: "block";
+        width: 100vw;
+        /* height: 100vh; */
+      }
+
+      #mevideo {
+        display: block;
+        background-size: cover;
+        width: 100vw;
+        margin: 0;
+        /* border-style: solid;
+        border-color: black; */
+      }
+
+      #deskimg {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: solid;
+        border-radius: 15px;
+        border-color: rgb(142, 175, 185);
+      }
+
+      #desk {
+        margin-left: auto;
+        margin-right: auto;
+        display: none;
+        background-image: url("dusty.jpg");
+        width: 100vw;
+        height: 100vh;
+      }
+      
+      h2 {
+        font-family: Courier, monospace;
+        font-size: 50px;
+        font-weight: lighter;
+        margin-bottom: 1%;
+        text-align: center;
+      }
+
+      h3 {
+        font-family: Courier, monospace;
+        font-size: 30px;
+        font-weight: lighter;
+        text-align: center;
+        background-color: white;
+        border-style: solid;
+        border-color: rgb(142, 175, 185);
+      }
+
+
+    @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+    .fade-in-image {
+      animation: fadeIn 5s; 
+    }
+      form {
+        display: block;
+        text-align: center;
+        margin-top: 0%;
+        margin-bottom: 1%;
+      }
+
+      video {
+        border-style: solid;
+        border-color: black;
+        margin: 0;
+        width: 100vw;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- landing video -->
+
+          <div id="mevideo">
+              <video width="1400" height="600px" autoplay="autoplay" loop="true" 
+              /> 
+              <source src="metakephoto-2.mp4" 
+                  type="video/mp4"> 
+          </video> 
+          </div>
+
+          <div id="passphrase">
+            <h2>Switch p.o.v? Punch Yes & Hit Enter.</h2>
+          </div>
+  
+          <form>
+              <input type="password" />
+              <input type="submit" value="Check" />
+            </form>
+
+<!-- desk reveal -->
+<div class="fade-in-image" id="desk">
+    <img id="deskimg" src="desk.JPEG" usemap="#image-map">
+    <h3>Click on Objects to Dig into the Digital Desk</h3>
+
+    <map name="image-map">
+        <area target="_self" alt="Shots" title="Shots" href="https://www.instagram.com/lensoflea/" coords="98,348,194,359,155,284" shape="poly">
+        <area target="_self" alt="Tunes" title="Tunes" href="https://music.apple.com/us/playlist/powderhouse/pl.u-BNA62aNt1zELbrB" coords="149,255,315,234,331,361,196,342" shape="poly">
+        <area target="_self" alt="Imagery" title="Imagery" href="https://www.nytimes.com/2000/04/11/science/scientific-epiphanies-celebrated-on-canvas.html " coords="621,360,586,475,766,575,797,445" shape="poly">
+        <area target="_self" alt="Words" title="Words" href="https://leadegen.com " coords="419,42,323,486,555,553,653,78" shape="poly">
+        <area target="_self" alt="Greenery" title="Greenery" href="https://www.huntington.org" coords="706,231,787,304,695,368,651,320,638,236" shape="poly">
+        <area target="_self" alt="Reads" title="Reads" href="https://leadegen.com/index.php/resources/" coords="242,370,210,500,294,511,319,440,303,370" shape="poly">
+        <area target="_self" alt="Ze Home" title="Ze Home" href="https://www.youtube.com/watch?v=EGDc2Hn67Y0 " coords="141,407,165,474,209,442,194,387" shape="poly">
+    </map>
+    
+  </div>
+
+    <script>
+      let form = document.querySelector("form");
+      let desk = document.querySelector("#desk");
+      let mevideo = document.querySelector("#mevideo");
+      let passphrase = document.querySelector("#passphrase");
+      // let circle = document.querySelector("#circle");
+      form.addEventListener("submit", function (event) {
+        let submittedPassword = event.target[0].value;
+        if ((submittedPassword == "yes") || (submittedPassword== "Yes")) {
+          console.log("Correct—");
+          desk.style.display = "block";
+          mevideo.style.display = "none";
+          form.style.display="none";
+          passphrase.style.display="none";
+          // circle.style.display="block";
+
+        } else {
+          console.log("Nope");
+        }
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>
