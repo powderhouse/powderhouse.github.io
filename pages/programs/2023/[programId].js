@@ -23,11 +23,10 @@ function ProgramDetailPage({ programCards, faqs }) {
   let accentColor = "--red";
   const router = useRouter();
   let { programId } = router.query;
-  programId += "-2022";
+  programId += "-2023";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
-
-  console.log("2022 PageSections", programCard.attributes.PageSections.map(p => p.SectionHeader));
+  console.log("2023 PageSections", programCard.attributes.PageSections.map(p => p.SectionHeader));
   let regions = [
     <Header
       backgroundColor="--off-white"
@@ -154,7 +153,8 @@ function sortFAQsByProgram(programId, faqs) {
   for (let i in faqs.data) {
     let faq = faqs.data[i];
     for (let j in faq.attributes.Answer) {
-      let whichPrograms = faq.attributes.Answer[j].AnswerForWhichPrograms;
+      let whichPrograms = faq.attributes.Answer[j].AnswerForWhichPrograms.filter(p => p.ProgramSeason); // TODO: Fix null .ProgramSeason values in Strapi
+      console.log("whichPrograms is currently ", whichPrograms);
       for (let k in whichPrograms) {
         let thisQuestionsProgram = whichPrograms[k].ProgramSeason.toLowerCase();
         let currentProgram = programId.split("-").join("").toLowerCase();
@@ -196,7 +196,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { programId } }) {
   let programCards = await fetchAPI(
-    `/program-cards?filters[ProgramId][$eq]=${programId}-2022&populate[PageSections][populate][0]=PageImage&populate[Meta][populate]=*&populate[ProgramOverview][populate]=*`
+    `/program-cards?filters[ProgramId][$eq]=${programId}-2023&populate[PageSections][populate][0]=PageImage&populate[Meta][populate]=*&populate[ProgramOverview][populate]=*`
   );
   // TODO: This should paginate; right now artificially limited to 100
   let faqs = await fetchAPI(
