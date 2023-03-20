@@ -27,7 +27,7 @@ function ProgramDetailPage({ programCards, faqs }) {
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
 
-  console.log("2022 PageSections", programCard.attributes.PageSections.map(p => p.SectionHeader));
+  // console.log("2022 PageSections", programCard.attributes.PageSections.map(p => p.SectionHeader));
   let regions = [
     <Header
       backgroundColor="--off-white"

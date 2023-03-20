@@ -26,7 +26,7 @@ function ProgramDetailPage({ programCards, faqs }) {
   programId += "-2023";
   let programCard = getProgramCardById(programId, programCards);
   let programFAQs = sortFAQsByProgram(programId, faqs);
-  console.log("2023 PageSections", programCard.attributes.PageSections.map(p => p.SectionHeader));
+  // console.log("2023 PageSections", programCard.attributes.PageSections.map(p => p.SectionHeader));
   let regions = [
     <Header
       backgroundColor="--off-white"
@@ -52,37 +52,41 @@ function ProgramDetailPage({ programCards, faqs }) {
         >
           <PageImage
             fullBleed={n.IsFullBleed}
-            src={
-              n.PageImage.data.attributes.formats == null
-                ? n.PageImage.data.attributes.url
-                : n.PageImage.data.attributes.formats[
-                    findLargestFormat(
-                      n.PageImage.data.attributes.formats,
-                      "large"
-                    )
-                  ].url
-            }
+            // src={
+            //   n.PageImage.data.attributes.formats == null
+            //     ? n.PageImage.data.attributes.url
+            //     : n.PageImage.data.attributes.formats[
+            //         findLargestFormat(
+            //           n.PageImage.data.attributes.formats,
+            //           "large"
+            //         )
+            //       ].url
+            // }
+            // alt={n.PageImage.data.attributes.alternativeText}
+            // width={
+            //   n.PageImage.data.attributes.formats == null
+            //     ? ""
+            //     : n.PageImage.data.attributes.formats[
+            //         findLargestFormat(
+            //           n.PageImage.data.attributes.formats,
+            //           "large"
+            //         )
+            //       ].width
+            // }
+            // height={
+            //   n.PageImage.data.attributes.formats == null
+            //     ? ""
+            //     : n.PageImage.data.attributes.formats[
+            //         findLargestFormat(
+            //           n.PageImage.data.attributes.formats,
+            //           "large"
+            //         )
+            //       ].height
+            // }
+            src={n.PageImage.data.attributes.url}
             alt={n.PageImage.data.attributes.alternativeText}
-            width={
-              n.PageImage.data.attributes.formats == null
-                ? ""
-                : n.PageImage.data.attributes.formats[
-                    findLargestFormat(
-                      n.PageImage.data.attributes.formats,
-                      "large"
-                    )
-                  ].width
-            }
-            height={
-              n.PageImage.data.attributes.formats == null
-                ? ""
-                : n.PageImage.data.attributes.formats[
-                    findLargestFormat(
-                      n.PageImage.data.attributes.formats,
-                      "large"
-                    )
-                  ].height
-            }
+            width={""}
+            height={""}
             caption={n.PageImage.data.attributes.caption}
           />
         </Region2>
@@ -153,8 +157,10 @@ function sortFAQsByProgram(programId, faqs) {
   for (let i in faqs.data) {
     let faq = faqs.data[i];
     for (let j in faq.attributes.Answer) {
-      let whichPrograms = faq.attributes.Answer[j].AnswerForWhichPrograms.filter(p => p.ProgramSeason); // TODO: Fix null .ProgramSeason values in Strapi
-      console.log("whichPrograms is currently ", whichPrograms);
+      let whichPrograms = faq.attributes.Answer[
+        j
+      ].AnswerForWhichPrograms.filter((p) => p.ProgramSeason); // TODO: Fix null .ProgramSeason values in Strapi
+      // console.log("whichPrograms is currently ", whichPrograms);
       for (let k in whichPrograms) {
         let thisQuestionsProgram = whichPrograms[k].ProgramSeason.toLowerCase();
         let currentProgram = programId.split("-").join("").toLowerCase();

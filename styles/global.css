@@ -227,6 +227,7 @@ details > summary {
 details > p {
   opacity: 0.6125;
   padding: calc(0.85em / 2) 0.85em;
+  cursor: auto;
 }
 
 @media (max-width: 550px) {
