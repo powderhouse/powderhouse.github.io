@@ -191,9 +191,9 @@ function assemblePaths(paths) {
 
 export async function getStaticPaths() {
   let programCards = await fetchAPI("/program-cards");
-  let programIds = programCards.data.map(
-    (i) => i.attributes.ProgramId.split("-")[0]
-  );
+  let programIds = programCards.data
+    .map((i) => i.attributes.ProgramId.split("-")[0])
+    .filter((pid) => pid == "fall"); // TODO: Fix this to only be for fall, or not to depend on /program-cards so it doesn't throw an error on `yarn build`
 
   return {
     paths: assemblePaths(programIds),
