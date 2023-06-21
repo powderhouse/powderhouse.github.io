@@ -52,6 +52,7 @@ function ProgramDetailPage({ programCards, faqs }) {
         >
           <PageImage
             fullBleed={n.IsFullBleed}
+
             // src={
             //   n.PageImage.data.attributes.formats == null
             //     ? n.PageImage.data.attributes.url
@@ -83,6 +84,7 @@ function ProgramDetailPage({ programCards, faqs }) {
             //         )
             //       ].height
             // }
+            
             src={n.PageImage.data.attributes.url}
             alt={n.PageImage.data.attributes.alternativeText}
             width={""}
