@@ -14,7 +14,7 @@ import {
   PageSectionContent,
   PageHeading,
 } from "../../../components/Page.js";
-import { Div, findLargestFormat, slugify } from "../../../components/global";
+import { Div, slugify } from "../../../components/global";
 
 import { fetchAPI } from "../../../lib/api";
 import { useRouter } from "next/router";
