@@ -18,6 +18,8 @@ import { fetchAPI } from "../../../lib/api";
 
 function JobsPage({ jobPage, jobCards }) {
 	function getJobIdByTitle(title, jobCards) {
+		console.log(jobPage.data.attributes.PageSections);
+
 		return jobCards[title][0].attributes.JobId;
 	}
 
