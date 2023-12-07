@@ -46,9 +46,10 @@
     "webpack": "5.70.0",
     "yarn": "^1.22.17"
   },
-  "engines": {
-    "node": "^14.18.1"
-  },
+  "engines": { 
+    "node": "20.x" 
+  }
+  ,
   "devDependencies": {
     "@cypress/browserify-preprocessor": "^3.0.2",
     "@heroicons/react": "^1.0.6",
