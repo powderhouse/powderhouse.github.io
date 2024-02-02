@@ -38,7 +38,8 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               <ContactNavItem className="irl">
                 <NavLink href="https://goo.gl/maps/2BFLEfCzk8ML1YoH8">
                   339R Summer Street <br />
-                  Somerville, MA 02144
+                  Somerville, MA <br />
+                  02144
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem className="www1">
@@ -49,6 +50,11 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem className="www2">
+                <NavLink href="tel:6176168653">
+                  (617)616-8653
+                </NavLink>
+              </ContactNavItem>
+              <ContactNavItem className="www3">
                 <SocialList className={router.pathname != "/" ? "" : "home"}>
                   {socials.map((n) => {
                     return (
@@ -169,7 +175,7 @@ let ContactNavList = styled(NavList)`
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "irl www1" "irl www2";
+    grid-template-areas: "irl www1" "irl www2" "irl www3";
     column-gap: var(--gap);
 
     @media ${mediaQueries.uptoMobile} {
@@ -177,7 +183,8 @@ let ContactNavList = styled(NavList)`
       grid-template-areas:
         "irl"
         "www1"
-        "www2";
+        "www2"
+        "www3";
     }
   }
   &.home .irl {
@@ -206,7 +213,16 @@ let ContactNavList = styled(NavList)`
 
   &.home .www2 {
     grid-area: www2;
-    width: 50%;
+    text-align: left;
+
+    @media ${mediaQueries.uptoMobile} {
+      justify-content: center;
+      margin: auto;
+    }
+  }
+  &.home .www3 {
+    grid-area: www3;
+    transform:translateY(-3px);
 
     @media ${mediaQueries.uptoMobile} {
       justify-content: center;
