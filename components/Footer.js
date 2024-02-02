@@ -51,7 +51,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
               </ContactNavItem>
               <ContactNavItem className="www2">
                 <NavLink href="tel:6176168653">
-                  (617)616-8653
+                  (617) 616-8653
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem className="www3">
