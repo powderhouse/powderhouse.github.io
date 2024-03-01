@@ -49,8 +49,7 @@ function NotesPage({ notesPage, noteCards }) {
 							PageIntro
 						},
 					},
-				},
-				i
+				}
 			) => (
 				<NoteItem
 					title={PageHeader}
