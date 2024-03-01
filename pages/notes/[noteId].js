@@ -17,6 +17,7 @@ import {
   slugify,
   findLargestFormat,
   getLightFromBg,
+  getBgFromLight
 } from "../../components/global";
 
 import { fetchAPI } from "../../lib/api";
@@ -31,7 +32,6 @@ function NotePage(props) {
       Meta,
   } = getNoteById(noteId, props.notes).attributes;
   let accentColor = "--red";
-  let note = getNoteById(noteId, props.notes);
 
   let regions = [
     <Header
@@ -43,13 +43,13 @@ function NotePage(props) {
       <PageHeading>{PageHeader}</PageHeading>
       <PageTableOfContents sections={PageMixedContent} />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-white" key="introduction">
+    <PageIntroduction backgroundColor="--off-black" key="introduction">
       {PageIntro}
     </PageIntroduction>,
     ...PageMixedContent.map((e, i) =>
       e.PageImage ? (
         <Region2
-          backgroundColor="--off-white"
+          backgroundColor="--off-black"
           key={
             e.PageImage.data.attributes.caption
               ? slugify(e.PageImage.data.attributes.caption)
@@ -94,7 +94,7 @@ function NotePage(props) {
         </Region2>
       ) : (
         <Region2
-          backgroundColor={getLightFromBg(e.isLightSection)}
+          backgroundColor={getBgFromLight(e.isLightSection)}
           key={
             e.SectionHeader
               ? slugify(e.SectionHeader)
@@ -110,7 +110,7 @@ function NotePage(props) {
       )
     ),
     <Footer
-      backgroundColor="--off-black"
+      backgroundColor="--off-white"
       accentColor={accentColor}
       key="footer"
     />,
@@ -157,9 +157,7 @@ function assemblePaths(paths) {
 
 export async function getStaticPaths() {
   let notes = await fetchAPI("/notes");
-  // console.log(notes);
   let noteIds = notes.data.map((i) => i.attributes.NoteId);
-  console.log(noteIds);
   return {
     paths: assemblePaths(noteIds),
     fallback: false,

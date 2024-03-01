@@ -46,7 +46,7 @@ function AboutPage({
 		...aboutPageContent.map((e, i) =>
 			e.PageImage ? (
 				<Region2
-					backgroundColor="--off-black"
+					backgroundColor={getLightFromBg(e.isLightSection)}
 					key={
 						e.PageImage.data.attributes.caption
 							? slugify(e.PageImage.data.attributes.caption)
