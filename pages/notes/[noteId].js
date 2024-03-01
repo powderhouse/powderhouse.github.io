@@ -157,9 +157,7 @@ function assemblePaths(paths) {
 
 export async function getStaticPaths() {
   let notes = await fetchAPI("/notes");
-  // console.log(notes);
   let noteIds = notes.data.map((i) => i.attributes.NoteId);
-  console.log(noteIds);
   return {
     paths: assemblePaths(noteIds),
     fallback: false,
