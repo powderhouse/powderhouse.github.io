@@ -15,7 +15,7 @@ import {
 
 import {
   slugify,
-  findLargestFormat,
+  // findLargestFormat,
   getBgFromLight
 } from "../../components/global";
 
