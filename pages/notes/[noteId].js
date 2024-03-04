@@ -25,11 +25,20 @@ import { useRouter } from "next/router";
 function NotePage(props) {
   const router = useRouter();
   let { noteId } = router.query;
+
   let { 
-      PageSplash: { PageHeader, PageIntro },
-      PageMixedContent,
-      Meta,
-  } = getNoteById(noteId, props.notes).attributes;
+    noteMeta: {
+      PageSplash: {
+        PageHeader,
+        PageIntro
+      },
+      Meta
+    },
+    noteContent: {
+      PageMixedContent
+    }
+      
+  } = props;
   let accentColor = "--red";
 
   let regions = [
@@ -42,13 +51,14 @@ function NotePage(props) {
       <PageHeading>{PageHeader}</PageHeading>
       <PageTableOfContents sections={PageMixedContent} />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-black" key="introduction">
+    <PageIntroduction backgroundColor="--off-white" key="introduction">
       {PageIntro}
     </PageIntroduction>,
     ...PageMixedContent.map((e, i) =>
       e.PageImage ? (
         <Region2
           backgroundColor="--off-black"
+          className={`lightbg-` + e.isLightSection}
           key={
             e.PageImage.data.attributes.caption
               ? slugify(e.PageImage.data.attributes.caption)
@@ -58,35 +68,39 @@ function NotePage(props) {
           <PageImage
             fullBleed={e.IsFullBleed}
             src={
-              e.PageImage.data.attributes.formats == null
-                ? url
-                : e.PageImage.data.attributes.formats[
-                    findLargestFormat(
-                      e.PageImage.data.attributes.formats,
-                      "large"
-                    )
-                  ].url
+              e.PageImage.data.attributes.url
+              // TK - Why isn't this working? Only the thumbnail version of the image is being returned in props, even though the url points to a larger image...
+              // e.PageImage.data.attributes.formats == null
+              //   ? url
+              //   : e.PageImage.data.attributes.formats[
+              //       findLargestFormat(
+              //         e.PageImage.data.attributes.formats,
+              //         "large"
+              //       )
+              //     ].url
             }
             alt={e.PageImage.data.attributes.alternativeText}
             width={
-              e.PageImage.data.attributes.formats == null
-                        ? ""
-                        : e.PageImage.data.attributes.formats[
-                  findLargestFormat(
-                    e.PageImage.data.attributes.formats,
-                    "large"
-                  )
-                ].width
+              e.PageImage.data.attributes.width
+              // e.PageImage.data.attributes.formats == null
+              //           ? ""
+              //           : e.PageImage.data.attributes.formats[
+              //     findLargestFormat(
+              //       e.PageImage.data.attributes.formats,
+              //       "large"
+              //     )
+              //   ].width
             }
             height={
-              e.PageImage.data.attributes.formats == null
-                        ? ""
-                        : e.PageImage.data.attributes.formats[
-                  findLargestFormat(
-                    e.PageImage.data.attributes.formats,
-                    "large"
-                  )
-                ].height
+              e.PageImage.data.attributes.height
+              // e.PageImage.data.attributes.formats == null
+              //           ? ""
+              //           : e.PageImage.data.attributes.formats[
+              //     findLargestFormat(
+              //       e.PageImage.data.attributes.formats,
+              //       "large"
+              //     )
+              //   ].height
             }
             caption={e.PageImage.data.attributes.caption}
           />
@@ -94,6 +108,7 @@ function NotePage(props) {
       ) : (
         <Region2
           backgroundColor={getBgFromLight(e.isLightSection)}
+          className={`lightbg-` + e.isLightSection}
           key={
             e.SectionHeader
               ? slugify(e.SectionHeader)
@@ -164,13 +179,19 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { noteId } }) {
-  let notes = await fetchAPI(
-    `/notes?[populate]=*`
+  let noteMeta = await fetchAPI(
+    `/notes?populate=*`
   );
+  let noteContent = await fetchAPI(
+    `/notes?populate[PageMixedContent][populate]=*`
+  );
+  noteMeta = getNoteById(noteId, noteMeta);
+  noteContent = getNoteById(noteId, noteContent)
 
   return {
     props: {
-      notes: notes,
+      noteMeta: noteMeta.attributes,
+      noteContent: noteContent.attributes
     }, // will be passed to the page component as props
   };
 }
