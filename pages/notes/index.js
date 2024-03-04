@@ -19,7 +19,7 @@ import { baseGrid, Div } from "../../components/global";
 import { fetchAPI } from "../../lib/api";
 
 function NotesPage({ notesPage, noteCards }) {
-	let accentColor = "--yellow";
+	let accentColor = "--red";
 
 	let regions = [
 		<Header
@@ -55,6 +55,7 @@ function NotesPage({ notesPage, noteCards }) {
 					title={PageHeader}
 					desc={PageIntro}
 					slug={NoteId}
+					key={NoteId}
 				/>
 			)
 		),

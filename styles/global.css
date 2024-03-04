@@ -330,6 +330,17 @@ blockquote::after {
   opacity: 0.55;
 }
 
+.lightbg-false blockquote {
+    border-left: 2px dashed var(--off-white);
+    color: var(--off-white);
+}
+.lightbg-false blockquote::before {
+  background-color: var(--off-black);
+}
+.lightbg-false blockquote::after {
+  color: var(--off-white);
+}
+
 p + ul,
 p + ol {
   /* Optically adjusted */
