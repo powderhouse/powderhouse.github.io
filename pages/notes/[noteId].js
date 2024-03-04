@@ -58,7 +58,6 @@ function NotePage(props) {
       e.PageImage ? (
         <Region2
           backgroundColor="--off-black"
-          className={`lightbg-` + e.isLightSection}
           key={
             e.PageImage.data.attributes.caption
               ? slugify(e.PageImage.data.attributes.caption)
@@ -108,7 +107,7 @@ function NotePage(props) {
       ) : (
         <Region2
           backgroundColor={getBgFromLight(e.isLightSection)}
-          className={`lightbg-` + e.isLightSection}
+          // className={e.isLightSection ? "" : "lightbg-false"}
           key={
             e.SectionHeader
               ? slugify(e.SectionHeader)
