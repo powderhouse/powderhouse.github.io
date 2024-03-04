@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import Asterisk from "../../components/Asterisk";
 import PageContainer2 from "../../components/PageContainer2";
 import Region2 from "../../components/Region2";
 import { mediaQueries } from "../../site-data";
@@ -85,8 +84,8 @@ let NoteItemContainer = styled.div`
 		grid-template-columns: fit-content(500px) 1fr;
 		grid-template-areas:
 			"newsdate newstype"
-			"newstitle newstitle"
-			"newscontent newscontent";
+			"notetitle notetitle"
+			"notecontent notecontent";
 	}
 
 	@media ${mediaQueries.uptoMobile} {
@@ -98,10 +97,7 @@ function NoteItem({ title, desc, slug }) {
 	return (
 		<Region2 backgroundColor="--off-white" $grid={true}>
 			<NoteItemContainer>
-				<NoteStar><Asterisk /></NoteStar>
-				{/*<NewsType>{type}</NewsType>*/}
-					<NoteLink href={`/notes/`+slug} >
-
+				<NoteLink href={`/notes/` + slug} >
 				<NoteTitle>{title}</NoteTitle>
 				<NoteContent>
 					<NoteDescription markdown>{desc}</NoteDescription>
@@ -112,53 +108,6 @@ function NoteItem({ title, desc, slug }) {
 		</Region2>
 	);
 }
-
-let NoteStar = styled.span`
-	grid-column: 1 / 4;
-	grid-row: 1;
-	align-self: start;
-	justify-self: end;
-	transform: scale(1.4) translate(.75rem, -.1rem);
-	font-weight: 300;
-
-	@media ${mediaQueries.uptoTablet} {
-		grid-column: 1 / -1;
-		grid-area: newsdate;
-		grid-row: 1;
-		opacity: 0.625;
-	}
-	@media ${mediaQueries.uptoMobile} {
-		grid-column: 1 / 3;
-		grid-row: 1;
-		font-size: var(--base-font-size);
-		line-height: var(--base-line-height);
-	}
-`;
-
-// function NewsDate(props) {
-// 	const date = new Date(props.children);
-// 	const options = { year: "numeric", month: "long", day: "numeric" };
-// 	const dateString = date.toLocaleDateString(undefined, options);
-
-// 	return <NewsDateDiv>{dateString}</NewsDateDiv>;
-// }
-
-// let NewsType = styled.span`
-// 	grid-column: 1 / 4;
-// 	grid-row: 2;
-// 	font-weight: 300;
-// 	opacity: 0.625;
-
-// 	@media ${mediaQueries.uptoTablet} {
-// 		grid-column: 1 / -1;
-// 		grid-area: newstype;
-// 		grid-row: 1;
-// 	}
-// 	@media ${mediaQueries.uptoMobile} {
-// 		grid-row: 1;
-// 		grid-column: 3 / -1;
-// 	}
-// `;
 
 let NoteTitle = styled.h2`
 	display: inline;
@@ -172,7 +121,7 @@ let NoteTitle = styled.h2`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-area: newstitle;
+		grid-area: notetitle;
 		grid-row: 2;
 		font-size: var(--large-font-size);
 		line-height: var(--large-line-height);
@@ -193,7 +142,7 @@ let NoteContent = styled.div`
 
 	@media ${mediaQueries.uptoTablet} {
 		grid-column: 1 / -1;
-		grid-area: newscontent;
+		grid-area: notecontent;
 		grid-row: 3;
 	}
 	@media ${mediaQueries.uptoMobile} {
@@ -213,17 +162,6 @@ let NoteLink = styled.a`
 	grid-row: 1;
 	text-decoration:none;
 `;
-
-// let NewsRelatedLinks = styled.ul`
-// 	list-style-type: none;
-// 	margin: 0;
-// 	padding: calc(1.3rem / 4) 0;
-// `;
-
-// let NewsLi = styled.li`
-// 	padding-left: 1em;
-// 	position: relative;
-// `;
 
 export async function getStaticProps() {
 	let notesPage = await fetchAPI("/note-page?populate=*");
