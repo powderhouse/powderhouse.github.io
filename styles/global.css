@@ -301,6 +301,10 @@ blockquote {
   padding-left: var(--gap);
   position: relative;
   transform: translateX(2px);
+
+  /* fixing dark background issue */
+  background-color:var(--off-white);  
+  padding: var(--gap) calc(var(--gap)*.75) var(--gap) calc(var(--gap)*1.5); 
 }
 
 blockquote::before {
@@ -319,7 +323,8 @@ blockquote::after {
   content: open-quote;
   position: absolute;
   top: 50%;
-  left: -0.5em;
+  /*  left: -0.5em;*/
+  left:-0.375em; /* fixing dark background issue */
   color: var(--off-black);
   font-size: calc(var(--splash-font-size) / 2);
   line-height: 1em;
@@ -330,6 +335,10 @@ blockquote::after {
   opacity: 0.55;
 }
 
+/* below currently not working, 
+meant to fixing dark background issue,
+can't figure out how to set classname on containing divs
+without it being overwritten on render */
 .lightbg-false blockquote {
     border-left: 2px dashed var(--off-white);
     color: var(--off-white);
