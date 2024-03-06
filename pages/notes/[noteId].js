@@ -51,13 +51,17 @@ function NotePage(props) {
       <PageHeading>{PageHeader}</PageHeading>
       <PageTableOfContents sections={PageMixedContent} />
     </PageSplash>,
-    <PageIntroduction backgroundColor="--off-white" key="introduction">
+    <PageIntroduction 
+      backgroundColor="--off-white" 
+      markdown
+      key="introduction"
+    >
       {PageIntro}
     </PageIntroduction>,
     ...PageMixedContent.map((e, i) =>
       e.PageImage ? (
         <Region2
-          backgroundColor="--off-black"
+          backgroundColor="--off-white"
           key={
             e.PageImage.data.attributes.caption
               ? slugify(e.PageImage.data.attributes.caption)
@@ -123,7 +127,7 @@ function NotePage(props) {
       )
     ),
     <Footer
-      backgroundColor="--off-white"
+      backgroundColor="--off-black"
       accentColor={accentColor}
       key="footer"
     />,
