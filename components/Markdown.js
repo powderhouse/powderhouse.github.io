@@ -1,6 +1,9 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import 'katex/dist/katex.min.css' // `rehype-katex` does not import the CSS for you
 
 let Markdown = ({ children, ...rest }) => {
 	// Here we iterate over children we pass and only wrap text/string children in Markdown.  This lets us wrap things in Markdown more cavalierly.
@@ -18,7 +21,8 @@ let Markdown = ({ children, ...rest }) => {
 			return (
 				<ReactMarkdown
 					components={{ strong: "b" }}
-					rehypePlugins={[rehypeRaw]}
+					remarkPlugins={[remarkMath]}
+					rehypePlugins={[rehypeKatex, rehypeRaw]}
 					key={i}
 					{...rest}
 				>
