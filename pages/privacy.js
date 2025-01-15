@@ -1,7 +1,6 @@
 // import styled from "styled-components";
 
 // import SEO from "../components/SEO";
-import { fetchAPI } from "../lib/api";
 // import { mediaQueries } from "../site-data";
 
 import Header from "../components/Header";
@@ -273,7 +272,7 @@ function PrivacyPage({}) {
       key="header"
       activeScribbleColor={accentColor}
     />,
-    <Region2 style={{ marginBottom: "1rem" }}>
+    <Region2 key="privacyContent" style={{ marginBottom: "1rem" }}>
       <PageSectionContent markdown>{content}</PageSectionContent>
     </Region2>,
     <Footer
