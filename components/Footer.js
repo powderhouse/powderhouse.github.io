@@ -49,7 +49,7 @@ function Footer({ backgroundColor, accentColor, ...rest }) {
                 </NavLink>
               </ContactNavItem>
               <ContactNavItem className="www2">
-                <NavLink href="tel:6176168653">(617) 616-8653</NavLink>
+                <NavLink href="tel:+16176041339">(617) 604-1339</NavLink>
               </ContactNavItem>
               {router.pathname == "/" ? (
                 ""
